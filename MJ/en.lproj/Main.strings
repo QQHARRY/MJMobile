@@ -1,0 +1,9 @@
+
+/* Class = "IBUITextField"; placeholder = "请输入密码"; ObjectID = "OeI-fp-DAJ"; */
+"OeI-fp-DAJ.placeholder" = "请输入密码";
+
+/* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "wfs-Cw-xfD"; */
+"wfs-Cw-xfD.normalTitle" = "申请绑定设备";
+
+/* Class = "IBUITextField"; placeholder = "请输入用户名"; ObjectID = "xaj-fF-GZE"; */
+"xaj-fF-GZE.placeholder" = "请输入用户名";
