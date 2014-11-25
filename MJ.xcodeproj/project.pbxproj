@@ -13,12 +13,6 @@
 		4AD7946A1A208F4400DEC779 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AD794691A208F4400DEC779 /* Images.xcassets */; };
 		4AD7946D1A208F4500DEC779 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD7946B1A208F4500DEC779 /* LaunchScreen.xib */; };
 		4AD794791A208F4500DEC779 /* MJTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD794781A208F4500DEC779 /* MJTests.m */; };
-		4AD794A01A2189F900DEC779 /* BindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD794951A2189F900DEC779 /* BindViewController.m */; };
-		4AD794A11A2189F900DEC779 /* CustomerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD794971A2189F900DEC779 /* CustomerViewController.m */; };
-		4AD794A21A2189F900DEC779 /* HouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD794991A2189F900DEC779 /* HouseViewController.m */; };
-		4AD794A31A2189F900DEC779 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7949B1A2189F900DEC779 /* MainPageViewController.m */; };
-		4AD794A41A2189F900DEC779 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7949D1A2189F900DEC779 /* MoreViewController.m */; };
-		4AD794A51A2189F900DEC779 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7949F1A2189F900DEC779 /* RegisterViewController.m */; };
 		4AD7951F1A218C4A00DEC779 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD794A91A218C4A00DEC779 /* AFHTTPRequestOperation.m */; };
 		4AD795201A218C4A00DEC779 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD794AB1A218C4A00DEC779 /* AFHTTPRequestOperationManager.m */; };
 		4AD795211A218C4A00DEC779 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD794AD1A218C4A00DEC779 /* AFHTTPSessionManager.m */; };
@@ -41,6 +35,12 @@
 		4AD795531A218C4A00DEC779 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7951E1A218C4A00DEC779 /* UIWebView+AFNetworking.m */; };
 		4AD7955C1A218DF100DEC779 /* GTCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD795581A218DF100DEC779 /* GTCheckBox.m */; };
 		4AD7955D1A218DF100DEC779 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7955B1A218DF100DEC779 /* MBProgressHUD.m */; };
+		B9FF4B3F1A245FB300FE413E /* CustomerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF4B301A245FB300FE413E /* CustomerViewController.m */; };
+		B9FF4B401A245FB300FE413E /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF4B331A245FB300FE413E /* MainPageViewController.m */; };
+		B9FF4B411A245FB300FE413E /* HouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF4B361A245FB300FE413E /* HouseViewController.m */; };
+		B9FF4B421A245FB300FE413E /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF4B391A245FB300FE413E /* MoreViewController.m */; };
+		B9FF4B431A245FB300FE413E /* BindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF4B3C1A245FB300FE413E /* BindViewController.m */; };
+		B9FF4B441A245FB300FE413E /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF4B3E1A245FB300FE413E /* RegisterViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,18 +65,6 @@
 		4AD794721A208F4500DEC779 /* MJTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MJTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD794771A208F4500DEC779 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AD794781A208F4500DEC779 /* MJTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MJTests.m; sourceTree = "<group>"; };
-		4AD794941A2189F900DEC779 /* BindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindViewController.h; sourceTree = "<group>"; };
-		4AD794951A2189F900DEC779 /* BindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindViewController.m; sourceTree = "<group>"; };
-		4AD794961A2189F900DEC779 /* CustomerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerViewController.h; sourceTree = "<group>"; };
-		4AD794971A2189F900DEC779 /* CustomerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerViewController.m; sourceTree = "<group>"; };
-		4AD794981A2189F900DEC779 /* HouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseViewController.h; sourceTree = "<group>"; };
-		4AD794991A2189F900DEC779 /* HouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseViewController.m; sourceTree = "<group>"; };
-		4AD7949A1A2189F900DEC779 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
-		4AD7949B1A2189F900DEC779 /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
-		4AD7949C1A2189F900DEC779 /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreViewController.h; sourceTree = "<group>"; };
-		4AD7949D1A2189F900DEC779 /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
-		4AD7949E1A2189F900DEC779 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
-		4AD7949F1A2189F900DEC779 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		4AD794A81A218C4A00DEC779 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		4AD794A91A218C4A00DEC779 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		4AD794AA1A218C4A00DEC779 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -123,6 +111,18 @@
 		4AD795581A218DF100DEC779 /* GTCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTCheckBox.m; sourceTree = "<group>"; };
 		4AD7955A1A218DF100DEC779 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		4AD7955B1A218DF100DEC779 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		B9FF4B2F1A245FB300FE413E /* CustomerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerViewController.h; sourceTree = "<group>"; };
+		B9FF4B301A245FB300FE413E /* CustomerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerViewController.m; sourceTree = "<group>"; };
+		B9FF4B321A245FB300FE413E /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
+		B9FF4B331A245FB300FE413E /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
+		B9FF4B351A245FB300FE413E /* HouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseViewController.h; sourceTree = "<group>"; };
+		B9FF4B361A245FB300FE413E /* HouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseViewController.m; sourceTree = "<group>"; };
+		B9FF4B381A245FB300FE413E /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreViewController.h; sourceTree = "<group>"; };
+		B9FF4B391A245FB300FE413E /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
+		B9FF4B3B1A245FB300FE413E /* BindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindViewController.h; sourceTree = "<group>"; };
+		B9FF4B3C1A245FB300FE413E /* BindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindViewController.m; sourceTree = "<group>"; };
+		B9FF4B3D1A245FB300FE413E /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		B9FF4B3E1A245FB300FE413E /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,18 +205,11 @@
 		4AD794931A2189F900DEC779 /* business */ = {
 			isa = PBXGroup;
 			children = (
-				4AD794941A2189F900DEC779 /* BindViewController.h */,
-				4AD794951A2189F900DEC779 /* BindViewController.m */,
-				4AD794961A2189F900DEC779 /* CustomerViewController.h */,
-				4AD794971A2189F900DEC779 /* CustomerViewController.m */,
-				4AD794981A2189F900DEC779 /* HouseViewController.h */,
-				4AD794991A2189F900DEC779 /* HouseViewController.m */,
-				4AD7949A1A2189F900DEC779 /* MainPageViewController.h */,
-				4AD7949B1A2189F900DEC779 /* MainPageViewController.m */,
-				4AD7949C1A2189F900DEC779 /* MoreViewController.h */,
-				4AD7949D1A2189F900DEC779 /* MoreViewController.m */,
-				4AD7949E1A2189F900DEC779 /* RegisterViewController.h */,
-				4AD7949F1A2189F900DEC779 /* RegisterViewController.m */,
+				B9FF4B2E1A245FB300FE413E /* Customer */,
+				B9FF4B311A245FB300FE413E /* Home */,
+				B9FF4B341A245FB300FE413E /* House */,
+				B9FF4B371A245FB300FE413E /* More */,
+				B9FF4B3A1A245FB300FE413E /* Other */,
 			);
 			path = business;
 			sourceTree = "<group>";
@@ -320,6 +313,53 @@
 				4AD7955B1A218DF100DEC779 /* MBProgressHUD.m */,
 			);
 			path = HUD;
+			sourceTree = "<group>";
+		};
+		B9FF4B2E1A245FB300FE413E /* Customer */ = {
+			isa = PBXGroup;
+			children = (
+				B9FF4B2F1A245FB300FE413E /* CustomerViewController.h */,
+				B9FF4B301A245FB300FE413E /* CustomerViewController.m */,
+			);
+			path = Customer;
+			sourceTree = "<group>";
+		};
+		B9FF4B311A245FB300FE413E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B9FF4B321A245FB300FE413E /* MainPageViewController.h */,
+				B9FF4B331A245FB300FE413E /* MainPageViewController.m */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B9FF4B341A245FB300FE413E /* House */ = {
+			isa = PBXGroup;
+			children = (
+				B9FF4B351A245FB300FE413E /* HouseViewController.h */,
+				B9FF4B361A245FB300FE413E /* HouseViewController.m */,
+			);
+			path = House;
+			sourceTree = "<group>";
+		};
+		B9FF4B371A245FB300FE413E /* More */ = {
+			isa = PBXGroup;
+			children = (
+				B9FF4B381A245FB300FE413E /* MoreViewController.h */,
+				B9FF4B391A245FB300FE413E /* MoreViewController.m */,
+			);
+			path = More;
+			sourceTree = "<group>";
+		};
+		B9FF4B3A1A245FB300FE413E /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				B9FF4B3B1A245FB300FE413E /* BindViewController.h */,
+				B9FF4B3C1A245FB300FE413E /* BindViewController.m */,
+				B9FF4B3D1A245FB300FE413E /* RegisterViewController.h */,
+				B9FF4B3E1A245FB300FE413E /* RegisterViewController.m */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -427,31 +467,31 @@
 				4AD795271A218C4A00DEC779 /* AFURLSessionManager.m in Sources */,
 				4AD795241A218C4A00DEC779 /* AFURLConnectionOperation.m in Sources */,
 				4AD7954C1A218C4A00DEC779 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				B9FF4B421A245FB300FE413E /* MoreViewController.m in Sources */,
 				4AD7954E1A218C4A00DEC779 /* UIAlertView+AFNetworking.m in Sources */,
+				B9FF4B411A245FB300FE413E /* HouseViewController.m in Sources */,
+				B9FF4B401A245FB300FE413E /* MainPageViewController.m in Sources */,
 				4AD7951F1A218C4A00DEC779 /* AFHTTPRequestOperation.m in Sources */,
 				4AD7955D1A218DF100DEC779 /* MBProgressHUD.m in Sources */,
-				4AD794A11A2189F900DEC779 /* CustomerViewController.m in Sources */,
 				4AD7952A1A218C4A00DEC779 /* UIImage+FX.m in Sources */,
 				4AD795201A218C4A00DEC779 /* AFHTTPRequestOperationManager.m in Sources */,
-				4AD794A21A2189F900DEC779 /* HouseViewController.m in Sources */,
 				4AD795531A218C4A00DEC779 /* UIWebView+AFNetworking.m in Sources */,
-				4AD794A31A2189F900DEC779 /* MainPageViewController.m in Sources */,
 				4AD795211A218C4A00DEC779 /* AFHTTPSessionManager.m in Sources */,
 				4AD795291A218C4A00DEC779 /* FXImageView.m in Sources */,
 				4AD7954F1A218C4A00DEC779 /* UIButton+AFNetworking.m in Sources */,
 				4AD794621A208F4400DEC779 /* AppDelegate.m in Sources */,
 				4AD7945F1A208F4400DEC779 /* main.m in Sources */,
-				4AD794A41A2189F900DEC779 /* MoreViewController.m in Sources */,
 				4AD795501A218C4A00DEC779 /* UIImageView+AFNetworking.m in Sources */,
+				B9FF4B431A245FB300FE413E /* BindViewController.m in Sources */,
 				4AD795231A218C4A00DEC779 /* AFSecurityPolicy.m in Sources */,
-				4AD794A01A2189F900DEC779 /* BindViewController.m in Sources */,
 				4AD795251A218C4A00DEC779 /* AFURLRequestSerialization.m in Sources */,
 				4AD7954D1A218C4A00DEC779 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				4AD795511A218C4A00DEC779 /* UIProgressView+AFNetworking.m in Sources */,
+				B9FF4B441A245FB300FE413E /* RegisterViewController.m in Sources */,
 				4AD795221A218C4A00DEC779 /* AFNetworkReachabilityManager.m in Sources */,
 				4AD7955C1A218DF100DEC779 /* GTCheckBox.m in Sources */,
 				4AD795261A218C4A00DEC779 /* AFURLResponseSerialization.m in Sources */,
-				4AD794A51A2189F900DEC779 /* RegisterViewController.m in Sources */,
+				B9FF4B3F1A245FB300FE413E /* CustomerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,6 +688,7 @@
 				4AD7947E1A208F4500DEC779 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4AD7947F1A208F4500DEC779 /* Build configuration list for PBXNativeTarget "MJTests" */ = {
 			isa = XCConfigurationList;
@@ -656,6 +697,7 @@
 				4AD794811A208F4500DEC779 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
