@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--Bind View Controller-->
@@ -17,23 +17,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xaj-fF-GZE">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xaj-fF-GZE">
                                 <rect key="frame" x="158" y="207" width="284" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES">
-                                    <rect key="frame" x="58" y="278" width="284" height="37"/>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="58" y="278" width="284" height="30"/>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OeI-fp-DAJ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OeI-fp-DAJ">
                                 <rect key="frame" x="158" y="272" width="284" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES">
-                                    <rect key="frame" x="58" y="335" width="284" height="30"/>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="58" y="335" width="284" height="37"/>
                                 </variation>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MtZ-4f-JHO">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MtZ-4f-JHO">
                                 <rect key="frame" x="240" y="67" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="EBQ-VK-wCk"/>
@@ -85,6 +85,10 @@
                                 <exclude reference="wfs-Cw-xfD"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="0hu-GS-16e"/>
+                                <exclude reference="97s-oc-lz0"/>
+                                <exclude reference="MCs-y8-taF"/>
+                                <exclude reference="SuD-M1-KKW"/>
                                 <exclude reference="P5x-7L-Fc0"/>
                                 <exclude reference="kON-ND-9wi"/>
                                 <exclude reference="0fO-Dx-8BH"/>
@@ -94,10 +98,6 @@
                                 <exclude reference="Kzt-jQ-Zws"/>
                                 <exclude reference="Xdt-r1-sjl"/>
                                 <exclude reference="phc-dQ-1vy"/>
-                                <exclude reference="0hu-GS-16e"/>
-                                <exclude reference="97s-oc-lz0"/>
-                                <exclude reference="MCs-y8-taF"/>
-                                <exclude reference="SuD-M1-KKW"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -105,6 +105,10 @@
                                 <include reference="wfs-Cw-xfD"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="0hu-GS-16e"/>
+                                <include reference="97s-oc-lz0"/>
+                                <include reference="MCs-y8-taF"/>
+                                <include reference="SuD-M1-KKW"/>
                                 <include reference="P5x-7L-Fc0"/>
                                 <include reference="kON-ND-9wi"/>
                                 <include reference="0fO-Dx-8BH"/>
@@ -114,10 +118,6 @@
                                 <include reference="Kzt-jQ-Zws"/>
                                 <include reference="Xdt-r1-sjl"/>
                                 <include reference="phc-dQ-1vy"/>
-                                <include reference="0hu-GS-16e"/>
-                                <include reference="97s-oc-lz0"/>
-                                <include reference="MCs-y8-taF"/>
-                                <include reference="SuD-M1-KKW"/>
                             </mask>
                         </variation>
                     </view>
@@ -138,7 +138,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="osY-xm-qd0">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="osY-xm-qd0">
                                 <rect key="frame" x="158" y="207" width="284" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -146,7 +146,7 @@
                                     <rect key="frame" x="67" y="255" width="284" height="30"/>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6EW-eU-Rlb">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6EW-eU-Rlb">
                                 <rect key="frame" x="158" y="272" width="284" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -154,10 +154,10 @@
                                     <rect key="frame" x="67" y="315" width="284" height="30"/>
                                 </variation>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KeH-qW-l59">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KeH-qW-l59">
                                 <rect key="frame" x="240" y="67" width="120" height="120"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="140" y="91" width="120" height="120"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                 </variation>
                             </imageView>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jVk-Xb-7yI">
@@ -290,6 +290,7 @@
                         <viewControllerLayoutGuide type="bottom" id="2yT-Mq-1wx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TA2-IZ-yPO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -359,6 +360,7 @@
                         <viewControllerLayoutGuide type="bottom" id="ZSQ-2X-a9i"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="lrm-m0-MGC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nKJ-KG-STQ">
@@ -401,6 +403,7 @@
                         <viewControllerLayoutGuide type="bottom" id="iDP-uK-oZn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="D5U-1t-8Nx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -419,6 +422,7 @@
                         <viewControllerLayoutGuide type="bottom" id="txn-BB-cZT"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fRR-lc-a01">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
