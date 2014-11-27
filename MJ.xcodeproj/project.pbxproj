@@ -111,6 +111,7 @@
 		4AD795581A218DF100DEC779 /* GTCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTCheckBox.m; sourceTree = "<group>"; };
 		4AD7955A1A218DF100DEC779 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		4AD7955B1A218DF100DEC779 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		B9D3C6F11A272A39009CCE96 /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		B9FF4B2F1A245FB300FE413E /* CustomerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerViewController.h; sourceTree = "<group>"; };
 		B9FF4B301A245FB300FE413E /* CustomerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerViewController.m; sourceTree = "<group>"; };
 		B9FF4B321A245FB300FE413E /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
@@ -168,6 +169,7 @@
 				4AD794931A2189F900DEC779 /* business */,
 				4AD794601A208F4400DEC779 /* AppDelegate.h */,
 				4AD794611A208F4400DEC779 /* AppDelegate.m */,
+				B9D3C6F11A272A39009CCE96 /* Macro.h */,
 				4AD794661A208F4400DEC779 /* Main.storyboard */,
 				4AD794691A208F4400DEC779 /* Images.xcassets */,
 				4AD7946B1A208F4500DEC779 /* LaunchScreen.xib */,
