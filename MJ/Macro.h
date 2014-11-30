@@ -2,11 +2,11 @@
 
 
 // Server
-#define SERVER_URL @"http://115.28.76.58:9090/kwoa/device/"
+#define SERVER_URL @"http://115.28.76.58:9090/KWOA/device/"
 
 // API
 // 1.申请绑定设备
-#define API_REG @"regdevice"
+#define API_REG @"login/regDevice"
 // 2.登录
 #define API_LOGIN @"applogin"
 // 4.获取公告列表

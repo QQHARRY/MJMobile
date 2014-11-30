@@ -40,14 +40,14 @@
     // 设置afgrom的响应解析器
     manager.responseSerializer =[AFHTTPResponseSerializer serializer];
     // 设置响应解析器的接受类型
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+   // manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     // 设置请求参数
-    NSDictionary *parameters = @{@"job_no":@"", @"acc_password": @"",@"deviceid" : @"justfortest",@"devicetype" : @"0"};
+    NSDictionary *parameters = @{@"job_no":@"XA-1200166", @"acc_password": @"1",@"DeviceID" : @"justfortest",@"DeviceType" : @"0"};
     //    NSDictionary *parameters = @{@"username": @"1234567@qq.com", @"password": @"5d793fc5b00a2348c3fb9ab59e5ca98a", @"device" : @"iPhone5s-iOS7-China"};
     // 显示loading hud
 //    SHOWHUD;
     // post提交请求
-    [manager POST:[NSString stringWithFormat:@"%@%@", SERVER_URL, API_LOGIN] parameters:parameters success:
+    [manager POST:[NSString stringWithFormat:@"%@%@", SERVER_URL, API_REG] parameters:parameters success:
      ^(AFHTTPRequestOperation *operation, id responseObject)
      {
 //         // 这里是请求成功的block

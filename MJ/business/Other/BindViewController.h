@@ -11,5 +11,8 @@
 @interface BindViewController : UIViewController
 
 
+-(IBAction)onBindAction:(id)sender;
+
+
 @end
 
