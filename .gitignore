@@ -4,3 +4,5 @@
 *.xcscheme
 
 MJ.xcodeproj/xcuserdata/Alur.xcuserdatad/xcschemes/xcschememanagement.plist
+
+.DS_Store
