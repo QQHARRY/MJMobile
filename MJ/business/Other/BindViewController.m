@@ -52,6 +52,9 @@
     [manager POST:[NSString stringWithFormat:@"%@%@", SERVER_URL, API_REG] parameters:parameters success:
      ^(AFHTTPRequestOperation *operation, id responseObject)
      {
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         NSString*Status = [resultDic objectForKey:@"Status"];
+         NSLog(@"%@",resultDic);
 //         // 这里是请求成功的block
 //         // 隐藏hud
 //         HIDEHUD;
