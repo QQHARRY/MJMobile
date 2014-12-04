@@ -24,7 +24,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer =[AFHTTPResponseSerializer serializer];
     
-    [manager POST:[NSString stringWithFormat:@"%@%@", SERVER_URL, API_REG] parameters:parameters success:
+    [manager POST:[NSString stringWithFormat:@"%@%@", SERVER_URL, apiName] parameters:parameters success:
      ^(AFHTTPRequestOperation *operation, id responseObject)
      {
          if (success)

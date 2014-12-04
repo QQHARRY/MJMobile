@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4AB0EFA61A30540C00C24A44 /* AFNMJInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */; };
 		4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA81A30558000C24A44 /* NetWorkManager.m */; };
+		4AB0EFAC1A305E0600C24A44 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AB0EFAB1A305E0600C24A44 /* logo.png */; };
+		4AB0EFAF1A308CED00C24A44 /* UtilFun.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFAE1A308CED00C24A44 /* UtilFun.m */; };
 		4AD7945F1A208F4400DEC779 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7945E1A208F4400DEC779 /* main.m */; };
 		4AD794621A208F4400DEC779 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD794611A208F4400DEC779 /* AppDelegate.m */; };
 		4AD794681A208F4400DEC779 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AD794661A208F4400DEC779 /* Main.storyboard */; };
@@ -60,6 +62,9 @@
 		4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNMJInstance.m; sourceTree = "<group>"; };
 		4AB0EFA71A30558000C24A44 /* NetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkManager.h; sourceTree = "<group>"; };
 		4AB0EFA81A30558000C24A44 /* NetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkManager.m; sourceTree = "<group>"; };
+		4AB0EFAB1A305E0600C24A44 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		4AB0EFAD1A308CED00C24A44 /* UtilFun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilFun.h; sourceTree = "<group>"; };
+		4AB0EFAE1A308CED00C24A44 /* UtilFun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilFun.m; sourceTree = "<group>"; };
 		4AD794591A208F4400DEC779 /* MJ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MJ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD7945D1A208F4400DEC779 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AD7945E1A208F4400DEC779 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -157,8 +162,18 @@
 				4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */,
 				4AB0EFA71A30558000C24A44 /* NetWorkManager.h */,
 				4AB0EFA81A30558000C24A44 /* NetWorkManager.m */,
+				4AB0EFAD1A308CED00C24A44 /* UtilFun.h */,
+				4AB0EFAE1A308CED00C24A44 /* UtilFun.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		4AB0EFAA1A305E0600C24A44 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				4AB0EFAB1A305E0600C24A44 /* logo.png */,
+			);
+			path = res;
 			sourceTree = "<group>";
 		};
 		4AD794501A208F4400DEC779 = {
@@ -182,6 +197,7 @@
 		4AD7945B1A208F4400DEC779 /* MJ */ = {
 			isa = PBXGroup;
 			children = (
+				4AB0EFAA1A305E0600C24A44 /* res */,
 				4AD794A61A218C4A00DEC779 /* 3rd */,
 				4AD794931A2189F900DEC779 /* business */,
 				4AD794601A208F4400DEC779 /* AppDelegate.h */,
@@ -462,6 +478,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AB0EFAC1A305E0600C24A44 /* logo.png in Resources */,
 				4AD794681A208F4400DEC779 /* Main.storyboard in Resources */,
 				4AD7946D1A208F4500DEC779 /* LaunchScreen.xib in Resources */,
 				4AD7946A1A208F4400DEC779 /* Images.xcassets in Resources */,
@@ -510,6 +527,7 @@
 				4AD795511A218C4A00DEC779 /* UIProgressView+AFNetworking.m in Sources */,
 				4AB0EFA61A30540C00C24A44 /* AFNMJInstance.m in Sources */,
 				B9FF4B441A245FB300FE413E /* RegisterViewController.m in Sources */,
+				4AB0EFAF1A308CED00C24A44 /* UtilFun.m in Sources */,
 				4AD795221A218C4A00DEC779 /* AFNetworkReachabilityManager.m in Sources */,
 				4AD7955C1A218DF100DEC779 /* GTCheckBox.m in Sources */,
 				4AD795261A218C4A00DEC779 /* AFURLResponseSerialization.m in Sources */,

@@ -21,27 +21,14 @@
                                 <rect key="frame" x="158" y="207" width="284" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="58" y="278" width="284" height="30"/>
                                 </variation>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MtZ-4f-JHO">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="MtZ-4f-JHO">
                                 <rect key="frame" x="240" y="67" width="120" height="120"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="EBQ-VK-wCk"/>
-                                    <constraint firstAttribute="height" constant="100" id="xN4-9Q-3Cq"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="EBQ-VK-wCk"/>
-                                        <exclude reference="xN4-9Q-3Cq"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="EBQ-VK-wCk"/>
-                                        <include reference="xN4-9Q-3Cq"/>
-                                    </mask>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="150" y="138" width="100" height="100"/>
                                 </variation>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wfs-Cw-xfD">
@@ -51,7 +38,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="95" y="385" width="210" height="30"/>
                                 </variation>
                                 <connections>
@@ -62,15 +49,23 @@
                                 <rect key="frame" x="158" y="272" width="284" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="58" y="323" width="284" height="30"/>
                                 </variation>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="OeI-fp-DAJ" firstAttribute="top" secondItem="xaj-fF-GZE" secondAttribute="bottom" constant="20" id="5oj-j2-WzY"/>
+                            <constraint firstAttribute="centerX" secondItem="wfs-Cw-xfD" secondAttribute="centerX" id="6NT-Ys-Wle"/>
                             <constraint firstAttribute="centerX" secondItem="MtZ-4f-JHO" secondAttribute="centerX" id="P5x-7L-Fc0"/>
-                            <constraint firstItem="MtZ-4f-JHO" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="138" id="kON-ND-9wi"/>
+                            <constraint firstItem="wfs-Cw-xfD" firstAttribute="top" secondItem="OeI-fp-DAJ" secondAttribute="bottom" constant="20" id="bAB-Ot-orp"/>
+                            <constraint firstItem="MtZ-4f-JHO" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="100" id="kON-ND-9wi">
+                                <variation key="heightClass=regular-widthClass=compact" constant="138"/>
+                            </constraint>
+                            <constraint firstAttribute="centerX" secondItem="OeI-fp-DAJ" secondAttribute="centerX" id="mGT-0b-lnp"/>
+                            <constraint firstItem="xaj-fF-GZE" firstAttribute="top" secondItem="MtZ-4f-JHO" secondAttribute="bottom" constant="20" id="oZ0-uv-7SV"/>
+                            <constraint firstAttribute="centerX" secondItem="xaj-fF-GZE" secondAttribute="centerX" id="xk3-WG-gho"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -79,6 +74,12 @@
                             <mask key="constraints">
                                 <exclude reference="P5x-7L-Fc0"/>
                                 <exclude reference="kON-ND-9wi"/>
+                                <exclude reference="oZ0-uv-7SV"/>
+                                <exclude reference="xk3-WG-gho"/>
+                                <exclude reference="5oj-j2-WzY"/>
+                                <exclude reference="mGT-0b-lnp"/>
+                                <exclude reference="6NT-Ys-Wle"/>
+                                <exclude reference="bAB-Ot-orp"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -88,6 +89,12 @@
                             <mask key="constraints">
                                 <include reference="P5x-7L-Fc0"/>
                                 <include reference="kON-ND-9wi"/>
+                                <include reference="oZ0-uv-7SV"/>
+                                <include reference="xk3-WG-gho"/>
+                                <include reference="5oj-j2-WzY"/>
+                                <include reference="mGT-0b-lnp"/>
+                                <include reference="6NT-Ys-Wle"/>
+                                <include reference="bAB-Ot-orp"/>
                             </mask>
                         </variation>
                     </view>
@@ -409,4 +416,7 @@
             <point key="canvasLocation" x="1899" y="57"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo.png" width="1024" height="1024"/>
+    </resources>
 </document>

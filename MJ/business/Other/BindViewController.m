@@ -9,6 +9,7 @@
 #import "BindViewController.h"
 #import "Macro.h"
 #import "NetWorkManager.h"
+#import "UtilFun.h"
 
 @interface BindViewController ()
 
@@ -19,8 +20,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+  
+    [self initConstraint];
+    
+}
+
+-(void)initConstraint
+{
+    self.idTxtFld.translatesAutoresizingMaskIntoConstraints = NO;
+    self.pwdTxtFld.translatesAutoresizingMaskIntoConstraints = NO;
+    self.logoImg.translatesAutoresizingMaskIntoConstraints = NO;
+    self.bindBtn.translatesAutoresizingMaskIntoConstraints = NO;
+    
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.idTxtFld attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.85 constant:0]];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.pwdTxtFld attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.85 constant:0]];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoImg attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.3 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoImg attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.3 constant:0]];
+    
+    //[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.bindBtn attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.5 constant:0]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,13 +55,60 @@
 -(IBAction)onBindAction:(id)sender
 {
 
-    NSDictionary *parameters = @{@"job_no":@"XA-1200166", @"acc_password": @"1",@"DeviceID" : @"justfortest",@"DeviceType" : @"0"};
-
+    //NSString* strID = self.idTxtFld.text;
+    NSString* strID = @"XA-1200166";
+    
+    //NSString* strPwd = self.pwdTxtFld.text;
+    NSString* strPwd = @"1";
+    if ([strID length] <= 0 || [strPwd length] <= 0)
+    {
+        [UtilFun presentPopViewControllerWithTitle:@"输入错误" Message:@"请输入正确的用户名和密码" SimpleAction:@"OK" Sender:self];
+        return;
+    }
+    
+    
+    //NSDictionary *parameters = @{@"job_no":@"XA-1200166", @"acc_password": @"1",@"DeviceID" : @"justfortest",@"DeviceType" : @"0"};
+    NSDictionary *parameters = @{@"job_no":strID , @"acc_password": strPwd,@"DeviceID" : @"justfortest",@"DeviceType" : DEVICE_IOS};
     [NetWorkManager PostWithApiName:API_REG parameters:parameters success:
      ^(id responseObject)
      {
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         NSString*Status = [resultDic objectForKey:@"Status"];
 
+        
+         if (Status == nil || [Status  length] <= 0)
+         {
+              [UtilFun presentPopViewControllerWithTitle:@"服务器错误" Message:@"服务器接口未返回状态" SimpleAction:@"OK" Sender:self];
+         }
+         else
+         {
+             NSInteger iStatus = [Status intValue];
+             switch (iStatus)
+             {
+                 case 0:
+                 {
+                     [UtilFun presentPopViewControllerWithTitle:@"绑定成功" Message:@"请等待审核通过或联系管理员" SimpleAction:@"OK" Sender:self];
+                     //TODO: convert to login page
+                     return;
+                 }
+                     break;
+                 case 1:
+                 {
+                     [UtilFun presentPopViewControllerWithTitle:@"绑定失败" Message:@"用户名或密码错误,请重新输入" SimpleAction:@"OK" Sender:self];
+                     return;
+                 }
+                     break;
+                 case 2:
+                 {
+                     [UtilFun presentPopViewControllerWithTitle:@"绑定成功" Message:@"管理员已审核通过,点击OK进入系统" SimpleAction:@"OK" Sender:self];
+                     //TODO:convert to mainpage
+                 }
+                     break;
+                 default:
+                     break;
+             }
+         }
+        
      }
           failure:^(NSError *error)
      {

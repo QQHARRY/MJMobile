@@ -24,6 +24,9 @@
 // 13.标记跟进提醒
 #define API_ALERT_FINISH @"alertfinished"
 
+
+#define DEVICE_IOS @"0"
+
 //#define API_LOGIN @"applogin"
 //#define API_LOGIN @"applogin"
 //#define API_LOGIN @"applogin"
