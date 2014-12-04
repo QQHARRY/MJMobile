@@ -13,6 +13,10 @@
 
 -(IBAction)onBindAction:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UIImageView *logoImg;
+@property (strong, nonatomic) IBOutlet UITextField *idTxtFld;
+@property (strong, nonatomic) IBOutlet UITextField *pwdTxtFld;
+@property (strong, nonatomic) IBOutlet UIButton *bindBtn;
 
 @end
 

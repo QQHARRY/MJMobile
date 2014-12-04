@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--Bind View Controller-->
@@ -17,23 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xaj-fF-GZE">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xaj-fF-GZE">
                                 <rect key="frame" x="158" y="207" width="284" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES">
-                                    <rect key="frame" x="58" y="278" width="284" height="37"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="58" y="278" width="284" height="30"/>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OeI-fp-DAJ">
-                                <rect key="frame" x="158" y="272" width="284" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES">
-                                    <rect key="frame" x="58" y="335" width="284" height="30"/>
-                                </variation>
-                            </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MtZ-4f-JHO">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MtZ-4f-JHO">
                                 <rect key="frame" x="240" y="67" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="EBQ-VK-wCk"/>
@@ -59,45 +51,34 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="95" y="385" width="210" height="30"/>
+                                </variation>
                                 <connections>
                                     <action selector="onBindAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D9T-yZ-Myf"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OeI-fp-DAJ">
+                                <rect key="frame" x="158" y="272" width="284" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="58" y="323" width="284" height="30"/>
+                                </variation>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xaj-fF-GZE" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="278" id="0fO-Dx-8BH"/>
-                            <constraint firstAttribute="centerX" secondItem="wfs-Cw-xfD" secondAttribute="centerX" id="0hu-GS-16e"/>
-                            <constraint firstItem="wfs-Cw-xfD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="95" id="97s-oc-lz0"/>
-                            <constraint firstItem="OeI-fp-DAJ" firstAttribute="top" secondItem="xaj-fF-GZE" secondAttribute="bottom" constant="20" id="Bm1-U5-973"/>
-                            <constraint firstAttribute="centerX" secondItem="OeI-fp-DAJ" secondAttribute="centerX" id="Kzt-jQ-Zws"/>
-                            <constraint firstItem="wfs-Cw-xfD" firstAttribute="top" secondItem="OeI-fp-DAJ" secondAttribute="bottom" constant="20" id="MCs-y8-taF"/>
                             <constraint firstAttribute="centerX" secondItem="MtZ-4f-JHO" secondAttribute="centerX" id="P5x-7L-Fc0"/>
-                            <constraint firstItem="wfs-Cw-xfD" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="385" id="SuD-M1-KKW"/>
-                            <constraint firstItem="OeI-fp-DAJ" firstAttribute="width" secondItem="xaj-fF-GZE" secondAttribute="width" id="Xdt-r1-sjl"/>
-                            <constraint firstItem="xaj-fF-GZE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="58" id="f8m-qj-kNB"/>
-                            <constraint firstAttribute="centerX" secondItem="xaj-fF-GZE" secondAttribute="centerX" id="fUx-oO-w8Q"/>
                             <constraint firstItem="MtZ-4f-JHO" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="138" id="kON-ND-9wi"/>
-                            <constraint firstItem="OeI-fp-DAJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="58" id="phc-dQ-1vy"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="wfs-Cw-xfD"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="0hu-GS-16e"/>
-                                <exclude reference="97s-oc-lz0"/>
-                                <exclude reference="MCs-y8-taF"/>
-                                <exclude reference="SuD-M1-KKW"/>
                                 <exclude reference="P5x-7L-Fc0"/>
                                 <exclude reference="kON-ND-9wi"/>
-                                <exclude reference="0fO-Dx-8BH"/>
-                                <exclude reference="f8m-qj-kNB"/>
-                                <exclude reference="fUx-oO-w8Q"/>
-                                <exclude reference="Bm1-U5-973"/>
-                                <exclude reference="Kzt-jQ-Zws"/>
-                                <exclude reference="Xdt-r1-sjl"/>
-                                <exclude reference="phc-dQ-1vy"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -105,22 +86,17 @@
                                 <include reference="wfs-Cw-xfD"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="0hu-GS-16e"/>
-                                <include reference="97s-oc-lz0"/>
-                                <include reference="MCs-y8-taF"/>
-                                <include reference="SuD-M1-KKW"/>
                                 <include reference="P5x-7L-Fc0"/>
                                 <include reference="kON-ND-9wi"/>
-                                <include reference="0fO-Dx-8BH"/>
-                                <include reference="f8m-qj-kNB"/>
-                                <include reference="fUx-oO-w8Q"/>
-                                <include reference="Bm1-U5-973"/>
-                                <include reference="Kzt-jQ-Zws"/>
-                                <include reference="Xdt-r1-sjl"/>
-                                <include reference="phc-dQ-1vy"/>
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="bindBtn" destination="wfs-Cw-xfD" id="hoI-aD-sRN"/>
+                        <outlet property="idTxtFld" destination="xaj-fF-GZE" id="5UM-kf-HlY"/>
+                        <outlet property="logoImg" destination="MtZ-4f-JHO" id="dS8-RL-Ygy"/>
+                        <outlet property="pwdTxtFld" destination="OeI-fp-DAJ" id="1bg-UW-AdN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
