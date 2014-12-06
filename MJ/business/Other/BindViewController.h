@@ -11,12 +11,17 @@
 @interface BindViewController : UIViewController
 
 
--(IBAction)onBindAction:(id)sender;
+- (IBAction)onBindAction:(id)sender;
+- (IBAction)onLoginAction:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UIImageView *logoImg;
 @property (strong, nonatomic) IBOutlet UITextField *idTxtFld;
 @property (strong, nonatomic) IBOutlet UITextField *pwdTxtFld;
 @property (strong, nonatomic) IBOutlet UIButton *bindBtn;
+@property (strong, nonatomic) IBOutlet UILabel *guideLabel;
+@property (strong, nonatomic) IBOutlet UILabel *infoLabel1;
+@property (strong, nonatomic) IBOutlet UILabel *infoLabel2;
+@property (strong, nonatomic) IBOutlet UILabel *infoLabel3;
 
 @end
 

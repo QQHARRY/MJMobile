@@ -25,21 +25,28 @@
     
 }
 
+
+
+
 -(void)initConstraint
 {
     self.idTxtFld.translatesAutoresizingMaskIntoConstraints = NO;
     self.pwdTxtFld.translatesAutoresizingMaskIntoConstraints = NO;
     self.logoImg.translatesAutoresizingMaskIntoConstraints = NO;
     self.bindBtn.translatesAutoresizingMaskIntoConstraints = NO;
+    self.guideLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.infoLabel1.translatesAutoresizingMaskIntoConstraints = NO;
+    self.infoLabel2.translatesAutoresizingMaskIntoConstraints = NO;
+    self.infoLabel3.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.idTxtFld attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.85 constant:0]];
     
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.pwdTxtFld attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.85 constant:0]];
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoImg attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.3 constant:0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoImg attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.3 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoImg attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.25 constant:0]];
     
-    //[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.bindBtn attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.5 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoImg attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.25 constant:0]];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,8 +94,13 @@
              {
                  case 0:
                  {
-                     [UtilFun presentPopViewControllerWithTitle:@"绑定成功" Message:@"请等待审核通过或联系管理员" SimpleAction:@"OK" Sender:self];
-                     //TODO: convert to login page
+                     [UtilFun setFirstBinded];
+                     [UtilFun presentPopViewControllerWithTitle:@"绑定成功" Message:@"请等待审核通过或联系管理员" SimpleAction:@"OK"  Handler:^(UIAlertAction *action)
+                      {
+                          [self performSegueWithIdentifier:@"bindOk" sender:self];
+                      }
+                      Sender:self];
+                     
                      return;
                  }
                      break;
@@ -100,8 +112,13 @@
                      break;
                  case 2:
                  {
-                     [UtilFun presentPopViewControllerWithTitle:@"绑定成功" Message:@"管理员已审核通过,点击OK进入系统" SimpleAction:@"OK" Sender:self];
-                     //TODO:convert to mainpage
+                     [UtilFun setFirstBinded];
+                     [UtilFun presentPopViewControllerWithTitle:@"绑定成功" Message:@"管理员已审核通过,可登陆进入系统" SimpleAction:@"OK"  Handler:^(UIAlertAction *action)
+                      {
+                          [self performSegueWithIdentifier:@"bindOk" sender:self];
+                      }
+                                                         Sender:self];
+
                  }
                      break;
                  default:
@@ -117,6 +134,11 @@
     
     
 
+}
+
+- (IBAction)onLoginAction:(id)sender
+{
+    [self performSegueWithIdentifier:@"bindOk" sender:self];
 }
 
 @end
