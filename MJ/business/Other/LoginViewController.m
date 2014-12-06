@@ -8,7 +8,8 @@
 
 #import "LoginViewController.h"
 #import "UtilFun.h"
-
+#import "Macro.h"
+#import "NetWorkManager.h"
 @interface LoginViewController ()
 
 @end
@@ -25,11 +26,11 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self initConstraint];
+    //[self initConstraint];
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-    //[self initConstraint];
+    [self initConstraint];
     
     if (![UtilFun hasFirstBinded])
     {
@@ -60,6 +61,74 @@
 */
 
 - (IBAction)loginBtnClicked:(id)sender {
+   // NSString* strID = self.idTxt.text;
+    NSString* strID = @"XA-1200166";
     
+    //NSString* strPwd = self.pwdTxt.text;
+    NSString* strPwd = @"1";
+    if ([strID length] <= 0 || [strPwd length] <= 0)
+    {
+        [UtilFun presentPopViewControllerWithTitle:@"输入错误" Message:@"请输入正确的用户名和密码" SimpleAction:@"OK" Sender:self];
+        return;
+    }
+    
+    
+    //NSDictionary *parameters = @{@"job_no":@"XA-1200166", @"acc_password": @"1",@"DeviceID" : @"justfortest",@"DeviceType" : @"0"};
+    NSDictionary *parameters = @{@"job_no":strID , @"acc_password": strPwd,@"DeviceID" : @"justfortest",@"DeviceType" : DEVICE_IOS};
+    [NetWorkManager PostWithApiName:API_LOGIN parameters:parameters success:
+     ^(id responseObject)
+     {
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         NSString*Status = [resultDic objectForKey:@"Status"];
+         
+         
+         if (Status == nil || [Status  length] <= 0)
+         {
+             [UtilFun presentPopViewControllerWithTitle:@"服务器错误" Message:@"服务器接口未返回状态" SimpleAction:@"OK" Sender:self];
+         }
+         else
+         {
+             NSInteger iStatus = [Status intValue];
+             switch (iStatus)
+             {
+                 case 0:
+                 {
+                     [UtilFun setFirstBinded];
+                     [UtilFun presentPopViewControllerWithTitle:@"绑定成功" Message:@"请等待审核通过或联系管理员" SimpleAction:@"OK"  Handler:^(UIAlertAction *action)
+                      {
+                          [self performSegueWithIdentifier:@"bindOk" sender:self];
+                      }
+                                                         Sender:self];
+                     
+                     return;
+                 }
+                     break;
+                 case 1:
+                 {
+                     [UtilFun presentPopViewControllerWithTitle:@"绑定失败" Message:@"用户名或密码错误,请重新输入" SimpleAction:@"OK" Sender:self];
+                     return;
+                 }
+                     break;
+                 case 2:
+                 {
+                     [UtilFun setFirstBinded];
+                     [UtilFun presentPopViewControllerWithTitle:@"绑定成功" Message:@"管理员已审核通过,可登陆进入系统" SimpleAction:@"OK"  Handler:^(UIAlertAction *action)
+                      {
+                          [self performSegueWithIdentifier:@"bindOk" sender:self];
+                      }
+                                                         Sender:self];
+                     
+                 }
+                     break;
+                 default:
+                     break;
+             }
+         }
+         
+     }
+                            failure:^(NSError *error)
+     {
+         
+     }];
 }
 @end
