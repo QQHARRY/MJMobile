@@ -7,6 +7,7 @@
 //
 
 #import "UtilFun.h"
+#import "MBProgressHUD.h"
 
 @implementation UtilFun
 
@@ -42,8 +43,6 @@
     
 }
 
-
-
 +(void)setFirstBinded;
 {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
@@ -57,4 +56,19 @@
     BOOL firstBinded =[prefs boolForKey:@"FirstBinding"];
     return firstBinded;
 }
+
++(void)showHUD:(UIView*)view
+{
+    [MBProgressHUD showHUDAddedTo:view animated:YES];
+}
+
++(void)hideHUD:(UIView*)view
+{
+    [MBProgressHUD hideAllHUDsForView:view animated:YES];
+}
+
+
+
+
+
 @end

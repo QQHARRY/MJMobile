@@ -79,6 +79,7 @@
     [NetWorkManager PostWithApiName:API_REG parameters:parameters success:
      ^(id responseObject)
      {
+         HIDEHUD(self.view);
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          NSString*Status = [resultDic objectForKey:@"Status"];
 
@@ -112,6 +113,7 @@
                      break;
                  case 2:
                  {
+                     
                      [UtilFun setFirstBinded];
                      [UtilFun presentPopViewControllerWithTitle:@"绑定成功" Message:@"管理员已审核通过,可登陆进入系统" SimpleAction:@"OK"  Handler:^(UIAlertAction *action)
                       {
@@ -129,10 +131,13 @@
      }
           failure:^(NSError *error)
      {
-  
+         HIDEHUD(self.view);
+         NSString*errorStr = [NSString stringWithFormat:@"%@",error];
+         [UtilFun presentPopViewControllerWithTitle:@"绑定失败" Message:errorStr SimpleAction:@"OK" Sender:self];
+         
      }];
     
-    
+    SHOWHUD(self.view);
 
 }
 

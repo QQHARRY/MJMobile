@@ -43,6 +43,11 @@
 
     //[self.view constraints];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.idTxt attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.85 constant:0]];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoImg attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.25 constant:0]];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoImg attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.25 constant:0]];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,15 +55,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    //[segue  ]
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 - (IBAction)loginBtnClicked:(id)sender {
    // NSString* strID = self.idTxt.text;
@@ -78,6 +85,7 @@
     [NetWorkManager PostWithApiName:API_LOGIN parameters:parameters success:
      ^(id responseObject)
      {
+         HIDEHUD(self.view);
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          NSString*Status = [resultDic objectForKey:@"Status"];
          
@@ -93,28 +101,35 @@
              {
                  case 0:
                  {
-                     [UtilFun setFirstBinded];
-                     [UtilFun presentPopViewControllerWithTitle:@"绑定成功" Message:@"请等待审核通过或联系管理员" SimpleAction:@"OK"  Handler:^(UIAlertAction *action)
-                      {
-                          [self performSegueWithIdentifier:@"bindOk" sender:self];
-                      }
-                                                         Sender:self];
-                     
+ 
+                    [self performSegueWithIdentifier:@"loginOK" sender:self];
+  
                      return;
                  }
                      break;
                  case 1:
                  {
-                     [UtilFun presentPopViewControllerWithTitle:@"绑定失败" Message:@"用户名或密码错误,请重新输入" SimpleAction:@"OK" Sender:self];
+                     [UtilFun presentPopViewControllerWithTitle:@"登录失败" Message:@"用户名或密码错误,请重新输入" SimpleAction:@"OK" Sender:self];
                      return;
                  }
                      break;
                  case 2:
                  {
                      [UtilFun setFirstBinded];
-                     [UtilFun presentPopViewControllerWithTitle:@"绑定成功" Message:@"管理员已审核通过,可登陆进入系统" SimpleAction:@"OK"  Handler:^(UIAlertAction *action)
+                     [UtilFun presentPopViewControllerWithTitle:@"登录失败" Message:@"尚未审批通过，请耐心等待" SimpleAction:@"OK"  Handler:^(UIAlertAction *action)
                       {
-                          [self performSegueWithIdentifier:@"bindOk" sender:self];
+                         
+                      }
+                                                         Sender:self];
+                     
+                 }
+                     break;
+                 case 3:
+                 {
+                     [UtilFun setFirstBinded];
+                     [UtilFun presentPopViewControllerWithTitle:@"登录失败" Message:@"设备尚未绑定，请绑定" SimpleAction:@"OK"  Handler:^(UIAlertAction *action)
+                      {
+                          
                       }
                                                          Sender:self];
                      
@@ -128,7 +143,12 @@
      }
                             failure:^(NSError *error)
      {
+         HIDEHUD(self.view);
+         NSString*errorStr = [NSString stringWithFormat:@"%@",error];
+         [UtilFun presentPopViewControllerWithTitle:@"登录失败" Message:errorStr SimpleAction:@"OK" Sender:self];
          
      }];
+    
+    SHOWHUD(self.view);
 }
 @end

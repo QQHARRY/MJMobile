@@ -8,7 +8,7 @@
 // 1.申请绑定设备
 #define API_REG @"login/regDevice"
 // 2.登录
-#define API_LOGIN @"login/applogin"
+#define API_LOGIN @"login/appLogin"
 // 4.获取公告列表
 #define API_ANNC_LIST @"getpublicannclist"
 // 6.获取签呈列表

@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+
+#define SHOWHUD(v) ([UtilFun showHUD:v]);
+#define HIDEHUD(v) ([UtilFun hideHUD:v]);
+
+
 @interface UtilFun : NSObject
 
 +(void)presentPopViewControllerWithTitle:(NSString*)title Message:(NSString*)msg SimpleAction:(NSString*)action Sender:(UIViewController*)sender;
@@ -19,5 +24,10 @@
 
 +(void)setFirstBinded;
 +(BOOL)hasFirstBinded;
+
++(void)showHUD:(UIView*)view;
++(void)hideHUD:(UIView*)view;
+
+
 
 @end

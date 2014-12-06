@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LoginViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIImageView *logoImg;
 @property (strong, nonatomic) IBOutlet UITextField *idTxt;
 @property (strong, nonatomic) IBOutlet UITextField *pwdTxt;
 @property (strong, nonatomic) IBOutlet UISwitch *autoLoginSwitchBtn;
