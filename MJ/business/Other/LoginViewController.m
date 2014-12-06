@@ -25,11 +25,11 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self initConstraint];
+    //[self initConstraint];
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-    //[self initConstraint];
+    [self initConstraint];
     
     if (![UtilFun hasFirstBinded])
     {
