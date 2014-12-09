@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MJ/business/Other/LoginViewController.m"
-            timestampString = "439549478.13804"
+            filePath = "MJ/business/Other/BindViewController.m"
+            timestampString = "439548148.640216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "-loginBtnClicked:"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "-onBindAction:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MJ/business/Other/BindViewController.m"
-            timestampString = "439548148.640216"
+            filePath = "MJ/business/Other/LoginViewController.m"
+            timestampString = "439801462.6181"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "-onBindAction:"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "-loginBtnClicked:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

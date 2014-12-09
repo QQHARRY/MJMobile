@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainPageViewController : UIViewController
+@interface MainPageViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+
+@property(strong,nonatomic)UITableView*tableView;
+@property(assign,nonatomic)int unReadMessageCount;
+@property(assign,nonatomic)int unReadAlertCnt;
 
 @end

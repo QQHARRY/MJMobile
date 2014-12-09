@@ -18,7 +18,7 @@
 // 10.签呈审批
 #define API_PETITION_APPROVE @"petitionapproving"
 // 11.获取未读跟进提醒数量
-#define API_ALERT_COUNT @"getalertcount"
+#define API_ALERT_COUNT @"home/getAlertCount"
 // 12.获取跟进提醒列表
 #define API_ALERT_LIST @"getalertlist"
 // 13.标记跟进提醒

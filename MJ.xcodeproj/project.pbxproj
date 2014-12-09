@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A8D01CF1A33023900EA59EA /* ILBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01CE1A33023900EA59EA /* ILBarButtonItem.m */; };
+		4A8D01D51A33039D00EA59EA /* UIViewController+FastNavgationBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01D41A33039D00EA59EA /* UIViewController+FastNavgationBarItem.m */; };
+		4A8D01D91A33381200EA59EA /* MainPageTableViewHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01D71A33381200EA59EA /* MainPageTableViewHeaderCell.m */; };
+		4A8D01DA1A33381200EA59EA /* MainPageTableViewHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A8D01D81A33381200EA59EA /* MainPageTableViewHeaderCell.xib */; };
+		4A8D01DE1A369DCE00EA59EA /* PublicAnncTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01DC1A369DCE00EA59EA /* PublicAnncTableViewCell.m */; };
+		4A8D01DF1A369DCE00EA59EA /* PublicAnncTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A8D01DD1A369DCE00EA59EA /* PublicAnncTableViewCell.xib */; };
+		4A8D01E31A369F2E00EA59EA /* PetitionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01E11A369F2E00EA59EA /* PetitionTableViewCell.m */; };
+		4A8D01E41A369F2E00EA59EA /* PetitionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A8D01E21A369F2E00EA59EA /* PetitionTableViewCell.xib */; };
+		4A8D01E71A36C9C100EA59EA /* person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01E61A36C9C100EA59EA /* person.m */; };
+		4A8D01EA1A36E46700EA59EA /* unReadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01E91A36E46700EA59EA /* unReadManager.m */; };
 		4AB0EFA61A30540C00C24A44 /* AFNMJInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */; };
 		4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA81A30558000C24A44 /* NetWorkManager.m */; };
 		4AB0EFAC1A305E0600C24A44 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AB0EFAB1A305E0600C24A44 /* logo.png */; };
@@ -59,6 +69,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A8D01CD1A33023900EA59EA /* ILBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILBarButtonItem.h; sourceTree = "<group>"; };
+		4A8D01CE1A33023900EA59EA /* ILBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILBarButtonItem.m; sourceTree = "<group>"; };
+		4A8D01D31A33039D00EA59EA /* UIViewController+FastNavgationBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FastNavgationBarItem.h"; sourceTree = "<group>"; };
+		4A8D01D41A33039D00EA59EA /* UIViewController+FastNavgationBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FastNavgationBarItem.m"; sourceTree = "<group>"; };
+		4A8D01D61A33381200EA59EA /* MainPageTableViewHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageTableViewHeaderCell.h; sourceTree = "<group>"; };
+		4A8D01D71A33381200EA59EA /* MainPageTableViewHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageTableViewHeaderCell.m; sourceTree = "<group>"; };
+		4A8D01D81A33381200EA59EA /* MainPageTableViewHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageTableViewHeaderCell.xib; sourceTree = "<group>"; };
+		4A8D01DB1A369DCE00EA59EA /* PublicAnncTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicAnncTableViewCell.h; sourceTree = "<group>"; };
+		4A8D01DC1A369DCE00EA59EA /* PublicAnncTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicAnncTableViewCell.m; sourceTree = "<group>"; };
+		4A8D01DD1A369DCE00EA59EA /* PublicAnncTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublicAnncTableViewCell.xib; sourceTree = "<group>"; };
+		4A8D01E01A369F2E00EA59EA /* PetitionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PetitionTableViewCell.h; sourceTree = "<group>"; };
+		4A8D01E11A369F2E00EA59EA /* PetitionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PetitionTableViewCell.m; sourceTree = "<group>"; };
+		4A8D01E21A369F2E00EA59EA /* PetitionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PetitionTableViewCell.xib; sourceTree = "<group>"; };
+		4A8D01E51A36C9C100EA59EA /* person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = person.h; sourceTree = "<group>"; };
+		4A8D01E61A36C9C100EA59EA /* person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = person.m; sourceTree = "<group>"; };
+		4A8D01E81A36E46700EA59EA /* unReadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unReadManager.h; sourceTree = "<group>"; };
+		4A8D01E91A36E46700EA59EA /* unReadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = unReadManager.m; sourceTree = "<group>"; };
 		4AB0EFA41A30540C00C24A44 /* AFNMJInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNMJInstance.h; sourceTree = "<group>"; };
 		4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNMJInstance.m; sourceTree = "<group>"; };
 		4AB0EFA71A30558000C24A44 /* NetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkManager.h; sourceTree = "<group>"; };
@@ -157,6 +184,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A8D01CC1A33023900EA59EA /* ILBarButtonItem */ = {
+			isa = PBXGroup;
+			children = (
+				4A8D01CD1A33023900EA59EA /* ILBarButtonItem.h */,
+				4A8D01CE1A33023900EA59EA /* ILBarButtonItem.m */,
+			);
+			path = ILBarButtonItem;
+			sourceTree = "<group>";
+		};
 		4AB0EFA31A30538D00C24A44 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +202,10 @@
 				4AB0EFA81A30558000C24A44 /* NetWorkManager.m */,
 				4AB0EFAD1A308CED00C24A44 /* UtilFun.h */,
 				4AB0EFAE1A308CED00C24A44 /* UtilFun.m */,
+				4A8D01D31A33039D00EA59EA /* UIViewController+FastNavgationBarItem.h */,
+				4A8D01D41A33039D00EA59EA /* UIViewController+FastNavgationBarItem.m */,
+				4A8D01E51A36C9C100EA59EA /* person.h */,
+				4A8D01E61A36C9C100EA59EA /* person.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -256,6 +296,7 @@
 		4AD794A61A218C4A00DEC779 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				4A8D01CC1A33023900EA59EA /* ILBarButtonItem */,
 				4AD795561A218DF100DEC779 /* checkbox */,
 				4AD795591A218DF100DEC779 /* HUD */,
 				4AD794A71A218C4A00DEC779 /* AFNetworking */,
@@ -368,6 +409,17 @@
 			children = (
 				B9FF4B321A245FB300FE413E /* MainPageViewController.h */,
 				B9FF4B331A245FB300FE413E /* MainPageViewController.m */,
+				4A8D01D61A33381200EA59EA /* MainPageTableViewHeaderCell.h */,
+				4A8D01D71A33381200EA59EA /* MainPageTableViewHeaderCell.m */,
+				4A8D01D81A33381200EA59EA /* MainPageTableViewHeaderCell.xib */,
+				4A8D01DB1A369DCE00EA59EA /* PublicAnncTableViewCell.h */,
+				4A8D01DC1A369DCE00EA59EA /* PublicAnncTableViewCell.m */,
+				4A8D01DD1A369DCE00EA59EA /* PublicAnncTableViewCell.xib */,
+				4A8D01E01A369F2E00EA59EA /* PetitionTableViewCell.h */,
+				4A8D01E11A369F2E00EA59EA /* PetitionTableViewCell.m */,
+				4A8D01E21A369F2E00EA59EA /* PetitionTableViewCell.xib */,
+				4A8D01E81A36E46700EA59EA /* unReadManager.h */,
+				4A8D01E91A36E46700EA59EA /* unReadManager.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -482,7 +534,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AB0EFAC1A305E0600C24A44 /* logo.png in Resources */,
+				4A8D01E41A369F2E00EA59EA /* PetitionTableViewCell.xib in Resources */,
 				4AD794681A208F4400DEC779 /* Main.storyboard in Resources */,
+				4A8D01DF1A369DCE00EA59EA /* PublicAnncTableViewCell.xib in Resources */,
+				4A8D01DA1A33381200EA59EA /* MainPageTableViewHeaderCell.xib in Resources */,
 				4AD7946D1A208F4500DEC779 /* LaunchScreen.xib in Resources */,
 				4AB0EFB11A31801600C24A44 /* firstBindStory.storyboard in Resources */,
 				4AD7946A1A208F4400DEC779 /* Images.xcassets in Resources */,
@@ -505,13 +560,16 @@
 			files = (
 				4AD795281A218C4A00DEC779 /* EGORefreshTableHeaderView.m in Sources */,
 				4AD795521A218C4A00DEC779 /* UIRefreshControl+AFNetworking.m in Sources */,
+				4A8D01E71A36C9C100EA59EA /* person.m in Sources */,
 				4AD795271A218C4A00DEC779 /* AFURLSessionManager.m in Sources */,
 				4AD795241A218C4A00DEC779 /* AFURLConnectionOperation.m in Sources */,
 				4AD7954C1A218C4A00DEC779 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				B9FF4B421A245FB300FE413E /* MoreViewController.m in Sources */,
+				4A8D01D91A33381200EA59EA /* MainPageTableViewHeaderCell.m in Sources */,
 				4AD7954E1A218C4A00DEC779 /* UIAlertView+AFNetworking.m in Sources */,
 				B9FF4B411A245FB300FE413E /* HouseViewController.m in Sources */,
 				B9FF4B401A245FB300FE413E /* MainPageViewController.m in Sources */,
+				4A8D01CF1A33023900EA59EA /* ILBarButtonItem.m in Sources */,
 				4AD7951F1A218C4A00DEC779 /* AFHTTPRequestOperation.m in Sources */,
 				4AD7955D1A218DF100DEC779 /* MBProgressHUD.m in Sources */,
 				4AD7952A1A218C4A00DEC779 /* UIImage+FX.m in Sources */,
@@ -524,10 +582,14 @@
 				4AD794621A208F4400DEC779 /* AppDelegate.m in Sources */,
 				4AD7945F1A208F4400DEC779 /* main.m in Sources */,
 				4AD795501A218C4A00DEC779 /* UIImageView+AFNetworking.m in Sources */,
+				4A8D01E31A369F2E00EA59EA /* PetitionTableViewCell.m in Sources */,
 				B9FF4B431A245FB300FE413E /* BindViewController.m in Sources */,
+				4A8D01DE1A369DCE00EA59EA /* PublicAnncTableViewCell.m in Sources */,
 				4AD795231A218C4A00DEC779 /* AFSecurityPolicy.m in Sources */,
+				4A8D01EA1A36E46700EA59EA /* unReadManager.m in Sources */,
 				4AD795251A218C4A00DEC779 /* AFURLRequestSerialization.m in Sources */,
 				4AD7954D1A218C4A00DEC779 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				4A8D01D51A33039D00EA59EA /* UIViewController+FastNavgationBarItem.m in Sources */,
 				4AD795511A218C4A00DEC779 /* UIProgressView+AFNetworking.m in Sources */,
 				4AB0EFA61A30540C00C24A44 /* AFNMJInstance.m in Sources */,
 				B9FF4B441A245FB300FE413E /* LoginViewController.m in Sources */,

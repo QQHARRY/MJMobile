@@ -6,10 +6,13 @@
 //  Copyright (c) 2014年 Simtoon. All rights reserved.
 //
 
+
+
 #import "LoginViewController.h"
 #import "UtilFun.h"
 #import "Macro.h"
 #import "NetWorkManager.h"
+#import "person.h"
 @interface LoginViewController ()
 
 @end
@@ -103,7 +106,11 @@
                  {
  
                     [self performSegueWithIdentifier:@"loginOK" sender:self];
-  
+                     
+                     NSArray*arrTmp =[resultDic objectForKey:@"userinfo"];
+                     
+                     [[person initMe:[arrTmp objectAtIndex:0]] setPassword:strPwd];
+                     
                      return;
                  }
                      break;
