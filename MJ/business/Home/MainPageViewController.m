@@ -13,6 +13,7 @@
 #import "UtilFun.h"
 #import "person.h"
 #import "unReadManager.h"
+#import "badgeImageFactory.h"
 
 @interface MainPageViewController ()
 
@@ -30,6 +31,7 @@
     
     // Do any additional setup after loading the view.
     
+    //UIImage*imageLeft = []
     
     [self setupLeftMenuButtonOfVC:self Image:[UIImage imageNamed:@"logo.png"] action:@selector(leftBtnSelected:)];
     [self setupRightMenuButtonOfVC:self Image:[UIImage imageNamed:@"logo.png"] action:@selector(leftBtnSelected:)];
@@ -39,6 +41,11 @@
     [self loadData];
 }
 
+
+-(void)setUpNavigationBarItem
+{
+    
+}
 
 
 -(void)getUnReadAlertCnt

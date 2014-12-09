@@ -606,6 +606,9 @@
                                     <segue destination="dhG-tr-cMx" kind="presentation" id="9WA-96-Mi7"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jnx-6e-C5N">
+                                <rect key="frame" x="100" y="100" width="50" height="50"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -620,6 +623,9 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="YpE-lq-Aba"/>
+                    <connections>
+                        <outlet property="testImage" destination="jnx-6e-C5N" id="XAw-tB-BeZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pos-vi-dGC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -668,6 +674,6 @@
         <image name="logo.png" width="1024" height="1024"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NP2-Ld-qmh"/>
+        <segue reference="9WA-96-Mi7"/>
     </inferredMetricsTieBreakers>
 </document>

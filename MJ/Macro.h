@@ -20,7 +20,7 @@
 // 11.获取未读跟进提醒数量
 #define API_ALERT_COUNT @"home/getAlertCount"
 // 12.获取跟进提醒列表
-#define API_ALERT_LIST @"getalertlist"
+#define API_ALERT_LIST @"home/getAlertList"
 // 13.标记跟进提醒
 #define API_ALERT_FINISH @"alertfinished"
 //未读站内信

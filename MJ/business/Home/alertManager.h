@@ -10,6 +10,6 @@
 
 @interface alertManager : NSObject
 
-+(void)getAlertListFrom:(NSString*)from To:(NSString*)to Count:(int)count Success:(void (^)(id responseObject))success
++(void)getAlertListReaded:(BOOL)readed From:(NSString*)from To:(NSString*)to Count:(int)count Success:(void (^)(id responseObject))success
                 failure:(void (^)(NSError *error))failure;
 @end

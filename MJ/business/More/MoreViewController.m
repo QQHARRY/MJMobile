@@ -7,6 +7,7 @@
 //
 
 #import "MoreViewController.h"
+#import "badgeImageFactory.h"
 
 @interface MoreViewController ()
 
@@ -16,6 +17,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.testImage.image =[badgeImageFactory addText:[UIImage imageNamed:@"unreadAlert.png"] text:@"123"];
+
     // Do any additional setup after loading the view.
 }
 

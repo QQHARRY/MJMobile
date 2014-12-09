@@ -131,6 +131,7 @@ static int unReadAlertCnt = 0;
                  else
                  {
                      unReadMessageCount = count;
+                     success(nil);
                  }
              }
              else
