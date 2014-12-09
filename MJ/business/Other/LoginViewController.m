@@ -95,7 +95,7 @@
          
          if (Status == nil || [Status  length] <= 0)
          {
-             [UtilFun presentPopViewControllerWithTitle:@"服务器错误" Message:@"服务器接口未返回状态" SimpleAction:@"OK" Sender:self];
+             [UtilFun presentPopViewControllerWithTitle:SERVER_NONCOMPLIANCE Message:SERVER_NONCOMPLIANCE_INFO SimpleAction:@"OK" Sender:self];
          }
          else
          {
@@ -152,7 +152,7 @@
      {
          HIDEHUD(self.view);
          NSString*errorStr = [NSString stringWithFormat:@"%@",error];
-         [UtilFun presentPopViewControllerWithTitle:@"登录失败" Message:errorStr SimpleAction:@"OK" Sender:self];
+         [UtilFun presentPopViewControllerWithTitle:SERVER_NONCOMPLIANCE Message:errorStr SimpleAction:@"OK" Sender:self];
          
      }];
     

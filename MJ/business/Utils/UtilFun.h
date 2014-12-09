@@ -27,6 +27,7 @@
 
 +(void)showHUD:(UIView*)view;
 +(void)hideHUD:(UIView*)view;
++(void)hideAllHUD:(UIView*)view;
 
 
 

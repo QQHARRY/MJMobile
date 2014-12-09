@@ -64,9 +64,13 @@
 
 +(void)hideHUD:(UIView*)view
 {
-    [MBProgressHUD hideAllHUDsForView:view animated:YES];
+    [MBProgressHUD hideHUDForView:view animated:YES];
 }
 
++(void)hideAllHUD:(UIView*)view
+{
+    [MBProgressHUD hideAllHUDsForView:view animated:YES];
+}
 
 
 

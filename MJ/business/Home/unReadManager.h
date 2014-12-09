@@ -10,4 +10,16 @@
 
 @interface unReadManager : NSObject
 
+
++(void)setUnReadMessageCount:(int)count;
++(void)setUnReadAlertCnt:(int)count;
++(int)unReadAlertCnt;
++(int)unReadMessageCount;
+
+
++(void)getUnReadAlertCntSuccess:(void (^)(id responseObject))success
+                 failure:(void (^)(NSError *error))failure;
++(void)getUnReadMessageCntSuccess:(void (^)(id responseObject))success
+                          failure:(void (^)(NSError *error))failure;
+
 @end

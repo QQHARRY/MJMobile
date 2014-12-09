@@ -12,15 +12,14 @@
 #import "Macro.h"
 #import "UtilFun.h"
 #import "person.h"
-
+#import "unReadManager.h"
 
 @interface MainPageViewController ()
 
 @end
 
 @implementation MainPageViewController
-@synthesize unReadAlertCnt;
-@synthesize unReadMessageCount;
+
 
 
 - (void)viewDidLoad
@@ -36,58 +35,43 @@
     [self setupRightMenuButtonOfVC:self Image:[UIImage imageNamed:@"logo.png"] action:@selector(leftBtnSelected:)];
     
     [self initTable];
+    
+    [self loadData];
 }
 
 
 
--(void)getAnncCount
+-(void)getUnReadAlertCnt
 {
-    NSString* strID = [person me].job_no;
-    NSString* strPwd = [person me].password;
-    
-    NSDictionary *parameters = @{@"job_no":strID , @"acc_password": strPwd};
-    
-    
-    [NetWorkManager PostWithApiName:API_ALERT_COUNT parameters:parameters success:
-     ^(id responseObject)
-     {
-         
-         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-         NSString*Status = [resultDic objectForKey:@"Status"];
-         
-         
-         if (Status == nil || [Status  length] <= 0)
-         {
-             [UtilFun presentPopViewControllerWithTitle:@"服务器错误" Message:@"服务器接口未返回状态" SimpleAction:@"OK" Sender:self];
-         }
-         else
-         {
-             NSInteger iStatus = [Status intValue];
-             if (iStatus == 0)
-             {
-                 
-             }
-             else
-             {
-                 [UtilFun presentPopViewControllerWithTitle:@"服务器错误" Message:@"获取未读公告数量错误" SimpleAction:@"OK"  Handler:nil
-                                                     Sender:self];
-             }
-             
-         }
-         
-     }
-                            failure:^(NSError *error)
-     {
-         NSString*errorStr = [NSString stringWithFormat:@"%@",error];
-         [UtilFun presentPopViewControllerWithTitle:@"绑定失败" Message:errorStr SimpleAction:@"OK" Sender:self];
-         
-     }];
+    SHOWHUD(self.view);
+   [unReadManager getUnReadAlertCntSuccess:^(id responseObject) {
+       HIDEHUD(self.view);
+       
+   } failure:^(NSError *error) {
+       HIDEHUD(self.view);
+   }];
+}
+
+
+-(void)getUnReadMsgCnt
+{
+    SHOWHUD(self.view);
+    [unReadManager getUnReadMessageCntSuccess:^(id responseObject) {
+        HIDEHUD(self.view);
+        
+    } failure:^(NSError *error) {
+        HIDEHUD(self.view);
+    }];
 }
 
 -(void)loadData
 {
-    
+    [self getUnReadAlertCnt];
+    [self getUnReadMsgCnt];
 }
+
+
+
 -(void)initTable
 {
 
