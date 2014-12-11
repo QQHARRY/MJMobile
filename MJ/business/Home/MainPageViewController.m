@@ -14,6 +14,7 @@
 #import "person.h"
 #import "unReadManager.h"
 #import "badgeImageFactory.h"
+#import "JSBadgeView.h"
 
 @interface MainPageViewController ()
 
@@ -27,14 +28,20 @@
 {
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden = NO;
+        
+    UIImageView*imgVTemp = [[UIImageView alloc ] initWithImage:[UIImage imageNamed:@"unreadAlert.png"]];
+    JSBadgeView *badgeView = [[JSBadgeView alloc] initWithParentView:imgVTemp alignment:JSBadgeViewAlignmentTopRight];
+    badgeView.badgeText =@"123";
     
     
-    // Do any additional setup after loading the view.
+    [self setupLeftMenuButtonOfVC:self Image:[UIImage imageNamed:@"unreadMessage.png"] action:@selector(leftBtnSelected:)];
     
-    //UIImage*imageLeft = []
+    badgeView = [[JSBadgeView alloc] initWithParentView:self.navigationItem.leftBarButtonItem.customView alignment:JSBadgeViewAlignmentTopRight];
+    badgeView.badgeText =@"123";
+ 
+    CGRect frame = self.navigationItem.rightBarButtonItem.customView.frame;
     
-    [self setupLeftMenuButtonOfVC:self Image:[UIImage imageNamed:@"logo.png"] action:@selector(leftBtnSelected:)];
-    [self setupRightMenuButtonOfVC:self Image:[UIImage imageNamed:@"logo.png"] action:@selector(leftBtnSelected:)];
+    [self setupRightMenuButtonOfVC:self Image:imgVTemp.image action:@selector(leftBtnSelected:)];
     
     [self initTable];
     

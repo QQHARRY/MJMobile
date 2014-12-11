@@ -26,6 +26,10 @@
 		4A8D01FF1A3734A000EA59EA /* badgeImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01FE1A3734A000EA59EA /* badgeImageFactory.m */; };
 		4A8D02021A3736CC00EA59EA /* unreadAlert.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8D02001A3736CC00EA59EA /* unreadAlert.png */; };
 		4A8D02031A3736CC00EA59EA /* unreadMessage.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8D02011A3736CC00EA59EA /* unreadMessage.png */; };
+		4A8D020A1A37D80100EA59EA /* badgeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A8D02091A37D80100EA59EA /* badgeView.xib */; };
+		4A8D020C1A37DA9E00EA59EA /* rounded-rectangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8D020B1A37DA9E00EA59EA /* rounded-rectangle.png */; };
+		4A8D020F1A37DB3900EA59EA /* badgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D020E1A37DB3900EA59EA /* badgeView.m */; };
+		4A8D02131A37F78400EA59EA /* JSBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D02121A37F78400EA59EA /* JSBadgeView.m */; };
 		4AB0EFA61A30540C00C24A44 /* AFNMJInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */; };
 		4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA81A30558000C24A44 /* NetWorkManager.m */; };
 		4AB0EFAC1A305E0600C24A44 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AB0EFAB1A305E0600C24A44 /* logo.png */; };
@@ -111,6 +115,12 @@
 		4A8D01FE1A3734A000EA59EA /* badgeImageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = badgeImageFactory.m; sourceTree = "<group>"; };
 		4A8D02001A3736CC00EA59EA /* unreadAlert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unreadAlert.png; sourceTree = "<group>"; };
 		4A8D02011A3736CC00EA59EA /* unreadMessage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unreadMessage.png; sourceTree = "<group>"; };
+		4A8D02091A37D80100EA59EA /* badgeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = badgeView.xib; sourceTree = "<group>"; };
+		4A8D020B1A37DA9E00EA59EA /* rounded-rectangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rounded-rectangle.png"; sourceTree = "<group>"; };
+		4A8D020D1A37DB3900EA59EA /* badgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = badgeView.h; sourceTree = "<group>"; };
+		4A8D020E1A37DB3900EA59EA /* badgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = badgeView.m; sourceTree = "<group>"; };
+		4A8D02111A37F78400EA59EA /* JSBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBadgeView.h; sourceTree = "<group>"; };
+		4A8D02121A37F78400EA59EA /* JSBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBadgeView.m; sourceTree = "<group>"; };
 		4AB0EFA41A30540C00C24A44 /* AFNMJInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNMJInstance.h; sourceTree = "<group>"; };
 		4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNMJInstance.m; sourceTree = "<group>"; };
 		4AB0EFA71A30558000C24A44 /* NetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkManager.h; sourceTree = "<group>"; };
@@ -218,6 +228,15 @@
 			path = ILBarButtonItem;
 			sourceTree = "<group>";
 		};
+		4A8D02101A37F78400EA59EA /* badgeView */ = {
+			isa = PBXGroup;
+			children = (
+				4A8D02111A37F78400EA59EA /* JSBadgeView.h */,
+				4A8D02121A37F78400EA59EA /* JSBadgeView.m */,
+			);
+			path = badgeView;
+			sourceTree = "<group>";
+		};
 		4AB0EFA31A30538D00C24A44 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +259,7 @@
 		4AB0EFAA1A305E0600C24A44 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				4A8D020B1A37DA9E00EA59EA /* rounded-rectangle.png */,
 				4A8D02001A3736CC00EA59EA /* unreadAlert.png */,
 				4A8D02011A3736CC00EA59EA /* unreadMessage.png */,
 				4AB0EFAB1A305E0600C24A44 /* logo.png */,
@@ -325,6 +345,7 @@
 		4AD794A61A218C4A00DEC779 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				4A8D02101A37F78400EA59EA /* badgeView */,
 				4A8D01CC1A33023900EA59EA /* ILBarButtonItem */,
 				4AD795561A218DF100DEC779 /* checkbox */,
 				4AD795591A218DF100DEC779 /* HUD */,
@@ -461,6 +482,9 @@
 				4A8D01FB1A36FB9C00EA59EA /* petitionManager.m */,
 				4A8D01F41A36F9BC00EA59EA /* alertManager.h */,
 				4A8D01F51A36F9BC00EA59EA /* alertManager.m */,
+				4A8D02091A37D80100EA59EA /* badgeView.xib */,
+				4A8D020D1A37DB3900EA59EA /* badgeView.h */,
+				4A8D020E1A37DB3900EA59EA /* badgeView.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -581,9 +605,11 @@
 				4A8D01DF1A369DCE00EA59EA /* PublicAnncTableViewCell.xib in Resources */,
 				4A8D01DA1A33381200EA59EA /* MainPageTableViewHeaderCell.xib in Resources */,
 				4AD7946D1A208F4500DEC779 /* LaunchScreen.xib in Resources */,
+				4A8D020C1A37DA9E00EA59EA /* rounded-rectangle.png in Resources */,
 				4AB0EFB11A31801600C24A44 /* firstBindStory.storyboard in Resources */,
 				4A8D02031A3736CC00EA59EA /* unreadMessage.png in Resources */,
 				4AD7946A1A208F4400DEC779 /* Images.xcassets in Resources */,
+				4A8D020A1A37D80100EA59EA /* badgeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,6 +647,7 @@
 				4AD795201A218C4A00DEC779 /* AFHTTPRequestOperationManager.m in Sources */,
 				4A8D01F31A36F9AB00EA59EA /* annoucementManager.m in Sources */,
 				4A8D01FF1A3734A000EA59EA /* badgeImageFactory.m in Sources */,
+				4A8D020F1A37DB3900EA59EA /* badgeView.m in Sources */,
 				4AD795531A218C4A00DEC779 /* UIWebView+AFNetworking.m in Sources */,
 				4AD795211A218C4A00DEC779 /* AFHTTPSessionManager.m in Sources */,
 				4AD795291A218C4A00DEC779 /* FXImageView.m in Sources */,
@@ -635,6 +662,7 @@
 				4A8D01DE1A369DCE00EA59EA /* PublicAnncTableViewCell.m in Sources */,
 				4AD795231A218C4A00DEC779 /* AFSecurityPolicy.m in Sources */,
 				4A8D01EA1A36E46700EA59EA /* unReadManager.m in Sources */,
+				4A8D02131A37F78400EA59EA /* JSBadgeView.m in Sources */,
 				4AD795251A218C4A00DEC779 /* AFURLRequestSerialization.m in Sources */,
 				4A8D01F91A36FB8000EA59EA /* internalMessageManager.m in Sources */,
 				4AD7954D1A218C4A00DEC779 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
