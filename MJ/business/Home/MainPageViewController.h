@@ -10,7 +10,11 @@
 
 @interface MainPageViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
-@property(strong,nonatomic)UITableView*tableView;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+
+@property(strong,nonatomic)NSArray*mainAnncArr;
+@property(strong,nonatomic)NSArray*mainPetitionArr;
 
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "dic2Object.h"
 
-@interface person : NSObject
+@interface person : dic2Object
 
 
 @property(strong,atomic)NSString*job_no;
@@ -22,7 +23,7 @@
 @property(strong,atomic)NSString*photo;
 @property(strong,atomic)NSString*password;
 
--(BOOL)initWithDictionary:(NSDictionary*)dic;
+//-(BOOL)initWithDictionary:(NSDictionary*)dic;
 
 +(person*)initMe:(NSDictionary*)dic;
 +(person*)me;

@@ -10,6 +10,7 @@
 #import "person.h"
 #import "Macro.h"
 #import "NetWorkManager.h"
+#import "announcement.h"
 
 @implementation annoucementManager
 
@@ -24,16 +25,45 @@
                                  };
     
     
-    [NetWorkManager PostWithApiName:API_PETITION_LIST parameters:parameters success:
+    [NetWorkManager PostWithApiName:API_ANNC_LIST parameters:parameters success:
      ^(id responseObject)
      {
-         
-         [self checkReturnStatus:responseObject Success:success failure:failure ShouldReturnWhenSuccess:YES];
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([self checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:YES])
+         {
+             NSArray*arr = [self getArr:resultDic];;
+             
+             if ([from isEqual:@"0"])
+             {
+                 announcement*annc = [arr objectAtIndex:0];
+                 if (annc)
+                 {
+                     annc.isNew = YES;
+                 }
+             }
+             success(arr);
+         };
          
      }
                             failure:^(NSError *error)
      {
          failure(error);
      }];
+}
+
++(NSArray*)getArr:(NSDictionary*)dic
+{
+    NSArray*annArr = [dic objectForKey:@"ANNCNode"];
+    NSMutableArray* arr = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary*dic in annArr)
+    {
+        announcement* ann = [[announcement alloc] init];
+        [ann initWithDictionary:dic];
+        [arr  addObject:ann];
+        
+    }
+    
+    return arr;
 }
 @end

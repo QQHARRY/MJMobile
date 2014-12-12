@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4A5137481A3B18C1007B504B /* bizManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5137471A3B18C1007B504B /* bizManager.m */; };
+		4A51374B1A3B2AAA007B504B /* dic2Object.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A51374A1A3B2AAA007B504B /* dic2Object.m */; };
 		4A8D01CF1A33023900EA59EA /* ILBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01CE1A33023900EA59EA /* ILBarButtonItem.m */; };
 		4A8D01D51A33039D00EA59EA /* UIViewController+FastNavgationBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01D41A33039D00EA59EA /* UIViewController+FastNavgationBarItem.m */; };
 		4A8D01D91A33381200EA59EA /* MainPageTableViewHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01D71A33381200EA59EA /* MainPageTableViewHeaderCell.m */; };
@@ -28,6 +29,8 @@
 		4A8D02031A3736CC00EA59EA /* unreadMessage.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8D02011A3736CC00EA59EA /* unreadMessage.png */; };
 		4A8D020C1A37DA9E00EA59EA /* rounded-rectangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8D020B1A37DA9E00EA59EA /* rounded-rectangle.png */; };
 		4A8D02131A37F78400EA59EA /* JSBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D02121A37F78400EA59EA /* JSBadgeView.m */; };
+		4A9AEEEB1A3B43D300FDA403 /* petiotionBrief.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9AEEEA1A3B43D300FDA403 /* petiotionBrief.m */; };
+		4A9AEEED1A3B4A1800FDA403 /* new.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9AEEEC1A3B4A1800FDA403 /* new.png */; };
 		4AB0EFA61A30540C00C24A44 /* AFNMJInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */; };
 		4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA81A30558000C24A44 /* NetWorkManager.m */; };
 		4AB0EFAC1A305E0600C24A44 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AB0EFAB1A305E0600C24A44 /* logo.png */; };
@@ -82,6 +85,8 @@
 /* Begin PBXFileReference section */
 		4A5137461A3B18C1007B504B /* bizManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bizManager.h; sourceTree = "<group>"; };
 		4A5137471A3B18C1007B504B /* bizManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bizManager.m; sourceTree = "<group>"; };
+		4A5137491A3B2AAA007B504B /* dic2Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dic2Object.h; sourceTree = "<group>"; };
+		4A51374A1A3B2AAA007B504B /* dic2Object.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dic2Object.m; sourceTree = "<group>"; };
 		4A8D01CD1A33023900EA59EA /* ILBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILBarButtonItem.h; sourceTree = "<group>"; };
 		4A8D01CE1A33023900EA59EA /* ILBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILBarButtonItem.m; sourceTree = "<group>"; };
 		4A8D01D31A33039D00EA59EA /* UIViewController+FastNavgationBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FastNavgationBarItem.h"; sourceTree = "<group>"; };
@@ -116,6 +121,9 @@
 		4A8D020B1A37DA9E00EA59EA /* rounded-rectangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rounded-rectangle.png"; sourceTree = "<group>"; };
 		4A8D02111A37F78400EA59EA /* JSBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBadgeView.h; sourceTree = "<group>"; };
 		4A8D02121A37F78400EA59EA /* JSBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBadgeView.m; sourceTree = "<group>"; };
+		4A9AEEE91A3B43D300FDA403 /* petiotionBrief.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = petiotionBrief.h; sourceTree = "<group>"; };
+		4A9AEEEA1A3B43D300FDA403 /* petiotionBrief.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petiotionBrief.m; sourceTree = "<group>"; };
+		4A9AEEEC1A3B4A1800FDA403 /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new.png; sourceTree = "<group>"; };
 		4AB0EFA41A30540C00C24A44 /* AFNMJInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNMJInstance.h; sourceTree = "<group>"; };
 		4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNMJInstance.m; sourceTree = "<group>"; };
 		4AB0EFA71A30558000C24A44 /* NetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkManager.h; sourceTree = "<group>"; };
@@ -247,6 +255,8 @@
 				4A8D01E61A36C9C100EA59EA /* person.m */,
 				4A8D01FD1A3734A000EA59EA /* badgeImageFactory.h */,
 				4A8D01FE1A3734A000EA59EA /* badgeImageFactory.m */,
+				4A5137491A3B2AAA007B504B /* dic2Object.h */,
+				4A51374A1A3B2AAA007B504B /* dic2Object.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -254,6 +264,7 @@
 		4AB0EFAA1A305E0600C24A44 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				4A9AEEEC1A3B4A1800FDA403 /* new.png */,
 				4A8D020B1A37DA9E00EA59EA /* rounded-rectangle.png */,
 				4A8D02001A3736CC00EA59EA /* unreadAlert.png */,
 				4A8D02011A3736CC00EA59EA /* unreadMessage.png */,
@@ -477,6 +488,8 @@
 				4A8D01F51A36F9BC00EA59EA /* alertManager.m */,
 				4A5137461A3B18C1007B504B /* bizManager.h */,
 				4A5137471A3B18C1007B504B /* bizManager.m */,
+				4A9AEEE91A3B43D300FDA403 /* petiotionBrief.h */,
+				4A9AEEEA1A3B43D300FDA403 /* petiotionBrief.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -590,6 +603,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A9AEEED1A3B4A1800FDA403 /* new.png in Resources */,
 				4A8D02021A3736CC00EA59EA /* unreadAlert.png in Resources */,
 				4AB0EFAC1A305E0600C24A44 /* logo.png in Resources */,
 				4A8D01E41A369F2E00EA59EA /* PetitionTableViewCell.xib in Resources */,
@@ -643,6 +657,7 @@
 				4AD795291A218C4A00DEC779 /* FXImageView.m in Sources */,
 				4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */,
 				4AD7954F1A218C4A00DEC779 /* UIButton+AFNetworking.m in Sources */,
+				4A51374B1A3B2AAA007B504B /* dic2Object.m in Sources */,
 				4AD794621A208F4400DEC779 /* AppDelegate.m in Sources */,
 				4A8D01ED1A36F60800EA59EA /* announcement.m in Sources */,
 				4AD7945F1A208F4400DEC779 /* main.m in Sources */,
@@ -656,6 +671,7 @@
 				4AD795251A218C4A00DEC779 /* AFURLRequestSerialization.m in Sources */,
 				4A8D01F91A36FB8000EA59EA /* internalMessageManager.m in Sources */,
 				4AD7954D1A218C4A00DEC779 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				4A9AEEEB1A3B43D300FDA403 /* petiotionBrief.m in Sources */,
 				4A8D01D51A33039D00EA59EA /* UIViewController+FastNavgationBarItem.m in Sources */,
 				4A8D01FC1A36FB9C00EA59EA /* petitionManager.m in Sources */,
 				4AD795511A218C4A00DEC779 /* UIProgressView+AFNetworking.m in Sources */,

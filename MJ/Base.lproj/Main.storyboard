@@ -523,9 +523,18 @@
                     <view key="view" contentMode="scaleToFill" id="TA2-IZ-yPO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rkK-7q-kv2">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="hj5-dp-Rvc"/>
+                    <connections>
+                        <outlet property="tableView" destination="rkK-7q-kv2" id="6EJ-ng-mZA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hwJ-E9-zCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -668,6 +677,6 @@
         <image name="logo.png" width="1024" height="1024"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9WA-96-Mi7"/>
+        <segue reference="NP2-Ld-qmh"/>
     </inferredMetricsTieBreakers>
 </document>

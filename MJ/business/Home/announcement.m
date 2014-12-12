@@ -14,5 +14,23 @@
 @implementation announcement
 
 
+@synthesize  notice_title;
+@synthesize  notice_no;
+@synthesize  notice_content;
+@synthesize  issue_date;
+@synthesize  Brief;
+@synthesize  isNew;
+@synthesize  issue_person_name;
+
+-(id)init
+{
+    self = [super init];
+    if (self)
+    {
+        self.isNew = FALSE;
+    }
+    return self;
+}
+
 
 @end

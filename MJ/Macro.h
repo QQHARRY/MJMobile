@@ -10,7 +10,7 @@
 // 2.登录
 #define API_LOGIN @"login/appLogin"
 // 4.获取公告列表
-#define API_ANNC_LIST @"getpublicannclist"
+#define API_ANNC_LIST @"home/getPublicANNCList"
 // 6.获取签呈列表
 #define API_PETITION_LIST @"home/getPetitionList"
 // 7.获取签呈详情
