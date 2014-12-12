@@ -18,15 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-   
-    
-    self.testImage.image =[UIImage imageNamed:@"unreadAlert.png"];
-    JSBadgeView *badgeView = [[JSBadgeView alloc] initWithParentView:self.testImage alignment:JSBadgeViewAlignmentTopRight];
-    badgeView.badgeText =@"123";
 
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

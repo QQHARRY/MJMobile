@@ -12,7 +12,7 @@
 // 4.获取公告列表
 #define API_ANNC_LIST @"getpublicannclist"
 // 6.获取签呈列表
-#define API_PETITION_LIST @"getpetitionlist"
+#define API_PETITION_LIST @"home/getPetitionList"
 // 7.获取签呈详情
 #define API_PETITION_DETAIL @"getpetitiondetails"
 // 10.签呈审批

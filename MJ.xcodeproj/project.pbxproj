@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A5137481A3B18C1007B504B /* bizManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5137471A3B18C1007B504B /* bizManager.m */; };
 		4A8D01CF1A33023900EA59EA /* ILBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01CE1A33023900EA59EA /* ILBarButtonItem.m */; };
 		4A8D01D51A33039D00EA59EA /* UIViewController+FastNavgationBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01D41A33039D00EA59EA /* UIViewController+FastNavgationBarItem.m */; };
 		4A8D01D91A33381200EA59EA /* MainPageTableViewHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01D71A33381200EA59EA /* MainPageTableViewHeaderCell.m */; };
@@ -18,7 +19,6 @@
 		4A8D01E71A36C9C100EA59EA /* person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01E61A36C9C100EA59EA /* person.m */; };
 		4A8D01EA1A36E46700EA59EA /* unReadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01E91A36E46700EA59EA /* unReadManager.m */; };
 		4A8D01ED1A36F60800EA59EA /* announcement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01EC1A36F60800EA59EA /* announcement.m */; };
-		4A8D01F01A36F63300EA59EA /* internalMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01EF1A36F63300EA59EA /* internalMessage.m */; };
 		4A8D01F31A36F9AB00EA59EA /* annoucementManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01F21A36F9AB00EA59EA /* annoucementManager.m */; };
 		4A8D01F61A36F9BC00EA59EA /* alertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01F51A36F9BC00EA59EA /* alertManager.m */; };
 		4A8D01F91A36FB8000EA59EA /* internalMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01F81A36FB8000EA59EA /* internalMessageManager.m */; };
@@ -26,9 +26,7 @@
 		4A8D01FF1A3734A000EA59EA /* badgeImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01FE1A3734A000EA59EA /* badgeImageFactory.m */; };
 		4A8D02021A3736CC00EA59EA /* unreadAlert.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8D02001A3736CC00EA59EA /* unreadAlert.png */; };
 		4A8D02031A3736CC00EA59EA /* unreadMessage.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8D02011A3736CC00EA59EA /* unreadMessage.png */; };
-		4A8D020A1A37D80100EA59EA /* badgeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A8D02091A37D80100EA59EA /* badgeView.xib */; };
 		4A8D020C1A37DA9E00EA59EA /* rounded-rectangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A8D020B1A37DA9E00EA59EA /* rounded-rectangle.png */; };
-		4A8D020F1A37DB3900EA59EA /* badgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D020E1A37DB3900EA59EA /* badgeView.m */; };
 		4A8D02131A37F78400EA59EA /* JSBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D02121A37F78400EA59EA /* JSBadgeView.m */; };
 		4AB0EFA61A30540C00C24A44 /* AFNMJInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */; };
 		4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA81A30558000C24A44 /* NetWorkManager.m */; };
@@ -82,6 +80,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A5137461A3B18C1007B504B /* bizManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bizManager.h; sourceTree = "<group>"; };
+		4A5137471A3B18C1007B504B /* bizManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bizManager.m; sourceTree = "<group>"; };
 		4A8D01CD1A33023900EA59EA /* ILBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILBarButtonItem.h; sourceTree = "<group>"; };
 		4A8D01CE1A33023900EA59EA /* ILBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILBarButtonItem.m; sourceTree = "<group>"; };
 		4A8D01D31A33039D00EA59EA /* UIViewController+FastNavgationBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FastNavgationBarItem.h"; sourceTree = "<group>"; };
@@ -101,8 +101,6 @@
 		4A8D01E91A36E46700EA59EA /* unReadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = unReadManager.m; sourceTree = "<group>"; };
 		4A8D01EB1A36F60800EA59EA /* announcement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = announcement.h; sourceTree = "<group>"; };
 		4A8D01EC1A36F60800EA59EA /* announcement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = announcement.m; sourceTree = "<group>"; };
-		4A8D01EE1A36F63300EA59EA /* internalMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = internalMessage.h; sourceTree = "<group>"; };
-		4A8D01EF1A36F63300EA59EA /* internalMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = internalMessage.m; sourceTree = "<group>"; };
 		4A8D01F11A36F9AB00EA59EA /* annoucementManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = annoucementManager.h; sourceTree = "<group>"; };
 		4A8D01F21A36F9AB00EA59EA /* annoucementManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = annoucementManager.m; sourceTree = "<group>"; };
 		4A8D01F41A36F9BC00EA59EA /* alertManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = alertManager.h; sourceTree = "<group>"; };
@@ -115,10 +113,7 @@
 		4A8D01FE1A3734A000EA59EA /* badgeImageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = badgeImageFactory.m; sourceTree = "<group>"; };
 		4A8D02001A3736CC00EA59EA /* unreadAlert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unreadAlert.png; sourceTree = "<group>"; };
 		4A8D02011A3736CC00EA59EA /* unreadMessage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unreadMessage.png; sourceTree = "<group>"; };
-		4A8D02091A37D80100EA59EA /* badgeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = badgeView.xib; sourceTree = "<group>"; };
 		4A8D020B1A37DA9E00EA59EA /* rounded-rectangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rounded-rectangle.png"; sourceTree = "<group>"; };
-		4A8D020D1A37DB3900EA59EA /* badgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = badgeView.h; sourceTree = "<group>"; };
-		4A8D020E1A37DB3900EA59EA /* badgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = badgeView.m; sourceTree = "<group>"; };
 		4A8D02111A37F78400EA59EA /* JSBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBadgeView.h; sourceTree = "<group>"; };
 		4A8D02121A37F78400EA59EA /* JSBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBadgeView.m; sourceTree = "<group>"; };
 		4AB0EFA41A30540C00C24A44 /* AFNMJInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNMJInstance.h; sourceTree = "<group>"; };
@@ -472,8 +467,6 @@
 				4A8D01E91A36E46700EA59EA /* unReadManager.m */,
 				4A8D01EB1A36F60800EA59EA /* announcement.h */,
 				4A8D01EC1A36F60800EA59EA /* announcement.m */,
-				4A8D01EE1A36F63300EA59EA /* internalMessage.h */,
-				4A8D01EF1A36F63300EA59EA /* internalMessage.m */,
 				4A8D01F11A36F9AB00EA59EA /* annoucementManager.h */,
 				4A8D01F21A36F9AB00EA59EA /* annoucementManager.m */,
 				4A8D01F71A36FB8000EA59EA /* internalMessageManager.h */,
@@ -482,9 +475,8 @@
 				4A8D01FB1A36FB9C00EA59EA /* petitionManager.m */,
 				4A8D01F41A36F9BC00EA59EA /* alertManager.h */,
 				4A8D01F51A36F9BC00EA59EA /* alertManager.m */,
-				4A8D02091A37D80100EA59EA /* badgeView.xib */,
-				4A8D020D1A37DB3900EA59EA /* badgeView.h */,
-				4A8D020E1A37DB3900EA59EA /* badgeView.m */,
+				4A5137461A3B18C1007B504B /* bizManager.h */,
+				4A5137471A3B18C1007B504B /* bizManager.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -609,7 +601,6 @@
 				4AB0EFB11A31801600C24A44 /* firstBindStory.storyboard in Resources */,
 				4A8D02031A3736CC00EA59EA /* unreadMessage.png in Resources */,
 				4AD7946A1A208F4400DEC779 /* Images.xcassets in Resources */,
-				4A8D020A1A37D80100EA59EA /* badgeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,7 +618,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A8D01F01A36F63300EA59EA /* internalMessage.m in Sources */,
 				4AD795281A218C4A00DEC779 /* EGORefreshTableHeaderView.m in Sources */,
 				4AD795521A218C4A00DEC779 /* UIRefreshControl+AFNetworking.m in Sources */,
 				4A8D01E71A36C9C100EA59EA /* person.m in Sources */,
@@ -647,9 +637,9 @@
 				4AD795201A218C4A00DEC779 /* AFHTTPRequestOperationManager.m in Sources */,
 				4A8D01F31A36F9AB00EA59EA /* annoucementManager.m in Sources */,
 				4A8D01FF1A3734A000EA59EA /* badgeImageFactory.m in Sources */,
-				4A8D020F1A37DB3900EA59EA /* badgeView.m in Sources */,
 				4AD795531A218C4A00DEC779 /* UIWebView+AFNetworking.m in Sources */,
 				4AD795211A218C4A00DEC779 /* AFHTTPSessionManager.m in Sources */,
+				4A5137481A3B18C1007B504B /* bizManager.m in Sources */,
 				4AD795291A218C4A00DEC779 /* FXImageView.m in Sources */,
 				4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */,
 				4AD7954F1A218C4A00DEC779 /* UIButton+AFNetworking.m in Sources */,

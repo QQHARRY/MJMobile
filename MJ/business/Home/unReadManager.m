@@ -16,6 +16,9 @@ static int unReadMessageCount = 0;
 static int unReadAlertCnt = 0;
 
 
+#define TEST_UNREAD
+
+
 @implementation unReadManager
 
 +(void)setUnReadMessageCount:(int)count
@@ -47,41 +50,21 @@ static int unReadAlertCnt = 0;
     [NetWorkManager PostWithApiName:API_ALERT_COUNT parameters:parameters success:
      ^(id responseObject)
      {
+          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         BOOL checkRet = [self checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO];
          
-         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-         NSString*Status = [resultDic objectForKey:@"Status"];
-         
-         
-         if (Status == nil || [Status  length] <= 0)
+         if (checkRet)
          {
-             NSError*error = [[NSError alloc] initWithDomain:SERVER_NONCOMPLIANCE code:0 userInfo:@{SERVER_NONCOMPLIANCE:SERVER_NONCOMPLIANCE_INFO}];
-             failure(error);
-         }
-         else
-         {
-             NSInteger iStatus = [Status intValue];
-             if (iStatus == 0)
-             {
-                 NSString* strCount  = [resultDic objectForKey:@"Count"];
-                 int count  =[strCount intValue];
-                 if (count < 0)
-                 {
-                     NSError*error = [[NSError alloc] initWithDomain:SERVER_NONCOMPLIANCE code:0 userInfo:@{SERVER_NONCOMPLIANCE:SERVER_NONCOMPLIANCE_INFO}];
-                     failure(error);
-                 }
-                 else
-                 {
-                     unReadAlertCnt = count;
-                     success(nil);
-                 }
-             }
-             else
-             {
-                 NSString*strError = [resultDic objectForKey:@"ErrorInfo"];
-                 NSError*error = [[NSError alloc] initWithDomain:SERVER_NONCOMPLIANCE code:0 userInfo:@{SERVER_NONCOMPLIANCE:strError}];
-                 failure(error);
-             }
+
              
+             NSString* strCount  = [resultDic objectForKey:@"Count"];
+             int count  =[strCount intValue];
+#ifdef TEST_UNREAD
+             count = 123;
+#endif
+             
+             unReadAlertCnt = count;
+             success(nil);
          }
          
      }
@@ -106,43 +89,23 @@ static int unReadAlertCnt = 0;
     [NetWorkManager PostWithApiName:API_UNREAD_MSG_COUNT parameters:parameters success:
      ^(id responseObject)
      {
-         
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-         NSString*Status = [resultDic objectForKey:@"Status"];
+         BOOL checkRet = [self checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO];
          
-         
-         if (Status == nil || [Status  length] <= 0)
+         if (checkRet)
          {
-             NSError*error = [[NSError alloc] initWithDomain:SERVER_NONCOMPLIANCE code:0 userInfo:@{SERVER_NONCOMPLIANCE:SERVER_NONCOMPLIANCE_INFO}];
-             failure(error);
-         }
-         else
-         {
-             NSInteger iStatus = [Status intValue];
-             if (iStatus == 0)
-             {
-                 NSString* strCount  = [resultDic objectForKey:@"Count"];
-                 int count  =[strCount intValue];
-                 if (count < 0)
-                 {
-                     NSError*error = [[NSError alloc] initWithDomain:SERVER_NONCOMPLIANCE code:0 userInfo:@{SERVER_NONCOMPLIANCE:SERVER_NONCOMPLIANCE_INFO}];
-                     failure(error);
-                 }
-                 else
-                 {
-                     unReadMessageCount = count;
-                     success(nil);
-                 }
-             }
-             else
-             {
-                 NSString*strError = [resultDic objectForKey:@"ErrorInfo"];
-                 NSError*error = [[NSError alloc] initWithDomain:SERVER_NONCOMPLIANCE code:0 userInfo:@{SERVER_NONCOMPLIANCE:strError}];
-                 failure(error);
-             }
+
+
+             NSString* strCount  = [resultDic objectForKey:@"Count"];
+             int count  =[strCount intValue];
+#ifdef TEST_UNREAD
+             count = 456;
+#endif
              
+                 unReadMessageCount = count;
+                 success(nil);
          }
-         
+ 
      }
                             failure:^(NSError *error)
      {

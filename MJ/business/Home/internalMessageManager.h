@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface internalMessageManager : NSObject
+#import "bizManager.h"
+
+
+@interface internalMessageManager :bizManager
++(void)getListReaded:(BOOL)readed From:(NSString*)from To:(NSString*)to Count:(int)count Success:(void (^)(id responseObject))success
+             failure:(void (^)(NSError *error))failure;
 
 @end
+

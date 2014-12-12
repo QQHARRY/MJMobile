@@ -7,7 +7,12 @@
 //
 
 #import "announcement.h"
+#import "person.h"
+#import "Macro.h"
+#import "NetWorkManager.h"
 
 @implementation announcement
+
+
 
 @end

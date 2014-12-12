@@ -6,9 +6,12 @@
 //  Copyright (c) 2014年 Simtoon. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+//#import <Foundation/Foundation.h>
+//#import "bizManager.h"
 
-@interface internalMessage : NSObject
+//
+//@interface internalMessage :bizManager
+//+(void)getListReaded:(BOOL)readed From:(NSString*)from To:(NSString*)to Count:(int)count Success:(void (^)(id responseObject))success
+//             failure:(void (^)(NSError *error))failure;
 
-
-@end
+//@end

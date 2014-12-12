@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "bizManager.h"
 
-@interface unReadManager : NSObject
+@interface unReadManager : bizManager
 
 
 +(void)setUnReadMessageCount:(int)count;

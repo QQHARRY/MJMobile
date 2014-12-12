@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MoreViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UIImageView *testImage;
+
 
 @end

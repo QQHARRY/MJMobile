@@ -4,18 +4,28 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MJ/business/Utils/badgeImageFactory.m"
-            timestampString = "439826963.094528"
+            filePath = "MJ/business/Home/petitionManager.m"
+            timestampString = "440083806.839996"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
             endingLineNumber = "27"
-            landmarkName = "+addText:text:"
+            landmarkName = "+getListFrom:To:Count:Success:failure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MJ/3rd/badgeView/JSBadgeView.m"
-            timestampString = "439877097.646324"
+            filePath = "MJ/business/Home/petitionManager.m"
+            timestampString = "440083807.560019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "-initWithParentView:alignment:"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "+getListFrom:To:Count:Success:failure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

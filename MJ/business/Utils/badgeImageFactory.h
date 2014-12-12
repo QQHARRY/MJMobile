@@ -10,5 +10,8 @@
 #import <UIKit/UIKit.h>
 
 @interface badgeImageFactory : NSObject
-+(UIImage *)addText:(UIImage *)img text:(NSString *)txt;
+
++(UIImage*)getBadgeImageFromImage:(UIImage*)image andText:(NSString*)txt;
++(UIImageView*)getBadgeImageViewFromImage:(UIImage*)image andText:(NSString*)txt;
+
 @end
