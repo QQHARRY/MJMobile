@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4A5137481A3B18C1007B504B /* bizManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5137471A3B18C1007B504B /* bizManager.m */; };
 		4A51374B1A3B2AAA007B504B /* dic2Object.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A51374A1A3B2AAA007B504B /* dic2Object.m */; };
+		4A5500C91A3BF32F00E5307D /* AnncDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5500C71A3BF32F00E5307D /* AnncDetailsViewController.m */; };
 		4A8D01CF1A33023900EA59EA /* ILBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01CE1A33023900EA59EA /* ILBarButtonItem.m */; };
 		4A8D01D51A33039D00EA59EA /* UIViewController+FastNavgationBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01D41A33039D00EA59EA /* UIViewController+FastNavgationBarItem.m */; };
 		4A8D01D91A33381200EA59EA /* MainPageTableViewHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01D71A33381200EA59EA /* MainPageTableViewHeaderCell.m */; };
@@ -87,6 +88,8 @@
 		4A5137471A3B18C1007B504B /* bizManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bizManager.m; sourceTree = "<group>"; };
 		4A5137491A3B2AAA007B504B /* dic2Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dic2Object.h; sourceTree = "<group>"; };
 		4A51374A1A3B2AAA007B504B /* dic2Object.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dic2Object.m; sourceTree = "<group>"; };
+		4A5500C61A3BF32F00E5307D /* AnncDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnncDetailsViewController.h; sourceTree = "<group>"; };
+		4A5500C71A3BF32F00E5307D /* AnncDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnncDetailsViewController.m; sourceTree = "<group>"; };
 		4A8D01CD1A33023900EA59EA /* ILBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILBarButtonItem.h; sourceTree = "<group>"; };
 		4A8D01CE1A33023900EA59EA /* ILBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILBarButtonItem.m; sourceTree = "<group>"; };
 		4A8D01D31A33039D00EA59EA /* UIViewController+FastNavgationBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FastNavgationBarItem.h"; sourceTree = "<group>"; };
@@ -222,6 +225,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A5500C51A3BF18300E5307D /* annc */ = {
+			isa = PBXGroup;
+			children = (
+				4A5500C61A3BF32F00E5307D /* AnncDetailsViewController.h */,
+				4A5500C71A3BF32F00E5307D /* AnncDetailsViewController.m */,
+			);
+			path = annc;
+			sourceTree = "<group>";
+		};
 		4A8D01CC1A33023900EA59EA /* ILBarButtonItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,6 +283,13 @@
 				4AB0EFAB1A305E0600C24A44 /* logo.png */,
 			);
 			path = res;
+			sourceTree = "<group>";
+		};
+		4ABC221A1A3C30880017FD94 /* alert */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = alert;
 			sourceTree = "<group>";
 		};
 		4AD794501A208F4400DEC779 = {
@@ -463,6 +482,8 @@
 		B9FF4B311A245FB300FE413E /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				4ABC221A1A3C30880017FD94 /* alert */,
+				4A5500C51A3BF18300E5307D /* annc */,
 				B9FF4B321A245FB300FE413E /* MainPageViewController.h */,
 				B9FF4B331A245FB300FE413E /* MainPageViewController.m */,
 				4A8D01D61A33381200EA59EA /* MainPageTableViewHeaderCell.h */,
@@ -646,6 +667,7 @@
 				B9FF4B401A245FB300FE413E /* MainPageViewController.m in Sources */,
 				4A8D01CF1A33023900EA59EA /* ILBarButtonItem.m in Sources */,
 				4AD7951F1A218C4A00DEC779 /* AFHTTPRequestOperation.m in Sources */,
+				4A5500C91A3BF32F00E5307D /* AnncDetailsViewController.m in Sources */,
 				4AD7955D1A218DF100DEC779 /* MBProgressHUD.m in Sources */,
 				4AD7952A1A218C4A00DEC779 /* UIImage+FX.m in Sources */,
 				4AD795201A218C4A00DEC779 /* AFHTTPRequestOperationManager.m in Sources */,

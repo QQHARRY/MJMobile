@@ -10,6 +10,7 @@
 
 @interface MainPageTableViewHeaderCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *titleLab;
+@property (strong, nonatomic) IBOutlet UIButton *btn;
 - (IBAction)btnClicked:(id)sender;
 
 @property(strong,nonatomic) void (^action)(UIButton*);

@@ -18,11 +18,14 @@
 #import "annoucementManager.h"
 #import "petitionManager.h"
 
+
 #import "MainPageTableViewHeaderCell.h"
 #import "PublicAnncTableViewCell.h"
 #import "PetitionTableViewCell.h"
 #import "announcement.h"
 #import "petiotionBrief.h"
+
+#import "AnncDetailsViewController.h"
 
 @interface MainPageViewController ()
 
@@ -63,7 +66,7 @@
 {
     
     //self.tableView = [[UITableView alloc ] initWithFrame:self.view.frame];
-    //self.tableView.delegate = self;
+    self.tableView.delegate = self;
     self.tableView.dataSource = self;
     //[self.view addSubview:self.tableView];
 }
@@ -151,6 +154,73 @@
 
 #pragma mark tableview about
 #pragma mark  -
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+
+    if (indexPath.section == 0)
+    {
+        if (self.mainAnncArr && [self.mainAnncArr count] > indexPath.row)
+        {
+             [self performSegueWithIdentifier:@"viewAnncDetails" sender:self];
+        }
+        
+        
+    }
+    else if(indexPath.section == 1)
+    {
+        
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 48;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 35;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    static NSString *CellIdentifier = @"MainPageTableViewHeaderCell";
+    
+    MainPageTableViewHeaderCell *cell=(MainPageTableViewHeaderCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(cell==nil)
+    {
+        NSArray *nibs=[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+        for(id oneObject in nibs)
+        {
+            if([oneObject isKindOfClass:[MainPageTableViewHeaderCell class]])
+            {
+                cell = (MainPageTableViewHeaderCell *)oneObject;
+            }
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+    }
+    
+    if (section == 0)
+    {
+        [cell initWithTitle:@"公告" andAction:^(UIButton *btn)
+         {
+             [self toMsgListView:btn];
+         }];
+    }
+    else
+    {
+        [cell initWithTitle:@"签程" andAction:^(UIButton *btn)
+         {
+             [self toPetitionListView:btn];
+         }];
+    }
+    
+    
+    
+    return cell;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 4;
@@ -234,18 +304,6 @@
     return 2;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if (section == 0)
-    {
-        return @"公告";
-    }
-    else if(section == 1)
-    {
-        return @"签程";
-    }
-    return @"";
-}
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
     return @"";
@@ -268,6 +326,16 @@
 {
     
 }
+
+-(void)toMsgListView:(UIButton*)sender
+{
+    
+}
+
+-(void)toPetitionListView:(UIButton*)sender
+{
+    
+}
 #pragma mark -
 
 
@@ -281,15 +349,43 @@
 
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    UIViewController *controller;
+    if ([segue.destinationViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        controller = [navController.viewControllers objectAtIndex:0];
+    } else {
+        controller = segue.destinationViewController;
+    }
+    
+    
+    if ([segue.identifier isEqual:@"viewAnncDetails"])
+    {
+        if ([controller isKindOfClass:[AnncDetailsViewController class]])
+        {
+            AnncDetailsViewController *detailController = (AnncDetailsViewController *)controller;
+            NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
+            
+            detailController.annc = [self.mainAnncArr objectAtIndex:selectIndexPath.row];
+            
+
+        }
+        else
+        {
+           
+        }
+       
+    }
 }
-*/
+
 
 #pragma mark -
 

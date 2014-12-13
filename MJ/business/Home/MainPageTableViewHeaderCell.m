@@ -13,6 +13,13 @@
 - (void)awakeFromNib {
     // Initialization code
     self.action = nil;
+    CGSize sz =  [UIScreen mainScreen].bounds.size;
+    
+    [self setFrame:CGRectMake(0, 0, sz.width,self.frame.size.height)];
+    
+//    [self.btn setFrame:CGRectMake(sz.width-self.btn.frame.size.width - 20, self.btn.frame.origin.y, self.btn.frame.size.width, self.btn.frame.size.height)];
+    
+   
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -32,6 +39,9 @@
 
 -(void)initWithTitle:(NSString*)title andAction:(void(^)(UIButton*))act
 {
+    CGRect rct = [self frame];
+    [self.btn setFrame:CGRectMake(350, self.btn.frame.origin.y, self.btn.frame.size.width, self.btn.frame.size.height)];
+    rct = [self.btn  frame];
     self.titleLab.text = title;
     self.action = act;
 }
