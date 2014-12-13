@@ -29,7 +29,7 @@
      ^(id responseObject)
      {
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-         if ([self checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:YES])
+         if ([self checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {
              NSArray*arr = [self getArr:resultDic];;
              

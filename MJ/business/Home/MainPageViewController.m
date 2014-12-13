@@ -26,6 +26,7 @@
 #import "petiotionBrief.h"
 
 #import "AnncDetailsViewController.h"
+#import "AnncListViewController.h"
 
 @interface MainPageViewController ()
 
@@ -205,7 +206,7 @@
     {
         [cell initWithTitle:@"公告" andAction:^(UIButton *btn)
          {
-             [self toMsgListView:btn];
+             [self toAnncListView:btn];
          }];
     }
     else
@@ -324,12 +325,12 @@
 
 -(void)rightAlertBtnSelected:(id)sender
 {
-    
+    [self performSegueWithIdentifier:@"toAlertList" sender:self];
 }
 
--(void)toMsgListView:(UIButton*)sender
+-(void)toAnncListView:(UIButton*)sender
 {
-    
+    [self performSegueWithIdentifier:@"toAnncList" sender:self];
 }
 
 -(void)toPetitionListView:(UIButton*)sender
@@ -383,6 +384,21 @@
            
         }
        
+    }
+    else if([segue.identifier isEqual:@"toAnncList"])
+    {
+        if ([controller isKindOfClass:[AnncListViewController class]])
+        {
+//            anncListViewController *Controller = (anncListViewController *)controller;
+//            NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
+
+            
+            
+        }
+        else
+        {
+            
+        }
     }
 }
 

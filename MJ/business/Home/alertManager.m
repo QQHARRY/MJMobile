@@ -11,6 +11,7 @@
 #import "person.h"
 #import "NetWorkManager.h"
 #import "UtilFun.h"
+#import "alert.h"
 
 @implementation alertManager
 
@@ -31,12 +32,32 @@
     [NetWorkManager PostWithApiName:API_ALERT_LIST parameters:parameters success:
      ^(id responseObject)
      {
-         [self checkReturnStatus:responseObject Success:success failure:failure ShouldReturnWhenSuccess:YES];
+          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([self checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         {
+             success([self getArr:resultDic]);
+         }
          
      }
                             failure:^(NSError *error)
      {
          failure(error);
      }];
+}
+
++(NSArray*)getArr:(NSDictionary*)dic
+{
+    NSArray*annArr = [dic objectForKey:@"AlertNode"];
+    NSMutableArray* arr = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary*dic in annArr)
+    {
+        alert* obj = [[alert alloc] init];
+        [obj initWithDictionary:dic];
+        [arr  addObject:obj];
+        
+    }
+    
+    return arr;
 }
 @end
