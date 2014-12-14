@@ -20,5 +20,17 @@
 @synthesize task_reminder_content;
 @synthesize name_full;
 
+@synthesize selectedOnUI;
+
+-(id)init
+{
+    self = [super init];
+    if (self) {
+        self.selectedOnUI = NO;
+    }
+    return self;
+}
+
+
 
 @end

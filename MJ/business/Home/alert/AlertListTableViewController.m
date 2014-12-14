@@ -10,23 +10,38 @@
 #import "UtilFun.h"
 #import "alert.h"
 #import "alertManager.h"
+#import "AlertDetailsTableViewCell.h"
+#import "UtilFun.h"
+
+#import "BFNavigationBarDrawer.h"
+#import "LoadMoreTableViewCell.h"
+
+
 @interface AlertListTableViewController ()
 
 @end
 
 @implementation AlertListTableViewController
+{
+    BFNavigationBarDrawer *drawer;
+}
+@synthesize objArr;
+@synthesize setToReadedOrUnReaded;
 @synthesize ctrForReaded;
+
+
+-(void)setCtrForReaded:(BOOL)forReaded
+{
+    ctrForReaded = forReaded;
+    self.setToReadedOrUnReaded = ctrForReaded;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.objArr = [[NSMutableArray alloc] init];
-    
+    //self.selectArr = [[NSMutableArray alloc] init];
+    [self initNavigationBar];
     [self getDataList];
 }
 
@@ -51,55 +66,240 @@
     
 }
 
+-(void)initNavigationBar
+{
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem.title = @"编辑";
+    
+    
+    drawer = [[BFNavigationBarDrawer alloc] init];
+    
+    drawer.scrollView = self.tableView;
+    
+    
+    UIBarButtonItem *btnSelectAll = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(CancelBtnClick:)];
+    NSString*title =self.setToReadedOrUnReaded?@"设为未读":@"设为已读";
+    UIBarButtonItem *itemButtonEmpty = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    UIBarButtonItem *btnSetReaded = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStylePlain target:self action:@selector(setReadedOrUnread:)];
+    drawer.items = @[btnSetReaded,itemButtonEmpty,btnSelectAll];
+
+}
+
+
+-(void)markSelection
+{
+    for (int i = 0;i<self.objArr.count;i++)
+    {
+        UITableViewCell*cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        if (cell)
+        {
+            alert*alert = [objArr objectAtIndex:i];
+            alert.selectedOnUI = cell.selected;
+        }
+    }
+}
+-(void)clearSelection
+{
+    for (alert*alert in self.objArr)
+    {
+        alert.selectedOnUI = NO;
+    }
+}
+
+-(void)CancelBtnClick:(id)sender
+{
+
+    [self hideDrawer];
+
+    [self clearSelection];
+}
+
+-(void)setReadedOrUnread:(id)sender
+{
+    [self markSelection];
+    
+
+    [self hideDrawer];
+
+    
+    
+    [self clearSelection];
+    
+}
+
+-(void)showDrawer
+{
+    [super setEditing:YES animated:YES];
+    self.navigationItem.rightBarButtonItem.title = @"完成";
+    self.tableView.editing = YES;
+    
+    [drawer showFromNavigationBar:self.navigationController.navigationBar animated:YES];
+}
+
+-(void)hideDrawer
+{
+    [super setEditing:NO animated:YES];
+    self.navigationItem.rightBarButtonItem.title = @"编辑";
+    self.tableView.editing = NO;
+    [drawer hideAnimated:YES];
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [self clearSelection];
+    if (editing)
+    {
+        [self showDrawer];
+    }
+    else
+    {
+        [self hideDrawer];
+    }
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self hideDrawer];
+}
+
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - Table View
+
+
+
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 135;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (!self.isEditing)
+    {
+        long count = [self.objArr count];
+        long row = indexPath.row;
+        
+        if(count ==  row)
+        {
+            [self getDataList];
+        }
+    }
+}
+
+
+
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+
+    if (self.isEditing)
+    {
+        return objArr.count;
+    }
+    return objArr.count + 1;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
 
-/*
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    long row = indexPath.row;
+    long count = [self.objArr count];
+    
+    
+    if (count > row)
+    {
+        NSString *CellIdentifier = @"AlertDetailsTableViewCell";
+        
+        AlertDetailsTableViewCell *cell=(AlertDetailsTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(cell==nil)
+        {
+            NSArray *nibs=[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+            for(id oneObject in nibs)
+            {
+                if([oneObject isKindOfClass:[AlertDetailsTableViewCell class]])
+                {
+                    cell = (AlertDetailsTableViewCell *)oneObject;
+                }
+            }
+        }
+        
+
+        [cell setAlert:[objArr objectAtIndex:row]];
+        return cell;
+    }
+    else
+    {
+        NSString *CellIdentifier = @"LoadMoreTableViewCell";
+        
+        LoadMoreTableViewCell *cell=(LoadMoreTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(cell==nil)
+        {
+            NSArray *nibs=[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+            for(id oneObject in nibs)
+            {
+                if([oneObject isKindOfClass:[LoadMoreTableViewCell class]])
+                {
+                    cell = (LoadMoreTableViewCell *)oneObject;
+                }
+            }
+        }
+        return cell;
+    }
+    
+    return nil;
+
+    
+    
+}
+
+
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
+    
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+    
+}
 
 /*
 // Override to support rearranging the table view.

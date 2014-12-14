@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "dic2Object.h"
 
+
 @interface alert : dic2Object
 
 @property(nonatomic,strong)NSString* task_follow_no;//跟进id
@@ -20,5 +21,9 @@
 @property(nonatomic,strong)NSString* task_reminder_date;//提醒日期
 @property(nonatomic,strong)NSString* task_reminder_content;//提醒内容
 @property(nonatomic,strong)NSString* name_full;//跟进人
+
+@property(assign,nonatomic)BOOL selectedOnUI;
+
+
 
 @end

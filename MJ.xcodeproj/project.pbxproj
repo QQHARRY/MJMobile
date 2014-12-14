@@ -32,6 +32,7 @@
 		4A8D02131A37F78400EA59EA /* JSBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D02121A37F78400EA59EA /* JSBadgeView.m */; };
 		4A9AEEEB1A3B43D300FDA403 /* petiotionBrief.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9AEEEA1A3B43D300FDA403 /* petiotionBrief.m */; };
 		4A9AEEED1A3B4A1800FDA403 /* new.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A9AEEEC1A3B4A1800FDA403 /* new.png */; };
+		4AA0385C1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA0385B1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m */; };
 		4AB0EFA61A30540C00C24A44 /* AFNMJInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */; };
 		4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA81A30558000C24A44 /* NetWorkManager.m */; };
 		4AB0EFAC1A305E0600C24A44 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AB0EFAB1A305E0600C24A44 /* logo.png */; };
@@ -134,6 +135,8 @@
 		4A9AEEE91A3B43D300FDA403 /* petiotionBrief.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = petiotionBrief.h; sourceTree = "<group>"; };
 		4A9AEEEA1A3B43D300FDA403 /* petiotionBrief.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petiotionBrief.m; sourceTree = "<group>"; };
 		4A9AEEEC1A3B4A1800FDA403 /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new.png; sourceTree = "<group>"; };
+		4AA0385A1A3D30F0003E9CA6 /* BFNavigationBarDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFNavigationBarDrawer.h; sourceTree = "<group>"; };
+		4AA0385B1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFNavigationBarDrawer.m; sourceTree = "<group>"; };
 		4AB0EFA41A30540C00C24A44 /* AFNMJInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNMJInstance.h; sourceTree = "<group>"; };
 		4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNMJInstance.m; sourceTree = "<group>"; };
 		4AB0EFA71A30558000C24A44 /* NetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkManager.h; sourceTree = "<group>"; };
@@ -277,6 +280,15 @@
 			path = badgeView;
 			sourceTree = "<group>";
 		};
+		4AA038591A3D30F0003E9CA6 /* BFNavigationBarDrawer */ = {
+			isa = PBXGroup;
+			children = (
+				4AA0385A1A3D30F0003E9CA6 /* BFNavigationBarDrawer.h */,
+				4AA0385B1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m */,
+			);
+			path = BFNavigationBarDrawer;
+			sourceTree = "<group>";
+		};
 		4AB0EFA31A30538D00C24A44 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -410,6 +422,7 @@
 		4AD794A61A218C4A00DEC779 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				4AA038591A3D30F0003E9CA6 /* BFNavigationBarDrawer */,
 				4ABC22291A3C83F20017FD94 /* PageView */,
 				4A8D02101A37F78400EA59EA /* badgeView */,
 				4A8D01CC1A33023900EA59EA /* ILBarButtonItem */,
@@ -739,6 +752,7 @@
 				4A8D02131A37F78400EA59EA /* JSBadgeView.m in Sources */,
 				4AD795251A218C4A00DEC779 /* AFURLRequestSerialization.m in Sources */,
 				4A8D01F91A36FB8000EA59EA /* internalMessageManager.m in Sources */,
+				4AA0385C1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m in Sources */,
 				4AD7954D1A218C4A00DEC779 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				4A9AEEEB1A3B43D300FDA403 /* petiotionBrief.m in Sources */,
 				4A8D01D51A33039D00EA59EA /* UIViewController+FastNavgationBarItem.m in Sources */,

@@ -547,7 +547,7 @@
         <scene sceneID="7eh-Rl-eY4">
             <objects>
                 <tableViewController id="8tN-i5-XJY" customClass="AlertListTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lyl-a2-XdH">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lyl-a2-XdH">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -791,6 +791,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NP2-Ld-qmh"/>
-        <segue reference="MPC-oG-oz9"/>
+        <segue reference="DLs-As-7Sx"/>
     </inferredMetricsTieBreakers>
 </document>

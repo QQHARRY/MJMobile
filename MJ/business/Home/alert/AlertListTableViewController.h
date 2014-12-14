@@ -12,5 +12,8 @@
 
 @property(strong,nonatomic)NSMutableArray*objArr;
 
+
 @property (assign, nonatomic)BOOL ctrForReaded;
+@property (assign, nonatomic)BOOL setToReadedOrUnReaded;
+
 @end
