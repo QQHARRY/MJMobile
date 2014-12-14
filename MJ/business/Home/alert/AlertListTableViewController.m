@@ -24,6 +24,7 @@
 @implementation AlertListTableViewController
 {
     BFNavigationBarDrawer *drawer;
+    long processedCnt;
 }
 @synthesize objArr;
 @synthesize setToReadedOrUnReaded;
@@ -87,8 +88,9 @@
 }
 
 
--(void)markSelection
+-(NSArray*)markSelection
 {
+    NSMutableArray*selectArr = [[NSMutableArray alloc ] init];
     for (int i = 0;i<self.objArr.count;i++)
     {
         UITableViewCell*cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
@@ -96,8 +98,13 @@
         {
             alert*alert = [objArr objectAtIndex:i];
             alert.selectedOnUI = cell.selected;
+            if (alert.selectedOnUI)
+            {
+                [selectArr addObject:alert];
+            }
         }
     }
+    return selectArr;
 }
 -(void)clearSelection
 {
@@ -117,10 +124,40 @@
 
 -(void)setReadedOrUnread:(id)sender
 {
-    [self markSelection];
-    
-
+    NSArray*selectedArr = [self markSelection];
+    long count = [selectedArr count];
+    processedCnt = 0;
+    if (selectedArr == nil || count <=0 )
+    {
+        return;
+    }
     [self hideDrawer];
+    
+    
+    SHOWHUD(self.view);
+    
+    [alertManager setAlertSatus:!self.ctrForReaded Alerts:selectedArr Success:^(id responseObject)
+    {
+        processedCnt++;
+        if (processedCnt >= count)
+        {
+            HIDEHUD(self.view);
+            
+            [self.objArr removeAllObjects];
+            [self getDataList];
+        }
+    } failure:^(NSError *error)
+     {
+        processedCnt++;
+         if (processedCnt >= count)
+         {
+             HIDEHUD(self.view);
+             [self.objArr removeAllObjects];
+             [self getDataList];
+         }
+    }];
+    
+    
 
     
     

@@ -65,29 +65,37 @@
 +(void)setAlertSatus:(BOOL)readed Alerts:(NSArray*)arr  Success:(void (^)(id responseObject))success
              failure:(void (^)(NSError *error))failure
 {
-    
-    NSDictionary *parameters = @{@"job_no":[person me].job_no,
-                                 @"acc_password":[person me].password,
-                                 @"task_reminder_flg":(readed?@"2":@"1"),
-                                 @"DeviceID":[UtilFun getUDID]
+    if (arr && [arr count] > 0)
+    {
+        for (alert*alert in arr)
+        {
 
-                                 
-                                 };
+            NSDictionary *parameters = @{@"job_no":[person me].job_no,
+                                         @"acc_password":[person me].password,
+                                         @"DeviceID":[UtilFun getUDID],
+                                         @"task_follow_no":alert.task_follow_no,
+                                         @"task_reminder_flg":readed?@"2":@"1"
+                                         };
+            
+            
+            [NetWorkManager PostWithApiName:API_ALERT_FINISH parameters:parameters success:
+             ^(id responseObject)
+             {
+                 success(nil);
+                 
+             }
+                                    failure:^(NSError *error)
+             {
+                 failure(nil);
+             }];
+        }
+    }
+    else
+    {
+        success(nil);
+    }
     
     
-    [NetWorkManager PostWithApiName:API_ALERT_FINISH parameters:parameters success:
-     ^(id responseObject)
-     {
-         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-         if ([self checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
-         {
-             success([self getArr:resultDic]);
-         }
-         
-     }
-                            failure:^(NSError *error)
-     {
-         failure(error);
-     }];
+   
 }
 @end
