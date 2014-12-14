@@ -84,7 +84,7 @@
     
     
     //NSDictionary *parameters = @{@"job_no":@"XA-1200166", @"acc_password": @"1",@"DeviceID" : @"justfortest",@"DeviceType" : @"0"};
-    NSDictionary *parameters = @{@"job_no":strID , @"acc_password": strPwd,@"DeviceID" : @"justfortest",@"DeviceType" : DEVICE_IOS};
+    NSDictionary *parameters = @{@"job_no":strID , @"acc_password": strPwd,@"DeviceID" : [UtilFun getUDID],@"DeviceType" : DEVICE_IOS};
     [NetWorkManager PostWithApiName:API_LOGIN parameters:parameters success:
      ^(id responseObject)
      {

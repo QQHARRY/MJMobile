@@ -9,6 +9,9 @@
 #import "UtilFun.h"
 #import "MBProgressHUD.h"
 
+
+static NSString*UDIDSTRING=nil;
+
 @implementation UtilFun
 
 
@@ -72,7 +75,52 @@
     [MBProgressHUD hideAllHUDsForView:view animated:YES];
 }
 
++(NSString*)getUDID
+{
+    
+    if (UDIDSTRING == nil)
+    {
+        NSString*tmp = [self getUDIDFromPre];
+        if (tmp)
+        {
+            UDIDSTRING = tmp;
+        }
+        else
+        {
+            UDIDSTRING = [self genUUID];
+            
+            [self setUDIDToPre:UDIDSTRING];
+        }
+    }
+    return @"justfortest";
+    //return UDIDSTRING;
+}
++(void)setUDIDToPre:(NSString*)string
+{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setValue:string forKey:@"MEIJIAUDID"];
+    [prefs synchronize];
+}
 
++(NSString*)getUDIDFromPre;
+{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSString*str =[prefs stringForKey:@"MEIJIAUDID"];
+    return str;
+}
+
+
++(NSString*)genUUID
+{
+    CFUUIDRef uuid_ref = CFUUIDCreate(NULL);
+    CFStringRef uuid_string_ref= CFUUIDCreateString(NULL, uuid_ref);
+    
+    CFRelease(uuid_ref);
+    NSString *uuid = [NSString stringWithString:(__bridge NSString*)uuid_string_ref];
+    
+    CFRelease(uuid_string_ref);
+    return uuid;
+}
 
 
 @end

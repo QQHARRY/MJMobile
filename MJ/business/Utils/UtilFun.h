@@ -29,6 +29,6 @@
 +(void)hideHUD:(UIView*)view;
 +(void)hideAllHUD:(UIView*)view;
 
-
++(NSString*)getUDID;
 
 @end

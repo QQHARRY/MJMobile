@@ -22,7 +22,7 @@
 // 12.获取跟进提醒列表
 #define API_ALERT_LIST @"home/getAlertList"
 // 13.标记跟进提醒
-#define API_ALERT_FINISH @"alertfinished"
+#define API_ALERT_FINISH @"home/alertFinished"
 //未读站内信
 #define API_UNREAD_MSG_COUNT @"home/getUnreadMessageCount"
 
