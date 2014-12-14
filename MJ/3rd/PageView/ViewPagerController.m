@@ -44,7 +44,7 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = TABLEUNSELECTEDCOLOR;
+        //self.backgroundColor = TABLEUNSELECTEDCOLOR;
     }
     
 
@@ -172,10 +172,10 @@
     __block NSUInteger index = [_tabs indexOfObject:tabView];
     
     TabView* tab = [_tabs objectAtIndex:self.activeTabIndex];
-    tab.backgroundColor = TABLEUNSELECTEDCOLOR;
+    //tab.backgroundColor = TABLEUNSELECTEDCOLOR;
 
     tab = [_tabs objectAtIndex:index];
-    tab.backgroundColor = TABLESELECTEDCOLOR;
+   // tab.backgroundColor = TABLESELECTEDCOLOR;
     NSLog(@"handleTapGesture");
     
     // Get the desired viewController
@@ -245,7 +245,7 @@
     
 
     TabView* tab = [_tabs objectAtIndex:_activeTabIndex];
-    tab.backgroundColor = TABLEUNSELECTEDCOLOR;
+    //tab.backgroundColor = TABLEUNSELECTEDCOLOR;
     
      tab = [_tabs objectAtIndex:activeTabIndex];
     tab.backgroundColor = TABLESELECTEDCOLOR;
@@ -553,7 +553,7 @@
     
     
     tab = [_tabs objectAtIndex:old];
-    tab.backgroundColor = TABLEUNSELECTEDCOLOR;
+   // tab.backgroundColor = TABLEUNSELECTEDCOLOR;
 }
 
 #pragma mark - UIScrollViewDelegate, Responding to Scrolling and Dragging

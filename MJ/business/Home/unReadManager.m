@@ -16,7 +16,7 @@ static int unReadMessageCount = 0;
 static int unReadAlertCnt = 0;
 
 
-#define TEST_UNREAD
+//#define TEST_UNREAD
 
 
 @implementation unReadManager

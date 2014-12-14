@@ -39,7 +39,7 @@
         alert*obj = [self.objArr objectAtIndex:self.objArr.count-1];
         from = obj.task_follow_no;
     }
-    [alertManager getListReaded:ctrForReaded From:from To:@"" Count:6 Success:^(id responseObject) {
+    [alertManager getListReaded:NO From:from To:@"" Count:6 Success:^(id responseObject) {
         HIDEHUD(self.view);
         [self.objArr addObjectsFromArray:responseObject];
         //self.mainAnncArr = responseObject;

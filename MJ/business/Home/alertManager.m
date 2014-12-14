@@ -22,7 +22,7 @@
   
     NSDictionary *parameters = @{@"job_no":[person me].job_no,
                                  @"acc_password":[person me].password,
-                                 @"task_reminder_flg":(readed?@"1":@"2"),
+                                 @"task_reminder_flg":(readed?@"2":@"1"),
                                  @"FromID":from,
                                  @"ToID":to,
                                  @"Count":[NSNumber numberWithInt:count]

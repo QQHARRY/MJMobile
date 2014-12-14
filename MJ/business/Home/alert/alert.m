@@ -16,7 +16,7 @@
 @synthesize client_name;
 @synthesize task_obj_no;
 @synthesize task_type;
-@synthesize task_rem;
+@synthesize task_reminder_date;
 @synthesize task_reminder_content;
 @synthesize name_full;
 
