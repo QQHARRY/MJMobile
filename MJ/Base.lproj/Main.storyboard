@@ -499,7 +499,7 @@
         <scene sceneID="2pz-ac-NeH">
             <objects>
                 <navigationController title="主页" id="UNI-uZ-Ru0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="主页" id="znZ-ol-Nr9"/>
+                    <tabBarItem key="tabBarItem" title="主页" image="TabItemHome" id="znZ-ol-Nr9"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="y9e-ve-lHu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -703,7 +703,7 @@
         <scene sceneID="h4L-Fq-7tV">
             <objects>
                 <navigationController title="房源" id="dBp-GJ-70H" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="房源" id="CYb-jF-6BT"/>
+                    <tabBarItem key="tabBarItem" title="房源" image="TabItemHouse" id="CYb-jF-6BT"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xvW-GF-JqY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -720,7 +720,7 @@
         <scene sceneID="NyG-cz-hnK">
             <objects>
                 <navigationController title="客源" id="rx4-UC-bWe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="客源" id="oBE-2z-Mzr"/>
+                    <tabBarItem key="tabBarItem" title="客源" image="TabItemCustom" id="oBE-2z-Mzr"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TQu-b4-wtl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -737,7 +737,7 @@
         <scene sceneID="Ufz-Md-Zgj">
             <objects>
                 <navigationController title="更多" id="ZBp-0i-wcP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="更多" id="C6e-uD-ohE"/>
+                    <tabBarItem key="tabBarItem" title="更多" image="TabItemMore" id="C6e-uD-ohE"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oqW-TE-91s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -834,6 +834,10 @@
     </scenes>
     <resources>
         <image name="Logo" width="512" height="512"/>
+        <image name="TabItemCustom" width="30" height="30"/>
+        <image name="TabItemHome" width="30" height="30"/>
+        <image name="TabItemHouse" width="30" height="30"/>
+        <image name="TabItemMore" width="30" height="30"/>
         <image name="logo.png" width="1024" height="1024"/>
         <image name="plus.png" width="32" height="32"/>
     </resources>
