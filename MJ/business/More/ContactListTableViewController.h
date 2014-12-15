@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "unit.h"
 
 @interface ContactListTableViewController : UITableViewController
+
+@property(nonatomic,strong)unit*contactListTreeHead;
+
 
 @end

@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "dic2Object.h"
+#import "unit.h"
 
-@interface person : dic2Object
+@interface person : unit
 
 
 @property(strong,atomic)NSString*job_no;

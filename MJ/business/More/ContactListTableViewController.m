@@ -7,6 +7,9 @@
 //
 
 #import "ContactListTableViewController.h"
+#import "unit.h"
+#import "person.h"
+#import "department.h"
 
 @interface ContactListTableViewController ()
 
@@ -17,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    self.contactListTreeHead = [department rootUnit];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -34,7 +39,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -7,12 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "dic2Object.h"
 
-@interface unit : NSObject
+@interface unit : dic2Object
 
 @property(assign,nonatomic)BOOL isDept;
 @property(assign,nonatomic)int level;
 @property(strong,nonatomic)unit*superUnit;
-@property(strong,nonatomic)NSArray* subUnits;
+@property(strong,nonatomic)NSMutableArray* subDept;
+@property(strong,nonatomic)NSMutableArray* subPerson;
+@property(assign,nonatomic)BOOL closed;
 
+-(BOOL)hasSubUnits;
+
+
+
+-(long)numberOfSubUnits;
+
++(unit*)findUnitInUnit:(unit*)rootUnt ByIndex:(NSInteger)index;
 @end
