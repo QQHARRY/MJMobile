@@ -543,6 +543,49 @@
             </objects>
             <point key="canvasLocation" x="1642" y="-661"/>
         </scene>
+        <!--Contact List Table View Controller-->
+        <scene sceneID="D7e-r5-zSI">
+            <objects>
+                <tableViewController id="dzT-bL-qDc" customClass="ContactListTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gPe-V6-dL2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="WKr-1J-eUM" customClass="CantactListUnitTableViewCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WKr-1J-eUM" id="XG6-WC-nRI">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7U-1I-Rve">
+                                            <rect key="frame" x="32" y="7" width="30" height="30"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
+                                            </accessibility>
+                                            <state key="normal" backgroundImage="plus.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSQ-39-Hp0">
+                                            <rect key="frame" x="106" y="11" width="349" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="dzT-bL-qDc" id="VJa-ZJ-Xgd"/>
+                            <outlet property="delegate" destination="dzT-bL-qDc" id="wk0-Bj-qfo"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BD3-bE-3xH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1279" y="-2420"/>
+        </scene>
         <!--Alert List Table View Controller-->
         <scene sceneID="7eh-Rl-eY4">
             <objects>
@@ -788,6 +831,7 @@
     </scenes>
     <resources>
         <image name="logo.png" width="1024" height="1024"/>
+        <image name="plus.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NP2-Ld-qmh"/>

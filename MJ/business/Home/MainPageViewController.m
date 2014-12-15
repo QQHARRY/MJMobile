@@ -320,7 +320,7 @@
 #pragma mark  -
 -(void)leftMsgBtnSelected:(id)sender
 {
-    
+    [self performSegueWithIdentifier:@"testSegue" sender:self];
 }
 
 -(void)rightAlertBtnSelected:(id)sender
