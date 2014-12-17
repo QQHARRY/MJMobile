@@ -92,8 +92,8 @@ static NSString*UDIDSTRING=nil;
             [self setUDIDToPre:UDIDSTRING];
         }
     }
-    return @"justfortest";
-    //return UDIDSTRING;
+    //return @"justfortest";
+    return UDIDSTRING;
 }
 +(void)setUDIDToPre:(NSString*)string
 {

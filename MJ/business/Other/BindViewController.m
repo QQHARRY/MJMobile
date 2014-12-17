@@ -62,11 +62,11 @@
 -(IBAction)onBindAction:(id)sender
 {
 
-    //NSString* strID = self.idTxtFld.text;
-    NSString* strID = @"XA-1200166";
+    NSString* strID = self.idTxtFld.text;
+    //NSString* strID = @"XA-1200166";
     
-    //NSString* strPwd = self.pwdTxtFld.text;
-    NSString* strPwd = @"1";
+    NSString* strPwd = self.pwdTxtFld.text;
+    //NSString* strPwd = @"1";
     if ([strID length] <= 0 || [strPwd length] <= 0)
     {
         [UtilFun presentPopViewControllerWithTitle:@"输入错误" Message:@"请输入正确的用户名和密码" SimpleAction:@"OK" Sender:self];

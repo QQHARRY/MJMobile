@@ -322,7 +322,7 @@
 #pragma mark  -
 -(void)leftMsgBtnSelected:(id)sender
 {
-    [self performSegueWithIdentifier:@"showContact" sender:self];
+    //[self performSegueWithIdentifier:@"showContact" sender:self];
     
 }
 

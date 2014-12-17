@@ -22,6 +22,7 @@
     {
         NSError*error = [[NSError alloc] initWithDomain:SERVER_NONCOMPLIANCE code:0 userInfo:@{SERVER_NONCOMPLIANCE:SERVER_NONCOMPLIANCE_INFO}];
         failure(error);
+        return NO;
     }
     else
     {
@@ -31,6 +32,7 @@
             if (returnS)
             {
                 success(resultDic);
+                
             }
             return YES;
         }

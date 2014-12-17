@@ -22,6 +22,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self readDefaultMsg];
     // Do any additional setup after loading the view.
     
 }
@@ -69,13 +70,43 @@
     // Pass the selected object to the new view controller.
 }
 
+-(void)readDefaultMsg
+{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    BOOL autoLogin =[prefs boolForKey:@"AutoLogin"];
+    self.autoLoginSwitchBtn.on = autoLogin;
+    if (autoLogin)
+    {
+        NSString*defaultUsrName =[prefs stringForKey:@"defaultUsrName"];
+        NSString*defaultPwd =[prefs stringForKey:@"defaultPwd"];
+        
+        self.idTxt.text = defaultUsrName;
+        self.pwdTxt.text = defaultPwd;
+    }
+}
+
+-(void)writeDefaultMsg
+{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    BOOL autoLogin  = self.autoLoginSwitchBtn.on;
+    NSString*usrName = self.idTxt.text;
+    NSString*pwd = self.pwdTxt.text;
+    
+    [prefs setBool:autoLogin forKey:@"AutoLogin"];
+    [prefs setValue:usrName forKey:@"defaultUsrName"];
+    [prefs setValue:pwd forKey:@"defaultPwd"];
+    [prefs synchronize];
+
+}
+
 
 - (IBAction)loginBtnClicked:(id)sender {
-   // NSString* strID = self.idTxt.text;
-    NSString* strID = @"XA-1200166";
+
+    NSString* strID = self.idTxt.text;
+    //NSString* strID = @"XA-1200166";
     
-    //NSString* strPwd = self.pwdTxt.text;
-    NSString* strPwd = @"1";
+    NSString* strPwd = self.pwdTxt.text;
+    //NSString* strPwd = @"1";
     if ([strID length] <= 0 || [strPwd length] <= 0)
     {
         [UtilFun presentPopViewControllerWithTitle:@"输入错误" Message:@"请输入正确的用户名和密码" SimpleAction:@"OK" Sender:self];
@@ -105,11 +136,13 @@
                  case 0:
                  {
  
-                    [self performSegueWithIdentifier:@"loginOK" sender:self];
-                     
                      NSArray*arrTmp =[resultDic objectForKey:@"userinfo"];
                      
                      [[person initMe:[arrTmp objectAtIndex:0]] setPassword:strPwd];
+                     [self writeDefaultMsg];
+                    [self performSegueWithIdentifier:@"loginOK" sender:self];
+                     
+                     
                      
                      return;
                  }

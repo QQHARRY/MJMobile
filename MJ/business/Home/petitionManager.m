@@ -32,6 +32,7 @@
          if ([self checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {
              success([self getArr:resultDic]);
+             return;
          }
 
          
@@ -39,6 +40,7 @@
                             failure:^(NSError *error)
      {
          failure(error);
+         return;
      }];
 }
 
