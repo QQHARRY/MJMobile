@@ -8,9 +8,15 @@
 
 #import "unit.h"
 #import "department.h"
+#import "person.h"
 
 @implementation unit
 
+@synthesize isDept;
+@synthesize  level;
+@synthesize  superUnit;
+@synthesize subDept;
+@synthesize subPerson;
 @synthesize closed;
 
 -(id)init
@@ -40,69 +46,173 @@
     {
         iCnt += self.subPerson.count + self.subDept.count;
         
-        for (unit*subUnt in self.subPerson)
-        {
-            iCnt += [subUnt numberOfSubUnits];
-        }
         
         for (unit*subUnt in self.subDept)
         {
             iCnt += [subUnt numberOfSubUnits];
         }
+        
+        for (unit*subUnt in self.subPerson)
+        {
+            iCnt += [subUnt numberOfSubUnits];
+        }
+        
+        
     }
     
     
     return iCnt;
 }
 
-
-+(unit*)findUnitInUnit:(unit*)rootUnt ByIndex:(NSInteger)index
+//按照索引号查找，是不是在某个节点的子孙节点中
+-(unit*)findSubUnitByIndex:(NSInteger*)index
 {
-    if (index == 0)
+    NSInteger tmpindex = *index;
+    if (tmpindex == 0)
     {
-        return rootUnt;
+        return self;
     }
     //如果这个节点是关闭的,你找别人去吧
-    if (rootUnt.closed)
+    if (self.closed || ![self hasSubUnits])
     {
         return nil;
     }
     
-    //计算一下是不是在这一分枝中
-    long totalCount = [rootUnt numberOfSubUnits];
-    //总共都没有那么多,你找别人吧
-    if (totalCount < index)
+    //tmpindex--;
+    
+    for (int i = 0; i < self.subDept.count; i++)
     {
+        unit*tmpUnit = [self.subDept objectAtIndex:i];
+        tmpindex--;
+        unit*findedUnit = [tmpUnit findSubUnitByIndex:&tmpindex];
         
+        if (findedUnit)
+        {
+            return findedUnit;
+        }
     }
     
-    
-    
-    long subPsCnt = [rootUnt.subPerson count];
-    long subDeptCnt = [rootUnt.subDept count];
-    
-    //如果这个节点的子节点数大于或等于index,那么肯定是子节点中的某一个
-    if ((subPsCnt + subDeptCnt) > index)
+    for (int j = 0; j < self.subPerson.count; j++)
     {
-        //排列时将人员名单放在前面,子部门放在后面.
-        //其中人员名单之间的先后顺序保持接口返回的顺序,子部门名单也一样
-        //是子人员的某一个
-        if (subPsCnt >= index)
+        unit*tmpUnit = [self.subPerson objectAtIndex:j];
+        tmpindex--;
+        unit*findedUnit = [tmpUnit findSubUnitByIndex:&tmpindex];
+        
+        if (findedUnit)
         {
-            return [rootUnt.subPerson objectAtIndex:index];
-        }
-        else
-        {
-            return [rootUnt.subDept objectAtIndex:index-subPsCnt];
+            return findedUnit;
         }
     }
     
-   
+    *index = tmpindex;
+
     
     //找遍了,没找到
     return nil;
 }
 
+-(unit*)findSuperUnitOfUnit:(unit*)unt
+{
+    if (unt == nil)
+    {
+        return nil;
+    }
+    
+    if ([self  isKindOfClass:[department class]] )
+    {
+        if (self == [department rootUnit])
+        {
+            if ([((department*)unt).dept_parent_no isEqualToString:@"DEPT_NO000000"])
+            {
+                return self;
+            }
+        }
+    }
+    else
+    {
+        if (self == [department rootUnit])
+        {
+            if ([((person*)unt).dept_no isEqualToString:@"DEPT_NO000000"])
+            {
+                return self;
+            }
+        }
+    }
+    
+    if ([self  isKindOfClass:[department class]] )
+    {
+        if ([unt isKindOfClass:[department class]])
+        {
+            if ([((department*)self).dept_current_no isEqualToString:((department*)unt).dept_parent_no])
+            {
+                return self;
+            }
+            
+        }
+        else
+        {
+            if ([((department*)self).dept_current_no isEqualToString:((person*)unt).dept_no])
+            {
+                return self;
+            }
+        }
+    }
+    
+    for (unit*subUnt in self.subDept)
+    {
+        unit*finded = [subUnt findSuperUnitOfUnit:unt];
+        if (finded != nil)
+        {
+            return finded;
+        }
+        
+    }
+
+    
+    
+    return nil;
+}
+
+-(void)setSubUnits:(NSArray*)units
+{
+    NSMutableArray*subUnits = [NSMutableArray arrayWithArray:units];
+    if (units == nil || units.count == 0)
+    {
+        return;
+    }
+    
+    while([subUnits  count] > 0)
+    {
+        unit*processedUnt = nil;
+        for (unit* subUnt in subUnits)
+        {
+
+            unit*superUnt = [self findSuperUnitOfUnit:subUnt];
+            if (superUnt)
+            {
+
+                if (subUnt.isDept)
+                {
+                    subUnt.level = superUnt.level+1;
+                    [superUnt.subDept addObject:subUnt];
+                    processedUnt = subUnt;
+                    break;
+                }
+                else
+                {
+                    subUnt.level = superUnt.level+1;
+                    [superUnt.subPerson addObject:subUnt];
+                    processedUnt = subUnt;
+                    break;
+                }
+                
+                
+            }
+        }
+        [subUnits removeObject:processedUnt];
+        processedUnt = nil;
+    }
+}
 
 
 @end

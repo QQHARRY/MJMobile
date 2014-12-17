@@ -22,6 +22,7 @@
 @property(strong,atomic)NSString*acc_content;
 @property(strong,atomic)NSString*photo;
 @property(strong,atomic)NSString*password;
+@property(strong,atomic)NSString*dept_no;
 
 //-(BOOL)initWithDictionary:(NSDictionary*)dic;
 

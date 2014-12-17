@@ -26,9 +26,9 @@
 //未读站内信
 #define API_UNREAD_MSG_COUNT @"home/getUnreadMessageCount"
 //获取部门的子部门
-#define API_GET_SUB_DEPT @"home/getContractDeptSubDept"
+#define API_GET_SUB_DEPT @"person/getContractDeptSubDept"
 //获取部门的直接下属人员
-#define API_GET_SUB_PERSON @"home/getContractDeptUsrlist"
+#define API_GET_SUB_PERSON @"person/getContractDeptUsrlist"
 
 
 #define DEVICE_IOS @"0"

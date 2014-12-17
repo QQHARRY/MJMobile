@@ -537,6 +537,7 @@
                         <segue destination="8oe-Gb-wga" kind="show" identifier="viewAnncDetails" id="DLs-As-7Sx"/>
                         <segue destination="0s0-nL-Nba" kind="show" identifier="toAnncList" id="z6n-UR-tcj"/>
                         <segue destination="8tN-i5-XJY" kind="show" identifier="toAlertList" id="Fiv-E2-lDU"/>
+                        <segue destination="dzT-bL-qDc" kind="show" identifier="showContact" id="4LR-HI-Nkc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hwJ-E9-zCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -551,31 +552,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="WKr-1J-eUM" customClass="CantactListUnitTableViewCell">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WKr-1J-eUM" id="XG6-WC-nRI">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7U-1I-Rve">
-                                            <rect key="frame" x="32" y="7" width="30" height="30"/>
-                                            <accessibility key="accessibilityConfiguration">
-                                                <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
-                                            </accessibility>
-                                            <state key="normal" backgroundImage="plus.png">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSQ-39-Hp0">
-                                            <rect key="frame" x="106" y="11" width="349" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="dzT-bL-qDc" id="VJa-ZJ-Xgd"/>
                             <outlet property="delegate" destination="dzT-bL-qDc" id="wk0-Bj-qfo"/>
@@ -584,7 +560,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BD3-bE-3xH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1279" y="-2420"/>
+            <point key="canvasLocation" x="1659" y="-2215"/>
         </scene>
         <!--Alert List Table View Controller-->
         <scene sceneID="7eh-Rl-eY4">
@@ -831,7 +807,6 @@
     </scenes>
     <resources>
         <image name="logo.png" width="1024" height="1024"/>
-        <image name="plus.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NP2-Ld-qmh"/>

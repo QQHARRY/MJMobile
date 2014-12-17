@@ -39,6 +39,7 @@
             NSString*strError = [resultDic objectForKey:@"ErrorInfo"];
             NSError*error = [[NSError alloc] initWithDomain:SERVER_NONCOMPLIANCE code:0 userInfo:@{SERVER_NONCOMPLIANCE:strError}];
             failure(error);
+            return NO;
         }
         
     }

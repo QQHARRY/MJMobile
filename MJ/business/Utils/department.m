@@ -13,7 +13,9 @@
 static unit*rootUnit = nil;
 
 @implementation department
-
+@synthesize dept_current_no;
+@synthesize dept_name;
+@synthesize dept_parent_no;
 
 -(id)init
 {
@@ -34,6 +36,7 @@ static unit*rootUnit = nil;
         rootUnit = [[self alloc] init];
         ((department*)rootUnit).dept_current_no = @"0";
         rootUnit.level = 0;
+        ((department*)rootUnit).dept_name=@"ROOT";
     });
     return rootUnit;
     

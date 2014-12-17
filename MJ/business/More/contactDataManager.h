@@ -14,4 +14,7 @@
 
 +(unit*)getContactList;
 
++(void)WaitForDataB4ExpandUnit:(unit*)unt Success:(void (^)(id responseObject))success
+                       failure:(void (^)(NSError *error))failure;
+
 @end

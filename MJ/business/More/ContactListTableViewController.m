@@ -11,6 +11,10 @@
 #import "person.h"
 #import "department.h"
 
+#import "contactDataManager.h"
+#import "UtilFun.h"
+#import "ContactsListTableViewCell.h"
+
 @interface ContactListTableViewController ()
 
 @end
@@ -34,29 +38,59 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
+
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    // Return the number of sections.
-    return 1;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     // Return the number of rows in the section.
-    return 0;
+    NSInteger num = [self.contactListTreeHead numberOfSubUnits]+1;
+    return num;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 30;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger num = [self.contactListTreeHead numberOfSubUnits]+1;
+   
+    NSInteger row = [indexPath row];
     
-    // Configure the cell...
+    if(num == 12 && row == 9)
+    {
+        NSLog(@"sdfdsfs");
+    }
+    
+    NSString *CellIdentifier = @"ContactsListTableViewCell";
+    
+    //ContactsListTableViewCell *cell=(ContactsListTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    ContactsListTableViewCell *cell= nil;
+    //if(cell==nil)
+    {
+        NSArray *nibs=[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+        for(id oneObject in nibs)
+        {
+            if([oneObject isKindOfClass:[ContactsListTableViewCell class]])
+            {
+                cell = (ContactsListTableViewCell *)oneObject;
+            }
+        }
+    }
+    
+
+    
+    unit* unt = [_contactListTreeHead findSubUnitByIndex:&row];
+    [cell  setUnit:unt withTag:row delegate:self action:@selector(expandBtnClicked:)];
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -102,4 +136,36 @@
 }
 */
 
+- (IBAction)expandBtnClicked:(id)sender
+{
+    
+    NSInteger tag = ((UIButton*)sender).tag;
+    unit* unt = [_contactListTreeHead findSubUnitByIndex:&tag];
+    if (unt.closed)
+    {
+        unt.closed = !unt.closed;
+        [UtilFun showHUD:self.view];
+        [contactDataManager WaitForDataB4ExpandUnit:unt Success:^(id responseObject)
+        {
+            [UtilFun hideHUD:self.view];
+            [self.tableView reloadData];
+        }
+                                            failure:^(NSError *error)
+        {
+            [UtilFun hideHUD:self.view];
+            [self.tableView reloadData];
+        }];
+    }
+    else
+    {
+        unt.closed = !unt.closed;
+        [self.tableView reloadData];
+    }
+    
+    
+    
+    
+    
+    
+}
 @end

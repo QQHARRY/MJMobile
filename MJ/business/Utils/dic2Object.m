@@ -22,11 +22,11 @@
         //Ivar const ivar = ;
         NSString *key = [NSString stringWithUTF8String:ivar_getName(*p)];
         NSString*value = [dic objectForKey:key];
-        if ([value length] == 0)
+        if (value)
         {
-            value = @"";
+             object_setIvar(self,*p,value);
         }
-        object_setIvar(self,*p,value);
+       
     }
     
     return TRUE;

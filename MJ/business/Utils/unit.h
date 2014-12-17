@@ -23,6 +23,7 @@
 
 
 -(long)numberOfSubUnits;
+-(unit*)findSubUnitByIndex:(NSInteger*)index;
 
-+(unit*)findUnitInUnit:(unit*)rootUnt ByIndex:(NSInteger)index;
+-(void)setSubUnits:(NSArray*)units;
 @end

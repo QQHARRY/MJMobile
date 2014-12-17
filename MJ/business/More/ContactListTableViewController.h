@@ -13,5 +13,6 @@
 
 @property(nonatomic,strong)unit*contactListTreeHead;
 
+- (IBAction)expandBtnClicked:(id)sender;
 
 @end

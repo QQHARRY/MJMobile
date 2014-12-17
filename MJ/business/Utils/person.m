@@ -23,7 +23,7 @@ __strong static person* _sharedObject = nil;
 @synthesize acc_content;
 @synthesize photo;
 @synthesize password;
-
+@synthesize dept_no;
 
 -(id)init
 {

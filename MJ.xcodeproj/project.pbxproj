@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A40C2111A401DEB00944AB2 /* ContactsListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A40C20F1A401DEB00944AB2 /* ContactsListTableViewCell.m */; };
+		4A40C2121A401DEB00944AB2 /* ContactsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A40C2101A401DEB00944AB2 /* ContactsListTableViewCell.xib */; };
+		4A40C2141A4023B500944AB2 /* minus.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A40C2131A4023B500944AB2 /* minus.png */; };
 		4A5137481A3B18C1007B504B /* bizManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5137471A3B18C1007B504B /* bizManager.m */; };
 		4A51374B1A3B2AAA007B504B /* dic2Object.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A51374A1A3B2AAA007B504B /* dic2Object.m */; };
 		4A5500C91A3BF32F00E5307D /* AnncDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5500C71A3BF32F00E5307D /* AnncDetailsViewController.m */; };
@@ -32,7 +35,7 @@
 		4A8D02131A37F78400EA59EA /* JSBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D02121A37F78400EA59EA /* JSBadgeView.m */; };
 		4A8F93EB1A3DD36C00A769C1 /* unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F93EA1A3DD36C00A769C1 /* unit.m */; };
 		4A8F93EE1A3DDFA800A769C1 /* ContactListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F93ED1A3DDFA800A769C1 /* ContactListTableViewController.m */; };
-		4A8F93F11A3DE07E00A769C1 /* CantactListUnitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F93F01A3DE07E00A769C1 /* CantactListUnitTableViewCell.m */; };
+		4A8F93F11A3DE07E00A769C1 /* ContactListUnitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F93F01A3DE07E00A769C1 /* ContactListUnitTableViewCell.m */; };
 		4A8F93F41A3DE56100A769C1 /* contactDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F93F31A3DE56100A769C1 /* contactDataManager.m */; };
 		4A8F93F71A3EB47300A769C1 /* department.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F93F61A3EB47300A769C1 /* department.m */; };
 		4A9AEEEB1A3B43D300FDA403 /* petiotionBrief.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9AEEEA1A3B43D300FDA403 /* petiotionBrief.m */; };
@@ -97,6 +100,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A40C20E1A401DEB00944AB2 /* ContactsListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsListTableViewCell.h; sourceTree = "<group>"; };
+		4A40C20F1A401DEB00944AB2 /* ContactsListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsListTableViewCell.m; sourceTree = "<group>"; };
+		4A40C2101A401DEB00944AB2 /* ContactsListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsListTableViewCell.xib; sourceTree = "<group>"; };
+		4A40C2131A4023B500944AB2 /* minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minus.png; sourceTree = "<group>"; };
 		4A5137461A3B18C1007B504B /* bizManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bizManager.h; sourceTree = "<group>"; };
 		4A5137471A3B18C1007B504B /* bizManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bizManager.m; sourceTree = "<group>"; };
 		4A5137491A3B2AAA007B504B /* dic2Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dic2Object.h; sourceTree = "<group>"; };
@@ -141,8 +148,8 @@
 		4A8F93EA1A3DD36C00A769C1 /* unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = unit.m; sourceTree = "<group>"; };
 		4A8F93EC1A3DDFA800A769C1 /* ContactListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListTableViewController.h; sourceTree = "<group>"; };
 		4A8F93ED1A3DDFA800A769C1 /* ContactListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactListTableViewController.m; sourceTree = "<group>"; };
-		4A8F93EF1A3DE07E00A769C1 /* CantactListUnitTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CantactListUnitTableViewCell.h; sourceTree = "<group>"; };
-		4A8F93F01A3DE07E00A769C1 /* CantactListUnitTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CantactListUnitTableViewCell.m; sourceTree = "<group>"; };
+		4A8F93EF1A3DE07E00A769C1 /* ContactListUnitTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListUnitTableViewCell.h; sourceTree = "<group>"; };
+		4A8F93F01A3DE07E00A769C1 /* ContactListUnitTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactListUnitTableViewCell.m; sourceTree = "<group>"; };
 		4A8F93F21A3DE56100A769C1 /* contactDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contactDataManager.h; sourceTree = "<group>"; };
 		4A8F93F31A3DE56100A769C1 /* contactDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactDataManager.m; sourceTree = "<group>"; };
 		4A8F93F51A3EB47300A769C1 /* department.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = department.h; sourceTree = "<group>"; };
@@ -331,6 +338,7 @@
 		4AB0EFAA1A305E0600C24A44 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				4A40C2131A4023B500944AB2 /* minus.png */,
 				4AA038971A3DD0D6003E9CA6 /* plus.png */,
 				4A9AEEEC1A3B4A1800FDA403 /* new.png */,
 				4A8D020B1A37DA9E00EA59EA /* rounded-rectangle.png */,
@@ -600,10 +608,13 @@
 			children = (
 				B9FF4B381A245FB300FE413E /* MoreViewController.h */,
 				B9FF4B391A245FB300FE413E /* MoreViewController.m */,
+				4A40C20E1A401DEB00944AB2 /* ContactsListTableViewCell.h */,
+				4A40C20F1A401DEB00944AB2 /* ContactsListTableViewCell.m */,
+				4A40C2101A401DEB00944AB2 /* ContactsListTableViewCell.xib */,
 				4A8F93EC1A3DDFA800A769C1 /* ContactListTableViewController.h */,
 				4A8F93ED1A3DDFA800A769C1 /* ContactListTableViewController.m */,
-				4A8F93EF1A3DE07E00A769C1 /* CantactListUnitTableViewCell.h */,
-				4A8F93F01A3DE07E00A769C1 /* CantactListUnitTableViewCell.m */,
+				4A8F93EF1A3DE07E00A769C1 /* ContactListUnitTableViewCell.h */,
+				4A8F93F01A3DE07E00A769C1 /* ContactListUnitTableViewCell.m */,
 				4A8F93F21A3DE56100A769C1 /* contactDataManager.h */,
 				4A8F93F31A3DE56100A769C1 /* contactDataManager.m */,
 			);
@@ -709,12 +720,14 @@
 				4AA038981A3DD0D6003E9CA6 /* plus.png in Resources */,
 				4AD794681A208F4400DEC779 /* Main.storyboard in Resources */,
 				4A8D01DF1A369DCE00EA59EA /* PublicAnncTableViewCell.xib in Resources */,
+				4A40C2141A4023B500944AB2 /* minus.png in Resources */,
 				4A8D01DA1A33381200EA59EA /* MainPageTableViewHeaderCell.xib in Resources */,
 				4ABC22311A3C88000017FD94 /* AlertDetailsTableViewCell.xib in Resources */,
 				4AD7946D1A208F4500DEC779 /* LaunchScreen.xib in Resources */,
 				4A8D020C1A37DA9E00EA59EA /* rounded-rectangle.png in Resources */,
 				4A8D02031A3736CC00EA59EA /* unreadMessage.png in Resources */,
 				4AD7946A1A208F4400DEC779 /* Images.xcassets in Resources */,
+				4A40C2121A401DEB00944AB2 /* ContactsListTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -735,6 +748,7 @@
 				4A8F93EE1A3DDFA800A769C1 /* ContactListTableViewController.m in Sources */,
 				4AD795281A218C4A00DEC779 /* EGORefreshTableHeaderView.m in Sources */,
 				4AD795521A218C4A00DEC779 /* UIRefreshControl+AFNetworking.m in Sources */,
+				4A40C2111A401DEB00944AB2 /* ContactsListTableViewCell.m in Sources */,
 				4A8D01E71A36C9C100EA59EA /* person.m in Sources */,
 				4A8D01F61A36F9BC00EA59EA /* alertManager.m in Sources */,
 				4ABC22301A3C88000017FD94 /* AlertDetailsTableViewCell.m in Sources */,
@@ -757,7 +771,7 @@
 				4AD7952A1A218C4A00DEC779 /* UIImage+FX.m in Sources */,
 				4AD795201A218C4A00DEC779 /* AFHTTPRequestOperationManager.m in Sources */,
 				4A8D01F31A36F9AB00EA59EA /* annoucementManager.m in Sources */,
-				4A8F93F11A3DE07E00A769C1 /* CantactListUnitTableViewCell.m in Sources */,
+				4A8F93F11A3DE07E00A769C1 /* ContactListUnitTableViewCell.m in Sources */,
 				4A8D01FF1A3734A000EA59EA /* badgeImageFactory.m in Sources */,
 				4AD795531A218C4A00DEC779 /* UIWebView+AFNetworking.m in Sources */,
 				4AD795211A218C4A00DEC779 /* AFHTTPSessionManager.m in Sources */,

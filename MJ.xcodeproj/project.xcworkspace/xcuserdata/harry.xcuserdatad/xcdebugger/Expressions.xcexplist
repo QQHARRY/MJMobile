@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[ContactListTableViewController expandBtnClicked:]:ContactListTableViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "+[contactDataManager getDeptArr:superUnit:]:contactDataManager.m">
+      </ContextState>
+      <ContextState
+         contextName = "+[contactDataManager getSubDeptOfUnit:Success:failure:]:contactDataManager.m">
+      </ContextState>
+      <ContextState
+         contextName = "+[contactDataManager WaitForDataB4ExpandUnit:Success:failure:]:contactDataManager.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "pred">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "+[contactDataManager getDeptArr:]:contactDataManager.m">
+      </ContextState>
+      <ContextState
+         contextName = "__55+[contactDataManager getSubDeptOfUnit:Success:failure:]_block_invoke:contactDataManager.m">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
