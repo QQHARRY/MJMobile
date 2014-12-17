@@ -36,7 +36,7 @@ static unit*rootUnit = nil;
         rootUnit = [[self alloc] init];
         ((department*)rootUnit).dept_current_no = @"0";
         rootUnit.level = 0;
-        ((department*)rootUnit).dept_name=@"ROOT";
+        ((department*)rootUnit).dept_name=@"";
     });
     return rootUnit;
     

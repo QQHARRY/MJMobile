@@ -10,7 +10,7 @@
 
 @implementation petiotionBrief
 
-
+@synthesize id;
 @synthesize taskid;
 @synthesize reason;
 @synthesize username;
@@ -19,4 +19,7 @@
 @synthesize applytime;
 @synthesize Version;
 @synthesize task_state;
+
+
+
 @end

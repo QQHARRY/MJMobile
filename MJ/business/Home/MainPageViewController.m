@@ -29,6 +29,8 @@
 #import "AnncListViewController.h"
 
 
+#import "petionDetailsTableViewController.h"
+
 
 @interface MainPageViewController ()
 
@@ -173,7 +175,10 @@
     }
     else if(indexPath.section == 1)
     {
-        
+        if (self.mainPetitionArr && [self.mainPetitionArr count] > indexPath.row)
+        {
+            [self performSegueWithIdentifier:@"toPetionDetails" sender:self];
+        }
     }
 }
 
@@ -288,9 +293,8 @@
             petiotionBrief*ptionBr = [self.mainPetitionArr objectAtIndex:indexPath.row];
             if (ptionBr)
             {
-                cell.type.text = ptionBr.flowtype;
-                cell.reason.text = ptionBr.flowtype;
-                cell.person.text = ptionBr.username;
+               [cell initWithType:ptionBr.flowtype reason:ptionBr.reason person:ptionBr.username];
+
             }
 
         }
@@ -410,15 +414,29 @@
             ContactListTableViewController*contactLst = (ContactListTableViewController*)controller;
             contactLst.selectMode = YES;
             contactLst.selectResultDelegate = self;
-            
-            
-            
+
         }
         else
         {
             
         }
     }
+    else if([segue.identifier isEqual:@"toPetionDetails"])
+    {
+        if ([controller isKindOfClass:[petionDetailsTableViewController class]])
+        {
+            petionDetailsTableViewController*contactLst = (petionDetailsTableViewController*)controller;
+            NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
+            contactLst.petitionID = ((petiotionBrief*)[self.mainPetitionArr objectAtIndex:selectIndexPath.row]).id;
+            contactLst.petitionTaskID = ((petiotionBrief*)[self.mainPetitionArr objectAtIndex:selectIndexPath.row]).taskid;
+        }
+        else
+        {
+            
+        }
+    }
+    
+    
 }
 
 

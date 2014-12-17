@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "dic2Object.h"
 
-@interface petiotionBrief : NSObject
+@interface petiotionBrief : dic2Object
 
+@property(strong,nonatomic)NSString*id;
 @property(strong,nonatomic)NSString* taskid;
 @property(strong,nonatomic)NSString* reason;
 @property(strong,nonatomic)NSString* username;

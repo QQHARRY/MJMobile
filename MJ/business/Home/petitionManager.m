@@ -10,6 +10,7 @@
 #import "person.h"
 #import "Macro.h"
 #import "NetWorkManager.h"
+#import "petiotionBrief.h"
 
 @implementation petitionManager
 
@@ -44,10 +45,53 @@
      }];
 }
 
++(void)getDetailsWithTaskID:(NSString*)taskID PetitionID:(NSString*)PetID Success:(void (^)(id responseObject))success
+          failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *parameters = @{@"job_no":[person me].job_no,
+                                 @"acc_password":[person me].password,
+                                 @"id":PetID,
+                                 @"taskid":taskID
+                                 };
+    
+    
+    [NetWorkManager PostWithApiName:API_PETITION_DETAIL parameters:parameters success:
+     ^(id responseObject)
+     {
+         
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([self checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         {
+             NSArray*arr = [resultDic objectForKey:@"PetitionDetails"];
+             NSDictionary*dic  =[arr objectAtIndex:0];
+             success(dic);
+             return;
+         }
+         
+         
+     }
+                            failure:^(NSError *error)
+     {
+         failure(error);
+         return;
+     }];
+
+}
+
 +(NSArray*)getArr:(NSDictionary*)dic
 {
+    NSArray*annArr = [dic objectForKey:@"PetitionNode"];
+    NSMutableArray* arr = [[NSMutableArray alloc] init];
     
-    return nil;
+    for (NSDictionary*dic in annArr)
+    {
+        petiotionBrief* pet = [[petiotionBrief alloc] init];
+        [pet initWithDictionary:dic];
+        [arr  addObject:pet];
+        
+    }
+    
+    return arr;
 }
 
 @end

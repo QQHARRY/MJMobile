@@ -14,7 +14,7 @@
 // 6.获取签呈列表
 #define API_PETITION_LIST @"home/getPetitionList"
 // 7.获取签呈详情
-#define API_PETITION_DETAIL @"getpetitiondetails"
+#define API_PETITION_DETAIL @"home/getPetitionDetails"
 // 10.签呈审批
 #define API_PETITION_APPROVE @"petitionapproving"
 // 11.获取未读跟进提醒数量
