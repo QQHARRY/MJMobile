@@ -47,6 +47,7 @@
              if (retirevedCount >= retrieveCount)
              {
                  success(nil);
+                 return;
              }
          }
                        failure:^(NSError *error)
@@ -55,28 +56,44 @@
              if (retirevedCount >= retrieveCount)
              {
                  success(nil);
+                 return;
              }
          }];
         
     });
     
-
-    [self getSubPersonsOfUnit:unt Success:^(id responseObject)
-     {
-         retirevedCount++;
-         if (retirevedCount >= retrieveCount)
+    
+    if (unt.isDept &&[unt.subDept count] > 0)
+    {
+        retirevedCount++;
+        if (retirevedCount >= retrieveCount)
+        {
+            success(nil);
+            return;
+        }
+    }
+    else
+    {
+        
+        [self getSubPersonsOfUnit:unt Success:^(id responseObject)
          {
-             success(nil);
+             retirevedCount++;
+             if (retirevedCount >= retrieveCount)
+             {
+                 success(nil);
+                 return;
+             }
          }
-     }
-                      failure:^(NSError *error)
-     {
-         retirevedCount++;
-         if (retirevedCount >= retrieveCount)
+                          failure:^(NSError *error)
          {
-             success(nil);
-         }
-     }];
+             retirevedCount++;
+             if (retirevedCount >= retrieveCount)
+             {
+                 success(nil);
+                 return;
+             }
+         }];
+    }
     
 }
 

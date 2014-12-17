@@ -65,10 +65,13 @@
     if (!unt.isDept)
     {
         expandBtn.hidden = YES;
+        //[self.contentView setBackgroundColor:[UIColor darkGrayColor]];
+
     }
     else
     {
         expandBtn.hidden = NO;
+        //[self.contentView setBackgroundColor:[UIColor whiteColor]];
     }
     
     if (unt.closed)
@@ -79,6 +82,7 @@
     {
         [self.expandBtn setBackgroundImage:[UIImage imageNamed:@"ButtonMinus"] forState:UIControlStateNormal];
     }
+
     
 }
 
