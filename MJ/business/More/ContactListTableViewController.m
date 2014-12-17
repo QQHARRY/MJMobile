@@ -14,9 +14,17 @@
 #import "contactDataManager.h"
 #import "UtilFun.h"
 #import "ContactsListTableViewCell.h"
+#import "ContactListUnitTableViewCell.h"
+
+#import "BFNavigationBarDrawer.h"
+
+
+static NSMutableDictionary*selctions = nil;
 
 @interface ContactListTableViewController ()
-
+{
+     BFNavigationBarDrawer *drawer;
+}
 @end
 
 @implementation ContactListTableViewController
@@ -24,8 +32,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+
+    if (selctions == nil)
+    {
+        selctions = [[NSMutableDictionary alloc ] init];
+    }
+    else
+    {
+        [selctions  removeAllObjects];
+    }
     self.contactListTreeHead = [department rootUnit];
+    
+    [self initNavigationBar];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -39,6 +57,85 @@
 }
 
 
+
+-(void)initNavigationBar
+{
+    if (self.selectMode)
+    {
+        UIBarButtonItem*selectBtn = [[UIBarButtonItem alloc] initWithTitle:@"选择" style:UIBarButtonItemStylePlain target:self action:@selector(selectBtnClicked:)];
+        self.navigationItem.rightBarButtonItem = selectBtn;
+        
+        
+        drawer = [[BFNavigationBarDrawer alloc] init];
+        
+        drawer.scrollView = self.tableView;
+        
+        
+        UIBarButtonItem *btnSelectAll = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(CancelBtnClick:)];
+        
+        UIBarButtonItem *itemButtonEmpty = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        
+        UIBarButtonItem *btnSetReaded = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(objSelected:)];
+        drawer.items = @[btnSetReaded,itemButtonEmpty,btnSelectAll];
+    }
+
+}
+
+
+-(void)showDrawer
+{
+    return;
+    self.navigationItem.rightBarButtonItem.title = @"取消";
+
+    [drawer showFromNavigationBar:self.navigationController.navigationBar animated:YES];
+}
+
+-(void)hideDrawer
+{
+    return;
+    self.navigationItem.rightBarButtonItem.title = @"选择";
+    self.tableView.editing = NO;
+    [drawer hideAnimated:YES];
+}
+
+-(void)selectBtnClicked:(id)sender
+{
+    if (self.selectResultDelegate)
+    {
+        [self.selectResultDelegate returnSelection:[selctions allValues]];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+    return;
+    
+    
+    NSString*title = ((UIBarButtonItem*)sender).title;
+    if ([title isEqualToString:@"选择"])
+    {
+        ((UIBarButtonItem*)sender).title = @"取消";
+        [self showDrawer];
+    }
+    else
+    {
+        ((UIBarButtonItem*)sender).title = @"选择";
+        [self hideDrawer];
+        
+    }
+}
+
+-(void)CancelBtnClick:(id)sender
+{
+    [self hideDrawer];
+}
+
+-(void)objSelected:(id)sender
+{
+    [self hideDrawer];
+    if (self.selectResultDelegate)
+    {
+        [self.selectResultDelegate returnSelection:[selctions allValues]];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 
 #pragma mark - Table view data source
@@ -58,20 +155,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger num = [self.contactListTreeHead numberOfSubUnits]+1;
-   
+    
+#if 1
     NSInteger row = [indexPath row];
     
-    if(num == 12 && row == 9)
-    {
-        NSLog(@"sdfdsfs");
-    }
     
     NSString *CellIdentifier = @"ContactsListTableViewCell";
     
-    //ContactsListTableViewCell *cell=(ContactsListTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    ContactsListTableViewCell *cell= nil;
-    //if(cell==nil)
+//    ContactsListTableViewCell *cell=(ContactsListTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+    ContactsListTableViewCell *cell = nil;
+    if(cell==nil)
     {
         NSArray *nibs=[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
         for(id oneObject in nibs)
@@ -83,49 +177,61 @@
         }
     }
     
+    unit* unt = [_contactListTreeHead findSubUnitByIndex:&row];
+    NSString*key = [NSString stringWithFormat:@"%@",unt];
 
+    
+    
+    BOOL selected = ([selctions objectForKey:key]!=nil);
+    
+    [cell  setUnit:unt withTag:row delegate:self action:@selector(expandBtnClicked:) Selected:selected];
+    
+    return cell;
+    
+#else
+    NSInteger row = [indexPath row];
+    
+    
+    NSString *CellIdentifier = @"ContactListUnitTableViewCell";
+    
+    ContactListUnitTableViewCell *cell=(ContactListUnitTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    
+    
+    
     
     unit* unt = [_contactListTreeHead findSubUnitByIndex:&row];
     [cell  setUnit:unt withTag:row delegate:self action:@selector(expandBtnClicked:)];
     
     return cell;
+    
+#endif
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.selectMode)
+    {
+        ContactsListTableViewCell*cell = (ContactsListTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+        unit*unt = cell.unitKeeped;
+        NSString*key =[NSString stringWithFormat:@"%@",unt];
+        
+        
+        if ([selctions objectForKey:key] == unt)
+        {
+            [selctions removeObjectForKey:key];
+            [cell setBeSelected:NO];
+        }
+        else
+        {
+            [selctions setObject:unt forKey:key];
+            [cell setBeSelected:YES];
+        }
+    }
+    
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 /*
 #pragma mark - Navigation
 
@@ -168,4 +274,6 @@
     
     
 }
+
+
 @end

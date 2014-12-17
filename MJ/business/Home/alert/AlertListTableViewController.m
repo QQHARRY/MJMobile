@@ -24,7 +24,7 @@
 @implementation AlertListTableViewController
 {
     BFNavigationBarDrawer *drawer;
-    long processedCnt;
+
 }
 @synthesize objArr;
 @synthesize setToReadedOrUnReaded;
@@ -126,7 +126,7 @@
 {
     NSArray*selectedArr = [self markSelection];
     long count = [selectedArr count];
-    processedCnt = 0;
+    __block long processedCnt = 0;
     if (selectedArr == nil || count <=0 )
     {
         return;

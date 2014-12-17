@@ -13,10 +13,12 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *expandBtn;
 @property (strong, nonatomic) IBOutlet UILabel *unitName;
+@property (assign, nonatomic) id delegate;
 @property (assign, nonatomic) long tag;
 @property (assign, nonatomic) SEL action;
 @property (assign, nonatomic) NSInteger level;
 
+- (IBAction)expandBtnClicked:(id)sender;
 
--(void)setUnit:(unit*)unt withTag:(long)tag action:(SEL)action;
+-(void)setUnit:(unit*)unt withTag:(long)tag delegate:(id)dele action:(SEL)action;
 @end

@@ -15,9 +15,12 @@
 @implementation ContactsListTableViewCell
 @synthesize unitName;
 @synthesize expandBtn;
+@synthesize selectBtn;
 
 - (void)awakeFromNib {
     // Initialization code
+    self.shouldIndentWhileEditing = YES;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -33,8 +36,9 @@
     }
 }
 
--(void)setUnit:(unit*)unt withTag:(long)tag delegate:(id)dele action:(SEL)action
+-(void)setUnit:(unit*)unt withTag:(long)tag delegate:(id)dele action:(SEL)action  Selected:(BOOL)selected
 {
+    self.unitKeeped = unt;
     _level = unt.level;
     self.delegate = dele;
     self.action = action;
@@ -44,9 +48,13 @@
     unitName = [[UILabel alloc] initWithFrame:CGRectMake(25+kLevelOffset*_level,4.5, 200, 21)];
     [expandBtn addTarget:self action:@selector(expandBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     
+    selectBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width-25, 4.5, 20, 20)];
+    
+    
     
     [self addSubview:expandBtn];
     [self addSubview:unitName];
+    [self addSubview:selectBtn];
     
    
     
@@ -84,6 +92,27 @@
     }
 
     
+    if (selected)
+    {
+        [selectBtn setBackgroundImage:[UIImage imageNamed:@"ButtonCheck"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [selectBtn setBackgroundImage:nil forState:UIControlStateNormal];
+    }
+    
+}
+
+-(void)setBeSelected:(BOOL)selected
+{
+    if (selected)
+    {
+        [selectBtn setBackgroundImage:[UIImage imageNamed:@"ButtonCheck"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [selectBtn setBackgroundImage:nil forState:UIControlStateNormal];
+    }
 }
 
 @end

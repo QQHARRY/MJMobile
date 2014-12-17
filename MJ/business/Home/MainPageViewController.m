@@ -28,6 +28,8 @@
 #import "AnncDetailsViewController.h"
 #import "AnncListViewController.h"
 
+
+
 @interface MainPageViewController ()
 
 @end
@@ -401,9 +403,29 @@
             
         }
     }
+    else if([segue.identifier isEqual:@"showContact"])
+    {
+        if ([controller isKindOfClass:[ContactListTableViewController class]])
+        {
+            ContactListTableViewController*contactLst = (ContactListTableViewController*)controller;
+            contactLst.selectMode = YES;
+            contactLst.selectResultDelegate = self;
+            
+            
+            
+        }
+        else
+        {
+            
+        }
+    }
 }
 
 
 #pragma mark -
+-(void)returnSelection:(NSArray *)curSelection
+{
+    
+}
 
 @end

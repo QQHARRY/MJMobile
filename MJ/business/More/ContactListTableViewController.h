@@ -9,10 +9,23 @@
 #import <UIKit/UIKit.h>
 #import "unit.h"
 
+
+
+@protocol contacSelection <NSObject>
+
+@required
+
+-(void)returnSelection:(NSArray*)curSelection;
+
+@end
+
 @interface ContactListTableViewController : UITableViewController
 
 @property(nonatomic,strong)unit*contactListTreeHead;
-
+@property(nonatomic,assign)BOOL selectMode;
+@property(nonatomic,assign)id<contacSelection>selectResultDelegate;
 - (IBAction)expandBtnClicked:(id)sender;
+
+
 
 @end
