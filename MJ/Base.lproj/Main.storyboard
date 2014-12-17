@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dhG-tr-cMx">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -58,7 +57,7 @@
                                     <action selector="onBindAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D9T-yZ-Myf"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="MtZ-4f-JHO">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="MtZ-4f-JHO">
                                 <rect key="frame" x="240" y="67" width="120" height="120"/>
                                 <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="150" y="45" width="100" height="100"/>
@@ -499,7 +498,7 @@
         <scene sceneID="2pz-ac-NeH">
             <objects>
                 <navigationController title="主页" id="UNI-uZ-Ru0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="主页" id="znZ-ol-Nr9"/>
+                    <tabBarItem key="tabBarItem" title="主页" image="TabItemHome" id="znZ-ol-Nr9"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="y9e-ve-lHu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -527,6 +526,9 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rkK-7q-kv2">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                </variation>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -676,7 +678,7 @@
         <scene sceneID="h4L-Fq-7tV">
             <objects>
                 <navigationController title="房源" id="dBp-GJ-70H" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="房源" id="CYb-jF-6BT"/>
+                    <tabBarItem key="tabBarItem" title="房源" image="TabItemHouse" id="CYb-jF-6BT"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xvW-GF-JqY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -693,7 +695,7 @@
         <scene sceneID="NyG-cz-hnK">
             <objects>
                 <navigationController title="客源" id="rx4-UC-bWe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="客源" id="oBE-2z-Mzr"/>
+                    <tabBarItem key="tabBarItem" title="客源" image="TabItemCustom" id="oBE-2z-Mzr"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TQu-b4-wtl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -710,7 +712,7 @@
         <scene sceneID="Ufz-Md-Zgj">
             <objects>
                 <navigationController title="更多" id="ZBp-0i-wcP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="更多" id="C6e-uD-ohE"/>
+                    <tabBarItem key="tabBarItem" title="更多" image="TabItemMore" id="C6e-uD-ohE"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oqW-TE-91s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -806,6 +808,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Logo" width="512" height="512"/>
+        <image name="TabItemCustom" width="30" height="30"/>
+        <image name="TabItemHome" width="30" height="30"/>
+        <image name="TabItemHouse" width="30" height="30"/>
+        <image name="TabItemMore" width="30" height="30"/>
         <image name="logo.png" width="1024" height="1024"/>
     </resources>
     <inferredMetricsTieBreakers>

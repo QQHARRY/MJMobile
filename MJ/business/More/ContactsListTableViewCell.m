@@ -73,11 +73,11 @@
     
     if (unt.closed)
     {
-        [self.expandBtn setBackgroundImage:[UIImage imageNamed:@"plus.png"] forState:UIControlStateNormal];
+        [self.expandBtn setBackgroundImage:[UIImage imageNamed:@"ButtonPlus"] forState:UIControlStateNormal];
     }
     else
     {
-        [self.expandBtn setBackgroundImage:[UIImage imageNamed:@"minus.png"] forState:UIControlStateNormal];
+        [self.expandBtn setBackgroundImage:[UIImage imageNamed:@"ButtonMinus"] forState:UIControlStateNormal];
     }
     
 }
