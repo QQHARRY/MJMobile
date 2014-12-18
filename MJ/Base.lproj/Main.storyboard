@@ -545,6 +545,7 @@
                         <segue destination="8tN-i5-XJY" kind="show" identifier="toAlertList" id="Fiv-E2-lDU"/>
                         <segue destination="b1q-tV-OFX" kind="show" identifier="toPetionDetails" id="C9H-or-Nhi"/>
                         <segue destination="hdN-8N-VAd" kind="show" identifier="toPetitionList" id="JLN-gU-MRP"/>
+                        <segue destination="dzT-bL-qDc" kind="show" identifier="showContact" id="2MK-9K-ddg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hwJ-E9-zCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -619,13 +620,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VeW-Ls-Jhf">
-                                            <rect key="frame" x="8" y="11" width="111" height="21"/>
+                                            <rect key="frame" x="8" y="11" width="88" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBS-Ow-PIi">
-                                            <rect key="frame" x="127" y="11" width="386" height="21"/>
+                                            <rect key="frame" x="102" y="11" width="411" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -633,8 +634,8 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="itemName" destination="VeW-Ls-Jhf" id="DW6-cf-HCJ"/>
-                                    <outlet property="itemValue" destination="wBS-Ow-PIi" id="lGd-gb-Kaq"/>
+                                    <outlet property="itemName" destination="VeW-Ls-Jhf" id="K5j-da-Ejn"/>
+                                    <outlet property="itemValue" destination="wBS-Ow-PIi" id="5P0-Bl-4Nx"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

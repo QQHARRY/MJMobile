@@ -87,9 +87,10 @@
         cell.itemName.text = key;
         cell.itemValue.text = value;
         
-        if ([key isEqualToString:@"当前节点"])
+        if ([key isEqualToString:@"状态图"])
         {
-            cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.editingAccessoryType = UITableViewCellAccessoryDetailButton;
+            cell.itemValue.text = @"";
         }
         else
         {

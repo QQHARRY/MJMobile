@@ -10,6 +10,8 @@
 
 static NSMutableDictionary*patternDic = nil;
 
+static NSArray*publicFiledsArray = nil;
+
 @implementation petitionDictionary
 
 
@@ -387,15 +389,69 @@ static NSMutableDictionary*patternDic = nil;
     
     return patternDic;
 }
+
++(NSArray*)getPublicDic
+{
+    static dispatch_once_t pred = 0;
+    
+    dispatch_once(&pred, ^{
+        
+        publicFiledsArray = @[
+                      @{@"Version":@"版本"},
+                      @{@"StatusDesc": @"状态描述"},
+                      @{@"FlowChart": @"状态图"},
+                      @{@"nowNode": @"当前节点"},
+                      @{@"tkey": @"节点"},
+                      @{@"task_status": @"办理状态"}
+                      ];
+    });
+    
+    return publicFiledsArray;
+}
+
+
+
+
 +(NSArray*)petitionDicByDic:(NSDictionary*)dic
 {
-    NSMutableArray*retDic = [[NSMutableArray alloc] init];
+    NSMutableArray*retArr = [[NSMutableArray alloc] init];
+    NSMutableArray*retArr1 =[[NSMutableArray alloc] init];
     
     NSString*dicFollowType = [dic objectForKey:@"flowtype"];
     if (dicFollowType == nil || [dicFollowType length] == 0)
     {
         return nil;
     }
+    
+    
+    
+    
+    
+    
+    NSArray*pubFieldsArr = [self getPublicDic];
+    
+    for (NSDictionary*filedApairDic in pubFieldsArr)
+    {
+        NSString*keyString = [[filedApairDic allKeys] objectAtIndex:0];
+        keyString = [keyString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        NSString*valueString = [[filedApairDic allValues] objectAtIndex:0];
+        valueString = [valueString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        NSString*findValueInDic = [dic valueForKey:keyString];
+        if (findValueInDic)
+        {
+            NSDictionary*finalKeyPair =@{valueString:findValueInDic};
+            [retArr1 addObject:finalKeyPair];
+        }
+        else
+        {
+            NSDictionary*finalKeyPair =@{valueString:@"服务器未返回该字段"};
+            [retArr1 addObject:finalKeyPair];
+        }
+        
+        
+    }
+    
     
     NSDictionary*patternDic = [self getPatternDic];
     NSEnumerator*enumerator = [patternDic objectEnumerator];
@@ -419,18 +475,22 @@ static NSMutableDictionary*patternDic = nil;
                     if (findValueInDic)
                     {
                         NSDictionary*finalKeyPair =@{valueString:findValueInDic};
-                        [retDic addObject:finalKeyPair];
+                        [retArr addObject:finalKeyPair];
                     }
                     else
                     {
                         NSDictionary*finalKeyPair =@{valueString:@"服务器未返回该字段"};
-                        [retDic addObject:finalKeyPair];
+                        [retArr addObject:finalKeyPair];
                     }
+                    
+                   
                     
                     
                 }
                 
-                return retDic;
+                [retArr addObjectsFromArray:retArr1];
+                
+                return retArr;
                 
                 
             }
