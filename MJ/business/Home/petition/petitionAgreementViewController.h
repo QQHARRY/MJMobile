@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "petitionDetail.h"
 
-@interface petitionAgreementViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface petitionAgreementViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UITableView *historyNodeTableView;
 @property (strong, nonatomic) IBOutlet UIButton *agreeBtn;
 @property (strong, nonatomic) IBOutlet UIButton *disAgreeBtn;

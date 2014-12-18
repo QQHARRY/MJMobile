@@ -11,6 +11,7 @@
 		4A2EE11D1A42774600899976 /* petitionFollowChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2EE11C1A42774600899976 /* petitionFollowChartViewController.m */; };
 		4A2EE1201A42872600899976 /* petitionDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2EE11F1A42872600899976 /* petitionDetail.m */; };
 		4A2EE1231A428F1000899976 /* petitionAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2EE1221A428F1000899976 /* petitionAgreementViewController.m */; };
+		4A3A2EF51A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A2EF41A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.m */; };
 		4A40C2111A401DEB00944AB2 /* ContactsListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A40C20F1A401DEB00944AB2 /* ContactsListTableViewCell.m */; };
 		4A40C2121A401DEB00944AB2 /* ContactsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A40C2101A401DEB00944AB2 /* ContactsListTableViewCell.xib */; };
 		4A40C2181A41745E00944AB2 /* petionDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A40C2171A41745E00944AB2 /* petionDetailsTableViewController.m */; };
@@ -108,6 +109,8 @@
 		4A2EE11F1A42872600899976 /* petitionDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petitionDetail.m; sourceTree = "<group>"; };
 		4A2EE1211A428F1000899976 /* petitionAgreementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = petitionAgreementViewController.h; sourceTree = "<group>"; };
 		4A2EE1221A428F1000899976 /* petitionAgreementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petitionAgreementViewController.m; sourceTree = "<group>"; };
+		4A3A2EF31A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = petitionHistoryNodeTableViewCell.h; sourceTree = "<group>"; };
+		4A3A2EF41A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petitionHistoryNodeTableViewCell.m; sourceTree = "<group>"; };
 		4A40C20E1A401DEB00944AB2 /* ContactsListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsListTableViewCell.h; sourceTree = "<group>"; };
 		4A40C20F1A401DEB00944AB2 /* ContactsListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsListTableViewCell.m; sourceTree = "<group>"; };
 		4A40C2101A401DEB00944AB2 /* ContactsListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsListTableViewCell.xib; sourceTree = "<group>"; };
@@ -293,6 +296,8 @@
 				4A2EE11F1A42872600899976 /* petitionDetail.m */,
 				4A2EE1211A428F1000899976 /* petitionAgreementViewController.h */,
 				4A2EE1221A428F1000899976 /* petitionAgreementViewController.m */,
+				4A3A2EF31A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.h */,
+				4A3A2EF41A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.m */,
 			);
 			path = petition;
 			sourceTree = "<group>";
@@ -794,6 +799,7 @@
 				4AD794621A208F4400DEC779 /* AppDelegate.m in Sources */,
 				4A8D01ED1A36F60800EA59EA /* announcement.m in Sources */,
 				4A40C21B1A41748100944AB2 /* petionListTableViewController.m in Sources */,
+				4A3A2EF51A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.m in Sources */,
 				4AD7945F1A208F4400DEC779 /* main.m in Sources */,
 				4AD795501A218C4A00DEC779 /* UIImageView+AFNetworking.m in Sources */,
 				4A8D01E31A369F2E00EA59EA /* PetitionTableViewCell.m in Sources */,

@@ -13,6 +13,9 @@
 
 @property(strong,nonatomic)NSArray*details;
 @property(strong,nonatomic)NSArray*historyNodes;
+@property(strong,nonatomic)NSDictionary*allDetails;
 
 @property(strong,nonatomic)NSString*chartUrl;
+-(BOOL)hasAssistDept;
+-(BOOL)isAffordDeptNow;
 @end

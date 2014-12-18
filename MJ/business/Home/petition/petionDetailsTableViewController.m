@@ -52,7 +52,9 @@
          
          NSArray*hisArr = [dic objectForKey:@"PetitionHistories"];
          
+         self.petDetail.allDetails = dicDetails;
          self.petDetail.details = [petitionDictionary petitionArrByDic:dicDetails];
+         
          self.petDetail.historyNodes = hisArr;
          HIDEHUD(self.view);
          [self.tableView reloadData];

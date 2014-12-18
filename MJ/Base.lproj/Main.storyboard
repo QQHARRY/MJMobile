@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dhG-tr-cMx">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -621,34 +622,74 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="审批意见" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEw-Us-Zp3">
-                                <rect key="frame" x="16" y="348" width="568" height="21"/>
+                                <rect key="frame" x="16" y="370" width="568" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="kZI-i2-Fdg">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="8Ee-af-HUm">
+                                <rect key="frame" x="0.0" y="64" width="600" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="petitionHistoryNodeTableViewCell" id="5uS-ib-rUH" customClass="petitionHistoryNodeTableViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5uS-ib-rUH" id="RND-1S-WKZ">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ye5-Yw-aWG">
+                                                    <rect key="frame" x="8" y="11" width="584" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="textRecord" destination="Ye5-Yw-aWG" id="nrM-lO-6fL"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="oay-ck-dA4" id="Vbr-p0-s5h"/>
+                                    <outlet property="delegate" destination="oay-ck-dA4" id="WME-Ly-mjv"/>
+                                </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XX5-0x-6Hu">
+                                <rect key="frame" x="101" y="314" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="beh-Qv-SGf" firstAttribute="width" secondItem="wPa-Fa-zlD" secondAttribute="width" id="3aK-OF-tkh"/>
                             <constraint firstItem="wPa-Fa-zlD" firstAttribute="top" secondItem="nng-lu-J0c" secondAttribute="bottom" constant="5" id="4LF-jM-wOA"/>
+                            <constraint firstItem="8Ee-af-HUm" firstAttribute="top" secondItem="RmC-2X-YVy" secondAttribute="top" constant="64" id="6Of-Kc-lbt"/>
                             <constraint firstItem="nng-lu-J0c" firstAttribute="top" secondItem="fEw-Us-Zp3" secondAttribute="bottom" id="Czh-ye-6Ii"/>
-                            <constraint firstItem="kZI-i2-Fdg" firstAttribute="top" secondItem="RmC-2X-YVy" secondAttribute="top" constant="64" id="QxE-nR-FdM"/>
+                            <constraint firstItem="8Ee-af-HUm" firstAttribute="top" secondItem="RmC-2X-YVy" secondAttribute="top" id="NgB-BA-XIa"/>
                             <constraint firstAttribute="trailing" secondItem="beh-Qv-SGf" secondAttribute="trailing" constant="110" id="VKx-QG-LLl"/>
+                            <constraint firstAttribute="centerX" secondItem="8Ee-af-HUm" secondAttribute="centerX" id="Zfh-8x-Pwj"/>
+                            <constraint firstItem="fEw-Us-Zp3" firstAttribute="top" secondItem="8Ee-af-HUm" secondAttribute="bottom" constant="5" id="bGH-hF-Sqe"/>
                             <constraint firstAttribute="centerX" secondItem="fEw-Us-Zp3" secondAttribute="centerX" id="dkx-Bq-Sst"/>
                             <constraint firstAttribute="centerX" secondItem="nng-lu-J0c" secondAttribute="centerX" id="efo-0S-xKn"/>
-                            <constraint firstItem="fEw-Us-Zp3" firstAttribute="top" secondItem="kZI-i2-Fdg" secondAttribute="bottom" constant="5" id="k7g-MX-qJz"/>
                             <constraint firstAttribute="centerX" secondItem="wPa-Fa-zlD" secondAttribute="centerX" id="kKi-QT-g1M"/>
+                            <constraint firstItem="8Ee-af-HUm" firstAttribute="leading" secondItem="RmC-2X-YVy" secondAttribute="leading" id="mKD-UH-Fpe"/>
+                            <constraint firstAttribute="trailing" secondItem="8Ee-af-HUm" secondAttribute="trailing" id="mkP-Wv-TfL"/>
                             <constraint firstAttribute="centerX" secondItem="beh-Qv-SGf" secondAttribute="centerX" id="nXp-IH-LK2"/>
                             <constraint firstItem="wPa-Fa-zlD" firstAttribute="leading" secondItem="RmC-2X-YVy" secondAttribute="leading" constant="110" id="rC3-66-BCS"/>
                             <constraint firstItem="beh-Qv-SGf" firstAttribute="top" secondItem="wPa-Fa-zlD" secondAttribute="top" id="sBH-3t-tGD"/>
-                            <constraint firstAttribute="centerX" secondItem="kZI-i2-Fdg" secondAttribute="centerX" id="u5Z-KE-pgK"/>
+                            <constraint firstItem="fEw-Us-Zp3" firstAttribute="top" secondItem="8Ee-af-HUm" secondAttribute="bottom" constant="5" id="zBd-gT-Ap9"/>
+                            <constraint firstItem="fEw-Us-Zp3" firstAttribute="top" secondItem="8Ee-af-HUm" secondAttribute="bottom" constant="5" id="zjx-3j-VRb"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="NgB-BA-XIa"/>
+                                <exclude reference="mKD-UH-Fpe"/>
+                                <exclude reference="mkP-Wv-TfL"/>
+                                <exclude reference="bGH-hF-Sqe"/>
+                                <exclude reference="zBd-gT-Ap9"/>
                                 <exclude reference="kKi-QT-g1M"/>
                                 <exclude reference="nXp-IH-LK2"/>
                             </mask>
@@ -657,7 +698,7 @@
                     <connections>
                         <outlet property="agreeBtn" destination="wPa-Fa-zlD" id="Ybu-Ub-RNY"/>
                         <outlet property="disAgreeBtn" destination="beh-Qv-SGf" id="ZqS-MS-RBK"/>
-                        <outlet property="historyNodeTableView" destination="kZI-i2-Fdg" id="Abc-Et-PFu"/>
+                        <outlet property="historyNodeTableView" destination="8Ee-af-HUm" id="Eig-h6-7oy"/>
                         <outlet property="opinionForAgreement" destination="nng-lu-J0c" id="EAI-pJ-gTh"/>
                         <outlet property="opinionLabel" destination="fEw-Us-Zp3" id="SEg-rk-daE"/>
                     </connections>

@@ -7,6 +7,7 @@
 //
 
 #import "petitionAgreementViewController.h"
+#import "petitionHistoryNodeTableViewCell.h"
 
 @interface petitionAgreementViewController ()
 
@@ -21,17 +22,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self initConstraint];
-    
-    
-    self.historyNodeTableView.delegate = self;
-    self.historyNodeTableView.dataSource = self;
-    
     
     opinionForAgreement.layer.cornerRadius=1;
     opinionForAgreement.layer.masksToBounds=YES;
     opinionForAgreement.layer.borderColor=[[UIColor darkGrayColor]CGColor];
     opinionForAgreement.layer.borderWidth= 1.0f;
+    
+    [self initConstraint];
 }
 
 
@@ -56,24 +53,13 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-        return 2;
+        return 1;
 }
-
-
-
-
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section == 0)
-    {
-        return @"历史节点";
-    }
-    else if(section == 1)
-    {
-        return @"当前部门";
-    }
-    return @"";
+
+    return @"历史节点";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -92,19 +78,19 @@
     
         
 
-    return 0;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString*key = @"tableview";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:key];
+    NSString*key = @"petitionHistoryNodeTableViewCell";
+    petitionHistoryNodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:key];
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:key];
+        cell = [[petitionHistoryNodeTableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:key];
     }
     
-    cell.textLabel.text = @"sdfdsfsdfsdfsdf";
+    cell.textRecord.text = @"sdfdsfsdfsdfsdf";
     return nil;
 }
 
