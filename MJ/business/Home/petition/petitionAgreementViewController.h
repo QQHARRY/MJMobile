@@ -8,16 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "petitionDetail.h"
+#import "chooseAssistDeptTableViewController.h"
 
-@interface petitionAgreementViewController : UIViewController
+@interface petitionAgreementViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,SelectionDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *historyNodeTableView;
 @property (strong, nonatomic) IBOutlet UIButton *agreeBtn;
 @property (strong, nonatomic) IBOutlet UIButton *disAgreeBtn;
+@property (strong, nonatomic) IBOutlet UIButton *cancelBtn;
 @property (strong, nonatomic) IBOutlet UILabel *opinionLabel;
 @property (strong, nonatomic) IBOutlet UITextView *opinionForAgreement;
 - (IBAction)agreeBtnClicked:(id)sender;
 - (IBAction)disAgreeBtnClicked:(id)sender;
+- (IBAction)cancelBtnClicked:(id)sender;
 
 @property(strong,nonatomic)petitionDetail*petition;
+@property(strong,nonatomic)NSString*petitionTaskID;
+@property(strong,nonatomic)NSArray*selectedAssistDepts;
 
 @end

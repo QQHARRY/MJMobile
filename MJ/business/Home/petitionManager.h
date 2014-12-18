@@ -17,4 +17,8 @@
 
 +(void)getDetailsWithTaskID:(NSString*)taskID PetitionID:(NSString*)PetID Success:(void (^)(id responseObject))success
                     failure:(void (^)(NSError *error))failure;
+
+
++(void)approveID:(NSString*)id TaskID:(NSString*)taskID ActionType:(int)actionType Reason:(NSString*)reason AssistDepts:(NSArray*)assits Success:(void (^)(id responseObject))success
+failure:(void (^)(NSError *error))failure;;
 @end

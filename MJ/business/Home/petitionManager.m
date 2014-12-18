@@ -11,6 +11,7 @@
 #import "Macro.h"
 #import "NetWorkManager.h"
 #import "petiotionBrief.h"
+#import "UtilFun.h"
 
 @implementation petitionManager
 
@@ -94,6 +95,59 @@
     }
     
     return arr;
+}
+
++(void)approveID:(NSString*)ids TaskID:(NSString*)taskID ActionType:(int)actionType Reason:(NSString*)reason AssistDepts:(NSArray*)assits Success:(void (^)(id responseObject))success
+failure:(void (^)(NSError *error))failure;
+{
+    NSMutableDictionary*param = [[NSMutableDictionary alloc ] init];
+    
+    int i = 0;
+    NSString*assistDepts = @"";
+    for(NSString*str in assits)
+    {
+        if(i > 0)
+        {
+            assistDepts = [assistDepts stringByAppendingString:@","];
+            
+        }
+        assistDepts = [assistDepts stringByAppendingString:str];
+        i++;
+    }
+    
+    [param setValue:assistDepts forKey:@"task_performer_no"];
+    
+    NSDictionary *parameters = @{@"job_no":[person me].job_no,
+                                 @"acc_password":[person me].password,
+                                 @"DeviceID" : [UtilFun getUDID],
+                                 @"id":[NSNumber numberWithInt:[ids intValue]],
+                                 @"taskid":[NSNumber numberWithInt:[taskID intValue]],
+                                 @"Action_Type":[NSNumber numberWithInt:actionType],
+                                 @"Reason":reason,
+                                 @"params":param
+                                 
+                                 };
+    
+    
+    [NetWorkManager PostWithApiName:API_PETITION_APPROVE parameters:parameters success:
+     ^(id responseObject)
+     {
+         
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([self checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         {
+
+             success(nil);
+             return;
+         }
+         
+         
+     }
+                            failure:^(NSError *error)
+     {
+         failure(error);
+         return;
+     }];
 }
 
 @end

@@ -12,6 +12,7 @@
 		4A2EE1201A42872600899976 /* petitionDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2EE11F1A42872600899976 /* petitionDetail.m */; };
 		4A2EE1231A428F1000899976 /* petitionAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2EE1221A428F1000899976 /* petitionAgreementViewController.m */; };
 		4A3A2EF51A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A2EF41A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.m */; };
+		4A3A2EF81A42F26000AA8A70 /* chooseAssistDeptTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A2EF71A42F26000AA8A70 /* chooseAssistDeptTableViewController.m */; };
 		4A40C2111A401DEB00944AB2 /* ContactsListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A40C20F1A401DEB00944AB2 /* ContactsListTableViewCell.m */; };
 		4A40C2121A401DEB00944AB2 /* ContactsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A40C2101A401DEB00944AB2 /* ContactsListTableViewCell.xib */; };
 		4A40C2181A41745E00944AB2 /* petionDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A40C2171A41745E00944AB2 /* petionDetailsTableViewController.m */; };
@@ -111,6 +112,8 @@
 		4A2EE1221A428F1000899976 /* petitionAgreementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petitionAgreementViewController.m; sourceTree = "<group>"; };
 		4A3A2EF31A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = petitionHistoryNodeTableViewCell.h; sourceTree = "<group>"; };
 		4A3A2EF41A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petitionHistoryNodeTableViewCell.m; sourceTree = "<group>"; };
+		4A3A2EF61A42F26000AA8A70 /* chooseAssistDeptTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chooseAssistDeptTableViewController.h; sourceTree = "<group>"; };
+		4A3A2EF71A42F26000AA8A70 /* chooseAssistDeptTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = chooseAssistDeptTableViewController.m; sourceTree = "<group>"; };
 		4A40C20E1A401DEB00944AB2 /* ContactsListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsListTableViewCell.h; sourceTree = "<group>"; };
 		4A40C20F1A401DEB00944AB2 /* ContactsListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsListTableViewCell.m; sourceTree = "<group>"; };
 		4A40C2101A401DEB00944AB2 /* ContactsListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsListTableViewCell.xib; sourceTree = "<group>"; };
@@ -298,6 +301,8 @@
 				4A2EE1221A428F1000899976 /* petitionAgreementViewController.m */,
 				4A3A2EF31A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.h */,
 				4A3A2EF41A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.m */,
+				4A3A2EF61A42F26000AA8A70 /* chooseAssistDeptTableViewController.h */,
+				4A3A2EF71A42F26000AA8A70 /* chooseAssistDeptTableViewController.m */,
 			);
 			path = petition;
 			sourceTree = "<group>";
@@ -769,6 +774,7 @@
 				4AD795241A218C4A00DEC779 /* AFURLConnectionOperation.m in Sources */,
 				4AD7954C1A218C4A00DEC779 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				B9FF4B421A245FB300FE413E /* MoreViewController.m in Sources */,
+				4A3A2EF81A42F26000AA8A70 /* chooseAssistDeptTableViewController.m in Sources */,
 				4A8D01D91A33381200EA59EA /* MainPageTableViewHeaderCell.m in Sources */,
 				4A2EE1231A428F1000899976 /* petitionAgreementViewController.m in Sources */,
 				4AD7954E1A218C4A00DEC779 /* UIAlertView+AFNetworking.m in Sources */,

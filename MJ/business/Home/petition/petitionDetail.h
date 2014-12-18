@@ -18,4 +18,10 @@
 @property(strong,nonatomic)NSString*chartUrl;
 -(BOOL)hasAssistDept;
 -(BOOL)isAffordDeptNow;
+-(NSString*)nowNodeName;
+-(NSString*)assistDepts;
+-(NSString*)getID;
+-(NSString*)getTaskID;
+
+-(int)getPetitionStatus;
 @end

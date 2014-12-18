@@ -13,6 +13,7 @@
 #import "petitionDictionary.h"
 #import "Macro.h"
 #import "petitionFollowChartViewController.h"
+#import "petitionAgreementViewController.h"
 
 @interface petionDetailsTableViewController ()
 
@@ -162,6 +163,21 @@
             
             fController.url = self.petDetail.chartUrl;
             
+        }
+        else
+        {
+            
+        }
+        
+    }
+    else if ([segue.identifier isEqual:@"toAgreementPage"])
+    {
+        if ([controller isKindOfClass:[petitionAgreementViewController class]])
+        {
+            petitionAgreementViewController *agreeController = (petitionAgreementViewController *)controller;
+            
+            agreeController.petition = self.petDetail;
+            agreeController.petitionTaskID = self.petitionTaskID;
         }
         else
         {

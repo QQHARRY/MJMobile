@@ -579,6 +579,32 @@
             </objects>
             <point key="canvasLocation" x="1584" y="-2055"/>
         </scene>
+        <!--Choose Assist Dept Table View Controller-->
+        <scene sceneID="KyQ-nY-CyX">
+            <objects>
+                <tableViewController id="4kd-fC-Prg" customClass="chooseAssistDeptTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="IDt-n8-v5Q">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="chooseAssistDeptCell" id="w5c-u8-1kF">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w5c-u8-1kF" id="8iW-YU-2Wo">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4kd-fC-Prg" id="N0Q-57-kHR"/>
+                            <outlet property="delegate" destination="4kd-fC-Prg" id="dn3-Jp-7Xg"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8PP-eg-fMz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-737" y="-2152"/>
+        </scene>
         <!--Petition Agreement View Controller-->
         <scene sceneID="cip-Ae-1rm">
             <objects>
@@ -591,116 +617,85 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wPa-Fa-zlD">
-                                <rect key="frame" x="247" y="480" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wPa-Fa-zlD">
+                                <rect key="frame" x="247" y="500" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="dqq-oN-5fe"/>
                                 </constraints>
                                 <state key="normal" title="同意">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="dqq-oN-5fe"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="agreeBtnClicked:" destination="oay-ck-dA4" eventType="touchUpInside" id="ryu-Yr-wdU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beh-Qv-SGf">
-                                <rect key="frame" x="307" y="480" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beh-Qv-SGf">
+                                <rect key="frame" x="307" y="500" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="X7r-eH-Uik"/>
                                 </constraints>
                                 <state key="normal" title="驳回">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="X7r-eH-Uik"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="disAgreeBtnClicked:" destination="oay-ck-dA4" eventType="touchUpInside" id="JQs-hC-rHT"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nng-lu-J0c">
-                                <rect key="frame" x="16" y="365" width="568" height="95"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="审批意见" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEw-Us-Zp3">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="审批意见" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEw-Us-Zp3">
                                 <rect key="frame" x="16" y="370" width="568" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="8Ee-af-HUm">
-                                <rect key="frame" x="0.0" y="64" width="600" height="300"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="petitionHistoryNodeTableViewCell" id="5uS-ib-rUH" customClass="petitionHistoryNodeTableViewCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5uS-ib-rUH" id="RND-1S-WKZ">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ye5-Yw-aWG">
-                                                    <rect key="frame" x="8" y="11" width="584" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="textRecord" destination="Ye5-Yw-aWG" id="nrM-lO-6fL"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6q6-4p-024">
+                                <rect key="frame" x="267" y="500" width="80" height="30"/>
+                                <state key="normal" title="取消申请">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <outlet property="dataSource" destination="oay-ck-dA4" id="Vbr-p0-s5h"/>
-                                    <outlet property="delegate" destination="oay-ck-dA4" id="WME-Ly-mjv"/>
+                                    <action selector="cancelBtnClicked:" destination="oay-ck-dA4" eventType="touchUpInside" id="tkT-Mg-0Da"/>
                                 </connections>
-                            </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XX5-0x-6Hu">
-                                <rect key="frame" x="101" y="314" width="109" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nng-lu-J0c">
+                                <rect key="frame" x="16" y="399" width="568" height="95"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="beh-Qv-SGf" firstAttribute="width" secondItem="wPa-Fa-zlD" secondAttribute="width" id="3aK-OF-tkh"/>
-                            <constraint firstItem="wPa-Fa-zlD" firstAttribute="top" secondItem="nng-lu-J0c" secondAttribute="bottom" constant="5" id="4LF-jM-wOA"/>
-                            <constraint firstItem="8Ee-af-HUm" firstAttribute="top" secondItem="RmC-2X-YVy" secondAttribute="top" constant="64" id="6Of-Kc-lbt"/>
-                            <constraint firstItem="nng-lu-J0c" firstAttribute="top" secondItem="fEw-Us-Zp3" secondAttribute="bottom" id="Czh-ye-6Ii"/>
-                            <constraint firstItem="8Ee-af-HUm" firstAttribute="top" secondItem="RmC-2X-YVy" secondAttribute="top" id="NgB-BA-XIa"/>
-                            <constraint firstAttribute="trailing" secondItem="beh-Qv-SGf" secondAttribute="trailing" constant="110" id="VKx-QG-LLl"/>
-                            <constraint firstAttribute="centerX" secondItem="8Ee-af-HUm" secondAttribute="centerX" id="Zfh-8x-Pwj"/>
-                            <constraint firstItem="fEw-Us-Zp3" firstAttribute="top" secondItem="8Ee-af-HUm" secondAttribute="bottom" constant="5" id="bGH-hF-Sqe"/>
-                            <constraint firstAttribute="centerX" secondItem="fEw-Us-Zp3" secondAttribute="centerX" id="dkx-Bq-Sst"/>
-                            <constraint firstAttribute="centerX" secondItem="nng-lu-J0c" secondAttribute="centerX" id="efo-0S-xKn"/>
-                            <constraint firstAttribute="centerX" secondItem="wPa-Fa-zlD" secondAttribute="centerX" id="kKi-QT-g1M"/>
-                            <constraint firstItem="8Ee-af-HUm" firstAttribute="leading" secondItem="RmC-2X-YVy" secondAttribute="leading" id="mKD-UH-Fpe"/>
-                            <constraint firstAttribute="trailing" secondItem="8Ee-af-HUm" secondAttribute="trailing" id="mkP-Wv-TfL"/>
-                            <constraint firstAttribute="centerX" secondItem="beh-Qv-SGf" secondAttribute="centerX" id="nXp-IH-LK2"/>
-                            <constraint firstItem="wPa-Fa-zlD" firstAttribute="leading" secondItem="RmC-2X-YVy" secondAttribute="leading" constant="110" id="rC3-66-BCS"/>
-                            <constraint firstItem="beh-Qv-SGf" firstAttribute="top" secondItem="wPa-Fa-zlD" secondAttribute="top" id="sBH-3t-tGD"/>
-                            <constraint firstItem="fEw-Us-Zp3" firstAttribute="top" secondItem="8Ee-af-HUm" secondAttribute="bottom" constant="5" id="zBd-gT-Ap9"/>
-                            <constraint firstItem="fEw-Us-Zp3" firstAttribute="top" secondItem="8Ee-af-HUm" secondAttribute="bottom" constant="5" id="zjx-3j-VRb"/>
+                            <constraint firstItem="beh-Qv-SGf" firstAttribute="width" secondItem="wPa-Fa-zlD" secondAttribute="width" id="1lp-3s-Yb4"/>
+                            <constraint firstAttribute="centerX" secondItem="nng-lu-J0c" secondAttribute="centerX" id="1mT-Se-Rk7"/>
+                            <constraint firstItem="nng-lu-J0c" firstAttribute="top" secondItem="fEw-Us-Zp3" secondAttribute="bottom" id="6LF-x9-Cwi"/>
+                            <constraint firstAttribute="trailing" secondItem="beh-Qv-SGf" secondAttribute="trailing" constant="110" id="BYg-JG-Q9m"/>
+                            <constraint firstItem="wPa-Fa-zlD" firstAttribute="top" secondItem="nng-lu-J0c" secondAttribute="bottom" id="NTV-bh-1uR"/>
+                            <constraint firstItem="wPa-Fa-zlD" firstAttribute="leading" secondItem="RmC-2X-YVy" secondAttribute="leading" constant="110" id="R1z-5f-ZcI"/>
+                            <constraint firstItem="6q6-4p-024" firstAttribute="top" secondItem="wPa-Fa-zlD" secondAttribute="top" id="Un1-6c-yaU"/>
+                            <constraint firstAttribute="bottom" secondItem="wPa-Fa-zlD" secondAttribute="bottom" constant="55" id="XaL-Bd-QSz"/>
+                            <constraint firstItem="beh-Qv-SGf" firstAttribute="height" secondItem="wPa-Fa-zlD" secondAttribute="height" id="beG-CP-UfS"/>
+                            <constraint firstAttribute="centerX" secondItem="fEw-Us-Zp3" secondAttribute="centerX" id="e5U-cJ-ZK2"/>
+                            <constraint firstItem="wPa-Fa-zlD" firstAttribute="top" secondItem="beh-Qv-SGf" secondAttribute="top" id="ifn-Le-v3t"/>
+                            <constraint firstAttribute="centerX" secondItem="6q6-4p-024" secondAttribute="centerX" id="tLY-bm-qfn"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="NgB-BA-XIa"/>
-                                <exclude reference="mKD-UH-Fpe"/>
-                                <exclude reference="mkP-Wv-TfL"/>
-                                <exclude reference="bGH-hF-Sqe"/>
-                                <exclude reference="zBd-gT-Ap9"/>
-                                <exclude reference="kKi-QT-g1M"/>
-                                <exclude reference="nXp-IH-LK2"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="agreeBtn" destination="wPa-Fa-zlD" id="Ybu-Ub-RNY"/>
+                        <outlet property="cancelBtn" destination="6q6-4p-024" id="aKT-55-z38"/>
                         <outlet property="disAgreeBtn" destination="beh-Qv-SGf" id="ZqS-MS-RBK"/>
-                        <outlet property="historyNodeTableView" destination="8Ee-af-HUm" id="Eig-h6-7oy"/>
                         <outlet property="opinionForAgreement" destination="nng-lu-J0c" id="EAI-pJ-gTh"/>
                         <outlet property="opinionLabel" destination="fEw-Us-Zp3" id="SEg-rk-daE"/>
+                        <segue destination="4kd-fC-Prg" kind="show" identifier="toChooseAssistDepartment" id="UNs-st-0pe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="raE-Hp-nf4" userLabel="First Responder" sceneMemberID="firstResponder"/>

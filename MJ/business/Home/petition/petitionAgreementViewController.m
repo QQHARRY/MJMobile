@@ -8,6 +8,10 @@
 
 #import "petitionAgreementViewController.h"
 #import "petitionHistoryNodeTableViewCell.h"
+#import "UtilFun.h"
+#import "petitionManager.h"
+#import "petionListTableViewController.h"
+#import "MainPageViewController.h"
 
 @interface petitionAgreementViewController ()
 
@@ -28,22 +32,52 @@
     opinionForAgreement.layer.borderColor=[[UIColor darkGrayColor]CGColor];
     opinionForAgreement.layer.borderWidth= 1.0f;
     
+    [self initUI];
     [self initConstraint];
+}
+-(void)initUI
+{
+    [self initTableView];
+    if ([self.petition getPetitionStatus] == 0)
+    {
+        self.agreeBtn.hidden = NO;
+        self.disAgreeBtn.hidden = NO;
+        self.cancelBtn.hidden = YES;
+    }
+    else
+    {
+        self.agreeBtn.hidden = YES;
+        self.disAgreeBtn.hidden = YES;
+        self.cancelBtn.hidden = NO;
+    }
+//    CGRect rct = [historyNodeTableView frame];
+//    CGRect rct1 = opinionLabel.frame;
+//    rct1.origin.y = rct.origin.y + rct.size.height + 0;
+//    opinionLabel.frame = rct1;
+}
+-(void)initTableView
+{
+    historyNodeTableView = [[UITableView alloc ]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width,self.view.frame.size.height/2.0) style:UITableViewStylePlain];
+    [self.view addSubview:historyNodeTableView];
+    historyNodeTableView.delegate = self;
+    historyNodeTableView.dataSource = self;
 }
 
 
 -(void)initConstraint
 {
-    self.historyNodeTableView.translatesAutoresizingMaskIntoConstraints = NO;
+ //   self.historyNodeTableView.translatesAutoresizingMaskIntoConstraints = NO;
     self.opinionForAgreement.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.historyNodeTableView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeHeight multiplier:0.45 constant:0]];
-    
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.historyNodeTableView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
-    
+//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.historyNodeTableView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeHeight multiplier:0.45 constant:0]];
+//    
+//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.historyNodeTableView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+//    
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.opinionForAgreement attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.95 constant:0]];
+
+   [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.opinionForAgreement attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeHeight multiplier:0.2 constant:0]];
     
-   [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.opinionForAgreement attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeHeight multiplier:0.25 constant:0]];
+//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.opinionLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:historyNodeTableView attribute:NSLayoutAttributeBottom multiplier:0 constant:5]];
     
 }
 
@@ -53,61 +87,304 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-        return 1;
+    if (self.petition)
+    {
+        if (petition.allDetails)
+        {
+            if ([petition hasAssistDept])
+            {
+                return 3;
+            }
+            else
+            {
+                return 2;
+            }
+        }
+    }
+    else
+    {
+        return 0;
+    }
+        return 0;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-
-    return @"历史节点";
+    if (section == 0) {
+        return @"历史节点:";
+    }
+    else if (section == 1) {
+        return @"当前节点:";
+    }
+    else if (section == 2) {
+        return @"汇办部门:";
+    }
+    return @"";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0)
     {
-        if (self.petition && self.petition.historyNodes)
+        if (self.petition && self.petition.historyNodes && self.petition.historyNodes.count > 0)
         {
             return petition.historyNodes.count;
+        }
+        else
+        {
+            return 1;
         }
     }
     else if(section == 1)
     {
         return 1;
     }
+    else if(section == 2)
+    {
+        return 1;
+    }
     
         
 
-    return 4;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString*key = @"petitionHistoryNodeTableViewCell";
-    petitionHistoryNodeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:key];
+    NSString*key = @"cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:key];
     if (cell == nil)
     {
-        cell = [[petitionHistoryNodeTableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:key];
+        cell = [[UITableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:key];
     }
     
-    cell.textRecord.text = @"sdfdsfsdfsdfsdf";
-    return nil;
+    [cell.textLabel setFont:[UIFont systemFontOfSize:12]];
+    if (indexPath.section == 0)
+    {
+        if (self.petition && self.petition.historyNodes && self.petition.historyNodes.count > 0)
+        {
+            NSDictionary*dic = [self.petition.historyNodes objectAtIndex:indexPath.row];
+            NSString*key = [dic objectForKey:@"key"];
+            NSString*value = [dic objectForKey:@"value"];
+            cell.textLabel.text = [[key stringByAppendingString:@" "] stringByAppendingString:value];
+        }
+        else
+        {
+            cell.textLabel.text =@"";
+        }
+       
+
+    }
+    else if(indexPath.section == 1)
+    {
+        cell.textLabel.text =[petition nowNodeName];
+
+    }
+    else if(indexPath.section == 2)
+    {
+        NSString*str = [petition assistDepts];
+        if ([str isEqualToString:@""] || str.length == 0)
+        {
+            str = @"点击选择汇办部门";
+        }
+        cell.textLabel.text = str;
+        if ([petition isAffordDeptNow])
+        {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        else
+        {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+    }
+
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 2 && indexPath.row == 0)
+    {
+        [self performSegueWithIdentifier:@"toChooseAssistDepartment" sender:self];
+    }
 }
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    UIViewController *controller;
+    if ([segue.destinationViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        controller = [navController.viewControllers objectAtIndex:0];
+    } else {
+        controller = segue.destinationViewController;
+    }
+    
+    
+    if ([segue.identifier isEqual:@"toChooseAssistDepartment"])
+    {
+        if ([controller isKindOfClass:[chooseAssistDeptTableViewController class]])
+        {
+            chooseAssistDeptTableViewController *detailController = (chooseAssistDeptTableViewController *)controller;
+            
+            
+            detailController.delegate = self;
+            
+            
+        }
+        else
+        {
+            
+        }
+        
+    }
 }
-*/
+
+-(BOOL)fieldVerification
+{
+    NSString*str = opinionForAgreement.text;
+    if ([str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length == 0)
+    {
+        [UtilFun presentPopViewControllerWithTitle:@"审批意见不能为空" Message:@"请填写审批意见" SimpleAction:@"OK" Sender:self];
+        return NO;
+    }
+    return YES;
+}
 
 - (IBAction)agreeBtnClicked:(id)sender {
+    
+    
+    if ([self fieldVerification])
+    {
+        NSMutableArray*arr = [[NSMutableArray alloc] init];
+        for (NSDictionary*dic in self.selectedAssistDepts)
+        {
+            NSString*value = [[dic allValues] objectAtIndex:0];
+            [arr addObject:value];
+        }
+        [petitionManager approveID:[self.petition getID] TaskID:self.petitionTaskID ActionType:0 Reason:opinionForAgreement.text AssistDepts:arr Success:^(id responseObject) {
+            [UtilFun presentPopViewControllerWithTitle:@"审批成功" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
+             {
+                 [self quit];
+             }
+                                                Sender:self];
+            
+        } failure:^(NSError *error) {
+            [UtilFun presentPopViewControllerWithTitle:@"审批失败" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
+             {
+                 [self quit];
+             }
+                                                Sender:self];
+        }];
+    }
+    
+    
 }
 
 - (IBAction)disAgreeBtnClicked:(id)sender {
+    
+    if ([self fieldVerification])
+    {
+        NSMutableArray*arr = [[NSMutableArray alloc] init];
+        for (NSDictionary*dic in self.selectedAssistDepts)
+        {
+            NSString*value = [[dic allValues] objectAtIndex:0];
+            [arr addObject:value];
+        }
+        [petitionManager approveID:[self.petition getID] TaskID:self.petitionTaskID ActionType:1 Reason:opinionForAgreement.text AssistDepts:arr Success:^(id responseObject) {
+            [UtilFun presentPopViewControllerWithTitle:@"审批成功" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
+             {
+                 [self quit];
+             }
+                                                Sender:self];
+            
+        } failure:^(NSError *error) {
+            [UtilFun presentPopViewControllerWithTitle:@"审批失败" Message:nil SimpleAction:@"OK"Handler:^(UIAlertAction *action)
+             {
+                 [self quit];
+             }
+                                                Sender:self];
+        }];
+    }
+}
+
+-(void)quit
+{
+    NSArray*ctrlArr = [self.navigationController viewControllers];
+    
+    for (NSInteger i = [ctrlArr count]-1; i >=0; i--)
+    {
+        UIViewController*ctrl = [ctrlArr objectAtIndex:i];
+        if ([ctrl isKindOfClass:[petionListTableViewController class]] || [ctrl isKindOfClass:[MainPageViewController class]] )
+        {
+            [self.navigationController popToViewController:ctrl animated:YES];
+            break;
+        }
+    }
+}
+
+- (IBAction)cancelBtnClicked:(id)sender {
+    if ([self fieldVerification])
+    {
+        NSMutableArray*arr = [[NSMutableArray alloc] init];
+        for (NSDictionary*dic in self.selectedAssistDepts)
+        {
+            NSString*value = [[dic allValues] objectAtIndex:0];
+            [arr addObject:value];
+        }
+        [petitionManager approveID:[self.petition getID] TaskID:self.petitionTaskID ActionType:2 Reason:opinionForAgreement.text AssistDepts:arr Success:^(id responseObject) {
+            [UtilFun presentPopViewControllerWithTitle:@"取消成功" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
+             {
+                
+                 [self quit];
+             }
+                                                Sender:self];
+            
+        } failure:^(NSError *error) {
+            [UtilFun presentPopViewControllerWithTitle:@"取消失败" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
+             {
+                 [self quit];
+             }
+                                                Sender:self];
+        }];
+    }
+}
+
+
+-(void)returnSelection:(NSArray *)curSelection
+{
+    if (curSelection == nil || curSelection.count <= 0)
+    {
+        return;
+    }
+    self.selectedAssistDepts = curSelection;
+    
+    
+    
+    UITableViewCell*cell = [self.historyNodeTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
+    if (cell)
+    {
+        NSString*str =@"";
+        for (int i=0;i < self.selectedAssistDepts.count; i++)
+        {
+            NSDictionary*dic = [self.selectedAssistDepts objectAtIndex:i];
+            if (dic)
+            {
+                NSString*key = [[dic allKeys ] objectAtIndex:0];
+                str = [str stringByAppendingString:key];
+
+                if (i < self.selectedAssistDepts.count -1)
+                {
+                    str = [str stringByAppendingString:@","];
+                }
+            }
+            
+        }
+        
+        cell.textLabel.text = str;
+    }
 }
 @end
