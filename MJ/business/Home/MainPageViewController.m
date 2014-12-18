@@ -342,6 +342,7 @@
 
 -(void)toPetitionListView:(UIButton*)sender
 {
+    [self performSegueWithIdentifier:@"toPetitionList" sender:self];
     
 }
 #pragma mark -

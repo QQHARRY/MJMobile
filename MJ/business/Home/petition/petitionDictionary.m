@@ -412,7 +412,7 @@ static NSArray*publicFiledsArray = nil;
 
 
 
-+(NSArray*)petitionDicByDic:(NSDictionary*)dic
++(NSArray*)petitionArrByDic:(NSDictionary*)dic
 {
     NSMutableArray*retArr = [[NSMutableArray alloc] init];
     NSMutableArray*retArr1 =[[NSMutableArray alloc] init];

@@ -62,9 +62,11 @@
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          if ([self checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {
-             NSArray*arr = [resultDic objectForKey:@"PetitionDetails"];
-             NSDictionary*dic  =[arr objectAtIndex:0];
-             success(dic);
+//             NSArray*arr = [resultDic objectForKey:@"PetitionDetails"];
+//             NSDictionary*dic  =[arr objectAtIndex:0];
+//             
+             
+             success(resultDic);
              return;
          }
          

@@ -10,4 +10,6 @@
 
 @interface petionListTableViewController : UITableViewController
 
+@property(strong,nonatomic)NSMutableArray*petitionArr;
+
 @end

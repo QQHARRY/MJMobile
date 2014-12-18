@@ -10,6 +10,6 @@
 
 @interface petitionDictionary : NSObject
 
-+(NSArray*)petitionDicByDic:(NSDictionary*)dic;
++(NSArray*)petitionArrByDic:(NSDictionary*)dic;
 
 @end

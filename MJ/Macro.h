@@ -3,7 +3,7 @@
 
 // Server
 #define SERVER_URL @"http://115.28.76.58:9090/KWOA/device/"
-
+#define SERVER_URL_NOAPI @"http://115.28.76.58:9090/KWOA"
 // API
 // 1.申请绑定设备
 #define API_REG @"login/regDevice"

@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import "petitionDetail.h"
+
 
 @interface petionDetailsTableViewController : UITableViewController
 
 @property(strong,nonatomic)NSString*petitionID;
 @property(strong,nonatomic)NSString*petitionTaskID;
-@property(strong,nonatomic)NSArray*petionDetails;
-
+//@property(strong,nonatomic)NSArray*petionDetails;
+//@property(strong,nonatomic)NSString*petionStatusChartUrl;
+@property(strong,nonatomic)petitionDetail*petDetail;
 @end

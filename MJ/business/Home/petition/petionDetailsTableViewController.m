@@ -11,21 +11,31 @@
 #import "UtilFun.h"
 #import "petitionManager.h"
 #import "petitionDictionary.h"
+#import "Macro.h"
+#import "petitionFollowChartViewController.h"
 
 @interface petionDetailsTableViewController ()
 
 @end
 
 @implementation petionDetailsTableViewController
-@synthesize petionDetails;
+@synthesize petDetail;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    petDetail = [[petitionDetail alloc]init];
     [self getPetionDetails:self.petitionID];
     
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc ] initWithTitle:@"审批" style:UIBarButtonItemStylePlain target:self action:@selector(agreenBtnClicked:)  ];
+    
     //[petitionDictionary petitionDicByDic:nil];
+}
+
+-(void)agreenBtnClicked:(id)sender
+{
+    [self performSegueWithIdentifier:@"toAgreementPage" sender:self];
 }
 
 
@@ -37,9 +47,13 @@
     [petitionManager getDetailsWithTaskID:self.petitionTaskID PetitionID:self.petitionID Success:^(id responseObject)
      {
          NSDictionary*dic = responseObject;
+         NSArray*arr = [dic objectForKey:@"PetitionDetails"];
+         NSDictionary*dicDetails  =[arr objectAtIndex:0];
          
+         NSArray*hisArr = [dic objectForKey:@"PetitionHistories"];
          
-         self.petionDetails = [petitionDictionary petitionDicByDic:dic];
+         self.petDetail.details = [petitionDictionary petitionArrByDic:dicDetails];
+         self.petDetail.historyNodes = hisArr;
          HIDEHUD(self.view);
          [self.tableView reloadData];
     } failure:^(NSError *error) {
@@ -60,9 +74,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
-    if (petionDetails != nil)
+    if (petDetail.details != nil)
     {
-        return [petionDetails count];
+        return [petDetail.details count];
     }
     return 0;
 }
@@ -77,9 +91,9 @@
         cell = [[petionDetailsItemTableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:key];
     }
     
-    if (petionDetails)
+    if (petDetail.details)
     {
-        NSDictionary*dic = [petionDetails objectAtIndex:indexPath.row];
+        NSDictionary*dic = [petDetail.details objectAtIndex:indexPath.row];
         
         NSString*key = [[dic allKeys] objectAtIndex:0];
         NSString*value = [[dic allValues ] objectAtIndex:0];
@@ -89,12 +103,13 @@
         
         if ([key isEqualToString:@"状态图"])
         {
-            cell.editingAccessoryType = UITableViewCellAccessoryDetailButton;
+            cell.AccessoryType = UITableViewCellAccessoryDetailButton;
             cell.itemValue.text = @"";
+            petDetail.chartUrl = [NSString stringWithFormat:@"%@%@", SERVER_URL_NOAPI, value];
         }
         else
         {
-            cell.editingAccessoryType = UITableViewCellAccessoryNone;
+            cell.AccessoryType = UITableViewCellAccessoryNone;
         }
     }
     else
@@ -107,48 +122,54 @@
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    petionDetailsItemTableViewCell *cell = ( petionDetailsItemTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    if (cell && [cell.itemName.text isEqualToString:@"状态图"])
+    {
+        [self performSegueWithIdentifier:@"showFollowChart" sender:self];
+        
+    }
+   
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    
+    UIViewController *controller;
+    if ([segue.destinationViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        controller = [navController.viewControllers objectAtIndex:0];
+    } else {
+        controller = segue.destinationViewController;
+    }
+    
+    
+    if ([segue.identifier isEqual:@"showFollowChart"])
+    {
+        if ([controller isKindOfClass:[petitionFollowChartViewController class]])
+        {
+            petitionFollowChartViewController *fController = (petitionFollowChartViewController *)controller;
+            
+            fController.url = self.petDetail.chartUrl;
+            
+        }
+        else
+        {
+            
+        }
+        
+    }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end
