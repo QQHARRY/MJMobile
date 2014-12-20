@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MoreViewController : UIViewController
+@interface MoreViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

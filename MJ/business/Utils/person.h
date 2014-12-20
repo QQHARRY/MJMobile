@@ -23,6 +23,7 @@
 @property(strong,atomic)NSString*photo;
 @property(strong,atomic)NSString*password;
 @property(strong,atomic)NSString*dept_no;
+@property(strong,atomic)NSString*role_name;
 
 //-(BOOL)initWithDictionary:(NSDictionary*)dic;
 

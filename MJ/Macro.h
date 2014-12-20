@@ -30,6 +30,9 @@
 //获取部门的直接下属人员
 #define API_GET_SUB_PERSON @"person/getContractDeptUsrlist"
 
+//编辑个人信息
+#define EDIT_STAFF_INFO @"person/editStaffInfo"
+
 
 #define DEVICE_IOS @"0"
 

@@ -9,6 +9,8 @@
 #import "MoreViewController.h"
 #import "badgeImageFactory.h"
 #import "JSBadgeView.h"
+#import "myBriefTableViewCell.h"
+#import "person.h"
 
 @interface MoreViewController ()
 
@@ -19,12 +21,125 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self initTableView];
+}
+
+-(void)initTableView
+{
+//    self.tableView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-128);
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+#pragma mark tableview about
+#pragma mark  -
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.row == 0)
+    {
+        [self performSegueWithIdentifier:@"showPersonDetails" sender:self];
+    }
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0)
+    {
+        return 88;
+    }
+    
+    return 44;
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 6;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    if (indexPath.row == 0)
+    {
+        NSString *CellIdentifier = @"myBriefTableViewCell";
+        
+        myBriefTableViewCell *cell=(myBriefTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if(cell==nil)
+        {
+            NSArray *nibs=[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+            for(id oneObject in nibs)
+            {
+                if([oneObject isKindOfClass:[myBriefTableViewCell class]])
+                {
+                    cell = (myBriefTableViewCell *)oneObject;
+                }
+            }
+        }
+        
+        NSString*photoUrl = [person me].photo;
+        if ([photoUrl length] == 0)
+        {
+            cell.myPhoto.image = [UIImage imageNamed:@"defaultPhoto"];
+        }
+        else
+        {
+            
+        }
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        return cell;
+    }
+    else
+    {
+        NSString*key = @"cell";
+        
+        UITableViewCell*cell = [tableView dequeueReusableCellWithIdentifier:key];
+        if (cell == nil)
+        {
+            cell = [[UITableViewCell alloc ] init];
+        }
+        
+        if(indexPath.row == 1)
+        {
+            cell.textLabel.text = @"企业通讯录";
+        }
+        else if(indexPath.row == 2)
+        {
+            cell.textLabel.text = @"后勤管理";
+        }
+        else if(indexPath.row == 3)
+        {
+            cell.textLabel.text = @"关于";
+        }
+        else if(indexPath.row == 4)
+        {
+            cell.textLabel.text = @"检查更新";
+        }
+        else if(indexPath.row == 5)
+        {
+            cell.textLabel.text = @"意见反馈";
+        }
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        return cell;
+    }
+    
+    
+    
+    return nil;
+}
+
+
+
+
+#pragma mark
+#pragma mark
 
 /*
 #pragma mark - Navigation
