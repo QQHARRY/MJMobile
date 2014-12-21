@@ -22,7 +22,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-            
+
+    self.title = @"房源";
+    
     NSString* strID = [person me].job_no;
     NSString* strPwd = [person me].password;
     NSDictionary *parameters = @{@"job_no" : strID,
