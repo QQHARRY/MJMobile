@@ -21,10 +21,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 
+    // init controller base info
     self.title = @"房源";
     
+    
+    // test api
     NSString* strID = [person me].job_no;
     NSString* strPwd = [person me].password;
     NSDictionary *parameters = @{@"job_no" : strID,
