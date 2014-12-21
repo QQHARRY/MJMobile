@@ -1183,6 +1183,7 @@
         <!--House View Controller-->
         <scene sceneID="heT-6U-2K7">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cOg-uB-ZgU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Ao1-QP-kOm" customClass="HouseViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kGJ-xw-Bgq"/>
@@ -1195,9 +1196,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="oQA-ad-BbV"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cOg-uB-ZgU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1627" y="43"/>
+            <point key="canvasLocation" x="1641.75" y="57"/>
         </scene>
         <!--Person Details View Controller-->
         <scene sceneID="41T-zh-Pgx">
