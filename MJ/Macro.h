@@ -32,6 +32,10 @@
 
 //编辑个人信息
 #define EDIT_STAFF_INFO @"person/editStaffInfo"
+//修改密码
+#define EDIT_PIN_NO @"person/editPinNo"
+//意见反馈
+#define SUGGESTION_FEEDBACK @"other/sendAdvise"
 
 
 #define DEVICE_IOS @"0"

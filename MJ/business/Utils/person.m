@@ -43,8 +43,9 @@ __strong static person* _sharedObject = nil;
     
     dispatch_once(&pred, ^{
         _sharedObject = [[self alloc] init];
-        [_sharedObject initWithDictionary:dic];
+        
     });
+    [_sharedObject initWithDictionary:dic];
     return _sharedObject;
 }
 
@@ -62,7 +63,7 @@ __strong static person* _sharedObject = nil;
     
     for (const Ivar *p = ivars; p < ivars + ivarsCnt; ++p)
     {
-        object_setIvar(self,*p,nil);
+        object_setIvar(_sharedObject,*p,@"");
     }
 }
 

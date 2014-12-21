@@ -23,7 +23,7 @@
     
     self.photoChanged = NO;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc ] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editBtnClicked:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc ] initWithTitle:@"修改密码" style:UIBarButtonItemStylePlain target:self action:@selector(editPassWordBtnClicked:)];
     
     NSString*tmp = @"所属公司:";
     self.company.text = [tmp stringByAppendingString:[person me].company_name];
@@ -46,36 +46,21 @@
     self.loginName.text = [person me].job_name;
     self.mobileNum.text = [person me].obj_mobile;
     self.chracterSign.text = [person me].acc_remarks;
-    self.loginName.text = [person me].acc_content;
-    
+    self.personalInfo.text = [person me].acc_content;
+    self.loginName.enabled = YES;
+    self.mobileNum.enabled = YES;
+    self.chracterSign.enabled = YES;
+    self.personalInfo.enabled = YES;
+    self.myPhoto.enabled = YES;
     
     // Do any additional setup after loading the view.
     
     [self initConstrains];
 }
 
--(void)editBtnClicked:(id)sender
+-(void)editPassWordBtnClicked:(id)sender
 {
-    NSString*title =  ((UIBarButtonItem*)sender).title;
-    if ([title isEqualToString:@"编辑"])
-    {
-        self.loginName.enabled = YES;
-        self.mobileNum.enabled = YES;
-        self.chracterSign.enabled = YES;
-        self.personalInfo.enabled = YES;
-        self.myPhoto.enabled = YES;
-        ((UIBarButtonItem*)sender).title = @"提交";
-    }
-    else if ([title isEqualToString:@"提交"])
-    {
-        self.loginName.enabled = NO;
-        self.mobileNum.enabled = NO;
-        self.chracterSign.enabled = NO;
-        self.personalInfo.enabled = NO;
-        self.myPhoto.enabled = NO;
-        ((UIBarButtonItem*)sender).title = @"编辑";
-        [self commiteInfo];
-    }
+    [self performSegueWithIdentifier:@"showRestPassword" sender:self];
 }
 
 -(void)initConstrains
@@ -226,6 +211,10 @@
     sheet.tag = 1;
     
     [sheet showInView:self.view];
+}
+
+- (IBAction)clickSaveButton:(id)sender {
+    [self commiteInfo];
 }
 
 

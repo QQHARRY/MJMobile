@@ -25,6 +25,7 @@
 @property (assign,nonatomic)BOOL photoChanged;
 
 - (IBAction)clickPhotoBtn:(id)sender;
+- (IBAction)clickSaveButton:(id)sender;
 
 
 @end

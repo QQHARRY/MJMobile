@@ -46,6 +46,41 @@
     {
         [self performSegueWithIdentifier:@"showPersonDetails" sender:self];
     }
+    else if(indexPath.row == 1)
+    {
+        [self performSegueWithIdentifier:@"showContactList" sender:self];
+    }
+    else if(indexPath.row == 3)
+    {
+        [self performSegueWithIdentifier:@"showAboutView" sender:self];
+    }
+    else if(indexPath.row == 5)
+    {
+        [self performSegueWithIdentifier:@"showSuggestionView" sender:self];
+    }
+    else if(indexPath.row == 6)
+    {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"您确定要退出登录?"
+                                                                       message:@""
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alert addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *action)
+                          {
+                              [person cleanMe];
+                              [self performSegueWithIdentifier:@"backToLogin" sender:self];
+                              
+                          }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *action)
+                          {
+                              
+                          }]];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
     
 }
 
@@ -62,7 +97,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 7;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -125,6 +160,10 @@
         else if(indexPath.row == 5)
         {
             cell.textLabel.text = @"意见反馈";
+        }
+        else if (indexPath.row == 6)
+        {
+            cell.textLabel.text = @"退出登录";
         }
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         return cell;
