@@ -39,7 +39,7 @@
 
 
 //  19.获取房源简要信息列表
-#define API_HOUSE_LIST @"home/getRealEstateBriefList"
+#define API_HOUSE_LIST @"business/getRealEstateBriefList"
 
 
 

@@ -22,57 +22,39 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    
-//    public void getPublicANNCList(RealEstateBriefListSelect mSelect,String trade_type
-//                                  ,String sale_trade_state,String lease_trade_state
-//                                  ,String FromID,String ToID,String Count) {
-//        // TODO Auto-generated method stub
-//        if (!mNetword.isNetworkConnected()) {
-//            Toast.makeText(mContext, "网络未连接,请连接网络！", Toast.LENGTH_LONG).show();
-//        } else {
-//            RequestParams mMap = new RequestParams();
-//            String usename = abSharedPreferences.getString(Cont.KEY_PERSONAL_USENAME, "");
-//            String pass = abSharedPreferences.getString(Cont.KEY_PERSONAL_PASSWORD, "");
-//            mMap.put("job_no", usename);
-//            mMap.put("acc_password", pass);
-//            mMap.put("FromID", FromID);
-//            mMap.put("ToID", ToID);
-//            mMap.put("Count", Count);
-//            mMap.put("trade_type", trade_type);
-//            mMap.put("sale_trade_state", sale_trade_state);
-//            mMap.put("lease_trade_state", lease_trade_state);
-//            mMap.put("consignment_type", mSelect.getConsignment_type());
-//            mMap.put("hall_num", mSelect.getHall_num());
-//            mMap.put("room_num", mSelect.getRoom_num());
-//            mMap.put("buildname", mSelect.getBuildname());
-//            mMap.put("house_unit", mSelect.getHouse_unit());
-//            mMap.put("house_floor", mSelect.getHouse_floor());
-//            mMap.put("house_tablet", mSelect.getHouse_tablet());
-//            mMap.put("house_driect", mSelect.getHouse_driect());
-//            mMap.put("structure_area_from", mSelect.getStructure_area_from());
-//            mMap.put("structure_area_to", mSelect.getStructure_area_to());
-//            mMap.put("housearea", mSelect.getHousearea());
-//            mMap.put("houseurban", mSelect.getHouseurban());
-//            mMap.put("fitment_type", mSelect.getFitment_type());
-//            mMap.put("house_floor_from", mSelect.getHouse_floor_from());
-//            mMap.put("house_floor_to", mSelect.getHouse_floor_to());
-//            mMap.put("sale_value_from", mSelect.getSale_value_from());
-//            mMap.put("sale_value_to", mSelect.getSale_value_to());
-//            mMap.put("lease_value_rom", mSelect.getLease_value_rom());
-//            mMap.put("lease_value_to", mSelect.getLease_value_to());
-//            mMap.put("Keyword", mSelect.getKeyword());
-//            if(Cont.DEBUG) {
-//                Log.e("wop", "房源简要信息列表 上传  mMap  =  " + mMap);
-//            }
-//            Alur  10:35:32
-//            getPublicANNCList(mSelect, "101", "0", "0", "0", "","20");
-    
-            
             
     NSString* strID = [person me].job_no;
     NSString* strPwd = [person me].password;
-    NSDictionary *parameters = @{@"job_no" : strID, @"acc_password" : strPwd, @"DeviceID" : [UtilFun getUDID], @"DeviceType" : DEVICE_IOS};
+    NSDictionary *parameters = @{@"job_no" : strID,
+                                 @"acc_password" : strPwd,
+                                 @"DeviceID" : [UtilFun getUDID],
+                                 @"FromID" : @"0",
+                                 @"ToID" : @"0",
+                                 @"Count" : @"10", // 单页返回的 录条数，最大不超过100， 认为10
+                                 @"trade_type" : @"", // 房源类型:比如出售 是”100”，出租 是”101” （此参数在默认房源列表查询时必须有，字典表里有）
+                                 @"sale_trade_state" : @"0", // 状态（出售）                                 （此参数在默认房源列表查询时必须有(默认查有效)，字典表里有）                                 无效	6                                 锁盘	99                                 有效	0                                 我售	2                                 已售	3
+                                 @"lease_trade_state" : DEVICE_IOS, // 状态（出租）                                 （此参数在默认房源列表查询时必须有(默认查有效)，字典表里有）                                 锁盘	99                                 我租	2                                 已租	3                                 无效	6                                 有效	0
+                                 @"consignment_type" : @"1", // 委托类型：A-独家 是”0”、B-一般 是”1”、C-未签 是”2”
+                                 @"hall_num" : @"2", // 房屋类型的厅的数量:如2厅
+                                 @"room_num" : @"3", // 房屋类型的室的数量:如3室
+                                 @"buildname" : @"", // 栋座，比如1号楼
+                                 @"house_unit" : @"", // 单元，比如2单元
+                                 @"house_floor" : @"", // 楼层
+                                 @"house_tablet" : @"", // 房号
+                                 @"house_driect" : @"", // 朝向
+                                 @"structure_area_from" : @"", // 最小面积
+                                 @"structure_area_to" : @"", // 最大面积
+                                 @"housearea" : @"", // 区域:比如城内
+                                 @"houseurban" : @"", // 片区:比如钟楼
+                                 @"fitment_type" : @"", // 装修类型:比如精装
+                                 @"house_floor_from" : @"", // 指定最小楼层
+                                 @"house_floor_to" : @"", // 指定最大楼层
+                                 @"sale_value_from" : @"", // 最低价格,单位万
+                                 @"sale_value_to" : @"", // 最高价格,单位万
+                                 @"lease_value_from" : @"",  // 最低价格,单位元/月
+                                 @"lease_value_to" : @"", // 最高价格,单位元/月
+                                 @"Keyword" : @"", // 搜索关键字
+                                 };
     [NetWorkManager PostWithApiName:API_HOUSE_LIST parameters:parameters success:
      ^(id responseObject)
      {
