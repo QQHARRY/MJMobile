@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dhG-tr-cMx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dhG-tr-cMx">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--Bind View Controller-->
@@ -524,7 +524,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rkK-7q-kv2">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rkK-7q-kv2">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
@@ -536,6 +536,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rkK-7q-kv2" firstAttribute="leading" secondItem="TA2-IZ-yPO" secondAttribute="leading" id="CkV-QF-Cs5"/>
+                            <constraint firstAttribute="bottom" secondItem="rkK-7q-kv2" secondAttribute="bottom" id="EHN-qe-fj5"/>
+                            <constraint firstAttribute="trailing" secondItem="rkK-7q-kv2" secondAttribute="trailing" id="FpC-FN-4er"/>
+                            <constraint firstItem="rkK-7q-kv2" firstAttribute="top" secondItem="TA2-IZ-yPO" secondAttribute="top" id="sHM-rb-1cU"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hj5-dp-Rvc"/>
                     <connections>
@@ -1183,7 +1189,6 @@
         <!--House View Controller-->
         <scene sceneID="heT-6U-2K7">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cOg-uB-ZgU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Ao1-QP-kOm" customClass="HouseViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kGJ-xw-Bgq"/>
@@ -1196,6 +1201,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="oQA-ad-BbV"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cOg-uB-ZgU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1641.75" y="57"/>
         </scene>
@@ -1261,6 +1267,9 @@
                                     <constraint firstItem="EzP-Yz-UWI" firstAttribute="trailing" secondItem="sqT-Xq-Bd8" secondAttribute="trailing" id="lrx-Hl-j6U"/>
                                     <constraint firstItem="akS-Vv-KY6" firstAttribute="leading" secondItem="sqT-Xq-Bd8" secondAttribute="trailing" constant="20" id="y2l-3T-93c"/>
                                 </constraints>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="65" width="400" height="121"/>
+                                </variation>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="登录名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ny2-wV-DlE">
                                 <rect key="frame" x="15" y="202" width="75" height="21"/>
