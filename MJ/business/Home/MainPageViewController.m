@@ -54,25 +54,38 @@
 
 -(void)setNavBarTitleTextAttribute
 {
-    NSDictionary* attrs = @{NSForegroundColorAttributeName: [UIColor whiteColor],
-                            NSFontAttributeName: [UIFont systemFontOfSize:[UIFont systemFontSize]],
-                            };
-    [self.navigationController.navigationBar setTitleTextAttributes:attrs];
+    
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"ButtonBig"] forBarMetrics:UIBarMetricsDefault];
+//    NSDictionary* attrs = @{NSForegroundColorAttributeName: [UIColor whiteColor],
+//                            NSFontAttributeName: [UIFont systemFontOfSize:[UIFont systemFontSize]],
+//                            };
+//    [self.navigationController.navigationBar setTitleTextAttributes:attrs];
     
 }
 
 -(void)initBadgeNavBarWithUnReadAlertCount:(int)alertCnt andMsgCount:(int)msgCnt
 {
+    //self.navigationItem.rightBarButtonItem.
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+    if ([[UIDevice currentDevice].systemVersion floatValue] > 7.0)
+    {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    }
+#endif
+    
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
     NSString*unReadAlertStr =(alertCnt<=0)?@"":[NSString stringWithFormat:@"%d",alertCnt];
     NSString*unReadMsgStr =(msgCnt<=0)?@"":[NSString stringWithFormat:@"%d",msgCnt];
 
     
-    UIImage*alertImage = [badgeImageFactory getBadgeImageFromImage:[UIImage imageNamed:@"unreadAlert"] andText:unReadAlertStr];
-    UIImage*msgImage = [badgeImageFactory getBadgeImageFromImage:[UIImage imageNamed:@"unreadMessage"] andText:unReadMsgStr];
-    
+    UIImage*alertImage = [badgeImageFactory getBadgeImageFromImage:[UIImage imageNamed:@"ButtonUnreadAlert"] andText:unReadAlertStr];
+    UIImage*msgImage = [badgeImageFactory getBadgeImageFromImage:[UIImage imageNamed:@"ButtonUnreadMessage"] andText:unReadMsgStr];
     
     [self setupLeftMenuButtonOfVC:self Image:msgImage action:@selector(leftMsgBtnSelected:)];
     [self setupRightMenuButtonOfVC:self Image:alertImage action:@selector(rightAlertBtnSelected:)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc ] initWithTitle:@"提醒" style:UIBarButtonItemStylePlain target:self action:@selector(leftMsgBtnSelected:)];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc ] initWithTitle:@"站内信" style:UIBarButtonItemStylePlain target:self action:@selector(rightAlertBtnSelected:)];
 }
 
 

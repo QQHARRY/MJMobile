@@ -19,9 +19,9 @@
     UIImageView*imgV = [[UIImageView alloc] initWithImage:image];
     
     CGRect rctOld = [imgV frame];
-    [imgV  setFrame:CGRectMake(0, imgV.frame.size.height*(1-BADGEEXTEND), imgV.frame.size.width*BADGEEXTEND, imgV.frame.size.height*BADGEEXTEND)];
+    [imgV  setFrame:CGRectMake(0, imgV.frame.size.height*(1-BADGEEXTEND), imgV.frame.size.width, imgV.frame.size.height)];
     
-    UIView*viewTmp = [[UIView alloc] initWithFrame:CGRectMake(0, 0, rctOld.size.width, rctOld.size.height)];
+    UIView*viewTmp = [[UIView alloc] initWithFrame:CGRectMake(0, 0, rctOld.size.width/BADGEEXTEND, rctOld.size.height/BADGEEXTEND)];
     
     
     JSBadgeView *badgeView = [[JSBadgeView alloc] initWithParentView:imgV alignment:JSBadgeViewAlignmentTopRight];
