@@ -894,31 +894,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="VmE-3v-KDj">
-                                <rect key="frame" x="250" y="121" width="100" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="TE2-gx-WHP"/>
-                                    <constraint firstAttribute="height" constant="100" id="eVd-CG-dG7"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="美嘉系统iOS版:V1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLc-GH-X9v">
                                 <rect key="frame" x="186" y="238" width="228" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="132.5" y="238" width="135" height="18"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="CopyRight:Simtoon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XHT-vd-lnZ">
                                 <rect key="frame" x="159" y="267" width="283" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="133" y="264" width="134" height="18"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="VmE-3v-KDj" secondAttribute="centerX" id="JhP-9t-bt7"/>
-                            <constraint firstItem="VmE-3v-KDj" firstAttribute="top" secondItem="WKj-90-Rz5" secondAttribute="top" constant="121" id="JtU-08-7Wf"/>
-                            <constraint firstItem="HLc-GH-X9v" firstAttribute="top" secondItem="VmE-3v-KDj" secondAttribute="bottom" constant="17" id="YdA-q6-fRj"/>
                             <constraint firstAttribute="centerX" secondItem="XHT-vd-lnZ" secondAttribute="centerX" id="YoT-1T-eDK"/>
                             <constraint firstAttribute="centerX" secondItem="HLc-GH-X9v" secondAttribute="centerX" id="b7l-Ev-SCe"/>
                             <constraint firstItem="XHT-vd-lnZ" firstAttribute="top" secondItem="HLc-GH-X9v" secondAttribute="bottom" constant="8" id="if4-CE-Rq1"/>
