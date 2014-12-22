@@ -21,11 +21,9 @@
     [super viewDidLoad];
    
 
+    [self.webView setScalesPageToFit:YES];
 
-    UIWebView*webV = [[UIWebView alloc ] initWithFrame:self.view.frame];
-    [webV setScalesPageToFit:YES];
-    [self.view addSubview:webV];
-    [webV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
 }
 
 

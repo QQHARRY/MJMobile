@@ -27,6 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.opinionForAgreement.delegate = self;
     opinionForAgreement.layer.cornerRadius=1;
     opinionForAgreement.layer.masksToBounds=YES;
     opinionForAgreement.layer.borderColor=[[UIColor darkGrayColor]CGColor];
@@ -34,6 +35,24 @@
     
     [self initUI];
     [self initConstraint];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.opinionForAgreement resignFirstResponder];
+}
+
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    
+    if ([text isEqualToString:@"\n"]) {
+        
+        [textView resignFirstResponder];
+        return NO;
+    }
+    
+    return YES;
 }
 -(void)initUI
 {
@@ -67,15 +86,15 @@
 -(void)initConstraint
 {
  //   self.historyNodeTableView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.opinionForAgreement.translatesAutoresizingMaskIntoConstraints = NO;
+//    self.opinionForAgreement.translatesAutoresizingMaskIntoConstraints = NO;
     
 //    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.historyNodeTableView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeHeight multiplier:0.45 constant:0]];
 //    
 //    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.historyNodeTableView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
 //    
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.opinionForAgreement attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.95 constant:0]];
-
-   [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.opinionForAgreement attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeHeight multiplier:0.2 constant:0]];
+//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.opinionForAgreement attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.95 constant:0]];
+//
+//   [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.opinionForAgreement attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeHeight multiplier:0.2 constant:0]];
     
 //    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.opinionLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:historyNodeTableView attribute:NSLayoutAttributeBottom multiplier:0 constant:5]];
     
@@ -203,6 +222,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.opinionForAgreement resignFirstResponder];
     if (indexPath.section == 2 && indexPath.row == 0)
     {
         [self performSegueWithIdentifier:@"toChooseAssistDepartment" sender:self];

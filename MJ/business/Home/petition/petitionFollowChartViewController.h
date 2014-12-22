@@ -12,6 +12,7 @@
 
 
 @property(strong,nonatomic)NSString*url;
+@property (strong, nonatomic) IBOutlet UIWebView *webView;
 
 
 @end

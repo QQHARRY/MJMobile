@@ -11,6 +11,7 @@
 #import "JSBadgeView.h"
 #import "myBriefTableViewCell.h"
 #import "person.h"
+#import "AppDelegate.h"
 
 @interface MoreViewController ()
 
@@ -61,28 +62,27 @@
     }
     else if(indexPath.row == 6)
     {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"您确定要退出登录?"
-                                                                       message:@""
-                                                                preferredStyle:UIAlertControllerStyleAlert];
+
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"确定退出登录" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alert show];
         
-        [alert addAction:[UIAlertAction actionWithTitle:@"确定"
-                                                  style:UIAlertActionStyleDefault
-                                                handler:^(UIAlertAction *action)
-                          {
-                              [person cleanMe];
-                              [self performSegueWithIdentifier:@"backToLogin" sender:self];
-                              
-                          }]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"取消"
-                                                  style:UIAlertActionStyleDefault
-                                                handler:^(UIAlertAction *action)
-                          {
-                              
-                          }]];
         
-        [self presentViewController:alert animated:YES completion:nil];
     }
     
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [self toLoginPage];
+    }
+}
+
+-(void)toLoginPage
+{
+    AppDelegate*app = [[UIApplication sharedApplication] delegate];
+    [app loadMainSotry];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

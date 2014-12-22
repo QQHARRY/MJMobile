@@ -66,19 +66,9 @@
 -(void)initConstrains
 {
     self.company.translatesAutoresizingMaskIntoConstraints = NO;
-//    self.department.translatesAutoresizingMaskIntoConstraints = NO;
-//    self.character.translatesAutoresizingMaskIntoConstraints = NO;
-//    self.lastLoginIP.translatesAutoresizingMaskIntoConstraints = NO;
-//    self.lastLoginTime.translatesAutoresizingMaskIntoConstraints = NO;
 
-    
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.company attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.6 constant:0]];
-    
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.myPhoto attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:0 constant:15]];
-    
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoImg attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.25 constant:0]];
-//    
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoImg attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.25 constant:0]];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -227,7 +217,7 @@
     
     if (accName.length ==0 || phoneNumMobile.length == 0 || chSign.length == 0 || chInfo.length == 0)
     {
-        [UtilFun presentPopViewControllerWithTitle:@"信息填写不全" Message:@"请填写完成" SimpleAction:@"OK" Sender:self];
+        PRSENTALERT(@"信息填写不全",@"请填写完成",@"OK",self);
         return;
     }
     

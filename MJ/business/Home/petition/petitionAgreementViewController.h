@@ -10,7 +10,7 @@
 #import "petitionDetail.h"
 #import "chooseAssistDeptTableViewController.h"
 
-@interface petitionAgreementViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,SelectionDelegate>
+@interface petitionAgreementViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,SelectionDelegate,UITextViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *historyNodeTableView;
 @property (strong, nonatomic) IBOutlet UIButton *agreeBtn;
 @property (strong, nonatomic) IBOutlet UIButton *disAgreeBtn;
