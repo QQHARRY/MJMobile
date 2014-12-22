@@ -13,6 +13,7 @@
 #import "Macro.h"
 #import "NetWorkManager.h"
 #import "person.h"
+#import "AppDelegate.h"
 @interface LoginViewController ()
 
 @end
@@ -26,7 +27,11 @@
     // Do any additional setup after loading the view.
     
 }
-
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.idTxt resignFirstResponder];
+    [self.pwdTxt resignFirstResponder];
+}
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -34,23 +39,23 @@
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self initConstraint];
+    //[self initConstraint];
     
     if (![UtilFun hasFirstBinded])
     {
-        [self performSegueWithIdentifier:@"toBindView" sender:self];
+        //[self performSegueWithIdentifier:@"firstLoginToBindView" sender:self];
     }
 }
 -(void)initConstraint
 {
-    self.idTxt.translatesAutoresizingMaskIntoConstraints = NO;
+//    self.idTxt.translatesAutoresizingMaskIntoConstraints = NO;
 
     //[self.view constraints];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.idTxt attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.85 constant:0]];
+//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.idTxt attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.85 constant:0]];
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoImg attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.25 constant:0]];
-    
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoImg attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.25 constant:0]];
+//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoImg attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.25 constant:0]];
+//    
+//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoImg attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.25 constant:0]];
     
 }
 
@@ -103,18 +108,15 @@
 - (IBAction)loginBtnClicked:(id)sender {
 
     NSString* strID = self.idTxt.text;
-    //NSString* strID = @"XA-1200166";
     
     NSString* strPwd = self.pwdTxt.text;
-    //NSString* strPwd = @"1";
     if ([strID length] <= 0 || [strPwd length] <= 0)
     {
-        [UtilFun presentPopViewControllerWithTitle:@"输入错误" Message:@"请输入正确的用户名和密码" SimpleAction:@"OK" Sender:self];
+        PRSENTALERT(@"输入错误",@"用户名和密码不能为空",@"OK",self);
         return;
     }
     
     
-    //NSDictionary *parameters = @{@"job_no":@"XA-1200166", @"acc_password": @"1",@"DeviceID" : @"justfortest",@"DeviceType" : @"0"};
     NSDictionary *parameters = @{@"job_no":strID , @"acc_password": strPwd,@"DeviceID" : [UtilFun getUDID],@"DeviceType" : DEVICE_IOS};
     [NetWorkManager PostWithApiName:API_LOGIN parameters:parameters success:
      ^(id responseObject)
@@ -126,7 +128,8 @@
          
          if (Status == nil || [Status  length] <= 0)
          {
-             [UtilFun presentPopViewControllerWithTitle:SERVER_NONCOMPLIANCE Message:SERVER_NONCOMPLIANCE_INFO SimpleAction:@"OK" Sender:self];
+             PRSENTALERT(SERVER_NONCOMPLIANCE,SERVER_NONCOMPLIANCE_INFO,@"OK",self);
+             return;
          }
          else
          {
@@ -135,44 +138,31 @@
              {
                  case 0:
                  {
- 
+                     
                      NSArray*arrTmp =[resultDic objectForKey:@"userinfo"];
                      
                      [[person initMe:[arrTmp objectAtIndex:0]] setPassword:strPwd];
                      [self writeDefaultMsg];
-                    [self performSegueWithIdentifier:@"loginOK" sender:self];
-                     
-                     
-                     
+                     [self performSegueWithIdentifier:@"LoginToMainPage" sender:self];
                      return;
                  }
                      break;
                  case 1:
                  {
-                     [UtilFun presentPopViewControllerWithTitle:@"登录失败" Message:@"用户名或密码错误,请重新输入" SimpleAction:@"OK" Sender:self];
+                     PRSENTALERT(@"登录失败",@"用户名或密码错误,请重新输入",@"OK",self);
                      return;
                  }
                      break;
                  case 2:
                  {
-                     [UtilFun setFirstBinded];
-                     [UtilFun presentPopViewControllerWithTitle:@"登录失败" Message:@"尚未审批通过，请耐心等待" SimpleAction:@"OK"  Handler:^(UIAlertAction *action)
-                      {
-                         
-                      }
-                                                         Sender:self];
-                     
+                     PRSENTALERT(@"登录失败",@"尚未审批通过，请耐心等待",@"OK",self);
+                     return;
                  }
                      break;
                  case 3:
                  {
-                     [UtilFun setFirstBinded];
-                     [UtilFun presentPopViewControllerWithTitle:@"登录失败" Message:@"设备尚未绑定，请绑定" SimpleAction:@"OK"  Handler:^(UIAlertAction *action)
-                      {
-                          
-                      }
-                                                         Sender:self];
-                     
+                     PRSENTALERT(@"登录失败",@"此设备尚未绑定该账号，请先绑定再登陆",@"OK",self);
+                     return;
                  }
                      break;
                  default:
@@ -185,10 +175,16 @@
      {
          HIDEHUD(self.view);
          NSString*errorStr = [NSString stringWithFormat:@"%@",error];
-         [UtilFun presentPopViewControllerWithTitle:SERVER_NONCOMPLIANCE Message:errorStr SimpleAction:@"OK" Sender:self];
+
+         PRSENTALERT(SERVER_NONCOMPLIANCE,errorStr,@"OK",self);
          
      }];
     
     SHOWHUD(self.view);
+}
+
+- (IBAction)applyForBindingBtnClicked:(id)sender {
+    AppDelegate*app = [[UIApplication sharedApplication] delegate];
+    [app loadBindStory];
 }
 @end

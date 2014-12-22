@@ -46,10 +46,19 @@
 {
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden = NO;
-
+    [self setNavBarTitleTextAttribute];
     [self initBadgeNavBarWithUnReadAlertCount:0 andMsgCount:0];
     [self initTable];
     [self loadData];
+}
+
+-(void)setNavBarTitleTextAttribute
+{
+    NSDictionary* attrs = @{NSForegroundColorAttributeName: [UIColor whiteColor],
+                            NSFontAttributeName: [UIFont systemFontOfSize:[UIFont systemFontSize]],
+                            };
+    [self.navigationController.navigationBar setTitleTextAttributes:attrs];
+    
 }
 
 -(void)initBadgeNavBarWithUnReadAlertCount:(int)alertCnt andMsgCount:(int)msgCnt

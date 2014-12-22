@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "UtilFun.h"
 
 @interface AppDelegate ()
 
@@ -17,8 +18,37 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    if (![UtilFun hasFirstBinded])
+    {
+        [self loadBindStory];
+    }
+    else
+    {
+        [self loadMainSotry];
+    }
+    
+    [self.window makeKeyAndVisible];
+    
+    
     return YES;
 }
+-(void)loadBindStory
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"bind" bundle:[NSBundle mainBundle]];
+    
+    
+    self.window.rootViewController=[storyboard instantiateInitialViewController];
+}
+-(void)loadMainSotry
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+
+    
+    self.window.rootViewController=[storyboard instantiateInitialViewController];
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

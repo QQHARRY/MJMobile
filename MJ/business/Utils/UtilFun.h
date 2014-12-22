@@ -12,6 +12,28 @@
 
 #define SHOWHUD(v) ([UtilFun showHUD:v]);
 #define HIDEHUD(v) ([UtilFun hideHUD:v]);
+#define PRSENTALERT(title,msg,action,sender)\
+if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)\
+{\
+    [UtilFun presentPopViewControllerWithTitle:title Message:msg SimpleAction:action Sender:sender];\
+}\
+else\
+{\
+    UIAlertView*alertView = [[UIAlertView alloc] initWithTitle:title message:msg delegate:sender cancelButtonTitle:action otherButtonTitles:nil, nil];\
+    [alertView show];\
+}\
+
+
+#define PRSENTALERTWITHHANDER(title,msg,action,sender,hander)\
+if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)\
+{\
+[UtilFun presentPopViewControllerWithTitle:title Message:msg SimpleAction:action Handler:hander Sender:sender];\
+}\
+else\
+{\
+UIAlertView*alertView = [[UIAlertView alloc] initWithTitle:title message:msg delegate:sender cancelButtonTitle:action otherButtonTitles:nil, nil];\
+[alertView show];\
+}\
 
 
 @interface UtilFun : NSObject

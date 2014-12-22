@@ -14,5 +14,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *pwdTxt;
 @property (strong, nonatomic) IBOutlet UISwitch *autoLoginSwitchBtn;
 - (IBAction)loginBtnClicked:(id)sender;
+- (IBAction)applyForBindingBtnClicked:(id)sender;
 
 @end
