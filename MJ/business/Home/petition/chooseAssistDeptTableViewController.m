@@ -113,7 +113,7 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"chooseAssistDeptCell" forIndexPath:indexPath];
     
     // Configure the cell...
     NSDictionary*dic = [deptArr objectAtIndex:indexPath.row];
