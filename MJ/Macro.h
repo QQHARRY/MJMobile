@@ -2,6 +2,7 @@
 
 
 // Server
+#define SERVER_ADD @"http://115.28.76.58:9090/KWOA/"
 #define SERVER_URL @"http://115.28.76.58:9090/KWOA/device/"
 #define SERVER_URL_NOAPI @"http://115.28.76.58:9090/KWOA"
 // API
@@ -37,9 +38,17 @@
 //意见反馈
 #define SUGGESTION_FEEDBACK @"other/sendAdvise"
 
+//商店
+//获取个人/门店物品列表
+#define GET_SHOP_ITEM_LIST @"shopping/getPersonalDeptGoodsList"
+#define ADD_ITEM_TO_CART @"shopping/addPersonalDeptOrder"
+#define GET_ORDER_LIST @"shopping/getPersonalDeptOrderList"
+#define CANCEL_ORDER_LIST @"shopping/cancelPersonalDeptOrderBill"
+#define CONFIRM_ORDER_LIST @"shopping/addPersonalDeptBill"
 
 //  19.获取房源简要信息列表
 #define API_HOUSE_LIST @"business/getRealEstateBriefList"
+
 
 
 
@@ -52,6 +61,6 @@
 
 
 
-#define SERVER_NONCOMPLIANCE @"服务器返回数据错误"
+#define SERVER_NONCOMPLIANCE @"服务器返回错误"
 #define SERVER_NONCOMPLIANCE_INFO @"服务器返回的数据不符合要求"
 #define SERVER_NONCOMPLIANCE_UNAVALIABLE @"连接服务器失败"

@@ -6,10 +6,7 @@
          contextName = "-[ContactListTableViewController expandBtnClicked:]:ContactListTableViewController.m">
       </ContextState>
       <ContextState
-         contextName = "+[contactDataManager getDeptArr:superUnit:]:contactDataManager.m">
-      </ContextState>
-      <ContextState
-         contextName = "+[contactDataManager getSubDeptOfUnit:Success:failure:]:contactDataManager.m">
+         contextName = "-[ShopTableViewController tableView:cellForRowAtIndexPath:]:ShopTableViewController.m">
       </ContextState>
       <ContextState
          contextName = "+[contactDataManager WaitForDataB4ExpandUnit:Success:failure:]:contactDataManager.m">
@@ -21,6 +18,23 @@
       </ContextState>
       <ContextState
          contextName = "+[contactDataManager getDeptArr:]:contactDataManager.m">
+      </ContextState>
+      <ContextState
+         contextName = "__62+[shopBizManager getListByType:From:To:Count:Success:failure:]_block_invoke:shopBizManager.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "parameters">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "+[contactDataManager getDeptArr:superUnit:]:contactDataManager.m">
+      </ContextState>
+      <ContextState
+         contextName = "+[contactDataManager getSubDeptOfUnit:Success:failure:]:contactDataManager.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[ShopCollectionViewController collectionView:cellForItemAtIndexPath:]:ShopCollectionViewController.m">
       </ContextState>
       <ContextState
          contextName = "__55+[contactDataManager getSubDeptOfUnit:Success:failure:]_block_invoke:contactDataManager.m">

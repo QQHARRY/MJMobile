@@ -52,6 +52,10 @@
     {
         [self performSegueWithIdentifier:@"showContactList" sender:self];
     }
+    else if(indexPath.row == 2)
+    {
+        [self performSegueWithIdentifier:@"showShopRootView" sender:self];
+    }
     else if(indexPath.row == 3)
     {
         [self performSegueWithIdentifier:@"showAboutView" sender:self];
@@ -142,6 +146,7 @@
             cell = [[UITableViewCell alloc ] init];
         }
         
+        [cell.textLabel setFont:[UIFont systemFontOfSize:14]];
         if(indexPath.row == 1)
         {
             cell.textLabel.text = @"企业通讯录";
