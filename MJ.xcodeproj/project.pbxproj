@@ -29,7 +29,6 @@
 		4A51374B1A3B2AAA007B504B /* dic2Object.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A51374A1A3B2AAA007B504B /* dic2Object.m */; };
 		4A5500C91A3BF32F00E5307D /* AnncDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5500C71A3BF32F00E5307D /* AnncDetailsViewController.m */; };
 		4A5665291A4BDFF800C3BA22 /* editOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5665281A4BDFF800C3BA22 /* editOrderViewController.m */; };
-		4A56652D1A4BF3CB00C3BA22 /* ViewPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A56652C1A4BF3CB00C3BA22 /* ViewPagerController.m */; };
 		4A5665301A4BF43700C3BA22 /* MessagePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A56652F1A4BF43700C3BA22 /* MessagePageViewController.m */; };
 		4A5665391A4BF4E400C3BA22 /* MessageDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5665371A4BF4E400C3BA22 /* MessageDetailsViewController.m */; };
 		4A56653A1A4BF4E400C3BA22 /* MessageDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5665381A4BF4E400C3BA22 /* MessageDetailsViewController.xib */; };
@@ -41,6 +40,7 @@
 		4A56654F1A4C06EE00C3BA22 /* messageObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A56654E1A4C06EE00C3BA22 /* messageObj.m */; };
 		4A5665531A4C127A00C3BA22 /* sendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5665511A4C127A00C3BA22 /* sendMessageViewController.m */; };
 		4A5665541A4C127A00C3BA22 /* sendMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5665521A4C127A00C3BA22 /* sendMessageViewController.xib */; };
+		4A5665571A4C1C4100C3BA22 /* ViewPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5665561A4C1C4100C3BA22 /* ViewPagerController.m */; };
 		4A5D23B51A48522100546698 /* shopRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D23B41A48522100546698 /* shopRootTableViewController.m */; };
 		4A5D243C1A4A62A800546698 /* ShopTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D243B1A4A62A800546698 /* ShopTableViewController.m */; };
 		4A5D243F1A4A6E9C00546698 /* ShopItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D243E1A4A6E9C00546698 /* ShopItemTableViewCell.m */; };
@@ -174,8 +174,6 @@
 		4A5500C71A3BF32F00E5307D /* AnncDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnncDetailsViewController.m; sourceTree = "<group>"; };
 		4A5665271A4BDFF800C3BA22 /* editOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editOrderViewController.h; sourceTree = "<group>"; };
 		4A5665281A4BDFF800C3BA22 /* editOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editOrderViewController.m; sourceTree = "<group>"; };
-		4A56652B1A4BF3CB00C3BA22 /* ViewPagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPagerController.h; sourceTree = "<group>"; };
-		4A56652C1A4BF3CB00C3BA22 /* ViewPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPagerController.m; sourceTree = "<group>"; };
 		4A56652E1A4BF43700C3BA22 /* MessagePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagePageViewController.h; sourceTree = "<group>"; };
 		4A56652F1A4BF43700C3BA22 /* MessagePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagePageViewController.m; sourceTree = "<group>"; };
 		4A5665361A4BF4E400C3BA22 /* MessageDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDetailsViewController.h; sourceTree = "<group>"; };
@@ -194,6 +192,8 @@
 		4A5665501A4C127A00C3BA22 /* sendMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sendMessageViewController.h; sourceTree = "<group>"; };
 		4A5665511A4C127A00C3BA22 /* sendMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sendMessageViewController.m; sourceTree = "<group>"; };
 		4A5665521A4C127A00C3BA22 /* sendMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = sendMessageViewController.xib; sourceTree = "<group>"; };
+		4A5665551A4C1C4100C3BA22 /* ViewPagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPagerController.h; sourceTree = "<group>"; };
+		4A5665561A4C1C4100C3BA22 /* ViewPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPagerController.m; sourceTree = "<group>"; };
 		4A5D23B31A48522100546698 /* shopRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shopRootTableViewController.h; sourceTree = "<group>"; };
 		4A5D23B41A48522100546698 /* shopRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = shopRootTableViewController.m; sourceTree = "<group>"; };
 		4A5D243A1A4A62A800546698 /* ShopTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopTableViewController.h; sourceTree = "<group>"; };
@@ -476,8 +476,8 @@
 		4A56652A1A4BF39700C3BA22 /* message */ = {
 			isa = PBXGroup;
 			children = (
-				4A56652B1A4BF3CB00C3BA22 /* ViewPagerController.h */,
-				4A56652C1A4BF3CB00C3BA22 /* ViewPagerController.m */,
+				4A5665551A4C1C4100C3BA22 /* ViewPagerController.h */,
+				4A5665561A4C1C4100C3BA22 /* ViewPagerController.m */,
 				4A56652E1A4BF43700C3BA22 /* MessagePageViewController.h */,
 				4A56652F1A4BF43700C3BA22 /* MessagePageViewController.m */,
 				4A5665401A4C025100C3BA22 /* MessageTableViewController.h */,
@@ -1025,6 +1025,7 @@
 				4A8D02131A37F78400EA59EA /* JSBadgeView.m in Sources */,
 				4A5D24511A4AF21000546698 /* orderTableViewCell.m in Sources */,
 				4A2EE11A1A41B41D00899976 /* petitionDictionary.m in Sources */,
+				4A5665571A4C1C4100C3BA22 /* ViewPagerController.m in Sources */,
 				4AD795251A218C4A00DEC779 /* AFURLRequestSerialization.m in Sources */,
 				4A5665291A4BDFF800C3BA22 /* editOrderViewController.m in Sources */,
 				4A8D01F91A36FB8000EA59EA /* internalMessageManager.m in Sources */,
@@ -1044,7 +1045,6 @@
 				B9FF4B441A245FB300FE413E /* LoginViewController.m in Sources */,
 				4A5665391A4BF4E400C3BA22 /* MessageDetailsViewController.m in Sources */,
 				4AB0EFAF1A308CED00C24A44 /* UtilFun.m in Sources */,
-				4A56652D1A4BF3CB00C3BA22 /* ViewPagerController.m in Sources */,
 				4AD795221A218C4A00DEC779 /* AFNetworkReachabilityManager.m in Sources */,
 				4A40C2211A4175BC00944AB2 /* petionDetailsItemTableViewCell.m in Sources */,
 				4AD7955C1A218DF100DEC779 /* GTCheckBox.m in Sources */,
