@@ -29,6 +29,18 @@
 		4A51374B1A3B2AAA007B504B /* dic2Object.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A51374A1A3B2AAA007B504B /* dic2Object.m */; };
 		4A5500C91A3BF32F00E5307D /* AnncDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5500C71A3BF32F00E5307D /* AnncDetailsViewController.m */; };
 		4A5665291A4BDFF800C3BA22 /* editOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5665281A4BDFF800C3BA22 /* editOrderViewController.m */; };
+		4A56652D1A4BF3CB00C3BA22 /* ViewPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A56652C1A4BF3CB00C3BA22 /* ViewPagerController.m */; };
+		4A5665301A4BF43700C3BA22 /* MessagePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A56652F1A4BF43700C3BA22 /* MessagePageViewController.m */; };
+		4A5665391A4BF4E400C3BA22 /* MessageDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5665371A4BF4E400C3BA22 /* MessageDetailsViewController.m */; };
+		4A56653A1A4BF4E400C3BA22 /* MessageDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5665381A4BF4E400C3BA22 /* MessageDetailsViewController.xib */; };
+		4A5665431A4C025100C3BA22 /* MessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5665411A4C025100C3BA22 /* MessageTableViewController.m */; };
+		4A5665441A4C025100C3BA22 /* MessageTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5665421A4C025100C3BA22 /* MessageTableViewController.xib */; };
+		4A5665481A4C033D00C3BA22 /* MessageBriefTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5665461A4C033D00C3BA22 /* MessageBriefTableViewCell.m */; };
+		4A5665491A4C033D00C3BA22 /* MessageBriefTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5665471A4C033D00C3BA22 /* MessageBriefTableViewCell.xib */; };
+		4A56654C1A4C05C300C3BA22 /* messageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A56654B1A4C05C300C3BA22 /* messageManager.m */; };
+		4A56654F1A4C06EE00C3BA22 /* messageObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A56654E1A4C06EE00C3BA22 /* messageObj.m */; };
+		4A5665531A4C127A00C3BA22 /* sendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5665511A4C127A00C3BA22 /* sendMessageViewController.m */; };
+		4A5665541A4C127A00C3BA22 /* sendMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5665521A4C127A00C3BA22 /* sendMessageViewController.xib */; };
 		4A5D23B51A48522100546698 /* shopRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D23B41A48522100546698 /* shopRootTableViewController.m */; };
 		4A5D243C1A4A62A800546698 /* ShopTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D243B1A4A62A800546698 /* ShopTableViewController.m */; };
 		4A5D243F1A4A6E9C00546698 /* ShopItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D243E1A4A6E9C00546698 /* ShopItemTableViewCell.m */; };
@@ -162,6 +174,26 @@
 		4A5500C71A3BF32F00E5307D /* AnncDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnncDetailsViewController.m; sourceTree = "<group>"; };
 		4A5665271A4BDFF800C3BA22 /* editOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editOrderViewController.h; sourceTree = "<group>"; };
 		4A5665281A4BDFF800C3BA22 /* editOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editOrderViewController.m; sourceTree = "<group>"; };
+		4A56652B1A4BF3CB00C3BA22 /* ViewPagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPagerController.h; sourceTree = "<group>"; };
+		4A56652C1A4BF3CB00C3BA22 /* ViewPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPagerController.m; sourceTree = "<group>"; };
+		4A56652E1A4BF43700C3BA22 /* MessagePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagePageViewController.h; sourceTree = "<group>"; };
+		4A56652F1A4BF43700C3BA22 /* MessagePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagePageViewController.m; sourceTree = "<group>"; };
+		4A5665361A4BF4E400C3BA22 /* MessageDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDetailsViewController.h; sourceTree = "<group>"; };
+		4A5665371A4BF4E400C3BA22 /* MessageDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDetailsViewController.m; sourceTree = "<group>"; };
+		4A5665381A4BF4E400C3BA22 /* MessageDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageDetailsViewController.xib; sourceTree = "<group>"; };
+		4A5665401A4C025100C3BA22 /* MessageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewController.h; sourceTree = "<group>"; };
+		4A5665411A4C025100C3BA22 /* MessageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewController.m; sourceTree = "<group>"; };
+		4A5665421A4C025100C3BA22 /* MessageTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageTableViewController.xib; sourceTree = "<group>"; };
+		4A5665451A4C033D00C3BA22 /* MessageBriefTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBriefTableViewCell.h; sourceTree = "<group>"; };
+		4A5665461A4C033D00C3BA22 /* MessageBriefTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBriefTableViewCell.m; sourceTree = "<group>"; };
+		4A5665471A4C033D00C3BA22 /* MessageBriefTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageBriefTableViewCell.xib; sourceTree = "<group>"; };
+		4A56654A1A4C05C300C3BA22 /* messageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = messageManager.h; sourceTree = "<group>"; };
+		4A56654B1A4C05C300C3BA22 /* messageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = messageManager.m; sourceTree = "<group>"; };
+		4A56654D1A4C06EE00C3BA22 /* messageObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = messageObj.h; sourceTree = "<group>"; };
+		4A56654E1A4C06EE00C3BA22 /* messageObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = messageObj.m; sourceTree = "<group>"; };
+		4A5665501A4C127A00C3BA22 /* sendMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sendMessageViewController.h; sourceTree = "<group>"; };
+		4A5665511A4C127A00C3BA22 /* sendMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sendMessageViewController.m; sourceTree = "<group>"; };
+		4A5665521A4C127A00C3BA22 /* sendMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = sendMessageViewController.xib; sourceTree = "<group>"; };
 		4A5D23B31A48522100546698 /* shopRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shopRootTableViewController.h; sourceTree = "<group>"; };
 		4A5D23B41A48522100546698 /* shopRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = shopRootTableViewController.m; sourceTree = "<group>"; };
 		4A5D243A1A4A62A800546698 /* ShopTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopTableViewController.h; sourceTree = "<group>"; };
@@ -441,6 +473,33 @@
 			path = annc;
 			sourceTree = "<group>";
 		};
+		4A56652A1A4BF39700C3BA22 /* message */ = {
+			isa = PBXGroup;
+			children = (
+				4A56652B1A4BF3CB00C3BA22 /* ViewPagerController.h */,
+				4A56652C1A4BF3CB00C3BA22 /* ViewPagerController.m */,
+				4A56652E1A4BF43700C3BA22 /* MessagePageViewController.h */,
+				4A56652F1A4BF43700C3BA22 /* MessagePageViewController.m */,
+				4A5665401A4C025100C3BA22 /* MessageTableViewController.h */,
+				4A5665411A4C025100C3BA22 /* MessageTableViewController.m */,
+				4A5665421A4C025100C3BA22 /* MessageTableViewController.xib */,
+				4A5665361A4BF4E400C3BA22 /* MessageDetailsViewController.h */,
+				4A5665371A4BF4E400C3BA22 /* MessageDetailsViewController.m */,
+				4A5665381A4BF4E400C3BA22 /* MessageDetailsViewController.xib */,
+				4A5665451A4C033D00C3BA22 /* MessageBriefTableViewCell.h */,
+				4A5665461A4C033D00C3BA22 /* MessageBriefTableViewCell.m */,
+				4A5665471A4C033D00C3BA22 /* MessageBriefTableViewCell.xib */,
+				4A56654A1A4C05C300C3BA22 /* messageManager.h */,
+				4A56654B1A4C05C300C3BA22 /* messageManager.m */,
+				4A56654D1A4C06EE00C3BA22 /* messageObj.h */,
+				4A56654E1A4C06EE00C3BA22 /* messageObj.m */,
+				4A5665501A4C127A00C3BA22 /* sendMessageViewController.h */,
+				4A5665511A4C127A00C3BA22 /* sendMessageViewController.m */,
+				4A5665521A4C127A00C3BA22 /* sendMessageViewController.xib */,
+			);
+			path = message;
+			sourceTree = "<group>";
+		};
 		4A8D01CC1A33023900EA59EA /* ILBarButtonItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -704,6 +763,7 @@
 		B9FF4B311A245FB300FE413E /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				4A56652A1A4BF39700C3BA22 /* message */,
 				4A40C2151A41730600944AB2 /* petition */,
 				4ABC221A1A3C30880017FD94 /* alert */,
 				4A5500C51A3BF18300E5307D /* annc */,
@@ -864,15 +924,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A5665541A4C127A00C3BA22 /* sendMessageViewController.xib in Resources */,
 				4ABC22221A3C3F940017FD94 /* LoadMoreTableViewCell.xib in Resources */,
 				4A8D01E41A369F2E00EA59EA /* PetitionTableViewCell.xib in Resources */,
 				4AD794681A208F4400DEC779 /* Main.storyboard in Resources */,
 				4AFC39A81A47CA3A000FB6F3 /* bind.storyboard in Resources */,
+				4A5665491A4C033D00C3BA22 /* MessageBriefTableViewCell.xib in Resources */,
 				4A8D01DF1A369DCE00EA59EA /* PublicAnncTableViewCell.xib in Resources */,
 				4A8D01DA1A33381200EA59EA /* MainPageTableViewHeaderCell.xib in Resources */,
+				4A5665441A4C025100C3BA22 /* MessageTableViewController.xib in Resources */,
 				4ABC22311A3C88000017FD94 /* AlertDetailsTableViewCell.xib in Resources */,
 				4AD7946A1A208F4400DEC779 /* Images.xcassets in Resources */,
 				4A3A2F321A45113200AA8A70 /* myBriefTableViewCell.xib in Resources */,
+				4A56653A1A4BF4E400C3BA22 /* MessageDetailsViewController.xib in Resources */,
 				4A40C2121A401DEB00944AB2 /* ContactsListTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -898,6 +962,7 @@
 				4A8D01E71A36C9C100EA59EA /* person.m in Sources */,
 				4A8D01F61A36F9BC00EA59EA /* alertManager.m in Sources */,
 				4A2AD1811A457E800074DCA0 /* PersonDetailsViewController.m in Sources */,
+				4A56654F1A4C06EE00C3BA22 /* messageObj.m in Sources */,
 				4ABC22301A3C88000017FD94 /* AlertDetailsTableViewCell.m in Sources */,
 				4A8F93F41A3DE56100A769C1 /* contactDataManager.m in Sources */,
 				4A5D244E1A4AC17500546698 /* cartTableViewCell.m in Sources */,
@@ -905,6 +970,7 @@
 				4AD795241A218C4A00DEC779 /* AFURLConnectionOperation.m in Sources */,
 				4AD7954C1A218C4A00DEC779 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				B9FF4B421A245FB300FE413E /* MoreViewController.m in Sources */,
+				4A5665481A4C033D00C3BA22 /* MessageBriefTableViewCell.m in Sources */,
 				4A3A2EF81A42F26000AA8A70 /* chooseAssistDeptTableViewController.m in Sources */,
 				4A8D01D91A33381200EA59EA /* MainPageTableViewHeaderCell.m in Sources */,
 				4A2EE1231A428F1000899976 /* petitionAgreementViewController.m in Sources */,
@@ -922,16 +988,19 @@
 				4AD795201A218C4A00DEC779 /* AFHTTPRequestOperationManager.m in Sources */,
 				4A8D01F31A36F9AB00EA59EA /* annoucementManager.m in Sources */,
 				4A8F93F11A3DE07E00A769C1 /* ContactListUnitTableViewCell.m in Sources */,
+				4A5665531A4C127A00C3BA22 /* sendMessageViewController.m in Sources */,
 				4A5D24481A4AC14F00546698 /* order.m in Sources */,
 				4A5D24541A4AF22900546698 /* orderTableViewController.m in Sources */,
 				4A8D01FF1A3734A000EA59EA /* badgeImageFactory.m in Sources */,
 				4AD795531A218C4A00DEC779 /* UIWebView+AFNetworking.m in Sources */,
+				4A5665301A4BF43700C3BA22 /* MessagePageViewController.m in Sources */,
 				4A40C2181A41745E00944AB2 /* petionDetailsTableViewController.m in Sources */,
 				4A2EE11D1A42774600899976 /* petitionFollowChartViewController.m in Sources */,
 				4AD795211A218C4A00DEC779 /* AFHTTPSessionManager.m in Sources */,
 				4ABC22211A3C3F940017FD94 /* LoadMoreTableViewCell.m in Sources */,
 				4A5D24451A4A79A600546698 /* shopBizManager.m in Sources */,
 				4A2AD1881A457F1B0074DCA0 /* AboutViewController.m in Sources */,
+				4A56654C1A4C05C300C3BA22 /* messageManager.m in Sources */,
 				4A5137481A3B18C1007B504B /* bizManager.m in Sources */,
 				4AD795291A218C4A00DEC779 /* FXImageView.m in Sources */,
 				4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */,
@@ -951,6 +1020,7 @@
 				4A8D01DE1A369DCE00EA59EA /* PublicAnncTableViewCell.m in Sources */,
 				4ABC221D1A3C31910017FD94 /* AnncListViewController.m in Sources */,
 				4AD795231A218C4A00DEC779 /* AFSecurityPolicy.m in Sources */,
+				4A5665431A4C025100C3BA22 /* MessageTableViewController.m in Sources */,
 				4A8D01EA1A36E46700EA59EA /* unReadManager.m in Sources */,
 				4A8D02131A37F78400EA59EA /* JSBadgeView.m in Sources */,
 				4A5D24511A4AF21000546698 /* orderTableViewCell.m in Sources */,
@@ -972,7 +1042,9 @@
 				4A2AD1971A467E080074DCA0 /* RestPassWordViewController.m in Sources */,
 				4A5D244B1A4AC16200546698 /* cartTableViewController.m in Sources */,
 				B9FF4B441A245FB300FE413E /* LoginViewController.m in Sources */,
+				4A5665391A4BF4E400C3BA22 /* MessageDetailsViewController.m in Sources */,
 				4AB0EFAF1A308CED00C24A44 /* UtilFun.m in Sources */,
+				4A56652D1A4BF3CB00C3BA22 /* ViewPagerController.m in Sources */,
 				4AD795221A218C4A00DEC779 /* AFNetworkReachabilityManager.m in Sources */,
 				4A40C2211A4175BC00944AB2 /* petionDetailsItemTableViewCell.m in Sources */,
 				4AD7955C1A218DF100DEC779 /* GTCheckBox.m in Sources */,

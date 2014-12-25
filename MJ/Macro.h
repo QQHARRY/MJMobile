@@ -48,6 +48,8 @@
 #define GET_ALL_KINDS_ORDER_LIST @"shopping/getPersonalDeptBillList"
 #define GET_SIGN_ORDER_LIST @"shopping/signPersonalDeptBill"
 #define EDIT_ORDER_BY_NUMBER @"shopping/editPersonalDeptOrder"
+//站内信
+#define GET_INNER_MESSAGE_LIST @"home/getMessageList"
 
 
 //  19.获取房源简要信息列表

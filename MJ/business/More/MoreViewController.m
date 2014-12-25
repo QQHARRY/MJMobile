@@ -22,10 +22,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self initTableView];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
 }
 
 -(void)initTableView

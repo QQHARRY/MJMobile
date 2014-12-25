@@ -31,6 +31,8 @@
 
 #import "petionDetailsTableViewController.h"
 
+#import "MessagePageViewController.h"
+
 
 @interface MainPageViewController ()
 
@@ -348,8 +350,8 @@
 #pragma mark  -
 -(void)leftMsgBtnSelected:(id)sender
 {
-    
-    
+    MessagePageViewController*msgPage = [[MessagePageViewController alloc] init];
+    [self.navigationController pushViewController:msgPage animated:YES];
 }
 
 -(void)rightAlertBtnSelected:(id)sender
