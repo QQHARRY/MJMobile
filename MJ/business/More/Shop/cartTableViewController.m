@@ -43,6 +43,11 @@
     
     [self getData];
 }
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self hideDrawer];
+}
 -(void)initNavigationBar
 {
     self.navigationItem.rightBarButtonItem = self.editButtonItem;

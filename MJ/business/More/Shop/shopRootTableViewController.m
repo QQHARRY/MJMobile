@@ -7,6 +7,7 @@
 //
 
 #import "shopRootTableViewController.h"
+#import "orderTableViewController.h"
 
 
 @interface shopRootTableViewController ()
@@ -103,11 +104,13 @@
             break;
         case 2:
         {
+            self.wantShopType = PERSONALSHOP;
             [self performSegueWithIdentifier:@"showOrderList" sender:self];
         }
             break;
         case 3:
         {
+            self.wantShopType = DEPARTMENTSHOP;
             [self performSegueWithIdentifier:@"showOrderList" sender:self];
         }
             break;
@@ -173,6 +176,22 @@
         {
             ShopTableViewController *ctrl = (ShopTableViewController *)controller;
 
+            ctrl.shopType = self.wantShopType;
+            
+            
+        }
+        else
+        {
+            
+        }
+        
+    }
+    else if ([segue.identifier isEqual:@"showOrderList"])
+    {
+        if ([controller isKindOfClass:[orderTableViewController class]])
+        {
+            orderTableViewController *ctrl = (orderTableViewController *)controller;
+            
             ctrl.shopType = self.wantShopType;
             
             

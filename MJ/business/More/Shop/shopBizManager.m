@@ -62,6 +62,22 @@
     return arr;
 }
 
++(NSArray*)getAllKindOderArr:(NSDictionary*)dic
+{
+    NSArray*annArr = [dic objectForKey:@"PersonalDeptBillNode"];
+    NSMutableArray* arr = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary*dic in annArr)
+    {
+        order* obj = [[order alloc] init];
+        [obj initWithDictionary:dic];
+        [arr  addObject:obj];
+        
+    }
+    
+    return arr;
+}
+
 +(NSArray*)getOrderArr:(NSDictionary*)dic
 {
     NSArray*annArr = [dic objectForKey:@"PersonalDeptOrderNode"];
@@ -134,6 +150,36 @@
      }];
 }
 
++(void)getAllKindsOrderListByType:(NSInteger)type From:(NSString*)from To:(NSString*)to Count:(int)count Success:(void (^)(id responseObject))success
+                  failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *parameters = @{@"job_no":[person me].job_no,
+                                 @"acc_password":[person me].password,
+                                 @"bill_type":[NSNumber numberWithInt:(int)type],
+                                 @"bill_name":@"",
+                                 @"bill_state":@"",
+                                 @"FromID":from,
+                                 @"ToID":to,
+                                 @"Count":[NSNumber numberWithInt:count]
+                                 };
+    
+    
+    [NetWorkManager PostWithApiName:GET_ALL_KINDS_ORDER_LIST parameters:parameters success:
+     ^(id responseObject)
+     {
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([self checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         {
+             success([self getAllKindOderArr:resultDic]);
+         }
+         
+     }
+                            failure:^(NSError *error)
+     {
+         failure(error);
+     }];
+}
+
 
 +(void)cancelOrder:(NSArray*)orderArr Success:(void (^)(id responseObject))success
            failure:(void (^)(NSError *error))failure
@@ -197,6 +243,75 @@
     
     
     [NetWorkManager PostWithApiName:CONFIRM_ORDER_LIST parameters:parameters success:
+     ^(id responseObject)
+     {
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([self checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         {
+             success([self getOrderArr:resultDic]);
+         }
+         
+     }
+                            failure:^(NSError *error)
+     {
+         failure(error);
+     }];
+}
+
+
++(void)receiveOrder:(NSArray*)orderArr Success:(void (^)(id responseObject))success
+           failure:(void (^)(NSError *error))failure
+{
+    
+    NSString*strOrder = @"";
+    NSInteger i = [orderArr  count];
+    for (order*odr in orderArr)
+    {
+        i--;
+        strOrder = [strOrder stringByAppendingString:odr.bill_no];
+        if (i > 0)
+        {
+            strOrder = [strOrder stringByAppendingString:@","];
+        }
+        
+    }
+    NSDictionary *parameters = @{@"job_no":[person me].job_no,
+                                 @"acc_password":[person me].password,
+                                 @"DeviceID":[UtilFun getUDID],
+                                 @"bill_no":strOrder,
+                                 };
+    
+    
+    [NetWorkManager PostWithApiName:GET_SIGN_ORDER_LIST parameters:parameters success:
+     ^(id responseObject)
+     {
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([self checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         {
+             success([self getOrderArr:resultDic]);
+         }
+         
+     }
+                            failure:^(NSError *error)
+     {
+         failure(error);
+     }];
+}
+
++(void)editOrder:(order*)odr WithNewCount:(NSInteger)newCnt Success:(void (^)(id responseObject))success
+         failure:(void (^)(NSError *error))failure
+{
+  
+
+    NSDictionary *parameters = @{@"job_no":[person me].job_no,
+                                 @"acc_password":[person me].password,
+                                 @"DeviceID":[UtilFun getUDID],
+                                 @"bill_no":odr.bill_no,
+                                 @"bill_num":[NSNumber numberWithInteger:newCnt]
+                                 };
+    
+    
+    [NetWorkManager PostWithApiName:EDIT_ORDER_BY_NUMBER parameters:parameters success:
      ^(id responseObject)
      {
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];

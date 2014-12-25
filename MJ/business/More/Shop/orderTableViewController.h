@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShopTableViewController.h"
+#import "editOrderViewController.h"
 
-@interface orderTableViewController : UITableViewController
+@interface orderTableViewController : UITableViewController<dataEdited>
+
+
+@property(nonatomic,strong)NSMutableArray*shopItemArr;
+@property(nonatomic,strong)NSMutableArray*selectArr;
+@property(nonatomic,assign)MJShopType shopType;
+
 
 @end

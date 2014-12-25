@@ -10,4 +10,14 @@
 
 @interface orderTableViewCell : UITableViewCell
 
+@property (strong, nonatomic) IBOutlet UILabel *oderByPerson;
+@property (strong, nonatomic) IBOutlet UILabel *goodName;
+@property (strong, nonatomic) IBOutlet UILabel *goodType;
+@property (strong, nonatomic) IBOutlet UILabel *price;
+@property (strong, nonatomic) IBOutlet UILabel *count;
+@property (strong, nonatomic) IBOutlet UILabel *total;
+@property (strong, nonatomic) IBOutlet UILabel *date;
+@property (strong, nonatomic) IBOutlet UILabel *status;
+@property (strong, nonatomic) IBOutlet UILabel *sendDate;
+@property (strong, nonatomic) IBOutlet UILabel *receiveDate;
 @end

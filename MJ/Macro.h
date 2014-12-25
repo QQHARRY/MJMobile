@@ -45,6 +45,10 @@
 #define GET_ORDER_LIST @"shopping/getPersonalDeptOrderList"
 #define CANCEL_ORDER_LIST @"shopping/cancelPersonalDeptOrderBill"
 #define CONFIRM_ORDER_LIST @"shopping/addPersonalDeptBill"
+#define GET_ALL_KINDS_ORDER_LIST @"shopping/getPersonalDeptBillList"
+#define GET_SIGN_ORDER_LIST @"shopping/signPersonalDeptBill"
+#define EDIT_ORDER_BY_NUMBER @"shopping/editPersonalDeptOrder"
+
 
 //  19.获取房源简要信息列表
 #define API_HOUSE_LIST @"business/getRealEstateBriefList"

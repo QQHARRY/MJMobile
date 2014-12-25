@@ -9,6 +9,13 @@
 #import "bizManager.h"
 #import "dic2Object.h"
 
+typedef NS_ENUM(NSInteger, MJShopOderAction) {
+    MJSHOPORDERACTION_EDIT,
+    MJSHOPORDERACTION_CANCEL,
+    MJSHOPORDERACTION_RECEIVE
+};
+
+
 @interface order : dic2Object
 
 @property(strong,nonatomic)NSString*bill_no;
@@ -30,8 +37,12 @@
 
 -(NSString*)getStatusString;
 
+-(BOOL)canEdit;
+-(BOOL)canCancel;
+-(BOOL)canReceive;
 
 
+-(NSString*)promptWithAction:(MJShopOderAction)action;
 
 
 

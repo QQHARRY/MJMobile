@@ -28,6 +28,7 @@
 		4A5137481A3B18C1007B504B /* bizManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5137471A3B18C1007B504B /* bizManager.m */; };
 		4A51374B1A3B2AAA007B504B /* dic2Object.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A51374A1A3B2AAA007B504B /* dic2Object.m */; };
 		4A5500C91A3BF32F00E5307D /* AnncDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5500C71A3BF32F00E5307D /* AnncDetailsViewController.m */; };
+		4A5665291A4BDFF800C3BA22 /* editOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5665281A4BDFF800C3BA22 /* editOrderViewController.m */; };
 		4A5D23B51A48522100546698 /* shopRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D23B41A48522100546698 /* shopRootTableViewController.m */; };
 		4A5D243C1A4A62A800546698 /* ShopTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D243B1A4A62A800546698 /* ShopTableViewController.m */; };
 		4A5D243F1A4A6E9C00546698 /* ShopItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D243E1A4A6E9C00546698 /* ShopItemTableViewCell.m */; };
@@ -159,6 +160,8 @@
 		4A51374A1A3B2AAA007B504B /* dic2Object.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dic2Object.m; sourceTree = "<group>"; };
 		4A5500C61A3BF32F00E5307D /* AnncDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnncDetailsViewController.h; sourceTree = "<group>"; };
 		4A5500C71A3BF32F00E5307D /* AnncDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnncDetailsViewController.m; sourceTree = "<group>"; };
+		4A5665271A4BDFF800C3BA22 /* editOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editOrderViewController.h; sourceTree = "<group>"; };
+		4A5665281A4BDFF800C3BA22 /* editOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editOrderViewController.m; sourceTree = "<group>"; };
 		4A5D23B31A48522100546698 /* shopRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shopRootTableViewController.h; sourceTree = "<group>"; };
 		4A5D23B41A48522100546698 /* shopRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = shopRootTableViewController.m; sourceTree = "<group>"; };
 		4A5D243A1A4A62A800546698 /* ShopTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopTableViewController.h; sourceTree = "<group>"; };
@@ -375,6 +378,8 @@
 				4A5D24501A4AF21000546698 /* orderTableViewCell.m */,
 				4A5D24521A4AF22900546698 /* orderTableViewController.h */,
 				4A5D24531A4AF22900546698 /* orderTableViewController.m */,
+				4A5665271A4BDFF800C3BA22 /* editOrderViewController.h */,
+				4A5665281A4BDFF800C3BA22 /* editOrderViewController.m */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -951,6 +956,7 @@
 				4A5D24511A4AF21000546698 /* orderTableViewCell.m in Sources */,
 				4A2EE11A1A41B41D00899976 /* petitionDictionary.m in Sources */,
 				4AD795251A218C4A00DEC779 /* AFURLRequestSerialization.m in Sources */,
+				4A5665291A4BDFF800C3BA22 /* editOrderViewController.m in Sources */,
 				4A8D01F91A36FB8000EA59EA /* internalMessageManager.m in Sources */,
 				4AA0385C1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m in Sources */,
 				4AD7954D1A218C4A00DEC779 /* UIActivityIndicatorView+AFNetworking.m in Sources */,

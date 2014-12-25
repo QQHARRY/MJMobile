@@ -10,6 +10,18 @@
 
 @implementation orderTableViewCell
 
+@synthesize oderByPerson;
+@synthesize goodName;
+@synthesize goodType;
+@synthesize price;
+@synthesize count;
+@synthesize total;
+@synthesize date;
+@synthesize status;
+@synthesize sendDate;
+@synthesize receiveDate;
+
+
 - (void)awakeFromNib {
     // Initialization code
 }
