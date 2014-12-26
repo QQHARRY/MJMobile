@@ -76,7 +76,7 @@
 }
 -(void)initTableView
 {
-    historyNodeTableView = [[UITableView alloc ]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width,self.view.frame.size.height/2.0) style:UITableViewStylePlain];
+    historyNodeTableView = [[UITableView alloc ]initWithFrame:CGRectMake(0, 62, self.view.frame.size.width,self.view.frame.size.height/2.0) style:UITableViewStylePlain];
     [self.view addSubview:historyNodeTableView];
     historyNodeTableView.delegate = self;
     historyNodeTableView.dataSource = self;
