@@ -21,9 +21,16 @@
     [super viewDidLoad];
    
 
-    [self.webView setScalesPageToFit:YES];
+    //self.webView.translatesAutoresizingMaskIntoConstraints = YES;
+    
+    //[self.webView setFrame:CGRectMake(0, 0, self.view.frame.size.height, self.view.frame.size.width)];
 
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
+    //CGAffineTransform at =CGAffineTransformMakeRotation(M_PI*3/2);
+    
+    //[self.webView setTransform:at];
+    
+    [self.webView setScalesPageToFit:YES];
 }
 
 
