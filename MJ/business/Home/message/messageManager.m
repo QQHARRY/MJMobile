@@ -95,7 +95,7 @@
                                  @"DeviceID":[UtilFun getUDID],
                                  @"msg_cno":msgObj.msg_cno,
                                  @"msg_index_cno":msgObj.msg_index_cno,
-                                 @"msg_flag_no":[NSString stringWithFormat:@"%ld",status],
+                                 @"msg_flag_no":msgObj.msg_flag_no,
                                  };
     
     
