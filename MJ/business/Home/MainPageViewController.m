@@ -51,9 +51,14 @@
     [self setNavBarTitleTextAttribute];
     [self initBadgeNavBarWithUnReadAlertCount:0 andMsgCount:0];
     [self initTable];
-    [self loadData];
+    
 }
 
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self loadData];
+}
 -(void)setNavBarTitleTextAttribute
 {
     

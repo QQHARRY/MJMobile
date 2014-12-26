@@ -8,6 +8,7 @@
 
 #import "MessagePageViewController.h"
 #import "MessageTableViewController.h"
+#import "sendMessageViewController.h"
 
 @interface MessagePageViewController ()
 {
@@ -38,8 +39,19 @@
     [catagoryVCArr addObject:unReadPage];
     [catagoryVCArr addObject:readPage];
     
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发信" style:UIBarButtonItemStylePlain target:self action:@selector(sendMessage:)];
+    
     [super viewDidLoad];
 
+}
+
+-(void)sendMessage:(id)sender
+{
+    sendMessageViewController*ctrl = [[sendMessageViewController alloc] initWithNibName:@"sendMessageViewController" bundle:[NSBundle mainBundle]];
+    ctrl.msgObj = nil;
+    ctrl.msgType = MJMESSAGESENDTYPE_SEND;
+    [self.navigationController pushViewController:ctrl animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

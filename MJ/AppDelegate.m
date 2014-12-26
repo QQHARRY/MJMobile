@@ -36,17 +36,30 @@
 }
 -(void)loadBindStory
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"bind" bundle:[NSBundle mainBundle]];
+    _curStory = [UIStoryboard storyboardWithName:@"bind" bundle:[NSBundle mainBundle]];
     
-    
-    self.window.rootViewController=[storyboard instantiateInitialViewController];
+    self.window.rootViewController=[_curStory instantiateInitialViewController];
 }
 -(void)loadMainSotry
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    _curStory = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
 
     
-    self.window.rootViewController=[storyboard instantiateInitialViewController];
+    self.window.rootViewController=[_curStory instantiateInitialViewController];
+}
+
+-(id)instantiateViewControllerWithIdentifier:(NSString*)identifier AndClass:(Class)cls
+{
+    if (identifier != nil && identifier.length > 0 && cls != nil)
+    {
+        id ctrl = [_curStory instantiateViewControllerWithIdentifier:identifier];
+        if ([ctrl class] == cls)
+        {
+            return ctrl;
+        }
+    }
+    
+    return nil;
 }
 
 

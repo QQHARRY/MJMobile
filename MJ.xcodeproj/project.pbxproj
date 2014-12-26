@@ -16,6 +16,7 @@
 		4A2EE11D1A42774600899976 /* petitionFollowChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2EE11C1A42774600899976 /* petitionFollowChartViewController.m */; };
 		4A2EE1201A42872600899976 /* petitionDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2EE11F1A42872600899976 /* petitionDetail.m */; };
 		4A2EE1231A428F1000899976 /* petitionAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2EE1221A428F1000899976 /* petitionAgreementViewController.m */; };
+		4A3923DF1A4C737000B0D232 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 4A3923DE1A4C737000B0D232 /* index.html */; };
 		4A3A2EF51A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A2EF41A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.m */; };
 		4A3A2EF81A42F26000AA8A70 /* chooseAssistDeptTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A2EF71A42F26000AA8A70 /* chooseAssistDeptTableViewController.m */; };
 		4A3A2F311A45113200AA8A70 /* myBriefTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A2F2F1A45113200AA8A70 /* myBriefTableViewCell.m */; };
@@ -150,6 +151,7 @@
 		4A2EE11F1A42872600899976 /* petitionDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petitionDetail.m; sourceTree = "<group>"; };
 		4A2EE1211A428F1000899976 /* petitionAgreementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = petitionAgreementViewController.h; sourceTree = "<group>"; };
 		4A2EE1221A428F1000899976 /* petitionAgreementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petitionAgreementViewController.m; sourceTree = "<group>"; };
+		4A3923DE1A4C737000B0D232 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		4A3A2EF31A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = petitionHistoryNodeTableViewCell.h; sourceTree = "<group>"; };
 		4A3A2EF41A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petitionHistoryNodeTableViewCell.m; sourceTree = "<group>"; };
 		4A3A2EF61A42F26000AA8A70 /* chooseAssistDeptTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chooseAssistDeptTableViewController.h; sourceTree = "<group>"; };
@@ -476,6 +478,7 @@
 		4A56652A1A4BF39700C3BA22 /* message */ = {
 			isa = PBXGroup;
 			children = (
+				4A3923DE1A4C737000B0D232 /* index.html */,
 				4A5665551A4C1C4100C3BA22 /* ViewPagerController.h */,
 				4A5665561A4C1C4100C3BA22 /* ViewPagerController.m */,
 				4A56652E1A4BF43700C3BA22 /* MessagePageViewController.h */,
@@ -924,6 +927,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A3923DF1A4C737000B0D232 /* index.html in Resources */,
 				4A5665541A4C127A00C3BA22 /* sendMessageViewController.xib in Resources */,
 				4ABC22221A3C3F940017FD94 /* LoadMoreTableViewCell.xib in Resources */,
 				4A8D01E41A369F2E00EA59EA /* PetitionTableViewCell.xib in Resources */,

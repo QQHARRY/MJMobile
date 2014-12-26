@@ -50,7 +50,8 @@
 #define EDIT_ORDER_BY_NUMBER @"shopping/editPersonalDeptOrder"
 //站内信
 #define GET_INNER_MESSAGE_LIST @"home/getMessageList"
-
+#define SEND_INNER_MESSAGE @"home/sendMessage"
+#define SET_INNER_MESSAGE_READ_STATUS @"home/setMessageReadAlready"
 
 //  19.获取房源简要信息列表
 #define API_HOUSE_LIST @"business/getRealEstateBriefList"

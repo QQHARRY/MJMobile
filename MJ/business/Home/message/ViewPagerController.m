@@ -354,8 +354,8 @@
         contentSizeWidth += tabView.frame.size.width;
         
         // To capture tap events
-        //UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
-        //[tabView addGestureRecognizer:tapGestureRecognizer];
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+        [tabView addGestureRecognizer:tapGestureRecognizer];
     }
     
     _tabsView.contentSize = CGSizeMake(contentSizeWidth, self.tabHeight);

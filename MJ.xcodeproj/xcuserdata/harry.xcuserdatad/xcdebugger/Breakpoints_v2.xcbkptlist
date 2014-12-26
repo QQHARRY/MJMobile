@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MJ/business/Home/petition/chooseAssistDeptTableViewController.m"
-            timestampString = "440935582.344526"
+            filePath = "MJ/business/Home/message/MessageDetailsViewController.m"
+            timestampString = "441268543.660283"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "-didReceiveMemoryWarning"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "-setMsgReaded:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MJ/business/More/Shop/ShopItemCell.m"
-            timestampString = "441082297.197623"
+            filePath = "MJ/business/Home/message/messageManager.m"
+            timestampString = "441268553.848296"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
-            landmarkName = "-awakeFromNib"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "+setMessage:ReadStatus:Success:failure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,13 +51,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MJ/business/More/Shop/editOrderViewController.m"
-            timestampString = "441183751.536659"
+            filePath = "MJ/business/Home/message/messageManager.m"
+            timestampString = "441268613.082359"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "-editCountChanged:"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "+setMessage:ReadStatus:Success:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MJ/business/Home/message/MessageDetailsViewController.m"
+            timestampString = "441268627.403182"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

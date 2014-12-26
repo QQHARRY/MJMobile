@@ -7,6 +7,9 @@
 //
 
 #import "MessageDetailsViewController.h"
+#import "sendMessageViewController.h"
+#import "UtilFun.h"
+#import "messageManager.h"
 
 @interface MessageDetailsViewController ()
 
@@ -17,6 +20,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    self.contentWebView.layer.cornerRadius=3;
+    self.contentWebView.layer.masksToBounds=YES;
+    self.contentWebView.layer.borderColor=[[UIColor lightGrayColor]CGColor];
+    self.contentWebView.layer.borderWidth= 1.0f;
     
     //[self.contentWebView setScalesPageToFit:YES];
     if (msg)
@@ -32,11 +41,33 @@
         self.msgTitle.text = msg.msg_title;
 
         [self.contentWebView loadHTMLString:msg.msg_content baseURL:nil];
+        
+        
+        if ([msg.unread_flag isEqualToString:@"0"])
+        {
+            [self setMsgReaded:msg];
+        }
+        
     }
     
     
     
+    
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)setMsgReaded:(messageObj*)msgObj
+{
+    if (msgObj)
+    {
+        SHOWHUD(self.view);
+        [messageManager setMessage:msgObj ReadStatus:MJMESSAGETYPE_UNREAD Success:^(id responseObject) {
+            HIDEHUD(self.view);
+        } failure:^(NSError *error) {
+            HIDEHUD(self.view);
+        }];
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,8 +86,18 @@
 */
 
 - (IBAction)replyAll:(id)sender {
+    sendMessageViewController*ctrl = [[sendMessageViewController alloc] initWithNibName:@"sendMessageViewController" bundle:[NSBundle mainBundle]];
+    ctrl.msgObj = self.msg;
+    ctrl.msgType = MJMESSAGESENDTYPE_REPLY_ALL;
+    [self.navigationController pushViewController:ctrl animated:YES];
+
 }
 
-- (IBAction)singleReply:(id)sender {
+- (IBAction)singleReply:(id)sender
+{
+    sendMessageViewController*ctrl = [[sendMessageViewController alloc] initWithNibName:@"sendMessageViewController" bundle:[NSBundle mainBundle]];
+    ctrl.msgObj = self.msg;
+    ctrl.msgType = MJMESSAGESENDTYPE_REPLY_SINGLE;
+    [self.navigationController pushViewController:ctrl animated:YES];
 }
 @end

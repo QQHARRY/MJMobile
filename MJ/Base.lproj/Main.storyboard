@@ -275,6 +275,7 @@
                         <viewControllerLayoutGuide type="bottom" id="n5s-7p-LK9"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0AR-lL-74a">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -350,7 +351,7 @@
         <!--Contact List Table View Controller-->
         <scene sceneID="D7e-r5-zSI">
             <objects>
-                <tableViewController id="dzT-bL-qDc" customClass="ContactListTableViewController" sceneMemberID="viewController">
+                <tableViewController restorationIdentifier="ContactListTableViewController" storyboardIdentifier="ContactListTableViewController" id="dzT-bL-qDc" customClass="ContactListTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gPe-V6-dL2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1110,6 +1111,7 @@
                         <viewControllerLayoutGuide type="bottom" id="2kY-sg-has"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Nbo-eN-Sar">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品规格:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3g-g7-dEZ">
