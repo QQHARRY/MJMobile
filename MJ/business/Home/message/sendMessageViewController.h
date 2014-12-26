@@ -54,6 +54,7 @@ typedef NS_ENUM(NSInteger, MJMESSAGESENDTYPE) {
 @property (nonatomic, assign) BOOL dirtyFlag_bcc_changed;
 
 @property (nonatomic, assign)CGRect webViewOldFrame;
+@property (nonatomic, assign)BOOL webViewExpand;
 
 
 @property (nonatomic,assign)MJMESSAGESENDTYPE msgType;

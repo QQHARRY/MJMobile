@@ -45,7 +45,7 @@
 @synthesize dirtyFlag_bcc_changed;
 
 @synthesize msgType;
-
+@synthesize webViewExpand;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -62,10 +62,18 @@
     dirtyFlag_bcc_changed = NO;
     dirtyFlag_cc_changed = NO;
     dirtyFlag_receiver_changed = NO;
+    
+    webViewExpand = NO;
     [self initBottomNav];
     [self initWebView];
     
     [self initUIWithMessage:self.msgObj WithSendType:self.msgType];
+    [self initConstrains];
+}
+
+-(void)initConstrains
+{
+    
 }
 
 -(void)initUIWithMessage:(messageObj*)obj WithSendType:(MJMESSAGESENDTYPE)type
@@ -199,6 +207,10 @@
 
     }
     
+    
+    UIBarButtonItem*btn = (UIBarButtonItem*)sender;
+    btn.enabled = NO;
+    
     messageObj*newMsg = [[messageObj alloc] init];
     
     if (dirtyFlag_receiver_changed)
@@ -238,10 +250,15 @@
     [messageManager sendMessage:newMsg Success:^(id responseObject)
      {
          HIDEHUD(self.view);
-         PRSENTALERT(@"发送成功",@"",@"OK",self);
+         PRSENTALERTWITHHANDER(@"发送成功",@"",@"OK",self,^(UIAlertAction *action)
+                               {
+                                   [self.navigationController popViewControllerAnimated:YES];
+                               }
+                               );
          
          
     } failure:^(NSError *error) {
+        btn.enabled = YES;
         HIDEHUD(self.view);
         PRSENTALERT(@"发送失败",@"请重复",@"OK",self);
     }];
@@ -278,26 +295,41 @@
 
 - (void)keyboardWillShow:(NSNotification *)notification
 {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    float keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+    NSLog(@"keyboardWillShow");
+    if (webViewExpand == NO)
+    {
+         NSLog(@"keyboardWillShow1111111");
+        webViewExpand = YES;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.3];
+        float keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+        
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+        [self.webView setTranslatesAutoresizingMaskIntoConstraints:YES];
+#endif
+        [_webView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-keyboardHeight-44)];
+        _bottomBar.hidden = NO;
+        
+        [_bottomBar setFrame:CGRectMake(0, self.view.frame.size.height-keyboardHeight-44, self.view.frame.size.width, 44)];
+        [UIView commitAnimations];
+    }
     
-    
-    [_webView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-keyboardHeight-44)];
-    _bottomBar.hidden = NO;
-    
-    [_bottomBar setFrame:CGRectMake(0, self.view.frame.size.height-keyboardHeight-44, self.view.frame.size.width, 44)];
-    [UIView commitAnimations];
 }
 
 - (void)keyboardWillHide
 {
+   
+    NSLog(@"keyboardWillHide");
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    [self.webView setTranslatesAutoresizingMaskIntoConstraints:YES];
+#endif
     [_webView setFrame:_webViewOldFrame];
     _bottomBar.hidden = YES;
     //[_bottomBar setFrame:CGRectMake(0, self.view.frame.size.height-44, self.view.frame.size.width, 44)];
     [UIView commitAnimations];
+     webViewExpand = NO;
 }
 
 #pragma mark - 自定义按钮事件

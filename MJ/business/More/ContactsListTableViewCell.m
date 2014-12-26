@@ -44,11 +44,11 @@
     self.action = action;
     
     
-    expandBtn =[[UIButton alloc] initWithFrame:CGRectMake(5+kLevelOffset*_level, 4.5, 20, 20)];
-    unitName = [[UILabel alloc] initWithFrame:CGRectMake(25+kLevelOffset*_level,4.5, 200, 21)];
+    expandBtn =[[UIButton alloc] initWithFrame:CGRectMake(5+kLevelOffset*_level, 0, 40, 40)];
+    unitName = [[UILabel alloc] initWithFrame:CGRectMake(50+kLevelOffset*_level,10, 200, 21)];
     [expandBtn addTarget:self action:@selector(expandBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-    selectBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width-25, 4.5, 20, 20)];
+    selectBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width-20, 10, 20, 20)];
     
     
     
