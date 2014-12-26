@@ -16,6 +16,11 @@
 #import "department.h"
 
 @interface sendMessageViewController ()
+{
+    UIBarButtonItem *colorButton;
+    UIBarButtonItem *boldButton;
+    UIBarButtonItem *italicButton;
+}
 
 @end
 
@@ -180,16 +185,21 @@
 
 -(void)initBottomNav
 {
-    self.bottomBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, self.webView.frame.size.height+self.webView.frame.origin.y, self.webView.frame.size.width, 44)];
+    _bottomBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+    //_bottomBar.backgroundColor = [UIColor blackColor];
+
     UINavigationItem *bottomItem = [[UINavigationItem alloc] init];
 
-    UIBarButtonItem *colorButton = [[UIBarButtonItem alloc] initWithTitle:@"字色" style:UIBarButtonItemStyleBordered target:self action:@selector(changeColor)];
-    UIBarButtonItem *boldButton = [[UIBarButtonItem alloc] initWithTitle:@"粗体" style:UIBarButtonItemStyleBordered target:self action:@selector(changeBold)];
-    UIBarButtonItem *italicButton = [[UIBarButtonItem alloc] initWithTitle:@"斜体" style:UIBarButtonItemStyleBordered target:self action:@selector(changeItalic)];
+    colorButton = [[UIBarButtonItem alloc] initWithTitle:@"字色" style:UIBarButtonItemStyleBordered target:self action:@selector(changeColor)];
+    colorButton.tintColor = [UIColor blackColor];
+    boldButton = [[UIBarButtonItem alloc] initWithTitle:@"正常" style:UIBarButtonItemStyleBordered target:self action:@selector(changeBold)];
+
+    italicButton = [[UIBarButtonItem alloc] initWithTitle:@"正体" style:UIBarButtonItemStyleBordered target:self action:@selector(changeItalic)];
     bottomItem.leftBarButtonItems = @[colorButton,boldButton,italicButton];
     _bottomBar.items = @[bottomItem];
     _bottomBar.hidden = YES;
     [self.view addSubview:_bottomBar];
+    [self.view bringSubviewToFront:_bottomBar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -244,7 +254,7 @@
     
     
     newMsg.msg_content = [_webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
-    
+    newMsg.msg_content = [newMsg.msg_content stringByReplacingOccurrencesOfString:@"div contenteditable=\"true\"" withString:@"div contenteditable=\"false\""];
     
     SHOWHUD(self.view);
     [messageManager sendMessage:newMsg Success:^(id responseObject)
@@ -295,7 +305,7 @@
 
 - (void)keyboardWillShow:(NSNotification *)notification
 {
-    NSLog(@"keyboardWillShow");
+    
     if (webViewExpand == NO)
     {
          NSLog(@"keyboardWillShow1111111");
@@ -306,11 +316,11 @@
         
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
         [self.webView setTranslatesAutoresizingMaskIntoConstraints:YES];
-#endif
-        [_webView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-keyboardHeight-44)];
-        _bottomBar.hidden = NO;
         
-        [_bottomBar setFrame:CGRectMake(0, self.view.frame.size.height-keyboardHeight-44, self.view.frame.size.width, 44)];
+#endif
+        [_webView setFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height-keyboardHeight-44)];
+        _bottomBar.hidden = NO;
+        [self.view bringSubviewToFront:_bottomBar];
         [UIView commitAnimations];
     }
     
@@ -319,7 +329,7 @@
 - (void)keyboardWillHide
 {
    
-    NSLog(@"keyboardWillHide");
+    
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
@@ -339,36 +349,59 @@
 {
     switch (buttonIndex) {
         case 0:
+        {
             [_webView stringByEvaluatingJavaScriptFromString:@"document.execCommand('foreColor', false, '#FF0000')"];
+            colorButton.tintColor = [UIColor redColor];
+        }
             break;
             
         case 1:
             [_webView stringByEvaluatingJavaScriptFromString:@"document.execCommand('foreColor', false, '#008000')"];
+            colorButton.tintColor = [UIColor greenColor];
             break;
             
         case 2:
             [_webView stringByEvaluatingJavaScriptFromString:@"document.execCommand('foreColor', false, '#0000FF')"];
+            colorButton.tintColor = [UIColor blueColor];
             break;
             
         default:
             [_webView stringByEvaluatingJavaScriptFromString:@"document.execCommand('foreColor', false, '#000000')"];
+            colorButton.tintColor = [UIColor blackColor];
             break;
     }
 }
 
 - (void)changeColor
 {
+    
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"选择字色" delegate:self cancelButtonTitle:@"黑色" destructiveButtonTitle:nil otherButtonTitles:@"红色",@"绿色",@"蓝色",nil];
     [sheet showInView:self.view];
 }
 
 - (void)changeBold
 {
+    if ([boldButton.title  isEqual:@"正常"])
+    {
+        boldButton.title = @"粗体";
+    }
+    else
+    {
+        boldButton.title = @"正常";
+    }
     [_webView stringByEvaluatingJavaScriptFromString:@"document.execCommand(\"Bold\")"];
 }
 
 - (void)changeItalic
 {
+    if ([italicButton.title  isEqual:@"正体"])
+    {
+        italicButton.title = @"斜体";
+    }
+    else
+    {
+        italicButton.title = @"正体";
+    }
     [_webView stringByEvaluatingJavaScriptFromString:@"document.execCommand(\"Italic\")"];
 }
 
