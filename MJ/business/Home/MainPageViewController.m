@@ -148,7 +148,11 @@
     SHOWHUD(self.view);
     [petitionManager getListFrom:@"0" To:@"" Count:4 Success:^(id responseObject) {
         HIDEHUD(self.view);
-        self.mainPetitionArr = responseObject;
+        if (responseObject != nil)
+        {
+            self.mainPetitionArr = responseObject;
+
+        }
         [self.tableView reloadData];
         
     } failure:^(NSError *error) {
@@ -317,6 +321,8 @@
                 }
             }
         }
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        
         if (self.mainPetitionArr)
         {
             petiotionBrief*ptionBr = [self.mainPetitionArr objectAtIndex:indexPath.row];

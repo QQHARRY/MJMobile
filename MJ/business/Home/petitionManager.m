@@ -85,13 +85,24 @@
 {
     NSArray*annArr = [dic objectForKey:@"PetitionNode"];
     NSMutableArray* arr = [[NSMutableArray alloc] init];
-    
-    for (NSDictionary*dic in annArr)
+    if ([annArr respondsToSelector:@selector(count)])
     {
-        petiotionBrief* pet = [[petiotionBrief alloc] init];
-        [pet initWithDictionary:dic];
-        [arr  addObject:pet];
+        if ([annArr count] > 0)
+        {
+            for (NSDictionary*dic in annArr)
+            {
+                petiotionBrief* pet = [[petiotionBrief alloc] init];
+                [pet initWithDictionary:dic];
+                [arr  addObject:pet];
+                
+            }
+        }
         
+    }
+    
+    if ([arr count] == 0)
+    {
+        return nil;
     }
     
     return arr;
