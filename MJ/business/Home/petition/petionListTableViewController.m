@@ -26,6 +26,11 @@
     [super viewDidLoad];
     
     petitionArr = [[NSMutableArray alloc ] init];
+    //[self getData];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
     [self getData];
 }
 
