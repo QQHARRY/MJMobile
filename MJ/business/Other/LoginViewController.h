@@ -16,4 +16,6 @@
 - (IBAction)loginBtnClicked:(id)sender;
 - (IBAction)applyForBindingBtnClicked:(id)sender;
 
+@property (assign, nonatomic) BOOL autoLogin;
+
 @end

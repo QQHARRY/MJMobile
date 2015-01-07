@@ -15,7 +15,7 @@
 @property (strong, nonatomic) UIWindow *window;
 
 -(void)loadBindStory;
--(void)loadMainSotry;
+-(void)loadMainSotry:(BOOL)autoLogin;
 
 @property (strong, nonatomic)UIStoryboard*curStory;
 

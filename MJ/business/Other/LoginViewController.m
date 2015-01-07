@@ -23,6 +23,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.idTxt.text = @"XA-";
     [self readDefaultMsg];
     // Do any additional setup after loading the view.
     
@@ -39,12 +40,11 @@
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-    //[self initConstraint];
-    
-    if (![UtilFun hasFirstBinded])
+    if (self.autoLogin && [self.idTxt.text length] > 0 && [self.pwdTxt.text length] > 0)
     {
-        //[self performSegueWithIdentifier:@"firstLoginToBindView" sender:self];
+        [self loginBtnClicked:nil];
     }
+    
 }
 -(void)initConstraint
 {

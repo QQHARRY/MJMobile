@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "UtilFun.h"
+#import "LoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -26,7 +27,7 @@
     }
     else
     {
-        [self loadMainSotry];
+        [self loadMainSotry:YES];
     }
     
     [self.window makeKeyAndVisible];
@@ -40,12 +41,14 @@
     
     self.window.rootViewController=[_curStory instantiateInitialViewController];
 }
--(void)loadMainSotry
+-(void)loadMainSotry:(BOOL)autoLogin
 {
     _curStory = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
 
+    LoginViewController*login =[_curStory instantiateInitialViewController];
+   login.autoLogin = autoLogin;
     
-    self.window.rootViewController=[_curStory instantiateInitialViewController];
+    self.window.rootViewController=login;
 }
 
 -(id)instantiateViewControllerWithIdentifier:(NSString*)identifier AndClass:(Class)cls

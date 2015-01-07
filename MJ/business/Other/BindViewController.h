@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BindViewController : UIViewController<UIAlertViewDelegate>
+@interface BindViewController : UIViewController<UIAlertViewDelegate,UITextFieldDelegate>
 
 
 - (IBAction)onBindAction:(id)sender;

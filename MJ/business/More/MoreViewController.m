@@ -88,7 +88,7 @@
 -(void)toLoginPage
 {
     AppDelegate*app = [[UIApplication sharedApplication] delegate];
-    [app loadMainSotry];
+    [app loadMainSotry:NO];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -21,11 +21,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-  
+//    self.idTxtFld.delegate = self;
+    self.idTxtFld.text = @"XA-";
     //[self initConstraint];
     
 }
-
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  // return NO to not change text
+//{
+//    
+//    NSMutableString*oldStr = [[NSMutableString alloc] initWithString:textField.text];
+//    
+//    NSLog(@"old=%@",oldStr);
+//    NSLog(@"string=%@",string);
+//    NSLog(@"location=%ld,length=%ld",range.location,range.length);
+//    
+//    return YES;
+//}
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -151,7 +162,7 @@
 -(void)toLoginPage
 {
     AppDelegate*app = [[UIApplication sharedApplication] delegate];
-    [app loadMainSotry];
+    [app loadMainSotry:NO];
 }
 
 - (IBAction)onLoginAction:(id)sender
