@@ -31,7 +31,21 @@
          contextName = "+[contactDataManager getDeptArr:superUnit:]:contactDataManager.m">
       </ContextState>
       <ContextState
+         contextName = "-[MainPageViewController tableView:cellForRowAtIndexPath:]:MainPageViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "i">
+            </PersistentString>
+            <PersistentString
+               value = "j">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "+[contactDataManager getSubDeptOfUnit:Success:failure:]:contactDataManager.m">
+      </ContextState>
+      <ContextState
+         contextName = "__41-[MainPageViewController getPetitionData]_block_invoke:MainPageViewController.m">
       </ContextState>
       <ContextState
          contextName = "-[ShopCollectionViewController collectionView:cellForItemAtIndexPath:]:ShopCollectionViewController.m">

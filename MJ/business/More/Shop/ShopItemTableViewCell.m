@@ -7,6 +7,7 @@
 //
 
 #import "ShopItemTableViewCell.h"
+#import "UtilFun.h"
 
 @implementation ShopItemTableViewCell
 
@@ -28,6 +29,7 @@
     unitPrice = 0;
     selectedCount = 0;
     totalPrice = 0;
+    self.totalCountSelected.delegate = self;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -81,4 +83,36 @@
     //    self.frame.size.height = rct.si.width/2.0;
 }
 
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  // return NO to not change text
+{
+    if (textField != self.totalCountSelected)
+    {
+        return YES;
+    }
+    if (string.length == 0)
+    {
+        self.selectedCount = [[self.totalCountSelected text] intValue];
+        return YES;
+    }
+    if ([UtilFun isPureInt:string])
+    {
+        NSMutableString*oldStr = [[NSMutableString alloc] initWithString:textField.text];
+        [oldStr insertString:string atIndex:range.location];
+        
+        if ([UtilFun isPureInt:oldStr])
+        {
+            int value = [oldStr intValue];
+            if (value <= maximunNumInStore)
+            {
+                self.selectedCount = value;
+                return YES;
+            }
+        }
+        
+        
+    }
+    
+    return NO;
+}
 @end

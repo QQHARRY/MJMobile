@@ -55,4 +55,8 @@ alertView.delegate = self;\
 
 +(NSString*)getUDID;
 
+
++(BOOL)isPureInt:(NSString*)string;
++(BOOL)isPureFloat:(NSString*)string;
+
 @end

@@ -264,11 +264,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+//    if (section == 0)
+//    {
+//        return 4;
+//    }
+//    else if(section == 1)
+//    {
+//        return self.mainPetitionArr.count;
+//    }
     return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
+    NSInteger iRow = indexPath.row;
     
     UITableViewCell*cell = nil;
     
@@ -289,9 +298,9 @@
                 }
             }
         }
-        if (self.mainAnncArr)
+        if (self.mainAnncArr && iRow < self.mainAnncArr.count)
         {
-            announcement*annc = [self.mainAnncArr objectAtIndex:indexPath.row];
+            announcement*annc = [self.mainAnncArr objectAtIndex:iRow];
             NSString*title =nil;
             BOOL isNew = FALSE;
             if (annc)
@@ -323,9 +332,9 @@
         }
         cell.accessoryType = UITableViewCellAccessoryNone;
         
-        if (self.mainPetitionArr)
+        if (self.mainPetitionArr && iRow < self.mainPetitionArr.count)
         {
-            petiotionBrief*ptionBr = [self.mainPetitionArr objectAtIndex:indexPath.row];
+            petiotionBrief*ptionBr = [self.mainPetitionArr objectAtIndex:iRow];
             if (ptionBr)
             {
                [cell initWithType:ptionBr.flowtype reason:ptionBr.reason person:ptionBr.username];

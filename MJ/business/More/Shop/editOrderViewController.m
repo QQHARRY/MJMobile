@@ -75,12 +75,12 @@
     {
         return YES;
     }
-    if ([self isPureInt:string])
+    if ([UtilFun isPureInt:string])
     {
         NSMutableString*oldStr = [[NSMutableString alloc] initWithString:textField.text];
         [oldStr insertString:string atIndex:range.location];
         
-        if ([self isPureInt:oldStr])
+        if ([UtilFun isPureInt:oldStr])
         {
             int value = [oldStr intValue];
             if (value <= [self.storeNum.text  intValue])
@@ -100,19 +100,7 @@
     
 }
 
-- (BOOL)isPureInt:(NSString*)string{
-    NSScanner* scan = [NSScanner scannerWithString:string];
-    int val;
-    return[scan scanInt:&val] && [scan isAtEnd];
-}
 
-
-
-- (BOOL)isPureFloat:(NSString*)string{
-    NSScanner* scan = [NSScanner scannerWithString:string];
-    float val;
-    return[scan scanFloat:&val] && [scan isAtEnd];
-}
 
 
 

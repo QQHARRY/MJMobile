@@ -17,7 +17,7 @@
 @end
 
 
-@interface ShopItemTableViewCell : UITableViewCell
+@interface ShopItemTableViewCell : UITableViewCell<UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *goodImage;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *indicatorDn;
 

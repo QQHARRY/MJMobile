@@ -46,7 +46,11 @@
     _curStory = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
 
     LoginViewController*login =[_curStory instantiateInitialViewController];
-   login.autoLogin = autoLogin;
+    if ([login  isKindOfClass:[LoginViewController class]])
+    {
+        login.autoLogin = autoLogin;
+    }
+   
     
     self.window.rootViewController=login;
 }
