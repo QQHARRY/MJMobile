@@ -92,10 +92,17 @@
 
 -(void)writeDefaultMsg
 {
+    
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     BOOL autoLogin  = self.autoLoginSwitchBtn.on;
-    NSString*usrName = self.idTxt.text;
-    NSString*pwd = self.pwdTxt.text;
+    NSString*usrName = @"";
+    NSString*pwd = @"";
+    if (autoLogin)
+    {
+        usrName = self.idTxt.text;
+        pwd = self.pwdTxt.text;
+    }
+    
     
     [prefs setBool:autoLogin forKey:@"AutoLogin"];
     [prefs setValue:usrName forKey:@"defaultUsrName"];
@@ -142,6 +149,7 @@
                      NSArray*arrTmp =[resultDic objectForKey:@"userinfo"];
                      
                      [[person initMe:[arrTmp objectAtIndex:0]] setPassword:strPwd];
+                     
                      [self writeDefaultMsg];
                      [self performSegueWithIdentifier:@"LoginToMainPage" sender:self];
                      return;

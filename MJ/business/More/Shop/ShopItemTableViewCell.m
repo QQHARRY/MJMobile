@@ -37,7 +37,11 @@
 
     // Configure the view for the selected state
 }
-
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.totalCountSelected resignFirstResponder];
+    
+}
 - (IBAction)subBtnClicked:(id)sender
 {
     if (selectedCount <= 0)
@@ -72,10 +76,7 @@
         [self.delegate addShopItemToCart:self.item Count:selectedCount TotalPrice:totalPrice];
     }
 }
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self.totalCountSelected resignFirstResponder];
-}
+
 
 -(void)setWidthAndWidth:(CGFloat)width Height:(CGFloat)height
 {
