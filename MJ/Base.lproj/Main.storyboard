@@ -889,6 +889,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0078431372550000003" green="0.16862745100000001" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="DXs-0W-ZfU" kind="relationship" relationship="rootViewController" id="J2v-p5-4W2"/>
@@ -2084,8 +2087,7 @@
                                         <exclude reference="zU7-kI-eYj"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="110" y="367" width="25" height="25"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="i0j-to-oZ3"/>
                                         <include reference="zU7-kI-eYj"/>
@@ -2110,8 +2112,7 @@
                                         <exclude reference="eDm-a4-dnk"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="202" y="367" width="25" height="25"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="9Bp-NN-RDj"/>
                                         <include reference="eDm-a4-dnk"/>
@@ -2170,14 +2171,14 @@
                                 <exclude reference="Zcw-LH-J00"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="f1n-kC-fjD"/>
+                                <exclude reference="llI-Z4-q3s"/>
+                                <exclude reference="qtR-GH-ztj"/>
                                 <exclude reference="Ocq-qQ-lqG"/>
                                 <exclude reference="C2X-EN-87b"/>
                                 <exclude reference="sxr-IO-vet"/>
                                 <exclude reference="Ms0-Xh-9qN"/>
                                 <exclude reference="j29-6C-7fe"/>
-                                <exclude reference="f1n-kC-fjD"/>
-                                <exclude reference="llI-Z4-q3s"/>
-                                <exclude reference="qtR-GH-ztj"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -2186,15 +2187,15 @@
                                 <include reference="Zcw-LH-J00"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="f1n-kC-fjD"/>
+                                <include reference="llI-Z4-q3s"/>
+                                <include reference="qtR-GH-ztj"/>
                                 <include reference="Ocq-qQ-lqG"/>
                                 <exclude reference="Q0f-DW-3W4"/>
                                 <include reference="C2X-EN-87b"/>
                                 <include reference="sxr-IO-vet"/>
                                 <include reference="Ms0-Xh-9qN"/>
                                 <include reference="j29-6C-7fe"/>
-                                <include reference="f1n-kC-fjD"/>
-                                <include reference="llI-Z4-q3s"/>
-                                <include reference="qtR-GH-ztj"/>
                             </mask>
                         </variation>
                     </view>
@@ -2321,7 +2322,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="C9H-or-Nhi"/>
-        <segue reference="MPC-oG-oz9"/>
+        <segue reference="DLs-As-7Sx"/>
         <segue reference="kPa-Q7-pPJ"/>
     </inferredMetricsTieBreakers>
 </document>

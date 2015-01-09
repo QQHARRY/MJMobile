@@ -29,8 +29,8 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self initTableView];
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    
+    //[self setNavBarTitleTextAttribute];
+    self.title = @"更多";
 }
 
 -(void)initTableView
@@ -42,7 +42,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)setNavBarTitleTextAttribute
+{
+        NSDictionary* attrs = @{NSForegroundColorAttributeName: [UIColor whiteColor],
+                                NSFontAttributeName: [UIFont systemFontOfSize:[UIFont systemFontSize]],
+                                };
+        [self.navigationController.navigationBar setTitleTextAttributes:attrs];
+    
+}
 
 #pragma mark tableview about
 #pragma mark  -
