@@ -8,13 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "HouseViewController.h"
+#import "HouseFilter.h"
 
 @interface HouseTableViewController : UITableViewController
 
-@property(nonatomic) HOUSER_CONTROLLER_TYPE controllerType;
-//
-//@property(nonatomic,strong)NSMutableArray*msgArr;
-//
-//@property(weak,nonatomic)id container;
+@property (nonatomic) HOUSER_CONTROLLER_TYPE controllerType;
+@property (nonatomic) HouseFilter *filter;
+@property (nonatomic, weak) id container;
 
 @end

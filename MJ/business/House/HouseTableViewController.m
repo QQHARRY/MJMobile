@@ -7,13 +7,12 @@
 //
 
 #import "HouseTableViewController.h"
+#import "HouseDataPuller.h"
 #import "UtilFun.h"
-#import "messageManager.h"
-#import "messageObj.h"
-#import "MessageBriefTableViewCell.h"
-#import "MessageDetailsViewController.h"
 
 @interface HouseTableViewController ()
+
+@property (nonatomic, strong) NSMutableArray *houseList;
 
 @end
 
@@ -23,47 +22,30 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-//    msgArr = [[NSMutableArray alloc ] init];
-    //b[self getData];
+    // init data
+    self.houseList = [NSMutableArray array];
 }
 
--(void)viewDidAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-//    [self clearData];
-//    [self getData];
+    [self refreshData];
 }
-//-(void)clearData
-//{
-//    [self.msgArr removeAllObjects];
-//}
-//
-//-(void)getData
-//{
-//    SHOWHUD(self.view);
-//    NSString*from = @"0";
-//    if ([self.msgArr count] > 0)
-//    {
-//        messageObj*obj = [self.msgArr objectAtIndex:self.msgArr.count-1];
-//        from = obj.msg_cno;
-//    }
-//    
-//    [messageManager getMsgByType:self.msgType ListFrom:from To:@"" Count:1000 Success:^(id responseObject) {
-//        HIDEHUD(self.view);
-//        [self.msgArr addObjectsFromArray:responseObject];
-//        
-//        [self.tableView reloadData];
-//        
-//        
-//    } failure:^(NSError *error) {
-//        HIDEHUD(self.view);
-//    }];
-//    
-//}
+
+- (void)refreshData
+{
+    // clear
+    [self.houseList removeAllObjects];
+    // get
+     SHOWHUD([UIApplication sharedApplication].keyWindow);
+    [HouseDataPuller pullDataWithFilter:self.filter Success:^(NSArray *houseDetailList)
+    {
+        HIDEHUD([UIApplication sharedApplication].keyWindow);
+    }
+                                failure:^(NSError *e)
+    {
+        HIDEHUD([UIApplication sharedApplication].keyWindow);
+    }];
+}
 
 - (void)didReceiveMemoryWarning
 {
