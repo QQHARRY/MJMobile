@@ -8,14 +8,30 @@
 
 
 #import "bizManager.h"
+#import "dic2Object.h"
+
+@interface dicItem:dic2Object
+
+@property(strong,nonatomic)NSString*dict_label;
+@property(strong,nonatomic)NSString*dict_label_type;
+@property(strong,nonatomic)NSString*dict_sort;
+@property(strong,nonatomic)NSString*dict_value;
+
+
+
+@end
+
 
 @interface dictionaryManager:bizManager
 
 
-+(void)updateDic;
++(void)updateDicSuccess:(void (^)(id responseObject))success
+                failure:(void (^)(NSError *error))failure;
 
 
 +(void)setDicVersion:(float)version;
 
 +(float)readDicVersion;
+
++(NSArray*)getItemArrByType:(NSString*)type;
 @end

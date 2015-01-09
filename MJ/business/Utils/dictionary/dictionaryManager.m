@@ -13,17 +13,31 @@
 #import "messageObj.h"
 #import "UtilFun.h"
 
+@implementation dicItem
+
+@synthesize dict_label;
+@synthesize dict_label_type;
+@synthesize dict_sort;
+@synthesize dict_value;
+
+@end
+
 @implementation dictionaryManager
 
 
-+(void)updateDic
+
+
++(void)updateDicSuccess:(void (^)(id responseObject))success
+                failure:(void (^)(NSError *error))failure
 {
-    if ([self readDicVersion] == 0)
-    {
-        
-    }
+    float curVer = [self readDicVersion];
+    [self getDicCurVersion:0 Success:success failure:failure];
 }
 
++(void)writeToDB:(NSDictionary*)dic
+{
+
+}
 
 
 +(void)getDicCurVersion:(float)verion Success:(void (^)(id responseObject))success
@@ -35,14 +49,22 @@
                                  };
     
     
-    [NetWorkManager PostWithApiName:API_PETITION_LIST parameters:parameters success:
+    [NetWorkManager PostWithApiName:GET_DICTIONARY parameters:parameters success:
      ^(id responseObject)
      {
          
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          if ([self checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {
-             //success([self getArr:resultDic]);
+             NSString*vNum = [resultDic objectForKey:@"version_no"];
+             vNum = [vNum substringFromIndex:1];
+             float fVNum = [vNum floatValue];
+             if (verion < fVNum)
+             {
+                 [self setDicVersion:fVNum];
+                 [self writeToDB:[resultDic objectForKey:@"DictionaryNode"]];
+             }
+             success(nil);
              return;
          }
          
@@ -50,10 +72,13 @@
      }
                             failure:^(NSError *error)
      {
+         
          failure(error);
          return;
      }];
 }
+
+
 
 
 
@@ -69,6 +94,13 @@
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     float version =[prefs floatForKey:@"DicVersion"];
     return version;
+}
+
+
++(NSArray*)getItemArrByType:(NSString*)type
+{
+    NSArray* arr = [[NSMutableArray alloc] init];
+    return arr;
 }
 
 @end

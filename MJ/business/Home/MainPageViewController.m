@@ -33,6 +33,8 @@
 
 #import "MessagePageViewController.h"
 
+#import "dictionaryManager.h"
+
 
 @interface MainPageViewController ()
 
@@ -176,9 +178,23 @@
 }
 
 
+-(void)getDicData
+{
+    SHOWHUD(self.view);
+    [dictionaryManager updateDicSuccess:^(id responseObject) {
+        HIDEHUD(self.view);
+    } failure:^(NSError *error) {
+        HIDEHUD(self.view);
+    }];
+        
+    
+}
+
+
 
 -(void)loadData
 {
+    [self getDicData];
     [self getUnReadAlertCnt];
     [self getUnReadMsgCnt];
     [self getPetitionData];
