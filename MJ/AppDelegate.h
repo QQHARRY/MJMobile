@@ -16,6 +16,8 @@
 
 -(void)loadBindStory;
 -(void)loadMainSotry:(BOOL)autoLogin;
+-(void)setDeviceToken:(NSString*)deviceToken;
+-(void)setMemberID:(NSString*)memberID;
 
 @property (strong, nonatomic)UIStoryboard*curStory;
 

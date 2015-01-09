@@ -25,7 +25,7 @@
 @property(nonatomic,assign)BOOL selectMode;
 @property(nonatomic,assign)id<contacSelection>selectResultDelegate;
 - (IBAction)expandBtnClicked:(id)sender;
-
+@property(nonatomic,strong)unit*curSelected;
 
 
 @end

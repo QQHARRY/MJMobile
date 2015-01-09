@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "person.h"
+
 @interface PersonDetailsViewController : UIViewController<UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutlet UILabel *myName;
 
@@ -22,7 +24,14 @@
 @property (strong, nonatomic) IBOutlet UITextField *chracterSign;
 @property (strong, nonatomic) IBOutlet UITextField *personalInfo;
 
-@property (assign,nonatomic)BOOL photoChanged;
+@property (assign, nonatomic)BOOL photoChanged;
+
+@property (strong, nonatomic)person*psn;
+@property (strong, nonatomic) IBOutlet UIButton *saveBtn;
+@property (strong, nonatomic) IBOutlet UIButton *phoneBtn;
+@property (strong, nonatomic) IBOutlet UIButton *smsBtn;
+- (IBAction)phoneBtnClicked:(id)sender;
+- (IBAction)smsBtnClicked:(id)sender;
 
 - (IBAction)clickPhotoBtn:(id)sender;
 - (IBAction)clickSaveButton:(id)sender;

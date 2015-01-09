@@ -52,6 +52,10 @@
 		4A5D244E1A4AC17500546698 /* cartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D244D1A4AC17500546698 /* cartTableViewCell.m */; };
 		4A5D24511A4AF21000546698 /* orderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D24501A4AF21000546698 /* orderTableViewCell.m */; };
 		4A5D24541A4AF22900546698 /* orderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D24531A4AF22900546698 /* orderTableViewController.m */; };
+		4A6EF2A61A5E20CC008AB819 /* ContactsListPersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6EF2A41A5E20CC008AB819 /* ContactsListPersonTableViewCell.m */; };
+		4A6EF2A71A5E20CC008AB819 /* ContactsListPersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6EF2A51A5E20CC008AB819 /* ContactsListPersonTableViewCell.xib */; };
+		4A6EF2AB1A5E6E8D008AB819 /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6EF2A91A5E6E8D008AB819 /* libUMessage_Sdk_1.1.0.a */; };
+		4A6EF2AF1A5E7401008AB819 /* pushManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6EF2AE1A5E7401008AB819 /* pushManagement.m */; };
 		4A8D01CF1A33023900EA59EA /* ILBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01CE1A33023900EA59EA /* ILBarButtonItem.m */; };
 		4A8D01D51A33039D00EA59EA /* UIViewController+FastNavgationBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01D41A33039D00EA59EA /* UIViewController+FastNavgationBarItem.m */; };
 		4A8D01D91A33381200EA59EA /* MainPageTableViewHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01D71A33381200EA59EA /* MainPageTableViewHeaderCell.m */; };
@@ -216,6 +220,13 @@
 		4A5D24501A4AF21000546698 /* orderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = orderTableViewCell.m; sourceTree = "<group>"; };
 		4A5D24521A4AF22900546698 /* orderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = orderTableViewController.h; sourceTree = "<group>"; };
 		4A5D24531A4AF22900546698 /* orderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = orderTableViewController.m; sourceTree = "<group>"; };
+		4A6EF2A31A5E20CC008AB819 /* ContactsListPersonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsListPersonTableViewCell.h; sourceTree = "<group>"; };
+		4A6EF2A41A5E20CC008AB819 /* ContactsListPersonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsListPersonTableViewCell.m; sourceTree = "<group>"; };
+		4A6EF2A51A5E20CC008AB819 /* ContactsListPersonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsListPersonTableViewCell.xib; sourceTree = "<group>"; };
+		4A6EF2A91A5E6E8D008AB819 /* libUMessage_Sdk_1.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.1.0.a; sourceTree = "<group>"; };
+		4A6EF2AA1A5E6E8D008AB819 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
+		4A6EF2AD1A5E7401008AB819 /* pushManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pushManagement.h; sourceTree = "<group>"; };
+		4A6EF2AE1A5E7401008AB819 /* pushManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pushManagement.m; sourceTree = "<group>"; };
 		4A8D01CD1A33023900EA59EA /* ILBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILBarButtonItem.h; sourceTree = "<group>"; };
 		4A8D01CE1A33023900EA59EA /* ILBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILBarButtonItem.m; sourceTree = "<group>"; };
 		4A8D01D31A33039D00EA59EA /* UIViewController+FastNavgationBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FastNavgationBarItem.h"; sourceTree = "<group>"; };
@@ -356,6 +367,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A6EF2AB1A5E6E8D008AB819 /* libUMessage_Sdk_1.1.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,6 +513,24 @@
 				4A5665521A4C127A00C3BA22 /* sendMessageViewController.xib */,
 			);
 			path = message;
+			sourceTree = "<group>";
+		};
+		4A6EF2A81A5E6E8D008AB819 /* UMessage_Sdk_1.1.0 */ = {
+			isa = PBXGroup;
+			children = (
+				4A6EF2A91A5E6E8D008AB819 /* libUMessage_Sdk_1.1.0.a */,
+				4A6EF2AA1A5E6E8D008AB819 /* UMessage.h */,
+			);
+			path = UMessage_Sdk_1.1.0;
+			sourceTree = "<group>";
+		};
+		4A6EF2AC1A5E7401008AB819 /* push */ = {
+			isa = PBXGroup;
+			children = (
+				4A6EF2AD1A5E7401008AB819 /* pushManagement.h */,
+				4A6EF2AE1A5E7401008AB819 /* pushManagement.m */,
+			);
+			path = push;
 			sourceTree = "<group>";
 		};
 		4A8D01CC1A33023900EA59EA /* ILBarButtonItem */ = {
@@ -652,6 +682,7 @@
 		4AD794A61A218C4A00DEC779 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				4A6EF2A81A5E6E8D008AB819 /* UMessage_Sdk_1.1.0 */,
 				4AA038591A3D30F0003E9CA6 /* BFNavigationBarDrawer */,
 				4ABC22291A3C83F20017FD94 /* PageView */,
 				4A8D02101A37F78400EA59EA /* badgeView */,
@@ -813,6 +844,7 @@
 		B9FF4B371A245FB300FE413E /* More */ = {
 			isa = PBXGroup;
 			children = (
+				4A6EF2AC1A5E7401008AB819 /* push */,
 				4A2AD1821A457F070074DCA0 /* About */,
 				4A2AD1831A457F070074DCA0 /* Shop */,
 				4A2AD1841A457F070074DCA0 /* Suggestion */,
@@ -820,6 +852,9 @@
 				4A2AD17E1A457E530074DCA0 /* PersonDetails */,
 				B9FF4B381A245FB300FE413E /* MoreViewController.h */,
 				B9FF4B391A245FB300FE413E /* MoreViewController.m */,
+				4A6EF2A31A5E20CC008AB819 /* ContactsListPersonTableViewCell.h */,
+				4A6EF2A41A5E20CC008AB819 /* ContactsListPersonTableViewCell.m */,
+				4A6EF2A51A5E20CC008AB819 /* ContactsListPersonTableViewCell.xib */,
 				4A40C20E1A401DEB00944AB2 /* ContactsListTableViewCell.h */,
 				4A40C20F1A401DEB00944AB2 /* ContactsListTableViewCell.m */,
 				4A40C2101A401DEB00944AB2 /* ContactsListTableViewCell.xib */,
@@ -929,6 +964,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A3923DF1A4C737000B0D232 /* index.html in Resources */,
+				4A6EF2A71A5E20CC008AB819 /* ContactsListPersonTableViewCell.xib in Resources */,
 				4A5665541A4C127A00C3BA22 /* sendMessageViewController.xib in Resources */,
 				4ABC22221A3C3F940017FD94 /* LoadMoreTableViewCell.xib in Resources */,
 				4A8D01E41A369F2E00EA59EA /* PetitionTableViewCell.xib in Resources */,
@@ -1003,6 +1039,7 @@
 				4A2EE11D1A42774600899976 /* petitionFollowChartViewController.m in Sources */,
 				4AD795211A218C4A00DEC779 /* AFHTTPSessionManager.m in Sources */,
 				4ABC22211A3C3F940017FD94 /* LoadMoreTableViewCell.m in Sources */,
+				4A6EF2A61A5E20CC008AB819 /* ContactsListPersonTableViewCell.m in Sources */,
 				4A5D24451A4A79A600546698 /* shopBizManager.m in Sources */,
 				4A2AD1881A457F1B0074DCA0 /* AboutViewController.m in Sources */,
 				4A56654C1A4C05C300C3BA22 /* messageManager.m in Sources */,
@@ -1012,6 +1049,7 @@
 				4AD7954F1A218C4A00DEC779 /* UIButton+AFNetworking.m in Sources */,
 				4A51374B1A3B2AAA007B504B /* dic2Object.m in Sources */,
 				4A5D243F1A4A6E9C00546698 /* ShopItemTableViewCell.m in Sources */,
+				4A6EF2AF1A5E7401008AB819 /* pushManagement.m in Sources */,
 				4AD794621A208F4400DEC779 /* AppDelegate.m in Sources */,
 				4A8D01ED1A36F60800EA59EA /* announcement.m in Sources */,
 				4A5D243C1A4A62A800546698 /* ShopTableViewController.m in Sources */,
@@ -1186,8 +1224,12 @@
 				INFOPLIST_FILE = MJ/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MJ/3rd/UMessage_Sdk_1.1.0",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e2b51873-381c-467a-8f4d-b59928a8cbb0";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1202,8 +1244,12 @@
 				INFOPLIST_FILE = MJ/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MJ/3rd/UMessage_Sdk_1.1.0",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e2b51873-381c-467a-8f4d-b59928a8cbb0";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

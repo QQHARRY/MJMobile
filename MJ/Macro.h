@@ -53,6 +53,9 @@
 #define SEND_INNER_MESSAGE @"home/sendMessage"
 #define SET_INNER_MESSAGE_READ_STATUS @"home/setMessageReadAlready"
 
+#define REG_PUSH_NOTIFICATION @"login/uploadDeviceToken"
+
+
 //  19.获取房源简要信息列表
 #define API_HOUSE_LIST @"business/getRealEstateBriefList"
 

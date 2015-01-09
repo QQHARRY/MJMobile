@@ -152,6 +152,8 @@
                      
                      [self writeDefaultMsg];
                      [self performSegueWithIdentifier:@"LoginToMainPage" sender:self];
+                     AppDelegate*app = [[UIApplication sharedApplication] delegate];
+                     [app setMemberID:[person me].job_no];
                      return;
                  }
                      break;

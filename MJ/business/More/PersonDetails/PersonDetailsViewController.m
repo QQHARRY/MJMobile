@@ -11,31 +11,79 @@
 #import "UtilFun.h"
 #import "NetWorkManager.h"
 #import "Macro.h"
+#import "UIButton+AFNetworking.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface PersonDetailsViewController ()
 
 @end
 
 @implementation PersonDetailsViewController
+@synthesize psn;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.photoChanged = NO;
+    if (psn == nil)
+    {
+        return;
+    }
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc ] initWithTitle:@"修改密码" style:UIBarButtonItemStylePlain target:self action:@selector(editPassWordBtnClicked:)];
+    if (psn == [person me])
+    {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc ] initWithTitle:@"修改密码" style:UIBarButtonItemStylePlain target:self action:@selector(editPassWordBtnClicked:)];
+        self.loginName.enabled = YES;
+        self.mobileNum.enabled = YES;
+        self.chracterSign.enabled = YES;
+        self.personalInfo.enabled = YES;
+        self.myPhoto.enabled = YES;
+        self.phoneBtn.hidden = YES;
+        self.smsBtn.hidden = YES;
+        self.saveBtn.hidden = NO;
+    }
+    else
+    {
+        self.loginName.enabled = NO;
+        self.mobileNum.enabled = NO;
+        self.chracterSign.enabled = NO;
+        self.personalInfo.enabled = NO;
+        self.myPhoto.enabled = NO;
+        self.phoneBtn.hidden = NO;
+        self.smsBtn.hidden = NO;
+        self.saveBtn.hidden = YES;
+        self.smsBtn.enabled = NO;
+        self.phoneBtn.enabled = NO;
+    }
     
+    self.loginName.text = psn.job_name;
+    
+    if (psn.obj_mobile && psn.obj_mobile.length > 0)
+    {
+        self.mobileNum.text = psn.obj_mobile;
+        
+        if ([UtilFun isIphoneAboutHardWare])
+        {
+            self.smsBtn.enabled = YES;
+            self.phoneBtn.enabled = YES;
+        }
+        
+    }
+
+    
+    self.chracterSign.text = psn.acc_remarks;
+    self.personalInfo.text = psn.acc_content;
     NSString*tmp = @"所属公司:";
-    self.company.text = [tmp stringByAppendingString:[person me].company_name];
+    self.company.text = [tmp stringByAppendingString:psn.company_name];
     
     tmp = @"所属部门:";
-    self.department.text = [tmp stringByAppendingString:[person me].department_name];
+    self.department.text = [tmp stringByAppendingString:psn.department_name];
     
     tmp = @"姓名:";
-    self.myName.text = [tmp stringByAppendingString:[person me].name_full];
+    self.myName.text = [tmp stringByAppendingString:psn.name_full];
     
     tmp = @"登录角色:";
-    self.character.text = [tmp stringByAppendingString:[person me].role_name];
+    self.character.text = [tmp stringByAppendingString:psn.role_name];
     
     tmp = @"最后登录IP:";
     self.lastLoginIP.text = tmp;
@@ -43,19 +91,40 @@
     self.lastLoginTime.text = tmp;
     
     
-    self.loginName.text = [person me].job_name;
-    self.mobileNum.text = [person me].obj_mobile;
-    self.chracterSign.text = [person me].acc_remarks;
-    self.personalInfo.text = [person me].acc_content;
-    self.loginName.enabled = YES;
-    self.mobileNum.enabled = YES;
-    self.chracterSign.enabled = YES;
-    self.personalInfo.enabled = YES;
-    self.myPhoto.enabled = YES;
+    
+    NSString*photoUrl = psn.photo;
+    if ([photoUrl length] == 0)
+    {
+        [self.myPhoto setBackgroundImage:[UIImage imageNamed:@"defaultPhoto"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        NSString*strUrl = [SERVER_ADD stringByAppendingString:photoUrl];
+        UIImageView* imageV = [[UIImageView alloc] init];
+        
+        [imageV getImageWithURL:[NSURL URLWithString:strUrl] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+            [self.myPhoto  setBackgroundImage:image forState:UIControlStateNormal];
+            
+            
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+            
+            
+        }];
+
+        
+    }
     
     // Do any additional setup after loading the view.
     
     [self initConstrains];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.loginName resignFirstResponder];
+    [self.mobileNum resignFirstResponder];
+    [self.chracterSign resignFirstResponder];
+    [self.personalInfo resignFirstResponder];
 }
 
 -(void)editPassWordBtnClicked:(id)sender
@@ -134,7 +203,7 @@
 
 - (void)setPhoto
 {
-    NSString*userID = [person me].job_no;
+    NSString*userID = psn.job_no;
 
     NSString *fullPath = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]  stringByAppendingPathComponent:userID] stringByAppendingString:@"_"]stringByAppendingString:@"myPhotoName"];
     
@@ -165,7 +234,7 @@
 #pragma mark - save image to bundle
 - (void) saveImage:(UIImage *)currentImage withName:(NSString *)imageName
 {
-    NSString*userID = [person me].job_no;
+    NSString*userID = psn.job_no;
 
     NSData *imageData = UIImagePNGRepresentation(currentImage);
     
@@ -174,6 +243,23 @@
     [imageData writeToFile:fullPath atomically:NO];
     
     self.photoChanged = YES;
+}
+
+- (IBAction)phoneBtnClicked:(id)sender {
+
+    UIWebView*callWebview =[[UIWebView alloc] initWithFrame:CGRectZero];
+    NSURL *telURL =[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",psn.obj_mobile]];
+    [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
+    [self.view addSubview:callWebview];
+    
+}
+
+- (IBAction)smsBtnClicked:(id)sender {
+
+    UIWebView*callWebview =[[UIWebView alloc] initWithFrame:CGRectZero];
+    NSURL *telURL =[NSURL URLWithString:[NSString stringWithFormat:@"sms:%@",psn.obj_mobile]];
+    [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
+    [self.view addSubview:callWebview];
 }
 
 - (IBAction)clickPhotoBtn:(id)sender {
@@ -222,8 +308,8 @@
     }
     
     SHOWHUD(self.view);
-    NSDictionary *parameters = @{@"job_no":[person me].job_no,
-                                 @"acc_password": [person me].password,
+    NSDictionary *parameters = @{@"job_no":psn.job_no,
+                                 @"acc_password": psn.password,
                                  @"DeviceID" : [UtilFun getUDID],
                                  @"acc_name" : accName,
                                  @"obj_mobile" : phoneNumMobile,

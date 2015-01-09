@@ -12,6 +12,9 @@
 #import "myBriefTableViewCell.h"
 #import "person.h"
 #import "AppDelegate.h"
+#import "PersonDetailsViewController.h"
+#import "Macro.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface MoreViewController ()
 
@@ -133,7 +136,15 @@
         }
         else
         {
-            
+            NSString*strUrl = [SERVER_ADD stringByAppendingString:photoUrl];
+            [cell.myPhoto getImageWithURL:[NSURL URLWithString:strUrl] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                cell.myPhoto.image = image;
+                
+                
+            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                
+                
+            }];
         }
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         return cell;
@@ -188,14 +199,41 @@
 #pragma mark
 #pragma mark
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    UIViewController *controller;
+    if ([segue.destinationViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        controller = [navController.viewControllers objectAtIndex:0];
+    } else {
+        controller = segue.destinationViewController;
+    }
+    
+    
+    if ([segue.identifier isEqual:@"showPersonDetails"])
+    {
+        if ([controller isKindOfClass:[PersonDetailsViewController class]])
+        {
+            PersonDetailsViewController *detailController = (PersonDetailsViewController *)controller;
+            
+            
+            detailController.psn = [person me];
+            
+            
+        }
+        else
+        {
+            
+        }
+        
+    }
+
+    
+    
 }
-*/
+
 
 @end

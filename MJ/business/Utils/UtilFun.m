@@ -8,7 +8,7 @@
 
 #import "UtilFun.h"
 #import "MBProgressHUD.h"
-
+#import "sys/utsname.h"
 
 static NSString*UDIDSTRING=nil;
 
@@ -140,5 +140,21 @@ static NSString*UDIDSTRING=nil;
     return[scan scanFloat:&val] && [scan isAtEnd];
 }
 
++(BOOL)isIphoneAboutHardWare
+{
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+    
+    NSString*strModel =  [UIDevice currentDevice].model;
+    
+    return [deviceString  rangeOfString:@"iPhone"].location != NSNotFound;
+}
 
++(BOOL)isIphoneAboutUI
+{
+    NSString*strModel =  [UIDevice currentDevice].model;
+    
+    return [strModel  rangeOfString:@"iPhone"].location != NSNotFound;
+}
 @end

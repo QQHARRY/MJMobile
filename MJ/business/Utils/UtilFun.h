@@ -59,4 +59,8 @@ alertView.delegate = self;\
 +(BOOL)isPureInt:(NSString*)string;
 +(BOOL)isPureFloat:(NSString*)string;
 
+
++(BOOL)isIphoneAboutHardWare;
++(BOOL)isIphoneAboutUI;
+
 @end

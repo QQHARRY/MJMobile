@@ -18,6 +18,8 @@
 
 #import "BFNavigationBarDrawer.h"
 
+#import "PersonDetailsViewController.h"
+
 
 static NSMutableDictionary*selctions = nil;
 
@@ -156,13 +158,11 @@ static NSMutableDictionary*selctions = nil;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-#if 1
     NSInteger row = [indexPath row];
     
     
     NSString *CellIdentifier = @"ContactsListTableViewCell";
     
-//    ContactsListTableViewCell *cell=(ContactsListTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
     ContactsListTableViewCell *cell = nil;
     if(cell==nil)
@@ -187,25 +187,6 @@ static NSMutableDictionary*selctions = nil;
     [cell  setUnit:unt withTag:row delegate:self action:@selector(expandBtnClicked:) Selected:selected];
     
     return cell;
-    
-#else
-    NSInteger row = [indexPath row];
-    
-    
-    NSString *CellIdentifier = @"ContactListUnitTableViewCell";
-    
-    ContactListUnitTableViewCell *cell=(ContactListUnitTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    
-    
-    
-    
-    unit* unt = [_contactListTreeHead findSubUnitByIndex:&row];
-    [cell  setUnit:unt withTag:row delegate:self action:@selector(expandBtnClicked:)];
-    
-    return cell;
-    
-#endif
 }
 
 
@@ -230,17 +211,56 @@ static NSMutableDictionary*selctions = nil;
             [cell setBeSelected:YES];
         }
     }
+    else
+    {
+        ContactsListTableViewCell*cell = (ContactsListTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+        unit*unt = cell.unitKeeped;
+        
+        if (unt && [unt isKindOfClass:[person class]])
+        {
+            self.curSelected = unt;
+            [self performSegueWithIdentifier:@"showPersonDetailsFromContactsList" sender:self];
+        }
+        
+        
+    }
     
 }
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    UIViewController *controller;
+    if ([segue.destinationViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        controller = [navController.viewControllers objectAtIndex:0];
+    } else {
+        controller = segue.destinationViewController;
+    }
+    
+    
+    if ([segue.identifier isEqual:@"showPersonDetailsFromContactsList"])
+    {
+        if ([controller isKindOfClass:[PersonDetailsViewController class]])
+        {
+            PersonDetailsViewController *detailController = (PersonDetailsViewController *)controller;
+            
+            
+            detailController.psn = self.curSelected;
+
+        }
+        else
+        {
+            
+        }
+        
+    }
 }
-*/
+
 
 - (IBAction)expandBtnClicked:(id)sender
 {
