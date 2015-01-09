@@ -12,6 +12,9 @@
 #import "person.h"
 #import "messageObj.h"
 #import "UtilFun.h"
+#import "DataPersistence.h"
+#import "Sqlite3DataPersistence.h"
+#import "Macro.h"
 
 @implementation DicItem
 
@@ -19,6 +22,18 @@
 @synthesize dict_label_type;
 @synthesize dict_sort;
 @synthesize dict_value;
+
+
+-(NSString*)insertString
+{
+    NSString *sqlStr = [NSString stringWithFormat:@"INSERT INTO %@ (dict_label,dict_label_type,dict_sort,dict_value) VALUES(\"%@\",\"%@\",\"%@\",\"%@\")",DIC_TABLE_NAME,self.dict_label,self.dict_label_type,self.dict_sort,self.dict_value];
+    return sqlStr;
+}
++(NSString*)searchString
+{
+    NSString *sqlStr = [NSString stringWithFormat:@"SELECT dict_label,dict_label_type,dict_sort,dict_value from %@",DIC_TABLE_NAME];
+    return sqlStr;
+}
 
 @end
 
@@ -31,21 +46,58 @@
                 failure:(void (^)(NSError *error))failure
 {
     float curVer = [self readDicVersion];
-    [self getDicCurVersion:0 Success:success failure:failure];
+    [self getDicCurVersion:curVer Success:success failure:failure];
 }
 
-+(void)writeToDB:(NSArray*)itemArr
++(void)writeDicToDB:(NSArray*)itemArr
 {
-
+    [self clearCurTable];
+    
+    NSArray*dicArr = [self getDicItemArr:itemArr];
+    for (DicItem*dicItem in dicArr)
+    {
+        [self writeItem:dicItem];
+    }
 }
 
+
++(void)clearCurTable
+{
+    [Sqlite3DataPersistence deleteTable:DIC_TABLE_NAME];
+    [Sqlite3DataPersistence createTable:DIC_TABLE_NAME];
+}
+
++(void)writeItem:(DicItem*)item
+{
+    [Sqlite3DataPersistence insertObj:item ToTable:DIC_TABLE_NAME];
+}
++(NSArray*)getDicItemArr:(NSArray*)arr
+{
+    if (arr == nil)
+    {
+        return nil;
+    }
+
+    NSMutableArray* dicArr = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary*dic in arr)
+    {
+        DicItem* obj = [[DicItem alloc] init];
+        [obj initWithDictionary:dic];
+        [dicArr  addObject:obj];
+        
+    }
+    
+    return dicArr;
+}
 
 +(void)getDicCurVersion:(float)verion Success:(void (^)(id responseObject))success
            failure:(void (^)(NSError *error))failure
 {
+    NSString*strVer = [NSString stringWithFormat:@"V%.2f",verion];
     NSDictionary *parameters = @{@"job_no":[person me].job_no,
                                  @"acc_password":[person me].password,
-                                 @"version_no":[NSNumber numberWithFloat:verion]
+                                 @"version_no":strVer
                                  };
     
     
@@ -62,7 +114,9 @@
              if (verion < fVNum)
              {
                  [self setDicVersion:fVNum];
-                 [self writeToDB:[resultDic objectForKey:@"DictionaryNode"]];
+                 [self writeDicToDB:[resultDic objectForKey:@"DictionaryNode"]];
+                 
+                 //[self getItemArrByType:@"job_type"];
              }
              success(nil);
              return;
@@ -93,7 +147,10 @@
 
 +(NSArray*)getItemArrByType:(NSString*)type
 {
-    NSArray* arr = [[NSMutableArray alloc] init];
+    NSString*cond = [NSString stringWithFormat:@"where dict_label_type=\"%@\" order by dict_sort asc",type];
+
+    NSArray* arr = [Sqlite3DataPersistence seachRecordWithCondition:cond];
+
     return arr;
 }
 

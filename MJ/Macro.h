@@ -62,7 +62,9 @@
 
 //字典表
 #define GET_DICTIONARY @"business/getDictionary"
-
+//字典表数据库名称
+#define DIC_DB_NAME @"dictable.db"
+#define DIC_TABLE_NAME @"dictable"
 
 
 

@@ -10,6 +10,14 @@
 #import "bizManager.h"
 #import "dic2Object.h"
 
+
+@protocol SQLPROTOCOL <NSObject>
+
+@required
+-(NSString*)insertString;
+-(NSString*)searchString;
+@end
+
 @interface DicItem:dic2Object
 
 @property(strong,nonatomic)NSString*dict_label;
@@ -17,7 +25,8 @@
 @property(strong,nonatomic)NSString*dict_sort;
 @property(strong,nonatomic)NSString*dict_value;
 
-
+-(NSString*)insertString;
++(NSString*)searchString;
 
 @end
 
