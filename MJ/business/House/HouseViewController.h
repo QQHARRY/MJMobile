@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewPagerController.h"
 
-@interface HouseViewController : UIViewController
+
+@interface HouseViewController : ViewPagerController
+    <ViewPagerDataSource, ViewPagerDelegate>
 
 @end
+
