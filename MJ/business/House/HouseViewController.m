@@ -84,10 +84,10 @@
 
 - (void)onFilterAction:(id)sender
 {
-//    sendMessageViewController*ctrl = [[sendMessageViewController alloc] initWithNibName:@"sendMessageViewController" bundle:[NSBundle mainBundle]];
+    HouseFilterController *vc = [[HouseFilterController alloc] initWithStyle:UITableViewStyleGrouped];
 //    ctrl.msgObj = nil;
 //    ctrl.msgType = MJMESSAGESENDTYPE_SEND;
-//    [self.navigationController pushViewController:ctrl animated:YES];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - ViewPagerDataSource
