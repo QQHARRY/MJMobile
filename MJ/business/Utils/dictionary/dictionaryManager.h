@@ -10,7 +10,7 @@
 #import "bizManager.h"
 #import "dic2Object.h"
 
-@interface dicItem:dic2Object
+@interface DicItem:dic2Object
 
 @property(strong,nonatomic)NSString*dict_label;
 @property(strong,nonatomic)NSString*dict_label_type;

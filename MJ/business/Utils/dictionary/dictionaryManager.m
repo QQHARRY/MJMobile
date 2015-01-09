@@ -13,7 +13,7 @@
 #import "messageObj.h"
 #import "UtilFun.h"
 
-@implementation dicItem
+@implementation DicItem
 
 @synthesize dict_label;
 @synthesize dict_label_type;
@@ -34,7 +34,7 @@
     [self getDicCurVersion:0 Success:success failure:failure];
 }
 
-+(void)writeToDB:(NSDictionary*)dic
++(void)writeToDB:(NSArray*)itemArr
 {
 
 }
@@ -67,19 +67,13 @@
              success(nil);
              return;
          }
-         
-         
      }
                             failure:^(NSError *error)
      {
-         
          failure(error);
          return;
      }];
 }
-
-
-
 
 
 +(void)setDicVersion:(float)version
