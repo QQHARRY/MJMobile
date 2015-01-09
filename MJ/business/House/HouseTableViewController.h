@@ -7,16 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
-//typedef NS_ENUM(NSInteger, MJMESSAGETYPE) {
-//    MJMESSAGETYPE_UNREAD       = 0,
-//    MJMESSAGETYPE_READED     = 1,
-//};
+#import "HouseViewController.h"
 
 @interface HouseTableViewController : UITableViewController
 
-//@property(nonatomic,assign)MJMESSAGETYPE msgType;
-//
+@property(nonatomic) HOUSER_CONTROLLER_TYPE controllerType;
 //
 //@property(nonatomic,strong)NSMutableArray*msgArr;
 //

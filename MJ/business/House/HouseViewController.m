@@ -12,10 +12,15 @@
 #import "Macro.h"
 #import "person.h"
 #import "HouseTableViewController.h"
+#import "HouseFilter.h"
 
 @interface HouseViewController ()
 
-@property (nonatomic, retain) NSArray *dataControllerList;
+@property (nonatomic) HOUSER_CONTROLLER_TYPE nowControllerType;
+@property (nonatomic, retain) HouseTableViewController *rentController;
+@property (nonatomic) HouseFilter *rentFilter;
+@property (nonatomic, retain) HouseTableViewController *sellController;
+@property (nonatomic) HouseFilter *sellFilter;
 
 @end
 
@@ -28,7 +33,9 @@
     self.dataSource = self;
     self.delegate = self;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-
+    // default is sell controller
+    self.nowControllerType = HCT_SELL;
+    
     // ios version fixed code
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
     if ([[UIDevice currentDevice].systemVersion floatValue] > 7.0)
@@ -43,9 +50,10 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"筛选" style:UIBarButtonItemStylePlain target:self action:@selector(onFilterAction:)];
     
     // add table view controller
-    HouseTableViewController *rentHouseTableC = [[HouseTableViewController alloc] initWithNibName:@"HouseTableViewController" bundle:[NSBundle mainBundle]];
-    HouseTableViewController *sellHouseTableC = [[HouseTableViewController alloc] initWithNibName:@"HouseTableViewController" bundle:[NSBundle mainBundle]];
-    self.dataControllerList = @[rentHouseTableC, sellHouseTableC];
+    self.rentController = [[HouseTableViewController alloc] initWithNibName:@"HouseTableViewController" bundle:[NSBundle mainBundle]];
+    self.rentController.controllerType = HCT_RENT;
+    self.sellController = [[HouseTableViewController alloc] initWithNibName:@"HouseTableViewController" bundle:[NSBundle mainBundle]];
+    self.sellController.controllerType = HCT_SELL;
 
     // super fun
     [super viewDidLoad];
@@ -76,6 +84,7 @@
     [label setFont:[UIFont systemFontOfSize:14]];
     if (index == 0)
     {
+        // default is sell controller
         label.text = @"出售";
     }
     else
@@ -87,8 +96,15 @@
 
 - (UIViewController *)viewPager:(ViewPagerController *)viewPager contentViewControllerForTabAtIndex:(NSUInteger)index
 {
-    UIViewController* vc = [self.dataControllerList objectAtIndex:index];
-    return vc;
+    if (index == 0)
+    {
+        return self.sellController;
+    }
+    else
+    {
+        return self.rentController;
+    }
+    return nil;
 }
 
 #pragma mark - ViewPagerDelegate
@@ -111,7 +127,6 @@
         default:
             break;
     }
-    
     return value;
 }
 
@@ -131,12 +146,19 @@
         default:
             break;
     }
-    
     return color;
 }
 
 - (void)viewPager:(ViewPagerController *)viewPager didChangeTabToIndex:(NSUInteger)index
 {
+    if (index == 0)
+    {
+        self.nowControllerType = HCT_SELL;
+    }
+    else
+    {
+        self.nowControllerType = HCT_RENT;
+    }
 }
 
 /*
@@ -151,45 +173,6 @@
 
 @end
 
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//@interface MessagePageViewController ()
-//{
-//    NSMutableArray* catagoryVCArr;
-//}
-//@end
-//
-//
-//- (void)viewDidLoad {
-//    // Do any additional setup after loading the view.
-//    self.title = @"站内信";
-//    self.dataSource = self;
-//    self.delegate = self;
-//    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
-//    {
-//        self.navigationController.navigationBar.translucent = NO;
-//        self.edgesForExtendedLayout = UIRectEdgeNone;
-//    }
-    // self.navigationController.navigationBar.hidden = YES;
-//    catagoryVCArr = [[NSMutableArray alloc] init];
-//    MessageTableViewController*readPage = [[MessageTableViewController alloc ] initWithNibName:@"MessageTableViewController" bundle:[NSBundle mainBundle]];
-//    readPage.msgType = MJMESSAGETYPE_READED;
-//    readPage.container = self;
-//    MessageTableViewController*unReadPage = [[MessageTableViewController alloc ] initWithNibName:@"MessageTableViewController" bundle:[NSBundle mainBundle]];
-//    unReadPage.msgType = MJMESSAGETYPE_UNREAD;
-//    unReadPage.container = self;
-//    [catagoryVCArr addObject:unReadPage];
-//    [catagoryVCArr addObject:readPage];
-//
-//
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发信" style:UIBarButtonItemStylePlain target:self action:@selector(sendMessage:)];
-//    
-//    [super viewDidLoad];
-//
-//}
 
 //-(void)sendMessage:(id)sender
 //{

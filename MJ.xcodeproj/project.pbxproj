@@ -121,6 +121,8 @@
 		4AFC39A81A47CA3A000FB6F3 /* bind.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC39A61A47CA3A000FB6F3 /* bind.storyboard */; };
 		B98BD4A31A603B51003A35BE /* HouseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A11A603B51003A35BE /* HouseTableViewController.m */; };
 		B98BD4A41A603B51003A35BE /* HouseTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B98BD4A21A603B51003A35BE /* HouseTableViewController.xib */; };
+		B98BD4A71A604045003A35BE /* HouseDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A61A604045003A35BE /* HouseDetail.m */; };
+		B98BD4AA1A604408003A35BE /* HouseFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A91A604408003A35BE /* HouseFilter.m */; };
 		B9FF4B3F1A245FB300FE413E /* CustomerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF4B301A245FB300FE413E /* CustomerViewController.m */; };
 		B9FF4B401A245FB300FE413E /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF4B331A245FB300FE413E /* MainPageViewController.m */; };
 		B9FF4B411A245FB300FE413E /* HouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF4B361A245FB300FE413E /* HouseViewController.m */; };
@@ -355,6 +357,10 @@
 		B98BD4A01A603B51003A35BE /* HouseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseTableViewController.h; sourceTree = "<group>"; };
 		B98BD4A11A603B51003A35BE /* HouseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseTableViewController.m; sourceTree = "<group>"; };
 		B98BD4A21A603B51003A35BE /* HouseTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HouseTableViewController.xib; sourceTree = "<group>"; };
+		B98BD4A51A604045003A35BE /* HouseDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseDetail.h; sourceTree = "<group>"; };
+		B98BD4A61A604045003A35BE /* HouseDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseDetail.m; sourceTree = "<group>"; };
+		B98BD4A81A604408003A35BE /* HouseFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseFilter.h; sourceTree = "<group>"; };
+		B98BD4A91A604408003A35BE /* HouseFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseFilter.m; sourceTree = "<group>"; };
 		B9D3C6F11A272A39009CCE96 /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		B9FF4B2F1A245FB300FE413E /* CustomerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerViewController.h; sourceTree = "<group>"; };
 		B9FF4B301A245FB300FE413E /* CustomerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerViewController.m; sourceTree = "<group>"; };
@@ -853,6 +859,10 @@
 		B9FF4B341A245FB300FE413E /* House */ = {
 			isa = PBXGroup;
 			children = (
+				B98BD4A51A604045003A35BE /* HouseDetail.h */,
+				B98BD4A61A604045003A35BE /* HouseDetail.m */,
+				B98BD4A81A604408003A35BE /* HouseFilter.h */,
+				B98BD4A91A604408003A35BE /* HouseFilter.m */,
 				B9FF4B351A245FB300FE413E /* HouseViewController.h */,
 				B9FF4B361A245FB300FE413E /* HouseViewController.m */,
 				B98BD4A01A603B51003A35BE /* HouseTableViewController.h */,
@@ -1065,6 +1075,7 @@
 				4A6EF2A61A5E20CC008AB819 /* ContactsListPersonTableViewCell.m in Sources */,
 				4A5D24451A4A79A600546698 /* shopBizManager.m in Sources */,
 				4A2AD1881A457F1B0074DCA0 /* AboutViewController.m in Sources */,
+				B98BD4A71A604045003A35BE /* HouseDetail.m in Sources */,
 				4A56654C1A4C05C300C3BA22 /* messageManager.m in Sources */,
 				4A5137481A3B18C1007B504B /* bizManager.m in Sources */,
 				4AD795291A218C4A00DEC779 /* FXImageView.m in Sources */,
@@ -1094,6 +1105,7 @@
 				4A5665571A4C1C4100C3BA22 /* ViewPagerController.m in Sources */,
 				4AD795251A218C4A00DEC779 /* AFURLRequestSerialization.m in Sources */,
 				4A5665291A4BDFF800C3BA22 /* editOrderViewController.m in Sources */,
+				B98BD4AA1A604408003A35BE /* HouseFilter.m in Sources */,
 				4A8D01F91A36FB8000EA59EA /* internalMessageManager.m in Sources */,
 				4AA0385C1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m in Sources */,
 				4AD7954D1A218C4A00DEC779 /* UIActivityIndicatorView+AFNetworking.m in Sources */,

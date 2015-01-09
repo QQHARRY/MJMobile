@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "ViewPagerController.h"
 
+typedef NS_ENUM(NSInteger, HOUSER_CONTROLLER_TYPE)
+{
+    HCT_RENT    = 1,
+    HCT_SELL     = 2,
+};
 
 @interface HouseViewController : ViewPagerController
     <ViewPagerDataSource, ViewPagerDelegate>
