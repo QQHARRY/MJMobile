@@ -40,6 +40,8 @@
     [HouseDataPuller pullDataWithFilter:self.filter Success:^(NSArray *houseDetailList)
     {
         HIDEHUD([UIApplication sharedApplication].keyWindow);
+        [self.houseList addObjectsFromArray:houseDetailList];
+        [self.tableView reloadData];
     }
                                 failure:^(NSError *e)
     {
@@ -54,14 +56,14 @@
 }
 
 #pragma mark - Table view data source
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return 0;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.houseList.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -69,6 +71,41 @@
     return 90;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+    //    MessageBriefTableViewCell *cell = (MessageBriefTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"messageBriefTableViewCell" forIndexPath:indexPath];
+    
+    
+    //    static NSString *CellIdentifier = @"messageBriefTableViewCell";
+    //
+    //    MessageBriefTableViewCell *cell=(MessageBriefTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    //    if(cell==nil)
+    //    {
+    //        NSArray *nibs=[[NSBundle mainBundle] loadNibNamed:@"MessageBriefTableViewCell" owner:self options:nil];
+    //        for(id oneObject in nibs)
+    //        {
+    //            if([oneObject isKindOfClass:[MessageBriefTableViewCell class]])
+    //            {
+    //                cell = (MessageBriefTableViewCell *)oneObject;
+    //            }
+    //        }
+    //    }
+    //
+    //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //
+    //    messageObj*obj = [msgArr objectAtIndex:indexPath.row];
+    //    if (obj)
+    //    {
+    //        cell.receiver.text = obj.msg_opt_user_list_name;
+    //        cell.msgSender.text = obj.view_user_list_name;
+    //        cell.briefContent.text = obj.msg_title;
+    //        cell.sendTime.text = obj.msg_save_date;
+    //    }
+    //    
+    //    return cell;
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -91,42 +128,6 @@
 //    {
 //        [((UIViewController*)(self.container)).navigationController pushViewController:vc animated:YES];
 //    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return nil;
-//    MessageBriefTableViewCell *cell = (MessageBriefTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"messageBriefTableViewCell" forIndexPath:indexPath];
-    
-    
-//    static NSString *CellIdentifier = @"messageBriefTableViewCell";
-//    
-//    MessageBriefTableViewCell *cell=(MessageBriefTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if(cell==nil)
-//    {
-//        NSArray *nibs=[[NSBundle mainBundle] loadNibNamed:@"MessageBriefTableViewCell" owner:self options:nil];
-//        for(id oneObject in nibs)
-//        {
-//            if([oneObject isKindOfClass:[MessageBriefTableViewCell class]])
-//            {
-//                cell = (MessageBriefTableViewCell *)oneObject;
-//            }
-//        }
-//    }
-//    
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//    
-//    messageObj*obj = [msgArr objectAtIndex:indexPath.row];
-//    if (obj)
-//    {
-//        cell.receiver.text = obj.msg_opt_user_list_name;
-//        cell.msgSender.text = obj.view_user_list_name;
-//        cell.briefContent.text = obj.msg_title;
-//        cell.sendTime.text = obj.msg_save_date;
-//    }
-//    
-//    return cell;
 }
 
 

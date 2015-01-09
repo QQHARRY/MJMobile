@@ -10,6 +10,8 @@
 #import "Macro.h"
 #import "person.h"
 #import "NetWorkManager.h"
+#import "HouseDetail.h"
+#import "bizManager.h"
 
 @implementation HouseDataPuller
 
@@ -127,11 +129,19 @@
     [NetWorkManager PostWithApiName:API_HOUSE_LIST parameters:param success:^(id responseObject)
      {
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-//         if ([self checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
-//         {
-//             success([self getArr:resultDic]);
-//         }
-         NSLog(@"%@", resultDic);
+         if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         {
+
+             NSArray *src = [resultDic objectForKey:@"EstateNode"];
+             NSMutableArray *dst = [NSMutableArray array];
+             for (NSDictionary *d in src)
+             {
+                 HouseDetail *o = [[HouseDetail alloc] init];
+                 [o initWithDictionary:d];
+                 [dst addObject:o];
+             }
+             success(dst);
+         }
      }
                             failure:^(NSError *error)
      {
