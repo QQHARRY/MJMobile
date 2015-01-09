@@ -12,6 +12,8 @@
 	<dict>
 		<key>2865c978-79cc-4856-a483-bbd765a2f553</key>
 		<string>svn://192.168.8.100/private</string>
+		<key>2865c978-79cc-4856-a483-bbd765a2f553++205</key>
+		<string>svn://192.168.8.100/private</string>
 		<key>B626280C4D7410D9EAF62568FC32F6C811EE055C</key>
 		<string>svn://192.168.8.100/private</string>
 	</dict>
@@ -20,14 +22,16 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>2865c978-79cc-4856-a483-bbd765a2f553</key>
-		<string>../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../..</string>
+		<string>../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../..</string>
+		<key>2865c978-79cc-4856-a483-bbd765a2f553++205</key>
+		<string>../..</string>
 		<key>B626280C4D7410D9EAF62568FC32F6C811EE055C</key>
 		<string>../../../MJ</string>
 	</dict>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>B626280C4D7410D9EAF62568FC32F6C811EE055C</string>
+	<string>2865c978-79cc-4856-a483-bbd765a2f553++205</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -50,7 +54,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.subversion</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>B626280C4D7410D9EAF62568FC32F6C811EE055C</string>
+			<string>2865c978-79cc-4856-a483-bbd765a2f553++205</string>
 			<key>IDESourceControlWCCName</key>
 			<string>MJMobile</string>
 		</dict>
