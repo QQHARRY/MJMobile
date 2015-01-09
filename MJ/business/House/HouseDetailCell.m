@@ -10,24 +10,16 @@
 
 @implementation HouseDetailCell
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     // Initialization code
      //self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-   
-}
-
--(void)initWithTitle:(NSString*)title isNew:(BOOL)isNew
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-
-    self.title.text = title;
-
-    self.isNew.hidden = !isNew;
+    [super setSelected:selected animated:animated];
+    // Configure the view for the selected state
 }
 
 @end

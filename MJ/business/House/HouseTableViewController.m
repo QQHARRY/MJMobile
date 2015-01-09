@@ -10,6 +10,8 @@
 #import "HouseDataPuller.h"
 #import "UtilFun.h"
 #import "HouseDetailCell.h"
+#import "HouseDetail.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface HouseTableViewController ()
 
@@ -75,10 +77,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"HouseDetailCell";
-    HouseDetailCell *cell=(HouseDetailCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(cell==nil)
+    HouseDetailCell *cell = (HouseDetailCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(cell == nil)
     {
-        NSArray *nibs=[[NSBundle mainBundle] loadNibNamed:@"HouseDetailCell" owner:self options:nil];
+        NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"HouseDetailCell" owner:self options:nil];
         for(id oneObject in nibs)
         {
             if([oneObject isKindOfClass:[HouseDetailCell class]])
@@ -87,10 +89,15 @@
             }
         }
     }
-    //
-    //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    //    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    //
+  
+    HouseDetail *hd = [self.houseList objectAtIndex:indexPath.row];
+    [cell.thunmbnail setImageWithURL:[NSURL URLWithString:hd.ThumbnailUrl] placeholderImage:[UIImage imageNamed:@"LoadPlaceHolder"]];
+    cell.title.text = hd.buildings_name;
+    cell.house.text = [NSString stringWithFormat:@"%@室%@厅%@厨%@卫 %@m²", hd.room_num, hd.hall_num, hd.kitchen_num, hd.toilet_num, hd.build_structure_area];
+    cell.price.text = (self.controllerType == HCT_RENT) ? ([NSString stringWithFormat:@"%@元/月", hd.lease_value_total]) : ([NSString stringWithFormat:@"%@万元", hd.sale_value_total]);
+    cell.floor.text = [NSString stringWithFormat:@"%@/%@楼", hd.house_floor, hd.floor_count];
+    cell.fitment.text = hd.fitment_type;
+    cell.status.text =  (self.controllerType == HCT_RENT) ? ([NSString stringWithFormat:@"%@", hd.lease_trade_state]) : ([NSString stringWithFormat:@"%@", hd.sale_trade_state]);
     //    messageObj*obj = [msgArr objectAtIndex:indexPath.row];
     //    if (obj)
     //    {
