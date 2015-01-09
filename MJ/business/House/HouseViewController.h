@@ -10,7 +10,8 @@
 #import "ViewPagerController.h"
 
 
-@interface HouseViewController : ViewPagerController<ViewPagerDataSource, ViewPagerDelegate>
+@interface HouseViewController : ViewPagerController
+    <ViewPagerDataSource, ViewPagerDelegate>
 
 @end
 

@@ -853,6 +853,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0078431372550000003" green="0.16862745100000001" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Ao1-QP-kOm" kind="relationship" relationship="rootViewController" id="9a6-ow-1Os"/>
@@ -2320,8 +2323,8 @@
         <image name="sms" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="C9H-or-Nhi"/>
-        <segue reference="MPC-oG-oz9"/>
         <segue reference="ckS-cz-HYy"/>
+        <segue reference="DLs-As-7Sx"/>
+        <segue reference="C9H-or-Nhi"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -11,8 +11,11 @@
 #import "UtilFun.h"
 #import "Macro.h"
 #import "person.h"
+#import "HouseTableViewController.h"
 
 @interface HouseViewController ()
+
+@property (nonatomic, retain) NSArray *dataControllerList;
 
 @end
 
@@ -20,22 +23,32 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-
     // init controller base info
     self.title = @"房源";
     self.dataSource = self;
     self.delegate = self;
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+
+    // ios version fixed code
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+    if ([[UIDevice currentDevice].systemVersion floatValue] > 7.0)
     {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
         self.navigationController.navigationBar.translucent = NO;
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
+#endif
 
-    
+    // add title button
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"筛选" style:UIBarButtonItemStylePlain target:self action:@selector(onFilterAction:)];
+    
+    // add table view controller
+    HouseTableViewController *rentHouseTableC = [[HouseTableViewController alloc] initWithNibName:@"HouseTableViewController" bundle:[NSBundle mainBundle]];
+    HouseTableViewController *sellHouseTableC = [[HouseTableViewController alloc] initWithNibName:@"HouseTableViewController" bundle:[NSBundle mainBundle]];
+    self.dataControllerList = @[rentHouseTableC, sellHouseTableC];
 
-
+    // super fun
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,19 +57,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (void)onFilterAction:(id)sender
 {
-    
+    // todo
 }
 
 #pragma mark - ViewPagerDataSource
@@ -65,8 +68,8 @@
     return 2;
 }
 
-- (UIView *)viewPager:(ViewPagerController *)viewPager viewForTabAtIndex:(NSUInteger)index {
-    
+- (UIView *)viewPager:(ViewPagerController *)viewPager viewForTabAtIndex:(NSUInteger)index
+{
     CGSize sz =  [UIScreen mainScreen].bounds.size;
     UILabel*label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, sz.width/2.0, 30)];
     label.textAlignment = NSTextAlignmentCenter;
@@ -79,23 +82,20 @@
     {
         label.text = @"出租";
     }
-    
-    
     return  label;
-    
 }
 
 - (UIViewController *)viewPager:(ViewPagerController *)viewPager contentViewControllerForTabAtIndex:(NSUInteger)index
 {
-//    UIViewController* vc = [catagoryVCArr objectAtIndex:index];
-//    return vc;
-    return nil;
+    UIViewController* vc = [self.dataControllerList objectAtIndex:index];
+    return vc;
 }
 
 #pragma mark - ViewPagerDelegate
-- (CGFloat)viewPager:(ViewPagerController *)viewPager valueForOption:(ViewPagerOption)option withDefault:(CGFloat)value {
-    
-    switch (option) {
+- (CGFloat)viewPager:(ViewPagerController *)viewPager valueForOption:(ViewPagerOption)option withDefault:(CGFloat)value
+{
+    switch (option)
+    {
         case ViewPagerOptionStartFromSecondTab:
             return 0;
             break;
@@ -106,7 +106,7 @@
             return 1;
             break;
         case ViewPagerOptionTabWidth:
-            return [UIScreen mainScreen].bounds.size.width/2.0;
+            return [UIScreen mainScreen].bounds.size.width / 2.0;
             break;
         default:
             break;
@@ -137,9 +137,17 @@
 
 - (void)viewPager:(ViewPagerController *)viewPager didChangeTabToIndex:(NSUInteger)index
 {
-    
 }
 
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
 
