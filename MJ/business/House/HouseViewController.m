@@ -13,6 +13,7 @@
 #import "person.h"
 #import "HouseTableViewController.h"
 #import "HouseFilter.h"
+#import "HouseFilterController.h"
 
 @interface HouseViewController ()
 
@@ -83,7 +84,10 @@
 
 - (void)onFilterAction:(id)sender
 {
-    // todo
+//    sendMessageViewController*ctrl = [[sendMessageViewController alloc] initWithNibName:@"sendMessageViewController" bundle:[NSBundle mainBundle]];
+//    ctrl.msgObj = nil;
+//    ctrl.msgType = MJMESSAGESENDTYPE_SEND;
+//    [self.navigationController pushViewController:ctrl animated:YES];
 }
 
 #pragma mark - ViewPagerDataSource
