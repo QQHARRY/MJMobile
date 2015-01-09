@@ -12,6 +12,8 @@
 #import "HouseDetailCell.h"
 #import "HouseDetail.h"
 #import "UIImageView+AFNetworking.h"
+#import "MJRefresh.h"
+#import "Macro.h"
 
 @interface HouseTableViewController ()
 
@@ -27,6 +29,10 @@
     
     // init data
     self.houseList = [NSMutableArray array];
+    
+    // header & footer refresh
+    [self.tableView addHeaderWithTarget:self action:@selector(refreshData)];
+    [self.tableView addFooterWithTarget:self action:@selector(loadMore)];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -38,6 +44,9 @@
 {
     // clear
     [self.houseList removeAllObjects];
+    // reset
+    self.filter.FromID = @"0";
+    self.filter.ToID = @"0";
     // get
      SHOWHUD([UIApplication sharedApplication].keyWindow);
     [HouseDataPuller pullDataWithFilter:self.filter Success:^(NSArray *houseDetailList)
@@ -45,11 +54,35 @@
         HIDEHUD([UIApplication sharedApplication].keyWindow);
         [self.houseList addObjectsFromArray:houseDetailList];
         [self.tableView reloadData];
+        [self.tableView headerEndRefreshing];
     }
                                 failure:^(NSError *e)
     {
         HIDEHUD([UIApplication sharedApplication].keyWindow);
+        [self.tableView headerEndRefreshing];
     }];
+}
+
+- (void)loadMore
+{
+    // reset
+    HouseDetail *hd = [self.houseList lastObject];
+    self.filter.ToID = @"0";
+    self.filter.FromID = hd.house_trade_no;
+    // get
+    SHOWHUD([UIApplication sharedApplication].keyWindow);
+    [HouseDataPuller pullDataWithFilter:self.filter Success:^(NSArray *houseDetailList)
+     {
+         HIDEHUD([UIApplication sharedApplication].keyWindow);
+         [self.houseList addObjectsFromArray:houseDetailList];
+         [self.tableView reloadData];
+         [self.tableView footerEndRefreshing];
+     }
+                                failure:^(NSError *e)
+     {
+         HIDEHUD([UIApplication sharedApplication].keyWindow);
+         [self.tableView footerEndRefreshing];
+     }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,23 +124,16 @@
     }
   
     HouseDetail *hd = [self.houseList objectAtIndex:indexPath.row];
-    [cell.thunmbnail setImageWithURL:[NSURL URLWithString:hd.ThumbnailUrl] placeholderImage:[UIImage imageNamed:@"LoadPlaceHolder"]];
+    NSString *thunmbnailStr = [SERVER_ADD stringByAppendingString:hd.ThumbnailUrl];
+//    NSLog(@"%@", thunmbnailStr);
+    [cell.thunmbnail setImageWithURL:[NSURL URLWithString:thunmbnailStr] placeholderImage:[UIImage imageNamed:@"LoadPlaceHolder"]];
     cell.title.text = hd.buildings_name;
     cell.house.text = [NSString stringWithFormat:@"%@室%@厅%@厨%@卫 %@m²", hd.room_num, hd.hall_num, hd.kitchen_num, hd.toilet_num, hd.build_structure_area];
     cell.price.text = (self.controllerType == HCT_RENT) ? ([NSString stringWithFormat:@"%@元/月", hd.lease_value_total]) : ([NSString stringWithFormat:@"%@万元", hd.sale_value_total]);
     cell.floor.text = [NSString stringWithFormat:@"%@/%@楼", hd.house_floor, hd.floor_count];
     cell.fitment.text = hd.fitment_type;
     cell.status.text =  (self.controllerType == HCT_RENT) ? ([NSString stringWithFormat:@"%@", hd.lease_trade_state]) : ([NSString stringWithFormat:@"%@", hd.sale_trade_state]);
-    //    messageObj*obj = [msgArr objectAtIndex:indexPath.row];
-    //    if (obj)
-    //    {
-    //        cell.receiver.text = obj.msg_opt_user_list_name;
-    //        cell.msgSender.text = obj.view_user_list_name;
-    //        cell.briefContent.text = obj.msg_title;
-    //        cell.sendTime.text = obj.msg_save_date;
-    //    }
-    //    
-       return cell;
+    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
