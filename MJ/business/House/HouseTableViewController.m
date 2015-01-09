@@ -9,6 +9,7 @@
 #import "HouseTableViewController.h"
 #import "HouseDataPuller.h"
 #import "UtilFun.h"
+#import "HouseDetailCell.h"
 
 @interface HouseTableViewController ()
 
@@ -68,29 +69,24 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90;
+    return 70;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
-    //    MessageBriefTableViewCell *cell = (MessageBriefTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"messageBriefTableViewCell" forIndexPath:indexPath];
-    
-    
-    //    static NSString *CellIdentifier = @"messageBriefTableViewCell";
-    //
-    //    MessageBriefTableViewCell *cell=(MessageBriefTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    //    if(cell==nil)
-    //    {
-    //        NSArray *nibs=[[NSBundle mainBundle] loadNibNamed:@"MessageBriefTableViewCell" owner:self options:nil];
-    //        for(id oneObject in nibs)
-    //        {
-    //            if([oneObject isKindOfClass:[MessageBriefTableViewCell class]])
-    //            {
-    //                cell = (MessageBriefTableViewCell *)oneObject;
-    //            }
-    //        }
-    //    }
+    static NSString *CellIdentifier = @"HouseDetailCell";
+    HouseDetailCell *cell=(HouseDetailCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(cell==nil)
+    {
+        NSArray *nibs=[[NSBundle mainBundle] loadNibNamed:@"HouseDetailCell" owner:self options:nil];
+        for(id oneObject in nibs)
+        {
+            if([oneObject isKindOfClass:[HouseDetailCell class]])
+            {
+                cell = (HouseDetailCell *)oneObject;
+            }
+        }
+    }
     //
     //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -104,7 +100,7 @@
     //        cell.sendTime.text = obj.msg_save_date;
     //    }
     //    
-    //    return cell;
+       return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

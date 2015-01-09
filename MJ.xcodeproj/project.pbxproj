@@ -124,6 +124,8 @@
 		B98BD4A71A604045003A35BE /* HouseDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A61A604045003A35BE /* HouseDetail.m */; };
 		B98BD4AA1A604408003A35BE /* HouseFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A91A604408003A35BE /* HouseFilter.m */; };
 		B98BD4AD1A60464F003A35BE /* HouseDataPuller.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4AC1A60464F003A35BE /* HouseDataPuller.m */; };
+		B98BD4B11A60616A003A35BE /* HouseDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4AF1A60616A003A35BE /* HouseDetailCell.m */; };
+		B98BD4B21A60616A003A35BE /* HouseDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B98BD4B01A60616A003A35BE /* HouseDetailCell.xib */; };
 		B9FF4B3F1A245FB300FE413E /* CustomerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF4B301A245FB300FE413E /* CustomerViewController.m */; };
 		B9FF4B401A245FB300FE413E /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF4B331A245FB300FE413E /* MainPageViewController.m */; };
 		B9FF4B411A245FB300FE413E /* HouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF4B361A245FB300FE413E /* HouseViewController.m */; };
@@ -364,6 +366,9 @@
 		B98BD4A91A604408003A35BE /* HouseFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseFilter.m; sourceTree = "<group>"; };
 		B98BD4AB1A60464F003A35BE /* HouseDataPuller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseDataPuller.h; sourceTree = "<group>"; };
 		B98BD4AC1A60464F003A35BE /* HouseDataPuller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseDataPuller.m; sourceTree = "<group>"; };
+		B98BD4AE1A60616A003A35BE /* HouseDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseDetailCell.h; sourceTree = "<group>"; };
+		B98BD4AF1A60616A003A35BE /* HouseDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseDetailCell.m; sourceTree = "<group>"; };
+		B98BD4B01A60616A003A35BE /* HouseDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HouseDetailCell.xib; sourceTree = "<group>"; };
 		B9D3C6F11A272A39009CCE96 /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		B9FF4B2F1A245FB300FE413E /* CustomerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerViewController.h; sourceTree = "<group>"; };
 		B9FF4B301A245FB300FE413E /* CustomerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerViewController.m; sourceTree = "<group>"; };
@@ -873,6 +878,9 @@
 				B98BD4A01A603B51003A35BE /* HouseTableViewController.h */,
 				B98BD4A11A603B51003A35BE /* HouseTableViewController.m */,
 				B98BD4A21A603B51003A35BE /* HouseTableViewController.xib */,
+				B98BD4AE1A60616A003A35BE /* HouseDetailCell.h */,
+				B98BD4AF1A60616A003A35BE /* HouseDetailCell.m */,
+				B98BD4B01A60616A003A35BE /* HouseDetailCell.xib */,
 			);
 			path = House;
 			sourceTree = "<group>";
@@ -1005,6 +1013,7 @@
 				4ABC22221A3C3F940017FD94 /* LoadMoreTableViewCell.xib in Resources */,
 				4A8D01E41A369F2E00EA59EA /* PetitionTableViewCell.xib in Resources */,
 				4AD794681A208F4400DEC779 /* Main.storyboard in Resources */,
+				B98BD4B21A60616A003A35BE /* HouseDetailCell.xib in Resources */,
 				4AFC39A81A47CA3A000FB6F3 /* bind.storyboard in Resources */,
 				4A5665491A4C033D00C3BA22 /* MessageBriefTableViewCell.xib in Resources */,
 				4A8D01DF1A369DCE00EA59EA /* PublicAnncTableViewCell.xib in Resources */,
@@ -1098,6 +1107,7 @@
 				4AD7945F1A208F4400DEC779 /* main.m in Sources */,
 				4AD795501A218C4A00DEC779 /* UIImageView+AFNetworking.m in Sources */,
 				4A8D01E31A369F2E00EA59EA /* PetitionTableViewCell.m in Sources */,
+				B98BD4B11A60616A003A35BE /* HouseDetailCell.m in Sources */,
 				B9FF4B431A245FB300FE413E /* BindViewController.m in Sources */,
 				4A8D01DE1A369DCE00EA59EA /* PublicAnncTableViewCell.m in Sources */,
 				4ABC221D1A3C31910017FD94 /* AnncListViewController.m in Sources */,
