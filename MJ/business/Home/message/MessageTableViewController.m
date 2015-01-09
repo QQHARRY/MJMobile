@@ -12,6 +12,7 @@
 #import "messageObj.h"
 #import "MessageBriefTableViewCell.h"
 #import "MessageDetailsViewController.h"
+#import "MJRefresh.h"
 
 @interface MessageTableViewController ()
 
@@ -30,20 +31,34 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     msgArr = [[NSMutableArray alloc ] init];
-    //b[self getData];
+    [self.tableView addHeaderWithTarget:self action:@selector(refreshData)];
+    [self.tableView addFooterWithTarget:self action:@selector(loadMore)];
+    [self getData:YES];
+}
+
+
+-(void)refreshData
+{
+    [self clearData];
+    [self getData:NO];
+}
+
+-(void)loadMore
+{
+    [self getData:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self clearData];
-    [self getData];
+    //[self clearData];
+    //[self getData];
 }
 -(void)clearData
 {
     [self.msgArr removeAllObjects];
 }
 
--(void)getData
+-(void)getData:(BOOL)isFoot
 {
     SHOWHUD(self.view);
     NSString*from = @"0";
@@ -53,18 +68,33 @@
         from = obj.msg_cno;
     }
     
-    [messageManager getMsgByType:self.msgType ListFrom:from To:@"" Count:1000 Success:^(id responseObject) {
+    [messageManager getMsgByType:self.msgType ListFrom:from To:@"" Count:8 Success:^(id responseObject) {
         HIDEHUD(self.view);
         [self.msgArr addObjectsFromArray:responseObject];
         
         [self.tableView reloadData];
-        
+        [self endRefreshing:isFoot];
         
     } failure:^(NSError *error) {
         HIDEHUD(self.view);
+        [self endRefreshing:isFoot];
     }];
     
 }
+
+-(void)endRefreshing:(BOOL)isFoot
+{
+    if (isFoot)
+    {
+        [self.tableView footerEndRefreshing];
+    }
+    else
+    {
+        [self.tableView headerEndRefreshing];
+    }
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
