@@ -48,17 +48,17 @@
     self.filter.FromID = @"0";
     self.filter.ToID = @"0";
     // get
-     SHOWHUD([UIApplication sharedApplication].keyWindow);
+    SHOWHUD_WINDOW;
     [HouseDataPuller pullDataWithFilter:self.filter Success:^(NSArray *houseDetailList)
     {
-        HIDEHUD([UIApplication sharedApplication].keyWindow);
+        HIDEHUD_WINDOW;
         [self.houseList addObjectsFromArray:houseDetailList];
         [self.tableView reloadData];
         [self.tableView headerEndRefreshing];
     }
                                 failure:^(NSError *e)
     {
-        HIDEHUD([UIApplication sharedApplication].keyWindow);
+        HIDEHUD_WINDOW;
         [self.tableView headerEndRefreshing];
     }];
 }
@@ -70,17 +70,17 @@
     self.filter.ToID = @"0";
     self.filter.FromID = hd.house_trade_no;
     // get
-    SHOWHUD([UIApplication sharedApplication].keyWindow);
+    SHOWHUD_WINDOW;
     [HouseDataPuller pullDataWithFilter:self.filter Success:^(NSArray *houseDetailList)
      {
-         HIDEHUD([UIApplication sharedApplication].keyWindow);
+         HIDEHUD_WINDOW;
          [self.houseList addObjectsFromArray:houseDetailList];
          [self.tableView reloadData];
          [self.tableView footerEndRefreshing];
      }
                                 failure:^(NSError *e)
      {
-         HIDEHUD([UIApplication sharedApplication].keyWindow);
+         HIDEHUD_WINDOW;
          [self.tableView footerEndRefreshing];
      }];
 }
