@@ -11,85 +11,125 @@
 
 @interface CustomerDetail : dic2Object
 
-@property (nonatomic, strong) NSString *Customer_trade_no; // 房源索引号或ID
-@property (nonatomic, strong) NSString *buildings_name; // 楼盘名
-@property (nonatomic, strong) NSString *buildname; // 栋座
-@property (nonatomic, strong) NSString *Customer_unit; // 单元
-@property (nonatomic, strong) NSString *areaname; // 片区名
-@property (nonatomic, strong) NSString *urbanname; // 城区名
-@property (nonatomic, strong) NSString *Customer_driect; // 朝向
-@property (nonatomic, strong) NSString *build_structure_area; // 面积
-@property (nonatomic, strong) NSString *Customer_floor; // 所在楼层
-@property (nonatomic, strong) NSString *floor_count; // 总楼层
-@property (nonatomic, strong) NSString *sale_value_total; // 总价(出售 万)
-@property (nonatomic, strong) NSString *Sale_value_single; // 单价(出售 元/平 米)
-@property (nonatomic, strong) NSString *lease_value_total; // 总价(出租 元/ 月)
-@property (nonatomic, strong) NSString *lease_value_single; // 单价(出租 元/ 月/平米)
-@property (nonatomic, strong) NSString *room_num; // 房
-@property (nonatomic, strong) NSString *kitchen_num; // 厨
-@property (nonatomic, strong) NSString *hall_num; // 厅
-@property (nonatomic, strong) NSString *toilet_num; // 卫
-@property (nonatomic, strong) NSString *sale_trade_state; // 状态(出售)
-@property (nonatomic, strong) NSString *lease_trade_state; // 状态(出租)
-@property (nonatomic, strong) NSString *fitment_type; // 装修类型
-@property (nonatomic, strong) NSString *ThumbnailUrl; // 缩略图url(也就 是一张主图的 图片路径)
-@property (nonatomic, strong) NSString *consignment_type; // 委托类型 ID
+@property (nonatomic, strong) NSString *business_requirement_no; // 客源 ID
+@property (nonatomic, strong) NSString *client_name; // 客户姓名
+@property (nonatomic, strong) NSString *business_requirement_type; // 求租或求购
+@property (nonatomic, strong) NSString *house_urban; // 需求区域
+@property (nonatomic, strong) NSString *requirement_floor_from; // 最低楼层要求
+@property (nonatomic, strong) NSString *requirement_floor_to; // 最gao楼层要求
+@property (nonatomic, strong) NSString *requirement_room_from; // 最少卧室数量 要求
+@property (nonatomic, strong) NSString *requirement_room_to; // 最da卧室数量 要求
+@property (nonatomic, strong) NSString *requirement_hall_from; // 最少ting数量 要求
+@property (nonatomic, strong) NSString *requirement_hall_to; // 最da ting数量 要求
+@property (nonatomic, strong) NSString *requirement_sale_price_from; // 最低求购价格
+@property (nonatomic, strong) NSString *requirement_sale_price_to; // 最gao求购价格
+@property (nonatomic, strong) NSString *requirement_lease_price_from; // 最低求购价格
+@property (nonatomic, strong) NSString *requirement_lease_price_to; // 最gao求购价格
+@property (nonatomic, strong) NSString *sale_price_unit; // 求购价格单位
+@property (nonatomic, strong) NSString *lease_price_unit; // 求租价格单位
+@property (nonatomic, strong) NSString *requirement_area_from; // 最小面积要求
+@property (nonatomic, strong) NSString *requirement_area_to; // 最da面积要求
+@property (nonatomic, strong) NSString *buildings_create_time; // 登记日期
 
 @end
 
 // eg:
-//    ThumbnailUrl = "";
-//     = "\U957f\U4e50\U4e1c\U8def";
-//    "" = "";
-//    "" = "";
-//    "" = "";
-//    "" = "";
-//    "" = "";
-//    "" = 88;
-//    "" = "";
-//    "buildings_name" = "\U5fa1\U9526\U57ce";
-//    "buildings_no" = "";
-//    "buildings_picture" = "PHOTO_NO0000067435";
-//    buildname = "04\U680b";
-//    "client_no" = "";
-//    "consignment_type" = 1;
-//    "contract_app_date" = "";
-//    "efficiency_rate" = "";
-//    "elevator_count" = "";
-//    "fitment_type" = 3;
-//    "floor_count" = 18;
-//    "floor_height" = "";
-//    "hall_num" = 2;
-//    "Customer_area" = "";
-//    "Customer_count" = "";
-//    "Customer_depth" = "";
-//    "Customer_driect" = 0;
-//    "Customer_floor" = 16;
-//    "Customer_floor_count" = "";
-//    "Customer_key_no" = "";
-//    "Customer_rank" = "";
-//    "Customer_trade_no" = "HT_0000035417";
-//    "Customer_unit" = 1;
-//    "Customer_urban" = "";
-//    "kitchen_num" = 1;
-//    "lease_trade_state" = 0;
-//    "lease_value_single" = "0.00";
-//    "lease_value_total" = "0.00";
-//    "look_permit" = "";
-//    "owner_comp_no" = "";
-//    "owner_staff_dept" = "";
-//    "owner_staff_name" = "";
-//    "room_num" = 2;
-//    "sale_trade_state" = 0;
-//    "sale_value_single" = "6818.18";
-//    "sale_value_total" = "600000.00";
-//    "task_follow_time" = "";
-//    "tene_application" = "";
-//    "toilet_num" = 1;
-//    "trade_type" = 100;
-//    urbanname = "\U57ce\U4e1c";
-//    "use_situation" = "";
-//}
+//"area_dept_no" = "";
+//"b_dept_no" = "";
+//"b_job_no" = "";
+//"b_register_surplus_day" = "";
+//"b_register_type" = "";
+//"b_staff_describ" = "";
+//"b_staff_title" = "";
+//"buildings_create_date" = "";
+//"buildings_create_job_no" = "";
+//"buildings_create_time" = "2015-01-07 14:23:22";
+//"buildings_edit_date" = "";
+//"buildings_edit_job_no" = "";
+//"buildings_edit_time" = "";
+//"buildings_name" = "";
+//"buildings_opt_no" = "";
+//"buildings_staff_no" = "";
+//"business_requirement_no" = "B_C_R_NO0000015690";
+//"business_requirement_type" = 201;
+//"client_background" = "";
+//"client_base_no" = "";
+//"client_birthday" = "";
+//"client_gender" = "";
+//"client_identity" = "";
+//"client_identity_type" = "";
+//"client_level" = "";
+//"client_name" = "\U5e38";
+//"client_obj_contact_no" = "";
+//"client_owner_no" = "";
+//"client_remark" = "";
+//"client_salutation" = "";
+//"client_type" = "";
+//"comp_no" = "";
+//"del_flag" = "";
+//"dept_current_no" = "";
+//"dept_name" = "";
+//"dept_parents_no" = "";
+//"edit_permit" = "";
+//"fitment_type" = "";
+//followNum = "";
+//"house_area" = "";
+//"house_driect" = "";
+//"house_urban" = "\U548c\U5e73\U95e8\U57ce\U5357";
+//"lease_price_unit" = "\U5143/\U6708";
+//"name_full" = "";
+//"obj_address" = "";
+//"obj_city" = "";
+//"obj_contact_no" = "";
+//"obj_country" = "";
+//"obj_email" = "";
+//"obj_fax" = "";
+//"obj_fixtel" = "";
+//"obj_fixtel_dial" = "";
+//"obj_hurry_relation" = "";
+//"obj_hurry_relation_tel" = "";
+//"obj_memo" = "";
+//"obj_mobile" = "";
+//"obj_msn" = "";
+//"obj_no" = "";
+//"obj_postcode" = "";
+//"obj_province" = "";
+//"obj_qq" = "";
+//"obj_type" = "";
+//"obj_web" = "";
+//"obj_weixin" = "";
+//"requirement_area" = "";
+//"requirement_area_from" = 129;
+//"requirement_area_to" = 125;
+//"requirement_buildings_no" = "";
+//"requirement_client_source" = "";
+//"requirement_fitment_type" = "";
+//"requirement_floor" = "";
+//"requirement_floor_from" = 5;
+//"requirement_floor_to" = 10;
+//"requirement_hall" = "";
+//"requirement_hall_from" = 2;
+//"requirement_hall_to" = 1;
+//"requirement_house_area" = "";
+//"requirement_house_driect" = "";
+//"requirement_house_urban" = "";
+//"requirement_lease_pay_type" = "";
+//"requirement_lease_price_from" = "150.00";
+//"requirement_lease_price_to" = "150.00";
+//"requirement_lease_price_unit" = "";
+//"requirement_memo" = "";
+//"requirement_room" = "";
+//"requirement_room_from" = 3;
+//"requirement_room_to" = 2;
+//"requirement_sale_pay_type" = "";
+//"requirement_sale_price_from" = "";
+//"requirement_sale_price_to" = "";
+//"requirement_sale_price_unit" = "";
+//"requirement_status" = "";
+//"requirement_tene_application" = "";
+//"requirement_tene_type" = "";
+//"sale_price_unit" = "\U4e07\U5143";
+//"secret_permit" = "";
+//"staff_detail_no" = "";
 
-    
 

@@ -77,7 +77,7 @@
     // reset
     CustomerDetail *hd = [self.CustomerList lastObject];
     self.filter.ToID = @"0";
-    self.filter.FromID = hd.Customer_trade_no;
+    self.filter.FromID = hd.business_requirement_no;
     // get
     SHOWHUD_WINDOW;
     [CustomerDataPuller pullDataWithFilter:self.filter Success:^(NSArray *CustomerDetailList)
@@ -132,46 +132,19 @@
         }
     }
   
-    CustomerDetail *hd = [self.CustomerList objectAtIndex:indexPath.row];
-    NSString *thunmbnailStr = [SERVER_ADD stringByAppendingString:hd.ThumbnailUrl];
-//    NSLog(@"%@", thunmbnailStr);
-    [cell.thunmbnail setImageWithURL:[NSURL URLWithString:thunmbnailStr] placeholderImage:[UIImage imageNamed:@"LoadPlaceHolder"]];
-    cell.title.text = hd.buildings_name;
-    cell.Customer.text = [NSString stringWithFormat:@"%@室%@厅%@厨%@卫 %@m²", hd.room_num, hd.hall_num, hd.kitchen_num, hd.toilet_num, hd.build_structure_area];
-    cell.price.text = (self.controllerType == CCT_RENT) ? ([NSString stringWithFormat:@"%@元/月", hd.lease_value_total]) : ([NSString stringWithFormat:@"%@元", hd.sale_value_total]);
-    cell.floor.text = [NSString stringWithFormat:@"%@/%@楼", hd.Customer_floor, hd.floor_count];
-    {
-        for (DicItem *di in self.fitmentDictList)
-        {
-            if ([di.dict_value isEqualToString:hd.fitment_type])
-            {
-                cell.fitment.text = di.dict_label;
-                break;
-            }
-        }
-    }
+    CustomerDetail *cd = [self.CustomerList objectAtIndex:indexPath.row];
+    cell.title.text = cd.house_urban;
+    cell.customer.text = cd.client_name;
     if (self.controllerType == CCT_RENT)
     {
-        for (DicItem *di in self.leaseDictList)
-        {
-            if ([di.dict_value isEqualToString:hd.lease_trade_state])
-            {
-                cell.status.text = di.dict_label;
-                break;
-            }
-        }
+        cell.price.text = [NSString stringWithFormat:@"%@-%@%@", cd.requirement_lease_price_from, cd.requirement_lease_price_to, cd.lease_price_unit];
     }
     else
     {
-        for (DicItem *di in self.saleDictList)
-        {
-            if ([di.dict_value isEqualToString:hd.sale_trade_state])
-            {
-                cell.status.text = di.dict_label;
-                break;
-            }
-        }
+        cell.price.text = [NSString stringWithFormat:@"%@-%@%@", cd.requirement_sale_price_from, cd.requirement_sale_price_to, cd.sale_price_unit];
     }
+    cell.house.text = [NSString stringWithFormat:@"%@-%@层 %@-%@室 %@-%@厅 %@-%@m²", cd.requirement_floor_from, cd.requirement_floor_to, cd.requirement_room_from, cd.requirement_room_to, cd.requirement_hall_from, cd.requirement_hall_to, cd.requirement_area_from, cd.requirement_area_to];
+    cell.time.text = [NSString stringWithFormat:@"%@登记", cd.buildings_create_time];
 
     return cell;
 }

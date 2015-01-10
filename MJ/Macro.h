@@ -64,7 +64,8 @@
 
 //   44.获取城区片区列表
 #define API_AREA_LIST @"business/getAreaList"
-
+// 45.获取客源简要信息列表
+#define API_CUSTOMER_LIST @"business/getCustomerBriefList"
 
 //字典表
 #define GET_DICTIONARY @"business/getDictionary"

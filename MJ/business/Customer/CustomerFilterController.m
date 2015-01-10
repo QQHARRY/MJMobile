@@ -344,115 +344,115 @@
     RETableViewSection *section = [RETableViewSection section];
     [self.manager addSection:section];
     
-    RETableViewItem *buttonItem = [RETableViewItem itemWithTitle:@"查询" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
-    {
-        CustomerFilter *filter = (self.hvc.nowControllerType == CCT_SELL) ? self.hvc.sellController.filter : self.hvc.rentController.filter;
-        filter.FromID = @"0";
-        filter.ToID = @"0";
-        filter.keyword = self.keySearchItem.value;
-        filter.buildname = self.buildItem.value;
-        filter.Customer_unit = self.unitItem.value;
-        filter.Customer_fluor = self.floorItem.value;
-        filter.Customer_tablet = self.tabletItem.value;
-        filter.hall_num = self.hallItem.value;
-        filter.room_num = self.roomItem.value;
-        filter.structure_area_from = self.minAreaItem.value;
-        filter.structure_area_to = self.maxAreaItem.value;
-        filter.Customer_floor_from = self.minFloorItem.value;
-        filter.Customer_floor_to = self.maxFloorItem.value;
-        if (self.hvc.nowControllerType == CCT_SELL)
-        {
-            filter.lease_value_from = @"";
-            filter.lease_value_to = @"";
-            filter.lease_trade_state = @"";
-            filter.sale_value_from = self.minPriceItem.value;
-            filter.sale_value_to = self.maxPriceItem.value;
-            filter.sale_trade_state = @"";
-            for (DicItem *di in self.saleDictList)
-            {
-                if ([di.dict_label isEqualToString:self.statusItem.value])
-                {
-                    filter.sale_trade_state = di.dict_value;
-                    break;
-                }
-            }
-        }
-        else
-        {
-            filter.sale_value_from = @"";
-            filter.sale_value_to = @"";
-            filter.sale_trade_state = @"";
-            filter.lease_value_from = self.minPriceItem.value;
-            filter.lease_value_to = self.maxPriceItem.value;
-            filter.lease_trade_state = @"";
-            for (DicItem *di in self.leaseDictList)
-            {
-                if ([di.dict_label isEqualToString:self.statusItem.value])
-                {
-                    filter.lease_trade_state = di.dict_value;
-                    break;
-                }
-            }
-        }
-        filter.Customer_driect = @"";
-        for (DicItem *di in self.directDictList)
-        {
-            if ([di.dict_label isEqualToString:self.driectItem.value])
-            {
-                filter.Customer_driect = di.dict_value;
-                break;
-            }
-        }
-        filter.fitment_type = @"";
-        for (DicItem *di in self.fitmentDictList)
-        {
-            if ([di.dict_label isEqualToString:self.fitmentItem.value])
-            {
-                filter.fitment_type = di.dict_value;
-                break;
-            }
-        }
-        filter.consignment_type = @"";
-        for (DicItem *di in self.consignmentDictList)
-        {
-            if ([di.dict_label isEqualToString:self.consignmentItem.value])
-            {
-                filter.consignment_type = di.dict_value;
-                break;
-            }
-        }
-        filter.Customerarea = @"";
-        for (NSDictionary *areaDict in self.areaDictList)
-        {
-            if ([[[areaDict objectForKey:@"dict"] objectForKey:@"areas_name"] isEqualToString:self.belongAreaItem.value])
-            {
-                filter.Customerarea = [areaDict objectForKey:@"no"];
-                break;
-            }
-        }
-        filter.Customerurban = @"";
-        for (NSDictionary *areaDict in self.areaDictList)
-        {
-            NSArray *sectionList = [areaDict objectForKey:@"sections"];
-            BOOL bFind = false;
-            for (NSDictionary *sectionDict in sectionList)
-            {
-                if ([[sectionDict objectForKey:@"areas_name"] isEqualToString:self.belongSectionItem.value])
-                {
-                    filter.Customerurban = [sectionDict objectForKey:@"areas_current_no"];
-                    bFind = true;
-                    break;
-                }
-            }
-            if (bFind)
-            {
-                break;
-            }
-        }
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
-    buttonItem.textAlignment = NSTextAlignmentCenter;
-    [section addItem:buttonItem];
+//    RETableViewItem *buttonItem = [RETableViewItem itemWithTitle:@"查询" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
+//    {
+//        CustomerFilter *filter = (self.hvc.nowControllerType == CCT_SELL) ? self.hvc.sellController.filter : self.hvc.rentController.filter;
+//        filter.FromID = @"0";
+//        filter.ToID = @"0";
+//        filter.keyword = self.keySearchItem.value;
+//        filter.buildname = self.buildItem.value;
+//        filter.Customer_unit = self.unitItem.value;
+//        filter.Customer_fluor = self.floorItem.value;
+//        filter.Customer_tablet = self.tabletItem.value;
+//        filter.hall_num = self.hallItem.value;
+//        filter.room_num = self.roomItem.value;
+//        filter.structure_area_from = self.minAreaItem.value;
+//        filter.structure_area_to = self.maxAreaItem.value;
+//        filter.Customer_floor_from = self.minFloorItem.value;
+//        filter.Customer_floor_to = self.maxFloorItem.value;
+//        if (self.hvc.nowControllerType == CCT_SELL)
+//        {
+//            filter.lease_value_from = @"";
+//            filter.lease_value_to = @"";
+//            filter.lease_trade_state = @"";
+//            filter.sale_value_from = self.minPriceItem.value;
+//            filter.sale_value_to = self.maxPriceItem.value;
+//            filter.sale_trade_state = @"";
+//            for (DicItem *di in self.saleDictList)
+//            {
+//                if ([di.dict_label isEqualToString:self.statusItem.value])
+//                {
+//                    filter.sale_trade_state = di.dict_value;
+//                    break;
+//                }
+//            }
+//        }
+//        else
+//        {
+//            filter.sale_value_from = @"";
+//            filter.sale_value_to = @"";
+//            filter.sale_trade_state = @"";
+//            filter.lease_value_from = self.minPriceItem.value;
+//            filter.lease_value_to = self.maxPriceItem.value;
+//            filter.lease_trade_state = @"";
+//            for (DicItem *di in self.leaseDictList)
+//            {
+//                if ([di.dict_label isEqualToString:self.statusItem.value])
+//                {
+//                    filter.lease_trade_state = di.dict_value;
+//                    break;
+//                }
+//            }
+//        }
+//        filter.Customer_driect = @"";
+//        for (DicItem *di in self.directDictList)
+//        {
+//            if ([di.dict_label isEqualToString:self.driectItem.value])
+//            {
+//                filter.Customer_driect = di.dict_value;
+//                break;
+//            }
+//        }
+//        filter.fitment_type = @"";
+//        for (DicItem *di in self.fitmentDictList)
+//        {
+//            if ([di.dict_label isEqualToString:self.fitmentItem.value])
+//            {
+//                filter.fitment_type = di.dict_value;
+//                break;
+//            }
+//        }
+//        filter.consignment_type = @"";
+//        for (DicItem *di in self.consignmentDictList)
+//        {
+//            if ([di.dict_label isEqualToString:self.consignmentItem.value])
+//            {
+//                filter.consignment_type = di.dict_value;
+//                break;
+//            }
+//        }
+//        filter.Customerarea = @"";
+//        for (NSDictionary *areaDict in self.areaDictList)
+//        {
+//            if ([[[areaDict objectForKey:@"dict"] objectForKey:@"areas_name"] isEqualToString:self.belongAreaItem.value])
+//            {
+//                filter.Customerarea = [areaDict objectForKey:@"no"];
+//                break;
+//            }
+//        }
+//        filter.Customerurban = @"";
+//        for (NSDictionary *areaDict in self.areaDictList)
+//        {
+//            NSArray *sectionList = [areaDict objectForKey:@"sections"];
+//            BOOL bFind = false;
+//            for (NSDictionary *sectionDict in sectionList)
+//            {
+//                if ([[sectionDict objectForKey:@"areas_name"] isEqualToString:self.belongSectionItem.value])
+//                {
+//                    filter.Customerurban = [sectionDict objectForKey:@"areas_current_no"];
+//                    bFind = true;
+//                    break;
+//                }
+//            }
+//            if (bFind)
+//            {
+//                break;
+//            }
+//        }
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }];
+//    buttonItem.textAlignment = NSTextAlignmentCenter;
+//    [section addItem:buttonItem];
     return section;
 }
 

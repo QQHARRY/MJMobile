@@ -14,29 +14,25 @@
 
 @implementation CustomerDetail
 
-@synthesize Customer_trade_no; // 房源索引号或ID
-@synthesize buildings_name; // 楼盘名
-@synthesize buildname; // 栋座
-@synthesize Customer_unit; // 单元
-@synthesize areaname; // 片区名
-@synthesize urbanname; // 城区名
-@synthesize Customer_driect; // 朝向
-@synthesize build_structure_area; // 面积
-@synthesize Customer_floor; // 所在楼层
-@synthesize floor_count; // 总楼层
-@synthesize sale_value_total; // 总价(出售 万)
-@synthesize Sale_value_single; // 单价(出售 元/平 米)
-@synthesize lease_value_total; // 总价(出租 元/ 月)
-@synthesize lease_value_single; // 单价(出租 元/ 月/平米)
-@synthesize room_num; // 房
-@synthesize kitchen_num; // 厨
-@synthesize hall_num; // 厅
-@synthesize toilet_num; // 卫
-@synthesize sale_trade_state; // 状态(出售)
-@synthesize lease_trade_state; // 状态(出租)
-@synthesize fitment_type; // 装修类型
-@synthesize ThumbnailUrl; // 缩略图url(也就 是一张主图的 图片路径)
-@synthesize consignment_type; // 委托类型 ID
+@synthesize business_requirement_no; // 客源 ID
+@synthesize client_name; // 客户姓名
+@synthesize business_requirement_type; // 求租或求购
+@synthesize house_urban; // 需求区域
+@synthesize requirement_floor_from; // 最低楼层要求
+@synthesize requirement_floor_to; // 最gao楼层要求
+@synthesize requirement_room_from; // 最少卧室数量 要求
+@synthesize requirement_room_to; // 最da卧室数量 要求
+@synthesize requirement_hall_from; // 最少ting数量 要求
+@synthesize requirement_hall_to; // 最da ting数量 要求
+@synthesize requirement_sale_price_from; // 最低求购价格
+@synthesize requirement_sale_price_to; // 最gao求购价格
+@synthesize requirement_lease_price_from; // 最低求购价格
+@synthesize requirement_lease_price_to; // 最gao求购价格
+@synthesize sale_price_unit; // 求购价格单位
+@synthesize lease_price_unit; // 求租价格单位
+@synthesize requirement_area_from; // 最小面积要求
+@synthesize requirement_area_to; // 最da面积要求
+@synthesize buildings_create_time; // 登记日期
 
 @end
 
