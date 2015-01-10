@@ -116,7 +116,6 @@
                  [self setDicVersion:fVNum];
                  [self writeDicToDB:[resultDic objectForKey:@"DictionaryNode"]];
                  
-                 //[self getItemArrByType:@"job_type"];
              }
              success(nil);
              return;

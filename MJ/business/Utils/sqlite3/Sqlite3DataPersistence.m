@@ -30,14 +30,14 @@ static NSString* databasePath = nil; ;
     
     sqlite3_stmt *statement;
     
-    NSString *docsDir;
-    NSArray *dirPaths;
-    
-    // Get the documents directory
-    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    
-    docsDir = [dirPaths objectAtIndex:0];
-    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent:DIC_DB_NAME]];
+//    NSString *docsDir;
+//    NSArray *dirPaths;
+//    
+//    // Get the documents directory
+//    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    
+//    docsDir = [dirPaths objectAtIndex:0];
+//    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent:DIC_DB_NAME]];
     
     const char *dbpath = [databasePath UTF8String];
     
@@ -49,11 +49,11 @@ static NSString* databasePath = nil; ;
         sqlite3_prepare_v2(sqlDB, insert_stmt, -1, &statement, NULL);
         if (sqlite3_step(statement)==SQLITE_DONE)
         {
-
+             //NSLog(@"insert table ok");
         }
         else
         {
-
+            //NSLog(@"insert table fail");
         }
         sqlite3_finalize(statement);
         sqlite3_close(sqlDB);
@@ -63,9 +63,18 @@ static NSString* databasePath = nil; ;
 
 +(NSArray*)seachRecordWithCondition:(NSString*)cond
 {
+//    NSString *docsDir;
+//    NSArray *dirPaths;
+//    
+//    // Get the documents directory
+//    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    
+//    docsDir = [dirPaths objectAtIndex:0];
+//    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent:DIC_DB_NAME]];
     
-    NSMutableArray*arr = [[NSMutableArray alloc] init];
     const char *dbpath = [databasePath UTF8String];
+    NSMutableArray*arr = [[NSMutableArray alloc] init];
+
     sqlite3_stmt *statement;
     
     sqlite3 *sqlDB = nil;
@@ -93,11 +102,11 @@ static NSString* databasePath = nil; ;
                 item.dict_value = dict_value;
                 if ([item isKindOfClass:[DicItem class]])
                 {
-                    NSLog(@"asdsa%@ %@",item.dict_label,item.dict_sort);
+                    //NSLog(@"asdsa%@ %@",item.dict_label,item.dict_sort);
                 }
                 else
                 {
-                    NSLog(@"asdsa2");
+                    //fNSLog(@"asdsa2");
                 }
                 [arr addObject:item];
             }
@@ -138,8 +147,14 @@ static NSString* databasePath = nil; ;
             const char *sql_stmt = [dropSql UTF8String];
             if (sqlite3_exec(sqlDB, sql_stmt, NULL, NULL, &errMsg)!=SQLITE_OK)
             {
-                NSLog(@"drop error");
+                //NSLog(@"drop table fail");
             }
+            else
+            {
+                 //NSLog(@"drop table success");
+            }
+            
+            sqlite3_close(sqlDB);
         }
         else
         {
@@ -165,7 +180,7 @@ static NSString* databasePath = nil; ;
     
     sqlite3 *sqlDB = nil;
     
-    if ([filemgr fileExistsAtPath:databasePath] == YES)
+
     {
         const char *dbpath = [databasePath UTF8String];
         if (sqlite3_open(dbpath, &sqlDB)==SQLITE_OK)
@@ -173,10 +188,12 @@ static NSString* databasePath = nil; ;
             char *errMsg;
             
             const char *sql_stmt = "CREATE TABLE dictable ( id INTEGER PRIMARY KEY AUTOINCREMENT,dict_label varchar(255),dict_label_type varchar(255),dict_sort varchar(255),dict_value varchar(255))";
-            if (sqlite3_exec(sqlDB, sql_stmt, NULL, NULL, &errMsg)!=SQLITE_OK)
+            if (sqlite3_exec(sqlDB, sql_stmt, NULL, NULL, &errMsg)==SQLITE_OK)
             {
-                
+                //NSLog(@"create table success");
             }
+            
+            sqlite3_close(sqlDB);
         }
         else
         {

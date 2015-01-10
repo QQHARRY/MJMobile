@@ -45,6 +45,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "+[Sqlite3DataPersistence seachRecordWithCondition:]:Sqlite3DataPersistence.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "querySQL">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[MainPageViewController tableView:cellForRowAtIndexPath:]:MainPageViewController.m">
          <PersistentStrings>
             <PersistentString
@@ -60,6 +68,9 @@
       </ContextState>
       <ContextState
          contextName = "-[ContactListTableViewController expandBtnClicked:]:ContactListTableViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "+[dictionaryManager getItemArrByType:]:dictionaryManager.m">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
