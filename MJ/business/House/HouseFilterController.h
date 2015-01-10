@@ -11,7 +11,8 @@
 #import "RETableViewOptionsController.h"
 #import "HouseViewController.h"
 
-@interface HouseFilterController : UITableViewController <RETableViewManagerDelegate>
+@interface HouseFilterController : UITableViewController
+    <RETableViewManagerDelegate>
 
 @property (nonatomic, weak) HouseViewController *hvc;
 
