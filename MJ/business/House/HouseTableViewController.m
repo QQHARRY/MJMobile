@@ -15,6 +15,7 @@
 #import "MJRefresh.h"
 #import "Macro.h"
 #import "dictionaryManager.h"
+#import "HouseParticularTableViewController.h"
 
 @interface HouseTableViewController ()
 
@@ -173,25 +174,24 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    messageObj*obj = [msgArr objectAtIndex:indexPath.row];
-//    MessageDetailsViewController*detailsView = [[MessageDetailsViewController alloc ] initWithNibName:@"MessageDetailsViewController" bundle:[NSBundle mainBundle]];
-//    
-//    detailsView.msg = obj;
-//    [self pushControllerToController:detailsView];
+    HouseDetail *hd = [self.houseList objectAtIndex:indexPath.row];
+    HouseParticularTableViewController*ptcl = [[HouseParticularTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    ptcl.houseDtl = hd;
+    [self pushControllerToController:ptcl];
 }
 
 -(void)pushControllerToController:(UIViewController*)vc
 {
-//    if ([self.navigationController respondsToSelector:@selector(pushViewController:animated:)])
-//    {
-//        [self.navigationController pushViewController:vc animated:YES];
-//        return;
-//    }
-//    
-//    if ([((UIViewController*)(self.container)).navigationController respondsToSelector:@selector(pushViewController:animated:)])
-//    {
-//        [((UIViewController*)(self.container)).navigationController pushViewController:vc animated:YES];
-//    }
+    if ([self.navigationController respondsToSelector:@selector(pushViewController:animated:)])
+    {
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    
+    if ([((UIViewController*)(self.container)).navigationController respondsToSelector:@selector(pushViewController:animated:)])
+    {
+        [((UIViewController*)(self.container)).navigationController pushViewController:vc animated:YES];
+    }
 }
 
 

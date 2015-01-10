@@ -59,6 +59,8 @@
 
 //  19.获取房源简要信息列表
 #define API_HOUSE_LIST @"business/getRealEstateBriefList"
+#define API_HOUSE_PARTICULARS @"business/getRealEstateDetails"
+
 
 //字典表
 #define GET_DICTIONARY @"business/getDictionary"

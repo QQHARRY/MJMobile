@@ -12,6 +12,7 @@
 #import "NetWorkManager.h"
 #import "HouseDetail.h"
 #import "bizManager.h"
+#import "UtilFun.h"
 
 @implementation HouseDataPuller
 
@@ -149,6 +150,37 @@
      }];
 
 }
+
+
++(void)pullHouseParticulars:(HouseDetail *)dtl Success:(void (^)(HouseParticulars *housePtl))success failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *parameters = @{@"job_no":[person me].job_no,
+                                 @"acc_password":[person me].password,
+                                 @"house_trade_no":dtl.house_trade_no,
+                                 };
+    
+    
+    [NetWorkManager PostWithApiName:API_HOUSE_PARTICULARS parameters:parameters success:
+     ^(id responseObject)
+     {
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         {
+             HouseParticulars*housePtcl = [[HouseParticulars alloc] init];
+             [housePtcl initWithDictionary:[[resultDic  objectForKey:@"EstateDetailsNode"] objectAtIndex:0]];
+             
+             
+             success(housePtcl);
+         }
+         
+     }
+                            failure:^(NSError *error)
+     {
+         failure(error);
+     }];
+}
+
+
 
 
 @end

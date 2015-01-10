@@ -83,6 +83,9 @@
 		4A9D02031A60521700600BA0 /* DataPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D02021A60521700600BA0 /* DataPersistence.m */; };
 		4A9D02061A60544900600BA0 /* Sqlite3DataPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D02051A60544900600BA0 /* Sqlite3DataPersistence.m */; };
 		4A9D02081A60584300600BA0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9D02071A60584300600BA0 /* libsqlite3.dylib */; };
+		4A9D024B1A61197800600BA0 /* HouseParticulars.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D024A1A61197800600BA0 /* HouseParticulars.m */; };
+		4A9D024E1A611F7400600BA0 /* HouseParticularTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D024D1A611F7400600BA0 /* HouseParticularTableViewController.m */; };
+		4A9D02511A61337700600BA0 /* houseSecretParticulars.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D02501A61337700600BA0 /* houseSecretParticulars.m */; };
 		4AA0385C1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA0385B1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m */; };
 		4AB0EFA61A30540C00C24A44 /* AFNMJInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */; };
 		4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA81A30558000C24A44 /* NetWorkManager.m */; };
@@ -346,6 +349,12 @@
 		4A9D02041A60544900600BA0 /* Sqlite3DataPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sqlite3DataPersistence.h; sourceTree = "<group>"; };
 		4A9D02051A60544900600BA0 /* Sqlite3DataPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sqlite3DataPersistence.m; sourceTree = "<group>"; };
 		4A9D02071A60584300600BA0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		4A9D02491A61197800600BA0 /* HouseParticulars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseParticulars.h; sourceTree = "<group>"; };
+		4A9D024A1A61197800600BA0 /* HouseParticulars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseParticulars.m; sourceTree = "<group>"; };
+		4A9D024C1A611F7400600BA0 /* HouseParticularTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseParticularTableViewController.h; sourceTree = "<group>"; };
+		4A9D024D1A611F7400600BA0 /* HouseParticularTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseParticularTableViewController.m; sourceTree = "<group>"; };
+		4A9D024F1A61337700600BA0 /* houseSecretParticulars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = houseSecretParticulars.h; sourceTree = "<group>"; };
+		4A9D02501A61337700600BA0 /* houseSecretParticulars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = houseSecretParticulars.m; sourceTree = "<group>"; };
 		4AA0385A1A3D30F0003E9CA6 /* BFNavigationBarDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFNavigationBarDrawer.h; sourceTree = "<group>"; };
 		4AA0385B1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFNavigationBarDrawer.m; sourceTree = "<group>"; };
 		4AB0EFA41A30540C00C24A44 /* AFNMJInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNMJInstance.h; sourceTree = "<group>"; };
@@ -1271,6 +1280,12 @@
 				B98BD4AE1A60616A003A35BE /* HouseDetailCell.h */,
 				B98BD4AF1A60616A003A35BE /* HouseDetailCell.m */,
 				B98BD4B01A60616A003A35BE /* HouseDetailCell.xib */,
+				4A9D02491A61197800600BA0 /* HouseParticulars.h */,
+				4A9D024A1A61197800600BA0 /* HouseParticulars.m */,
+				4A9D024C1A611F7400600BA0 /* HouseParticularTableViewController.h */,
+				4A9D024D1A611F7400600BA0 /* HouseParticularTableViewController.m */,
+				4A9D024F1A61337700600BA0 /* houseSecretParticulars.h */,
+				4A9D02501A61337700600BA0 /* houseSecretParticulars.m */,
 			);
 			path = House;
 			sourceTree = "<group>";
@@ -1507,6 +1522,7 @@
 				4A2EE11D1A42774600899976 /* petitionFollowChartViewController.m in Sources */,
 				B98BD4CF1A608225003A35BE /* HouseFilterController.m in Sources */,
 				4AD795211A218C4A00DEC779 /* AFHTTPSessionManager.m in Sources */,
+				4A9D02511A61337700600BA0 /* houseSecretParticulars.m in Sources */,
 				B98BD5751A609185003A35BE /* RELongTextItem.m in Sources */,
 				4ABC22211A3C3F940017FD94 /* LoadMoreTableViewCell.m in Sources */,
 				4A6EF2A61A5E20CC008AB819 /* ContactsListPersonTableViewCell.m in Sources */,
@@ -1571,6 +1587,7 @@
 				4A2AD1941A457F8C0074DCA0 /* CheckNewVersion.m in Sources */,
 				4A8D01FC1A36FB9C00EA59EA /* petitionManager.m in Sources */,
 				B98BD4CA1A60747A003A35BE /* UIScrollView+MJRefresh.m in Sources */,
+				4A9D024B1A61197800600BA0 /* HouseParticulars.m in Sources */,
 				B98BD5621A609185003A35BE /* REFormattedNumberField.m in Sources */,
 				4AD795511A218C4A00DEC779 /* UIProgressView+AFNetworking.m in Sources */,
 				4AB0EFA61A30540C00C24A44 /* AFNMJInstance.m in Sources */,
@@ -1592,6 +1609,7 @@
 				4A40C2211A4175BC00944AB2 /* petionDetailsItemTableViewCell.m in Sources */,
 				4AD7955C1A218DF100DEC779 /* GTCheckBox.m in Sources */,
 				4A3A2F311A45113200AA8A70 /* myBriefTableViewCell.m in Sources */,
+				4A9D024E1A611F7400600BA0 /* HouseParticularTableViewController.m in Sources */,
 				4A5D23B51A48522100546698 /* shopRootTableViewController.m in Sources */,
 				4AD795261A218C4A00DEC779 /* AFURLResponseSerialization.m in Sources */,
 				B98BD4C81A60747A003A35BE /* MJRefreshHeaderView.m in Sources */,
