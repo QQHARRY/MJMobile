@@ -146,7 +146,6 @@
      {
          failure(error);
      }];
-    
 }
 
 +(void)pullAreaListDataSuccess:(void (^)(NSArray *areaList))success failure:(void (^)(NSError *error))failure
@@ -192,7 +191,6 @@
      {
          failure(error);
      }];
-    
 }
 
 
