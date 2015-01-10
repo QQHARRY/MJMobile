@@ -86,6 +86,7 @@
 		4A9D024B1A61197800600BA0 /* HouseParticulars.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D024A1A61197800600BA0 /* HouseParticulars.m */; };
 		4A9D024E1A611F7400600BA0 /* HouseParticularTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D024D1A611F7400600BA0 /* HouseParticularTableViewController.m */; };
 		4A9D02511A61337700600BA0 /* houseSecretParticulars.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D02501A61337700600BA0 /* houseSecretParticulars.m */; };
+		4A9D02541A616E1300600BA0 /* houseImagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D02531A616E1300600BA0 /* houseImagesTableViewController.m */; };
 		4AA0385C1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA0385B1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m */; };
 		4AB0EFA61A30540C00C24A44 /* AFNMJInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */; };
 		4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA81A30558000C24A44 /* NetWorkManager.m */; };
@@ -363,6 +364,8 @@
 		4A9D024D1A611F7400600BA0 /* HouseParticularTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseParticularTableViewController.m; sourceTree = "<group>"; };
 		4A9D024F1A61337700600BA0 /* houseSecretParticulars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = houseSecretParticulars.h; sourceTree = "<group>"; };
 		4A9D02501A61337700600BA0 /* houseSecretParticulars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = houseSecretParticulars.m; sourceTree = "<group>"; };
+		4A9D02521A616E1300600BA0 /* houseImagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = houseImagesTableViewController.h; sourceTree = "<group>"; };
+		4A9D02531A616E1300600BA0 /* houseImagesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = houseImagesTableViewController.m; sourceTree = "<group>"; };
 		4AA0385A1A3D30F0003E9CA6 /* BFNavigationBarDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFNavigationBarDrawer.h; sourceTree = "<group>"; };
 		4AA0385B1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFNavigationBarDrawer.m; sourceTree = "<group>"; };
 		4AB0EFA41A30540C00C24A44 /* AFNMJInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNMJInstance.h; sourceTree = "<group>"; };
@@ -1322,6 +1325,8 @@
 				4A9D024D1A611F7400600BA0 /* HouseParticularTableViewController.m */,
 				4A9D024F1A61337700600BA0 /* houseSecretParticulars.h */,
 				4A9D02501A61337700600BA0 /* houseSecretParticulars.m */,
+				4A9D02521A616E1300600BA0 /* houseImagesTableViewController.h */,
+				4A9D02531A616E1300600BA0 /* houseImagesTableViewController.m */,
 			);
 			path = House;
 			sourceTree = "<group>";
@@ -1601,6 +1606,7 @@
 				B98BD57D1A609185003A35BE /* REActionBar.m in Sources */,
 				4ABC221D1A3C31910017FD94 /* AnncListViewController.m in Sources */,
 				4AD795231A218C4A00DEC779 /* AFSecurityPolicy.m in Sources */,
+				4A9D02541A616E1300600BA0 /* houseImagesTableViewController.m in Sources */,
 				4A5665431A4C025100C3BA22 /* MessageTableViewController.m in Sources */,
 				4A8D01EA1A36E46700EA59EA /* unReadManager.m in Sources */,
 				B98BD4C91A60747A003A35BE /* UIScrollView+MJExtension.m in Sources */,

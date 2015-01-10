@@ -18,7 +18,8 @@
 @property (strong, readwrite, nonatomic) RETableViewSection *infoSection;
 @property (strong, readwrite, nonatomic) RETableViewSection *secretSection;
 
-
+//小区图,户型图,室内图,
+@property (strong, readwrite, nonatomic) RETableViewItem * houseImages;
 @property (strong, readwrite, nonatomic) RETextItem * buildings_name;
 //String
 //楼盘名称
@@ -295,12 +296,13 @@
                            @"floor_count",
                            @"efficiency_rate"
                            ];
-    
+    self.houseImageCtrl = [[houseImagesTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     self.manager = [[RETableViewManager alloc] initWithTableView:self.tableView delegate:self];
     //[self loadDataToUI];
     
     [self getData];
 }
+
 
 -(void)getData
 {
@@ -308,6 +310,7 @@
     [HouseDataPuller pullHouseParticulars:self.houseDtl Success:^(HouseParticulars*ptcl)
      {
          self.housePtcl = ptcl;
+         self.houseImageCtrl.housePtcl = ptcl;
          [self loadDataToUI];
          [self.tableView reloadData];
          HIDEHUD_WINDOW;
@@ -325,13 +328,15 @@
     self.infoSection = [RETableViewSection sectionWithHeaderTitle:@""];
     [self.manager addSection:self.infoSection];
     
+    //图片
+    [self addWatchImageBtn];
+    
 //    @property (strong, readwrite, nonatomic) RETextItem * buildings_name;
 //    //String
 //    //楼盘名称
     self.buildings_name = [[RETextItem alloc] initWithTitle:@"楼盘名称:" value:self.housePtcl.buildings_name];
     [self.infoSection addItem:self.buildings_name];
     self.buildings_name.enabled = NO;
-   
     
 //    @property (strong, readwrite, nonatomic) RETextItem * urbanname;
 //    //String
@@ -543,7 +548,7 @@
 //    @property (strong, readwrite, nonatomic) RERadioItem * owner_staff_dept;
 //    //String
 //    //经纪人所属部门
-    self.owner_staff_dept = [[RERadioItem alloc] initWithTitle:@"经纪人所属部门:" value:self.housePtcl.owner_staff_dept selectionHandler:^(RERadioItem *item) {
+    self.owner_staff_dept = [[RERadioItem alloc] initWithTitle:@"经纪人部门:" value:self.housePtcl.owner_staff_dept selectionHandler:^(RERadioItem *item) {
         //todo
     }];
     [self.infoSection addItem:self.owner_staff_dept];
@@ -551,7 +556,7 @@
 //    @property (strong, readwrite, nonatomic) RERadioItem * owner_company_no;
 //    //String
 //    //经纪人所属公司编号
-    self.owner_company_no = [[RERadioItem alloc] initWithTitle:@"经纪人所属公司编号:" value:self.housePtcl.owner_company_no selectionHandler:^(RERadioItem *item) {
+    self.owner_company_no = [[RERadioItem alloc] initWithTitle:@"经纪人公司编号:" value:self.housePtcl.owner_company_no selectionHandler:^(RERadioItem *item) {
         //todo
     }];
     [self.infoSection addItem:self.owner_company_no];
@@ -559,7 +564,7 @@
 //    @property (strong, readwrite, nonatomic) RERadioItem * owner_compony_name;
 //    //String
 //    //经纪人所属公司名称
-    self.owner_compony_name = [[RERadioItem alloc] initWithTitle:@"经纪人所属公司名称:" value:self.housePtcl.owner_compony_name selectionHandler:^(RERadioItem *item) {
+    self.owner_compony_name = [[RERadioItem alloc] initWithTitle:@"经纪人公司名称:" value:self.housePtcl.owner_compony_name selectionHandler:^(RERadioItem *item) {
         //todo
     }];
     [self.infoSection addItem:self.owner_compony_name];
@@ -588,6 +593,19 @@
     
     
     [self.manager addSection:self.secretSection];
+}
+
+
+- (void)addWatchImageBtn
+{
+    __typeof (&*self) __weak weakSelf = self;
+    self.houseImages = [RETableViewItem itemWithTitle:@"点击查看图片" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
+                                   {
+                                       [weakSelf.navigationController pushViewController:self.houseImageCtrl animated:YES];
+                                   }];
+    self.houseImages.textAlignment = NSTextAlignmentCenter;
+    [self.infoSection addItem:self.houseImages];
+
 }
 
 -(void)loadDataToUI

@@ -12,6 +12,7 @@
 #import "HouseDetail.h"
 #import "HouseParticulars.h"
 #import "houseSecretParticulars.h"
+#import "houseImagesTableViewController.h"
 
 @interface HouseParticularTableViewController : UITableViewController<RETableViewManagerDelegate>
 
@@ -19,5 +20,5 @@
 @property(strong,nonatomic)HouseParticulars*housePtcl;
 @property(strong,nonatomic)houseSecretParticulars*houseSecretPtcl;
 @property(strong,nonatomic)NSArray*editFieldsArr;
-
+@property(strong,nonatomic)houseImagesTableViewController*houseImageCtrl;
 @end
