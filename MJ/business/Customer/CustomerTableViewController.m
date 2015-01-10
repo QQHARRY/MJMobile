@@ -156,6 +156,8 @@
 //    
 //    detailsView.msg = obj;
 //    [self pushControllerToController:detailsView];
+    
+    
 }
 
 -(void)pushControllerToController:(UIViewController*)vc

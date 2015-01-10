@@ -79,6 +79,7 @@
 #define DIC_LEASE_TRADE_STATE @"lease_trade_state"
 #define DIC_CONSIGNMENT_TYPE @"consignment_type"
 #define DIC_HOUSE_DRIECT @"house_driect"
+#define DIC_REQUIREMENT_STATE @"requirement_status"
 
 
 #define DEVICE_IOS @"0"
