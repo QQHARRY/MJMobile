@@ -146,7 +146,7 @@ static NSString*UDIDSTRING=nil;
     uname(&systemInfo);
     NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
     
-    NSString*strModel =  [UIDevice currentDevice].model;
+//    NSString*strModel =  [UIDevice currentDevice].model;
     
     return [deviceString  rangeOfString:@"iPhone"].location != NSNotFound;
 }

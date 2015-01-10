@@ -125,6 +125,15 @@
 		4AD7955C1A218DF100DEC779 /* GTCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD795581A218DF100DEC779 /* GTCheckBox.m */; };
 		4AD7955D1A218DF100DEC779 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7955B1A218DF100DEC779 /* MBProgressHUD.m */; };
 		4AFC39A81A47CA3A000FB6F3 /* bind.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC39A61A47CA3A000FB6F3 /* bind.storyboard */; };
+		B93B141A1A61646600121133 /* CustomerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B14191A61646600121133 /* CustomerViewController.m */; };
+		B93B14291A61652000121133 /* CustomerDataPuller.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B141C1A61652000121133 /* CustomerDataPuller.m */; };
+		B93B142A1A61652000121133 /* CustomerDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B141E1A61652000121133 /* CustomerDetail.m */; };
+		B93B142B1A61652000121133 /* CustomerDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B14201A61652000121133 /* CustomerDetailCell.m */; };
+		B93B142C1A61652000121133 /* CustomerDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B93B14211A61652000121133 /* CustomerDetailCell.xib */; };
+		B93B142D1A61652000121133 /* CustomerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B14231A61652000121133 /* CustomerFilter.m */; };
+		B93B142E1A61652000121133 /* CustomerFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B14251A61652000121133 /* CustomerFilterController.m */; };
+		B93B142F1A61652000121133 /* CustomerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B14271A61652000121133 /* CustomerTableViewController.m */; };
+		B93B14301A61652000121133 /* CustomerTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B93B14281A61652000121133 /* CustomerTableViewController.xib */; };
 		B98BD4A31A603B51003A35BE /* HouseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A11A603B51003A35BE /* HouseTableViewController.m */; };
 		B98BD4A41A603B51003A35BE /* HouseTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B98BD4A21A603B51003A35BE /* HouseTableViewController.xib */; };
 		B98BD4A71A604045003A35BE /* HouseDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A61A604045003A35BE /* HouseDetail.m */; };
@@ -190,7 +199,6 @@
 		B98BD58D1A609185003A35BE /* RELengthValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD55A1A609185003A35BE /* RELengthValidator.m */; };
 		B98BD58E1A609185003A35BE /* REPresenceValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD55C1A609185003A35BE /* REPresenceValidator.m */; };
 		B98BD58F1A609185003A35BE /* REURLValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD55E1A609185003A35BE /* REURLValidator.m */; };
-		B9FF4B3F1A245FB300FE413E /* CustomerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF4B301A245FB300FE413E /* CustomerViewController.m */; };
 		B9FF4B401A245FB300FE413E /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF4B331A245FB300FE413E /* MainPageViewController.m */; };
 		B9FF4B411A245FB300FE413E /* HouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF4B361A245FB300FE413E /* HouseViewController.m */; };
 		B9FF4B421A245FB300FE413E /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FF4B391A245FB300FE413E /* MoreViewController.m */; };
@@ -432,6 +440,22 @@
 		4AD7955A1A218DF100DEC779 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		4AD7955B1A218DF100DEC779 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		4AFC39A71A47CA3A000FB6F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/bind.storyboard; sourceTree = "<group>"; };
+		B93B14181A61646600121133 /* CustomerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerViewController.h; sourceTree = "<group>"; };
+		B93B14191A61646600121133 /* CustomerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerViewController.m; sourceTree = "<group>"; };
+		B93B141B1A61652000121133 /* CustomerDataPuller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerDataPuller.h; sourceTree = "<group>"; };
+		B93B141C1A61652000121133 /* CustomerDataPuller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerDataPuller.m; sourceTree = "<group>"; };
+		B93B141D1A61652000121133 /* CustomerDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerDetail.h; sourceTree = "<group>"; };
+		B93B141E1A61652000121133 /* CustomerDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerDetail.m; sourceTree = "<group>"; };
+		B93B141F1A61652000121133 /* CustomerDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerDetailCell.h; sourceTree = "<group>"; };
+		B93B14201A61652000121133 /* CustomerDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerDetailCell.m; sourceTree = "<group>"; };
+		B93B14211A61652000121133 /* CustomerDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomerDetailCell.xib; sourceTree = "<group>"; };
+		B93B14221A61652000121133 /* CustomerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerFilter.h; sourceTree = "<group>"; };
+		B93B14231A61652000121133 /* CustomerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerFilter.m; sourceTree = "<group>"; };
+		B93B14241A61652000121133 /* CustomerFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerFilterController.h; sourceTree = "<group>"; };
+		B93B14251A61652000121133 /* CustomerFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerFilterController.m; sourceTree = "<group>"; };
+		B93B14261A61652000121133 /* CustomerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerTableViewController.h; sourceTree = "<group>"; };
+		B93B14271A61652000121133 /* CustomerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerTableViewController.m; sourceTree = "<group>"; };
+		B93B14281A61652000121133 /* CustomerTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomerTableViewController.xib; sourceTree = "<group>"; };
 		B98BD4A01A603B51003A35BE /* HouseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseTableViewController.h; sourceTree = "<group>"; };
 		B98BD4A11A603B51003A35BE /* HouseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseTableViewController.m; sourceTree = "<group>"; };
 		B98BD4A21A603B51003A35BE /* HouseTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HouseTableViewController.xib; sourceTree = "<group>"; };
@@ -556,8 +580,6 @@
 		B98BD55D1A609185003A35BE /* REURLValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REURLValidator.h; sourceTree = "<group>"; };
 		B98BD55E1A609185003A35BE /* REURLValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REURLValidator.m; sourceTree = "<group>"; };
 		B9D3C6F11A272A39009CCE96 /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
-		B9FF4B2F1A245FB300FE413E /* CustomerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerViewController.h; sourceTree = "<group>"; };
-		B9FF4B301A245FB300FE413E /* CustomerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerViewController.m; sourceTree = "<group>"; };
 		B9FF4B321A245FB300FE413E /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
 		B9FF4B331A245FB300FE413E /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
 		B9FF4B351A245FB300FE413E /* HouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseViewController.h; sourceTree = "<group>"; };
@@ -1217,8 +1239,22 @@
 		B9FF4B2E1A245FB300FE413E /* Customer */ = {
 			isa = PBXGroup;
 			children = (
-				B9FF4B2F1A245FB300FE413E /* CustomerViewController.h */,
-				B9FF4B301A245FB300FE413E /* CustomerViewController.m */,
+				B93B14181A61646600121133 /* CustomerViewController.h */,
+				B93B14191A61646600121133 /* CustomerViewController.m */,
+				B93B141B1A61652000121133 /* CustomerDataPuller.h */,
+				B93B141C1A61652000121133 /* CustomerDataPuller.m */,
+				B93B141D1A61652000121133 /* CustomerDetail.h */,
+				B93B141E1A61652000121133 /* CustomerDetail.m */,
+				B93B141F1A61652000121133 /* CustomerDetailCell.h */,
+				B93B14201A61652000121133 /* CustomerDetailCell.m */,
+				B93B14211A61652000121133 /* CustomerDetailCell.xib */,
+				B93B14221A61652000121133 /* CustomerFilter.h */,
+				B93B14231A61652000121133 /* CustomerFilter.m */,
+				B93B14241A61652000121133 /* CustomerFilterController.h */,
+				B93B14251A61652000121133 /* CustomerFilterController.m */,
+				B93B14261A61652000121133 /* CustomerTableViewController.h */,
+				B93B14271A61652000121133 /* CustomerTableViewController.m */,
+				B93B14281A61652000121133 /* CustomerTableViewController.xib */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -1420,8 +1456,10 @@
 				B98BD4C41A60747A003A35BE /* MJRefresh.bundle in Resources */,
 				4A8D01E41A369F2E00EA59EA /* PetitionTableViewCell.xib in Resources */,
 				4AD794681A208F4400DEC779 /* Main.storyboard in Resources */,
+				B93B14301A61652000121133 /* CustomerTableViewController.xib in Resources */,
 				B98BD5831A609185003A35BE /* RETableViewManager.bundle in Resources */,
 				B98BD4B21A60616A003A35BE /* HouseDetailCell.xib in Resources */,
+				B93B142C1A61652000121133 /* CustomerDetailCell.xib in Resources */,
 				4AFC39A81A47CA3A000FB6F3 /* bind.storyboard in Resources */,
 				4A5665491A4C033D00C3BA22 /* MessageBriefTableViewCell.xib in Resources */,
 				4A8D01DF1A369DCE00EA59EA /* PublicAnncTableViewCell.xib in Resources */,
@@ -1463,6 +1501,7 @@
 				B98BD4C51A60747A003A35BE /* MJRefreshBaseView.m in Sources */,
 				4A2AD1811A457E800074DCA0 /* PersonDetailsViewController.m in Sources */,
 				B98BD5771A609185003A35BE /* RENumberItem.m in Sources */,
+				B93B142E1A61652000121133 /* CustomerFilterController.m in Sources */,
 				B98BD56D1A609185003A35BE /* RETableViewSegmentedCell.m in Sources */,
 				B98BD5651A609185003A35BE /* RETableViewDateTimeCell.m in Sources */,
 				4A56654F1A4C06EE00C3BA22 /* messageObj.m in Sources */,
@@ -1497,6 +1536,7 @@
 				4A5500C91A3BF32F00E5307D /* AnncDetailsViewController.m in Sources */,
 				4AD7955D1A218DF100DEC779 /* MBProgressHUD.m in Sources */,
 				4ABC22251A3C45490017FD94 /* AlertListTableViewController.m in Sources */,
+				B93B142D1A61652000121133 /* CustomerFilter.m in Sources */,
 				4A8F93F71A3EB47300A769C1 /* department.m in Sources */,
 				4AD7952A1A218C4A00DEC779 /* UIImage+FX.m in Sources */,
 				4AD795201A218C4A00DEC779 /* AFHTTPRequestOperationManager.m in Sources */,
@@ -1539,6 +1579,7 @@
 				4AD795291A218C4A00DEC779 /* FXImageView.m in Sources */,
 				4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */,
 				4AD7954F1A218C4A00DEC779 /* UIButton+AFNetworking.m in Sources */,
+				B93B141A1A61646600121133 /* CustomerViewController.m in Sources */,
 				B98BD5741A609185003A35BE /* REInlinePickerItem.m in Sources */,
 				4A51374B1A3B2AAA007B504B /* dic2Object.m in Sources */,
 				4A5D243F1A4A6E9C00546698 /* ShopItemTableViewCell.m in Sources */,
@@ -1579,6 +1620,8 @@
 				4AD7954D1A218C4A00DEC779 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				B98BD57B1A609185003A35BE /* RETextItem.m in Sources */,
 				4A9AEEEB1A3B43D300FDA403 /* petiotionBrief.m in Sources */,
+				B93B142F1A61652000121133 /* CustomerTableViewController.m in Sources */,
+				B93B14291A61652000121133 /* CustomerDataPuller.m in Sources */,
 				B98BD4CB1A60747A003A35BE /* UIView+MJExtension.m in Sources */,
 				4A5D24421A4A783100546698 /* shopItem.m in Sources */,
 				4A2EE1201A42872600899976 /* petitionDetail.m in Sources */,
@@ -1591,6 +1634,7 @@
 				B98BD5621A609185003A35BE /* REFormattedNumberField.m in Sources */,
 				4AD795511A218C4A00DEC779 /* UIProgressView+AFNetworking.m in Sources */,
 				4AB0EFA61A30540C00C24A44 /* AFNMJInstance.m in Sources */,
+				B93B142A1A61652000121133 /* CustomerDetail.m in Sources */,
 				4ABC22281A3C4BFD0017FD94 /* alert.m in Sources */,
 				4A2AD1971A467E080074DCA0 /* RestPassWordViewController.m in Sources */,
 				B98BD56A1A609185003A35BE /* RETableViewNumberCell.m in Sources */,
@@ -1605,6 +1649,7 @@
 				B98BD5701A609185003A35BE /* RECreditCardItem.m in Sources */,
 				B98BD57A1A609185003A35BE /* RESegmentedItem.m in Sources */,
 				B98BD58D1A609185003A35BE /* RELengthValidator.m in Sources */,
+				B93B142B1A61652000121133 /* CustomerDetailCell.m in Sources */,
 				B98BD57C1A609185003A35BE /* NSString+RETableViewManagerAdditions.m in Sources */,
 				4A40C2211A4175BC00944AB2 /* petionDetailsItemTableViewCell.m in Sources */,
 				4AD7955C1A218DF100DEC779 /* GTCheckBox.m in Sources */,
@@ -1614,7 +1659,6 @@
 				4AD795261A218C4A00DEC779 /* AFURLResponseSerialization.m in Sources */,
 				B98BD4C81A60747A003A35BE /* MJRefreshHeaderView.m in Sources */,
 				B98BD5841A609185003A35BE /* RETableViewManager.m in Sources */,
-				B9FF4B3F1A245FB300FE413E /* CustomerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
