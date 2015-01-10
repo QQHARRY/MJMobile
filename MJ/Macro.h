@@ -68,6 +68,8 @@
 
 // 字典表类型
 #define DIC_FITMENT_TYPE @"fitment_type"
+#define DIC_SALE_TRADE_STATE @"sale_trade_state"
+#define DIC_LEASE_TRADE_STATE @"lease_trade_state"
 
 
 #define DEVICE_IOS @"0"
