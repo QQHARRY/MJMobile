@@ -11,9 +11,24 @@
 #import "dictionaryManager.h"
 #import <sqlite3.h>
 
-static NSString* databasePath = nil; ;
+//static  NSString* databasePath = nil;
 
 @implementation Sqlite3DataPersistence
+
++(NSString*)getDatabasePath
+{
+    NSString *docsDir;
+    NSArray *dirPaths;
+    
+    // Get the documents directory
+    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    docsDir = [dirPaths objectAtIndex:0];
+    
+    // Build the path to the database file
+    NSString* databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DIC_DB_NAME]];
+    return databasePath;
+}
 
 +(void)insertObj:(id<SQLPROTOCOL>)obj ToTable:(NSString*)tableName
 {
@@ -30,16 +45,8 @@ static NSString* databasePath = nil; ;
     
     sqlite3_stmt *statement;
     
-//    NSString *docsDir;
-//    NSArray *dirPaths;
-//    
-//    // Get the documents directory
-//    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    
-//    docsDir = [dirPaths objectAtIndex:0];
-//    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent:DIC_DB_NAME]];
     
-    const char *dbpath = [databasePath UTF8String];
+    const char *dbpath = [[self getDatabasePath] UTF8String];
     
     sqlite3 *sqlDB = nil;
     
@@ -63,16 +70,7 @@ static NSString* databasePath = nil; ;
 
 +(NSArray*)seachRecordWithCondition:(NSString*)cond
 {
-//    NSString *docsDir;
-//    NSArray *dirPaths;
-//    
-//    // Get the documents directory
-//    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    
-//    docsDir = [dirPaths objectAtIndex:0];
-//    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent:DIC_DB_NAME]];
-    
-    const char *dbpath = [databasePath UTF8String];
+    const char *dbpath = [[self getDatabasePath] UTF8String];
     NSMutableArray*arr = [[NSMutableArray alloc] init];
 
     sqlite3_stmt *statement;
@@ -120,25 +118,15 @@ static NSString* databasePath = nil; ;
 }
 +(void)deleteTable:(NSString*)tabName
 {
-    //
-    NSString *docsDir;
-    NSArray *dirPaths;
-    
-    // Get the documents directory
-    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    
-    docsDir = [dirPaths objectAtIndex:0];
-    
-    // Build the path to the database file
-    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DIC_DB_NAME]];
+    //const char *dbpath = [[self getDatabasePath] UTF8String];
     
     NSFileManager *filemgr = [NSFileManager defaultManager];
     
     sqlite3 *sqlDB = nil;
     
-    if ([filemgr fileExistsAtPath:databasePath] == YES)
+    if ([filemgr fileExistsAtPath:[self getDatabasePath]] == YES)
     {
-        const char *dbpath = [databasePath UTF8String];
+        const char *dbpath = [[self getDatabasePath] UTF8String];
         if (sqlite3_open(dbpath, &sqlDB)==SQLITE_OK)
         {
             char *errMsg;
@@ -165,24 +153,14 @@ static NSString* databasePath = nil; ;
 
 +(void)createTable:(NSString*)tabName
 {
-    NSString *docsDir;
-    NSArray *dirPaths;
-    
-    // Get the documents directory
-    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    
-    docsDir = [dirPaths objectAtIndex:0];
-    
-    // Build the path to the database file
-    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DIC_DB_NAME]];
-    
+
     NSFileManager *filemgr = [NSFileManager defaultManager];
     
     sqlite3 *sqlDB = nil;
     
 
     {
-        const char *dbpath = [databasePath UTF8String];
+        const char *dbpath = [[self getDatabasePath] UTF8String];
         if (sqlite3_open(dbpath, &sqlDB)==SQLITE_OK)
         {
             char *errMsg;
