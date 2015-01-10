@@ -59,6 +59,8 @@
 
 //  19.获取房源简要信息列表
 #define API_HOUSE_LIST @"business/getRealEstateBriefList"
+//   44.获取城区片区列表
+#define API_AREA_LIST @"business/getAreaList"
 
 //字典表
 #define GET_DICTIONARY @"business/getDictionary"
@@ -70,6 +72,8 @@
 #define DIC_FITMENT_TYPE @"fitment_type"
 #define DIC_SALE_TRADE_STATE @"sale_trade_state"
 #define DIC_LEASE_TRADE_STATE @"lease_trade_state"
+#define DIC_CONSIGNMENT_TYPE @"consignment_type"
+#define DIC_HOUSE_DRIECT @"house_driect"
 
 
 #define DEVICE_IOS @"0"

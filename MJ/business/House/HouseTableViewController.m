@@ -19,6 +19,9 @@
 @interface HouseTableViewController ()
 
 @property (nonatomic, strong) NSMutableArray *houseList;
+@property (nonatomic, strong) NSArray *fitmentDictList;
+@property (nonatomic, strong) NSArray *leaseDictList;
+@property (nonatomic, strong) NSArray *saleDictList;
 
 @end
 
@@ -31,6 +34,11 @@
     // init data
     self.houseList = [NSMutableArray array];
     
+    // get dict
+    self.fitmentDictList = [dictionaryManager getItemArrByType:DIC_FITMENT_TYPE];
+    self.leaseDictList = [dictionaryManager getItemArrByType:DIC_LEASE_TRADE_STATE];
+    self.saleDictList = [dictionaryManager getItemArrByType:DIC_SALE_TRADE_STATE];
+
     // header & footer refresh
     [self.tableView addHeaderWithTarget:self action:@selector(refreshData)];
     [self.tableView addFooterWithTarget:self action:@selector(loadMore)];
@@ -130,11 +138,10 @@
     [cell.thunmbnail setImageWithURL:[NSURL URLWithString:thunmbnailStr] placeholderImage:[UIImage imageNamed:@"LoadPlaceHolder"]];
     cell.title.text = hd.buildings_name;
     cell.house.text = [NSString stringWithFormat:@"%@室%@厅%@厨%@卫 %@m²", hd.room_num, hd.hall_num, hd.kitchen_num, hd.toilet_num, hd.build_structure_area];
-    cell.price.text = (self.controllerType == HCT_RENT) ? ([NSString stringWithFormat:@"%@元/月", hd.lease_value_total]) : ([NSString stringWithFormat:@"%@万元", hd.sale_value_total]);
+    cell.price.text = (self.controllerType == HCT_RENT) ? ([NSString stringWithFormat:@"%@元/月", hd.lease_value_total]) : ([NSString stringWithFormat:@"%@元", hd.sale_value_total]);
     cell.floor.text = [NSString stringWithFormat:@"%@/%@楼", hd.house_floor, hd.floor_count];
     {
-        NSArray *fitmentList = [dictionaryManager getItemArrByType:DIC_FITMENT_TYPE];
-        for (DicItem *di in fitmentList)
+        for (DicItem *di in self.fitmentDictList)
         {
             if ([di.dict_value isEqualToString:hd.fitment_type])
             {
@@ -145,8 +152,7 @@
     }
     if (self.controllerType == HCT_RENT)
     {
-        NSArray *fitmentList = [dictionaryManager getItemArrByType:DIC_LEASE_TRADE_STATE];
-        for (DicItem *di in fitmentList)
+        for (DicItem *di in self.leaseDictList)
         {
             if ([di.dict_value isEqualToString:hd.lease_trade_state])
             {
@@ -157,8 +163,7 @@
     }
     else
     {
-        NSArray *fitmentList = [dictionaryManager getItemArrByType:DIC_SALE_TRADE_STATE];
-        for (DicItem *di in fitmentList)
+        for (DicItem *di in self.saleDictList)
         {
             if ([di.dict_value isEqualToString:hd.sale_trade_state])
             {
@@ -167,7 +172,7 @@
             }
         }
     }
-    
+
     return cell;
 }
 

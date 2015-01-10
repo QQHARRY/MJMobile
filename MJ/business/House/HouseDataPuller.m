@@ -131,7 +131,6 @@
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {
-
              NSArray *src = [resultDic objectForKey:@"EstateNode"];
              NSMutableArray *dst = [NSMutableArray array];
              for (NSDictionary *d in src)
@@ -147,8 +146,55 @@
      {
          failure(error);
      }];
-
+    
 }
+
++(void)pullAreaListDataSuccess:(void (^)(NSArray *areaList))success failure:(void (^)(NSError *error))failure
+{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setValue:[person me].job_no forKey:@"job_no"];
+    [param setValue:[person me].password forKey:@"acc_password"];
+    
+    [NetWorkManager PostWithApiName:API_AREA_LIST parameters:param success:^(id responseObject)
+     {
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         {
+            NSArray *src = [resultDic objectForKey:@"AreaNode "];
+            NSMutableArray *dst = [NSMutableArray array];
+            // search area
+             for (NSDictionary *dict in src)
+             {
+                 if ([[dict valueForKey:@"areas_parent_no"] isEqualToString:@"AREAS_NO000008"])
+                 {
+                     NSDictionary *areaDict = @{@"no" : [dict valueForKey:@"areas_current_no"],
+                                                @"dict" : dict,
+                                                @"sections" : [NSMutableArray array]};
+                     [dst addObject:areaDict];
+                 }
+             }
+             // search section
+             for (NSDictionary *dict in src)
+             {
+                 for (NSDictionary *areaDict in dst)
+                 {
+                     if ([[dict valueForKey:@"areas_parent_no"] isEqualToString:[areaDict objectForKey:@"no"]])
+                     {
+                         [[areaDict objectForKey:@"sections"] addObject:dict];
+                         break;
+                     }
+                 }
+             }
+             success(dst);
+         }
+     }
+                            failure:^(NSError *error)
+     {
+         failure(error);
+     }];
+    
+}
+
 
 
 @end
