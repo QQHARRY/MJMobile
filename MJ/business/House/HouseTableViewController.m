@@ -14,6 +14,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "MJRefresh.h"
 #import "Macro.h"
+#import "dictionaryManager.h"
 
 @interface HouseTableViewController ()
 
@@ -131,7 +132,15 @@
     cell.house.text = [NSString stringWithFormat:@"%@室%@厅%@厨%@卫 %@m²", hd.room_num, hd.hall_num, hd.kitchen_num, hd.toilet_num, hd.build_structure_area];
     cell.price.text = (self.controllerType == HCT_RENT) ? ([NSString stringWithFormat:@"%@元/月", hd.lease_value_total]) : ([NSString stringWithFormat:@"%@万元", hd.sale_value_total]);
     cell.floor.text = [NSString stringWithFormat:@"%@/%@楼", hd.house_floor, hd.floor_count];
-    cell.fitment.text = hd.fitment_type;
+    NSArray *fitmentList = [dictionaryManager getItemArrByType:DIC_FITMENT_TYPE];
+    for (DicItem *di in fitmentList)
+    {
+        if ([di.dict_value isEqualToString:hd.fitment_type])
+        {
+            cell.fitment.text = di.dict_label;
+            break;
+        }
+    }
     cell.status.text =  (self.controllerType == HCT_RENT) ? ([NSString stringWithFormat:@"%@", hd.lease_trade_state]) : ([NSString stringWithFormat:@"%@", hd.sale_trade_state]);
     return cell;
 }

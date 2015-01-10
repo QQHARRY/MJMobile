@@ -66,6 +66,8 @@
 #define DIC_DB_NAME @"dictable.db"
 #define DIC_TABLE_NAME @"dictable"
 
+// 字典表类型
+#define DIC_FITMENT_TYPE @"fitment_type"
 
 
 #define DEVICE_IOS @"0"
