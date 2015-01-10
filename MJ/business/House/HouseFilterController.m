@@ -46,7 +46,6 @@
 {
     [super viewDidLoad];
     self.title = @"房源筛选";
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Values" style:UIBarButtonItemStyleBordered target:self action:@selector(valuesButtonPressed:)];
     
     // Create manager
     self.manager = [[RETableViewManager alloc] initWithTableView:self.tableView delegate:self];
@@ -54,21 +53,6 @@
     self.keySearchSection = [self addKeySearchControls];
     self.exactQuerySection = [self addExactQueryControls];
     self.commitSection = [self addCommitButton];
-}
-
-- (void)valuesButtonPressed:(id)sender
-{
-//    NSLog(@"fullLengthFieldItem.value = %@", self.fullLengthFieldItem.value);
-//    NSLog(@"textItem.value = %@", self.textItem.value);
-//    NSLog(@"numberItem.value = %@", self.numberItem.value);
-//    NSLog(@"passwordItem.value = %@", self.passwordItem.value);
-//    NSLog(@"boolItem.value = %@", self.boolItem.value ? @"YES" : @"NO");
-//    NSLog(@"floatItem.value = %f", self.floatItem.value);
-//    NSLog(@"dateTimeItem = %@", self.dateTimeItem.value);
-//    NSLog(@"radioItem.value = %@", self.radioItem.value);
-//    NSLog(@"multipleChoiceItem.value = %@", self.multipleChoiceItem.value);
-//    NSLog(@"longTextItem.value = %@", self.longTextItem.value);
-//    NSLog(@"creditCardItem.number = %@, creditCardItem.expirationDate = %@, creditCardItem.cvv = %@", self.creditCardItem.number, self.creditCardItem.expirationDate, self.creditCardItem.cvv);
 }
 
 - (RETableViewSection *)addKeySearchControls
@@ -266,8 +250,29 @@
     
     RETableViewItem *buttonItem = [RETableViewItem itemWithTitle:@"查询" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
     {
-        item.title = @"TODO：开始查询!";
-        [item reloadRowWithAnimation:UITableViewRowAnimationAutomatic];
+        HouseFilter *filter = (self.hvc.nowControllerType == HCT_SELL) ? self.hvc.sellController.filter : self.hvc.rentController.filter;
+        filter.keyword = self.keySearchItem.value;
+        filter.buildname = self.buildItem.value;
+        filter.house_unit = self.unitItem.value;
+        filter.house_fluor = self.floorItem.value;
+        filter.house_tablet = self.tabletItem.value;
+        filter.hall_num = self.hallItem.value;
+        filter.room_num = self.roomItem.value;
+        filter.structure_area_from = self.minAreaItem.value;
+        filter.structure_area_to = self.maxAreaItem.value;
+        filter.sale_value_from = self.minPriceItem.value;
+        filter.sale_value_to = self.maxPriceItem.value;
+        filter.house_floor_from = self.minFloorItem.value;
+        filter.house_floor_to = self.maxFloorItem.value;
+        filter.housearea = self.belongAreaItem.value;
+        filter.houseurban = self.belongSectionItem.value;
+        filter.house_driect = self.driectItem.value;
+        filter.sale_trade_state = self.statusItem.value;
+        filter.fitment_type = self.fitmentItem.value;
+        filter.consignment_type = self.consignmentItem.value;
+        filter.FromID = @"0";
+        filter.ToID = @"0";
+        [self.navigationController popViewControllerAnimated:YES];
     }];
     buttonItem.textAlignment = NSTextAlignmentCenter;
     [section addItem:buttonItem];

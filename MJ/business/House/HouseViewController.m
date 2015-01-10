@@ -11,15 +11,10 @@
 #import "UtilFun.h"
 #import "Macro.h"
 #import "person.h"
-#import "HouseTableViewController.h"
 #import "HouseFilter.h"
 #import "HouseFilterController.h"
 
 @interface HouseViewController ()
-
-@property (nonatomic) HOUSER_CONTROLLER_TYPE nowControllerType;
-@property (nonatomic, strong) HouseTableViewController *rentController;
-@property (nonatomic, strong) HouseTableViewController *sellController;
 
 @end
 
@@ -85,8 +80,7 @@
 - (void)onFilterAction:(id)sender
 {
     HouseFilterController *vc = [[HouseFilterController alloc] initWithStyle:UITableViewStyleGrouped];
-//    ctrl.msgObj = nil;
-//    ctrl.msgType = MJMESSAGESENDTYPE_SEND;
+    vc.hvc = self;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

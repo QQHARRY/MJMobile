@@ -9,14 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "RETableViewManager.h"
 #import "RETableViewOptionsController.h"
+#import "HouseViewController.h"
 
 @interface HouseFilterController : UITableViewController <RETableViewManagerDelegate>
 
-@property (strong, readonly, nonatomic) RETableViewManager *manager;
-@property (strong, readonly, nonatomic) RETableViewSection *basicControlsSection;
-@property (strong, readonly, nonatomic) RETableViewSection *creditCardSection;
-@property (strong, readonly, nonatomic) RETableViewSection *accessoriesSection;
-@property (strong, readonly, nonatomic) RETableViewSection *cutCopyPasteSection;
-@property (strong, readonly, nonatomic) RETableViewSection *buttonSection;
+@property (nonatomic, weak) HouseViewController *hvc;
 
 @end

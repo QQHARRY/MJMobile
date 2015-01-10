@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HouseViewController.h"
 #import "HouseFilter.h"
+
+typedef NS_ENUM(NSInteger, HOUSER_CONTROLLER_TYPE)
+{
+    HCT_RENT    = 1,
+    HCT_SELL     = 2,
+};
 
 @interface HouseTableViewController : UITableViewController
 

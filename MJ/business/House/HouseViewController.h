@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "ViewPagerController.h"
+#import "HouseTableViewController.h"
 
-typedef NS_ENUM(NSInteger, HOUSER_CONTROLLER_TYPE)
-{
-    HCT_RENT    = 1,
-    HCT_SELL     = 2,
-};
 
 @interface HouseViewController : ViewPagerController
     <ViewPagerDataSource, ViewPagerDelegate>
+
+@property (nonatomic) HOUSER_CONTROLLER_TYPE nowControllerType;
+@property (nonatomic, strong) HouseTableViewController *rentController;
+@property (nonatomic, strong) HouseTableViewController *sellController;
 
 @end
 
