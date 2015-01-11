@@ -76,6 +76,8 @@
 #define API_CONTRACT_LIST @"business/getContractList"
 // 36.添加委托
 #define API_CREATE_CONSTRACT @"business/newEntrusting"
+// 37.新增预约签约
+#define API_CREATE_SIGN @"business/appointmentSigning"
 
 //字典表
 #define GET_DICTIONARY @"business/getDictionary"

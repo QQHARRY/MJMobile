@@ -155,6 +155,8 @@
 		B94445821A62986B0033E998 /* ContractDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B944457B1A62986B0033E998 /* ContractDetailCell.xib */; };
 		B94445831A62986B0033E998 /* ContractTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B944457D1A62986B0033E998 /* ContractTableViewController.m */; };
 		B94445841A62986B0033E998 /* ContractTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B944457E1A62986B0033E998 /* ContractTableViewController.xib */; };
+		B944458A1A62A6860033E998 /* SignAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94445871A62A6860033E998 /* SignAddController.m */; };
+		B944458B1A62A6860033E998 /* SignDataPuller.m in Sources */ = {isa = PBXBuildFile; fileRef = B94445891A62A6860033E998 /* SignDataPuller.m */; };
 		B98BD4A31A603B51003A35BE /* HouseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A11A603B51003A35BE /* HouseTableViewController.m */; };
 		B98BD4A41A603B51003A35BE /* HouseTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B98BD4A21A603B51003A35BE /* HouseTableViewController.xib */; };
 		B98BD4A71A604045003A35BE /* HouseDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A61A604045003A35BE /* HouseDetail.m */; };
@@ -512,6 +514,10 @@
 		B944457C1A62986B0033E998 /* ContractTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractTableViewController.h; sourceTree = "<group>"; };
 		B944457D1A62986B0033E998 /* ContractTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractTableViewController.m; sourceTree = "<group>"; };
 		B944457E1A62986B0033E998 /* ContractTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContractTableViewController.xib; sourceTree = "<group>"; };
+		B94445861A62A6860033E998 /* SignAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignAddController.h; sourceTree = "<group>"; };
+		B94445871A62A6860033E998 /* SignAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignAddController.m; sourceTree = "<group>"; };
+		B94445881A62A6860033E998 /* SignDataPuller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignDataPuller.h; sourceTree = "<group>"; };
+		B94445891A62A6860033E998 /* SignDataPuller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignDataPuller.m; sourceTree = "<group>"; };
 		B98BD4A01A603B51003A35BE /* HouseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseTableViewController.h; sourceTree = "<group>"; };
 		B98BD4A11A603B51003A35BE /* HouseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseTableViewController.m; sourceTree = "<group>"; };
 		B98BD4A21A603B51003A35BE /* HouseTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HouseTableViewController.xib; sourceTree = "<group>"; };
@@ -989,6 +995,7 @@
 		4AD794931A2189F900DEC779 /* business */ = {
 			isa = PBXGroup;
 			children = (
+				B94445851A62A6860033E998 /* Sign */,
 				B94445741A62986B0033E998 /* Contract */,
 				B94445631A6282510033E998 /* Appoint */,
 				B93B14391A62539D00121133 /* Follow */,
@@ -1157,6 +1164,17 @@
 				B944457E1A62986B0033E998 /* ContractTableViewController.xib */,
 			);
 			path = Contract;
+			sourceTree = "<group>";
+		};
+		B94445851A62A6860033E998 /* Sign */ = {
+			isa = PBXGroup;
+			children = (
+				B94445861A62A6860033E998 /* SignAddController.h */,
+				B94445871A62A6860033E998 /* SignAddController.m */,
+				B94445881A62A6860033E998 /* SignDataPuller.h */,
+				B94445891A62A6860033E998 /* SignDataPuller.m */,
+			);
+			path = Sign;
 			sourceTree = "<group>";
 		};
 		B98BD4B31A60747A003A35BE /* MJRefresh */ = {
@@ -1732,6 +1750,7 @@
 				4ABC221D1A3C31910017FD94 /* AnncListViewController.m in Sources */,
 				4AD795231A218C4A00DEC779 /* AFSecurityPolicy.m in Sources */,
 				4A9D02541A616E1300600BA0 /* houseImagesTableViewController.m in Sources */,
+				B944458B1A62A6860033E998 /* SignDataPuller.m in Sources */,
 				4A5665431A4C025100C3BA22 /* MessageTableViewController.m in Sources */,
 				4A8D01EA1A36E46700EA59EA /* unReadManager.m in Sources */,
 				B93B144E1A62773700121133 /* FollowDetailCell.m in Sources */,
@@ -1781,6 +1800,7 @@
 				B98BD4A31A603B51003A35BE /* HouseTableViewController.m in Sources */,
 				4AB0EFAF1A308CED00C24A44 /* UtilFun.m in Sources */,
 				4AD795221A218C4A00DEC779 /* AFNetworkReachabilityManager.m in Sources */,
+				B944458A1A62A6860033E998 /* SignAddController.m in Sources */,
 				B98BD5701A609185003A35BE /* RECreditCardItem.m in Sources */,
 				B98BD57A1A609185003A35BE /* RESegmentedItem.m in Sources */,
 				B94445801A62986B0033E998 /* ContractDataPuller.m in Sources */,
