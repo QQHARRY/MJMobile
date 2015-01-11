@@ -439,6 +439,7 @@
     [self prepareInfoSectionItems];
     [self prepareSecretSectionItems];
     [self prepareActionSectionsItems];
+    [self enableOrDisableItems];
 }
 
 -(void)prepareInfoSectionItems
@@ -667,6 +668,27 @@
             [self.infoSection removeItem:self.sale_trade_state];
             [self.infoSection removeItem:self.sale_value_total];
             [self.infoSection removeItem:self.sale_value_single];
+        }
+    }
+    
+}
+
+-(void)enableOrDisableItems
+{
+    //if (mode == PAICULARMODE_READ)
+    {
+        NSArray* arr = [self.infoSection items];
+        for (RETableViewItem*item in arr)
+        {
+            if ([item isKindOfClass:[RETextItem class]])
+            {
+                ((RETextItem*)item).enabled = NO;
+            }
+            
+            if ([item isKindOfClass:[RERadioItem class]])
+            {
+                ((RERadioItem*)item).enabled = NO;
+            }
         }
     }
 }

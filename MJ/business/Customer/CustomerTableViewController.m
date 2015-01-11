@@ -133,6 +133,10 @@
         }
     }
   
+    if (indexPath.row >= [self.CustomerList count])
+    {
+        return cell;
+    }
     CustomerDetail *cd = [self.CustomerList objectAtIndex:indexPath.row];
     cell.title.text = cd.house_urban;
     cell.customer.text = cd.client_name;

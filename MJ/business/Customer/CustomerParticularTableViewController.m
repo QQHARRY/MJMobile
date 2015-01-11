@@ -198,25 +198,48 @@
 
 
 
+//- (void)createGenjinBtn
+//{
+//    __typeof (&*self) __weak weakSelf = self;
+//    self.addGenJinActions = [RETableViewItem itemWithTitle:@"跟进" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
+//                        {
+//                            
+//                        }];
+//    self.addGenJinActions.textAlignment = NSTextAlignmentCenter;
+//}
+//- (void)createDaiKanBtn
+//{
+//    __typeof (&*self) __weak weakSelf = self;
+//    self.addDaiKanActions = [RETableViewItem itemWithTitle:@"带看" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
+//                        {
+//
+//                        }];
+//    self.addDaiKanActions.textAlignment = NSTextAlignmentCenter;
+//}
 - (void)createGenjinBtn
 {
     __typeof (&*self) __weak weakSelf = self;
     self.addGenJinActions = [RETableViewItem itemWithTitle:@"跟进" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
-                        {
-                            
-                        }];
+                             {
+                                 FollowTableViewController *vc = [[FollowTableViewController alloc] initWithNibName:@"FollowTableViewController" bundle:[NSBundle mainBundle]];
+                                 vc.sid = self.customerDtl.business_requirement_no;
+                                 vc.type = @"租购";
+                                 [weakSelf.navigationController pushViewController:vc animated:YES];
+                             }];
     self.addGenJinActions.textAlignment = NSTextAlignmentCenter;
 }
 - (void)createDaiKanBtn
 {
     __typeof (&*self) __weak weakSelf = self;
     self.addDaiKanActions = [RETableViewItem itemWithTitle:@"带看" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
-                        {
-
-                        }];
+                             {
+                                 AppointTableViewController *vc = [[AppointTableViewController alloc] initWithNibName:@"AppointTableViewController" bundle:[NSBundle mainBundle]];
+                                 vc.sid = self.customerDtl.business_requirement_no;
+                                 
+                                 [weakSelf.navigationController pushViewController:vc animated:YES];
+                             }];
     self.addDaiKanActions.textAlignment = NSTextAlignmentCenter;
 }
-
 
 
 - (void)didReceiveMemoryWarning {
