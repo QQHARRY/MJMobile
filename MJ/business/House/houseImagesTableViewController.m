@@ -13,6 +13,9 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "HouseDataPuller.h"
 
+
+#define SECTION_HEIGHT 22
+
 @interface houseImagesTableViewController ()
 @property (strong, readwrite, nonatomic) RETableViewManager *manager;
 @property (strong, readwrite, nonatomic) RETableViewSection *xqtSection;
@@ -47,6 +50,7 @@
 -(void)createxqtSection
 {
     self.xqtSection = [RETableViewSection sectionWithHeaderTitle:@"小区图"];
+    self.xqtSection.headerHeight = SECTION_HEIGHT;
     [self.manager addSection:self.xqtSection];
     
 
@@ -85,6 +89,7 @@
 -(void)createhxtSection
 {
     self.hxtSection = [RETableViewSection sectionWithHeaderTitle:@"户型图"];
+    self.hxtSection.headerHeight = SECTION_HEIGHT;
     [self.manager addSection:self.hxtSection];
     if (self.housePtcl)
     {
@@ -121,6 +126,7 @@
 -(void)createsntSection
 {
     self.sntSection = [RETableViewSection sectionWithHeaderTitle:@"室内图"];
+    self.sntSection.headerHeight = SECTION_HEIGHT;
     [self.manager addSection:self.sntSection];
     if (self.housePtcl)
     {
@@ -185,6 +191,7 @@
 
 - (void)createAddImageButton:(RETableViewSection*)section
 {
+    return;
     if (section != nil)
     {
         //__typeof (&*self) __weak weakSelf = self;

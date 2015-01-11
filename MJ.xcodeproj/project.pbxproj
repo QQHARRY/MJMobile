@@ -88,6 +88,7 @@
 		4A9D02511A61337700600BA0 /* houseSecretParticulars.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D02501A61337700600BA0 /* houseSecretParticulars.m */; };
 		4A9D02541A616E1300600BA0 /* houseImagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D02531A616E1300600BA0 /* houseImagesTableViewController.m */; };
 		4A9D02561A6234FC00600BA0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9D02551A6234FC00600BA0 /* MobileCoreServices.framework */; };
+		4A9D02591A62738000600BA0 /* addHouseDistrictInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D02581A62738000600BA0 /* addHouseDistrictInfo.m */; };
 		4AA0385C1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA0385B1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m */; };
 		4AB0EFA61A30540C00C24A44 /* AFNMJInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */; };
 		4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA81A30558000C24A44 /* NetWorkManager.m */; };
@@ -389,6 +390,8 @@
 		4A9D02521A616E1300600BA0 /* houseImagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = houseImagesTableViewController.h; sourceTree = "<group>"; };
 		4A9D02531A616E1300600BA0 /* houseImagesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = houseImagesTableViewController.m; sourceTree = "<group>"; };
 		4A9D02551A6234FC00600BA0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		4A9D02571A62738000600BA0 /* addHouseDistrictInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addHouseDistrictInfo.h; sourceTree = "<group>"; };
+		4A9D02581A62738000600BA0 /* addHouseDistrictInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addHouseDistrictInfo.m; sourceTree = "<group>"; };
 		4AA0385A1A3D30F0003E9CA6 /* BFNavigationBarDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFNavigationBarDrawer.h; sourceTree = "<group>"; };
 		4AA0385B1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFNavigationBarDrawer.m; sourceTree = "<group>"; };
 		4AB0EFA41A30540C00C24A44 /* AFNMJInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNMJInstance.h; sourceTree = "<group>"; };
@@ -1456,6 +1459,8 @@
 				4A9D02501A61337700600BA0 /* houseSecretParticulars.m */,
 				4A9D02521A616E1300600BA0 /* houseImagesTableViewController.h */,
 				4A9D02531A616E1300600BA0 /* houseImagesTableViewController.m */,
+				4A9D02571A62738000600BA0 /* addHouseDistrictInfo.h */,
+				4A9D02581A62738000600BA0 /* addHouseDistrictInfo.m */,
 			);
 			path = House;
 			sourceTree = "<group>";
@@ -1723,6 +1728,7 @@
 				4A9D02061A60544900600BA0 /* Sqlite3DataPersistence.m in Sources */,
 				B98BD5711A609185003A35BE /* REDateTimeItem.m in Sources */,
 				4AD795291A218C4A00DEC779 /* FXImageView.m in Sources */,
+				4A9D02591A62738000600BA0 /* addHouseDistrictInfo.m in Sources */,
 				4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */,
 				4AD7954F1A218C4A00DEC779 /* UIButton+AFNetworking.m in Sources */,
 				B93B141A1A61646600121133 /* CustomerViewController.m in Sources */,

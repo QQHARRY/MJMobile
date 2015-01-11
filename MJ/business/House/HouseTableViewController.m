@@ -182,6 +182,7 @@
     HouseDetail *hd = [self.houseList objectAtIndex:indexPath.row];
     HouseParticularTableViewController*ptcl = [[HouseParticularTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     ptcl.houseDtl = hd;
+    ptcl.mode = PAICULARMODE_READ;
     [self pushControllerToController:ptcl];
 }
 

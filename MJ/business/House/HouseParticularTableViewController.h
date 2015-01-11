@@ -14,6 +14,15 @@
 #import "houseSecretParticulars.h"
 #import "houseImagesTableViewController.h"
 
+
+typedef NS_ENUM(NSInteger, PAICULARMODE) {
+    PAICULARMODE_READ,
+    PAICULARMODE_EDIT,
+    PAICULARMODE_WRITE
+};
+
+
+
 @interface HouseParticularTableViewController : UITableViewController<RETableViewManagerDelegate>
 
 @property(strong,nonatomic)HouseDetail*houseDtl;
@@ -21,4 +30,9 @@
 @property(strong,nonatomic)houseSecretParticulars*houseSecretPtcl;
 @property(strong,nonatomic)NSArray*editFieldsArr;
 @property(strong,nonatomic)houseImagesTableViewController*houseImageCtrl;
+
+
+@property(assign,nonatomic)PAICULARMODE mode;
+
+
 @end

@@ -102,6 +102,15 @@
 #define DIC_TRADE_TYPE @"trade_type"
 #define DIC_PAY_SORT @"brokerage_pay_sort"
 
+
+#define DIC_TENE_APPLICATION @"tene_application"
+#define DIC_TENE_TYPE @"tene_type"
+#define DIC_FITMENT_TYPE @"fitment_type"
+#define DIC_HOUSE_DIRECT_TYPE @"house_driect"
+#define DIC_USE_SITUATION_TYPE @"use_situation"
+#define DIC_CLIENT_SOURCE_TYPE @"client_source"
+#define DIC_LOOK_PERMIT_TYPE @"look_permit"
+
 //添加图片
 #define ADD_IMAGE @"business/addImage"
 #define EDIT_PERSON_PHOTO @"person/editStaffPhoto"

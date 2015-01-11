@@ -88,27 +88,83 @@
     
 #else
     
+    
+#if 1
+    
+    
+    NSString *docsDir;
+    NSArray *dirPaths;
+    
+    // Get the documents directory
+    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    docsDir = [dirPaths objectAtIndex:0];
+    NSString* databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DIC_DB_NAME]];
+//    AFHTTPRequestOperationManager *manager1 = [AFHTTPRequestOperationManager manager];
+//    manager1.responseSerializer =[AFHTTPResponseSerializer serializer];
+//    [manager1 POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+//     {
+////         NSData*data = UIImageJPEGRepresentation(image, 0.05);
+////         [formData appendPartWithFileData:data name:@"imagedata" fileName:@"aaaa" mimeType:@"image/jpeg"];
+//         
+//         
+//         
+//         
+//         [formData appendPartWithFileURL:[NSURL URLWithString:databasePath] name:@"db" error:nil];
+//     }
+//           success:^(AFHTTPRequestOperation *operation, id responseObject)
+//     {
+//         if (success)
+//         {
+//             success(responseObject);
+//         }
+//     }
+//           failure:^(AFHTTPRequestOperation *operation, NSError *error)
+//     {
+//         if (failure)
+//         {
+//             failure(error);
+//         }
+//     }];
+    
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager2 = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    
+    NSURLSessionUploadTask *uploadTask = [manager2 uploadTaskWithRequest:request fromFile:[NSURL URLWithString:databasePath] progress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        } else {
+            NSLog(@"Success: %@ %@", response, responseObject);
+        }
+    }];
+    [uploadTask resume];
+    
+#else
     AFHTTPRequestOperationManager *manager1 = [AFHTTPRequestOperationManager manager];
     manager1.responseSerializer =[AFHTTPResponseSerializer serializer];
-    [manager1 POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
-     {
-         NSData*data = UIImageJPEGRepresentation(image, 0.2);
-         [formData appendPartWithFormData:data name:@"aaaaaa"];
-     }
-           success:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         if (success)
-         {
-             success(responseObject);
-         }
-     }
-           failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         if (failure)
-         {
-             failure(error);
-         }
-     }];
+    NSString *docsDir;
+    NSArray *dirPaths;
+    
+    // Get the documents directory
+    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    docsDir = [dirPaths objectAtIndex:0];
+    NSString* databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DIC_DB_NAME]];
+    
+    [manager1 POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileURL:databasePath name:@"db" error:nil];
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Success: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+#endif
+    
 #endif
 }
 @end
