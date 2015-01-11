@@ -10,6 +10,7 @@
 #import "MJRefresh.h"
 #import "UtilFun.h"
 #import "FollowDataPuller.h"
+#import "FollowAddController.h"
 //#import "HouseDetailCell.h"
 //#import "HouseDetail.h"
 //#import "UIImageView+AFNetworking.h"
@@ -34,8 +35,12 @@
     
     self.title = @"跟进列表";
     
-//    // init data
+    // init data
     self.followList = [NSMutableArray array];
+    
+    // add title button
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(onAddAction:)];
+
 //
 //    // get dict
 //    self.fitmentDictList = [dictionaryManager getItemArrByType:DIC_FITMENT_TYPE];
@@ -45,6 +50,12 @@
     // header & footer refresh
     [self.tableView addHeaderWithTarget:self action:@selector(refreshData)];
 //    [self.tableView addFooterWithTarget:self action:@selector(loadMore)];
+}
+
+- (void)onAddAction:(id)sender
+{
+    FollowAddController *vc = [[FollowAddController alloc] initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated

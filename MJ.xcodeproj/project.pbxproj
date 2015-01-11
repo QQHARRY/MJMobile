@@ -139,6 +139,7 @@
 		B93B143D1A62539D00121133 /* FollowTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B143B1A62539D00121133 /* FollowTableViewController.m */; };
 		B93B143E1A62539D00121133 /* FollowTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B93B143C1A62539D00121133 /* FollowTableViewController.xib */; };
 		B93B14411A625A5A00121133 /* FollowDataPuller.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B14401A625A5A00121133 /* FollowDataPuller.m */; };
+		B93B14441A625D1600121133 /* FollowAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B14431A625D1600121133 /* FollowAddController.m */; };
 		B98BD4A31A603B51003A35BE /* HouseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A11A603B51003A35BE /* HouseTableViewController.m */; };
 		B98BD4A41A603B51003A35BE /* HouseTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B98BD4A21A603B51003A35BE /* HouseTableViewController.xib */; };
 		B98BD4A71A604045003A35BE /* HouseDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A61A604045003A35BE /* HouseDetail.m */; };
@@ -469,6 +470,8 @@
 		B93B143C1A62539D00121133 /* FollowTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowTableViewController.xib; sourceTree = "<group>"; };
 		B93B143F1A625A5A00121133 /* FollowDataPuller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowDataPuller.h; sourceTree = "<group>"; };
 		B93B14401A625A5A00121133 /* FollowDataPuller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowDataPuller.m; sourceTree = "<group>"; };
+		B93B14421A625D1600121133 /* FollowAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowAddController.h; sourceTree = "<group>"; };
+		B93B14431A625D1600121133 /* FollowAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowAddController.m; sourceTree = "<group>"; };
 		B98BD4A01A603B51003A35BE /* HouseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseTableViewController.h; sourceTree = "<group>"; };
 		B98BD4A11A603B51003A35BE /* HouseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseTableViewController.m; sourceTree = "<group>"; };
 		B98BD4A21A603B51003A35BE /* HouseTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HouseTableViewController.xib; sourceTree = "<group>"; };
@@ -1073,6 +1076,8 @@
 				B93B143A1A62539D00121133 /* FollowTableViewController.h */,
 				B93B143B1A62539D00121133 /* FollowTableViewController.m */,
 				B93B143C1A62539D00121133 /* FollowTableViewController.xib */,
+				B93B14421A625D1600121133 /* FollowAddController.h */,
+				B93B14431A625D1600121133 /* FollowAddController.m */,
 			);
 			path = Follow;
 			sourceTree = "<group>";
@@ -1672,6 +1677,7 @@
 				4A2AD1971A467E080074DCA0 /* RestPassWordViewController.m in Sources */,
 				B98BD56A1A609185003A35BE /* RETableViewNumberCell.m in Sources */,
 				4A5D244B1A4AC16200546698 /* cartTableViewController.m in Sources */,
+				B93B14441A625D1600121133 /* FollowAddController.m in Sources */,
 				B9FF4B441A245FB300FE413E /* LoginViewController.m in Sources */,
 				4A5665391A4BF4E400C3BA22 /* MessageDetailsViewController.m in Sources */,
 				B93B14411A625A5A00121133 /* FollowDataPuller.m in Sources */,
