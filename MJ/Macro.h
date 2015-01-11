@@ -78,6 +78,11 @@
 #define API_CREATE_CONSTRACT @"business/newEntrusting"
 // 37.新增预约签约
 #define API_CREATE_SIGN @"business/appointmentSigning"
+// 41.获取所有签约室和签约人列表
+#define API_SIGN_CONDITION @"business/getAllPersonRoomList"
+// 42获取已占用签约室和签约人以及时段列 表
+#define API_SIGN_CONDITION_BUSY @"business/getSigningPersonRoomList"
+
 
 //字典表
 #define GET_DICTIONARY @"business/getDictionary"
