@@ -13,6 +13,8 @@
 #import "HouseDetail.h"
 #import "bizManager.h"
 #import "UtilFun.h"
+#import "AFNetworking.h"
+//#import "AFHTTPRequestOperation.h"
 
 @implementation HouseDataPuller
 
@@ -222,6 +224,56 @@
      {
          failure(error);
      }];
+}
+
++(void)pushImage:(UIImage*)image ToHouse:(HouseDetail *)dtl HouseParticulars:(HouseParticulars*)ptcl ImageType:(NSString*)imgType Success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    NSData*data = UIImageJPEGRepresentation(image, 1);
+    NSDictionary *parameters = @{@"job_no":[person me].job_no,
+                                 @"acc_password":[person me].password,
+                                 @"DeviceID":[UtilFun getUDID],
+                                 @"obj_type":@"房源",
+                                 @"obj_no":ptcl.buildings_picture,
+                                 @"imageType":imgType,
+                                 @"imagedata":@"",
+                                 };
+    
+    
+    [NetWorkManager PostImage:image WithApiName:ADD_IMAGE parameters:parameters success:^(id responseObject)
+    {
+        
+        NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+        if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+        {
+            
+            
+            
+            success(nil);
+        }
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
+    
+//    [NetWorkManager PostImage:image WithApiName:ADD_IMAGE parameters:parameters success:
+//     ^(id responseObject)
+//     {
+//         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+//         if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+//         {
+//             
+//             
+//             
+//             success(nil);
+//         }
+//         
+//     }
+//                      failure:^(NSError *error)
+//     {
+//         failure(error);
+//     }];
+
+    
+    
 }
 
 

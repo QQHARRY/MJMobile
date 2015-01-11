@@ -81,6 +81,12 @@
 #define DIC_HOUSE_DRIECT @"house_driect"
 #define DIC_REQUIREMENT_STATE @"requirement_status"
 
+//添加图片
+#define ADD_IMAGE @"business/addImage"
+#define EDIT_PERSON_PHOTO @"person/editStaffPhoto"
+
+
+
 
 #define DEVICE_IOS @"0"
 

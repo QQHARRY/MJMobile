@@ -260,6 +260,20 @@
 // String
 // 房源图片ID
 
+
+@property (strong, readwrite, nonatomic) RETableViewItem * lookSecretItem;
+// 查看保密信息
+
+@property (strong, readwrite, nonatomic) RETableViewItem * addGenJinActions;
+//4个按钮
+@property (strong, readwrite, nonatomic) RETableViewItem * addDaiKanActions;
+//4个按钮
+@property (strong, readwrite, nonatomic) RETableViewItem * addWeiTuoActions;
+//4个按钮
+@property (strong, readwrite, nonatomic) RETableViewItem * addQianYueActions;
+//4个按钮
+
+
 @end
 
 @implementation HouseParticularTableViewController
@@ -311,6 +325,7 @@
      {
          self.housePtcl = ptcl;
          self.houseImageCtrl.housePtcl = ptcl;
+         self.houseImageCtrl.houseDtl = self.houseDtl;
          [self loadDataToUI];
          [self.tableView reloadData];
          HIDEHUD_WINDOW;
@@ -585,6 +600,13 @@
     }];
     [self.infoSection addItem:self.client_source];
     
+    
+    [self addLookSecretBtn];
+    [self addGenjinBtn];
+    [self addDaiKanBtn];
+    [self addWeiTuoBtn];
+    [self addQianYueBtn];
+    
 }
 
 -(void)createSecretInfoSection
@@ -601,11 +623,68 @@
     __typeof (&*self) __weak weakSelf = self;
     self.houseImages = [RETableViewItem itemWithTitle:@"点击查看图片" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                                    {
+                                       
                                        [weakSelf.navigationController pushViewController:self.houseImageCtrl animated:YES];
                                    }];
     self.houseImages.textAlignment = NSTextAlignmentCenter;
     [self.infoSection addItem:self.houseImages];
 
+}
+- (void)addLookSecretBtn
+{
+    __typeof (&*self) __weak weakSelf = self;
+    self.lookSecretItem = [RETableViewItem itemWithTitle:@"查看保密信息" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
+                        {
+                            
+                        }];
+    self.lookSecretItem.textAlignment = NSTextAlignmentCenter;
+    [self.infoSection addItem:self.lookSecretItem];
+    
+}
+- (void)addGenjinBtn
+{
+    __typeof (&*self) __weak weakSelf = self;
+    self.addGenJinActions = [RETableViewItem itemWithTitle:@"跟进" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
+                        {
+                            
+                        }];
+    self.addGenJinActions.textAlignment = NSTextAlignmentCenter;
+    [self.infoSection addItem:self.addGenJinActions];
+    
+}
+- (void)addDaiKanBtn
+{
+    __typeof (&*self) __weak weakSelf = self;
+    self.addDaiKanActions = [RETableViewItem itemWithTitle:@"带看" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
+                        {
+                            
+                        }];
+    self.addDaiKanActions.textAlignment = NSTextAlignmentCenter;
+    [self.infoSection addItem:self.addDaiKanActions];
+    
+}
+- (void)addWeiTuoBtn
+{
+    __typeof (&*self) __weak weakSelf = self;
+    self.addWeiTuoActions = [RETableViewItem itemWithTitle:@"委托" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
+                        {
+                            
+                        }];
+    self.addWeiTuoActions.textAlignment = NSTextAlignmentCenter;
+    [self.infoSection addItem:self.addWeiTuoActions];
+    
+}
+
+- (void)addQianYueBtn
+{
+    __typeof (&*self) __weak weakSelf = self;
+    self.addQianYueActions = [RETableViewItem itemWithTitle:@"签约" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
+                        {
+                            
+                        }];
+    self.addQianYueActions.textAlignment = NSTextAlignmentCenter;
+    [self.infoSection addItem:self.addQianYueActions];
+    
 }
 
 -(void)loadDataToUI

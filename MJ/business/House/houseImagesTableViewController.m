@@ -9,6 +9,9 @@
 #import "houseImagesTableViewController.h"
 #import "Macro.h"
 #import "UIImageView+AFNetworking.h"
+#import <MobileCoreServices/UTCoreTypes.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import "HouseDataPuller.h"
 
 @interface houseImagesTableViewController ()
 @property (strong, readwrite, nonatomic) RETableViewManager *manager;
@@ -255,26 +258,48 @@
     [picker dismissViewControllerAnimated:YES completion:^{}];
     
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+    if (image && [type isEqualToString:(NSString *)kUTTypeImage])
+    {
+        
+        //updae image to server
+        NSString*strImageFor = @"xqt";
+        if (self.curSection != self.xqtSection)
+        {
+            if (self.curSection == self.hxtSection)
+            {
+                strImageFor = @"hxt";
+            }
+            else if (self.curSection == self.sntSection)
+            {
+                strImageFor = @"snt";
+            }
+        }
+        
+        
+        [HouseDataPuller pushImage:image ToHouse:self.houseDtl HouseParticulars:self.housePtcl ImageType:strImageFor Success:^(id responseObject) {
+            
+        } failure:^(NSError *error) {
+            
+        }];
+        
+        //save image to album
+        if (picker.sourceType == UIImagePickerControllerSourceTypeCamera)
+        {
+            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+        }
+        
+    }
 
 }
+
+
+
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 
-//#pragma mark - save image to bundle
-//- (void) saveImage:(UIImage *)currentImage withName:(NSString *)imageName
-//{
-//    NSString*userID = psn.job_no;
-//    
-//    NSData *imageData = UIImagePNGRepresentation(currentImage);
-//    
-//    NSString *fullPath = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]  stringByAppendingPathComponent:userID] stringByAppendingString:@"_"]stringByAppendingString:imageName];
-//    
-//    [imageData writeToFile:fullPath atomically:NO];
-//    
-//    self.photoChanged = YES;
-//}
 
 @end

@@ -21,6 +21,7 @@
                success:(void (^)(id responseObject))success
                failure:(void (^)(NSError *error))failure
 {
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer =[AFHTTPResponseSerializer serializer];
     
@@ -40,5 +41,44 @@
          }
      }
      ];
+}
+
+-(void)PostImage:(UIImage*)image WithApiName:(NSString*)apiName parameters:(NSDictionary *)parameters
+         success:(void (^)(id responseObject))success
+         failure:(void (^)(NSError *error))failure
+{
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+                                    {
+                                        NSData*data = UIImageJPEGRepresentation(image, 1);
+                                        [formData appendPartWithFormData:data name:@""];
+                                        
+                                    } error:nil];
+    
+    
+    
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
+    NSProgress *progress = nil;
+    
+    
+    
+    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error)
+                                          {
+                                              
+                                              if (error) {
+                                                  
+                                                  NSLog(@"Error: %@", error);
+                                                  
+                                              } else {
+                                                  
+                                                  NSLog(@"%@ %@", response, responseObject);
+                                                  
+                                              }
+                                              
+                                          }];
+    
+    
+    
+    [uploadTask resume];
 }
 @end

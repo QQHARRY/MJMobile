@@ -14,5 +14,6 @@
 #import "houseSecretParticulars.h"
 
 @interface houseImagesTableViewController : UITableViewController<RETableViewManagerDelegate,UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIGestureRecognizerDelegate>
+@property(strong,nonatomic)HouseDetail*houseDtl;
 @property(strong,nonatomic)HouseParticulars*housePtcl;
 @end

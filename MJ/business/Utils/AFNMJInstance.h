@@ -18,4 +18,7 @@
                success:(void (^)(id responseObject))success
                failure:(void (^)(NSError *error))failure;
 
+-(void)PostImage:(UIImage*)image WithApiName:(NSString*)apiName parameters:(NSDictionary *)parameters
+         success:(void (^)(id responseObject))success
+         failure:(void (^)(NSError *error))failure;
 @end

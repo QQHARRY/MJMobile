@@ -87,6 +87,7 @@
 		4A9D024E1A611F7400600BA0 /* HouseParticularTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D024D1A611F7400600BA0 /* HouseParticularTableViewController.m */; };
 		4A9D02511A61337700600BA0 /* houseSecretParticulars.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D02501A61337700600BA0 /* houseSecretParticulars.m */; };
 		4A9D02541A616E1300600BA0 /* houseImagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D02531A616E1300600BA0 /* houseImagesTableViewController.m */; };
+		4A9D02561A6234FC00600BA0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9D02551A6234FC00600BA0 /* MobileCoreServices.framework */; };
 		4AA0385C1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA0385B1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m */; };
 		4AB0EFA61A30540C00C24A44 /* AFNMJInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */; };
 		4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA81A30558000C24A44 /* NetWorkManager.m */; };
@@ -366,6 +367,7 @@
 		4A9D02501A61337700600BA0 /* houseSecretParticulars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = houseSecretParticulars.m; sourceTree = "<group>"; };
 		4A9D02521A616E1300600BA0 /* houseImagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = houseImagesTableViewController.h; sourceTree = "<group>"; };
 		4A9D02531A616E1300600BA0 /* houseImagesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = houseImagesTableViewController.m; sourceTree = "<group>"; };
+		4A9D02551A6234FC00600BA0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		4AA0385A1A3D30F0003E9CA6 /* BFNavigationBarDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFNavigationBarDrawer.h; sourceTree = "<group>"; };
 		4AA0385B1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFNavigationBarDrawer.m; sourceTree = "<group>"; };
 		4AB0EFA41A30540C00C24A44 /* AFNMJInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNMJInstance.h; sourceTree = "<group>"; };
@@ -600,6 +602,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A9D02561A6234FC00600BA0 /* MobileCoreServices.framework in Frameworks */,
 				4A9D02081A60584300600BA0 /* libsqlite3.dylib in Frameworks */,
 				4A6EF2AB1A5E6E8D008AB819 /* libUMessage_Sdk_1.1.0.a in Frameworks */,
 			);
@@ -873,6 +876,7 @@
 		4AD794501A208F4400DEC779 = {
 			isa = PBXGroup;
 			children = (
+				4A9D02551A6234FC00600BA0 /* MobileCoreServices.framework */,
 				4AD7945B1A208F4400DEC779 /* MJ */,
 				4AD794751A208F4500DEC779 /* MJTests */,
 				4AD7945A1A208F4400DEC779 /* Products */,
