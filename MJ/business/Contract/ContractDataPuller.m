@@ -20,9 +20,9 @@
 +(void)pullDataWithFilter:(NSString *)sid Success:(void (^)(NSArray *ContractList))success failure:(void (^)(NSError *error))failure
 {
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    [param setValue:[person me].job_no forKey:@"job_no"];
+    [param setValue:@"admin" forKey:@"job_no"];
     [param setValue:[person me].password forKey:@"acc_password"];
-    [param setValue:sid forKey:@"task_obj_no"];
+    [param setValue:sid forKey:@"contract_target_object"];
     [param setValue:@"0" forKey:@"FromID"];
     [param setValue:@"0" forKey:@"ToID"];
     [param setValue:@"1000" forKey:@"Count"];
@@ -32,7 +32,7 @@
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {
-             NSArray *src = [resultDic objectForKey:@"ContracttNode"];
+             NSArray *src = [resultDic objectForKey:@"ContractNode"];
              success(src);
          }
      }

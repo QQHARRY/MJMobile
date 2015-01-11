@@ -25,7 +25,7 @@
 {
     [super viewDidLoad];
     
-    self.title = @"跟进列表";
+    self.title = @"委托列表";
     
     // init data
     self.ContractList = [NSMutableArray array];
@@ -109,11 +109,12 @@
     }
   
     NSDictionary *d = [self.ContractList objectAtIndex:indexPath.row];
-    cell.type.text = [d objectForKey:@"task_type_label"];
-    cell.remind.text = [[d objectForKey:@"task_reminder_flg"] isEqualToString:@"1"] ? @"是" : @"否";
+    cell.type.text = [d objectForKey:@"contract_type"];
+    cell.state.text = [d objectForKey:@"contract_status"];
+    cell.dept.text = [d objectForKey:@"department_name"];
     cell.man.text = [d objectForKey:@"name_full"];
-    cell.time.text = [d objectForKey:@"task_Contract_time"];
-    cell.content.text = [d objectForKey:@"task_Contract_content"];
+    cell.limit.text = [d objectForKey:@"contract_end_date"];
+    cell.time.text = [d objectForKey:@"contract_start_date"];
 
     return cell;
 }

@@ -11,6 +11,7 @@
 #import "HouseDataPuller.h"
 #import "FollowTableViewController.h"
 #import "AppointTableViewController.h"
+#import "ContractTableViewController.h"
 #import <objc/runtime.h>
 
 
@@ -676,7 +677,11 @@
     __typeof (&*self) __weak weakSelf = self;
     self.addWeiTuoActions = [RETableViewItem itemWithTitle:@"委托" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                         {
-                            
+                            ContractTableViewController *vc = [[ContractTableViewController alloc] initWithNibName:@"ContractTableViewController" bundle:[NSBundle mainBundle]];
+                            vc.sid = self.houseDtl.house_trade_no;
+                            vc.type = self.housePtcl.trade_type;
+                            [weakSelf.navigationController pushViewController:vc animated:YES];
+
                         }];
     self.addWeiTuoActions.textAlignment = NSTextAlignmentCenter;
     [self.infoSection addItem:self.addWeiTuoActions];
