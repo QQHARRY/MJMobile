@@ -692,7 +692,7 @@
     __typeof (&*self) __weak weakSelf = self;
     self.addQianYueActions = [RETableViewItem itemWithTitle:@"签约" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                         {
-                            SignAddController *vc = [[SignAddController alloc] initWithNibName:@"SignAddController" bundle:[NSBundle mainBundle]];
+                            SignAddController *vc = [[SignAddController alloc] initWithStyle:UITableViewStyleGrouped];
                             vc.sid = self.houseDtl.house_trade_no;
                             [weakSelf.navigationController pushViewController:vc animated:YES];
                         }];

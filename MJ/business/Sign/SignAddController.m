@@ -57,7 +57,8 @@
     RETableViewSection *section = [RETableViewSection sectionWithHeaderTitle:@"签约信息"];
     [self.manager addSection:section];
     self.customerItem = [RETextItem itemWithTitle:@"客户" value:nil placeholder:@"请输入客户ID"];
-
+    [section addItem:self.customerItem];
+    
 //    self.typeItem = [RERadioItem itemWithTitle:@"交易类型" value:@"" selectionHandler:^(RERadioItem *item)
 //                     {
 //                         [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
