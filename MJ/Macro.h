@@ -72,6 +72,10 @@
 #define API_CREATE_FOLLOW @"business/createFollow"
 // 32.获取带看列表
 #define API_APPOINT_LIST @"business/getAppointList"
+// 34.获取委托列表
+#define API_CONTRACT_LIST @"business/getContractList"
+// 36.添加委托
+#define API_CREATE_CONSTRACT @"business/newEntrusting"
 
 //字典表
 #define GET_DICTIONARY @"business/getDictionary"
@@ -95,14 +99,7 @@
 
 
 
-
 #define DEVICE_IOS @"0"
-
-//#define API_LOGIN @"applogin"
-//#define API_LOGIN @"applogin"
-//#define API_LOGIN @"applogin"
-//#define API_LOGIN @"applogin"
-
 
 
 #define SERVER_NONCOMPLIANCE @"服务器返回错误"

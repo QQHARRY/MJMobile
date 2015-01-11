@@ -149,6 +149,12 @@
 		B94445711A6282510033E998 /* AppointDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B944456A1A6282510033E998 /* AppointDetailCell.xib */; };
 		B94445721A6282510033E998 /* AppointTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B944456C1A6282510033E998 /* AppointTableViewController.m */; };
 		B94445731A6282510033E998 /* AppointTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B944456D1A6282510033E998 /* AppointTableViewController.xib */; };
+		B944457F1A62986B0033E998 /* ContractAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94445761A62986B0033E998 /* ContractAddController.m */; };
+		B94445801A62986B0033E998 /* ContractDataPuller.m in Sources */ = {isa = PBXBuildFile; fileRef = B94445781A62986B0033E998 /* ContractDataPuller.m */; };
+		B94445811A62986B0033E998 /* ContractDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B944457A1A62986B0033E998 /* ContractDetailCell.m */; };
+		B94445821A62986B0033E998 /* ContractDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B944457B1A62986B0033E998 /* ContractDetailCell.xib */; };
+		B94445831A62986B0033E998 /* ContractTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B944457D1A62986B0033E998 /* ContractTableViewController.m */; };
+		B94445841A62986B0033E998 /* ContractTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B944457E1A62986B0033E998 /* ContractTableViewController.xib */; };
 		B98BD4A31A603B51003A35BE /* HouseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A11A603B51003A35BE /* HouseTableViewController.m */; };
 		B98BD4A41A603B51003A35BE /* HouseTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B98BD4A21A603B51003A35BE /* HouseTableViewController.xib */; };
 		B98BD4A71A604045003A35BE /* HouseDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A61A604045003A35BE /* HouseDetail.m */; };
@@ -496,6 +502,16 @@
 		B944456B1A6282510033E998 /* AppointTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointTableViewController.h; sourceTree = "<group>"; };
 		B944456C1A6282510033E998 /* AppointTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointTableViewController.m; sourceTree = "<group>"; };
 		B944456D1A6282510033E998 /* AppointTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointTableViewController.xib; sourceTree = "<group>"; };
+		B94445751A62986B0033E998 /* ContractAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractAddController.h; sourceTree = "<group>"; };
+		B94445761A62986B0033E998 /* ContractAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractAddController.m; sourceTree = "<group>"; };
+		B94445771A62986B0033E998 /* ContractDataPuller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractDataPuller.h; sourceTree = "<group>"; };
+		B94445781A62986B0033E998 /* ContractDataPuller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractDataPuller.m; sourceTree = "<group>"; };
+		B94445791A62986B0033E998 /* ContractDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractDetailCell.h; sourceTree = "<group>"; };
+		B944457A1A62986B0033E998 /* ContractDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractDetailCell.m; sourceTree = "<group>"; };
+		B944457B1A62986B0033E998 /* ContractDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContractDetailCell.xib; sourceTree = "<group>"; };
+		B944457C1A62986B0033E998 /* ContractTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractTableViewController.h; sourceTree = "<group>"; };
+		B944457D1A62986B0033E998 /* ContractTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractTableViewController.m; sourceTree = "<group>"; };
+		B944457E1A62986B0033E998 /* ContractTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContractTableViewController.xib; sourceTree = "<group>"; };
 		B98BD4A01A603B51003A35BE /* HouseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseTableViewController.h; sourceTree = "<group>"; };
 		B98BD4A11A603B51003A35BE /* HouseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseTableViewController.m; sourceTree = "<group>"; };
 		B98BD4A21A603B51003A35BE /* HouseTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HouseTableViewController.xib; sourceTree = "<group>"; };
@@ -973,6 +989,7 @@
 		4AD794931A2189F900DEC779 /* business */ = {
 			isa = PBXGroup;
 			children = (
+				B94445741A62986B0033E998 /* Contract */,
 				B94445631A6282510033E998 /* Appoint */,
 				B93B14391A62539D00121133 /* Follow */,
 				4AB0EFA31A30538D00C24A44 /* Utils */,
@@ -1123,6 +1140,23 @@
 				B944456D1A6282510033E998 /* AppointTableViewController.xib */,
 			);
 			path = Appoint;
+			sourceTree = "<group>";
+		};
+		B94445741A62986B0033E998 /* Contract */ = {
+			isa = PBXGroup;
+			children = (
+				B94445751A62986B0033E998 /* ContractAddController.h */,
+				B94445761A62986B0033E998 /* ContractAddController.m */,
+				B94445771A62986B0033E998 /* ContractDataPuller.h */,
+				B94445781A62986B0033E998 /* ContractDataPuller.m */,
+				B94445791A62986B0033E998 /* ContractDetailCell.h */,
+				B944457A1A62986B0033E998 /* ContractDetailCell.m */,
+				B944457B1A62986B0033E998 /* ContractDetailCell.xib */,
+				B944457C1A62986B0033E998 /* ContractTableViewController.h */,
+				B944457D1A62986B0033E998 /* ContractTableViewController.m */,
+				B944457E1A62986B0033E998 /* ContractTableViewController.xib */,
+			);
+			path = Contract;
 			sourceTree = "<group>";
 		};
 		B98BD4B31A60747A003A35BE /* MJRefresh */ = {
@@ -1535,12 +1569,14 @@
 				4A6EF2A71A5E20CC008AB819 /* ContactsListPersonTableViewCell.xib in Resources */,
 				4A5665541A4C127A00C3BA22 /* sendMessageViewController.xib in Resources */,
 				B98BD55F1A609185003A35BE /* LICENSE in Resources */,
+				B94445821A62986B0033E998 /* ContractDetailCell.xib in Resources */,
 				4ABC22221A3C3F940017FD94 /* LoadMoreTableViewCell.xib in Resources */,
 				B98BD4C41A60747A003A35BE /* MJRefresh.bundle in Resources */,
 				4A8D01E41A369F2E00EA59EA /* PetitionTableViewCell.xib in Resources */,
 				4AD794681A208F4400DEC779 /* Main.storyboard in Resources */,
 				B93B14301A61652000121133 /* CustomerTableViewController.xib in Resources */,
 				B98BD5831A609185003A35BE /* RETableViewManager.bundle in Resources */,
+				B94445841A62986B0033E998 /* ContractTableViewController.xib in Resources */,
 				B98BD4B21A60616A003A35BE /* HouseDetailCell.xib in Resources */,
 				B93B142C1A61652000121133 /* CustomerDetailCell.xib in Resources */,
 				4AFC39A81A47CA3A000FB6F3 /* bind.storyboard in Resources */,
@@ -1602,6 +1638,7 @@
 				B98BD5731A609185003A35BE /* REInlineDatePickerItem.m in Sources */,
 				4AD7954C1A218C4A00DEC779 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				B9FF4B421A245FB300FE413E /* MoreViewController.m in Sources */,
+				B944457F1A62986B0033E998 /* ContractAddController.m in Sources */,
 				4A5665481A4C033D00C3BA22 /* MessageBriefTableViewCell.m in Sources */,
 				B98BD5611A609185003A35BE /* NSString+RENumberFormat.m in Sources */,
 				4A3A2EF81A42F26000AA8A70 /* chooseAssistDeptTableViewController.m in Sources */,
@@ -1616,6 +1653,7 @@
 				B9FF4B401A245FB300FE413E /* MainPageViewController.m in Sources */,
 				4A8D01CF1A33023900EA59EA /* ILBarButtonItem.m in Sources */,
 				4AD7951F1A218C4A00DEC779 /* AFHTTPRequestOperation.m in Sources */,
+				B94445811A62986B0033E998 /* ContractDetailCell.m in Sources */,
 				B98BD5671A609185003A35BE /* RETableViewInlineDatePickerCell.m in Sources */,
 				B98BD5721A609185003A35BE /* REFloatItem.m in Sources */,
 				4A8F93EB1A3DD36C00A769C1 /* unit.m in Sources */,
@@ -1701,6 +1739,7 @@
 				4A8D02131A37F78400EA59EA /* JSBadgeView.m in Sources */,
 				B98BD5881A609185003A35BE /* README.md in Sources */,
 				4A5D24511A4AF21000546698 /* orderTableViewCell.m in Sources */,
+				B94445831A62986B0033E998 /* ContractTableViewController.m in Sources */,
 				B98BD5661A609185003A35BE /* RETableViewFloatCell.m in Sources */,
 				4A2EE11A1A41B41D00899976 /* petitionDictionary.m in Sources */,
 				4A5665571A4C1C4100C3BA22 /* ViewPagerController.m in Sources */,
@@ -1744,6 +1783,7 @@
 				4AD795221A218C4A00DEC779 /* AFNetworkReachabilityManager.m in Sources */,
 				B98BD5701A609185003A35BE /* RECreditCardItem.m in Sources */,
 				B98BD57A1A609185003A35BE /* RESegmentedItem.m in Sources */,
+				B94445801A62986B0033E998 /* ContractDataPuller.m in Sources */,
 				B98BD58D1A609185003A35BE /* RELengthValidator.m in Sources */,
 				B93B142B1A61652000121133 /* CustomerDetailCell.m in Sources */,
 				B98BD57C1A609185003A35BE /* NSString+RETableViewManagerAdditions.m in Sources */,
