@@ -33,15 +33,7 @@
          if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {
              NSArray *src = [resultDic objectForKey:@"FollowtNode"];
-             NSMutableArray *dst = [NSMutableArray array];
-             for (NSDictionary *d in src)
-             {
-                 // todo
-//                 HouseDetail *o = [[HouseDetail alloc] init];
-//                 [o initWithDictionary:d];
-//                 [dst addObject:o];
-             }
-             success(dst);
+             success(src);
          }
      }
                             failure:^(NSError *error)

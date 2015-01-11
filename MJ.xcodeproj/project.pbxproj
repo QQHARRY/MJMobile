@@ -142,6 +142,8 @@
 		B93B14441A625D1600121133 /* FollowAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B14431A625D1600121133 /* FollowAddController.m */; };
 		B93B14471A62668E00121133 /* MultilineTextItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B14461A62668E00121133 /* MultilineTextItem.m */; };
 		B93B144A1A62669600121133 /* MultilineTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B14491A62669600121133 /* MultilineTextCell.m */; };
+		B93B144E1A62773700121133 /* FollowDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B144C1A62773700121133 /* FollowDetailCell.m */; };
+		B93B144F1A62773700121133 /* FollowDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B93B144D1A62773700121133 /* FollowDetailCell.xib */; };
 		B98BD4A31A603B51003A35BE /* HouseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A11A603B51003A35BE /* HouseTableViewController.m */; };
 		B98BD4A41A603B51003A35BE /* HouseTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B98BD4A21A603B51003A35BE /* HouseTableViewController.xib */; };
 		B98BD4A71A604045003A35BE /* HouseDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A61A604045003A35BE /* HouseDetail.m */; };
@@ -478,6 +480,9 @@
 		B93B14461A62668E00121133 /* MultilineTextItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultilineTextItem.m; sourceTree = "<group>"; };
 		B93B14481A62669600121133 /* MultilineTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultilineTextCell.h; sourceTree = "<group>"; };
 		B93B14491A62669600121133 /* MultilineTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultilineTextCell.m; sourceTree = "<group>"; };
+		B93B144B1A62773700121133 /* FollowDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowDetailCell.h; sourceTree = "<group>"; };
+		B93B144C1A62773700121133 /* FollowDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowDetailCell.m; sourceTree = "<group>"; };
+		B93B144D1A62773700121133 /* FollowDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowDetailCell.xib; sourceTree = "<group>"; };
 		B98BD4A01A603B51003A35BE /* HouseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseTableViewController.h; sourceTree = "<group>"; };
 		B98BD4A11A603B51003A35BE /* HouseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseTableViewController.m; sourceTree = "<group>"; };
 		B98BD4A21A603B51003A35BE /* HouseTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HouseTableViewController.xib; sourceTree = "<group>"; };
@@ -1077,6 +1082,9 @@
 		B93B14391A62539D00121133 /* Follow */ = {
 			isa = PBXGroup;
 			children = (
+				B93B144B1A62773700121133 /* FollowDetailCell.h */,
+				B93B144C1A62773700121133 /* FollowDetailCell.m */,
+				B93B144D1A62773700121133 /* FollowDetailCell.xib */,
 				B93B143F1A625A5A00121133 /* FollowDataPuller.h */,
 				B93B14401A625A5A00121133 /* FollowDataPuller.m */,
 				B93B143A1A62539D00121133 /* FollowTableViewController.h */,
@@ -1493,6 +1501,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B93B144F1A62773700121133 /* FollowDetailCell.xib in Resources */,
 				4A3923DF1A4C737000B0D232 /* index.html in Resources */,
 				4A6EF2A71A5E20CC008AB819 /* ContactsListPersonTableViewCell.xib in Resources */,
 				4A5665541A4C127A00C3BA22 /* sendMessageViewController.xib in Resources */,
@@ -1653,6 +1662,7 @@
 				4A9D02541A616E1300600BA0 /* houseImagesTableViewController.m in Sources */,
 				4A5665431A4C025100C3BA22 /* MessageTableViewController.m in Sources */,
 				4A8D01EA1A36E46700EA59EA /* unReadManager.m in Sources */,
+				B93B144E1A62773700121133 /* FollowDetailCell.m in Sources */,
 				B98BD4C91A60747A003A35BE /* UIScrollView+MJExtension.m in Sources */,
 				4A8D02131A37F78400EA59EA /* JSBadgeView.m in Sources */,
 				B98BD5881A609185003A35BE /* README.md in Sources */,

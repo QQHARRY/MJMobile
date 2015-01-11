@@ -11,19 +11,11 @@
 #import "UtilFun.h"
 #import "FollowDataPuller.h"
 #import "FollowAddController.h"
-//#import "HouseDetailCell.h"
-//#import "HouseDetail.h"
-//#import "UIImageView+AFNetworking.h"
-//#import "Macro.h"
-//#import "dictionaryManager.h"
-//#import "HouseParticularTableViewController.h"
+#import "FollowDetailCell.h"
 
 @interface FollowTableViewController ()
 
 @property (nonatomic, strong) NSMutableArray *followList;
-//@property (nonatomic, strong) NSArray *fitmentDictList;
-//@property (nonatomic, strong) NSArray *leaseDictList;
-//@property (nonatomic, strong) NSArray *saleDictList;
 
 @end
 
@@ -41,12 +33,6 @@
     // add title button
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(onAddAction:)];
 
-//
-//    // get dict
-//    self.fitmentDictList = [dictionaryManager getItemArrByType:DIC_FITMENT_TYPE];
-//    self.leaseDictList = [dictionaryManager getItemArrByType:DIC_LEASE_TRADE_STATE];
-//    self.saleDictList = [dictionaryManager getItemArrByType:DIC_SALE_TRADE_STATE];
-//
     // header & footer refresh
     [self.tableView addHeaderWithTarget:self action:@selector(refreshData)];
 }
@@ -70,10 +56,10 @@
     [self.followList removeAllObjects];
     // get
     SHOWHUD_WINDOW;
-    [FollowDataPuller pullDataWithFilter:self.sid Success:^(NSArray *houseDetailList)
+    [FollowDataPuller pullDataWithFilter:self.sid Success:^(NSArray *followList)
     {
         HIDEHUD_WINDOW;
-        [self.followList addObjectsFromArray:houseDetailList];
+        [self.followList addObjectsFromArray:followList];
         [self.tableView reloadData];
         [self.tableView headerEndRefreshing];
     }
@@ -103,92 +89,38 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 70;
+    return 150;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
-/*    static NSString *CellIdentifier = @"HouseDetailCell";
-    HouseDetailCell *cell = (HouseDetailCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"FollowDetailCell";
+    FollowDetailCell *cell = (FollowDetailCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil)
     {
-        NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"HouseDetailCell" owner:self options:nil];
+        NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"FollowDetailCell" owner:self options:nil];
         for(id oneObject in nibs)
         {
-            if([oneObject isKindOfClass:[HouseDetailCell class]])
+            if([oneObject isKindOfClass:[FollowDetailCell class]])
             {
-                cell = (HouseDetailCell *)oneObject;
+                cell = (FollowDetailCell *)oneObject;
             }
         }
     }
   
-    HouseDetail *hd = [self.houseList objectAtIndex:indexPath.row];
-    NSString *thunmbnailStr = [SERVER_ADD stringByAppendingString:hd.ThumbnailUrl];
-//    NSLog(@"%@", thunmbnailStr);
-    [cell.thunmbnail setImageWithURL:[NSURL URLWithString:thunmbnailStr] placeholderImage:[UIImage imageNamed:@"LoadPlaceHolder"]];
-    cell.title.text = hd.buildings_name;
-    cell.house.text = [NSString stringWithFormat:@"%@室%@厅%@厨%@卫 %@m²", hd.room_num, hd.hall_num, hd.kitchen_num, hd.toilet_num, hd.build_structure_area];
-    cell.price.text = (self.controllerType == HCT_RENT) ? ([NSString stringWithFormat:@"%@元/月", hd.lease_value_total]) : ([NSString stringWithFormat:@"%@元", hd.sale_value_total]);
-    cell.floor.text = [NSString stringWithFormat:@"%@/%@楼", hd.house_floor, hd.floor_count];
-    {
-        for (DicItem *di in self.fitmentDictList)
-        {
-            if ([di.dict_value isEqualToString:hd.fitment_type])
-            {
-                cell.fitment.text = di.dict_label;
-                break;
-            }
-        }
-    }
-    if (self.controllerType == HCT_RENT)
-    {
-        for (DicItem *di in self.leaseDictList)
-        {
-            if ([di.dict_value isEqualToString:hd.lease_trade_state])
-            {
-                cell.status.text = di.dict_label;
-                break;
-            }
-        }
-    }
-    else
-    {
-        for (DicItem *di in self.saleDictList)
-        {
-            if ([di.dict_value isEqualToString:hd.sale_trade_state])
-            {
-                cell.status.text = di.dict_label;
-                break;
-            }
-        }
-    }
+    NSDictionary *d = [self.followList objectAtIndex:indexPath.row];
+    cell.type.text = [d objectForKey:@"task_type_label"];
+    cell.remind.text = [[d objectForKey:@"task_reminder_flg"] isEqualToString:@"1"] ? @"是" : @"否";
+    cell.man.text = [d objectForKey:@"name_full"];
+    cell.time.text = [d objectForKey:@"task_follow_time"];
+    cell.content.text = [d objectForKey:@"task_follow_content"];
 
-    return cell;*/
+    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    HouseDetail *hd = [self.houseList objectAtIndex:indexPath.row];
-//    HouseParticularTableViewController*ptcl = [[HouseParticularTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-//    ptcl.houseDtl = hd;
-//    [self pushControllerToController:ptcl];
 }
-
--(void)pushControllerToController:(UIViewController*)vc
-{
-//    if ([self.navigationController respondsToSelector:@selector(pushViewController:animated:)])
-//    {
-//        [self.navigationController pushViewController:vc animated:YES];
-//        return;
-//    }
-//    
-//    if ([((UIViewController*)(self.container)).navigationController respondsToSelector:@selector(pushViewController:animated:)])
-//    {
-//        [((UIViewController*)(self.container)).navigationController pushViewController:vc animated:YES];
-//    }
-}
-
 
 
 @end
