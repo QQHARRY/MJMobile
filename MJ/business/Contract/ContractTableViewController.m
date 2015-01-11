@@ -41,7 +41,6 @@
 {
     ContractAddController *vc = [[ContractAddController alloc] initWithStyle:UITableViewStyleGrouped];
     vc.sid = self.sid;
-    vc.type = self.type;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
