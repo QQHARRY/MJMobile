@@ -163,9 +163,9 @@
                                   [weakSelf.navigationController pushViewController:optionsController animated:YES];
                               }];
     [section addItem:self.belongSectionItem];
-    self.startTimeItem = [REDateTimeItem itemWithTitle:@"最早登记日期" value:nil placeholder:nil format:@"MM/dd/yyyy hh:mm" datePickerMode:UIDatePickerModeDateAndTime];
+    self.startTimeItem = [REDateTimeItem itemWithTitle:@"最早登记日期" value:nil placeholder:nil format:@"yyyy-MM-dd hh:mm" datePickerMode:UIDatePickerModeDateAndTime];
     [section addItem:self.startTimeItem];
-    self.endTimeItem = [REDateTimeItem itemWithTitle:@"最晚登记日期" value:nil placeholder:nil format:@"MM/dd/yyyy hh:mm" datePickerMode:UIDatePickerModeDateAndTime];
+    self.endTimeItem = [REDateTimeItem itemWithTitle:@"最晚登记日期" value:nil placeholder:nil format:@"yyyy-MM-dd hh:mm" datePickerMode:UIDatePickerModeDateAndTime];
     [section addItem:self.endTimeItem];
     self.customerNameItem = [RETextItem itemWithTitle:@"客户姓名" value:nil placeholder:@""];
     [section addItem:self.customerNameItem];

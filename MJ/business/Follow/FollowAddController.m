@@ -218,7 +218,7 @@
         [self switchRemind:item.value];
     }];
     [section addItem:self.remindItem];
-    self.timeItem = [REDateTimeItem itemWithTitle:@"提醒日期" value:nil placeholder:nil format:@"MM/dd/yyyy hh:mm" datePickerMode:UIDatePickerModeDateAndTime];
+    self.timeItem = [REDateTimeItem itemWithTitle:@"提醒日期" value:nil placeholder:nil format:@"yyyy-MM-dd hh:mm" datePickerMode:UIDatePickerModeDateAndTime];
     self.rangeItem = [RERadioItem itemWithTitle:@"提醒范围" value:@"" selectionHandler:^(RERadioItem *item)
                               {
                                   [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];

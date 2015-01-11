@@ -19,14 +19,12 @@
 
 @property (strong, readwrite, nonatomic) RETableViewSection *signSection;
 @property (strong, readwrite, nonatomic) RETextItem *customerItem;
-
+@property (strong, readwrite, nonatomic) REDateTimeItem *timeItem;
 
 
 @property (strong, readwrite, nonatomic) RERadioItem *typeItem;
 @property (strong, readwrite, nonatomic) RERadioItem *consignItem;
 @property (strong, readwrite, nonatomic) RERadioItem *payItem;
-@property (strong, readwrite, nonatomic) REDateTimeItem *startItem;
-@property (strong, readwrite, nonatomic) REDateTimeItem *endItem;
 
 @property (strong, readwrite, nonatomic) RETableViewSection *commitSection;
 
@@ -40,7 +38,7 @@
     
     self.title = @"预约签约";
     
-    // 客户》日期》签约室》时段》签约人
+    // 客户》日期 》签约室》时段》签约人
     
     // Create manager
     self.manager = [[RETableViewManager alloc] initWithTableView:self.tableView delegate:self];
@@ -58,7 +56,9 @@
     [self.manager addSection:section];
     self.customerItem = [RETextItem itemWithTitle:@"客户" value:nil placeholder:@"请输入客户ID"];
     [section addItem:self.customerItem];
-    
+    self.timeItem = [REDateTimeItem itemWithTitle:@"签约日期" value:nil placeholder:nil format:@"yyyy-MM-dd" datePickerMode:UIDatePickerModeDate];
+    [section addItem:self.timeItem];
+
 //    self.typeItem = [RERadioItem itemWithTitle:@"交易类型" value:@"" selectionHandler:^(RERadioItem *item)
 //                     {
 //                         [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
@@ -137,9 +137,9 @@
 //                            [weakSelf.navigationController pushViewController:optionsController animated:YES];
 //                        }];
 //    [section addItem:self.payItem];
-//    self.startItem = [REDateTimeItem itemWithTitle:@"委托开始日期" value:nil placeholder:nil format:@"MM/dd/yyyy hh:mm" datePickerMode:UIDatePickerModeDateAndTime];
+//    self.startItem = [REDateTimeItem itemWithTitle:@"委托开始日期" value:nil placeholder:nil format:@"yyyy-MM-dd hh:mm" datePickerMode:UIDatePickerModeDateAndTime];
 //    [section addItem:self.startItem];
-//    self.endItem = [REDateTimeItem itemWithTitle:@"委托结束日期" value:nil placeholder:nil format:@"MM/dd/yyyy hh:mm" datePickerMode:UIDatePickerModeDateAndTime];
+//    self.endItem = [REDateTimeItem itemWithTitle:@"委托结束日期" value:nil placeholder:nil format:@"yyyy-MM-dd hh:mm" datePickerMode:UIDatePickerModeDateAndTime];
 //    [section addItem:self.endItem];
 
     return section;
