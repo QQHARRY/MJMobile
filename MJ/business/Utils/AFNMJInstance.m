@@ -47,7 +47,12 @@
          success:(void (^)(id responseObject))success
          failure:(void (^)(NSError *error))failure
 {
-    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+    
+
+    NSString*url = [NSString stringWithFormat:@"%@%@", SERVER_URL, apiName];
+    
+#if 0
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
                                     {
                                         NSData*data = UIImageJPEGRepresentation(image, 1);
                                         [formData appendPartWithFormData:data name:@""];
@@ -57,7 +62,7 @@
     
     
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    
+
     NSProgress *progress = nil;
     
     
@@ -80,5 +85,30 @@
     
     
     [uploadTask resume];
+    
+#else
+    
+    AFHTTPRequestOperationManager *manager1 = [AFHTTPRequestOperationManager manager];
+    manager1.responseSerializer =[AFHTTPResponseSerializer serializer];
+    [manager1 POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+     {
+         NSData*data = UIImageJPEGRepresentation(image, 0.2);
+         [formData appendPartWithFormData:data name:@"aaaaaa"];
+     }
+           success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         if (success)
+         {
+             success(responseObject);
+         }
+     }
+           failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         if (failure)
+         {
+             failure(error);
+         }
+     }];
+#endif
 }
 @end
