@@ -70,6 +70,8 @@
 #define API_FOLLOW_LIST @"business/getFollowList"
 // 31.某房源或客源新增跟进
 #define API_CREATE_FOLLOW @"business/createFollow"
+// 32.获取带看列表
+#define API_APPOINT_LIST @"business/getAppointList"
 
 //字典表
 #define GET_DICTIONARY @"business/getDictionary"
