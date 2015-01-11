@@ -12,6 +12,7 @@
 #import "FollowTableViewController.h"
 #import "AppointTableViewController.h"
 #import "ContractTableViewController.h"
+#import "SignAddController.h"
 #import <objc/runtime.h>
 
 
@@ -691,7 +692,9 @@
     __typeof (&*self) __weak weakSelf = self;
     self.addQianYueActions = [RETableViewItem itemWithTitle:@"签约" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                         {
-                            
+                            SignAddController *vc = [[SignAddController alloc] initWithNibName:@"SignAddController" bundle:[NSBundle mainBundle]];
+                            vc.sid = self.houseDtl.house_trade_no;
+                            [weakSelf.navigationController pushViewController:vc animated:YES];
                         }];
     self.addQianYueActions.textAlignment = NSTextAlignmentCenter;
     [self.infoSection addItem:self.addQianYueActions];

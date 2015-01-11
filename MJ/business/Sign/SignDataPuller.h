@@ -15,5 +15,6 @@
 @interface SignDataPuller : NSObject
 
 +(void)pushNewSignWithParam:(NSDictionary *)param Success:(void (^)(NSString *att))success failure:(void (^)(NSError *error))failure;
+//+(void)pullCustomerListDataSuccess:(void (^)(NSArray *areaList))success failure:(void (^)(NSError *error))failure;
 
 @end
