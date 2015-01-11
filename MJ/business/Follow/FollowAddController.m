@@ -311,7 +311,7 @@
         }
         if ([self.type isEqualToString:@"出租"] || [self.type isEqualToString:@"租售"])
         {
-            if (!self.rentStatusItem.value || self.saleStatusItem.value.length <= 0)
+            if (!self.rentStatusItem.value || self.rentStatusItem.value.length <= 0)
             {
                 PRSENTALERT(@"错 误", @"请选择出租状态", @"O K", self);
                 return;
@@ -327,7 +327,7 @@
         }
         if ([self.type isEqualToString:@"求租"] || [self.type isEqualToString:@"求购"] || [self.type isEqualToString:@"租购"])
         {
-            if (!self.requireStatusItem.value || self.saleStatusItem.value.length <= 0)
+            if (!self.requireStatusItem.value || self.requireStatusItem.value.length <= 0)
             {
                 PRSENTALERT(@"错 误", @"请选择客源状态", @"O K", self);
                 return;

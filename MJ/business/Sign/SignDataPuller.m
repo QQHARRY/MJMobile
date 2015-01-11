@@ -16,16 +16,15 @@
 
 @implementation SignDataPuller
 
-+(void)pushNewSignWithParam:(NSDictionary *)param Success:(void (^)(NSString *att))success failure:(void (^)(NSError *error))failure
++(void)pushNewSignWithParam:(NSDictionary *)param Success:(void (^)(NSString *signNo))success failure:(void (^)(NSError *error))failure
 {
     [NetWorkManager PostWithApiName:API_CREATE_SIGN parameters:param success:^(id responseObject)
      {
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {
-//             NSString *src = [resultDic objectForKey:@"Sign_no"];
-             NSString *att = [resultDic objectForKey:@"Sign_attachment"];
-             success(att);
+             NSString *src = [resultDic objectForKey:@"meeting_sign_apply_no"];
+             success(src);
          }
      }
                             failure:^(NSError *error)
