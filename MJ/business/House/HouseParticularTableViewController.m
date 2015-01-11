@@ -9,6 +9,7 @@
 #import "HouseParticularTableViewController.h"
 #import "UtilFun.h"
 #import "HouseDataPuller.h"
+#import "FollowTableViewController.h"
 #import <objc/runtime.h>
 
 
@@ -646,7 +647,8 @@
     __typeof (&*self) __weak weakSelf = self;
     self.addGenJinActions = [RETableViewItem itemWithTitle:@"跟进" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                         {
-                            
+                            FollowTableViewController *vc = [[FollowTableViewController alloc] initWithNibName:@"FollowTableViewController" bundle:[NSBundle mainBundle]];
+                            [weakSelf.navigationController pushViewController:vc animated:YES];
                         }];
     self.addGenJinActions.textAlignment = NSTextAlignmentCenter;
     [self.infoSection addItem:self.addGenJinActions];
