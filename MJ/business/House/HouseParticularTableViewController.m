@@ -649,6 +649,7 @@
                         {
                             FollowTableViewController *vc = [[FollowTableViewController alloc] initWithNibName:@"FollowTableViewController" bundle:[NSBundle mainBundle]];
                             vc.sid = self.houseDtl.house_trade_no;
+                            vc.type = self.housePtcl.trade_type;
                             [weakSelf.navigationController pushViewController:vc animated:YES];
                         }];
     self.addGenJinActions.textAlignment = NSTextAlignmentCenter;

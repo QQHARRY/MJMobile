@@ -48,7 +48,23 @@
      {
          failure(error);
      }];
+}
 
++(void)pushNewFollowWithParam:(NSDictionary *)param Success:(void (^)(NSString *followNo))success failure:(void (^)(NSError *error))failure
+{
+    [NetWorkManager PostWithApiName:API_CREATE_FOLLOW parameters:param success:^(id responseObject)
+     {
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         {
+             NSString *src = [resultDic objectForKey:@"task_follow_no"];
+             success(src);
+         }
+     }
+                            failure:^(NSError *error)
+     {
+         failure(error);
+     }];
 }
 
 @end

@@ -49,12 +49,13 @@
 //
     // header & footer refresh
     [self.tableView addHeaderWithTarget:self action:@selector(refreshData)];
-//    [self.tableView addFooterWithTarget:self action:@selector(loadMore)];
 }
 
 - (void)onAddAction:(id)sender
 {
     FollowAddController *vc = [[FollowAddController alloc] initWithStyle:UITableViewStyleGrouped];
+    vc.sid = self.sid;
+    vc.type = self.type;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -69,7 +70,7 @@
     [self.followList removeAllObjects];
     // get
     SHOWHUD_WINDOW;
-    [FollowDataPuller pullDataWithFilter:nil Success:^(NSArray *houseDetailList)
+    [FollowDataPuller pullDataWithFilter:self.sid Success:^(NSArray *houseDetailList)
     {
         HIDEHUD_WINDOW;
         [self.followList addObjectsFromArray:houseDetailList];
@@ -81,28 +82,6 @@
         HIDEHUD_WINDOW;
         [self.tableView headerEndRefreshing];
     }];
-}
-
-- (void)loadMore
-{
-//    // reset
-//    HouseDetail *hd = [self.houseList lastObject];
-//    self.filter.ToID = @"0";
-//    self.filter.FromID = hd.house_trade_no;
-//    // get
-//    SHOWHUD_WINDOW;
-//    [HouseDataPuller pullDataWithFilter:self.filter Success:^(NSArray *houseDetailList)
-//     {
-//         HIDEHUD_WINDOW;
-//         [self.houseList addObjectsFromArray:houseDetailList];
-//         [self.tableView reloadData];
-//         [self.tableView footerEndRefreshing];
-//     }
-//                                failure:^(NSError *e)
-//     {
-//         HIDEHUD_WINDOW;
-//         [self.tableView footerEndRefreshing];
-//     }];
 }
 
 - (void)didReceiveMemoryWarning

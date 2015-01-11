@@ -14,6 +14,7 @@
 @interface FollowAddController : UITableViewController
     <RETableViewManagerDelegate>
 
-@property (nonatomic, weak) HouseViewController *hvc;
+@property (nonatomic, strong) NSString *sid;
+@property (nonatomic, strong) NSString *type;
 
 @end

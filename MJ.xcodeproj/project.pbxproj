@@ -140,6 +140,8 @@
 		B93B143E1A62539D00121133 /* FollowTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B93B143C1A62539D00121133 /* FollowTableViewController.xib */; };
 		B93B14411A625A5A00121133 /* FollowDataPuller.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B14401A625A5A00121133 /* FollowDataPuller.m */; };
 		B93B14441A625D1600121133 /* FollowAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B14431A625D1600121133 /* FollowAddController.m */; };
+		B93B14471A62668E00121133 /* MultilineTextItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B14461A62668E00121133 /* MultilineTextItem.m */; };
+		B93B144A1A62669600121133 /* MultilineTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B14491A62669600121133 /* MultilineTextCell.m */; };
 		B98BD4A31A603B51003A35BE /* HouseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A11A603B51003A35BE /* HouseTableViewController.m */; };
 		B98BD4A41A603B51003A35BE /* HouseTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B98BD4A21A603B51003A35BE /* HouseTableViewController.xib */; };
 		B98BD4A71A604045003A35BE /* HouseDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A61A604045003A35BE /* HouseDetail.m */; };
@@ -472,6 +474,10 @@
 		B93B14401A625A5A00121133 /* FollowDataPuller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowDataPuller.m; sourceTree = "<group>"; };
 		B93B14421A625D1600121133 /* FollowAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowAddController.h; sourceTree = "<group>"; };
 		B93B14431A625D1600121133 /* FollowAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowAddController.m; sourceTree = "<group>"; };
+		B93B14451A62668E00121133 /* MultilineTextItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultilineTextItem.h; sourceTree = "<group>"; };
+		B93B14461A62668E00121133 /* MultilineTextItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultilineTextItem.m; sourceTree = "<group>"; };
+		B93B14481A62669600121133 /* MultilineTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultilineTextCell.h; sourceTree = "<group>"; };
+		B93B14491A62669600121133 /* MultilineTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultilineTextCell.m; sourceTree = "<group>"; };
 		B98BD4A01A603B51003A35BE /* HouseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseTableViewController.h; sourceTree = "<group>"; };
 		B98BD4A11A603B51003A35BE /* HouseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseTableViewController.m; sourceTree = "<group>"; };
 		B98BD4A21A603B51003A35BE /* HouseTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HouseTableViewController.xib; sourceTree = "<group>"; };
@@ -1169,6 +1175,8 @@
 		B98BD5031A609185003A35BE /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				B93B14481A62669600121133 /* MultilineTextCell.h */,
+				B93B14491A62669600121133 /* MultilineTextCell.m */,
 				B98BD5041A609185003A35BE /* RETableViewBoolCell.h */,
 				B98BD5051A609185003A35BE /* RETableViewBoolCell.m */,
 				B98BD5061A609185003A35BE /* RETableViewCreditCardCell.h */,
@@ -1200,6 +1208,8 @@
 		B98BD51C1A609185003A35BE /* Items */ = {
 			isa = PBXGroup;
 			children = (
+				B93B14451A62668E00121133 /* MultilineTextItem.h */,
+				B93B14461A62668E00121133 /* MultilineTextItem.m */,
 				B98BD51D1A609185003A35BE /* REBoolItem.h */,
 				B98BD51E1A609185003A35BE /* REBoolItem.m */,
 				B98BD51F1A609185003A35BE /* RECreditCardItem.h */,
@@ -1547,6 +1557,7 @@
 				B98BD4C71A60747A003A35BE /* MJRefreshFooterView.m in Sources */,
 				4A9D01FE1A60341D00600BA0 /* dictionaryManager.m in Sources */,
 				4AD795271A218C4A00DEC779 /* AFURLSessionManager.m in Sources */,
+				B93B144A1A62669600121133 /* MultilineTextCell.m in Sources */,
 				4AD795241A218C4A00DEC779 /* AFURLConnectionOperation.m in Sources */,
 				B98BD5731A609185003A35BE /* REInlineDatePickerItem.m in Sources */,
 				4AD7954C1A218C4A00DEC779 /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -1589,6 +1600,7 @@
 				B98BD5601A609185003A35BE /* README.md in Sources */,
 				B98BD58A1A609185003A35BE /* REValidation.m in Sources */,
 				B98BD5681A609185003A35BE /* RETableViewInlinePickerCell.m in Sources */,
+				B93B14471A62668E00121133 /* MultilineTextItem.m in Sources */,
 				4A5665301A4BF43700C3BA22 /* MessagePageViewController.m in Sources */,
 				B98BD58B1A609185003A35BE /* REValidator.m in Sources */,
 				B98BD5631A609185003A35BE /* RETableViewBoolCell.m in Sources */,
