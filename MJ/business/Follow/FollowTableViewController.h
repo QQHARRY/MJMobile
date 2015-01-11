@@ -11,7 +11,5 @@
 @interface FollowTableViewController : UITableViewController
 
 @property (nonatomic, strong) NSString *sid;
-//@property (nonatomic) HouseFilter *filter;
-//@property (nonatomic, weak) id container;
 
 @end

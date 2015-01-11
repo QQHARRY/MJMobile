@@ -7,19 +7,19 @@
 //
 
 #import "FollowTableViewController.h"
-//#import "HouseDataPuller.h"
-//#import "UtilFun.h"
+#import "MJRefresh.h"
+#import "UtilFun.h"
+#import "FollowDataPuller.h"
 //#import "HouseDetailCell.h"
 //#import "HouseDetail.h"
 //#import "UIImageView+AFNetworking.h"
-//#import "MJRefresh.h"
 //#import "Macro.h"
 //#import "dictionaryManager.h"
 //#import "HouseParticularTableViewController.h"
 
 @interface FollowTableViewController ()
 
-//@property (nonatomic, strong) NSMutableArray *houseList;
+@property (nonatomic, strong) NSMutableArray *followList;
 //@property (nonatomic, strong) NSArray *fitmentDictList;
 //@property (nonatomic, strong) NSArray *leaseDictList;
 //@property (nonatomic, strong) NSArray *saleDictList;
@@ -35,15 +35,15 @@
     self.title = @"跟进列表";
     
 //    // init data
-//    self.houseList = [NSMutableArray array];
-//    
+    self.followList = [NSMutableArray array];
+//
 //    // get dict
 //    self.fitmentDictList = [dictionaryManager getItemArrByType:DIC_FITMENT_TYPE];
 //    self.leaseDictList = [dictionaryManager getItemArrByType:DIC_LEASE_TRADE_STATE];
 //    self.saleDictList = [dictionaryManager getItemArrByType:DIC_SALE_TRADE_STATE];
 //
-//    // header & footer refresh
-//    [self.tableView addHeaderWithTarget:self action:@selector(refreshData)];
+    // header & footer refresh
+    [self.tableView addHeaderWithTarget:self action:@selector(refreshData)];
 //    [self.tableView addFooterWithTarget:self action:@selector(loadMore)];
 }
 
@@ -54,25 +54,22 @@
 
 - (void)refreshData
 {
-//    // clear
-//    [self.houseList removeAllObjects];
-//    // reset
-//    self.filter.FromID = @"0";
-//    self.filter.ToID = @"0";
-//    // get
-//    SHOWHUD_WINDOW;
-//    [HouseDataPuller pullDataWithFilter:self.filter Success:^(NSArray *houseDetailList)
-//    {
-//        HIDEHUD_WINDOW;
-//        [self.houseList addObjectsFromArray:houseDetailList];
-//        [self.tableView reloadData];
-//        [self.tableView headerEndRefreshing];
-//    }
-//                                failure:^(NSError *e)
-//    {
-//        HIDEHUD_WINDOW;
-//        [self.tableView headerEndRefreshing];
-//    }];
+    // clear
+    [self.followList removeAllObjects];
+    // get
+    SHOWHUD_WINDOW;
+    [FollowDataPuller pullDataWithFilter:nil Success:^(NSArray *houseDetailList)
+    {
+        HIDEHUD_WINDOW;
+        [self.followList addObjectsFromArray:houseDetailList];
+        [self.tableView reloadData];
+        [self.tableView headerEndRefreshing];
+    }
+                                failure:^(NSError *e)
+    {
+        HIDEHUD_WINDOW;
+        [self.tableView headerEndRefreshing];
+    }];
 }
 
 - (void)loadMore
@@ -111,7 +108,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;//self.houseList.count;
+    return self.followList.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
