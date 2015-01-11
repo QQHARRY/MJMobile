@@ -132,18 +132,18 @@
     self.secItem = [RERadioItem itemWithTitle:@"签约时段" value:@"" selectionHandler:^(RERadioItem *item)
                      {
                          [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
-                         NSArray *options = @[@"09:00 - 10:00",
-                                                     @"10:00 - 11:00",
-                                                     @"11:00 - 12:00",
-                                                     @"12:00 - 13:00",
-                                                     @"13:00 - 14:00",
-                                                     @"14:00 - 15:00",
-                                                     @"15:00 - 16:00",
-                                                     @"16:00 - 17:00",
-                                                     @"17:00 - 18:00",
-                                                     @"18:00 - 19:00",
-                                                     @"19:00 - 20:00",
-                                                     @"20:00 - 21:00"];
+                         NSArray *options = @[@"09:00-10:00",
+                                                     @"10:00-11:00",
+                                                     @"11:00-12:00",
+                                                     @"12:00-13:00",
+                                                     @"13:00-14:00",
+                                                     @"14:00-15:00",
+                                                     @"15:00-16:00",
+                                                     @"16:00-17:00",
+                                                     @"17:00-18:00",
+                                                     @"18:00-19:00",
+                                                     @"19:00-20:00",
+                                                     @"20:00-21:00"];
                          RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
                                                                             {
                                                                                 [weakSelf.navigationController popViewControllerAnimated:YES];
@@ -177,7 +177,7 @@
         [param setValue:[person me].password forKey:@"acc_password"];
         [param setValue:[UtilFun getUDID] forKey:@"DeviceID"];
         [param setValue:self.sid forKey:@"house_trade_no"];
-        if (!self.customerItem.value)
+        if (!self.customerItem.value || self.customerItem.value.length <= 0)
         {
             PRSENTALERT(@"错 误", @"请选择客户", @"O K", self);
             return;
@@ -214,8 +214,12 @@
             PRSENTALERT(@"错 误", @"请选择签约日期", @"O K", self);
             return;
         }
-        [param setValue:self.timeItem.value forKey:@"apply_date"];
-        if (!self.secItem.value)
+        {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+            [param setValue:[dateFormatter stringFromDate:self.timeItem.value] forKey:@"apply_date"];
+        }
+        if (!self.secItem.value || self.secItem.value.length <= 0)
         {
             PRSENTALERT(@"错 误", @"请选择签约时段", @"O K", self);
             return;
