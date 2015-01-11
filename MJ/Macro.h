@@ -66,6 +66,10 @@
 #define API_AREA_LIST @"business/getAreaList"
 // 45.获取客源简要信息列表
 #define API_CUSTOMER_LIST @"business/getCustomerBriefList"
+// 29.获取某房源或客源的跟进列表
+#define API_FOLLOW_LIST @"business/getFollowList"
+// 31.某房源或客源新增跟进
+#define API_CREATE_FOLLOW @"business/createFollow"
 
 //字典表
 #define GET_DICTIONARY @"business/getDictionary"
