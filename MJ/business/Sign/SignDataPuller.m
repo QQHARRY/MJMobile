@@ -34,7 +34,7 @@
      }];
 }
 
-+(void)pullSignConditionListDataSuccess:(void (^)(NSArray *conditionList))success failure:(void (^)(NSError *error))failure
++(void)pullSignConditionListDataSuccess:(void (^)(NSDictionary *conditionSrc))success failure:(void (^)(NSError *error))failure
 {
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setValue:[person me].job_no forKey:@"job_no"];
@@ -45,32 +45,7 @@
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {
-             NSArray *src = [resultDic objectForKey:@"AreaNode "];
-             NSMutableArray *dst = [NSMutableArray array];
-             // search area
-             for (NSDictionary *dict in src)
-             {
-                 if ([[dict valueForKey:@"areas_parent_no"] isEqualToString:@"AREAS_NO000008"])
-                 {
-                     NSDictionary *areaDict = @{@"no" : [dict valueForKey:@"areas_current_no"],
-                                                @"dict" : dict,
-                                                @"sections" : [NSMutableArray array]};
-                     [dst addObject:areaDict];
-                 }
-             }
-             // search section
-             for (NSDictionary *dict in src)
-             {
-                 for (NSDictionary *areaDict in dst)
-                 {
-                     if ([[dict valueForKey:@"areas_parent_no"] isEqualToString:[areaDict objectForKey:@"no"]])
-                     {
-                         [[areaDict objectForKey:@"sections"] addObject:dict];
-                         break;
-                     }
-                 }
-             }
-             success(dst);
+             success(resultDic);
          }
      }
                             failure:^(NSError *error)

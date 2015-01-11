@@ -20,13 +20,16 @@
 @property (strong, readwrite, nonatomic) RETableViewSection *signSection;
 @property (strong, readwrite, nonatomic) RETextItem *customerItem;
 @property (strong, readwrite, nonatomic) REDateTimeItem *timeItem;
+@property (strong, readwrite, nonatomic) RERadioItem *personItem;
+@property (strong, readwrite, nonatomic) RERadioItem *roomItem;
 
 
-@property (strong, readwrite, nonatomic) RERadioItem *typeItem;
-@property (strong, readwrite, nonatomic) RERadioItem *consignItem;
 @property (strong, readwrite, nonatomic) RERadioItem *payItem;
 
 @property (strong, readwrite, nonatomic) RETableViewSection *commitSection;
+
+@property (nonatomic, strong) NSArray *personList;
+@property (nonatomic, strong) NSArray *roomList;
 
 @end
 
@@ -46,6 +49,24 @@
     // add section
     self.signSection = [self addSignControls];
     self.commitSection = [self addCommitButton];
+    
+    // pull condition
+    [self pullCondition];
+}
+
+-(void)pullCondition
+{
+    SHOWHUD_WINDOW;
+    [SignDataPuller pullSignConditionListDataSuccess:^(NSDictionary *conditionSrc)
+    {
+        HIDEHUD_WINDOW;
+        self.personList = [conditionSrc objectForKey:@"AllPersonNode"];
+        self.roomList = [conditionSrc objectForKey:@"AllRoomNode"];
+    }
+                                             failure:^(NSError *error)
+    {
+        HIDEHUD_WINDOW;
+    }];
 }
 
 - (RETableViewSection *)addSignControls
@@ -58,33 +79,58 @@
     [section addItem:self.customerItem];
     self.timeItem = [REDateTimeItem itemWithTitle:@"签约日期" value:nil placeholder:nil format:@"yyyy-MM-dd" datePickerMode:UIDatePickerModeDate];
     [section addItem:self.timeItem];
-
-//    self.typeItem = [RERadioItem itemWithTitle:@"交易类型" value:@"" selectionHandler:^(RERadioItem *item)
-//                     {
-//                         [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
-//                         NSMutableArray *options = [[NSMutableArray alloc] init];
-//                         for (NSInteger i = 0; i < self.typeDictList.count; i++)
-//                         {
-//                             DicItem *di = [self.typeDictList objectAtIndex:i];
-//                             [options addObject:di.dict_label];
-//                         }
-//                         RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
-//                                                                            {
-//                                                                                [weakSelf.navigationController popViewControllerAnimated:YES];
-//                                                                                [item reloadRowWithAnimation:UITableViewRowAnimationNone]; // same as [weakSelf.tableView reloadRowsAtIndexPaths:@[item.indexPath] withRowAnimation:UITableViewRowAnimationNone];
-//                                                                            }];
-//                         // Adjust styles
-//                         optionsController.delegate = weakSelf;
-//                         optionsController.style = section.style;
-//                         if (weakSelf.tableView.backgroundView == nil)
-//                         {
-//                             optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
-//                             optionsController.tableView.backgroundView = nil;
-//                         }
-//                         // Push the options controller
-//                         [weakSelf.navigationController pushViewController:optionsController animated:YES];
-//                     }];
-//    [section addItem:self.typeItem];
+    self.personItem = [RERadioItem itemWithTitle:@"签约人" value:@"" selectionHandler:^(RERadioItem *item)
+                       {
+                           [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
+                           NSMutableArray *options = [[NSMutableArray alloc] init];
+                           for (NSInteger i = 0; i < self.personList.count; i++)
+                           {
+                               NSDictionary *d = [self.personList objectAtIndex:i];
+                               [options addObject:[d objectForKey:@"person_name_full"]];
+                           }
+                           RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
+                                                                              {
+                                                                                  [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                                                  [item reloadRowWithAnimation:UITableViewRowAnimationNone]; // same as [weakSelf.tableView reloadRowsAtIndexPaths:@[item.indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                                                                              }];
+                           // Adjust styles
+                           optionsController.delegate = weakSelf;
+                           optionsController.style = section.style;
+                           if (weakSelf.tableView.backgroundView == nil)
+                           {
+                               optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
+                               optionsController.tableView.backgroundView = nil;
+                           }
+                           // Push the options controller
+                           [weakSelf.navigationController pushViewController:optionsController animated:YES];
+                       }];
+    [section addItem:self.personItem];
+    self.roomItem = [RERadioItem itemWithTitle:@"签约室" value:@"" selectionHandler:^(RERadioItem *item)
+                       {
+                           [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
+                           NSMutableArray *options = [[NSMutableArray alloc] init];
+                           for (NSInteger i = 0; i < self.roomList.count; i++)
+                           {
+                               NSDictionary *d = [self.roomList objectAtIndex:i];
+                               [options addObject:[d objectForKey:@"room_name"]];
+                           }
+                           RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
+                                                                              {
+                                                                                  [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                                                  [item reloadRowWithAnimation:UITableViewRowAnimationNone]; // same as [weakSelf.tableView reloadRowsAtIndexPaths:@[item.indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                                                                              }];
+                           // Adjust styles
+                           optionsController.delegate = weakSelf;
+                           optionsController.style = section.style;
+                           if (weakSelf.tableView.backgroundView == nil)
+                           {
+                               optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
+                               optionsController.tableView.backgroundView = nil;
+                           }
+                           // Push the options controller
+                           [weakSelf.navigationController pushViewController:optionsController animated:YES];
+                       }];
+    [section addItem:self.roomItem];
 //    self.consignItem = [RERadioItem itemWithTitle:@"委托类型" value:@"" selectionHandler:^(RERadioItem *item)
 //                     {
 //                         [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
