@@ -15,6 +15,6 @@
 @interface ContractDataPuller : NSObject
 
 +(void)pullDataWithFilter:(NSString *)sid Success:(void (^)(NSArray *ContractList))success failure:(void (^)(NSError *error))failure;
-+(void)pushNewContractWithParam:(NSDictionary *)param Success:(void (^)(NSString *ContractNo))success failure:(void (^)(NSError *error))failure;
++(void)pushNewContractWithParam:(NSDictionary *)param Success:(void (^)(NSString *att))success failure:(void (^)(NSError *error))failure;
 
 @end

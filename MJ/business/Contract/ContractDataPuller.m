@@ -42,15 +42,16 @@
      }];
 }
 
-+(void)pushNewContractWithParam:(NSDictionary *)param Success:(void (^)(NSString *ContractNo))success failure:(void (^)(NSError *error))failure
++(void)pushNewContractWithParam:(NSDictionary *)param Success:(void (^)(NSString *att))success failure:(void (^)(NSError *error))failure
 {
     [NetWorkManager PostWithApiName:API_CREATE_CONSTRACT parameters:param success:^(id responseObject)
      {
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {
-             NSString *src = [resultDic objectForKey:@"task_Contract_no"];
-             success(src);
+//             NSString *src = [resultDic objectForKey:@"contract_no"];
+             NSString *att = [resultDic objectForKey:@"contract_attachment"];
+             success(att);
          }
      }
                             failure:^(NSError *error)

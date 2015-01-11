@@ -66,7 +66,7 @@
 {
     __typeof (&*self) __weak weakSelf = self;
 
-    RETableViewSection *section = [RETableViewSection sectionWithHeaderTitle:@"跟进"];
+    RETableViewSection *section = [RETableViewSection sectionWithHeaderTitle:@"跟进信息"];
     [self.manager addSection:section];
     self.typeItem = [RERadioItem itemWithTitle:@"跟进方式" value:@"" selectionHandler:^(RERadioItem *item)
                      {
