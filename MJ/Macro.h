@@ -95,17 +95,13 @@
 #define DIC_SALE_TRADE_STATE @"sale_trade_state"
 #define DIC_LEASE_TRADE_STATE @"lease_trade_state"
 #define DIC_CONSIGNMENT_TYPE @"consignment_type"
-#define DIC_HOUSE_DRIECT @"house_driect"
 #define DIC_REQUIREMENT_STATE @"requirement_status"
 #define DIC_FOLLOW_TASK_TYPE @"follow_task_type"
 #define DIC_APPOINT_EVALUATE @"appoint_evaluate"
 #define DIC_TRADE_TYPE @"trade_type"
 #define DIC_PAY_SORT @"brokerage_pay_sort"
-
-
 #define DIC_TENE_APPLICATION @"tene_application"
 #define DIC_TENE_TYPE @"tene_type"
-#define DIC_FITMENT_TYPE @"fitment_type"
 #define DIC_HOUSE_DIRECT_TYPE @"house_driect"
 #define DIC_USE_SITUATION_TYPE @"use_situation"
 #define DIC_CLIENT_SOURCE_TYPE @"client_source"
@@ -114,7 +110,6 @@
 //添加图片
 #define ADD_IMAGE @"business/addImage"
 #define EDIT_PERSON_PHOTO @"person/editStaffPhoto"
-
 
 
 #define DEVICE_IOS @"0"

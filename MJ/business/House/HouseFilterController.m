@@ -63,7 +63,7 @@
     self.leaseDictList = [dictionaryManager getItemArrByType:DIC_LEASE_TRADE_STATE];
     self.saleDictList = [dictionaryManager getItemArrByType:DIC_SALE_TRADE_STATE];
     self.consignmentDictList = [dictionaryManager getItemArrByType:DIC_CONSIGNMENT_TYPE];
-    self.directDictList = [dictionaryManager getItemArrByType:DIC_HOUSE_DRIECT];
+    self.directDictList = [dictionaryManager getItemArrByType:DIC_HOUSE_DIRECT_TYPE];
     self.areaDictList = [NSArray array];
     
     // Create manager
