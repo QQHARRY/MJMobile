@@ -15,6 +15,7 @@
 #import "MJRefresh.h"
 #import "Macro.h"
 #import "dictionaryManager.h"
+#import "CustomerParticularTableViewController.h"
 
 @interface CustomerTableViewController ()
 
@@ -157,21 +158,24 @@
 //    detailsView.msg = obj;
 //    [self pushControllerToController:detailsView];
     
-    
+    CustomerDetail *cd = [self.CustomerList objectAtIndex:indexPath.row];
+    CustomerParticularTableViewController*ptcl = [[CustomerParticularTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    ptcl.customerDtl = cd;
+    [self pushControllerToController:ptcl];
 }
 
 -(void)pushControllerToController:(UIViewController*)vc
 {
-//    if ([self.navigationController respondsToSelector:@selector(pushViewController:animated:)])
-//    {
-//        [self.navigationController pushViewController:vc animated:YES];
-//        return;
-//    }
-//    
-//    if ([((UIViewController*)(self.container)).navigationController respondsToSelector:@selector(pushViewController:animated:)])
-//    {
-//        [((UIViewController*)(self.container)).navigationController pushViewController:vc animated:YES];
-//    }
+    if ([self.navigationController respondsToSelector:@selector(pushViewController:animated:)])
+    {
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    
+    if ([((UIViewController*)(self.container)).navigationController respondsToSelector:@selector(pushViewController:animated:)])
+    {
+        [((UIViewController*)(self.container)).navigationController pushViewController:vc animated:YES];
+    }
 }
 
 
