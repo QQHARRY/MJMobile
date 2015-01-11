@@ -87,7 +87,7 @@
 #define DIC_HOUSE_DRIECT @"house_driect"
 #define DIC_REQUIREMENT_STATE @"requirement_status"
 #define DIC_FOLLOW_TASK_TYPE @"follow_task_type"
-
+#define DIC_APPOINT_EVALUATE @"appoint_evaluate"
 
 //添加图片
 #define ADD_IMAGE @"business/addImage"

@@ -10,6 +10,7 @@
 #import "UtilFun.h"
 #import "HouseDataPuller.h"
 #import "FollowTableViewController.h"
+#import "AppointTableViewController.h"
 #import <objc/runtime.h>
 
 
@@ -661,7 +662,10 @@
     __typeof (&*self) __weak weakSelf = self;
     self.addDaiKanActions = [RETableViewItem itemWithTitle:@"带看" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                         {
-                            
+                            AppointTableViewController *vc = [[AppointTableViewController alloc] initWithNibName:@"AppointTableViewController" bundle:[NSBundle mainBundle]];
+                            vc.sid = self.houseDtl.house_trade_no;
+                            vc.type = self.housePtcl.trade_type;
+                            [weakSelf.navigationController pushViewController:vc animated:YES];
                         }];
     self.addDaiKanActions.textAlignment = NSTextAlignmentCenter;
     [self.infoSection addItem:self.addDaiKanActions];

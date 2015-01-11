@@ -10,10 +10,11 @@
 
 @interface AppointDetailCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *type;
-@property (strong, nonatomic) IBOutlet UILabel *remind;
+@property (strong, nonatomic) IBOutlet UILabel *object;
+@property (strong, nonatomic) IBOutlet UITextView *content;
+@property (strong, nonatomic) IBOutlet UILabel *rank;
+@property (strong, nonatomic) IBOutlet UILabel *dept;
 @property (strong, nonatomic) IBOutlet UILabel *man;
 @property (strong, nonatomic) IBOutlet UILabel *time;
-@property (strong, nonatomic) IBOutlet UITextView *content;
 
 @end

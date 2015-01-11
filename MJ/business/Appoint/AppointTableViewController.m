@@ -11,10 +11,13 @@
 #import "UtilFun.h"
 #import "AppointDataPuller.h"
 #import "AppointDetailCell.h"
+#import "dictionaryManager.h"
+#import "Macro.h"
 
 @interface AppointTableViewController ()
 
 @property (nonatomic, strong) NSMutableArray *AppointList;
+@property (nonatomic, strong) NSArray *appointDictList;
 
 @end
 
@@ -24,11 +27,14 @@
 {
     [super viewDidLoad];
     
-    self.title = @"跟进列表";
+    self.title = @"带看列表";
     
     // init data
     self.AppointList = [NSMutableArray array];
     
+    // get dict
+    self.appointDictList = [dictionaryManager getItemArrByType:DIC_APPOINT_EVALUATE];
+
     // header & footer refresh
     [self.tableView addHeaderWithTarget:self action:@selector(refreshData)];
 }
@@ -77,7 +83,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 150;
+    return 170;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -97,11 +103,19 @@
     }
   
     NSDictionary *d = [self.AppointList objectAtIndex:indexPath.row];
-    cell.type.text = [d objectForKey:@"task_type_label"];
-    cell.remind.text = [[d objectForKey:@"task_reminder_flg"] isEqualToString:@"1"] ? @"是" : @"否";
-    cell.man.text = [d objectForKey:@"name_full"];
-    cell.time.text = [d objectForKey:@"task_Appoint_time"];
-    cell.content.text = [d objectForKey:@"task_Appoint_content"];
+    cell.object.text = [d objectForKey:@"appoint_obj_name"];
+    cell.content.text = [d objectForKey:@"appoint_content"];
+    cell.dept.text = [d objectForKey:@"appoint_content"];
+    cell.man.text = [d objectForKey:@"appoint_person_name"];
+    cell.time.text = [d objectForKey:@"appoint_time"];
+    for (DicItem *di in self.appointDictList)
+    {
+        if ([di.dict_value isEqualToString:[d objectForKey:@"appoint_evaluate"]])
+        {
+            cell.rank.text = di.dict_label;
+            break;
+        }
+    }
 
     return cell;
 }
@@ -112,3 +126,7 @@
 
 
 @end
+
+
+
+
