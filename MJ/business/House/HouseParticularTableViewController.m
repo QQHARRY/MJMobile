@@ -648,6 +648,7 @@
     self.addGenJinActions = [RETableViewItem itemWithTitle:@"跟进" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                         {
                             FollowTableViewController *vc = [[FollowTableViewController alloc] initWithNibName:@"FollowTableViewController" bundle:[NSBundle mainBundle]];
+                            vc.sid = self.houseDtl.house_trade_no;
                             [weakSelf.navigationController pushViewController:vc animated:YES];
                         }];
     self.addGenJinActions.textAlignment = NSTextAlignmentCenter;

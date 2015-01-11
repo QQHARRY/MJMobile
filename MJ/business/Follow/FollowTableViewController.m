@@ -33,6 +33,7 @@
     [super viewDidLoad];
     
     self.title = @"跟进列表";
+    
 //    // init data
 //    self.houseList = [NSMutableArray array];
 //    
