@@ -1,4 +1,4 @@
-﻿1	网络管理	job_type	19	9
+1	网络管理	job_type	19	9
 2	行政管理	job_type	20	10
 3	企划管理	job_type	21	11
 4	物流管理	job_type	22	12
