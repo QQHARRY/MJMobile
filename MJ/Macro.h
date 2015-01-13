@@ -106,6 +106,11 @@
 #define DIC_USE_SITUATION_TYPE @"use_situation"
 #define DIC_CLIENT_SOURCE_TYPE @"client_source"
 #define DIC_LOOK_PERMIT_TYPE @"look_permit"
+#define DIC_SHOP_RANK_TYPE @"shop_rank"
+#define DIC_OFFICE_RANK_TYPE @"office_rank"
+#define DIC_CARPORT_RANK_TYPE @"carport_rank"
+
+
 
 //添加图片
 #define ADD_IMAGE @"business/addImage"

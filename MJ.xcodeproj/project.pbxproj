@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A20860C1A63B49A00F3CB5A /* HouseEditParticularsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20860B1A63B49A00F3CB5A /* HouseEditParticularsViewController.m */; };
 		4A2AD1811A457E800074DCA0 /* PersonDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2AD1801A457E800074DCA0 /* PersonDetailsViewController.m */; };
 		4A2AD1881A457F1B0074DCA0 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2AD1871A457F1B0074DCA0 /* AboutViewController.m */; };
 		4A2AD1911A457F6C0074DCA0 /* SuggestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2AD1901A457F6C0074DCA0 /* SuggestionViewController.m */; };
@@ -242,6 +243,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A20860A1A63B49A00F3CB5A /* HouseEditParticularsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseEditParticularsViewController.h; sourceTree = "<group>"; };
+		4A20860B1A63B49A00F3CB5A /* HouseEditParticularsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseEditParticularsViewController.m; sourceTree = "<group>"; };
 		4A2AD17F1A457E800074DCA0 /* PersonDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonDetailsViewController.h; sourceTree = "<group>"; };
 		4A2AD1801A457E800074DCA0 /* PersonDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonDetailsViewController.m; sourceTree = "<group>"; };
 		4A2AD1861A457F1B0074DCA0 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
@@ -1458,6 +1461,8 @@
 				B98BD4B01A60616A003A35BE /* HouseDetailCell.xib */,
 				4A9D02491A61197800600BA0 /* HouseParticulars.h */,
 				4A9D024A1A61197800600BA0 /* HouseParticulars.m */,
+				4A20860A1A63B49A00F3CB5A /* HouseEditParticularsViewController.h */,
+				4A20860B1A63B49A00F3CB5A /* HouseEditParticularsViewController.m */,
 				4A9D024C1A611F7400600BA0 /* HouseParticularTableViewController.h */,
 				4A9D024D1A611F7400600BA0 /* HouseParticularTableViewController.m */,
 				4A9D024F1A61337700600BA0 /* houseSecretParticulars.h */,
@@ -1692,6 +1697,7 @@
 				4ABC22251A3C45490017FD94 /* AlertListTableViewController.m in Sources */,
 				B93B142D1A61652000121133 /* CustomerFilter.m in Sources */,
 				B94445721A6282510033E998 /* AppointTableViewController.m in Sources */,
+				4A20860C1A63B49A00F3CB5A /* HouseEditParticularsViewController.m in Sources */,
 				4A8F93F71A3EB47300A769C1 /* department.m in Sources */,
 				4AD7952A1A218C4A00DEC779 /* UIImage+FX.m in Sources */,
 				4AD795201A218C4A00DEC779 /* AFHTTPRequestOperationManager.m in Sources */,
@@ -1961,7 +1967,7 @@
 					"$(PROJECT_DIR)/MJ/3rd/UMessage_Sdk_1.1.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e2b51873-381c-467a-8f4d-b59928a8cbb0";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1981,7 +1987,7 @@
 					"$(PROJECT_DIR)/MJ/3rd/UMessage_Sdk_1.1.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e2b51873-381c-467a-8f4d-b59928a8cbb0";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
