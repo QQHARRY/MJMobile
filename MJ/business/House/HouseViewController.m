@@ -50,8 +50,8 @@
     self.rentController.filter = [[HouseFilter alloc] init];
 //    self.rentController.filter.consignment_type = @"1"; // 委托类型：A-独家 是”0”、B-一般 是”1”、C-未签 是”2” * TODO
     self.rentController.filter.trade_type = @"101";
-//    self.rentController.filter.sale_trade_state = @"0";
-//    self.rentController.filter.lease_trade_state = @"0";
+    self.rentController.filter.sale_trade_state = @"0";
+    self.rentController.filter.lease_trade_state = @"0";
     self.rentController.filter.FromID = @"0";
     self.rentController.filter.ToID = @"0";
     self.rentController.filter.Count = @"10";
@@ -61,8 +61,8 @@
     self.sellController.filter = [[HouseFilter alloc] init];
 //    self.sellController.filter.consignment_type = @"1"; // 委托类型：A-独家 是”0”、B-一般 是”1”、C-未签 是”2” * TODO
     self.sellController.filter.trade_type = @"100";
-//    self.sellController.filter.sale_trade_state = @"0";
-//    self.sellController.filter.lease_trade_state = @"0";
+    self.sellController.filter.sale_trade_state = @"0";
+    self.sellController.filter.lease_trade_state = @"0";
     self.sellController.filter.FromID = @"0";
     self.sellController.filter.ToID = @"0";
     self.sellController.filter.Count = @"10";
