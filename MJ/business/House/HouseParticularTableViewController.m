@@ -31,6 +31,8 @@
 @synthesize mode;
 
 
+
+
 #pragma mark ---------------viewDidLoad----------------
 #pragma mark
 - (void)viewDidLoad
@@ -63,6 +65,7 @@
     self.shop_rank_dic_arr = [dictionaryManager getItemArrByType:DIC_SHOP_RANK_TYPE];
     self.office_rank_dic_arr = [dictionaryManager getItemArrByType:DIC_OFFICE_RANK_TYPE];
     self.carport_rank_dic_arr = [dictionaryManager getItemArrByType:DIC_CARPORT_RANK_TYPE];
+    self.sex_dic_arr = [dictionaryManager getItemArrByType:DIC_SEX_TYPE];
     
 
 }
@@ -74,13 +77,12 @@
 #pragma mark
 -(NSArray*)getEditAbleFields
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+
         self.editFieldsArr = @[
                                @"hall_num",
-                               @"room",
+                               @"room_num",
                                @"kitchen_num",
-                               @"toilet_n",
+                               @"toilet_num",
                                @"balcony_num",
                                @"house_driect",
                                @"fitment_type",
@@ -98,13 +100,11 @@
                                @"b_staff_describ",
                                @"look_permit",
                                @"client_source",
-                               @"house_rank",
                                @"house_depth",
                                @"floor_height",
                                @"floor_count",
                                @"efficiency_rate"
                                ];
-    });
     
     return self.editFieldsArr;
 }
@@ -268,14 +268,13 @@
 {
     [self.manager removeAllSections];
     [self.manager addSection:self.infoSection];
-    [self.manager addSection:self.secretSection];
     [self.manager addSection:self.actionSection];
 }
 
 -(void)prepareItems
 {
     [self prepareInfoSectionItems];
-    [self prepareSecretSectionItems];
+    
     [self prepareActionSectionsItems];
     [self enableOrDisableItems];
     [self adjustByTeneApplication];
@@ -501,15 +500,31 @@
     // 状态（出租）
     [self.infoSection addItem:self.lease_trade_state];
     
+    [self.infoSection addItem:self.lookSecretItem];
+    
     
     [self adjustUI];
 }
 
 -(void)prepareSecretSectionItems
 {
-    [self createSecretSectionItems];
-    [self.secretSection removeAllItems];
-    [self.secretSection addItem:self.lookSecretItem];
+    if (self.client_name == nil)
+    {
+        [self createSecretSectionItems];
+        [self.secretSection addItem:self.client_name];
+        [self.secretSection addItem:self.obj_mobile];
+        [self.secretSection addItem:self.client_gender];
+        [self.secretSection addItem:self.obj_fixtel];
+        [self.secretSection addItem:self.client_identity];
+        [self.secretSection addItem:self.obj_address];
+        [self.secretSection addItem:self.buildname];
+        [self.secretSection addItem:self.house_serect_unit];
+        [self.secretSection addItem:self.house_secrect_tablet];
+        [self.secretSection addItem:self.client_secret_remark];
+    }
+    
+    
+    
 }
 
 -(void)prepareActionSectionsItems
@@ -542,7 +557,7 @@
     self.infoSection = [RETableViewSection sectionWithHeaderTitle:@"基本信息"];
     self.infoSection.headerHeight = sectH;
     self.secretSection = [RETableViewSection sectionWithHeaderTitle:@"保密信息"];
-    self.secretSection.headerHeight = sectH;
+    self.secretSection.headerHeight =sectH;
     self.actionSection = [RETableViewSection sectionWithHeaderTitle:@"相关操作"];
     self.actionSection.headerHeight = sectH;
 }
@@ -862,10 +877,32 @@
         }
     }
     self.fitment_type = [[RERadioItem alloc] initWithTitle:@"装修:" value:value selectionHandler:^(RERadioItem *item) {
-        //todo
+        
+        [item deselectRowAnimated:YES];
+        NSMutableArray *options = [[NSMutableArray alloc] init];
+        for (NSInteger i = 0; i < self.fitment_type_dic_arr.count; i++)
+        {
+            DicItem *di = [self.fitment_type_dic_arr objectAtIndex:i];
+            [options addObject:di.dict_label];
+        }
+        RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
+                                                           {
+                                                               [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                               [item reloadRowWithAnimation:UITableViewRowAnimationNone]; //
+                                                           }];
+
+        optionsController.delegate = weakSelf;
+        optionsController.style = self.infoSection.style;
+        if (weakSelf.tableView.backgroundView == nil)
+        {
+            optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
+            optionsController.tableView.backgroundView = nil;
+        }
+
+        [weakSelf.navigationController pushViewController:optionsController animated:YES];
     }];
 
-//    
+//
 //    @property (strong, readwrite, nonatomic) RERadioItem * house_driect;
 //    //Int
 //    //朝向
@@ -882,7 +919,28 @@
         }
     }
     self.house_driect = [[RERadioItem alloc] initWithTitle:@"朝向:" value:value selectionHandler:^(RERadioItem *item) {
-        //todo
+        [item deselectRowAnimated:YES];
+        NSMutableArray *options = [[NSMutableArray alloc] init];
+        for (NSInteger i = 0; i < self.house_driect_dic_arr.count; i++)
+        {
+            DicItem *di = [self.house_driect_dic_arr objectAtIndex:i];
+            [options addObject:di.dict_label];
+        }
+        RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
+                                                           {
+                                                               [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                               [item reloadRowWithAnimation:UITableViewRowAnimationNone]; //
+                                                           }];
+        
+        optionsController.delegate = weakSelf;
+        optionsController.style = self.infoSection.style;
+        if (weakSelf.tableView.backgroundView == nil)
+        {
+            optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
+            optionsController.tableView.backgroundView = nil;
+        }
+        
+        [weakSelf.navigationController pushViewController:optionsController animated:YES];
     }];
 
 //    
@@ -943,7 +1001,28 @@
         }
     }
     self.use_situation = [[RERadioItem alloc] initWithTitle:@"现状:" value:value selectionHandler:^(RERadioItem *item) {
-        //todo
+        [item deselectRowAnimated:YES];
+        NSMutableArray *options = [[NSMutableArray alloc] init];
+        for (NSInteger i = 0; i < self.use_situation_dic_arr.count; i++)
+        {
+            DicItem *di = [self.use_situation_dic_arr objectAtIndex:i];
+            [options addObject:di.dict_label];
+        }
+        RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
+                                                           {
+                                                               [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                               [item reloadRowWithAnimation:UITableViewRowAnimationNone]; //
+                                                           }];
+        
+        optionsController.delegate = weakSelf;
+        optionsController.style = self.infoSection.style;
+        if (weakSelf.tableView.backgroundView == nil)
+        {
+            optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
+            optionsController.tableView.backgroundView = nil;
+        }
+        
+        [weakSelf.navigationController pushViewController:optionsController animated:YES];
     }];
 
 //    
@@ -1091,7 +1170,28 @@
         }
     }
     self.client_source = [[RERadioItem alloc] initWithTitle:@"信息来源:" value:value selectionHandler:^(RERadioItem *item) {
-        //todo
+        [item deselectRowAnimated:YES];
+        NSMutableArray *options = [[NSMutableArray alloc] init];
+        for (NSInteger i = 0; i < self.client_source_dic_arr.count; i++)
+        {
+            DicItem *di = [self.client_source_dic_arr objectAtIndex:i];
+            [options addObject:di.dict_label];
+        }
+        RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
+                                                           {
+                                                               [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                               [item reloadRowWithAnimation:UITableViewRowAnimationNone]; //
+                                                           }];
+        
+        optionsController.delegate = weakSelf;
+        optionsController.style = self.infoSection.style;
+        if (weakSelf.tableView.backgroundView == nil)
+        {
+            optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
+            optionsController.tableView.backgroundView = nil;
+        }
+        
+        [weakSelf.navigationController pushViewController:optionsController animated:YES];
     }];
 
     
@@ -1115,7 +1215,28 @@
         }
     }
     self.look_permit = [[RERadioItem alloc] initWithTitle:@"看房:" value:value selectionHandler:^(RERadioItem *item) {
-        //todo
+        [item deselectRowAnimated:YES];
+        NSMutableArray *options = [[NSMutableArray alloc] init];
+        for (NSInteger i = 0; i < self.look_permit_dic_arr.count; i++)
+        {
+            DicItem *di = [self.look_permit_dic_arr objectAtIndex:i];
+            [options addObject:di.dict_label];
+        }
+        RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
+                                                           {
+                                                               [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                               [item reloadRowWithAnimation:UITableViewRowAnimationNone]; //
+                                                           }];
+        
+        optionsController.delegate = weakSelf;
+        optionsController.style = self.infoSection.style;
+        if (weakSelf.tableView.backgroundView == nil)
+        {
+            optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
+            optionsController.tableView.backgroundView = nil;
+        }
+        
+        [weakSelf.navigationController pushViewController:optionsController animated:YES];
     }];
 
     //@property (strong, readwrite, nonatomic) RERadioItem * sale_trade_state;
@@ -1135,62 +1256,135 @@
     self.lease_trade_state = [[RERadioItem alloc] initWithTitle:@"状态:" value:self.housePtcl.lease_trade_state selectionHandler:^(RERadioItem *item) {
         //todo
     }];
+    
+    [self createLookSecretBtn];
 }
 
 
 -(void)createSecretSectionItems
 {
-    [self createLookSecretBtn];
+
+    NSString*value = @"";
+    
     
     //@property(nonatomic,strong)RETableViewItem* client_name;
     //业主（姓名）
     //String
-    self.client_name = [[RETextItem alloc] initWithTitle:@"业主姓名:" value:self.houseSecretPtcl.client_name];
-    [self.secretSection addItem:self.client_name];
+    value = @"";
+    if (self.houseSecretPtcl)
+    {
+        value = self.houseSecretPtcl.client_name;
+    }
+    self.client_name = [[RETextItem alloc] initWithTitle:@"业主姓名:" value:value];
     
     
     //@property(nonatomic,strong)RETableViewItem* obj_mobile;
     //手机号码（业主）
     //String
-    self.obj_mobile = [[RENumberItem alloc] initWithTitle:@"手机号码:" value:self.houseSecretPtcl.obj_mobile];
-    [self.secretSection addItem:self.obj_mobile];
+    value = @"";
+    if (self.houseSecretPtcl)
+    {
+        value = self.houseSecretPtcl.obj_mobile;
+    }
+    self.obj_mobile = [[RENumberItem alloc] initWithTitle:@"手机号码:" value:value];
     
     //@property(nonatomic,strong)RETableViewItem* client_gender;
     //性别（业主）
     //String
-    self.sale_trade_state = [[RERadioItem alloc] initWithTitle:@"状态:" value:self.housePtcl.sale_trade_state selectionHandler:^(RERadioItem *item) {
+    value = @"";
+    if (self.houseSecretPtcl)
+    {
+        
+        
+        for (DicItem *di in self.sex_dic_arr)
+        {
+            if ([di.dict_value isEqualToString:self.houseSecretPtcl.client_gender])
+            {
+                value = di.dict_label;
+                break;
+            }
+        }
+
+    }
+    self.client_gender = [[RERadioItem alloc] initWithTitle:@"性别:" value:value selectionHandler:^(RERadioItem *item) {
         //todo
     }];
     
-    //@property(nonatomic,strong)RETableViewItem* obj_fixtel;
+    //@property(nonatomic,strong)RENumberItem* obj_fixtel;
     //固定电话（业主）
     //String
+    value = @"";
+    if (self.houseSecretPtcl)
+    {
+        value = self.houseSecretPtcl.obj_fixtel;
+    }
+    self.obj_fixtel = [[RENumberItem alloc] initWithTitle:@"固定电话:" value:value];
     
-    //@property(nonatomic,strong)RETableViewItem* client_identity;
+    //@property(nonatomic,strong)RETextItem* client_identity;
     //身份证号（业主）
     //String
+    value = @"";
+    if (self.houseSecretPtcl)
+    {
+        value = self.houseSecretPtcl.client_identity;
+    }
+    self.client_identity = [[RENumberItem alloc] initWithTitle:@"身份证号:" value:value];
     
-    //@property(nonatomic,strong)RETableViewItem* obj_address;
+    //@property(nonatomic,strong)RETextItem* obj_address;
     //联系地址（业主）
     //String
+    value = @"";
+    if (self.houseSecretPtcl)
+    {
+        value = self.houseSecretPtcl.obj_address;
+    }
+    self.obj_address = [[RETextItem alloc] initWithTitle:@"联系地址:" value:value];
     
-    //@property(nonatomic,strong)RETableViewItem* buildname;
+    //@property(nonatomic,strong)RERadioItem* buildname;
     //栋座（房源的）
     //Int
+    value = @"";
+    if (self.houseSecretPtcl)
+    {
+        value = self.houseSecretPtcl.buildname;
+    }
+    self.buildname = [[RERadioItem alloc] initWithTitle:@"栋座:" value:value selectionHandler:^(RERadioItem *item) {
+        //todo
+    }];
+
     
-    //@property(nonatomic,strong)RETableViewItem* house_unit;
+    //@property(nonatomic,strong)RERadioItem* house_serect_unit;
     //单元（房源的）
     //Int
-    
-    //@property(nonatomic,strong)RETableViewItem* house_tablet;
+    value = @"";
+    if (self.houseSecretPtcl)
+    {
+        value = self.houseSecretPtcl.house_unit;
+    }
+    self.house_serect_unit = [[RERadioItem alloc] initWithTitle:@"单元:" value:value selectionHandler:^(RERadioItem *item) {
+        //todo
+    }];
+    //@property(nonatomic,strong)RETableViewItem* house_secrect_tablet;
     //门牌号（房
     //的）
     //Int
+    value = @"";
+    if (self.houseSecretPtcl)
+    {
+        value = self.houseSecretPtcl.house_tablet;
+    }
+    self.house_secrect_tablet = [[RETextItem alloc] initWithTitle:@"门牌号:" value:value ];
     
     //@property(nonatomic,strong)RETableViewItem* client_secret_remark;
     //备注
     //String
-
+    value = @"";
+    if (self.houseSecretPtcl)
+    {
+        value = self.houseSecretPtcl.client_remark;
+    }
+    self.client_secret_remark = [[RETextItem alloc] initWithTitle:@"备注:" value:value ];
+    
     
 }
 
@@ -1215,14 +1409,26 @@
 }
 - (void)createLookSecretBtn
 {
-    __typeof (&*self) __weak weakSelf = self;
     self.lookSecretItem = [RETableViewItem itemWithTitle:@"查看保密信息" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                         {
-                            
-                            if (!self.housePtcl ||(self.housePtcl && ![self.housePtcl.look_permit isEqualToString:@"1"]))
+                            if (self.housePtcl &&
+                                ([self.housePtcl.edit_permit isEqualToString:@"1"] ||
+                                [self.housePtcl.look_permit isEqualToString:@"1"]))
                             {
-                                PRSENTALERT(@"",@"对不起,您没有权限查看保密信息.", @"OK", self);
+                                if ([[self.manager sections] objectAtIndex:1] == self.secretSection)
+                                {
+                                    [self reloadUIForSecret:NO];
+                                }
+                                else
+                                {
+                                    [self getSecretDataForEdit:NO];
+                                }
                             }
+                            else
+                            {
+                                PRSENTALERT(@"",@"对不起,您没有查看该房源的保密信息的权限",@"OK",self);
+                            }
+
                             
                         }];
     self.lookSecretItem.textAlignment = NSTextAlignmentCenter;
@@ -1297,6 +1503,66 @@
      }];
     
 }
+
+-(void)getSecretDataForEdit:(BOOL)edit
+{
+    if (self.houseSecretPtcl)
+    {
+        if (edit)
+        {
+            [self toEditCtrl];
+        }
+        else
+        {
+            [self reloadUIForSecret:YES];
+        }
+        
+        return;
+    }
+    SHOWHUD_WINDOW;
+    [HouseDataPuller pullHouseSecrectParticulars:self.houseDtl Success:^(houseSecretParticulars*ptcl)
+     {
+         self.houseSecretPtcl = ptcl;
+         if (self.houseSecretPtcl)
+         {
+             if (edit)
+             {
+                 [self toEditCtrl];
+             }
+             else
+             {
+                 [self reloadUIForSecret:YES];
+             }
+             
+             
+         }
+         HIDEHUD_WINDOW;
+     }failure:^(NSError* error)
+     {
+         HIDEHUD_WINDOW;
+     }];
+}
+
+-(void)reloadUIForSecret:(BOOL)lookSecret
+{
+    [self.manager removeAllSections];
+    if (lookSecret == YES)
+    {
+        
+        [self.manager addSection:self.infoSection];
+        [self.manager addSection:self.secretSection];
+        [self.manager addSection:self.actionSection];
+        [self prepareSecretSectionItems];
+    }
+    else
+    {
+        [self.manager addSection:self.infoSection];
+        [self.manager addSection:self.actionSection];
+    }
+    
+    [self.tableView reloadData];
+    
+}
 #pragma mark ---------------getData----------------
 #pragma mark
 
@@ -1304,7 +1570,21 @@
 
 -(void)editBtnClicked:(id)sender
 {
+    if (self.houseSecretPtcl)
+    {
+        [self toEditCtrl];
+    }
+    else
+    {
+        [self getSecretDataForEdit:YES];
+    }
+}
+
+-(void)toEditCtrl
+{
     HouseEditParticularsViewController*editCtrl = [[HouseEditParticularsViewController alloc] init];
+    editCtrl.housePtcl = self.housePtcl;
+    editCtrl.houseSecretPtcl = self.houseSecretPtcl;
     [self.navigationController pushViewController:editCtrl animated:YES];
 }
 

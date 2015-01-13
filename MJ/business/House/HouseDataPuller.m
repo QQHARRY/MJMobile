@@ -226,6 +226,34 @@
      }];
 }
 
++(void)pullHouseSecrectParticulars:(HouseDetail *)dtl Success:(void (^)(houseSecretParticulars *housePtl))success failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *parameters = @{@"job_no":[person me].job_no,
+                                 @"acc_password":[person me].password,
+                                 @"house_trade_no":dtl.house_trade_no,
+                                 };
+    
+    
+    [NetWorkManager PostWithApiName:API_HOUSE_SECRET_PARTICULARS parameters:parameters success:
+     ^(id responseObject)
+     {
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         {
+             houseSecretParticulars*housePtcl = [[houseSecretParticulars alloc] init];
+             [housePtcl initWithDictionary:[[resultDic  objectForKey:@"EstateSecretNode"] objectAtIndex:0]];
+             
+             
+             success(housePtcl);
+         }
+         
+     }
+                            failure:^(NSError *error)
+     {
+         failure(error);
+     }];
+}
+
 +(void)pushImage:(UIImage*)image ToHouse:(HouseDetail *)dtl HouseParticulars:(HouseParticulars*)ptcl ImageType:(NSString*)imgType Success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
     NSData*data = UIImageJPEGRepresentation(image, 1);

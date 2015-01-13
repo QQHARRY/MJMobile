@@ -10,6 +10,7 @@
 #import "HouseFilter.h"
 #import "HouseDetail.h"
 #import "HouseParticulars.h"
+#import "houseSecretParticulars.h"
 
 
 @interface HouseDataPuller : NSObject
@@ -20,4 +21,8 @@
 +(void)pullHouseParticulars:(HouseDetail *)dtl Success:(void (^)(HouseParticulars *housePtl))success failure:(void (^)(NSError *error))failure;
 
 +(void)pushImage:(UIImage*)image ToHouse:(HouseDetail *)dtl HouseParticulars:(HouseParticulars*)ptcl ImageType:(NSString*)imgType Success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
++(void)pullHouseSecrectParticulars:(HouseDetail *)dtl Success:(void (^)(houseSecretParticulars *housePtl))success failure:(void (^)(NSError *error))failure;
+
+
 @end

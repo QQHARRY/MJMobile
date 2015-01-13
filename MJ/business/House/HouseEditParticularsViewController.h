@@ -10,4 +10,6 @@
 
 @interface HouseEditParticularsViewController : HouseParticularTableViewController
 
+@property(strong,nonatomic)HouseParticulars*housePtcl;
+@property(strong,nonatomic)houseSecretParticulars*houseSecretPtcl;
 @end

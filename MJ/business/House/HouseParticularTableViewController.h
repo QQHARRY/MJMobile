@@ -45,7 +45,7 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 @property(strong, readwrite, nonatomic) NSArray* shop_rank_dic_arr;
 @property(strong, readwrite, nonatomic) NSArray* office_rank_dic_arr;
 @property(strong, readwrite, nonatomic) NSArray* carport_rank_dic_arr;
-
+@property(strong, readwrite, nonatomic) NSArray* sex_dic_arr;
 @property (strong, readwrite, nonatomic) RETableViewManager *manager;
 #pragma mark ---------------sections----------------
 #pragma mark
@@ -336,11 +336,11 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 //联系地址（业主）
 //String
 
-@property(nonatomic,strong)RENumberItem* buildname;
+@property(nonatomic,strong)RERadioItem* buildname;
 //栋座（房源的）
 //Int
 
-@property(nonatomic,strong)RETextItem* house_serect_unit;
+@property(nonatomic,strong)RERadioItem* house_serect_unit;
 //house_unit
 //单元（房源的）
 //Int
@@ -351,7 +351,7 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 //的）
 //Int
 
-@property(nonatomic,strong)RETableViewItem* client_secret_remark;
+@property(nonatomic,strong)RETextItem* client_secret_remark;
 //备注
 //String
 #pragma mark ---------------secretSection items----------------
@@ -371,5 +371,19 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 #pragma mark
 
 
-
+-(void)prepareSections;
+-(void)prepareItems;
+-(void)prepareInfoSectionItems;
+-(void)prepareSecretSectionItems;
+-(void)prepareActionSectionsItems;
+-(void)createSections;
+-(void)createAddInfoSectionItems;
+-(void)createInfoSectionItems;
+-(void)createSecretSectionItems;
+-(void)createActionSectionItems;
+-(void)enableOrDisableItems;
+-(void)adjustByTeneApplication;
+-(void)adjustUI;
+-(void)adjustByTradeType;
+-(NSArray*)getEditAbleFields;
 @end

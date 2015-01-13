@@ -61,6 +61,7 @@
 #define API_HOUSE_LIST @"business/getRealEstateBriefList"
 
 #define API_HOUSE_PARTICULARS @"business/getRealEstateDetails"
+#define API_HOUSE_SECRET_PARTICULARS @"business/getRealEstateSecretInfo"
 
 //   44.获取城区片区列表
 #define API_AREA_LIST @"business/getAreaList"
@@ -109,7 +110,7 @@
 #define DIC_SHOP_RANK_TYPE @"shop_rank"
 #define DIC_OFFICE_RANK_TYPE @"office_rank"
 #define DIC_CARPORT_RANK_TYPE @"carport_rank"
-
+#define DIC_SEX_TYPE @"sex"
 
 
 //添加图片
