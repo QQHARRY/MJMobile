@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4A20860C1A63B49A00F3CB5A /* HouseEditParticularsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20860B1A63B49A00F3CB5A /* HouseEditParticularsViewController.m */; };
+		4A23AD131A66BBFE00F5A02A /* HouseAddNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A23AD121A66BBFE00F5A02A /* HouseAddNewViewController.m */; };
 		4A2AD1811A457E800074DCA0 /* PersonDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2AD1801A457E800074DCA0 /* PersonDetailsViewController.m */; };
 		4A2AD1881A457F1B0074DCA0 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2AD1871A457F1B0074DCA0 /* AboutViewController.m */; };
 		4A2AD1911A457F6C0074DCA0 /* SuggestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2AD1901A457F6C0074DCA0 /* SuggestionViewController.m */; };
@@ -245,6 +246,8 @@
 /* Begin PBXFileReference section */
 		4A20860A1A63B49A00F3CB5A /* HouseEditParticularsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseEditParticularsViewController.h; sourceTree = "<group>"; };
 		4A20860B1A63B49A00F3CB5A /* HouseEditParticularsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseEditParticularsViewController.m; sourceTree = "<group>"; };
+		4A23AD111A66BBFE00F5A02A /* HouseAddNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseAddNewViewController.h; sourceTree = "<group>"; };
+		4A23AD121A66BBFE00F5A02A /* HouseAddNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseAddNewViewController.m; sourceTree = "<group>"; };
 		4A2AD17F1A457E800074DCA0 /* PersonDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonDetailsViewController.h; sourceTree = "<group>"; };
 		4A2AD1801A457E800074DCA0 /* PersonDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonDetailsViewController.m; sourceTree = "<group>"; };
 		4A2AD1861A457F1B0074DCA0 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
@@ -1461,6 +1464,8 @@
 				B98BD4B01A60616A003A35BE /* HouseDetailCell.xib */,
 				4A9D02491A61197800600BA0 /* HouseParticulars.h */,
 				4A9D024A1A61197800600BA0 /* HouseParticulars.m */,
+				4A23AD111A66BBFE00F5A02A /* HouseAddNewViewController.h */,
+				4A23AD121A66BBFE00F5A02A /* HouseAddNewViewController.m */,
 				4A20860A1A63B49A00F3CB5A /* HouseEditParticularsViewController.h */,
 				4A20860B1A63B49A00F3CB5A /* HouseEditParticularsViewController.m */,
 				4A9D024C1A611F7400600BA0 /* HouseParticularTableViewController.h */,
@@ -1774,6 +1779,7 @@
 				B93B144E1A62773700121133 /* FollowDetailCell.m in Sources */,
 				B98BD4C91A60747A003A35BE /* UIScrollView+MJExtension.m in Sources */,
 				4A8D02131A37F78400EA59EA /* JSBadgeView.m in Sources */,
+				4A23AD131A66BBFE00F5A02A /* HouseAddNewViewController.m in Sources */,
 				B98BD5881A609185003A35BE /* README.md in Sources */,
 				4A5D24511A4AF21000546698 /* orderTableViewCell.m in Sources */,
 				B94445831A62986B0033E998 /* ContractTableViewController.m in Sources */,

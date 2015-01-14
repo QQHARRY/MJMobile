@@ -47,12 +47,12 @@
     [self.tableView reloadData];
 }
 
--(void)createSections
-{
-    CGFloat sectH = 1;
-    self.infoSection = [RETableViewSection sectionWithHeaderTitle:@""];
-    self.infoSection.headerHeight = sectH;
-}
+//-(void)createSections
+//{
+//    CGFloat sectH = 1;
+//    self.infoSection = [RETableViewSection sectionWithHeaderTitle:@""];
+//    self.infoSection.headerHeight = sectH;
+//}
 
 -(void)prepareSections
 {
@@ -89,77 +89,7 @@
     [self adjustByTeneApplication];
 }
 
--(BOOL)isString:(NSString*)str InStringArr:(NSArray*)arr
-{
-    if (str && [str length] > 0 && arr)
-    {
-        for (NSString*tmpStr in arr)
-        {
-            if ([tmpStr isKindOfClass:[NSString class]])
-            {
-                if ([tmpStr isEqualToString:str])
-                {
-                    return YES;
-                }
-            }
-        }
-    }
-    return NO;
-}
 
--(NSString*)nameOfInstance:(id)instance
-{
-    unsigned int numIvars = 0;
-    NSString *key=nil;
-    
-    Ivar * ivars = class_copyIvarList([super superclass], &numIvars);
-    for(int i = 0; i < numIvars; i++) {
-        Ivar thisIvar = ivars[i];
-        const char *type = ivar_getTypeEncoding(thisIvar);
-        NSString *stringType =  [NSString stringWithCString:type encoding:NSUTF8StringEncoding];
-        if (![stringType hasPrefix:@"@"]) {
-            continue;
-        }
-        if ((object_getIvar(self, thisIvar) == instance)) {
-            key = [NSString stringWithUTF8String:ivar_getName(thisIvar)];
-            break;
-        }
-    }
-    free(ivars);
-    return key;
-    
-}
-
--(id)instanceOfName:(NSString*)name
-{
-    unsigned int numIvars = 0;
-    id returnValue = nil;
-    
-    Ivar * ivars = class_copyIvarList([super superclass], &numIvars);
-    for (const Ivar *p = ivars; p < ivars + numIvars; ++p)
-    {
-        Ivar const ivar = *p;
-
-        NSString *key = [NSString stringWithUTF8String:ivar_getName(ivar)];
-        if ([key hasPrefix:@"_"])
-        {
-            NSString*tmpKey = [key substringFromIndex:1];
-            if ([tmpKey isEqualToString:name])
-            {
-                
-                returnValue =  [self valueForKey:key];
-                break;
-            }
-        }
-        
-
-        
-       
-    }
-    free(ivars);
-    return returnValue;
-    
-}
 
 
 -(void)sumitBtnClicked:(id)sender

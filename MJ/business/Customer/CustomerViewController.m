@@ -14,6 +14,7 @@
 #import "CustomerFilter.h"
 #import "CustomerFilterController.h"
 
+
 @interface CustomerViewController ()
 
 @end
@@ -77,6 +78,10 @@
     vc.hvc = self;
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+
+
+
 
 #pragma mark - ViewPagerDataSource
 - (NSUInteger)numberOfTabsForViewPager:(ViewPagerController *)viewPager

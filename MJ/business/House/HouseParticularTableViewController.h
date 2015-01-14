@@ -369,7 +369,11 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 //签约按钮
 #pragma mark ---------------actionSection items----------------
 #pragma mark
-
+#pragma mark ---------------elementMethods----------------
+#pragma mark
+-(BOOL)isString:(NSString*)str InStringArr:(NSArray*)arr;
+-(NSString*)nameOfInstance:(id)instance;
+-(id)instanceOfName:(NSString*)name;
 
 @property (assign,nonatomic)BOOL refreshAfterEdit;
 -(void)setNeedRefresh;

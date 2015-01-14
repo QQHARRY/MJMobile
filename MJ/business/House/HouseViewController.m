@@ -13,6 +13,7 @@
 #import "person.h"
 #import "HouseFilter.h"
 #import "HouseFilterController.h"
+#import "HouseAddNewViewController.h"
 
 @interface HouseViewController ()
 
@@ -42,6 +43,7 @@
 
     // add title button
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"筛选" style:UIBarButtonItemStylePlain target:self action:@selector(onFilterAction:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(onAddEstate:)];
     
     // add table view controller
     self.rentController = [[HouseTableViewController alloc] initWithNibName:@"HouseTableViewController" bundle:[NSBundle mainBundle]];
@@ -81,6 +83,13 @@
 {
     HouseFilterController *vc = [[HouseFilterController alloc] initWithStyle:UITableViewStyleGrouped];
     vc.hvc = self;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)onAddEstate:(id)sender
+{
+    HouseAddNewViewController*vc = [[HouseAddNewViewController alloc] init];
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 
