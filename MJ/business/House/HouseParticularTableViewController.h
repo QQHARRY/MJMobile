@@ -371,6 +371,9 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 #pragma mark
 
 
+@property (assign,nonatomic)BOOL refreshAfterEdit;
+-(void)setNeedRefresh;
+
 -(void)prepareSections;
 -(void)prepareItems;
 -(void)prepareInfoSectionItems;

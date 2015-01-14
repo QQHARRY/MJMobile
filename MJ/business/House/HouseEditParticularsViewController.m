@@ -7,7 +7,10 @@
 //
 
 #import "HouseEditParticularsViewController.h"
+#import "dictionaryManager.h"
+#import "HouseDataPuller.h"
 #import <objc/runtime.h>
+#import "UtilFun.h"
 
 @interface HouseEditParticularsViewController ()
 
@@ -156,6 +159,127 @@
     free(ivars);
     return returnValue;
     
+}
+
+
+-(void)sumitBtnClicked:(id)sender
+{
+    if (self.housePtcl && self.houseSecretPtcl)
+    {
+         NSMutableDictionary*dic = [[NSMutableDictionary alloc] init];
+        
+        NSArray*arr = [self.infoSection items];
+        
+        for (RETableViewItem* item in arr)
+        {
+            NSString*name = [self nameOfInstance:item];
+            if (name && [name hasPrefix:@"_"])
+            {
+                name = [name substringFromIndex:1];
+                if ([name length] > 0)
+                {
+                    SEL sel =@selector(value);
+                    if ([item respondsToSelector:sel])
+                    {
+                        NSString*vl = [item performSelector:sel];
+                        NSString*tmp = [self convertToDicValueForItem:name FromValue:vl];
+                        if ([tmp length] > 0)
+                        {
+                            vl = tmp;
+                        }
+                        [dic setValue:vl forKey:name];
+                    }
+                    
+                }
+            }
+            
+        }
+        
+        [dic setValue:self.houseDtl.house_trade_no forKey:@"house_trade_no"];
+        SHOWHUD_WINDOW;
+        [HouseDataPuller pushHouseEditedParticulars:dic Success:^(houseSecretParticulars *housePtl) {
+            HIDEHUD_WINDOW;
+            SEL sel = @selector(setNeedRefresh);
+            if (self.delegate && [self.delegate respondsToSelector:sel])
+            {
+                [self.delegate performSelector:sel];
+            }
+            
+            PRSENTALERTWITHHANDER(@"编辑成功",@"",@"OK",self,^(UIAlertAction *action)
+                                  {
+                                      [self.navigationController popViewControllerAnimated:YES];
+                                  }
+                                  );
+
+            
+        } failure:^(NSError *error) {
+            HIDEHUD_WINDOW;
+            NSString*errorStr = [NSString stringWithFormat:@"%@",error];
+            PRSENTALERTWITHHANDER(@"编辑失败",errorStr,@"OK",self,^(UIAlertAction *action)
+                                  {
+                                      [self.navigationController popViewControllerAnimated:YES];
+                                  }
+                                  );  
+        }];
+    }
+}
+
+-(NSString*)convertToDicValueForItem:(NSString*)itemName FromValue:(NSString*)value
+{
+    NSString*dicValue = @"";
+    
+    NSArray*arr = nil;
+
+    if(value && itemName)
+    {
+        if([itemName isEqualToString:@"house_driect"])
+        {
+            arr =  self.house_driect_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"fitment_type"])
+        {
+            arr =  self.fitment_type_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"use_situation"])
+        {
+            arr =  self.use_situation_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"client_gender"])
+        {
+            arr =  self.sex_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"look_permit"])
+        {
+            arr =  self.look_permit_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"client_source"])
+        {
+            arr =  self.client_source_dic_arr;
+        }
+    }
+    
+
+    
+    if (arr)
+    {
+        for (DicItem*di in arr)
+        {
+            if ([value  isEqualToString:di.dict_label])
+            {
+                return di.dict_value;
+            }
+        }
+    }
+    return  dicValue;
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([alertView.title isEqualToString:@"编辑成功"]
+        ||[alertView.title isEqualToString:@"编辑失败"] )
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 

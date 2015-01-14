@@ -62,6 +62,7 @@
 
 #define API_HOUSE_PARTICULARS @"business/getRealEstateDetails"
 #define API_HOUSE_SECRET_PARTICULARS @"business/getRealEstateSecretInfo"
+#define API_HOUSE_EDIT_PARTICULARS @"business/editRealEstateDetails"
 
 //   44.获取城区片区列表
 #define API_AREA_LIST @"business/getAreaList"

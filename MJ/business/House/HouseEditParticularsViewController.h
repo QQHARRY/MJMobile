@@ -8,8 +8,11 @@
 
 #import "HouseParticularTableViewController.h"
 
-@interface HouseEditParticularsViewController : HouseParticularTableViewController
+@interface HouseEditParticularsViewController : HouseParticularTableViewController<UIAlertViewDelegate>
 
+@property(strong,nonatomic)HouseDetail*houseDtl;
 @property(strong,nonatomic)HouseParticulars*housePtcl;
 @property(strong,nonatomic)houseSecretParticulars*houseSecretPtcl;
+
+@property(weak,nonatomic)id delegate;
 @end

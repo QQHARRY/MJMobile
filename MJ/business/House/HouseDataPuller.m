@@ -254,6 +254,31 @@
      }];
 }
 
+
++(void)pushHouseEditedParticulars:(NSDictionary *)partlDic Success:(void (^)(houseSecretParticulars *housePtl))success failure:(void (^)(NSError *error))failure
+{
+    NSMutableDictionary*mutDic = [[NSMutableDictionary alloc] initWithDictionary:partlDic];
+    [mutDic setValue:[person me].job_no forKey:@"job_no"];
+    [mutDic setValue:[person me].password forKey:@"acc_password"];
+    [mutDic setValue:[UtilFun getUDID] forKey:@"DeviceID"];
+    
+    [NetWorkManager PostWithApiName:API_HOUSE_EDIT_PARTICULARS parameters:mutDic success:
+     ^(id responseObject)
+     {
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         {
+             
+             success(nil);
+         }
+         
+     }
+                            failure:^(NSError *error)
+     {
+         failure(error);
+     }];
+}
+
 +(void)pushImage:(UIImage*)image ToHouse:(HouseDetail *)dtl HouseParticulars:(HouseParticulars*)ptcl ImageType:(NSString*)imgType Success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
     NSData*data = UIImageJPEGRepresentation(image, 1);

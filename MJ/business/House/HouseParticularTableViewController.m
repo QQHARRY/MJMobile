@@ -5,6 +5,7 @@
 //  Created by harry on 15/1/10.
 //  Copyright (c) 2015年 Simtoon. All rights reserved.
 //
+//给维护者的说明:为了实现元编程，重中之重,变量名一定要和接口JSON字段名完全相同!否则。。。
 
 #import "HouseParticularTableViewController.h"
 #import "UtilFun.h"
@@ -30,7 +31,7 @@
 @synthesize houseSecretPtcl;
 @synthesize mode;
 
-
+@synthesize refreshAfterEdit;
 
 
 #pragma mark ---------------viewDidLoad----------------
@@ -39,13 +40,27 @@
 {
     [super viewDidLoad];
     
-    
+    self.refreshAfterEdit = NO;
     self.houseImageCtrl = [[houseImagesTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     self.manager = [[RETableViewManager alloc] initWithTableView:self.tableView delegate:self];
     [self createSections];
     [self initDic];
     
     [self getData];
+}
+
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    if (self.refreshAfterEdit)
+    {
+        self.refreshAfterEdit = NO;
+        self.housePtcl = nil;
+        self.houseSecretPtcl = nil;
+        [self getData];
+        //[self prepareSections];
+        //[self prepareItems];
+    }
 }
 #pragma mark ---------------viewDidLoad----------------
 #pragma mark
@@ -282,6 +297,7 @@
 
 -(void)prepareInfoSectionItems
 {
+    [self.infoSection removeAllItems];
     [self createInfoSectionItems];
     [self.infoSection addItem:self.watchHouseImages];
     
@@ -511,6 +527,7 @@
     if (self.client_name == nil)
     {
         [self createSecretSectionItems];
+        [self.secretSection removeAllItems];
         [self.secretSection addItem:self.client_name];
         [self.secretSection addItem:self.obj_mobile];
         [self.secretSection addItem:self.client_gender];
@@ -1263,7 +1280,7 @@
 
 -(void)createSecretSectionItems
 {
-
+    __typeof (&*self) __weak weakSelf = self;
     NSString*value = @"";
     
     
@@ -1307,7 +1324,28 @@
 
     }
     self.client_gender = [[RERadioItem alloc] initWithTitle:@"性别:" value:value selectionHandler:^(RERadioItem *item) {
-        //todo
+        [item deselectRowAnimated:YES];
+        NSMutableArray *options = [[NSMutableArray alloc] init];
+        for (NSInteger i = 0; i < self.sex_dic_arr.count; i++)
+        {
+            DicItem *di = [self.sex_dic_arr objectAtIndex:i];
+            [options addObject:di.dict_label];
+        }
+        RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
+                                                           {
+                                                               [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                               [item reloadRowWithAnimation:UITableViewRowAnimationNone]; //
+                                                           }];
+        
+        optionsController.delegate = weakSelf;
+        optionsController.style = self.infoSection.style;
+        if (weakSelf.tableView.backgroundView == nil)
+        {
+            optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
+            optionsController.tableView.backgroundView = nil;
+        }
+        
+        [weakSelf.navigationController pushViewController:optionsController animated:YES];
     }];
     
     //@property(nonatomic,strong)RENumberItem* obj_fixtel;
@@ -1585,6 +1623,8 @@
     HouseEditParticularsViewController*editCtrl = [[HouseEditParticularsViewController alloc] init];
     editCtrl.housePtcl = self.housePtcl;
     editCtrl.houseSecretPtcl = self.houseSecretPtcl;
+    editCtrl.houseDtl = self.houseDtl;
+    editCtrl.delegate = self;
     [self.navigationController pushViewController:editCtrl animated:YES];
 }
 
@@ -1592,6 +1632,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)setNeedRefresh
+{
+    self.refreshAfterEdit = YES;
+}
 
 @end
