@@ -12,6 +12,7 @@
 #import "ContractDataPuller.h"
 #import "UtilFun.h"
 #import "person.h"
+#import <MobileCoreServices/UTCoreTypes.h>
 
 @interface ContractAddController ()
 
@@ -24,13 +25,22 @@
 @property (strong, readwrite, nonatomic) REDateTimeItem *startItem;
 @property (strong, readwrite, nonatomic) REDateTimeItem *endItem;
 
-@property (strong, readwrite, nonatomic) RETableViewSection *fileSection;
+@property (strong, readwrite, nonatomic) RETableViewSection *wtSection;
+@property (strong, readwrite, nonatomic) RETableViewSection *qcSection;
+@property (strong, readwrite, nonatomic) RETableViewSection *sfSection;
+@property (strong, readwrite, nonatomic) RETableViewSection *qtSection;
+@property (weak, nonatomic) RETableViewSection *addPicSection;
 
 @property (strong, readwrite, nonatomic) RETableViewSection *commitSection;
 
 @property (nonatomic, strong) NSArray *typeDictList;
 @property (nonatomic, strong) NSArray *consignDictList;
 @property (nonatomic, strong) NSArray *payDictList;
+
+@property (nonatomic, strong) NSMutableArray *wtImageList;
+@property (nonatomic, strong) NSMutableArray *qcImageList;
+@property (nonatomic, strong) NSMutableArray *sfImageList;
+@property (nonatomic, strong) NSMutableArray *qtImageList;
 
 @end
 
@@ -46,22 +56,115 @@
     self.typeDictList = [dictionaryManager getItemArrByType:DIC_TRADE_TYPE];
     self.consignDictList = [dictionaryManager getItemArrByType:DIC_CONSIGNMENT_TYPE];
     self.payDictList = [dictionaryManager getItemArrByType:DIC_PAY_SORT];
-    
+    self.wtImageList = [NSMutableArray array];
+    self.qcImageList = [NSMutableArray array];
+    self.sfImageList = [NSMutableArray array];
+    self.qtImageList = [NSMutableArray array];
+
     // Create manager
     self.manager = [[RETableViewManager alloc] initWithTableView:self.tableView delegate:self];
 
     // add section
     self.contractSection = [self addContractControls];
-    self.fileSection = [self addFileControls];
+    self.wtSection = [RETableViewSection sectionWithHeaderTitle:@"委托协议"];
+    [self.manager addSection:self.wtSection];
+    self.qcSection = [RETableViewSection sectionWithHeaderTitle:@"产权证明"];
+    [self.manager addSection:self.qcSection];
+    self.sfSection = [RETableViewSection sectionWithHeaderTitle:@"身份证明"];
+    [self.manager addSection:self.sfSection];
+    self.qtSection = [RETableViewSection sectionWithHeaderTitle:@"其他图片"];
+    [self.manager addSection:self.qtSection];
     self.commitSection = [self addCommitButton];
+    [self reloadImages];
 }
 
-- (RETableViewSection *)addFileControls
+-(void)reloadImages
 {
-    RETableViewSection *section = [RETableViewSection sectionWithHeaderTitle:@"附件信息"];
-    [self.manager addSection:section];
-    
-    return section;
+    [self.wtSection removeAllItems];
+    [self addWtControls];
+    [self.qcSection removeAllItems];
+    [self addQcControls];
+    [self.sfSection removeAllItems];
+    [self addSfControls];
+    [self.qtSection removeAllItems];
+    [self addQtControls];
+    [self.tableView reloadData];
+}
+
+- (void)addWtControls
+{
+    for (UIImage *img in self.wtImageList)
+    {
+        RETableViewItem *item = [[RETableViewItem alloc] init];
+        CGFloat scale =  (self.view.frame.size.width - 30) / img.size.width;
+        item.cellHeight = img.size.height * scale + 5;
+        item.image = [UtilFun scaleImage:img toScale:scale];
+        [self.wtSection addItem:item];
+    }
+    RETableViewItem *addItem = [RETableViewItem itemWithTitle:@"添加委托协议图片" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
+                                {
+                                    self.addPicSection = self.wtSection;
+                                    [self addPhoto];
+                                }];
+    addItem.textAlignment = NSTextAlignmentCenter;
+    [self.wtSection addItem:addItem];
+}
+
+- (void)addQcControls
+{
+    for (UIImage *img in self.qcImageList)
+    {
+        RETableViewItem *item = [[RETableViewItem alloc] init];
+        CGFloat scale =  (self.view.frame.size.width - 30) / img.size.width;
+        item.cellHeight = img.size.height * scale + 5;
+        item.image = [UtilFun scaleImage:img toScale:scale];
+        [self.qcSection addItem:item];
+    }
+    RETableViewItem *addItem = [RETableViewItem itemWithTitle:@"添加产权证明图片" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
+                                {
+                                    self.addPicSection = self.qcSection;
+                                    [self addPhoto];
+                                }];
+    addItem.textAlignment = NSTextAlignmentCenter;
+    [self.qcSection addItem:addItem];
+}
+
+- (void)addSfControls
+{
+    for (UIImage *img in self.sfImageList)
+    {
+        RETableViewItem *item = [[RETableViewItem alloc] init];
+        CGFloat scale =  (self.view.frame.size.width - 30) / img.size.width;
+        item.cellHeight = img.size.height * scale + 5;
+        item.image = [UtilFun scaleImage:img toScale:scale];
+        [self.sfSection addItem:item];
+    }
+    RETableViewItem *addItem = [RETableViewItem itemWithTitle:@"添加身份证明图片" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
+                                {
+                                    self.addPicSection = self.sfSection;
+                                    [self addPhoto];
+                                }];
+    addItem.textAlignment = NSTextAlignmentCenter;
+    [self.sfSection addItem:addItem];
+}
+
+- (void)addQtControls
+{
+    for (UIImage *img in self.qtImageList)
+    {
+        RETableViewItem *item = [[RETableViewItem alloc] init];
+        CGFloat scale =  (self.view.frame.size.width - 30) / img.size.width;
+        item.cellHeight = img.size.height * scale + 5;
+        item.image = [UtilFun scaleImage:img toScale:scale];
+        [self.qtSection addItem:item];
+    }
+    RETableViewItem *addItem = [RETableViewItem itemWithTitle:@"添加其他图片" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
+                                {
+                                    self.addPicSection = self.qtSection;
+                                    [self addPhoto];
+                                }];
+    addItem.textAlignment = NSTextAlignmentCenter;
+    [self.qtSection addItem:addItem];
 }
 
 - (RETableViewSection *)addContractControls
@@ -235,6 +338,112 @@
     buttonItem.textAlignment = NSTextAlignmentCenter;
     [section addItem:buttonItem];
     return section;
+}
+
+- (void)addPhoto
+{
+    UIActionSheet *sheet;
+    NSString* take = @"照相";
+    NSString* choose = @"从相册选择";
+    NSString* cancel = @"取消";
+    
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        
+        sheet  = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:nil destructiveButtonTitle:cancel otherButtonTitles:take,choose, nil];
+    }
+    else
+    {
+        sheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:nil destructiveButtonTitle:cancel otherButtonTitles:choose, nil];
+    }
+    
+    sheet.tag = 28123;
+    [sheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag != 28123)
+    {
+        return;
+    }
+    NSUInteger sourceType = 0;
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        
+        switch (buttonIndex)
+        {
+            case 0:
+                return;
+            case 1:
+                sourceType = UIImagePickerControllerSourceTypeCamera;
+                break;
+            case 2:
+                sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                break;
+        }
+    }
+    else
+    {
+        if (buttonIndex == 0)
+        {
+            
+            return;
+        }
+        else
+        {
+            sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+        }
+    }
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    imagePickerController.allowsEditing = YES;
+    imagePickerController.sourceType = sourceType;
+    [self presentViewController:imagePickerController animated:YES completion:^{}];
+}
+
+
+#pragma mark - image picker delegte
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:^{}];
+    
+//    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage *image = [UIImage imageWithData:UIImageJPEGRepresentation([info objectForKey:UIImagePickerControllerEditedImage], 0.5)];
+    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+    if (image && [type isEqualToString:(NSString *)kUTTypeImage])
+    {
+        if (self.addPicSection == self.wtSection)
+        {
+            [self.wtImageList addObject:image];
+        }
+        else if (self.addPicSection == self.qcSection)
+        {
+            [self.qcImageList addObject:image];
+        }
+        else if (self.addPicSection == self.sfSection)
+        {
+            [self.sfImageList addObject:image];
+        }
+        else if (self.addPicSection == self.qtSection)
+        {
+            [self.qtImageList addObject:image];
+        }
+        else
+        {
+        }
+        [self reloadImages];
+        //save image to album
+        if (picker.sourceType == UIImagePickerControllerSourceTypeCamera)
+        {
+            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+        }
+    }
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 @end

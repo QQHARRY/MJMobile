@@ -12,7 +12,7 @@
 #import "HouseViewController.h"
 
 @interface ContractAddController : UITableViewController
-    <RETableViewManagerDelegate>
+    <RETableViewManagerDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) NSString *sid;
 
