@@ -185,8 +185,9 @@
         RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
                                                            {
                                                                [weakSelf.navigationController popViewControllerAnimated:YES];
-                                                               [item reloadRowWithAnimation:UITableViewRowAnimationNone];
+                                                               
                                                                [self prepareTeneApplicationSectionItemsStep2ByTenenType:selectedItem.title];
+                                                               [item reloadRowWithAnimation:UITableViewRowAnimationNone];
                                                            }];
         // Adjust styles
         optionsController.delegate = weakSelf;
@@ -232,11 +233,11 @@
         [self.teneApplicationAbout removeItem:self.house_driect];
         
         
-        [self.infoSection addItem:self.house_rank];
-        [self.infoSection removeItem:self.house_depth];
-        [self.infoSection addItem:self.floor_height];
-        [self.infoSection addItem:self.floor_count];
-        [self.infoSection removeItem:self.efficiency_rate];
+        [self.teneApplicationAbout addItem:self.house_rank];
+        [self.teneApplicationAbout removeItem:self.house_depth];
+        [self.teneApplicationAbout addItem:self.floor_height];
+        [self.teneApplicationAbout addItem:self.floor_count];
+        [self.teneApplicationAbout removeItem:self.efficiency_rate];
     }
     else if([type  isEqualToString:@"厂房"])
     {
@@ -248,11 +249,11 @@
         [self.teneApplicationAbout removeItem:self.house_driect];
         
         
-        [self.infoSection addItem:self.house_rank];
-        [self.infoSection removeItem:self.house_depth];
-        [self.infoSection removeItem:self.floor_height];
-        [self.infoSection addItem:self.floor_count];
-        [self.infoSection removeItem:self.efficiency_rate];
+        [self.teneApplicationAbout addItem:self.house_rank];
+        [self.teneApplicationAbout removeItem:self.house_depth];
+        [self.teneApplicationAbout removeItem:self.floor_height];
+        [self.teneApplicationAbout addItem:self.floor_count];
+        [self.teneApplicationAbout removeItem:self.efficiency_rate];
     }
     else if([type  isEqualToString:@"仓库"])
     {
@@ -264,11 +265,11 @@
         [self.teneApplicationAbout removeItem:self.house_driect];
         
         
-        [self.infoSection addItem:self.house_rank];
-        [self.infoSection removeItem:self.house_depth];
-        [self.infoSection addItem:self.floor_height];
-        [self.infoSection addItem:self.floor_count];
-        [self.infoSection removeItem:self.efficiency_rate];
+        [self.teneApplicationAbout addItem:self.house_rank];
+        [self.teneApplicationAbout removeItem:self.house_depth];
+        [self.teneApplicationAbout addItem:self.floor_height];
+        [self.teneApplicationAbout addItem:self.floor_count];
+        [self.teneApplicationAbout removeItem:self.efficiency_rate];
     }
     else if([type  isEqualToString:@"地皮"])
     {
@@ -280,11 +281,11 @@
         [self.teneApplicationAbout removeItem:self.house_driect];
         
         
-        [self.infoSection addItem:self.house_rank];
-        [self.infoSection removeItem:self.house_depth];
-        [self.infoSection addItem:self.floor_height];
-        [self.infoSection addItem:self.floor_count];
-        [self.infoSection removeItem:self.efficiency_rate];
+        [self.teneApplicationAbout addItem:self.house_rank];
+        [self.teneApplicationAbout removeItem:self.house_depth];
+        [self.teneApplicationAbout addItem:self.floor_height];
+        [self.teneApplicationAbout addItem:self.floor_count];
+        [self.teneApplicationAbout removeItem:self.efficiency_rate];
     }
     else if([type  isEqualToString:@"车位"])
     {
@@ -297,11 +298,11 @@
         [self.teneApplicationAbout removeItem:self.house_driect];
         
         
-        [self.infoSection addItem:self.house_rank];
-        [self.infoSection addItem:self.house_depth];
-        [self.infoSection addItem:self.floor_height];
-        [self.infoSection removeItem:self.floor_count];
-        [self.infoSection removeItem:self.efficiency_rate];
+        [self.teneApplicationAbout addItem:self.house_rank];
+        [self.teneApplicationAbout addItem:self.house_depth];
+        [self.teneApplicationAbout addItem:self.floor_height];
+        [self.teneApplicationAbout removeItem:self.floor_count];
+        [self.teneApplicationAbout removeItem:self.efficiency_rate];
     }
     else if([type  isEqualToString:@"写字楼"])
     {
@@ -313,27 +314,27 @@
         [self.teneApplicationAbout removeItem:self.house_driect];
         
         
-        [self.infoSection removeItem:self.house_rank];
-        [self.infoSection removeItem:self.house_depth];
-        [self.infoSection addItem:self.floor_height];
-        [self.infoSection addItem:self.floor_count];
-        [self.infoSection addItem:self.efficiency_rate];
+        [self.teneApplicationAbout removeItem:self.house_rank];
+        [self.teneApplicationAbout removeItem:self.house_depth];
+        [self.teneApplicationAbout addItem:self.floor_height];
+        [self.teneApplicationAbout addItem:self.floor_count];
+        [self.teneApplicationAbout addItem:self.efficiency_rate];
     }
     else
     {
-        [self.infoSection addItem:self.room_num];
-        [self.infoSection addItem:self.hall_num];
-        [self.infoSection addItem:self.kitchen_num];
-        [self.infoSection addItem:self.toilet_num];
-        [self.infoSection addItem:self.balcony_num];
-        [self.infoSection addItem:self.house_driect];
+        [self.teneApplicationAbout addItem:self.room_num];
+        [self.teneApplicationAbout addItem:self.hall_num];
+        [self.teneApplicationAbout addItem:self.kitchen_num];
+        [self.teneApplicationAbout addItem:self.toilet_num];
+        [self.teneApplicationAbout addItem:self.balcony_num];
+        [self.teneApplicationAbout addItem:self.house_driect];
         
         self.house_rank.title = @"123123123";
-        [self.infoSection removeItem:self.house_rank];
-        [self.infoSection removeItem:self.house_depth];
-        [self.infoSection removeItem:self.floor_height];
-        [self.infoSection removeItem:self.floor_count];
-        [self.infoSection removeItem:self.efficiency_rate];
+        [self.teneApplicationAbout removeItem:self.house_rank];
+        [self.teneApplicationAbout removeItem:self.house_depth];
+        [self.teneApplicationAbout removeItem:self.floor_height];
+        [self.teneApplicationAbout removeItem:self.floor_count];
+        [self.teneApplicationAbout removeItem:self.efficiency_rate];
     }
     
     [self.tableView reloadData];
