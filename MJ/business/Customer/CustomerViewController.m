@@ -50,6 +50,7 @@
     self.rentController.container = self;
     self.rentController.filter = [[CustomerFilter alloc] init];
     self.rentController.filter.business_requirement_type = @"201";
+    self.rentController.filter.requirement_status = @"0";
     self.rentController.filter.FromID = @"0";
     self.rentController.filter.ToID = @"0";
     self.rentController.filter.Count = @"10";
@@ -58,6 +59,7 @@
     self.sellController.container = self;
     self.sellController.filter = [[CustomerFilter alloc] init];
     self.sellController.filter.business_requirement_type = @"200";
+    self.sellController.filter.requirement_status = @"0";
     self.sellController.filter.FromID = @"0";
     self.sellController.filter.ToID = @"0";
     self.sellController.filter.Count = @"10";
