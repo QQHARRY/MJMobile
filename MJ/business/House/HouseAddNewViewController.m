@@ -466,10 +466,16 @@
                          {
                              if([[self.buildname.value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""] ||
                                 [[self.house_serect_unit.value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""] ||
-                                [[self.house_tablet.value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""]
+                                [[self.house_tablet.value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] < 3 ||
+                                 self.curBuildings == nil || self.curBuilding ==nil
                                 )
                              {
-                                 
+                                 PRESENTALERT(@"请先填写完整房屋信息", @"", nil, self)
+                                 ;
+                             }
+                             else
+                             {
+                                 [self judgeHouseByBuildings:self.curBuildings Building:self.curBuilding Unit:self.house_serect_unit.value Table:self.house_tablet.value];
                              }
                              [self prepareTeneApplicationSectionItemsStep1];
                          }];
@@ -478,6 +484,30 @@
     [self.addInfoSection addItem:self.judgementBtn];
 }
 
+-(void)judgeHouseByBuildings:(buildings*)bldings Building:(building*)blding Unit:(NSString*)unit Table:(NSString*)table
+{
+    SHOWHUD_WINDOW;
+    
+    [HouseDataPuller pullBuildingDetailsByBuildingNO:self.curBuildings.buildings_dict_no Success:^(buildingDetails *dtl,NSArray*arr)
+     {
+         [self.curBuilidngsOfCurBuildings removeAllObjects];
+         if ([arr count] > 0)
+         {
+             [self.curBuilidngsOfCurBuildings addObjectsFromArray:arr];
+             self.curBuildingsDetails = dtl;
+         }
+         else
+         {
+             PRESENTALERT(@"楼盘未录入栋座",@"请先联系主管添加栋座信息",@"OK",self);
+         }
+         HIDEHUD_WINDOW;
+     }
+                                             failure:^(NSError* error)
+     {
+         
+         HIDEHUD_WINDOW;
+     }];
+}
 
 
 /*
