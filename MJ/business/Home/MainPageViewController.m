@@ -49,7 +49,39 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.navigationController.navigationBar.hidden = NO;
+    
+    // 修改tabbar图标为原图颜色
+    {
+        UITabBarItem *item = [self.tabBarController.tabBar.items objectAtIndex:0];
+        item.selectedImage = [[UIImage imageNamed:@"TabItemHome"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        item.image = [[UIImage imageNamed:@"TabItemHomeNormal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:1/255.0f green:0/255.0f blue:107/255.0f alpha:1]} forState:UIControlStateSelected];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:4/255.0f green:43/255.0f blue:202/255.0f alpha:1]} forState:UIControlStateNormal];
+    }
+    {
+        UITabBarItem *item = [self.tabBarController.tabBar.items objectAtIndex:1];
+        item.selectedImage = [[UIImage imageNamed:@"TabItemHouse"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        item.image = [[UIImage imageNamed:@"TabItemHouseNormal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:1/255.0f green:0/255.0f blue:107/255.0f alpha:1]} forState:UIControlStateSelected];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:4/255.0f green:43/255.0f blue:202/255.0f alpha:1]} forState:UIControlStateNormal];
+    }
+    {
+        UITabBarItem *item = [self.tabBarController.tabBar.items objectAtIndex:2];
+        item.selectedImage = [[UIImage imageNamed:@"TabItemCustom"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        item.image = [[UIImage imageNamed:@"TabItemCustomNormal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:1/255.0f green:0/255.0f blue:107/255.0f alpha:1]} forState:UIControlStateSelected];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:4/255.0f green:43/255.0f blue:202/255.0f alpha:1]} forState:UIControlStateNormal];
+    }
+    {
+        UITabBarItem *item = [self.tabBarController.tabBar.items objectAtIndex:3];
+        item.selectedImage = [[UIImage imageNamed:@"TabItemMore"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        item.image = [[UIImage imageNamed:@"TabItemMoreNormal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:1/255.0f green:0/255.0f blue:107/255.0f alpha:1]} forState:UIControlStateSelected];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:4/255.0f green:43/255.0f blue:202/255.0f alpha:1]} forState:UIControlStateNormal];
+    }
+    
     [self setNavBarTitleTextAttribute];
     [self initBadgeNavBarWithUnReadAlertCount:0 andMsgCount:0];
     [self initTable];
