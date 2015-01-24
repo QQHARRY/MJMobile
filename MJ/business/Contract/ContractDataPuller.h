@@ -16,5 +16,6 @@
 
 +(void)pullDataWithFilter:(NSString *)sid Success:(void (^)(NSArray *ContractList))success failure:(void (^)(NSError *error))failure;
 +(void)pushNewContractWithParam:(NSDictionary *)param Success:(void (^)(NSString *att))success failure:(void (^)(NSError *error))failure;
++(void)pushImage:(UIImage*)image No:(NSString *)no Type:(NSString*)type Success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 @end

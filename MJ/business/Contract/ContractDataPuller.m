@@ -49,7 +49,6 @@
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {
-//             NSString *src = [resultDic objectForKey:@"contract_no"];
              NSString *att = [resultDic objectForKey:@"contract_attachment"];
              success(att);
          }
@@ -58,6 +57,31 @@
      {
          failure(error);
      }];
+}
+
++(void)pushImage:(UIImage*)image No:(NSString *)no Type:(NSString*)type Success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    NSData*data = UIImageJPEGRepresentation(image, 1);
+    NSDictionary *parameters = @{@"job_no":[person me].job_no,
+                                 @"acc_password":[person me].password,
+                                 @"DeviceID":[UtilFun getUDID],
+                                 @"obj_type":@"委托",
+                                 @"obj_no":no,
+                                 @"imageType":type,
+                                 };
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:[NSString stringWithFormat:@"%@%@", SERVER_URL, ADD_IMAGE] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+    {
+        [formData appendPartWithFormData:data name:@"imagedata"];
+    }
+          success:^(AFHTTPRequestOperation *operation, id responseObject)
+    {
+        success(nil);
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
+        failure(nil);
+    }];
 }
 
 @end

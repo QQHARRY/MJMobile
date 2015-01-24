@@ -42,6 +42,9 @@
 @property (nonatomic, strong) NSMutableArray *sfImageList;
 @property (nonatomic, strong) NSMutableArray *qtImageList;
 
+@property (nonatomic) NSInteger uploadProgress;
+@property (nonatomic, strong) NSString *attNo;
+
 @end
 
 @implementation ContractAddController
@@ -322,22 +325,109 @@
             return;
         }
         [param setValue:self.endItem.value forKey:@"contract_end_date"];
-        SHOWHUD_WINDOW;
+        if (self.wtImageList.count <= 0)
+        {
+            PRESENTALERT(@"错 误", @"请立刻上传委托协议图片", @"O K", self);
+            return;
+        }
+        if (self.qcImageList.count <= 0)
+        {
+            PRESENTALERT(@"错 误", @"请立刻上传产权证明图片", @"O K", self);
+            return;
+        }
+        if (self.sfImageList.count <= 0)
+        {
+            PRESENTALERT(@"错 误", @"请立刻上传身份证明图片", @"O K", self);
+            return;
+        }
+        SHOWWINDOWHUD(@"正在尝试创建委托，请稍候...");
         [ContractDataPuller pushNewContractWithParam:param Success:^(NSString *att)
         {
-            HIDEHUD_WINDOW;
-            PRESENTALERT(@"提交成功", @"请立刻上传附件", @"O K", self);
+            HIDEALLWINDOWHUD;
+            self.attNo = att;
+            self.uploadProgress = 0;
+            [self uploadPic];
         }
                                          failure:^(NSError *error)
         {
-            HIDEHUD_WINDOW;
-            PRESENTALERT(@"提交错误", @"可能是网络问题，请稍候再试", @"O K", self);
+            HIDEALLWINDOWHUD;
+            PRESENTALERTWITHHANDER(@"失败", @"创建委托失败，请稍后再试！",@"OK", self, ^(UIAlertAction *action)
+                                   {
+                                       [self.navigationController popViewControllerAnimated:YES];
+                                   });
             return;
         }];
     }];
     buttonItem.textAlignment = NSTextAlignmentCenter;
     [section addItem:buttonItem];
     return section;
+}
+
+-(void)uploadPic
+{
+    UIImage *image = nil;
+    NSString *type = @"";
+    NSString *tip = @"";
+    if (self.uploadProgress < self.wtImageList.count)
+    {
+        image = [self.wtImageList objectAtIndex:self.uploadProgress];
+        type = @"wt";
+        tip = [NSString stringWithFormat:@"正在上传委托协议图片第%ld张(共%lu张)，请稍候...", (self.uploadProgress + 1), (unsigned long)self.wtImageList.count];
+    }
+    else if (self.uploadProgress < (self.qcImageList.count + self.wtImageList.count) )
+    {
+        image = [self.qcImageList objectAtIndex:(self.uploadProgress - self.wtImageList.count) ];
+        type = @"qc";
+        tip = [NSString stringWithFormat:@"正在上传产权证明图片第%ld张(共%lu张)，请稍候...", (self.uploadProgress + 1 - self.wtImageList.count), (unsigned long)self.qcImageList.count];
+    }
+    else if (self.uploadProgress < (self.qcImageList.count + self.wtImageList.count + self.sfImageList.count) )
+    {
+        image = [self.sfImageList objectAtIndex:(self.uploadProgress - self.wtImageList.count - self.qcImageList.count) ];
+        type = @"sf";
+        tip = [NSString stringWithFormat:@"正在上传身份证明图片第%ld张(共%lu张)，请稍候...", (self.uploadProgress + 1 - self.wtImageList.count - self.qcImageList.count), (unsigned long)self.sfImageList.count];
+    }
+    else if (self.uploadProgress < (self.qcImageList.count + self.wtImageList.count + self.sfImageList.count + self.qtImageList.count) )
+    {
+        image = [self.qtImageList objectAtIndex:(self.uploadProgress - self.wtImageList.count - self.qcImageList.count - self.qtImageList.count) ];
+        type = @"qt";
+        tip = [NSString stringWithFormat:@"正在上传其他图片第%ld张(共%lu张)，请稍候...", (self.uploadProgress + 1 - self.wtImageList.count - self.qcImageList.count - self.qtImageList.count), (unsigned long)self.qtImageList.count];
+    }
+    else
+    {
+        PRESENTALERTWITHHANDER(@"成功", @"添加委托成功！",@"OK", self, ^(UIAlertAction *action)
+                               {
+                                   [self.navigationController popViewControllerAnimated:YES];
+                               });
+        return;
+    }
+    SHOWWINDOWHUD(tip);
+    [ContractDataPuller pushImage:image No:self.attNo Type:type Success:^(id responseObject)
+    {
+         HIDEALLWINDOWHUD;
+         self.uploadProgress++;
+         [self uploadPic];
+    }
+                          failure:^(NSError *error)
+    {
+        HIDEALLWINDOWHUD;
+        PRESENTALERTWITHHANDER(@"失败", @"上传图片时失败，请稍后再试！",@"OK", self, ^(UIAlertAction *action)
+                               {
+                                   [self.navigationController popViewControllerAnimated:YES];
+                               });
+        return;
+    }];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([alertView.title isEqualToString:@"成功"] && buttonIndex == 0)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if ([alertView.title isEqualToString:@"失败"] && buttonIndex == 0)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)addPhoto

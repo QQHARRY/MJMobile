@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#define SHOWWINDOWHUD(tip) ([UtilFun showWindowHUD:(tip)]);
+#define HIDEALLWINDOWHUD ([UtilFun hideAllWindowHUD]);
 
 #define SHOWHUD_WINDOW ([UtilFun showHUD:[UIApplication sharedApplication].keyWindow]);
 #define HIDEHUD_WINDOW ([UtilFun hideHUD:[UIApplication sharedApplication].keyWindow]);
@@ -57,6 +59,8 @@ alertView.delegate = self;\
 +(void)showHUD:(UIView*)view;
 +(void)hideHUD:(UIView*)view;
 +(void)hideAllHUD:(UIView*)view;
++(void)showWindowHUD:(NSString *)tip;
++(void)hideAllWindowHUD;
 
 +(NSString*)getUDID;
 
