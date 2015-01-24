@@ -17,4 +17,5 @@
 @property(strong,nonatomic)NSString*floor_count;
 @property(strong,nonatomic)NSString*elevator_house;
 
+-(NSArray*)getSerialArr;
 @end

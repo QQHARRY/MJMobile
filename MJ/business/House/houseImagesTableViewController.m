@@ -191,7 +191,6 @@
 
 - (void)createAddImageButton:(RETableViewSection*)section
 {
-    return;
     if (section != nil)
     {
         //__typeof (&*self) __weak weakSelf = self;

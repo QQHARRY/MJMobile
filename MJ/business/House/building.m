@@ -16,4 +16,29 @@
 @synthesize unit_serial;
 @synthesize floor_count;
 @synthesize elevator_house;
+
+
+
+-(NSArray*)getSerialArr
+{
+    NSMutableArray*arr = [[NSMutableArray alloc] init];
+    
+    NSArray* subStrArr = [self.unit_serial componentsSeparatedByString:@"-"];
+    if (subStrArr)
+    {
+        NSString*minFloor = [subStrArr objectAtIndex:0];
+        NSInteger iMinFloor = [minFloor intValue];
+        NSString*maxFloor = [subStrArr objectAtIndex:1];
+        NSInteger iMaxFloor = [maxFloor intValue];
+        
+        for (NSInteger i = iMinFloor; i <= iMaxFloor; i++)
+        {
+            NSString*iStr = [NSString stringWithFormat:@"%ld",(long)i];
+            [arr addObject:iStr];
+        }
+    }
+    
+    return arr;
+}
+
 @end

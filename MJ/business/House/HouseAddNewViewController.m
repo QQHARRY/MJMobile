@@ -215,14 +215,39 @@
         HouseSelectBuildingTableViewController*selCtrl = [HouseSelectBuildingTableViewController initWithDelegate:weakSelf  BuildingsArr:self.curBuilidngsOfCurBuildings AndCompleteHandler:^(building *bld) {
             if (bld)
             {
+                
                 self.buildname.value = bld.build_full_name;
 
                 self.curBuilding = bld;
+                [self.tableView reloadData];
             }
             
         }];
         
         [weakSelf.navigationController pushViewController:selCtrl animated:YES];
+    }];
+    
+    
+    self.house_serect_unit = [[RERadioItem alloc] initWithTitle:@"单元:" value:@"" selectionHandler:^(RERadioItem *item)
+    {
+        [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
+        RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:[self.curBuilding getSerialArr] multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
+                                                           {
+                                                               [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                               
+                                                               self.house_serect_unit.value = selectedItem.title;
+                                                               [item reloadRowWithAnimation:UITableViewRowAnimationNone];
+                                                           }];
+        // Adjust styles
+        optionsController.delegate = weakSelf;
+        optionsController.style = self.teneApplicationAbout.style;
+        if (weakSelf.tableView.backgroundView == nil)
+        {
+            optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
+            optionsController.tableView.backgroundView = nil;
+        }
+        // Push the options controller
+        [weakSelf.navigationController pushViewController:optionsController animated:YES];
     }];
 }
 
@@ -421,9 +446,19 @@
     //单元
     self.house_serect_unit.enabled = NO;
     [self.addInfoSection addItem:self.house_serect_unit];
+    
+    self.house_floor.enabled = NO;
+    [self.addInfoSection addItem:self.house_floor];
+    
+    self.build_floor_count.enabled = NO;
+    [self.addInfoSection addItem:self.build_floor_count];
+    
     //门牌号
     self.house_tablet.enabled = NO;
     [self.addInfoSection addItem:self.house_tablet];
+    
+    
+    
     
     //@property(strong,nonatomic)RETableViewItem* judgementBtn;
     //判重按钮
