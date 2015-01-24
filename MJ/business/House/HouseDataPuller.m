@@ -389,7 +389,7 @@
 
 +(void)pushImage:(UIImage*)image ToHouse:(HouseDetail *)dtl HouseParticulars:(HouseParticulars*)ptcl ImageType:(NSString*)imgType Success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    NSData*data = UIImageJPEGRepresentation(image, 1);
+    NSData*data = UIImageJPEGRepresentation(image, 0.5);
     NSDictionary *parameters = @{@"job_no":[person me].job_no,
                                  @"acc_password":[person me].password,
                                  @"DeviceID":[UtilFun getUDID],
