@@ -18,7 +18,9 @@
 #define PRESENTALERT(title,msg,action,sender)\
 if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)\
 {\
-    [UtilFun presentPopViewControllerWithTitle:title Message:msg SimpleAction:action Sender:sender];\
+    id tmpSender = sender;\
+    if(sender == nil) tmpSender = self;\
+    [UtilFun presentPopViewControllerWithTitle:title Message:msg SimpleAction:action Sender:tmpSender];\
 }\
 else\
 {\

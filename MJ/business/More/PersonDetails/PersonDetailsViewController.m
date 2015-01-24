@@ -314,40 +314,49 @@
          [person me].obj_mobile = phoneNumMobile;
          [person me].acc_remarks = chSign;
          [person me].acc_content = chInfo;
-         HIDEHUD(self.view);
+         
+         
+         
+         if (self.photoChanged)
+         {
+             self.photoChanged = NO;
+             
+             UIImage*image = [self.myPhoto backgroundImageForState:UIControlStateNormal];
+             NSData*data = UIImageJPEGRepresentation(image, 0.5);
+             
+             NSDictionary *parameters = @{@"job_no":psn.job_no,
+                                          @"acc_password": psn.password,
+                                          @"DeviceID" : [UtilFun getUDID],
+                                          };
+             AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+             [manager POST:[NSString stringWithFormat:@"%@%@", SERVER_URL, EDIT_PERSON_PHOTO] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+              {
+                  [formData appendPartWithFormData:data name:@"photo"];
+              } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                  HIDEHUD(self.view);
+                  PRESENTALERT(@"修改成功", nil, nil, nil);
+              } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                  HIDEHUD(self.view);
+                  PRESENTALERT(@"修改失败", nil, nil, nil);
+              }];
+             
+         }
+         else
+         {
+             PRESENTALERT(@"修改成功", nil, nil, nil);
+             HIDEHUD(self.view);
+         }
+         
          
      }
                             failure:^(NSError *error)
      {
          HIDEHUD(self.view);
          
-         
+         PRESENTALERT(@"修改失败", error.localizedDescription, nil, nil);
      }];
     
-    if (self.photoChanged)
-    {
-        self.photoChanged = NO;
-        SHOWHUD(self.view);
-        UIImage*image = [self.myPhoto backgroundImageForState:UIControlStateNormal];
-        NSData*data = UIImageJPEGRepresentation(image, 0.5);
-        
-        NSDictionary *parameters = @{@"job_no":psn.job_no,
-                                     @"acc_password": psn.password,
-                                     @"DeviceID" : [UtilFun getUDID],
-                                     };
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager POST:[NSString stringWithFormat:@"%@%@", SERVER_URL, EDIT_PERSON_PHOTO] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
-        {
-            [formData appendPartWithFormData:data name:@"photo"];
-        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            HIDEHUD(self.view);
-            NSLog(@"success");
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            HIDEHUD(self.view);
-            NSLog(@"failed");
-        }];
- 
-    }
+    
     
 }
 @end
