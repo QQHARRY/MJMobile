@@ -28,4 +28,5 @@
 
 
 +(void)pullBuildingByContidion:(NSDictionary *)condition Success:(void (^)(NSArray*buildingsArr))success failure:(void (^)(NSError *error))failure;
++(void)pullBuildingDetailsByContidion:(NSString *)buildingNO Success:(void (^)(NSArray*arr))success failure:(void (^)(NSError *error))failure;
 @end

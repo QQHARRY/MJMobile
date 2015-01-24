@@ -317,6 +317,33 @@
      }];
 }
 
++(void)pullBuildingDetailsByContidion:(NSString *)buildingNO Success:(void (^)(NSArray*arr))success failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *parameters = @{@"job_no":[person me].job_no,
+                                 @"acc_password":[person me].password,
+                                 @"buildings_dict_no":buildingNO,
+                                 };
+    
+    
+    [NetWorkManager PostWithApiName:API_HOUSE_GET_BULDINGS_DETAILS parameters:parameters success:
+     ^(id responseObject)
+     {
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         {
+             NSArray*arr = [[NSMutableArray alloc] init];
+             
+             
+             success(arr);
+         }
+         
+     }
+                            failure:^(NSError *error)
+     {
+         failure(error);
+     }];
+}
+
 +(void)pushImage:(UIImage*)image ToHouse:(HouseDetail *)dtl HouseParticulars:(HouseParticulars*)ptcl ImageType:(NSString*)imgType Success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
     NSData*data = UIImageJPEGRepresentation(image, 1);

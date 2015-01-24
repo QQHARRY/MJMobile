@@ -206,7 +206,7 @@
 
 -(void)prepareTeneApplicationSectionItemsStep2ByTenenType:(NSString*)type
 {
-    __typeof (&*self) __weak weakSelf = self;
+    //__typeof (&*self) __weak weakSelf = self;
     if ([type  isEqualToString:@"商铺"])
     {
         [self.teneApplicationAbout removeItem:self.room_num];
@@ -329,7 +329,6 @@
         [self.teneApplicationAbout addItem:self.balcony_num];
         [self.teneApplicationAbout addItem:self.house_driect];
         
-        self.house_rank.title = @"123123123";
         [self.teneApplicationAbout removeItem:self.house_rank];
         [self.teneApplicationAbout removeItem:self.house_depth];
         [self.teneApplicationAbout removeItem:self.floor_height];
@@ -350,11 +349,13 @@
     //楼盘
     [self.addInfoSection addItem:self.buildings_name];
     //区域
+    self.urbanname.enabled = NO;
     [self.addInfoSection addItem:self.urbanname];
     //片区
+    self.areaname.enabled = NO;
     [self.addInfoSection addItem:self.areaname];
     //地址
-    
+    self.buildings_address.enabled = NO;
     [self.addInfoSection addItem:self.buildings_address];
     //栋座
     [self.addInfoSection addItem:self.buildname];
