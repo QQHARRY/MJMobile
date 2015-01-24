@@ -18,7 +18,8 @@
 @property (strong, readwrite, nonatomic) RETableViewManager *manager;
 
 @property (strong, readwrite, nonatomic) RETableViewSection *signSection;
-@property (strong, readwrite, nonatomic) RETextItem *customerItem;
+//@property (strong, readwrite, nonatomic) RETextItem *customerItem;
+@property (strong, readwrite, nonatomic) RERadioItem *customerItem;
 @property (strong, readwrite, nonatomic) REDateTimeItem *timeItem;
 @property (strong, readwrite, nonatomic) RERadioItem *personItem;
 @property (strong, readwrite, nonatomic) RERadioItem *roomItem;
@@ -73,7 +74,15 @@
 
     RETableViewSection *section = [RETableViewSection sectionWithHeaderTitle:@"签约信息"];
     [self.manager addSection:section];
-    self.customerItem = [RETextItem itemWithTitle:@"客户" value:nil placeholder:@"请输入客户ID"];
+//    self.customerItem = [RETextItem itemWithTitle:@"客户" value:nil placeholder:@"请输入客户ID"];
+//    [section addItem:self.customerItem];
+    self.customerItem = [RERadioItem itemWithTitle:@"客户" value:@"" selectionHandler:^(RERadioItem *item)
+                          {
+                              [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
+                              CustomerListFilterController *vc = [[CustomerListFilterController alloc] initWithStyle:UITableViewStyleGrouped];
+//                              vc.selectResultDelegate = self;
+                              [weakSelf.navigationController pushViewController:vc animated:YES];
+                          }];
     [section addItem:self.customerItem];
     self.timeItem = [REDateTimeItem itemWithTitle:@"签约日期" value:nil placeholder:nil format:@"yyyy-MM-dd" datePickerMode:UIDatePickerModeDate];
     [section addItem:self.timeItem];

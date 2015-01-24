@@ -33,6 +33,23 @@
      }];
 }
 
++(void)pullCustomListWithParam:(NSDictionary *)param Success:(void (^)(NSArray *customList))success failure:(void (^)(NSError *error))failure
+{
+    [NetWorkManager PostWithApiName:API_CLIENT_LIST parameters:param success:^(id responseObject)
+     {
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         {
+             NSArray *src = [resultDic objectForKey:@"ClientNode"];
+             success(src);
+         }
+     }
+                            failure:^(NSError *error)
+     {
+         failure(error);
+     }];
+}
+
 +(void)pullSignConditionListDataSuccess:(void (^)(NSDictionary *conditionSrc))success failure:(void (^)(NSError *error))failure
 {
     NSMutableDictionary *param = [NSMutableDictionary dictionary];

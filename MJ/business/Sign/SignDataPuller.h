@@ -17,5 +17,6 @@
 +(void)pushNewSignWithParam:(NSDictionary *)param Success:(void (^)(NSString *signNo))success failure:(void (^)(NSError *error))failure;
 //+(void)pullCustomerListDataSuccess:(void (^)(NSArray *areaList))success failure:(void (^)(NSError *error))failure;
 +(void)pullSignConditionListDataSuccess:(void (^)(NSDictionary *conditionSrc))success failure:(void (^)(NSError *error))failure;
++(void)pullCustomListWithParam:(NSDictionary *)param Success:(void (^)(NSArray *customList))success failure:(void (^)(NSError *error))failure;
 
 @end

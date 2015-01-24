@@ -87,6 +87,8 @@
 #define API_SIGN_CONDITION @"business/getAllPersonRoomList"
 // 42获取已占用签约室和签约人以及时段列 表
 #define API_SIGN_CONDITION_BUSY @"business/getSigningPersonRoomList"
+// 40.获取客户列表
+#define API_CLIENT_LIST @"business/getClientList"
 
 
 //字典表
