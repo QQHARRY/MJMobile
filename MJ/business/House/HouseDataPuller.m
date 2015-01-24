@@ -364,24 +364,31 @@
                                  @"obj_type":@"房源",
                                  @"obj_no":ptcl.buildings_picture,
                                  @"imageType":imgType,
-                                 @"imagedata":@"",
+//                                 @"imagedata":@"",
                                  };
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager POST:[NSString stringWithFormat:@"%@%@", SERVER_URL, ADD_IMAGE] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            [formData appendPartWithFormData:data name:@"imagedata"];
+        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"Success: %@", responseObject);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+        }];
     
-    
-    [NetWorkManager PostImage:image WithApiName:ADD_IMAGE parameters:parameters success:^(id responseObject)
-    {
-        
-        NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-        if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
-        {
-            
-            
-            
-            success(nil);
-        }
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+//    [NetWorkManager PostImage:data WithApiName:ADD_IMAGE parameters:parameters success:^(id responseObject)
+//    {
+//        
+//        NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+//        if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+//        {
+//            
+//            
+//            
+//            success(nil);
+//        }
+//    } failure:^(NSError *error) {
+//        failure(error);
+//    }];
     
 //    [NetWorkManager PostImage:image WithApiName:ADD_IMAGE parameters:parameters success:
 //     ^(id responseObject)

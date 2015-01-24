@@ -145,14 +145,8 @@
         else
         {
             NSString*strUrl = [SERVER_ADD stringByAppendingString:photoUrl];
-            [cell.myPhoto getImageWithURL:[NSURL URLWithString:strUrl] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                cell.myPhoto.image = image;
-                
-                
-            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                
-                
-            }];
+            
+            [cell.myPhoto setImageWithURL:[NSURL URLWithString:strUrl]];
         }
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         return cell;

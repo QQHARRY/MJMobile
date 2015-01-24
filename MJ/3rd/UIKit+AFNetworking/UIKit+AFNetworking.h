@@ -1,6 +1,6 @@
 // UIKit+AFNetworking.h
 //
-// Copyright (c) 2014 AFNetworking (http://afnetworking.com/)
+// Copyright (c) 2013 AFNetworking (http://afnetworking.com/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -33,5 +33,6 @@
     #import "UIImageView+AFNetworking.h"
     #import "UIKit+AFNetworking.h"
     #import "UIProgressView+AFNetworking.h"
+    #import "UIRefreshControl+AFNetworking.h"
     #import "UIWebView+AFNetworking.h"
 #endif /* _UIKIT_AFNETWORKING_ */

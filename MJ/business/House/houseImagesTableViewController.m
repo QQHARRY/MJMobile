@@ -68,16 +68,18 @@
                 
                 NSString *imgStr = [SERVER_ADD stringByAppendingString:imgName];
                 UIImageView* imageV = [[UIImageView alloc] init];
-                [imageV getImageWithURL:[NSURL URLWithString:imgStr] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
-                 {
-                    item.image = image;
-                    
-                    item.cellHeight = image.size.height * (self.view.frame.size.width-30)/image.size.width;
-                    
-                } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                    
-                    
-                }];
+                // TODO: 刘洋 我进行了替换
+                [imageV setImageWithURL:[NSURL URLWithString:imgStr]];
+//                [imageV getImageWithURL:[NSURL URLWithString:imgStr] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
+//                 {
+//                    item.image = image;
+//                    
+//                    item.cellHeight = image.size.height * (self.view.frame.size.width-30)/image.size.width;
+//                    
+//                } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+//                    
+//                    
+//                }];
             }
         }
         
@@ -104,16 +106,18 @@
                 
                 NSString *imgStr = [SERVER_ADD stringByAppendingString:imgName];
                 UIImageView* imageV = [[UIImageView alloc] init];
-                [imageV getImageWithURL:[NSURL URLWithString:imgStr] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
-                 {
-                     item.image = image;
-                     
-                     item.cellHeight = image.size.height * (self.view.frame.size.width-30)/image.size.width;
-                     
-                 } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                     
-                     
-                 }];
+                // TODO: 刘洋 我进行了替换
+                [imageV setImageWithURL:[NSURL URLWithString:imgStr]];
+//                [imageV getImageWithURL:[NSURL URLWithString:imgStr] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
+//                 {
+//                     item.image = image;
+//                     
+//                     item.cellHeight = image.size.height * (self.view.frame.size.width-30)/image.size.width;
+//                     
+//                 } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+//                     
+//                     
+//                 }];
             }
         }
         
@@ -141,17 +145,19 @@
                 
                 NSString *imgStr = [SERVER_ADD stringByAppendingString:imgName];
                 UIImageView* imageV = [[UIImageView alloc] init];
-                [imageV getImageWithURL:[NSURL URLWithString:imgStr] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
-                 {
-                     item.image = image;
-                     
-                     item.cellHeight = image.size.height * (self.view.frame.size.width-30)/image.size.width;
-                     
-                     
-                 } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                     
-                     
-                 }];
+                // TODO: 刘洋 我进行了替换
+                [imageV setImageWithURL:[NSURL URLWithString:imgStr]];
+//                [imageV getImageWithURL:[NSURL URLWithString:imgStr] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
+//                 {
+//                     item.image = image;
+//                     
+//                     item.cellHeight = image.size.height * (self.view.frame.size.width-30)/image.size.width;
+//                     
+//                     
+//                 } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+//                     
+//                     
+//                 }];
             }
         }
         
