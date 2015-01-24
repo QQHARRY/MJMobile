@@ -1,12 +1,12 @@
 //
-//  CustomerListFilterController.m
+//  ClientFilterController.m
 //  RETableViewManagerExample
 //
 //  Created by Roman Efimov on 2/28/13.
 //  Copyright (c) 2013 Roman Efimov. All rights reserved.
 //
 
-#import "CustomerListFilterController.h"
+#import "ClientFilterController.h"
 #import "dictionaryManager.h"
 #import "Macro.h"
 #import "SignDataPuller.h"
@@ -15,7 +15,7 @@
 #import "AppDelegate.h"
 #import "person.h"
 
-@interface CustomerListFilterController ()
+@interface ClientFilterController ()
 
 @property (strong, readwrite, nonatomic) RETableViewManager *manager;
 
@@ -30,7 +30,7 @@
 
 @end
 
-@implementation CustomerListFilterController
+@implementation ClientFilterController
 
 - (void)viewDidLoad
 {
@@ -87,6 +87,7 @@
         if (self.sales)
         {
             [param setValue:self.sales.job_no forKey:@"client_owner_no"];
+            [param setValue:self.sales.dept_no forKey:@"dept_current_no"];
         }
         if (self.startTimeItem.value)
         {

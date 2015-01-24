@@ -79,7 +79,7 @@
     self.customerItem = [RERadioItem itemWithTitle:@"客户" value:@"" selectionHandler:^(RERadioItem *item)
                           {
                               [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
-                              CustomerListFilterController *vc = [[CustomerListFilterController alloc] initWithStyle:UITableViewStyleGrouped];
+                              ClientFilterController *vc = [[ClientFilterController alloc] initWithStyle:UITableViewStyleGrouped];
 //                              vc.selectResultDelegate = self;
                               [weakSelf.navigationController pushViewController:vc animated:YES];
                           }];

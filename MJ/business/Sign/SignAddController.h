@@ -10,7 +10,7 @@
 #import "RETableViewManager.h"
 #import "RETableViewOptionsController.h"
 #import "HouseViewController.h"
-#import "CustomerListFilterController.h"
+#import "ClientFilterController.h"
 
 @interface SignAddController : UITableViewController
     <RETableViewManagerDelegate>

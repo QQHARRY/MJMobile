@@ -171,7 +171,12 @@
 		B94445841A62986B0033E998 /* ContractTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B944457E1A62986B0033E998 /* ContractTableViewController.xib */; };
 		B944458A1A62A6860033E998 /* SignAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94445871A62A6860033E998 /* SignAddController.m */; };
 		B944458B1A62A6860033E998 /* SignDataPuller.m in Sources */ = {isa = PBXBuildFile; fileRef = B94445891A62A6860033E998 /* SignDataPuller.m */; };
-		B95BEC471A73A36D00C2FB90 /* CustomerListFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95BEC461A73A36D00C2FB90 /* CustomerListFilterController.m */; };
+		B95BEC471A73A36D00C2FB90 /* ClientFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95BEC461A73A36D00C2FB90 /* ClientFilterController.m */; };
+		B95BEC4B1A73B55200C2FB90 /* ClientTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95BEC491A73B55200C2FB90 /* ClientTableViewController.m */; };
+		B95BEC4C1A73B55200C2FB90 /* ClientTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B95BEC4A1A73B55200C2FB90 /* ClientTableViewController.xib */; };
+		B95BEC4F1A73B59C00C2FB90 /* ClientFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = B95BEC4E1A73B59C00C2FB90 /* ClientFilter.m */; };
+		B95BEC581A73B6FF00C2FB90 /* ClientDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B95BEC561A73B6FF00C2FB90 /* ClientDetailCell.m */; };
+		B95BEC591A73B6FF00C2FB90 /* ClientDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B95BEC571A73B6FF00C2FB90 /* ClientDetailCell.xib */; };
 		B98BD4A31A603B51003A35BE /* HouseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A11A603B51003A35BE /* HouseTableViewController.m */; };
 		B98BD4A41A603B51003A35BE /* HouseTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B98BD4A21A603B51003A35BE /* HouseTableViewController.xib */; };
 		B98BD4A71A604045003A35BE /* HouseDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A61A604045003A35BE /* HouseDetail.m */; };
@@ -559,8 +564,16 @@
 		B94445871A62A6860033E998 /* SignAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignAddController.m; sourceTree = "<group>"; };
 		B94445881A62A6860033E998 /* SignDataPuller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignDataPuller.h; sourceTree = "<group>"; };
 		B94445891A62A6860033E998 /* SignDataPuller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignDataPuller.m; sourceTree = "<group>"; };
-		B95BEC451A73A36D00C2FB90 /* CustomerListFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerListFilterController.h; sourceTree = "<group>"; };
-		B95BEC461A73A36D00C2FB90 /* CustomerListFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerListFilterController.m; sourceTree = "<group>"; };
+		B95BEC451A73A36D00C2FB90 /* ClientFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientFilterController.h; sourceTree = "<group>"; };
+		B95BEC461A73A36D00C2FB90 /* ClientFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientFilterController.m; sourceTree = "<group>"; };
+		B95BEC481A73B55200C2FB90 /* ClientTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientTableViewController.h; sourceTree = "<group>"; };
+		B95BEC491A73B55200C2FB90 /* ClientTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientTableViewController.m; sourceTree = "<group>"; };
+		B95BEC4A1A73B55200C2FB90 /* ClientTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClientTableViewController.xib; sourceTree = "<group>"; };
+		B95BEC4D1A73B59C00C2FB90 /* ClientFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientFilter.h; sourceTree = "<group>"; };
+		B95BEC4E1A73B59C00C2FB90 /* ClientFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientFilter.m; sourceTree = "<group>"; };
+		B95BEC551A73B6FF00C2FB90 /* ClientDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientDetailCell.h; sourceTree = "<group>"; };
+		B95BEC561A73B6FF00C2FB90 /* ClientDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientDetailCell.m; sourceTree = "<group>"; };
+		B95BEC571A73B6FF00C2FB90 /* ClientDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClientDetailCell.xib; sourceTree = "<group>"; };
 		B98BD4A01A603B51003A35BE /* HouseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseTableViewController.h; sourceTree = "<group>"; };
 		B98BD4A11A603B51003A35BE /* HouseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseTableViewController.m; sourceTree = "<group>"; };
 		B98BD4A21A603B51003A35BE /* HouseTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HouseTableViewController.xib; sourceTree = "<group>"; };
@@ -1212,8 +1225,16 @@
 		B94445851A62A6860033E998 /* Sign */ = {
 			isa = PBXGroup;
 			children = (
-				B95BEC451A73A36D00C2FB90 /* CustomerListFilterController.h */,
-				B95BEC461A73A36D00C2FB90 /* CustomerListFilterController.m */,
+				B95BEC551A73B6FF00C2FB90 /* ClientDetailCell.h */,
+				B95BEC561A73B6FF00C2FB90 /* ClientDetailCell.m */,
+				B95BEC571A73B6FF00C2FB90 /* ClientDetailCell.xib */,
+				B95BEC4D1A73B59C00C2FB90 /* ClientFilter.h */,
+				B95BEC4E1A73B59C00C2FB90 /* ClientFilter.m */,
+				B95BEC481A73B55200C2FB90 /* ClientTableViewController.h */,
+				B95BEC491A73B55200C2FB90 /* ClientTableViewController.m */,
+				B95BEC4A1A73B55200C2FB90 /* ClientTableViewController.xib */,
+				B95BEC451A73A36D00C2FB90 /* ClientFilterController.h */,
+				B95BEC461A73A36D00C2FB90 /* ClientFilterController.m */,
 				B94445861A62A6860033E998 /* SignAddController.h */,
 				B94445871A62A6860033E998 /* SignAddController.m */,
 				B94445881A62A6860033E998 /* SignDataPuller.h */,
@@ -1679,7 +1700,9 @@
 				B98BD4A41A603B51003A35BE /* HouseTableViewController.xib in Resources */,
 				4A5665441A4C025100C3BA22 /* MessageTableViewController.xib in Resources */,
 				B94445711A6282510033E998 /* AppointDetailCell.xib in Resources */,
+				B95BEC591A73B6FF00C2FB90 /* ClientDetailCell.xib in Resources */,
 				4ABC22311A3C88000017FD94 /* AlertDetailsTableViewCell.xib in Resources */,
+				B95BEC4C1A73B55200C2FB90 /* ClientTableViewController.xib in Resources */,
 				4AD7946A1A208F4400DEC779 /* Images.xcassets in Resources */,
 				4A3A2F321A45113200AA8A70 /* myBriefTableViewCell.xib in Resources */,
 				B93B143E1A62539D00121133 /* FollowTableViewController.xib in Resources */,
@@ -1708,8 +1731,9 @@
 				4AD795521A218C4A00DEC779 /* UIRefreshControl+AFNetworking.m in Sources */,
 				B98BD5851A609185003A35BE /* RETableViewOptionsController.m in Sources */,
 				4A40C2111A401DEB00944AB2 /* ContactsListTableViewCell.m in Sources */,
-				B95BEC471A73A36D00C2FB90 /* CustomerListFilterController.m in Sources */,
+				B95BEC471A73A36D00C2FB90 /* ClientFilterController.m in Sources */,
 				4A8D01E71A36C9C100EA59EA /* person.m in Sources */,
+				B95BEC581A73B6FF00C2FB90 /* ClientDetailCell.m in Sources */,
 				B98BD57E1A609185003A35BE /* RECommonFunctions.m in Sources */,
 				4A8D01F61A36F9BC00EA59EA /* alertManager.m in Sources */,
 				B98BD4C51A60747A003A35BE /* MJRefreshBaseView.m in Sources */,
@@ -1800,6 +1824,7 @@
 				4A5137481A3B18C1007B504B /* bizManager.m in Sources */,
 				B98BD5891A609185003A35BE /* NSError+REValidation.m in Sources */,
 				4A6865A91A7375EF005394DD /* building.m in Sources */,
+				B95BEC4F1A73B59C00C2FB90 /* ClientFilter.m in Sources */,
 				B98BD56F1A609185003A35BE /* REBoolItem.m in Sources */,
 				4A9D02061A60544900600BA0 /* Sqlite3DataPersistence.m in Sources */,
 				B98BD5711A609185003A35BE /* REDateTimeItem.m in Sources */,
@@ -1895,6 +1920,7 @@
 				4A40C2211A4175BC00944AB2 /* petionDetailsItemTableViewCell.m in Sources */,
 				4A20DAE11A6A2B85002E68EC /* BuildingsTableCell.m in Sources */,
 				4AD7955C1A218DF100DEC779 /* GTCheckBox.m in Sources */,
+				B95BEC4B1A73B55200C2FB90 /* ClientTableViewController.m in Sources */,
 				4A3A2F311A45113200AA8A70 /* myBriefTableViewCell.m in Sources */,
 				4A9D024E1A611F7400600BA0 /* HouseParticularTableViewController.m in Sources */,
 				4A5D23B51A48522100546698 /* shopRootTableViewController.m in Sources */,

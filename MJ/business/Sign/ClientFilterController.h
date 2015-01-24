@@ -1,5 +1,5 @@
 //
-//  CustomerListFilterController.h
+//  ClientFilterController.h
 //  RETableViewManagerExample
 //
 //  Created by Roman Efimov on 2/28/13.
@@ -12,7 +12,7 @@
 #import "CustomerViewController.h"
 #import "ContactListTableViewController.h"
 
-@interface CustomerListFilterController : UITableViewController
+@interface ClientFilterController : UITableViewController
     <RETableViewManagerDelegate, contacSelection>
 
 //@property (nonatomic, weak) CustomerViewController *hvc;
