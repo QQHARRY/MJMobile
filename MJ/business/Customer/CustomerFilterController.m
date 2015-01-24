@@ -31,6 +31,7 @@
 
 @property (strong, readwrite, nonatomic) RETableViewSection *commitSection;
 
+@property (nonatomic, strong) person *sales;
 @property (nonatomic, strong) NSArray *requirementDictList;
 @property (nonatomic, strong) NSArray *areaDictList;
 
@@ -273,6 +274,14 @@
             [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
             filter.end_date = [dateFormatter stringFromDate:self.endTimeItem.value];
         }
+        if (self.sales)
+        {
+            filter.user_no = self.sales.job_no;
+        }
+        else
+        {
+            filter.user_no = @"";
+        }
         [self.navigationController popViewControllerAnimated:YES];
     }];
     buttonItem.textAlignment = NSTextAlignmentCenter;
@@ -285,9 +294,11 @@
     person *p = [curSelection lastObject];
     if (!p || ![p isKindOfClass:[person class]])
     {
+        self.sales = nil;
         return;
     }
     self.salesNameItem.value = p.name_full;
+    self.sales = p;
     [self.tableView reloadData];
 }
 
