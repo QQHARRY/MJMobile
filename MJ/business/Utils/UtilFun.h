@@ -68,4 +68,6 @@ alertView.delegate = self;\
 +(BOOL)isIphoneAboutHardWare;
 +(BOOL)isIphoneAboutUI;
 
++(UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize;
+
 @end

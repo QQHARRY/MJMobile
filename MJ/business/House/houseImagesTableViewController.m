@@ -12,6 +12,7 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "HouseDataPuller.h"
+#import "UtilFun.h"
 
 
 #define SECTION_HEIGHT 22
@@ -63,23 +64,24 @@
             for (NSString*imgName in arr)
             {
                 RETableViewItem*item = [[RETableViewItem alloc] init];
+                item.cellHeight = self.view.frame.size.width;
                 //item.cellHeight = 200;
                 [self.xqtSection addItem:item];
                 
                 NSString *imgStr = [SERVER_ADD stringByAppendingString:imgName];
                 UIImageView* imageV = [[UIImageView alloc] init];
-                // TODO: 刘洋 我进行了替换
-                [imageV setImageWithURL:[NSURL URLWithString:imgStr]];
-//                [imageV getImageWithURL:[NSURL URLWithString:imgStr] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
-//                 {
-//                    item.image = image;
-//                    
-//                    item.cellHeight = image.size.height * (self.view.frame.size.width-30)/image.size.width;
-//                    
-//                } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-//                    
-//                    
-//                }];
+                [imageV getImageWithURL:[NSURL URLWithString:imgStr] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
+                 {
+                     CGFloat scale =  (self.view.frame.size.width-30)/image.size.width;
+                     UIImage*covertedImg = [UtilFun scaleImage:image toScale:scale];
+                     item.cellHeight = image.size.height * scale;
+                     item.image = covertedImg;
+                     [item reloadRowWithAnimation:UITableViewRowAnimationRight];
+                     
+                 } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                     
+                     
+                }];
             }
         }
         
@@ -106,18 +108,18 @@
                 
                 NSString *imgStr = [SERVER_ADD stringByAppendingString:imgName];
                 UIImageView* imageV = [[UIImageView alloc] init];
-                // TODO: 刘洋 我进行了替换
-                [imageV setImageWithURL:[NSURL URLWithString:imgStr]];
-//                [imageV getImageWithURL:[NSURL URLWithString:imgStr] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
-//                 {
-//                     item.image = image;
-//                     
-//                     item.cellHeight = image.size.height * (self.view.frame.size.width-30)/image.size.width;
-//                     
-//                 } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-//                     
-//                     
-//                 }];
+                [imageV getImageWithURL:[NSURL URLWithString:imgStr] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
+                 {
+                     CGFloat scale =  (self.view.frame.size.width-30)/image.size.width;
+                     UIImage*covertedImg = [UtilFun scaleImage:image toScale:scale];
+                     item.cellHeight = image.size.height * scale;
+                     item.image = covertedImg;
+                     [item reloadRowWithAnimation:UITableViewRowAnimationRight];
+                     
+                 } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                     
+                     
+                 }];
             }
         }
         
@@ -145,19 +147,19 @@
                 
                 NSString *imgStr = [SERVER_ADD stringByAppendingString:imgName];
                 UIImageView* imageV = [[UIImageView alloc] init];
-                // TODO: 刘洋 我进行了替换
-                [imageV setImageWithURL:[NSURL URLWithString:imgStr]];
-//                [imageV getImageWithURL:[NSURL URLWithString:imgStr] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
-//                 {
-//                     item.image = image;
-//                     
-//                     item.cellHeight = image.size.height * (self.view.frame.size.width-30)/image.size.width;
-//                     
-//                     
-//                 } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-//                     
-//                     
-//                 }];
+
+                [imageV getImageWithURL:[NSURL URLWithString:imgStr] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
+                 {
+                     CGFloat scale =  (self.view.frame.size.width-30)/image.size.width;
+                     UIImage*covertedImg = [UtilFun scaleImage:image toScale:scale];
+                     item.cellHeight = image.size.height * scale;
+                     item.image = covertedImg;
+                     [item reloadRowWithAnimation:UITableViewRowAnimationRight];
+                     
+                 } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                     
+                     
+                 }];
             }
         }
         
@@ -288,11 +290,41 @@
             }
         }
         
-        
+        SHOWHUD_WINDOW;
         [HouseDataPuller pushImage:image ToHouse:self.houseDtl HouseParticulars:self.housePtcl ImageType:strImageFor Success:^(id responseObject) {
             
+            RETableViewItem*item = [[RETableViewItem alloc] init];
+            CGFloat scale =  (self.view.frame.size.width-30)/image.size.width;
+            UIImage*covertedImg = [UtilFun scaleImage:image toScale:scale];
+            item.cellHeight = image.size.height * scale;
+            item.image = covertedImg;
+            
+            
+            if (self.curSection == self.hxtSection)
+            {
+                [self.hxtSection removeLastItem];
+                [self.hxtSection addItem:item ];
+                [self createAddImageButton:self.hxtSection];
+            }
+            else if (self.curSection == self.sntSection)
+            {
+                [self.sntSection removeLastItem];
+                [self.sntSection addItem:item];
+                [self createAddImageButton:self.sntSection];
+            }
+            else if (self.curSection == self.xqtSection)
+            {
+                [self.xqtSection removeLastItem];
+                [self.xqtSection addItem:item];
+                [self createAddImageButton:self.xqtSection];
+            }
+
+            [self.tableView reloadData];
+            
+            HIDEHUD_WINDOW;
         } failure:^(NSError *error) {
             
+            HIDEHUD_WINDOW;
         }];
         
         //save image to album

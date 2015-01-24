@@ -402,9 +402,9 @@
         [manager POST:[NSString stringWithFormat:@"%@%@", SERVER_URL, ADD_IMAGE] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             [formData appendPartWithFormData:data name:@"imagedata"];
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"Success: %@", responseObject);
+            success(nil);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"Error: %@", error);
+            failure(nil);
         }];
     
 //    [NetWorkManager PostImage:data WithApiName:ADD_IMAGE parameters:parameters success:^(id responseObject)

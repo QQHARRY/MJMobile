@@ -307,9 +307,6 @@
     [self.teneApplicationAbout removeItem:self.floor_count];
     if ([type  isEqualToString:@"商铺"])
     {
-        
-        
-        
         [self.teneApplicationAbout addItem:self.house_rank];
         [self.teneApplicationAbout addItem:self.house_depth];
         [self.teneApplicationAbout addItem:self.floor_height];
@@ -319,40 +316,27 @@
     }
     else if([type  isEqualToString:@"商住"])
     {
-
-        
         [self.teneApplicationAbout addItem:self.house_rank];
-        
         [self.teneApplicationAbout addItem:self.floor_height];
         [self.teneApplicationAbout addItem:self.floor_count];
 
     }
     else if([type  isEqualToString:@"厂房"])
     {
-
-        
         [self.teneApplicationAbout addItem:self.house_rank];
         [self.teneApplicationAbout addItem:self.floor_count];
 
     }
     else if([type  isEqualToString:@"仓库"])
     {
-
-        
-        
         [self.teneApplicationAbout addItem:self.house_rank];
-
         [self.teneApplicationAbout addItem:self.floor_height];
         [self.teneApplicationAbout addItem:self.floor_count];
 
     }
     else if([type  isEqualToString:@"地皮"])
     {
-
-        
-        
         [self.teneApplicationAbout addItem:self.house_rank];
-
         [self.teneApplicationAbout addItem:self.floor_height];
         [self.teneApplicationAbout addItem:self.floor_count];
 
@@ -360,9 +344,6 @@
     else if([type  isEqualToString:@"车位"])
     {
         [self.floor_height setTitle:@"宽度"];
-
-        
-        
         [self.teneApplicationAbout addItem:self.house_rank];
         [self.teneApplicationAbout addItem:self.house_depth];
         [self.teneApplicationAbout addItem:self.floor_height];

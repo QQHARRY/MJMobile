@@ -42,7 +42,7 @@
     [super viewDidLoad];
     
     self.refreshAfterEdit = NO;
-    self.houseImageCtrl = [[houseImagesTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    //self.houseImageCtrl = [[houseImagesTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     self.manager = [[RETableViewManager alloc] initWithTableView:self.tableView delegate:self];
     [self createSections];
     [self initDic];
@@ -1483,6 +1483,9 @@
     __typeof (&*self) __weak weakSelf = self;
     self.watchHouseImages = [RETableViewItem itemWithTitle:@"点击查看图片" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                                    {
+                                       self.houseImageCtrl = [[houseImagesTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                                       self.houseImageCtrl.housePtcl = self.housePtcl;
+                                       self.houseImageCtrl.houseDtl = self.houseDtl;
                                        
                                        [weakSelf.navigationController pushViewController:self.houseImageCtrl animated:YES];
                                    }];
@@ -1573,8 +1576,7 @@
     [HouseDataPuller pullHouseParticulars:self.houseDtl Success:^(HouseParticulars*ptcl)
      {
          self.housePtcl = ptcl;
-         self.houseImageCtrl.housePtcl = ptcl;
-         self.houseImageCtrl.houseDtl = self.houseDtl;
+         
          [self reloadUI];
          
          HIDEHUD_WINDOW;
