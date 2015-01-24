@@ -10,10 +10,13 @@
 #import "RETableViewManager.h"
 #import "RETableViewOptionsController.h"
 #import "CustomerViewController.h"
+#import "ContactListTableViewController.h"
 
 @interface CustomerFilterController : UITableViewController
-    <RETableViewManagerDelegate>
+    <RETableViewManagerDelegate, contacSelection>
 
 @property (nonatomic, weak) CustomerViewController *hvc;
+
+-(void)returnSelection:(NSArray*)curSelection;
 
 @end

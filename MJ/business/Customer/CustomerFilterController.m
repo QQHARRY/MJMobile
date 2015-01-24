@@ -12,6 +12,8 @@
 #import "CustomerDataPuller.h"
 #import "UtilFun.h"
 #import "HouseDataPuller.h"
+#import "AppDelegate.h"
+#import "person.h"
 
 @interface CustomerFilterController ()
 
@@ -20,6 +22,7 @@
 @property (strong, readwrite, nonatomic) RETableViewSection *exactQuerySection;
 @property (strong, readwrite, nonatomic) RERadioItem *belongAreaItem;
 @property (strong, readwrite, nonatomic) RERadioItem *belongSectionItem;
+@property (strong, readwrite, nonatomic) RERadioItem *salesNameItem;
 @property (strong, readwrite, nonatomic) RETextItem *customerNameItem;
 @property (strong, readwrite, nonatomic) RETextItem *customerPhoneItem;
 @property (strong, readwrite, nonatomic) RERadioItem *statusItem;
@@ -167,6 +170,16 @@
     [section addItem:self.startTimeItem];
     self.endTimeItem = [REDateTimeItem itemWithTitle:@"最晚登记日期" value:nil placeholder:nil format:@"yyyy-MM-dd hh:mm" datePickerMode:UIDatePickerModeDateAndTime];
     [section addItem:self.endTimeItem];
+    self.salesNameItem = [RERadioItem itemWithTitle:@"员工姓名" value:@"" selectionHandler:^(RERadioItem *item)
+                              {
+                                  [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
+                                  ContactListTableViewController *vc = [(AppDelegate *)[[UIApplication sharedApplication] delegate] instantiateViewControllerWithIdentifier:@"ContactListTableViewController" AndClass:[ContactListTableViewController class]];
+                                  vc.selectMode = YES;
+                                  vc.singleSelect = YES;
+                                  vc.selectResultDelegate = self;
+                                  [weakSelf.navigationController pushViewController:vc animated:YES];
+                              }];
+    [section addItem:self.salesNameItem];
     self.customerNameItem = [RETextItem itemWithTitle:@"客户姓名" value:nil placeholder:@""];
     [section addItem:self.customerNameItem];
     self.customerPhoneItem = [RETextItem itemWithTitle:@"客户电话" value:nil placeholder:@""];
@@ -265,6 +278,17 @@
     buttonItem.textAlignment = NSTextAlignmentCenter;
     [section addItem:buttonItem];
     return section;
+}
+
+-(void)returnSelection:(NSArray*)curSelection
+{
+    person *p = [curSelection lastObject];
+    if (!p || ![p isKindOfClass:[person class]])
+    {
+        return;
+    }
+    self.salesNameItem.value = p.name_full;
+    [self.tableView reloadData];
 }
 
 @end
