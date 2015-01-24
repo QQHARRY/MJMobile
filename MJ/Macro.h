@@ -89,6 +89,8 @@
 #define API_SIGN_CONDITION_BUSY @"business/getSigningPersonRoomList"
 // 40.获取客户列表
 #define API_CLIENT_LIST @"business/getClientList"
+// 46.获取客源详细信息
+#define API_CUSTOM_DETAIL @"business/getCustomerDetails"
 
 
 //字典表

@@ -177,6 +177,7 @@
 		B95BEC4F1A73B59C00C2FB90 /* ClientFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = B95BEC4E1A73B59C00C2FB90 /* ClientFilter.m */; };
 		B95BEC581A73B6FF00C2FB90 /* ClientDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B95BEC561A73B6FF00C2FB90 /* ClientDetailCell.m */; };
 		B95BEC591A73B6FF00C2FB90 /* ClientDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B95BEC571A73B6FF00C2FB90 /* ClientDetailCell.xib */; };
+		B95BEC5C1A73EC1200C2FB90 /* CustomerParticulars.m in Sources */ = {isa = PBXBuildFile; fileRef = B95BEC5B1A73EC1200C2FB90 /* CustomerParticulars.m */; };
 		B98BD4A31A603B51003A35BE /* HouseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A11A603B51003A35BE /* HouseTableViewController.m */; };
 		B98BD4A41A603B51003A35BE /* HouseTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B98BD4A21A603B51003A35BE /* HouseTableViewController.xib */; };
 		B98BD4A71A604045003A35BE /* HouseDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B98BD4A61A604045003A35BE /* HouseDetail.m */; };
@@ -574,6 +575,8 @@
 		B95BEC551A73B6FF00C2FB90 /* ClientDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientDetailCell.h; sourceTree = "<group>"; };
 		B95BEC561A73B6FF00C2FB90 /* ClientDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientDetailCell.m; sourceTree = "<group>"; };
 		B95BEC571A73B6FF00C2FB90 /* ClientDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClientDetailCell.xib; sourceTree = "<group>"; };
+		B95BEC5A1A73EC1200C2FB90 /* CustomerParticulars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerParticulars.h; sourceTree = "<group>"; };
+		B95BEC5B1A73EC1200C2FB90 /* CustomerParticulars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerParticulars.m; sourceTree = "<group>"; };
 		B98BD4A01A603B51003A35BE /* HouseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseTableViewController.h; sourceTree = "<group>"; };
 		B98BD4A11A603B51003A35BE /* HouseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseTableViewController.m; sourceTree = "<group>"; };
 		B98BD4A21A603B51003A35BE /* HouseTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HouseTableViewController.xib; sourceTree = "<group>"; };
@@ -1437,6 +1440,8 @@
 		B9FF4B2E1A245FB300FE413E /* Customer */ = {
 			isa = PBXGroup;
 			children = (
+				B95BEC5A1A73EC1200C2FB90 /* CustomerParticulars.h */,
+				B95BEC5B1A73EC1200C2FB90 /* CustomerParticulars.m */,
 				4A9D025A1A62B13F00600BA0 /* CustomerParticularTableViewController.h */,
 				4A9D025B1A62B13F00600BA0 /* CustomerParticularTableViewController.m */,
 				B93B14181A61646600121133 /* CustomerViewController.h */,
@@ -1773,6 +1778,7 @@
 				B9FF4B401A245FB300FE413E /* MainPageViewController.m in Sources */,
 				4A8D01CF1A33023900EA59EA /* ILBarButtonItem.m in Sources */,
 				4AD7951F1A218C4A00DEC779 /* AFHTTPRequestOperation.m in Sources */,
+				B95BEC5C1A73EC1200C2FB90 /* CustomerParticulars.m in Sources */,
 				B94445811A62986B0033E998 /* ContractDetailCell.m in Sources */,
 				B98BD5671A609185003A35BE /* RETableViewInlineDatePickerCell.m in Sources */,
 				4A20DAE81A6A3205002E68EC /* buildingsFilterViewController.m in Sources */,
