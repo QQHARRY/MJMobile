@@ -62,7 +62,7 @@ static NSMutableDictionary*selctions = nil;
 
 -(void)initNavigationBar
 {
-    if (self.selectMode)
+    if (self.selectMode && !self.singleSelect)
     {
         UIBarButtonItem*selectBtn = [[UIBarButtonItem alloc] initWithTitle:@"选择" style:UIBarButtonItemStylePlain target:self action:@selector(selectBtnClicked:)];
         self.navigationItem.rightBarButtonItem = selectBtn;
