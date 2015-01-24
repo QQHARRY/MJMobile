@@ -361,11 +361,7 @@
     [mutDic setValue:[person me].job_no forKey:@"job_no"];
     [mutDic setValue:[person me].password forKey:@"acc_password"];
 
-    
-
-    
-    
-    [NetWorkManager PostWithApiName:API_HOUSE_GET_BULDINGS_DETAILS parameters:mutDic success:
+    [NetWorkManager PostWithApiName:API_HOUSE_IS_ESTATE_EXISTING parameters:mutDic success:
      ^(id responseObject)
      {
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];

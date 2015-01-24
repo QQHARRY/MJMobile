@@ -102,14 +102,7 @@
         NSString*strUrl = [SERVER_ADD stringByAppendingString:photoUrl];
         UIImageView* imageV = [[UIImageView alloc] init];
         
-        [imageV getImageWithURL:[NSURL URLWithString:strUrl] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-            [self.myPhoto  setBackgroundImage:image forState:UIControlStateNormal];
-            
-            
-        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-            
-            
-        }];
+        [imageV setImageWithURL:[NSURL URLWithString:strUrl]];
 
         
     }

@@ -113,14 +113,7 @@
         
         [cell.indicatorDn  startAnimating];
         NSString*strUrl = [SERVER_ADD stringByAppendingString:obj.photo_file_name];
-        [cell.goodImage getImageWithURL:[NSURL URLWithString:strUrl] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-            cell.goodImage.image = image;
-            [cell.indicatorDn stopAnimating];
-            
-        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-            
-            [cell.indicatorDn stopAnimating];
-        }];
+        [cell.goodImage setImageWithURL:[NSURL URLWithString:strUrl]];
     }
     
     return cell;
