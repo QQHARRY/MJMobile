@@ -179,13 +179,13 @@
         [param setValue:self.sid forKey:@"house_trade_no"];
         if (!self.customerItem.value || self.customerItem.value.length <= 0)
         {
-            PRSENTALERT(@"错 误", @"请选择客户", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择客户", @"O K", self);
             return;
         }
         [param setValue:self.customerItem.value forKey:@"client_base_no"];
         if (!self.personItem.value || self.personItem.value.length <= 0)
         {
-            PRSENTALERT(@"错 误", @"请选择签约人", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择签约人", @"O K", self);
             return;
         }
         for (NSDictionary *d in self.personList)
@@ -198,7 +198,7 @@
         }
         if (!self.roomItem.value || self.roomItem.value.length <= 0)
         {
-            PRSENTALERT(@"错 误", @"请选择签约室", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择签约室", @"O K", self);
             return;
         }
         for (NSDictionary *d in self.roomList)
@@ -211,7 +211,7 @@
         }
         if (!self.timeItem.value)
         {
-            PRSENTALERT(@"错 误", @"请选择签约日期", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择签约日期", @"O K", self);
             return;
         }
         {
@@ -221,7 +221,7 @@
         }
         if (!self.secItem.value || self.secItem.value.length <= 0)
         {
-            PRSENTALERT(@"错 误", @"请选择签约时段", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择签约时段", @"O K", self);
             return;
         }
         [param setValue:self.secItem.value forKey:@"apply_time"];
@@ -234,7 +234,7 @@
                                          failure:^(NSError *error)
         {
             HIDEHUD_WINDOW;
-            PRSENTALERT(@"提交错误", @"可能是网络问题，请稍候再试", @"O K", self);
+            PRESENTALERT(@"提交错误", @"可能是网络问题，请稍候再试", @"O K", self);
             return;
         }];
     }];

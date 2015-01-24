@@ -116,7 +116,7 @@
                 [self.delegate performSelector:sel];
             }
             
-            PRSENTALERTWITHHANDER(@"编辑成功",@"",@"OK",self,^(UIAlertAction *action)
+            PRESENTALERTWITHHANDER(@"编辑成功",@"",@"OK",self,^(UIAlertAction *action)
                                   {
                                       [self.navigationController popViewControllerAnimated:YES];
                                   }
@@ -126,7 +126,7 @@
         } failure:^(NSError *error) {
             HIDEHUD_WINDOW;
             NSString*errorStr = [NSString stringWithFormat:@"%@",error];
-            PRSENTALERTWITHHANDER(@"编辑失败",errorStr,@"OK",self,^(UIAlertAction *action)
+            PRESENTALERTWITHHANDER(@"编辑失败",errorStr,@"OK",self,^(UIAlertAction *action)
                                   {
                                       [self.navigationController popViewControllerAnimated:YES];
                                   }
@@ -162,7 +162,7 @@
          }
          else
          {
-             PRSENTALERT(@"楼盘未录入栋座",@"请先联系主管添加栋座信息",@"OK",self);
+             PRESENTALERT(@"楼盘未录入栋座",@"请先联系主管添加栋座信息",@"OK",self);
          }
          HIDEHUD_WINDOW;
      }
@@ -217,7 +217,7 @@
             {
                 
                 self.buildname.value = bld.build_full_name;
-
+                self.build_floor_count.value = bld.floor_count;
                 self.curBuilding = bld;
                 [self.tableView reloadData];
             }
@@ -447,23 +447,30 @@
     self.house_serect_unit.enabled = NO;
     [self.addInfoSection addItem:self.house_serect_unit];
     
-    self.house_floor.enabled = NO;
-    [self.addInfoSection addItem:self.house_floor];
-    
-    self.build_floor_count.enabled = NO;
-    [self.addInfoSection addItem:self.build_floor_count];
-    
     //门牌号
     self.house_tablet.enabled = NO;
     [self.addInfoSection addItem:self.house_tablet];
     
+    //楼层
+    self.house_floor.enabled = NO;
+    [self.addInfoSection addItem:self.house_floor];
     
+    //总楼层
+    self.build_floor_count.enabled = NO;
+    [self.addInfoSection addItem:self.build_floor_count];
     
     
     //@property(strong,nonatomic)RETableViewItem* judgementBtn;
     //判重按钮
     self.judgementBtn = [RETableViewItem itemWithTitle:@"判重" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                          {
+                             if([[self.buildname.value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""] ||
+                                [[self.house_serect_unit.value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""] ||
+                                [[self.house_tablet.value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""]
+                                )
+                             {
+                                 
+                             }
                              [self prepareTeneApplicationSectionItemsStep1];
                          }];
     self.judgementBtn.textAlignment = NSTextAlignmentCenter;

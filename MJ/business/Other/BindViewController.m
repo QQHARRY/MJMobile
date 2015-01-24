@@ -85,7 +85,7 @@
 
     if ([strID length] <= 0 || [strPwd length] <= 0)
     {
-        PRSENTALERT(@"输入错误",@"请输入正确的用户名和密码",@"OK",self);
+        PRESENTALERT(@"输入错误",@"请输入正确的用户名和密码",@"OK",self);
         return;
     }
     
@@ -101,7 +101,7 @@
         
          if (Status == nil || [Status  length] <= 0)
          {
-             PRSENTALERT(SERVER_NONCOMPLIANCE,SERVER_NONCOMPLIANCE_INFO,@"OK",self);
+             PRESENTALERT(SERVER_NONCOMPLIANCE,SERVER_NONCOMPLIANCE_INFO,@"OK",self);
          }
          else
          {
@@ -112,7 +112,7 @@
                  {
                      [UtilFun setFirstBinded];
       
-                     PRSENTALERTWITHHANDER(@"绑定成功",@"请等待审核通过或联系管理员",@"OK",self,^(UIAlertAction *action)
+                     PRESENTALERTWITHHANDER(@"绑定成功",@"请等待审核通过或联系管理员",@"OK",self,^(UIAlertAction *action)
                      {
                          [self toLoginPage];
                      }
@@ -124,7 +124,7 @@
                      break;
                  case 1:
                  {
-                     PRSENTALERT(@"绑定失败",@"用户名或密码错误,请重新输入",@"OK",self);
+                     PRESENTALERT(@"绑定失败",@"用户名或密码错误,请重新输入",@"OK",self);
                      return;
                  }
                      break;
@@ -133,7 +133,7 @@
                      
                      [UtilFun setFirstBinded];
 
-                     PRSENTALERTWITHHANDER(@"绑定成功",@"管理员已审核通过,可登陆进入系统",@"OK",self,^(UIAlertAction *action)
+                     PRESENTALERTWITHHANDER(@"绑定成功",@"管理员已审核通过,可登陆进入系统",@"OK",self,^(UIAlertAction *action)
                                            {
                                                [self toLoginPage];
                                            }
@@ -151,7 +151,7 @@
          HIDEHUD(self.view);
          NSString*errorStr = [NSString stringWithFormat:@"%@",error];
          
-         PRSENTALERT(SERVER_NONCOMPLIANCE,errorStr,@"OK",self);
+         PRESENTALERT(SERVER_NONCOMPLIANCE,errorStr,@"OK",self);
          
      }];
     

@@ -1105,7 +1105,7 @@
 //    @property (strong, readwrite, nonatomic) RENumberItem * build_floor_count;
 //    //Int
 //    //总楼层
-    //self.build_floor_count = [[RENumberItem alloc] initWithTitle:@"总楼层:" value:self.housePtcl.build_floor_count];
+    self.build_floor_count = [[RENumberItem alloc] initWithTitle:@"总楼层:" value:@""];
 
 //    
 //    @property (strong, readwrite, nonatomic) RENumberItem * sale_value_total;
@@ -1507,7 +1507,7 @@
                             }
                             else
                             {
-                                PRSENTALERT(@"",@"对不起,您没有查看该房源的保密信息的权限",@"OK",self);
+                                PRESENTALERT(@"",@"对不起,您没有查看该房源的保密信息的权限",@"OK",self);
                             }
 
                             

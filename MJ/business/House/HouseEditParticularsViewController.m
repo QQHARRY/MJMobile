@@ -135,7 +135,7 @@
                 [self.delegate performSelector:sel];
             }
             
-            PRSENTALERTWITHHANDER(@"编辑成功",@"",@"OK",self,^(UIAlertAction *action)
+            PRESENTALERTWITHHANDER(@"编辑成功",@"",@"OK",self,^(UIAlertAction *action)
                                   {
                                       [self.navigationController popViewControllerAnimated:YES];
                                   }
@@ -145,7 +145,7 @@
         } failure:^(NSError *error) {
             HIDEHUD_WINDOW;
             NSString*errorStr = [NSString stringWithFormat:@"%@",error];
-            PRSENTALERTWITHHANDER(@"编辑失败",errorStr,@"OK",self,^(UIAlertAction *action)
+            PRESENTALERTWITHHANDER(@"编辑失败",errorStr,@"OK",self,^(UIAlertAction *action)
                                   {
                                       [self.navigationController popViewControllerAnimated:YES];
                                   }

@@ -170,7 +170,7 @@
         [param setValue:self.sid forKey:@"contract_target_object"];
         if (!self.typeItem.value || self.typeItem.value.length <= 0)
         {
-            PRSENTALERT(@"错 误", @"请选择交易类型", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择交易类型", @"O K", self);
             return;
         }
         for (DicItem *di in self.typeDictList)
@@ -183,7 +183,7 @@
         }
         if (!self.consignItem.value || self.consignItem.value.length <= 0)
         {
-            PRSENTALERT(@"错 误", @"请选择委托类型", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择委托类型", @"O K", self);
             return;
         }
         for (DicItem *di in self.consignDictList)
@@ -196,7 +196,7 @@
         }
         if (!self.payItem.value || self.payItem.value.length <= 0)
         {
-            PRSENTALERT(@"错 误", @"请选择付佣类型", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择付佣类型", @"O K", self);
             return;
         }
         for (DicItem *di in self.payDictList)
@@ -209,13 +209,13 @@
         }
         if (!self.startItem.value)
         {
-            PRSENTALERT(@"错 误", @"请选择委托开始日期", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择委托开始日期", @"O K", self);
             return;
         }
         [param setValue:self.startItem.value forKey:@"contract_start_date"];
         if (!self.endItem.value)
         {
-            PRSENTALERT(@"错 误", @"请选择委托结束日期", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择委托结束日期", @"O K", self);
             return;
         }
         [param setValue:self.endItem.value forKey:@"contract_end_date"];
@@ -223,12 +223,12 @@
         [ContractDataPuller pushNewContractWithParam:param Success:^(NSString *att)
         {
             HIDEHUD_WINDOW;
-            PRSENTALERT(@"提交成功", @"请立刻上传附件", @"O K", self);
+            PRESENTALERT(@"提交成功", @"请立刻上传附件", @"O K", self);
         }
                                          failure:^(NSError *error)
         {
             HIDEHUD_WINDOW;
-            PRSENTALERT(@"提交错误", @"可能是网络问题，请稍候再试", @"O K", self);
+            PRESENTALERT(@"提交错误", @"可能是网络问题，请稍候再试", @"O K", self);
             return;
         }];
     }];

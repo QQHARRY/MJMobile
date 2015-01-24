@@ -119,7 +119,7 @@
     NSString* strPwd = self.pwdTxt.text;
     if ([strID length] <= 0 || [strPwd length] <= 0)
     {
-        PRSENTALERT(@"输入错误",@"用户名和密码不能为空",@"OK",self);
+        PRESENTALERT(@"输入错误",@"用户名和密码不能为空",@"OK",self);
         return;
     }
     
@@ -135,7 +135,7 @@
          
          if (Status == nil || [Status  length] <= 0)
          {
-             PRSENTALERT(SERVER_NONCOMPLIANCE,SERVER_NONCOMPLIANCE_INFO,@"OK",self);
+             PRESENTALERT(SERVER_NONCOMPLIANCE,SERVER_NONCOMPLIANCE_INFO,@"OK",self);
              return;
          }
          else
@@ -159,19 +159,19 @@
                      break;
                  case 1:
                  {
-                     PRSENTALERT(@"登录失败",@"用户名或密码错误,请重新输入",@"OK",self);
+                     PRESENTALERT(@"登录失败",@"用户名或密码错误,请重新输入",@"OK",self);
                      return;
                  }
                      break;
                  case 2:
                  {
-                     PRSENTALERT(@"登录失败",@"尚未审批通过，请耐心等待",@"OK",self);
+                     PRESENTALERT(@"登录失败",@"尚未审批通过，请耐心等待",@"OK",self);
                      return;
                  }
                      break;
                  case 3:
                  {
-                     PRSENTALERT(@"登录失败",@"此设备尚未绑定该账号，请先绑定再登陆",@"OK",self);
+                     PRESENTALERT(@"登录失败",@"此设备尚未绑定该账号，请先绑定再登陆",@"OK",self);
                      return;
                  }
                      break;
@@ -186,7 +186,7 @@
          HIDEHUD(self.view);
          NSString*errorStr = [NSString stringWithFormat:@"%@",error];
 
-         PRSENTALERT(SERVER_NONCOMPLIANCE,errorStr,@"OK",self);
+         PRESENTALERT(SERVER_NONCOMPLIANCE,errorStr,@"OK",self);
          
      }];
     

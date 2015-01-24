@@ -303,7 +303,7 @@
     
     if (accName.length ==0 || phoneNumMobile.length == 0 || chSign.length == 0 || chInfo.length == 0)
     {
-        PRSENTALERT(@"信息填写不全",@"请填写完成",@"OK",self);
+        PRESENTALERT(@"信息填写不全",@"请填写完成",@"OK",self);
         return;
     }
     

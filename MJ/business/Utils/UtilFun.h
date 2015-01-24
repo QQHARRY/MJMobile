@@ -15,7 +15,7 @@
 
 #define SHOWHUD(v) ([UtilFun showHUD:v]);
 #define HIDEHUD(v) ([UtilFun hideHUD:v]);
-#define PRSENTALERT(title,msg,action,sender)\
+#define PRESENTALERT(title,msg,action,sender)\
 if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)\
 {\
     [UtilFun presentPopViewControllerWithTitle:title Message:msg SimpleAction:action Sender:sender];\
@@ -28,7 +28,7 @@ else\
 }\
 
 
-#define PRSENTALERTWITHHANDER(title,msg,action,sender,hander)\
+#define PRESENTALERTWITHHANDER(title,msg,action,sender,hander)\
 if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)\
 {\
 [UtilFun presentPopViewControllerWithTitle:title Message:msg SimpleAction:action Handler:hander Sender:sender];\

@@ -113,7 +113,7 @@
         HIDEHUD(self.view);
         NSString*errorStr = [NSString stringWithFormat:@"%@",error];
         
-        PRSENTALERT(SERVER_NONCOMPLIANCE,errorStr,@"OK",self);
+        PRESENTALERT(SERVER_NONCOMPLIANCE,errorStr,@"OK",self);
     }];
     [self hideDrawer];
 }
