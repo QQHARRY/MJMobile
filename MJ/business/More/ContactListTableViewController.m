@@ -195,20 +195,39 @@ static NSMutableDictionary*selctions = nil;
 {
     if (self.selectMode)
     {
-        ContactsListTableViewCell*cell = (ContactsListTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
-        unit*unt = cell.unitKeeped;
-        NSString*key =[NSString stringWithFormat:@"%@",unt];
-        
-        
-        if ([selctions objectForKey:key] == unt)
+        if (self.singleSelect)
         {
-            [selctions removeObjectForKey:key];
-            [cell setBeSelected:NO];
+            ContactsListTableViewCell*cell = (ContactsListTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+            unit*unt = cell.unitKeeped;
+            if ([unt isKindOfClass:[person class]])
+            {
+                if (self.selectResultDelegate)
+                {
+                    NSMutableArray*arr = [[NSMutableArray alloc] init];
+                    [arr addObject:unt];
+                    
+                    [self.selectResultDelegate returnSelection:arr];
+                }
+                [self.navigationController popViewControllerAnimated:YES];
+            }
         }
         else
         {
-            [selctions setObject:unt forKey:key];
-            [cell setBeSelected:YES];
+            ContactsListTableViewCell*cell = (ContactsListTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+            unit*unt = cell.unitKeeped;
+            NSString*key =[NSString stringWithFormat:@"%@",unt];
+            
+            
+            if ([selctions objectForKey:key] == unt)
+            {
+                [selctions removeObjectForKey:key];
+                [cell setBeSelected:NO];
+            }
+            else
+            {
+                [selctions setObject:unt forKey:key];
+                [cell setBeSelected:YES];
+            }
         }
     }
     else

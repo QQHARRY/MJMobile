@@ -25,4 +25,7 @@
 +(void)pullHouseSecrectParticulars:(HouseDetail *)dtl Success:(void (^)(houseSecretParticulars *housePtl))success failure:(void (^)(NSError *error))failure;
 
 +(void)pushHouseEditedParticulars:(NSDictionary *)partlDic Success:(void (^)(houseSecretParticulars *housePtl))success failure:(void (^)(NSError *error))failure;
+
+
++(void)pullBuildingByContidion:(NSDictionary *)condition Success:(void (^)(NSArray*buildingsArr))success failure:(void (^)(NSError *error))failure;
 @end

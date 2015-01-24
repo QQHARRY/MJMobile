@@ -97,7 +97,7 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 @property (strong, readwrite, nonatomic) RETableViewItem * watchHouseImages;
 //点击进入查看:小区图,户型图,室内图
 
-@property (strong, readwrite, nonatomic) RETextItem * buildings_name;
+@property (strong, readwrite, nonatomic) RERadioItem * buildings_name;
 //String
 //楼盘名称
 
@@ -393,4 +393,5 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 -(void)adjustUI;
 -(void)adjustByTradeType;
 -(NSArray*)getEditAbleFields;
+-(NSString*)convertToDicValueForItem:(NSString*)itemName FromValue:(NSString*)value;
 @end

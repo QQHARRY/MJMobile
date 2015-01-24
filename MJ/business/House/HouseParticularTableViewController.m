@@ -18,6 +18,7 @@
 #import "dictionaryManager.h"
 #import "Macro.h"
 #import "HouseEditParticularsViewController.h"
+#import "BuildingsSelectTableViewController.h"
 
 @interface HouseParticularTableViewController ()
 
@@ -158,21 +159,7 @@
     }
 }
 
--(void)adjustForTradeType
-{
-    if ([self.housePtcl.trade_type isEqualToString:@"出售"])
-    {
-        [self.infoSection removeItem:self.lease_trade_state];
-    }
-    else if ([self.housePtcl.trade_type isEqualToString:@"出租"])
-    {
-        [self.infoSection removeItem:self.sale_trade_state];
-    }
-    else if ([self.housePtcl.trade_type isEqualToString:@"租售"])
-    {
-        
-    }
-}
+
 
 -(void)adjustUI
 {
@@ -228,38 +215,74 @@
         if ([teneApplycation  isEqualToString:@"商铺"])
         {
             [self.infoSection removeItem:self.efficiency_rate];
+            [self.infoSection removeItem:self.room_num];
+            [self.infoSection removeItem:self.hall_num];
+            [self.infoSection removeItem:self.kitchen_num];
+            [self.infoSection removeItem:self.toilet_num];
+            [self.infoSection removeItem:self.balcony_num];
         }
         else if([teneApplycation  isEqualToString:@"商住"])
         {
             [self.infoSection removeItem:self.efficiency_rate];
+            [self.infoSection removeItem:self.room_num];
+            [self.infoSection removeItem:self.hall_num];
+            [self.infoSection removeItem:self.kitchen_num];
+            [self.infoSection removeItem:self.toilet_num];
+            [self.infoSection removeItem:self.balcony_num];
         }
         else if([teneApplycation  isEqualToString:@"厂房"])
         {
             [self.infoSection removeItem:self.house_depth];
             [self.infoSection removeItem:self.floor_height];
             [self.infoSection removeItem:self.efficiency_rate];
+            [self.infoSection removeItem:self.room_num];
+            [self.infoSection removeItem:self.hall_num];
+            [self.infoSection removeItem:self.kitchen_num];
+            [self.infoSection removeItem:self.toilet_num];
+            [self.infoSection removeItem:self.balcony_num];
         }
         else if([teneApplycation  isEqualToString:@"仓库"])
         {
             [self.infoSection removeItem:self.house_depth];
             [self.infoSection removeItem:self.efficiency_rate];
+            [self.infoSection removeItem:self.room_num];
+            [self.infoSection removeItem:self.hall_num];
+            [self.infoSection removeItem:self.kitchen_num];
+            [self.infoSection removeItem:self.toilet_num];
+            [self.infoSection removeItem:self.balcony_num];
         }
         else if([teneApplycation  isEqualToString:@"地皮"])
         {
             [self.infoSection removeItem:self.house_depth];
             [self.infoSection removeItem:self.efficiency_rate];
+            [self.infoSection removeItem:self.room_num];
+            [self.infoSection removeItem:self.hall_num];
+            [self.infoSection removeItem:self.kitchen_num];
+            [self.infoSection removeItem:self.toilet_num];
+            [self.infoSection removeItem:self.balcony_num];
         }
         else if([teneApplycation  isEqualToString:@"车位"])
         {
             [self.floor_height setTitle:@"宽度"];
             [self.infoSection removeItem:self.floor_count];
             [self.infoSection removeItem:self.efficiency_rate];
+            [self.infoSection removeItem:self.room_num];
+            [self.infoSection removeItem:self.hall_num];
+            [self.infoSection removeItem:self.kitchen_num];
+            [self.infoSection removeItem:self.toilet_num];
+            [self.infoSection removeItem:self.balcony_num];
+            [self.infoSection removeItem:self.house_driect];
         }
         else if([teneApplycation  isEqualToString:@"写字楼"])
         {
 
             [self.infoSection removeItem:self.house_rank];
             [self.infoSection removeItem:self.house_depth];
+            [self.infoSection removeItem:self.room_num];
+            [self.infoSection removeItem:self.hall_num];
+            [self.infoSection removeItem:self.kitchen_num];
+            [self.infoSection removeItem:self.toilet_num];
+            [self.infoSection removeItem:self.balcony_num];
         }
         else
         {
@@ -301,7 +324,7 @@
     [self createInfoSectionItems];
     [self.infoSection addItem:self.watchHouseImages];
     
-    //    @property (strong, readwrite, nonatomic) RETextItem * buildings_name;
+    //    @property (strong, readwrite, nonatomic) RERadioItem * buildings_name;
     //    //String
     //    //楼盘名称
     [self.infoSection addItem:self.buildings_name];
@@ -638,7 +661,7 @@
                              {
                                  
                              }];
-    self.addDaiKanActions.textAlignment = NSTextAlignmentCenter;
+    //self.judgementBtn.textAlignment = NSTextAlignmentCenter;
     
     //@property (strong, readwrite, nonatomic) RERadioItem * trade_type;
     //String
@@ -667,11 +690,31 @@
     //图片
     [self createWatchImageBtn];
     
-//    @property (strong, readwrite, nonatomic) RETextItem * buildings_name;
+//    @property (strong, readwrite, nonatomic) RERadioItem * buildings_name;
 //    //String
 //    //楼盘名称
-    self.buildings_name = [[RETextItem alloc] initWithTitle:@"楼盘名称:" value:self.housePtcl.buildings_name];
-    
+    self.buildings_name = [[RERadioItem alloc] initWithTitle:@"楼盘名称:" value:value selectionHandler:^(RERadioItem *item) {
+//        [item deselectRowAnimated:YES];
+//        BuildingsSelectTableViewController*selCtrl = [BuildingsSelectTableViewController initWithDelegate:weakSelf AndCompleteHandler:^(buildings *bld) {
+//            if (bld)
+//            {
+//                self.buildings_name.value = bld.buildings_name;
+//                self.urbanname.value = bld.urbanname;
+//                self.areaname.value = bld.areaname;
+//                self.buildings_address = bld.Buildings_address;
+//                SEL sel =@selector(setCurBuildings:);
+//                if ([self respondsToSelector:sel])
+//                {
+//                    [self performSelector:sel withObject:bld];
+//                    
+//                }
+//                [self.tableView reloadData];
+//            }
+//            
+//        }];
+//        
+//        [weakSelf.navigationController pushViewController:selCtrl animated:YES];
+    }];
 //    @property (strong, readwrite, nonatomic) RETextItem * urbanname;
 //    //String
 //    //区域
@@ -1537,6 +1580,7 @@
          HIDEHUD_WINDOW;
      }failure:^(NSError* error)
      {
+         
          HIDEHUD_WINDOW;
      }];
     
@@ -1678,6 +1722,54 @@
     
 }
 
+-(NSString*)convertToDicValueForItem:(NSString*)itemName FromValue:(NSString*)value
+{
+    NSString*dicValue = @"";
+    
+    NSArray*arr = nil;
+    
+    if(value && itemName)
+    {
+        if([itemName isEqualToString:@"house_driect"])
+        {
+            arr =  self.house_driect_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"fitment_type"])
+        {
+            arr =  self.fitment_type_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"use_situation"])
+        {
+            arr =  self.use_situation_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"client_gender"])
+        {
+            arr =  self.sex_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"look_permit"])
+        {
+            arr =  self.look_permit_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"client_source"])
+        {
+            arr =  self.client_source_dic_arr;
+        }
+    }
+    
+    
+    
+    if (arr)
+    {
+        for (DicItem*di in arr)
+        {
+            if ([value  isEqualToString:di.dict_label])
+            {
+                return di.dict_value;
+            }
+        }
+    }
+    return  dicValue;
+}
 
 
 

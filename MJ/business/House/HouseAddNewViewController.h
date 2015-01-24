@@ -7,8 +7,10 @@
 //
 
 #import "HouseParticularTableViewController.h"
+#import "buildings.h"
 
 @interface HouseAddNewViewController : HouseParticularTableViewController
 
-
+@property(nonatomic,strong)buildings*curBuildings;
+@property(weak,nonatomic)id delegate;
 @end

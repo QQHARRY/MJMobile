@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		4A20860C1A63B49A00F3CB5A /* HouseEditParticularsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20860B1A63B49A00F3CB5A /* HouseEditParticularsViewController.m */; };
+		4A20DADD1A6A2B5A002E68EC /* BuildingsSelectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20DADC1A6A2B5A002E68EC /* BuildingsSelectTableViewController.m */; };
+		4A20DAE11A6A2B85002E68EC /* BuildingsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20DADF1A6A2B85002E68EC /* BuildingsTableCell.m */; };
+		4A20DAE21A6A2B85002E68EC /* BuildingsTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A20DAE01A6A2B85002E68EC /* BuildingsTableCell.xib */; };
+		4A20DAE51A6A2FAB002E68EC /* buildings.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20DAE41A6A2FAB002E68EC /* buildings.m */; };
+		4A20DAE81A6A3205002E68EC /* buildingsFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20DAE71A6A3205002E68EC /* buildingsFilterViewController.m */; };
 		4A23AD131A66BBFE00F5A02A /* HouseAddNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A23AD121A66BBFE00F5A02A /* HouseAddNewViewController.m */; };
 		4A2AD1811A457E800074DCA0 /* PersonDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2AD1801A457E800074DCA0 /* PersonDetailsViewController.m */; };
 		4A2AD1881A457F1B0074DCA0 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2AD1871A457F1B0074DCA0 /* AboutViewController.m */; };
@@ -246,6 +251,15 @@
 /* Begin PBXFileReference section */
 		4A20860A1A63B49A00F3CB5A /* HouseEditParticularsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseEditParticularsViewController.h; sourceTree = "<group>"; };
 		4A20860B1A63B49A00F3CB5A /* HouseEditParticularsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseEditParticularsViewController.m; sourceTree = "<group>"; };
+		4A20DADB1A6A2B5A002E68EC /* BuildingsSelectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingsSelectTableViewController.h; sourceTree = "<group>"; };
+		4A20DADC1A6A2B5A002E68EC /* BuildingsSelectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildingsSelectTableViewController.m; sourceTree = "<group>"; };
+		4A20DADE1A6A2B85002E68EC /* BuildingsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingsTableCell.h; sourceTree = "<group>"; };
+		4A20DADF1A6A2B85002E68EC /* BuildingsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildingsTableCell.m; sourceTree = "<group>"; };
+		4A20DAE01A6A2B85002E68EC /* BuildingsTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuildingsTableCell.xib; sourceTree = "<group>"; };
+		4A20DAE31A6A2FAB002E68EC /* buildings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buildings.h; sourceTree = "<group>"; };
+		4A20DAE41A6A2FAB002E68EC /* buildings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = buildings.m; sourceTree = "<group>"; };
+		4A20DAE61A6A3205002E68EC /* buildingsFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buildingsFilterViewController.h; sourceTree = "<group>"; };
+		4A20DAE71A6A3205002E68EC /* buildingsFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = buildingsFilterViewController.m; sourceTree = "<group>"; };
 		4A23AD111A66BBFE00F5A02A /* HouseAddNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseAddNewViewController.h; sourceTree = "<group>"; };
 		4A23AD121A66BBFE00F5A02A /* HouseAddNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseAddNewViewController.m; sourceTree = "<group>"; };
 		4A2AD17F1A457E800074DCA0 /* PersonDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonDetailsViewController.h; sourceTree = "<group>"; };
@@ -1476,6 +1490,15 @@
 				4A9D02531A616E1300600BA0 /* houseImagesTableViewController.m */,
 				4A9D02571A62738000600BA0 /* addHouseDistrictInfo.h */,
 				4A9D02581A62738000600BA0 /* addHouseDistrictInfo.m */,
+				4A20DADB1A6A2B5A002E68EC /* BuildingsSelectTableViewController.h */,
+				4A20DADC1A6A2B5A002E68EC /* BuildingsSelectTableViewController.m */,
+				4A20DADE1A6A2B85002E68EC /* BuildingsTableCell.h */,
+				4A20DADF1A6A2B85002E68EC /* BuildingsTableCell.m */,
+				4A20DAE01A6A2B85002E68EC /* BuildingsTableCell.xib */,
+				4A20DAE31A6A2FAB002E68EC /* buildings.h */,
+				4A20DAE41A6A2FAB002E68EC /* buildings.m */,
+				4A20DAE61A6A3205002E68EC /* buildingsFilterViewController.h */,
+				4A20DAE71A6A3205002E68EC /* buildingsFilterViewController.m */,
 			);
 			path = House;
 			sourceTree = "<group>";
@@ -1615,6 +1638,7 @@
 				B93B14301A61652000121133 /* CustomerTableViewController.xib in Resources */,
 				B98BD5831A609185003A35BE /* RETableViewManager.bundle in Resources */,
 				B94445841A62986B0033E998 /* ContractTableViewController.xib in Resources */,
+				4A20DAE21A6A2B85002E68EC /* BuildingsTableCell.xib in Resources */,
 				B98BD4B21A60616A003A35BE /* HouseDetailCell.xib in Resources */,
 				B93B142C1A61652000121133 /* CustomerDetailCell.xib in Resources */,
 				4AFC39A81A47CA3A000FB6F3 /* bind.storyboard in Resources */,
@@ -1687,6 +1711,7 @@
 				B98BD5821A609185003A35BE /* RETableViewItem.m in Sources */,
 				B98BD56B1A609185003A35BE /* RETableViewOptionCell.m in Sources */,
 				B98BD56E1A609185003A35BE /* RETableViewTextCell.m in Sources */,
+				4A20DADD1A6A2B5A002E68EC /* BuildingsSelectTableViewController.m in Sources */,
 				4AD7954E1A218C4A00DEC779 /* UIAlertView+AFNetworking.m in Sources */,
 				B9FF4B411A245FB300FE413E /* HouseViewController.m in Sources */,
 				B9FF4B401A245FB300FE413E /* MainPageViewController.m in Sources */,
@@ -1694,6 +1719,7 @@
 				4AD7951F1A218C4A00DEC779 /* AFHTTPRequestOperation.m in Sources */,
 				B94445811A62986B0033E998 /* ContractDetailCell.m in Sources */,
 				B98BD5671A609185003A35BE /* RETableViewInlineDatePickerCell.m in Sources */,
+				4A20DAE81A6A3205002E68EC /* buildingsFilterViewController.m in Sources */,
 				B98BD5721A609185003A35BE /* REFloatItem.m in Sources */,
 				4A8F93EB1A3DD36C00A769C1 /* unit.m in Sources */,
 				B98BD57F1A609185003A35BE /* REPlaceholderTextView.m in Sources */,
@@ -1772,6 +1798,7 @@
 				B98BD57D1A609185003A35BE /* REActionBar.m in Sources */,
 				4ABC221D1A3C31910017FD94 /* AnncListViewController.m in Sources */,
 				4AD795231A218C4A00DEC779 /* AFSecurityPolicy.m in Sources */,
+				4A20DAE51A6A2FAB002E68EC /* buildings.m in Sources */,
 				4A9D02541A616E1300600BA0 /* houseImagesTableViewController.m in Sources */,
 				B944458B1A62A6860033E998 /* SignDataPuller.m in Sources */,
 				4A5665431A4C025100C3BA22 /* MessageTableViewController.m in Sources */,
@@ -1832,6 +1859,7 @@
 				B93B142B1A61652000121133 /* CustomerDetailCell.m in Sources */,
 				B98BD57C1A609185003A35BE /* NSString+RETableViewManagerAdditions.m in Sources */,
 				4A40C2211A4175BC00944AB2 /* petionDetailsItemTableViewCell.m in Sources */,
+				4A20DAE11A6A2B85002E68EC /* BuildingsTableCell.m in Sources */,
 				4AD7955C1A218DF100DEC779 /* GTCheckBox.m in Sources */,
 				4A3A2F311A45113200AA8A70 /* myBriefTableViewCell.m in Sources */,
 				4A9D024E1A611F7400600BA0 /* HouseParticularTableViewController.m in Sources */,

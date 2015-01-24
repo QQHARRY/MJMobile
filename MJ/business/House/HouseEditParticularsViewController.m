@@ -154,54 +154,6 @@
     }
 }
 
--(NSString*)convertToDicValueForItem:(NSString*)itemName FromValue:(NSString*)value
-{
-    NSString*dicValue = @"";
-    
-    NSArray*arr = nil;
-
-    if(value && itemName)
-    {
-        if([itemName isEqualToString:@"house_driect"])
-        {
-            arr =  self.house_driect_dic_arr;
-        }
-        else if ([itemName isEqualToString:@"fitment_type"])
-        {
-            arr =  self.fitment_type_dic_arr;
-        }
-        else if ([itemName isEqualToString:@"use_situation"])
-        {
-            arr =  self.use_situation_dic_arr;
-        }
-        else if ([itemName isEqualToString:@"client_gender"])
-        {
-            arr =  self.sex_dic_arr;
-        }
-        else if ([itemName isEqualToString:@"look_permit"])
-        {
-            arr =  self.look_permit_dic_arr;
-        }
-        else if ([itemName isEqualToString:@"client_source"])
-        {
-            arr =  self.client_source_dic_arr;
-        }
-    }
-    
-
-    
-    if (arr)
-    {
-        for (DicItem*di in arr)
-        {
-            if ([value  isEqualToString:di.dict_label])
-            {
-                return di.dict_value;
-            }
-        }
-    }
-    return  dicValue;
-}
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
