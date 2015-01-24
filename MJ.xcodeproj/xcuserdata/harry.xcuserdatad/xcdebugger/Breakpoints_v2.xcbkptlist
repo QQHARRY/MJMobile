@@ -99,13 +99,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MJ/business/House/HouseDataPuller.m"
-            timestampString = "443788007.915558"
+            filePath = "MJ/business/More/PersonDetails/PersonDetailsViewController.m"
+            timestampString = "443800325.033155"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "367"
-            endingLineNumber = "367"
-            landmarkName = "+pullIsHouseExisting:Success:failure:"
+            startingLineNumber = "326"
+            endingLineNumber = "326"
+            landmarkName = "-commiteInfo"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -100,11 +100,8 @@
     else
     {
         NSString*strUrl = [SERVER_ADD stringByAppendingString:photoUrl];
-        UIImageView* imageV = [[UIImageView alloc] init];
-        
-        [imageV setImageWithURL:[NSURL URLWithString:strUrl]];
 
-        
+        [self.myPhoto setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:strUrl]];
     }
     
     // Do any additional setup after loading the view.
@@ -312,6 +309,10 @@
     [NetWorkManager PostWithApiName:EDIT_STAFF_INFO parameters:parameters success:
      ^(id responseObject)
      {
+         [person me].job_name = accName;
+         [person me].obj_mobile = phoneNumMobile;
+         [person me].acc_remarks = chSign;
+         [person me].acc_content = chInfo;
          HIDEHUD(self.view);
          
      }
@@ -324,7 +325,31 @@
     
     if (self.photoChanged)
     {
-        
+        SHOWHUD(self.view);
+        NSDictionary *parameters = @{@"job_no":psn.job_no,
+                                     @"acc_password": psn.password,
+                                     @"DeviceID" : [UtilFun getUDID],
+                                     @"acc_name" : accName,
+                                     @"obj_mobile" : phoneNumMobile,
+                                     @"acc_remarks" : chSign,
+                                     @"acc_content" : chInfo
+                                     };
+        [NetWorkManager PostWithApiName:EDIT_PERSON_PHOTO parameters:parameters success:
+         ^(id responseObject)
+         {
+             [person me].job_name = accName;
+             [person me].obj_mobile = phoneNumMobile;
+             [person me].acc_remarks = chSign;
+             [person me].acc_content = chInfo;
+             HIDEHUD(self.view);
+             
+         }
+                                failure:^(NSError *error)
+         {
+             HIDEHUD(self.view);
+             
+             
+         }];
     }
     
 }

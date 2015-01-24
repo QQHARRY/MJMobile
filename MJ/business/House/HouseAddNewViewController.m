@@ -53,7 +53,7 @@
     self.addInfoSection = [RETableViewSection sectionWithHeaderTitle:@""];
     self.addInfoSection.headerHeight = sectH;
     self.teneApplicationAbout = [RETableViewSection sectionWithHeaderTitle:@""];
-    self.teneApplicationAbout.headerHeight = sectH;
+    self.teneApplicationAbout.headerHeight = 1;
     self.infoSection = [RETableViewSection sectionWithHeaderTitle:@"基本信息"];
     self.infoSection.headerHeight = sectH;
     self.secretSection = [RETableViewSection sectionWithHeaderTitle:@""];
@@ -236,10 +236,12 @@
                                                            {
                                                                [weakSelf.navigationController popViewControllerAnimated:YES];
                                                                
-                                                               self.house_tablet.enabled = YES;
                                                                self.house_serect_unit.value = selectedItem.title;
-                                                               [self.house_tablet reloadRowWithAnimation:UITableViewRowAnimationFade];
-                                                               [item reloadRowWithAnimation:UITableViewRowAnimationNone];
+                                                               self.house_tablet.enabled = YES;
+                                                               self.judgementBtn.enabled = YES;
+                                                               
+                                                               
+                                                               [self.tableView reloadData];
                                                            }];
         // Adjust styles
         optionsController.delegate = weakSelf;
@@ -272,7 +274,7 @@
                                                                [weakSelf.navigationController popViewControllerAnimated:YES];
                                                                
                                                                [self prepareTeneApplicationSectionItemsStep2ByTenenType:selectedItem.title];
-                                                               [item reloadRowWithAnimation:UITableViewRowAnimationNone];
+                                                               //[item reloadRowWithAnimation:UITableViewRowAnimationNone];
                                                            }];
         // Adjust styles
         optionsController.delegate = weakSelf;
@@ -292,115 +294,81 @@
 -(void)prepareTeneApplicationSectionItemsStep2ByTenenType:(NSString*)type
 {
     //__typeof (&*self) __weak weakSelf = self;
+    
+    [self.teneApplicationAbout removeItem:self.room_num];
+    [self.teneApplicationAbout removeItem:self.hall_num];
+    [self.teneApplicationAbout removeItem:self.kitchen_num];
+    [self.teneApplicationAbout removeItem:self.toilet_num];
+    [self.teneApplicationAbout removeItem:self.balcony_num];
+    [self.teneApplicationAbout removeItem:self.house_driect];
+    [self.teneApplicationAbout removeItem:self.efficiency_rate];
+    [self.teneApplicationAbout removeItem:self.house_depth];
+    [self.teneApplicationAbout removeItem:self.floor_height];
+    [self.teneApplicationAbout removeItem:self.floor_count];
     if ([type  isEqualToString:@"商铺"])
     {
-        [self.teneApplicationAbout removeItem:self.room_num];
-        [self.teneApplicationAbout removeItem:self.hall_num];
-        [self.teneApplicationAbout removeItem:self.kitchen_num];
-        [self.teneApplicationAbout removeItem:self.toilet_num];
-        [self.teneApplicationAbout removeItem:self.balcony_num];
-        [self.teneApplicationAbout removeItem:self.house_driect];
+        
         
         
         [self.teneApplicationAbout addItem:self.house_rank];
         [self.teneApplicationAbout addItem:self.house_depth];
         [self.teneApplicationAbout addItem:self.floor_height];
         [self.teneApplicationAbout addItem:self.floor_count];
-        [self.teneApplicationAbout removeItem:self.efficiency_rate];
+        
+        
     }
     else if([type  isEqualToString:@"商住"])
     {
-        [self.teneApplicationAbout removeItem:self.room_num];
-        [self.teneApplicationAbout removeItem:self.hall_num];
-        [self.teneApplicationAbout removeItem:self.kitchen_num];
-        [self.teneApplicationAbout removeItem:self.toilet_num];
-        [self.teneApplicationAbout removeItem:self.balcony_num];
-        [self.teneApplicationAbout removeItem:self.house_driect];
-        
+
         
         [self.teneApplicationAbout addItem:self.house_rank];
-        [self.teneApplicationAbout removeItem:self.house_depth];
+        
         [self.teneApplicationAbout addItem:self.floor_height];
         [self.teneApplicationAbout addItem:self.floor_count];
-        [self.teneApplicationAbout removeItem:self.efficiency_rate];
+
     }
     else if([type  isEqualToString:@"厂房"])
     {
-        [self.teneApplicationAbout removeItem:self.room_num];
-        [self.teneApplicationAbout removeItem:self.hall_num];
-        [self.teneApplicationAbout removeItem:self.kitchen_num];
-        [self.teneApplicationAbout removeItem:self.toilet_num];
-        [self.teneApplicationAbout removeItem:self.balcony_num];
-        [self.teneApplicationAbout removeItem:self.house_driect];
-        
+
         
         [self.teneApplicationAbout addItem:self.house_rank];
-        [self.teneApplicationAbout removeItem:self.house_depth];
-        [self.teneApplicationAbout removeItem:self.floor_height];
         [self.teneApplicationAbout addItem:self.floor_count];
-        [self.teneApplicationAbout removeItem:self.efficiency_rate];
+
     }
     else if([type  isEqualToString:@"仓库"])
     {
-        [self.teneApplicationAbout removeItem:self.room_num];
-        [self.teneApplicationAbout removeItem:self.hall_num];
-        [self.teneApplicationAbout removeItem:self.kitchen_num];
-        [self.teneApplicationAbout removeItem:self.toilet_num];
-        [self.teneApplicationAbout removeItem:self.balcony_num];
-        [self.teneApplicationAbout removeItem:self.house_driect];
+
         
         
         [self.teneApplicationAbout addItem:self.house_rank];
-        [self.teneApplicationAbout removeItem:self.house_depth];
+
         [self.teneApplicationAbout addItem:self.floor_height];
         [self.teneApplicationAbout addItem:self.floor_count];
-        [self.teneApplicationAbout removeItem:self.efficiency_rate];
+
     }
     else if([type  isEqualToString:@"地皮"])
     {
-        [self.teneApplicationAbout removeItem:self.room_num];
-        [self.teneApplicationAbout removeItem:self.hall_num];
-        [self.teneApplicationAbout removeItem:self.kitchen_num];
-        [self.teneApplicationAbout removeItem:self.toilet_num];
-        [self.teneApplicationAbout removeItem:self.balcony_num];
-        [self.teneApplicationAbout removeItem:self.house_driect];
+
         
         
         [self.teneApplicationAbout addItem:self.house_rank];
-        [self.teneApplicationAbout removeItem:self.house_depth];
+
         [self.teneApplicationAbout addItem:self.floor_height];
         [self.teneApplicationAbout addItem:self.floor_count];
-        [self.teneApplicationAbout removeItem:self.efficiency_rate];
+
     }
     else if([type  isEqualToString:@"车位"])
     {
         [self.floor_height setTitle:@"宽度"];
-        [self.teneApplicationAbout removeItem:self.room_num];
-        [self.teneApplicationAbout removeItem:self.hall_num];
-        [self.teneApplicationAbout removeItem:self.kitchen_num];
-        [self.teneApplicationAbout removeItem:self.toilet_num];
-        [self.teneApplicationAbout removeItem:self.balcony_num];
-        [self.teneApplicationAbout removeItem:self.house_driect];
+
         
         
         [self.teneApplicationAbout addItem:self.house_rank];
         [self.teneApplicationAbout addItem:self.house_depth];
         [self.teneApplicationAbout addItem:self.floor_height];
-        [self.teneApplicationAbout removeItem:self.floor_count];
-        [self.teneApplicationAbout removeItem:self.efficiency_rate];
     }
     else if([type  isEqualToString:@"写字楼"])
     {
-        [self.teneApplicationAbout removeItem:self.room_num];
-        [self.teneApplicationAbout removeItem:self.hall_num];
-        [self.teneApplicationAbout removeItem:self.kitchen_num];
-        [self.teneApplicationAbout removeItem:self.toilet_num];
-        [self.teneApplicationAbout removeItem:self.balcony_num];
-        [self.teneApplicationAbout removeItem:self.house_driect];
-        
-        
-        [self.teneApplicationAbout removeItem:self.house_rank];
-        [self.teneApplicationAbout removeItem:self.house_depth];
         [self.teneApplicationAbout addItem:self.floor_height];
         [self.teneApplicationAbout addItem:self.floor_count];
         [self.teneApplicationAbout addItem:self.efficiency_rate];
@@ -414,11 +382,6 @@
         [self.teneApplicationAbout addItem:self.balcony_num];
         [self.teneApplicationAbout addItem:self.house_driect];
         
-        [self.teneApplicationAbout removeItem:self.house_rank];
-        [self.teneApplicationAbout removeItem:self.house_depth];
-        [self.teneApplicationAbout removeItem:self.floor_height];
-        [self.teneApplicationAbout removeItem:self.floor_count];
-        [self.teneApplicationAbout removeItem:self.efficiency_rate];
     }
     
     [self.tableView reloadData];
@@ -465,6 +428,7 @@
     
     //@property(strong,nonatomic)RETableViewItem* judgementBtn;
     //判重按钮
+    self.judgementBtn.enabled = NO;
     self.judgementBtn = [RETableViewItem itemWithTitle:@"判重" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                          {
                              if([[self.buildname.value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""] ||
@@ -473,14 +437,14 @@
                                  self.curBuildings == nil || self.curBuilding ==nil
                                 )
                              {
-                                 PRESENTALERT(@"请先填写完整房屋信息", @"", nil, self)
+                                 PRESENTALERT(@"请先填写完整房屋信息", nil, nil, self)
                                  ;
                              }
                              else
                              {
                                  [self judgeHouseByBuildings:self.curBuildings Building:self.curBuilding Unit:self.house_serect_unit.value Table:self.house_tablet.value];
                              }
-                             [self prepareTeneApplicationSectionItemsStep1];
+                             
                          }];
     self.judgementBtn.textAlignment = NSTextAlignmentCenter;
     //判重按钮
@@ -498,9 +462,11 @@
     [dic setValue:[table substringToIndex:1] forKey:@"house_floor"];
     [HouseDataPuller pullIsHouseExisting:dic Success:^(HouseParticulars*hosuePtl)
      {
+         self.housePtl = hosuePtl;
          int tradeState = [hosuePtl.trade_type intValue];
          switch (tradeState)
          {
+                 
              case 0:
              {
                  
@@ -529,6 +495,8 @@
              default:
                  break;
          }
+         
+         [self prepareTeneApplicationSectionItemsStep1];
          HIDEHUD_WINDOW;
      }
                                              failure:^(NSError* error)

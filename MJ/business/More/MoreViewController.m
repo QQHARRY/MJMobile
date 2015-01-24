@@ -34,6 +34,11 @@
     self.title = @"更多";
 }
 
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
+}
 -(void)initTableView
 {
 //    self.tableView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-128);
@@ -148,6 +153,9 @@
             
             [cell.myPhoto setImageWithURL:[NSURL URLWithString:strUrl]];
         }
+        
+        cell.myName.text = [person me].name_full;
+        cell.myXX.text = [person me].acc_remarks;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         return cell;
     }

@@ -18,13 +18,18 @@ static NSString*UDIDSTRING=nil;
 +(void)presentPopViewControllerWithTitle:(NSString*)title Message:(NSString*)msg SimpleAction:(NSString*)action Sender:(UIViewController*)sender
 {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
-                                                                   message:msg
+    NSString*noTitle = @"No Named Title";
+    NSString*noMsg = @"";
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title==nil?noTitle:title
+                                                                   message:msg==nil?noMsg:msg
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
-    [alert addAction:[UIAlertAction actionWithTitle:action
+    
+    [alert addAction:[UIAlertAction actionWithTitle:action==nil?@"OK":action
                                               style:UIAlertActionStyleDefault
                                             handler:nil]];
+    
+
     
     [sender presentViewController:alert animated:YES completion:nil];
 #endif
