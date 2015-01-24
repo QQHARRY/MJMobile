@@ -7,22 +7,17 @@
 //
 
 #import "ClientTableViewController.h"
-#import "CustomerDataPuller.h"
+#import "SignDataPuller.h"
 #import "UtilFun.h"
-#import "CustomerDetailCell.h"
-#import "CustomerDetail.h"
+#import "ClientDetailCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "MJRefresh.h"
 #import "Macro.h"
 #import "dictionaryManager.h"
-#import "CustomerParticularTableViewController.h"
 
 @interface ClientTableViewController ()
 
-@property (nonatomic, strong) NSMutableArray *CustomerList;
-@property (nonatomic, strong) NSArray *fitmentDictList;
-@property (nonatomic, strong) NSArray *leaseDictList;
-@property (nonatomic, strong) NSArray *saleDictList;
+@property (nonatomic, strong) NSMutableArray *ClientList;
 
 @end
 
@@ -32,14 +27,12 @@
 {
     [super viewDidLoad];
     
-    // init data
-    self.CustomerList = [NSMutableArray array];
+    // title
+    self.title = @"客户列表";
     
-    // get dict
-    self.fitmentDictList = [dictionaryManager getItemArrByType:DIC_FITMENT_TYPE];
-    self.leaseDictList = [dictionaryManager getItemArrByType:DIC_LEASE_TRADE_STATE];
-    self.saleDictList = [dictionaryManager getItemArrByType:DIC_SALE_TRADE_STATE];
-
+    // init data
+    self.ClientList = [NSMutableArray array];
+    
     // header & footer refresh
     [self.tableView addHeaderWithTarget:self action:@selector(refreshData)];
     [self.tableView addFooterWithTarget:self action:@selector(loadMore)];
@@ -53,16 +46,16 @@
 - (void)refreshData
 {
     // clear
-    [self.CustomerList removeAllObjects];
+    [self.ClientList removeAllObjects];
     // reset
     self.filter.FromID = @"0";
     self.filter.ToID = @"0";
     // get
     SHOWHUD_WINDOW;
-    [CustomerDataPuller pullDataWithFilter:self.filter Success:^(NSArray *CustomerDetailList)
+    [SignDataPuller pullClientWithFilter:self.filter Success:^(NSArray *clientList)
     {
         HIDEHUD_WINDOW;
-        [self.CustomerList addObjectsFromArray:CustomerDetailList];
+        [self.ClientList addObjectsFromArray:clientList];
         [self.tableView reloadData];
         [self.tableView headerEndRefreshing];
     }
@@ -76,15 +69,15 @@
 - (void)loadMore
 {
     // reset
-    CustomerDetail *hd = [self.CustomerList lastObject];
+    NSDictionary *d = [self.ClientList lastObject];
     self.filter.ToID = @"0";
-    self.filter.FromID = hd.business_requirement_no;
+    self.filter.FromID = [d objectForKey:@"client_base_no"];
     // get
     SHOWHUD_WINDOW;
-    [CustomerDataPuller pullDataWithFilter:self.filter Success:^(NSArray *CustomerDetailList)
+    [SignDataPuller pullClientWithFilter:self.filter Success:^(NSArray *clientList)
      {
          HIDEHUD_WINDOW;
-         [self.CustomerList addObjectsFromArray:CustomerDetailList];
+         [self.ClientList addObjectsFromArray:clientList];
          [self.tableView reloadData];
          [self.tableView footerEndRefreshing];
      }
@@ -109,78 +102,54 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.CustomerList.count;
+    return self.ClientList.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 70;
+    return 50;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"CustomerDetailCell";
-    CustomerDetailCell *cell = (CustomerDetailCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"ClientDetailCell";
+    ClientDetailCell *cell = (ClientDetailCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil)
     {
-        NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"CustomerDetailCell" owner:self options:nil];
+        NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"ClientDetailCell" owner:self options:nil];
         for(id oneObject in nibs)
         {
-            if([oneObject isKindOfClass:[CustomerDetailCell class]])
+            if([oneObject isKindOfClass:[ClientDetailCell class]])
             {
-                cell = (CustomerDetailCell *)oneObject;
+                cell = (ClientDetailCell *)oneObject;
             }
         }
     }
   
-    if (indexPath.row >= [self.CustomerList count])
+    if (indexPath.row >= [self.ClientList count])
     {
         return cell;
     }
-    CustomerDetail *cd = [self.CustomerList objectAtIndex:indexPath.row];
-    cell.title.text = cd.house_urban;
-    cell.customer.text = cd.client_name;
-//    if (self.controllerType == CCT_RENT)
-//    {
-//        cell.price.text = [NSString stringWithFormat:@"%@-%@%@", cd.requirement_lease_price_from, cd.requirement_lease_price_to, cd.lease_price_unit];
-//    }
-//    else
-//    {
-//        cell.price.text = [NSString stringWithFormat:@"%@-%@%@", cd.requirement_sale_price_from, cd.requirement_sale_price_to, cd.sale_price_unit];
-//    }
-    cell.house.text = [NSString stringWithFormat:@"%@-%@层 %@-%@室 %@-%@厅 %@-%@m²", cd.requirement_floor_from, cd.requirement_floor_to, cd.requirement_room_from, cd.requirement_room_to, cd.requirement_hall_from, cd.requirement_hall_to, cd.requirement_area_from, cd.requirement_area_to];
-    cell.time.text = [NSString stringWithFormat:@"%@登记", cd.buildings_create_time];
+    NSDictionary *d = [self.ClientList objectAtIndex:indexPath.row];
+    cell.name.text = [d objectForKey:@"client_name"];
+    cell.require.text = [d objectForKey:@"house_area"];
+    cell.sales.text = [d objectForKey:@"name_full"];
+    cell.depart.text = [d objectForKey:@"dept_name"];
+    cell.time.text = [NSString stringWithFormat:@"%@登记", [d objectForKey:@"buildings_create_time"]];
 
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    messageObj*obj = [msgArr objectAtIndex:indexPath.row];
-//    MessageDetailsViewController*detailsView = [[MessageDetailsViewController alloc ] initWithNibName:@"MessageDetailsViewController" bundle:[NSBundle mainBundle]];
-//    
-//    detailsView.msg = obj;
-//    [self pushControllerToController:detailsView];
-    
-    CustomerDetail *cd = [self.CustomerList objectAtIndex:indexPath.row];
-    CustomerParticularTableViewController*ptcl = [[CustomerParticularTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    ptcl.customerDtl = cd;
-    [self pushControllerToController:ptcl];
+    NSDictionary *d = [self.ClientList objectAtIndex:indexPath.row];
+    if (self.delegate)
+    {
+        [self.navigationController popViewControllerAnimated:NO];
+        [self.delegate returnClientSelection:d];
+    }
 }
 
--(void)pushControllerToController:(UIViewController*)vc
-{
-    if ([self.navigationController respondsToSelector:@selector(pushViewController:animated:)])
-    {
-        [self.navigationController pushViewController:vc animated:YES];
-        return;
-    }
-    
-    if ([((UIViewController*)(self.container)).navigationController respondsToSelector:@selector(pushViewController:animated:)])
-    {
-        [((UIViewController*)(self.container)).navigationController pushViewController:vc animated:YES];
-    }
-}
 
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HouseFilter.h"
+#import "ClientFilter.h"
 #import "HouseDetail.h"
 #import "HouseParticulars.h"
 
@@ -17,6 +17,6 @@
 +(void)pushNewSignWithParam:(NSDictionary *)param Success:(void (^)(NSString *signNo))success failure:(void (^)(NSError *error))failure;
 //+(void)pullCustomerListDataSuccess:(void (^)(NSArray *areaList))success failure:(void (^)(NSError *error))failure;
 +(void)pullSignConditionListDataSuccess:(void (^)(NSDictionary *conditionSrc))success failure:(void (^)(NSError *error))failure;
-+(void)pullCustomListWithParam:(NSDictionary *)param Success:(void (^)(NSArray *customList))success failure:(void (^)(NSError *error))failure;
++(void)pullClientWithFilter:(ClientFilter *)filter Success:(void (^)(NSArray *clientList))success failure:(void (^)(NSError *error))failure;
 
 @end

@@ -12,11 +12,20 @@
 #import "CustomerViewController.h"
 #import "ContactListTableViewController.h"
 
-@interface ClientFilterController : UITableViewController
-    <RETableViewManagerDelegate, contacSelection>
+@protocol ClientSelection <NSObject>
 
-//@property (nonatomic, weak) CustomerViewController *hvc;
+@required
+
+-(void)returnClientSelection:(NSDictionary *)client;
+
+@end
+
+@interface ClientFilterController : UITableViewController
+    <RETableViewManagerDelegate, contacSelection, ClientSelection>
+
+@property (nonatomic, weak) id<ClientSelection> delegate;
 
 -(void)returnSelection:(NSArray*)curSelection;
+-(void)returnClientSelection:(NSDictionary *)client;
 
 @end

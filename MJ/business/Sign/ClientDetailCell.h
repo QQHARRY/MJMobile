@@ -10,10 +10,10 @@
 
 @interface ClientDetailCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *title;
-@property (strong, nonatomic) IBOutlet UILabel *customer;
-@property (strong, nonatomic) IBOutlet UILabel *price;
-@property (strong, nonatomic) IBOutlet UILabel *house;
+@property (strong, nonatomic) IBOutlet UILabel *name;
+@property (strong, nonatomic) IBOutlet UILabel *require;
+@property (strong, nonatomic) IBOutlet UILabel *sales;
+@property (strong, nonatomic) IBOutlet UILabel *depart;
 @property (strong, nonatomic) IBOutlet UILabel *time;
 
 @end

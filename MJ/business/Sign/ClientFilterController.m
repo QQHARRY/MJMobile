@@ -11,9 +11,10 @@
 #import "Macro.h"
 #import "SignDataPuller.h"
 #import "UtilFun.h"
-#import "HouseDataPuller.h"
 #import "AppDelegate.h"
 #import "person.h"
+#import "ClientFilter.h"
+#import "ClientTableViewController.h"
 
 @interface ClientFilterController ()
 
@@ -78,42 +79,32 @@
     
     RETableViewItem *buttonItem = [RETableViewItem itemWithTitle:@"查询" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
     {
-        NSMutableDictionary *param = [NSMutableDictionary dictionary];
-        [param setValue:[person me].job_no forKey:@"job_no"];
-        [param setValue:[person me].password forKey:@"acc_password"];
-        [param setValue:@"0" forKey:@"FromID"];
-        [param setValue:@"0" forKey:@"ToID"];
-        [param setValue:@"20" forKey:@"Count"];
+        ClientFilter *filter = [[ClientFilter alloc] init];
+        filter.FromID = @"0";
+        filter.ToID = @"0";
+        filter.Count = @"20";
         if (self.sales)
         {
-            [param setValue:self.sales.job_no forKey:@"client_owner_no"];
-            [param setValue:self.sales.dept_no forKey:@"dept_current_no"];
+            filter.client_owner_no = self.sales.job_no;
+            filter.dept_current_no = self.sales.dept_no;
         }
         if (self.startTimeItem.value)
         {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-            [param setValue:[dateFormatter stringFromDate:self.startTimeItem.value] forKey:@"start_date"];
+            filter.start_date = [dateFormatter stringFromDate:self.startTimeItem.value];
         }
         if (self.endTimeItem.value)
         {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-            [param setValue:[dateFormatter stringFromDate:self.endTimeItem.value] forKey:@"end_date"];
+            filter.end_date = [dateFormatter stringFromDate:self.endTimeItem.value];
         }
 
-        SHOWHUD_WINDOW;
-        [SignDataPuller pullCustomListWithParam:param Success:^(NSArray *customList)
-         {
-             HIDEHUD_WINDOW;
-
-         }
-                                     failure:^(NSError *error)
-         {
-             HIDEHUD_WINDOW;
-             PRESENTALERT(@"提交错误", @"可能是网络问题，请稍候再试", @"O K", self);
-             return;
-         }];
+        ClientTableViewController *vc = [[ClientTableViewController alloc] initWithNibName:@"ClientTableViewController" bundle:[NSBundle mainBundle]];
+        vc.filter = filter;
+        vc.delegate = self;
+        [self.navigationController pushViewController:vc animated:YES];
     }];
     buttonItem.textAlignment = NSTextAlignmentCenter;
     [section addItem:buttonItem];
@@ -131,6 +122,15 @@
     self.salesNameItem.value = p.name_full;
     self.sales = p;
     [self.tableView reloadData];
+}
+
+-(void)returnClientSelection:(NSDictionary *)client
+{
+    if (self.delegate)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+        [self.delegate returnClientSelection:client];
+    }
 }
 
 @end

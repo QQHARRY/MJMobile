@@ -33,8 +33,31 @@
      }];
 }
 
-+(void)pullCustomListWithParam:(NSDictionary *)param Success:(void (^)(NSArray *customList))success failure:(void (^)(NSError *error))failure
++(void)pullClientWithFilter:(ClientFilter *)filter Success:(void (^)(NSArray *clientList))success failure:(void (^)(NSError *error))failure
 {
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setValue:[person me].job_no forKey:@"job_no"];
+    [param setValue:[person me].password forKey:@"acc_password"];
+    [param setValue:filter.FromID forKey:@"FromID"];
+    [param setValue:filter.ToID forKey:@"ToID"];
+    [param setValue:filter.Count forKey:@"Count"];
+    if (filter.dept_current_no.length > 0)
+    {
+        [param setValue:filter.dept_current_no forKey:@"dept_current_no"];
+    }
+    if (filter.client_owner_no.length > 0)
+    {
+        [param setValue:filter.client_owner_no forKey:@"client_owner_no"];
+    }
+    if (filter.start_date.length > 0)
+    {
+        [param setValue:filter.start_date forKey:@"start_date"];
+    }
+    if (filter.end_date.length > 0)
+    {
+        [param setValue:filter.end_date forKey:@"end_date"];
+    }
+    
     [NetWorkManager PostWithApiName:API_CLIENT_LIST parameters:param success:^(id responseObject)
      {
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];

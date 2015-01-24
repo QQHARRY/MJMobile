@@ -11,10 +11,13 @@
 #import "RETableViewOptionsController.h"
 #import "HouseViewController.h"
 #import "ClientFilterController.h"
+#import "ClientFilterController.h"
 
 @interface SignAddController : UITableViewController
-    <RETableViewManagerDelegate>
+    <RETableViewManagerDelegate, ClientSelection>
 
 @property (nonatomic, strong) NSString *sid;
+
+-(void)returnClientSelection:(NSDictionary *)client;
 
 @end

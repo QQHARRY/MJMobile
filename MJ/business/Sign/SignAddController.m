@@ -29,6 +29,7 @@
 
 @property (nonatomic, strong) NSArray *personList;
 @property (nonatomic, strong) NSArray *roomList;
+@property (nonatomic, strong) NSDictionary *client;
 
 @end
 
@@ -80,7 +81,7 @@
                           {
                               [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
                               ClientFilterController *vc = [[ClientFilterController alloc] initWithStyle:UITableViewStyleGrouped];
-//                              vc.selectResultDelegate = self;
+                              vc.delegate = self;
                               [weakSelf.navigationController pushViewController:vc animated:YES];
                           }];
     [section addItem:self.customerItem];
@@ -238,7 +239,10 @@
         [SignDataPuller pushNewSignWithParam:param Success:^(NSString *att)
         {
             HIDEHUD_WINDOW;
-            [self.navigationController popViewControllerAnimated:YES];
+            PRESENTALERTWITHHANDER(@"成功", @"预约签约成功！",@"OK", self, ^(UIAlertAction *action)
+                                   {
+                                       [self.navigationController popViewControllerAnimated:YES];
+                                   });
         }
                                          failure:^(NSError *error)
         {
@@ -252,4 +256,20 @@
     return section;
 }
 
+-(void)returnClientSelection:(NSDictionary *)client
+{
+    self.client = client;
+    self.customerItem.value = [self.client objectForKey:@"client_name"];
+    [self.tableView reloadData];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([alertView.title isEqualToString:@"成功"] && buttonIndex == 0)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 @end
+
