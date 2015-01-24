@@ -184,6 +184,11 @@
             [self.infoSection removeItem:self.sale_trade_state];
             [self.infoSection removeItem:self.sale_value_total];
             [self.infoSection removeItem:self.sale_value_single];
+            [self.infoSection removeItem:self.value_bottom];
+        }
+        else if ([self.housePtcl.trade_type isEqualToString:@"租售"])
+        {
+            
         }
     }
 }
@@ -677,9 +682,68 @@
         value = housePtcl.trade_type;
     }
     self.trade_type = [[RERadioItem alloc] initWithTitle:@"交易类型:" value:value selectionHandler:^(RERadioItem *item) {
-        //todo
+        if (self.housePtcl && self.housePtcl.trade_type)
+        {
+            NSInteger tradeType = [self.housePtcl.trade_type intValue];
+            NSMutableArray *options = [[NSMutableArray alloc] init];
+            switch (tradeType)
+            {
+                case 0:
+                {
+                    [options addObject:@"出售"];
+                    [options addObject:@"出租"];
+                    [options addObject:@"租售"];
+                }
+                    break;
+                case 1:
+                {
+                    [options addObject:@"出售"];
+                    [options addObject:@"出租"];
+                    [options addObject:@"租售"];
+                }
+                    break;
+                case 2:
+                {
+                    [options addObject:@"出租"];
+                }
+                    break;
+                case 3:
+                {
+                    [options addObject:@"出售"];
+                }
+                    break;
+                case 4:
+                {
+                    
+                }
+                    break;
+                default:
+                    break;
+            }
+            RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
+                                                               {
+                                                                   [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                                   [item reloadRowWithAnimation:UITableViewRowAnimationNone]; //
+                                                                   
+                                                        
+                                                                   [self adjustByTradeType];
+                                                               }];
+            
+            optionsController.delegate = weakSelf;
+            optionsController.style = self.infoSection.style;
+            if (weakSelf.tableView.backgroundView == nil)
+            {
+                optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
+                optionsController.tableView.backgroundView = nil;
+            }
+            
+            [weakSelf.navigationController pushViewController:optionsController animated:YES];
+        }
     }];
 }
+
+
+
 
 -(void)createInfoSectionItems
 {
@@ -739,7 +803,11 @@
     value = @"";
     if (self.housePtcl)
     {
-        value = [NSString stringWithFormat:@"%@m²",self.housePtcl.build_structure_area];
+        if(self.housePtcl.build_structure_area)
+        {
+            value = [NSString stringWithFormat:@"%@m²",self.housePtcl.build_structure_area];
+        }
+        
     }
     self.build_structure_area = [[RENumberItem alloc] initWithTitle:@"面积:" value:value];
 
@@ -870,6 +938,51 @@
     //
 
                       {
+                          NSArray*arr = nil;
+                          if ([self.tene_application.value isEqualToString:@"商铺"] ||
+                              [self.tene_application.value isEqualToString:@"商住"] ||
+                              [self.tene_application.value isEqualToString:@"厂房"] ||
+                              [self.tene_application.value isEqualToString:@"仓库"] ||
+                              [self.tene_application.value isEqualToString:@"地皮"]
+                              )
+                          {
+                             arr = self.shop_rank_dic_arr;
+                          }
+                          else if ([self.tene_application.value isEqualToString:@"车位"])
+                          {
+                              arr = self.carport_rank_dic_arr;
+                          }
+                          else if ([self.tene_application.value isEqualToString:@"写字楼"])
+                          {
+                              arr = self.office_rank_dic_arr;
+                          }
+                          
+                          if (arr)
+                          {
+                              //[item deselectRowAnimated:YES];
+                              NSMutableArray *options = [[NSMutableArray alloc] init];
+                              for (NSInteger i = 0; i < arr.count; i++)
+                              {
+                                  DicItem *di = [arr objectAtIndex:i];
+                                  [options addObject:di.dict_label];
+                              }
+                              RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
+                                                                                 {
+                                                                                     [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                                                     [item reloadRowWithAnimation:UITableViewRowAnimationNone]; //
+                                                                                 }];
+                              
+                              optionsController.delegate = weakSelf;
+                              optionsController.style = self.infoSection.style;
+                              if (weakSelf.tableView.backgroundView == nil)
+                              {
+                                  optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
+                                  optionsController.tableView.backgroundView = nil;
+                              }
+                              
+                              [weakSelf.navigationController pushViewController:optionsController animated:YES];
+                          }
+                          
         //todo
     }];
     //@property (strong, readwrite, nonatomic) RERadioItem * carpot_rank;
@@ -1115,9 +1228,12 @@
     value = @"";
     if (self.housePtcl)
     {
-        value = [NSString stringWithFormat:@"%@万元",self.housePtcl.sale_value_total];
+        if (self.housePtcl.sale_value_total)
+        {
+            value = [NSString stringWithFormat:@"%@万元",self.housePtcl.sale_value_total];
+        }
     }
-    self.sale_value_total = [[RENumberItem alloc] initWithTitle:@"总价:" value:value];
+    self.sale_value_total = [[RENumberItem alloc] initWithTitle:@"出售总价:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RENumberItem * sale_value_single;
@@ -1127,9 +1243,12 @@
     value = @"";
     if (self.housePtcl)
     {
-        value = [NSString stringWithFormat:@"%@元",self.housePtcl.sale_value_single];
+        if (self.housePtcl.sale_value_single)
+        {
+            value = [NSString stringWithFormat:@"%@万元",self.housePtcl.sale_value_single];
+        }
     }
-    self.sale_value_single = [[RENumberItem alloc] initWithTitle:@"单价:" value:value];
+    self.sale_value_single = [[RENumberItem alloc] initWithTitle:@"出售单价:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RENumberItem * value_bottom;
@@ -1139,9 +1258,12 @@
     value = @"";
     if (self.housePtcl)
     {
-        value = [NSString stringWithFormat:@"%@万元",self.housePtcl.value_bottom];
+        if (self.housePtcl.value_bottom)
+        {
+            value = [NSString stringWithFormat:@"%@万元",self.housePtcl.value_bottom];
+        }
     }
-    self.value_bottom = [[RENumberItem alloc] initWithTitle:@"底价:" value:value];
+    self.value_bottom = [[RENumberItem alloc] initWithTitle:@"出售底价:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RENumberItem * lease_value_total;
@@ -1151,9 +1273,13 @@
     value = @"";
     if (self.housePtcl)
     {
-        value = [NSString stringWithFormat:@"%@万元",self.housePtcl.lease_value_total];
+        if (self.housePtcl.lease_value_total)
+        {
+            value = [NSString stringWithFormat:@"%@万元",self.housePtcl.lease_value_total];
+        }
+        
     }
-    self.lease_value_total = [[RENumberItem alloc] initWithTitle:@"总价:" value:value];
+    self.lease_value_total = [[RENumberItem alloc] initWithTitle:@"出租总价:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RENumberItem * lease_value_single;
@@ -1163,9 +1289,12 @@
     value = @"";
     if (self.housePtcl)
     {
-        value = [NSString stringWithFormat:@"%@元",self.housePtcl.lease_value_single];
+        if (self.housePtcl.lease_value_single)
+        {
+            value = [NSString stringWithFormat:@"%@元",self.housePtcl.lease_value_single];
+        }
     }
-    self.lease_value_single = [[RENumberItem alloc] initWithTitle:@"单价:" value:value];
+    self.lease_value_single = [[RENumberItem alloc] initWithTitle:@"出租单价:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * client_remark;
