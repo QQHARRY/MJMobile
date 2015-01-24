@@ -11,238 +11,43 @@
 
 @interface CustomerParticulars : dic2Object
 
-@property(nonatomic,strong)NSString* buildings_name;
-//String
-//楼盘名称
-
-@property(nonatomic,strong)NSString* urbanname;
-//String
-//区域
-
-@property(nonatomic,strong)NSString* areaname;
-//String
-//片区
-
-@property(nonatomic,strong)NSString* buildings_address;
-//String
-//地址
-
-@property(nonatomic,strong)NSString* build_structure_area;
-//float
-//面积
-
-@property(nonatomic,strong)NSString* hall_num;
-//Int
-//房屋类型的厅的数量:如2厅
-
-@property(nonatomic,strong)NSString* room_num;
-//Int
-//房
-
-@property(nonatomic,strong)NSString* kitchen_num;
-//类型的
-//的数量:如3室
-//Int
-//厨
-
-@property(nonatomic,strong)NSString* toilet_num;
-//Int
-//卫
-
-@property(nonatomic,strong)NSString* balcony_num;
-//In
-//
-//阳台
-
-@property(nonatomic,strong)NSString* tene_application;
-//Int
-//物业用途（用来区分是住宅还是车位等）
-//不同的物业用途有不同的属性字段，详见其他说明
-
-@property(nonatomic,strong)NSString* tene_type;
-//Int
-//物业类型
-
-@property(nonatomic,strong)NSString* fitment_type;
-//Int
-//装修
-
-@property(nonatomic,strong)NSString* house_driect;
-//Int
-//朝向
-
-@property(nonatomic,strong)NSString* cons_elevator_brand;
-//String
-//电梯（如奥旳斯
-
-@property(nonatomic,strong)NSString* facility_heating;
-//String
-//暖气
-
-@property(nonatomic,strong)NSString* facility_gas;
-//String
-//燃气
-
-@property(nonatomic,strong)NSString* build_year;
-//Int
-//建房年代
-
-@property(nonatomic,strong)NSString* build_property;
-//Int
-//产权年限
-
-@property(nonatomic,strong)NSString* use_situation;
-//Int
-//现状
-
-@property(nonatomic,strong)NSString* house_floor;
-//Int
-//所在楼层
-
-@property(nonatomic,strong)NSString* build_floor_count;
-//Int
-//总楼层
-
-@property(nonatomic,strong)NSString* sale_value_total;
-//Float
-//总价(出售 万)
-
-@property(nonatomic,strong)NSString* sale_value_single;
-//Float
-//单价(出售 元/平米)
-
-@property(nonatomic,strong)NSString* value_bottom;
-//Float
-//底价（出售 万）
-
-@property(nonatomic,strong)NSString* lease_value_total;
-//Float
-//总价(出租 元/月)
-
-@property(nonatomic,strong)NSString* lease_value_single;
-//Float
-//单价(出租 元/月/平米)
-
-@property(nonatomic,strong)NSString* client_remark;
-//String
-//备注
-
-@property(nonatomic,strong)NSString* b_staff_describ;
-//String
-//房源描述
-
-@property(nonatomic,strong)NSString* owner_staff_name;
-//String
-//经纪人姓名
-
-@property(nonatomic,strong)NSString* owner_staff_dept;
-//String
-//经纪人所属部门
-
-@property(nonatomic,strong)NSString* owner_company_no;
-//String
-//经纪人所属公司编号
-
-@property(nonatomic,strong)NSString* owner_compony_name;
-//String
-//经纪人所属公司名称
-
-@property(nonatomic,strong)NSString* owner_mobile;
-//String
-//经纪人电话
-
-@property(nonatomic,strong)NSString* client_source;
-//String
-//信息来源
-
-@property(nonatomic,strong)NSString* edit_permit;
-//String
-//是否有编辑权限
-//0=无
-//1=有
-//如果有编辑权限就有查看保密信息的权限
-
-@property(nonatomic,strong)NSString* secret_permit;
-//String
-//是
-
-@property(nonatomic,strong)NSString* look_permit;
-//有查看保密信息的权限
-//String
-//看房:
-//预约
-//有钥匙
-//借钥匙
-//直接
-
-@property(nonatomic,strong)NSString* xqt;
-//String
-//主图
-
-@property(nonatomic,strong)NSString* hxt;
-//String
-//户型图
-
-@property(nonatomic,strong)NSString* snt;
-//String
-//室内图
-
-@property(nonatomic,strong)NSString* trade_type;
-//String
-//房源类型:比如出售 是”100”，出租 是”101”
-//租售 是"102"
-//(这里和跟进的对象状态有关
-// 出售：出售状态
-// 出租：出租状态
-// 租售：出售状态
-
-@property(nonatomic,strong)NSString* sale_trade_state;
-//出租状态）
-// 
-// String
-// 状态（出售）
-
-@property(nonatomic,strong)NSString* lease_trade_state;
-//
-// String
-// 状态（出租）
-
-
-@property(nonatomic,strong)NSString* house_rank;
-// String
-// 如果是
-// 商铺，商住，厂房，仓库，地皮表示位置:值取字典表中的
-
-@property(nonatomic,strong)NSString* shop_rank;
-// 
-// 车位表示车位类型：
-
-@property(nonatomic,strong)NSString* carpot_rank;
- 
-// 写字楼表示级别:
-@property(nonatomic,strong)NSString* office_rank;
- 
- 
-@property(nonatomic,strong)NSString* house_depth;
-// Float
-// 进深
-
-@property(nonatomic,strong)NSString* floor_height;
-// Float
-// 层高
-
-@property(nonatomic,strong)NSString* floor_count;
-// int
-// 层数(里面有几层)
-
-@property(nonatomic,strong)NSString* efficiency_rate;
-// float
-// 实用率(百分比)
-
-@property(nonatomic,strong)NSString* buildings_picture;
-// String
-// 房源图片ID
-
-
+@property(nonatomic,strong) NSString *business_requirement_no;//客源 ID
+@property(nonatomic,strong) NSString *client_base_no;//客户编号
+@property(nonatomic,strong) NSString *client_name;//客户姓名
+@property(nonatomic,strong) NSString *client_level;//客户等级
+@property(nonatomic,strong) NSString *requirement_status;//客源状态
+@property(nonatomic,strong) NSString *client_gender;//客户性别
+@property(nonatomic,strong) NSString *client_background;//客户类别
+@property(nonatomic,strong) NSString *requirement_house_urban;//所属城区编号
+@property(nonatomic,strong) NSString *house_urban;//所属城区名称
+@property(nonatomic,strong) NSString *requirement_house_area;//所属片区编号
+@property(nonatomic,strong) NSString *buildings_name;//所属楼名称
+@property(nonatomic,strong) NSString *business_requirement_type;//求租或求购
+@property(nonatomic,strong) NSString *requirement_floor_from;//Int最低楼层要求
+@property(nonatomic,strong) NSString *requirement_floor_to;//Int最高楼层要求
+@property(nonatomic,strong) NSString *requirement_room_from;//Int最少卧室数量 要求
+@property(nonatomic,strong) NSString *requirement_room_to;//Int最大卧室数量 要求
+@property(nonatomic,strong) NSString *requirement_hall_from;//Int最少厅数量要 求
+@property(nonatomic,strong) NSString *requirement_hall_to;//Int最大厅数量要 求
+@property(nonatomic,strong) NSString *requirement_area_from;//最小面积要求
+@property(nonatomic,strong) NSString *requirement_area_to;//String最大面积要求
+@property(nonatomic,strong) NSString *requirement_client_source;//String客户来源
+@property(nonatomic,strong) NSString *requirement_sale_price_from;//String//￼最低求购价格
+@property(nonatomic,strong) NSString *requirement_sale_price_to;//最高求购价格
+@property(nonatomic,strong) NSString *requirement_lease_price_from;//最低求租价格
+@property(nonatomic,strong) NSString *requirement_lease_price_to;//最高求租价格
+@property(nonatomic,strong) NSString *requirement_tene_application;//物业用途
+@property(nonatomic,strong) NSString *requirement_tene_type;//物业类型
+@property(nonatomic,strong) NSString *requirement_fitment_type;//装修类型
+@property(nonatomic,strong) NSString *requirement_house_driect;//朝向
+@property(nonatomic,strong) NSString *sale_price_unit;//求购价格单位
+@property(nonatomic,strong) NSString *lease_price_unit;//求租价格单位
+@property(nonatomic,strong) NSString *requirement_memo;//备注
+@property(nonatomic,strong) NSString *name_full;//置业顾问名字
+@property(nonatomic,strong) NSString *comp_no;//公司编号
+@property(nonatomic,strong) NSString *dept_name;//部门名称
+@property(nonatomic,strong) NSString *b_dept_no;//部门编号
+@property(nonatomic,strong) NSString *edit_permit;//是否有编辑权 限0=无1=有 如果有编辑权 限就有查看保 密信息的权限
+@property(nonatomic,strong) NSString *secret_permit;//是否有查看保 密信息的权限
 
 @end

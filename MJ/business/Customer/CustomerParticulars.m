@@ -10,61 +10,44 @@
 
 @implementation CustomerParticulars
 
-@synthesize  buildings_name;
-@synthesize  urbanname;
-@synthesize  areaname;
-@synthesize  buildings_address;
-@synthesize  build_structure_area;
-@synthesize  hall_num;
-@synthesize  room_num;
-@synthesize  kitchen_num;
-@synthesize  toilet_num;
-@synthesize  balcony_num;
-@synthesize  tene_application;
-@synthesize  tene_type;
-@synthesize  fitment_type;
-@synthesize  house_driect;
-@synthesize  cons_elevator_brand;
-@synthesize  facility_heating;
-@synthesize  facility_gas;
-@synthesize  build_year;
-@synthesize  build_property;
-@synthesize  use_situation;
-@synthesize  house_floor;
-@synthesize  build_floor_count;
-@synthesize  sale_value_total;
-@synthesize  sale_value_single;
-@synthesize  value_bottom;
-@synthesize  lease_value_total;
-@synthesize  lease_value_single;
-@synthesize  client_remark;
-@synthesize  b_staff_describ;
-@synthesize  owner_staff_name;
-@synthesize  owner_staff_dept;
-@synthesize  owner_company_no;
-@synthesize  owner_compony_name;
-@synthesize  owner_mobile;
-@synthesize  client_source;
-@synthesize  edit_permit;
-@synthesize  secret_permit;
-@synthesize  look_permit;
-@synthesize  xqt;
-@synthesize  hxt;
-@synthesize  snt;
-@synthesize  trade_type;
-@synthesize  sale_trade_state;
-@synthesize  lease_trade_state;
-@synthesize  house_rank;
-@synthesize  shop_rank;
-@synthesize  carpot_rank;
-@synthesize  office_rank;
-@synthesize  house_depth;
-@synthesize  floor_height;
-@synthesize  floor_count;
-@synthesize  efficiency_rate;
-@synthesize  buildings_picture;
-
-
+@synthesize  business_requirement_no;//客源 ID
+@synthesize  client_base_no;//客户编号
+@synthesize  client_name;//客户姓名
+@synthesize  client_level;//客户等级
+@synthesize  requirement_status;//客源状态
+@synthesize  client_gender;//客户性别
+@synthesize  client_background;//客户类别
+@synthesize  requirement_house_urban;//所属城区编号
+@synthesize  house_urban;//所属城区名称
+@synthesize  requirement_house_area;//所属片区编号
+@synthesize  buildings_name;//所属楼名称
+@synthesize  business_requirement_type;//求租或求购
+@synthesize  requirement_floor_from;//Int最低楼层要求
+@synthesize  requirement_floor_to;//Int最高楼层要求
+@synthesize  requirement_room_from;//Int最少卧室数量 要求
+@synthesize  requirement_room_to;//Int最大卧室数量 要求
+@synthesize  requirement_hall_from;//Int最少厅数量要 求
+@synthesize  requirement_hall_to;//Int最大厅数量要 求
+@synthesize  requirement_area_from;//最小面积要求
+@synthesize  requirement_area_to;//String最大面积要求
+@synthesize  requirement_client_source;//String客户来源
+@synthesize  requirement_sale_price_from;//String//￼最低求购价格
+@synthesize  requirement_sale_price_to;//最高求购价格
+@synthesize  requirement_lease_price_from;//最低求租价格
+@synthesize  requirement_lease_price_to;//最高求租价格
+@synthesize  requirement_tene_application;//物业用途
+@synthesize  requirement_tene_type;//物业类型
+@synthesize  requirement_fitment_type;//装修类型
+@synthesize  requirement_house_driect;//朝向
+@synthesize  sale_price_unit;//求购价格单位
+@synthesize  lease_price_unit;//求租价格单位
+@synthesize  requirement_memo;//备注
+@synthesize  name_full;//置业顾问名字
+@synthesize  comp_no;//公司编号
+@synthesize  dept_name;//部门名称
+@synthesize  b_dept_no;//部门编号
+@synthesize  edit_permit;//是否有编辑权 限0=无1=有 如果有编辑权 限就有查看保 密信息的权
+@synthesize  secret_permit;//是否有查看保 密信息的权限
 
 
 @end
