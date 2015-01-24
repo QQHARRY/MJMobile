@@ -1430,7 +1430,7 @@
         value = self.houseSecretPtcl.buildname;
     }
     self.buildname = [[RERadioItem alloc] initWithTitle:@"栋座:" value:value selectionHandler:^(RERadioItem *item) {
-        //todo
+
     }];
 
     

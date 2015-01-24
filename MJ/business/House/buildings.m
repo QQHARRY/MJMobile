@@ -10,6 +10,7 @@
 
 @implementation buildings
 
+@synthesize buildings_dict_no;
 @synthesize buildings_name;
 @synthesize urbanname;
 @synthesize areaname;

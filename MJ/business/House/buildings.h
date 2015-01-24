@@ -9,6 +9,8 @@
 #import "dic2Object.h"
 
 @interface buildings : dic2Object
+
+@property (strong, nonatomic) NSString *buildings_dict_no;
 @property (strong, nonatomic) NSString *buildings_name;
 @property (strong, nonatomic) NSString *urbanname;
 @property (strong, nonatomic) NSString *areaname;

@@ -59,6 +59,11 @@
 		4A5D244E1A4AC17500546698 /* cartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D244D1A4AC17500546698 /* cartTableViewCell.m */; };
 		4A5D24511A4AF21000546698 /* orderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D24501A4AF21000546698 /* orderTableViewCell.m */; };
 		4A5D24541A4AF22900546698 /* orderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D24531A4AF22900546698 /* orderTableViewController.m */; };
+		4A6865A11A7374EF005394DD /* HouseSelectBuildingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6865A01A7374EF005394DD /* HouseSelectBuildingTableViewController.m */; };
+		4A6865A51A737573005394DD /* buildingItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6865A31A737573005394DD /* buildingItemTableViewCell.m */; };
+		4A6865A61A737573005394DD /* buildingItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6865A41A737573005394DD /* buildingItemTableViewCell.xib */; };
+		4A6865A91A7375EF005394DD /* building.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6865A81A7375EF005394DD /* building.m */; };
+		4A6865AC1A73765E005394DD /* buildingDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6865AB1A73765E005394DD /* buildingDetails.m */; };
 		4A6EF2A61A5E20CC008AB819 /* ContactsListPersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6EF2A41A5E20CC008AB819 /* ContactsListPersonTableViewCell.m */; };
 		4A6EF2A71A5E20CC008AB819 /* ContactsListPersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6EF2A51A5E20CC008AB819 /* ContactsListPersonTableViewCell.xib */; };
 		4A6EF2AB1A5E6E8D008AB819 /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6EF2A91A5E6E8D008AB819 /* libUMessage_Sdk_1.1.0.a */; };
@@ -345,6 +350,15 @@
 		4A5D24501A4AF21000546698 /* orderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = orderTableViewCell.m; sourceTree = "<group>"; };
 		4A5D24521A4AF22900546698 /* orderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = orderTableViewController.h; sourceTree = "<group>"; };
 		4A5D24531A4AF22900546698 /* orderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = orderTableViewController.m; sourceTree = "<group>"; };
+		4A68659F1A7374EF005394DD /* HouseSelectBuildingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseSelectBuildingTableViewController.h; sourceTree = "<group>"; };
+		4A6865A01A7374EF005394DD /* HouseSelectBuildingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseSelectBuildingTableViewController.m; sourceTree = "<group>"; };
+		4A6865A21A737573005394DD /* buildingItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buildingItemTableViewCell.h; sourceTree = "<group>"; };
+		4A6865A31A737573005394DD /* buildingItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = buildingItemTableViewCell.m; sourceTree = "<group>"; };
+		4A6865A41A737573005394DD /* buildingItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = buildingItemTableViewCell.xib; sourceTree = "<group>"; };
+		4A6865A71A7375EF005394DD /* building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = building.h; sourceTree = "<group>"; };
+		4A6865A81A7375EF005394DD /* building.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = building.m; sourceTree = "<group>"; };
+		4A6865AA1A73765E005394DD /* buildingDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buildingDetails.h; sourceTree = "<group>"; };
+		4A6865AB1A73765E005394DD /* buildingDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = buildingDetails.m; sourceTree = "<group>"; };
 		4A6EF2A31A5E20CC008AB819 /* ContactsListPersonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsListPersonTableViewCell.h; sourceTree = "<group>"; };
 		4A6EF2A41A5E20CC008AB819 /* ContactsListPersonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsListPersonTableViewCell.m; sourceTree = "<group>"; };
 		4A6EF2A51A5E20CC008AB819 /* ContactsListPersonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsListPersonTableViewCell.xib; sourceTree = "<group>"; };
@@ -1499,6 +1513,15 @@
 				4A20DAE41A6A2FAB002E68EC /* buildings.m */,
 				4A20DAE61A6A3205002E68EC /* buildingsFilterViewController.h */,
 				4A20DAE71A6A3205002E68EC /* buildingsFilterViewController.m */,
+				4A6865A21A737573005394DD /* buildingItemTableViewCell.h */,
+				4A6865A31A737573005394DD /* buildingItemTableViewCell.m */,
+				4A6865A41A737573005394DD /* buildingItemTableViewCell.xib */,
+				4A68659F1A7374EF005394DD /* HouseSelectBuildingTableViewController.h */,
+				4A6865A01A7374EF005394DD /* HouseSelectBuildingTableViewController.m */,
+				4A6865AA1A73765E005394DD /* buildingDetails.h */,
+				4A6865AB1A73765E005394DD /* buildingDetails.m */,
+				4A6865A71A7375EF005394DD /* building.h */,
+				4A6865A81A7375EF005394DD /* building.m */,
 			);
 			path = House;
 			sourceTree = "<group>";
@@ -1639,6 +1662,7 @@
 				B98BD5831A609185003A35BE /* RETableViewManager.bundle in Resources */,
 				B94445841A62986B0033E998 /* ContractTableViewController.xib in Resources */,
 				4A20DAE21A6A2B85002E68EC /* BuildingsTableCell.xib in Resources */,
+				4A6865A61A737573005394DD /* buildingItemTableViewCell.xib in Resources */,
 				B98BD4B21A60616A003A35BE /* HouseDetailCell.xib in Resources */,
 				B93B142C1A61652000121133 /* CustomerDetailCell.xib in Resources */,
 				4AFC39A81A47CA3A000FB6F3 /* bind.storyboard in Resources */,
@@ -1685,6 +1709,7 @@
 				B98BD4C51A60747A003A35BE /* MJRefreshBaseView.m in Sources */,
 				4A9D025C1A62B13F00600BA0 /* CustomerParticularTableViewController.m in Sources */,
 				4A2AD1811A457E800074DCA0 /* PersonDetailsViewController.m in Sources */,
+				4A6865AC1A73765E005394DD /* buildingDetails.m in Sources */,
 				B98BD5771A609185003A35BE /* RENumberItem.m in Sources */,
 				B93B142E1A61652000121133 /* CustomerFilterController.m in Sources */,
 				B98BD56D1A609185003A35BE /* RETableViewSegmentedCell.m in Sources */,
@@ -1711,6 +1736,7 @@
 				B98BD5821A609185003A35BE /* RETableViewItem.m in Sources */,
 				B98BD56B1A609185003A35BE /* RETableViewOptionCell.m in Sources */,
 				B98BD56E1A609185003A35BE /* RETableViewTextCell.m in Sources */,
+				4A6865A11A7374EF005394DD /* HouseSelectBuildingTableViewController.m in Sources */,
 				4A20DADD1A6A2B5A002E68EC /* BuildingsSelectTableViewController.m in Sources */,
 				4AD7954E1A218C4A00DEC779 /* UIAlertView+AFNetworking.m in Sources */,
 				B9FF4B411A245FB300FE413E /* HouseViewController.m in Sources */,
@@ -1767,6 +1793,7 @@
 				4A56654C1A4C05C300C3BA22 /* messageManager.m in Sources */,
 				4A5137481A3B18C1007B504B /* bizManager.m in Sources */,
 				B98BD5891A609185003A35BE /* NSError+REValidation.m in Sources */,
+				4A6865A91A7375EF005394DD /* building.m in Sources */,
 				B98BD56F1A609185003A35BE /* REBoolItem.m in Sources */,
 				4A9D02061A60544900600BA0 /* Sqlite3DataPersistence.m in Sources */,
 				B98BD5711A609185003A35BE /* REDateTimeItem.m in Sources */,
@@ -1794,6 +1821,7 @@
 				B98BD4B11A60616A003A35BE /* HouseDetailCell.m in Sources */,
 				B9FF4B431A245FB300FE413E /* BindViewController.m in Sources */,
 				B93B143D1A62539D00121133 /* FollowTableViewController.m in Sources */,
+				4A6865A51A737573005394DD /* buildingItemTableViewCell.m in Sources */,
 				4A8D01DE1A369DCE00EA59EA /* PublicAnncTableViewCell.m in Sources */,
 				B98BD57D1A609185003A35BE /* REActionBar.m in Sources */,
 				4ABC221D1A3C31910017FD94 /* AnncListViewController.m in Sources */,

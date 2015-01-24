@@ -15,6 +15,8 @@
 #import "UtilFun.h"
 #import "AFNetworking.h"
 #import "buildings.h"
+#import "building.h"
+
 //#import "AFHTTPRequestOperation.h"
 
 @implementation HouseDataPuller
@@ -317,7 +319,7 @@
      }];
 }
 
-+(void)pullBuildingDetailsByContidion:(NSString *)buildingNO Success:(void (^)(NSArray*arr))success failure:(void (^)(NSError *error))failure
++(void)pullBuildingDetailsByBuildingNO:(NSString *)buildingNO Success:(void (^)(buildingDetails*dtl, NSArray*arr))success failure:(void (^)(NSError *error))failure
 {
     NSDictionary *parameters = @{@"job_no":[person me].job_no,
                                  @"acc_password":[person me].password,
@@ -329,14 +331,23 @@
      ^(id responseObject)
      {
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-         if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
-         {
-             NSArray*arr = [[NSMutableArray alloc] init];
+
+             buildingDetails*dtl = [[buildingDetails alloc] init];
+             [dtl initWithDictionary:[[resultDic objectForKey:@"EstateBuildingsDetailsNode"] objectAtIndex:0]];
              
-             
-             success(arr);
-         }
-         
+             NSMutableArray*buildingsArr = [[NSMutableArray alloc] init];
+             NSArray*arr = [resultDic objectForKey:@"EstateBuildsDetailsNode"];
+             if (arr)
+             {
+                 for (NSDictionary*bldDic in arr)
+                 {
+                     building*bld = [[building alloc] init];
+                     [bld initWithDictionary:bldDic];
+                     [buildingsArr addObject:bld];
+                 }
+             }
+
+         success(dtl,buildingsArr);
      }
                             failure:^(NSError *error)
      {

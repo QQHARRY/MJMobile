@@ -11,6 +11,7 @@
 #import "HouseDetail.h"
 #import "HouseParticulars.h"
 #import "houseSecretParticulars.h"
+#import "buildingDetails.h"
 
 
 @interface HouseDataPuller : NSObject
@@ -28,5 +29,5 @@
 
 
 +(void)pullBuildingByContidion:(NSDictionary *)condition Success:(void (^)(NSArray*buildingsArr))success failure:(void (^)(NSError *error))failure;
-+(void)pullBuildingDetailsByContidion:(NSString *)buildingNO Success:(void (^)(NSArray*arr))success failure:(void (^)(NSError *error))failure;
++(void)pullBuildingDetailsByBuildingNO:(NSString *)buildingNO Success:(void (^)(buildingDetails*,NSArray*bldArr))success failure:(void (^)(NSError *error))failure;
 @end

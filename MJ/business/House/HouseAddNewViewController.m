@@ -11,6 +11,8 @@
 #import "HouseDataPuller.h"
 #import "BuildingsSelectTableViewController.h"
 #import "dictionaryManager.h"
+#import "HouseSelectBuildingTableViewController.h"
+#import "HouseDataPuller.h"
 
 @interface HouseAddNewViewController ()
 @property(strong,readwrite,nonatomic)RETableViewSection*teneApplicationAbout;
@@ -22,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.curBuilidngsOfCurBuildings = [[NSMutableArray alloc] init];
     [self reloadUI];
 }
 
@@ -144,6 +147,31 @@
     [self.secretSection removeItem:self.look_permit];
 }
 
+
+-(void)getBuildingDetails
+{
+    SHOWHUD_WINDOW;
+    
+    [HouseDataPuller pullBuildingDetailsByBuildingNO:self.curBuildings.buildings_dict_no Success:^(buildingDetails *dtl,NSArray*arr)
+     {
+         [self.curBuilidngsOfCurBuildings removeAllObjects];
+         if ([arr count] > 0)
+         {
+             [self.curBuilidngsOfCurBuildings addObjectsFromArray:arr];
+             self.curBuildingsDetails = dtl;
+         }
+         else
+         {
+             PRSENTALERT(@"楼盘未录入栋座",@"请先联系主管添加栋座信息",@"OK",self);
+         }
+         HIDEHUD_WINDOW;
+     }
+                                            failure:^(NSError* error)
+     {
+         
+         HIDEHUD_WINDOW;
+     }];
+}
 -(void)createInfoSectionItems
 {
     __typeof (&*self) __weak weakSelf = self;
@@ -153,14 +181,43 @@
         BuildingsSelectTableViewController*selCtrl = [BuildingsSelectTableViewController initWithDelegate:weakSelf AndCompleteHandler:^(buildings *bld) {
             if (bld)
             {
-                self.buildings_name.value = bld.buildings_name;
-                self.urbanname.value = bld.urbanname;
-                self.areaname.value = bld.areaname;
-                self.buildings_address.value = bld.Buildings_address;
-                self.curBuildings = bld;
-                [self.manager addSection:self.teneApplicationAbout];
-                [self prepareTeneApplicationSectionItemsStep1];
+                //if (bld && self.curBuildings != bld)
+                {
+                    self.curBuildings = bld;
+                    self.buildings_name.value = bld.buildings_name;
+                    self.urbanname.value = bld.urbanname;
+                    self.areaname.value = bld.areaname;
+                    self.buildings_address.value = bld.Buildings_address;
+                    [self.curBuilidngsOfCurBuildings removeAllObjects];
+                    self.curBuildingsDetails = nil;
+                    
+                    self.buildname.enabled = YES;
+                    self.house_serect_unit.enabled = YES;
+                    self.house_tablet.enabled = YES;
+                    [self.manager addSection:self.teneApplicationAbout];
+                    [self.tableView reloadData];
+                    [self performSelectorOnMainThread:@selector(getBuildingDetails) withObject:nil waitUntilDone:NO];
+                    
+                }
                 
+                
+            }
+            
+        }];
+        
+        [weakSelf.navigationController pushViewController:selCtrl animated:YES];
+    }];
+    
+    
+    
+    self.buildname = [[RERadioItem alloc] initWithTitle:@"栋座:" value:@"" selectionHandler:^(RERadioItem *item) {
+        [item deselectRowAnimated:YES];
+        HouseSelectBuildingTableViewController*selCtrl = [HouseSelectBuildingTableViewController initWithDelegate:weakSelf  BuildingsArr:self.curBuilidngsOfCurBuildings AndCompleteHandler:^(building *bld) {
+            if (bld)
+            {
+                self.buildname.value = bld.build_full_name;
+
+                self.curBuilding = bld;
             }
             
         }];
@@ -342,9 +399,10 @@
 -(void)prepareAddInfoSectionItems
 {
     [self.addInfoSection removeAllItems];
+    [self createSecretSectionItems];
     [self createAddInfoSectionItems];
     [self createInfoSectionItems];
-    [self createSecretSectionItems];
+    
 
     //楼盘
     [self.addInfoSection addItem:self.buildings_name];
@@ -358,17 +416,20 @@
     self.buildings_address.enabled = NO;
     [self.addInfoSection addItem:self.buildings_address];
     //栋座
+    self.buildname.enabled = NO;
     [self.addInfoSection addItem:self.buildname];
     //单元
+    self.house_serect_unit.enabled = NO;
     [self.addInfoSection addItem:self.house_serect_unit];
     //门牌号
+    self.house_tablet.enabled = NO;
     [self.addInfoSection addItem:self.house_tablet];
     
     //@property(strong,nonatomic)RETableViewItem* judgementBtn;
     //判重按钮
     self.judgementBtn = [RETableViewItem itemWithTitle:@"判重" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                          {
-                             
+                             [self prepareTeneApplicationSectionItemsStep1];
                          }];
     self.judgementBtn.textAlignment = NSTextAlignmentCenter;
     //判重按钮
