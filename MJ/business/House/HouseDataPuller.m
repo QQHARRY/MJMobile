@@ -365,11 +365,20 @@
      ^(id responseObject)
      {
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-         
-         if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         NSString*status = [resultDic objectForKey:@"Status"];
+         NSInteger iStatus = [status intValue];
+         HouseParticulars*housePtl = [[HouseParticulars alloc] init];
+         if (iStatus == 1 || iStatus == 2 || iStatus == 3)
          {
-             
+             NSDictionary* houseInfoNode = [[resultDic objectForKey:@"HouseInfoNode"] objectAtIndex:0];
+             if (houseInfoNode)
+             {
+                 [housePtl initWithDictionary:houseInfoNode];
+             }
          }
+         housePtl.trade_type = status;
+         success(housePtl);
+         
      }
                             failure:^(NSError *error)
      {

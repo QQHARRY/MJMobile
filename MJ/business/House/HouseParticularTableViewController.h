@@ -71,7 +71,7 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 @property(strong,nonatomic)RERadioItem* house_floor;
 //楼层
 
-@property(strong,nonatomic)RETextItem* house_tablet;
+@property(strong,nonatomic)RENumberItem* house_tablet;
 //门牌号
 
 @property(strong,nonatomic)RERadioItem* trade_type;
@@ -345,7 +345,7 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 //单元（房源的）
 //Int
 
-@property(nonatomic,strong)RETextItem* house_secrect_tablet;
+@property(nonatomic,strong)RENumberItem* house_secrect_tablet;
 //house_tablet
 //门牌号（房
 //的）

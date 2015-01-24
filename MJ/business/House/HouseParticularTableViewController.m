@@ -653,7 +653,7 @@
     {
         value = houseSecretPtcl.house_tablet;
     }
-    self.house_tablet = [[RETextItem alloc] initWithTitle:@"门牌号:" value:value];
+    self.house_tablet = [[RENumberItem alloc] initWithTitle:@"门牌号:" value:value];
     
     //@property(strong,nonatomic)RETableViewItem* judgementBtn;
     //判重按钮
@@ -1445,7 +1445,7 @@
     self.house_serect_unit = [[RERadioItem alloc] initWithTitle:@"单元:" value:value selectionHandler:^(RERadioItem *item) {
         //todo
     }];
-    //@property(nonatomic,strong)RETableViewItem* house_secrect_tablet;
+    //@property(nonatomic,strong)RENumberItem* house_secrect_tablet;
     //门牌号（房
     //的）
     //Int
@@ -1454,7 +1454,7 @@
     {
         value = self.houseSecretPtcl.house_tablet;
     }
-    self.house_secrect_tablet = [[RETextItem alloc] initWithTitle:@"门牌号:" value:value ];
+    self.house_secrect_tablet = [[RENumberItem alloc] initWithTitle:@"门牌号:" value:value ];
     
     //@property(nonatomic,strong)RETableViewItem* client_secret_remark;
     //备注

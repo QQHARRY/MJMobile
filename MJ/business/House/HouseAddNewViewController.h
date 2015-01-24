@@ -10,6 +10,7 @@
 #import "buildings.h"
 #import "building.h"
 #import "buildingDetails.h"
+#import "houseParticulars.h"
 
 @interface HouseAddNewViewController : HouseParticularTableViewController
 
@@ -18,4 +19,5 @@
 @property(weak,nonatomic)id delegate;
 @property(nonatomic,strong)NSMutableArray*curBuilidngsOfCurBuildings;//楼盘中的所有栋座
 @property(nonatomic,strong)buildingDetails*curBuildingsDetails;
+@property(nonatomic,strong)HouseParticulars*housePtl;
 @end

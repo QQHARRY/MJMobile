@@ -192,8 +192,8 @@
                     self.curBuildingsDetails = nil;
                     
                     self.buildname.enabled = YES;
-                    self.house_serect_unit.enabled = YES;
-                    self.house_tablet.enabled = YES;
+                    
+                    //self.house_tablet.enabled = YES;
                     [self.manager addSection:self.teneApplicationAbout];
                     [self.tableView reloadData];
                     [self performSelectorOnMainThread:@selector(getBuildingDetails) withObject:nil waitUntilDone:NO];
@@ -219,6 +219,7 @@
                 self.buildname.value = bld.build_full_name;
                 self.build_floor_count.value = bld.floor_count;
                 self.curBuilding = bld;
+                self.house_serect_unit.enabled = YES;
                 [self.tableView reloadData];
             }
             
@@ -235,7 +236,9 @@
                                                            {
                                                                [weakSelf.navigationController popViewControllerAnimated:YES];
                                                                
+                                                               self.house_tablet.enabled = YES;
                                                                self.house_serect_unit.value = selectedItem.title;
+                                                               [self.house_tablet reloadRowWithAnimation:UITableViewRowAnimationFade];
                                                                [item reloadRowWithAnimation:UITableViewRowAnimationNone];
                                                            }];
         // Adjust styles
@@ -488,17 +491,43 @@
 {
     SHOWHUD_WINDOW;
     
-    [HouseDataPuller pullBuildingDetailsByBuildingNO:self.curBuildings.buildings_dict_no Success:^(buildingDetails *dtl,NSArray*arr)
+    NSMutableDictionary*dic = [[NSMutableDictionary alloc] init];
+    [dic setValue:blding.builds_dict_no forKey:@"builds_dict_no"];
+    [dic setValue:unit forKey:@"house_unit"];
+    [dic setValue:table forKey:@"house_tablet"];
+    [dic setValue:[table substringToIndex:1] forKey:@"house_floor"];
+    [HouseDataPuller pullIsHouseExisting:dic Success:^(HouseParticulars*hosuePtl)
      {
-         [self.curBuilidngsOfCurBuildings removeAllObjects];
-         if ([arr count] > 0)
+         int tradeState = [hosuePtl.trade_type intValue];
+         switch (tradeState)
          {
-             [self.curBuilidngsOfCurBuildings addObjectsFromArray:arr];
-             self.curBuildingsDetails = dtl;
-         }
-         else
-         {
-             PRESENTALERT(@"楼盘未录入栋座",@"请先联系主管添加栋座信息",@"OK",self);
+             case 0:
+             {
+                 
+             }
+                 break;
+             case 1:
+             {
+                 
+             }
+                 break;
+             case 2:
+             {
+                 
+             }
+                 break;
+             case 3:
+             {
+                 
+             }
+                 break;
+             case 4:
+             {
+                 PRESENTALERT(@"该房源已添加租售信息", @"不能再重复添加信息", nil, self);
+             }
+                 break;
+             default:
+                 break;
          }
          HIDEHUD_WINDOW;
      }

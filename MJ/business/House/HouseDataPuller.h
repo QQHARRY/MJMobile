@@ -30,4 +30,6 @@
 
 +(void)pullBuildingByContidion:(NSDictionary *)condition Success:(void (^)(NSArray*buildingsArr))success failure:(void (^)(NSError *error))failure;
 +(void)pullBuildingDetailsByBuildingNO:(NSString *)buildingNO Success:(void (^)(buildingDetails*,NSArray*bldArr))success failure:(void (^)(NSError *error))failure;
+
++(void)pullIsHouseExisting:(NSDictionary *)dic Success:(void (^)(HouseParticulars*hosuePtl))success failure:(void (^)(NSError *error))failure;
 @end

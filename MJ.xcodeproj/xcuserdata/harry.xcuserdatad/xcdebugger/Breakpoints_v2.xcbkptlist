@@ -99,13 +99,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MJ/business/House/HouseAddNewViewController.m"
-            timestampString = "443784218.390443"
+            filePath = "MJ/business/House/HouseDataPuller.m"
+            timestampString = "443788007.915558"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "455"
-            endingLineNumber = "455"
-            landmarkName = "-prepareAddInfoSectionItems"
+            startingLineNumber = "367"
+            endingLineNumber = "367"
+            landmarkName = "+pullIsHouseExisting:Success:failure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
