@@ -90,7 +90,9 @@
 // 40.获取客户列表
 #define API_CLIENT_LIST @"business/getClientList"
 // 46.获取客源详细信息
-#define API_CUSTOM_DETAIL @"business/getCustomerDetails"
+#define API_CUSTOM_PARTICULARS @"business/getCustomerDetails"
+// 50.查看客户保密信息
+#define API_CUSTOM_SECRET @"business/getCustomerSecretInfo"
 
 
 //字典表
@@ -119,6 +121,8 @@
 #define DIC_OFFICE_RANK_TYPE @"office_rank"
 #define DIC_CARPORT_RANK_TYPE @"carport_rank"
 #define DIC_SEX_TYPE @"sex"
+#define DIC_CLIENT_LEVEL @"client_level"
+#define DIC_CLIENT_BG @"client_background"
 
 
 //添加图片

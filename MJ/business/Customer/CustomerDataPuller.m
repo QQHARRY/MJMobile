@@ -97,6 +97,52 @@
      }];
 }
 
++(void)pullCustomerParticulars:(CustomerDetail *)detail Success:(void(^)(CustomerParticulars *particulars))success failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *parameters = @{@"job_no":[person me].job_no,
+                                 @"acc_password":[person me].password,
+                                 @"business_requirement_no":detail.business_requirement_no,
+                                 };
+    
+    [NetWorkManager PostWithApiName:API_CUSTOM_PARTICULARS parameters:parameters success:
+     ^(id responseObject)
+     {
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         {
+             CustomerParticulars *particulars = [[CustomerParticulars alloc] init];
+             [particulars initWithDictionary:[[resultDic  objectForKey:@"CustomerDetailsNode"] objectAtIndex:0]];
+             success(particulars);
+         }
+     }
+                            failure:^(NSError *error)
+     {
+         failure(error);
+     }];
+}
 
++(void)pullCustomerSecret:(CustomerDetail *)detail Success:(void(^)(CustomerSecret *secret))success failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *parameters = @{@"job_no":[person me].job_no,
+                                 @"acc_password":[person me].password,
+                                 @"business_requirement_no":detail.business_requirement_no,
+                                 };
+    
+    [NetWorkManager PostWithApiName:API_CUSTOM_SECRET parameters:parameters success:
+     ^(id responseObject)
+     {
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         {
+             CustomerSecret *secret = [[CustomerSecret alloc] init];
+             [secret initWithDictionary:[[resultDic objectForKey:@"CustomerSecretNode"] objectAtIndex:0]];
+             success(secret);
+         }
+     }
+                            failure:^(NSError *error)
+     {
+         failure(error);
+     }];
+}
 
 @end

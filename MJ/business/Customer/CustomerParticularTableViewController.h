@@ -8,26 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomerDetail.h"
+#import "CustomerParticulars.h"
 #import "RETableViewManager.h"
 #import "RETableViewOptionsController.h"
 
 
+@interface CustomerParticularTableViewController : UITableViewController
+    <RETableViewManagerDelegate>
 
-typedef NS_ENUM(NSInteger, CUSPAICULARMODE) {
-    CUSPAICULARMODE_READ,
-    CUSPAICULARMODE_EDIT,
-    CUSPAICULARMODE_WRITE
-};
-
-
-
-@interface CustomerParticularTableViewController : UITableViewController<RETableViewManagerDelegate>
-
-@property(strong,nonatomic)CustomerDetail*customerDtl;
-
-
-
-@property(assign,nonatomic)CUSPAICULARMODE mode;
-
+@property (strong, nonatomic) CustomerDetail *detail;
+@property (strong, nonatomic) CustomerParticulars *particulars;
 
 @end

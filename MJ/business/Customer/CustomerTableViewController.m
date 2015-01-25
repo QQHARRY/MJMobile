@@ -20,9 +20,6 @@
 @interface CustomerTableViewController ()
 
 @property (nonatomic, strong) NSMutableArray *CustomerList;
-@property (nonatomic, strong) NSArray *fitmentDictList;
-@property (nonatomic, strong) NSArray *leaseDictList;
-@property (nonatomic, strong) NSArray *saleDictList;
 
 @end
 
@@ -35,11 +32,6 @@
     // init data
     self.CustomerList = [NSMutableArray array];
     
-    // get dict
-    self.fitmentDictList = [dictionaryManager getItemArrByType:DIC_FITMENT_TYPE];
-    self.leaseDictList = [dictionaryManager getItemArrByType:DIC_LEASE_TRADE_STATE];
-    self.saleDictList = [dictionaryManager getItemArrByType:DIC_SALE_TRADE_STATE];
-
     // header & footer refresh
     [self.tableView addHeaderWithTarget:self action:@selector(refreshData)];
     [self.tableView addFooterWithTarget:self action:@selector(loadMore)];
@@ -156,15 +148,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    messageObj*obj = [msgArr objectAtIndex:indexPath.row];
-//    MessageDetailsViewController*detailsView = [[MessageDetailsViewController alloc ] initWithNibName:@"MessageDetailsViewController" bundle:[NSBundle mainBundle]];
-//    
-//    detailsView.msg = obj;
-//    [self pushControllerToController:detailsView];
-    
     CustomerDetail *cd = [self.CustomerList objectAtIndex:indexPath.row];
     CustomerParticularTableViewController*ptcl = [[CustomerParticularTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    ptcl.customerDtl = cd;
+    ptcl.detail = cd;
     [self pushControllerToController:ptcl];
 }
 
