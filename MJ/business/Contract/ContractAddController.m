@@ -372,25 +372,25 @@
     {
         image = [self.wtImageList objectAtIndex:self.uploadProgress];
         type = @"wt";
-        tip = [NSString stringWithFormat:@"正在上传委托协议图片第%ld张(共%lu张)，请稍候...", (self.uploadProgress + 1), (unsigned long)self.wtImageList.count];
+        tip = [NSString stringWithFormat:@"正在上传委托协议第%ld张(共%lu张)...", (self.uploadProgress + 1), (unsigned long)self.wtImageList.count];
     }
     else if (self.uploadProgress < (self.qcImageList.count + self.wtImageList.count) )
     {
         image = [self.qcImageList objectAtIndex:(self.uploadProgress - self.wtImageList.count) ];
         type = @"qc";
-        tip = [NSString stringWithFormat:@"正在上传产权证明图片第%ld张(共%lu张)，请稍候...", (self.uploadProgress + 1 - self.wtImageList.count), (unsigned long)self.qcImageList.count];
+        tip = [NSString stringWithFormat:@"正在上传产权证明第%ld张(共%lu张)...", (self.uploadProgress + 1 - self.wtImageList.count), (unsigned long)self.qcImageList.count];
     }
     else if (self.uploadProgress < (self.qcImageList.count + self.wtImageList.count + self.sfImageList.count) )
     {
         image = [self.sfImageList objectAtIndex:(self.uploadProgress - self.wtImageList.count - self.qcImageList.count) ];
         type = @"sf";
-        tip = [NSString stringWithFormat:@"正在上传身份证明图片第%ld张(共%lu张)，请稍候...", (self.uploadProgress + 1 - self.wtImageList.count - self.qcImageList.count), (unsigned long)self.sfImageList.count];
+        tip = [NSString stringWithFormat:@"正在上传身份证明第%ld张(共%lu张)...", (self.uploadProgress + 1 - self.wtImageList.count - self.qcImageList.count), (unsigned long)self.sfImageList.count];
     }
     else if (self.uploadProgress < (self.qcImageList.count + self.wtImageList.count + self.sfImageList.count + self.qtImageList.count) )
     {
         image = [self.qtImageList objectAtIndex:(self.uploadProgress - self.wtImageList.count - self.qcImageList.count - self.qtImageList.count) ];
         type = @"qt";
-        tip = [NSString stringWithFormat:@"正在上传其他图片第%ld张(共%lu张)，请稍候...", (self.uploadProgress + 1 - self.wtImageList.count - self.qcImageList.count - self.qtImageList.count), (unsigned long)self.qtImageList.count];
+        tip = [NSString stringWithFormat:@"正在上传其他图片第%ld张(共%lu张)...", (self.uploadProgress + 1 - self.wtImageList.count - self.qcImageList.count - self.qtImageList.count), (unsigned long)self.qtImageList.count];
     }
     else
     {
