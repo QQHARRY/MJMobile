@@ -60,4 +60,21 @@
 
 @property(nonatomic,strong) RERadioItem *name_full;//置业顾问名字
 
+
+@property(strong, readwrite, nonatomic) NSArray* tene_application_dic_arr;
+@property(strong, readwrite, nonatomic) NSArray* tene_type_dic_arr;
+@property(strong, readwrite, nonatomic) NSArray* fitment_type_dic_arr;
+@property(strong, readwrite, nonatomic) NSArray* house_driect_dic_arr;
+@property(strong, readwrite, nonatomic) NSArray* use_situation_dic_arr;
+@property(strong, readwrite, nonatomic) NSArray* client_source_dic_arr;
+@property(strong, readwrite, nonatomic) NSArray* look_permit_dic_arr;
+
+@property(strong, readwrite, nonatomic) NSArray* shop_rank_dic_arr;
+@property(strong, readwrite, nonatomic) NSArray* office_rank_dic_arr;
+@property(strong, readwrite, nonatomic) NSArray* carport_rank_dic_arr;
+@property(strong, readwrite, nonatomic) NSArray* sex_dic_arr;
+@property(strong, readwrite, nonatomic) NSArray* requirementDictList;
+@property(strong, readwrite, nonatomic) NSArray* client_level_dic_arr;
+@property(strong, readwrite, nonatomic) NSArray* client_type_dic_arr;
+@property(strong, readwrite, nonatomic) NSArray *areaDictList;
 @end

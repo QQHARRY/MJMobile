@@ -7,6 +7,11 @@
 //
 
 #import "addCustomerTableViewController.h"
+#import "Macro.h"
+#import "dictionaryManager.h"
+#import "RETableViewOptionsController.h"
+#import "HouseDataPuller.h"
+#import "UtilFun.h"
 
 @interface addCustomerTableViewController ()
 
@@ -16,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    [self initDic];
     [self initSections];
     [self createItems];
 }
@@ -59,8 +64,34 @@
 
 -(void)createBaseInfoSection
 {
+    
+    __typeof (&*self) __weak weakSelf = self;
+    
+    
 //    @property(nonatomic,strong) RERadioItem *requirement_status;//客源状态
     self.requirement_status = [[RERadioItem alloc] initWithTitle:@"客源状态" value:@"" selectionHandler:^(RERadioItem *item) {
+        
+        [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
+        NSMutableArray *options = [[NSMutableArray alloc] init];
+        for (NSInteger i = 0; i < self.requirementDictList.count; i++)
+        {
+            DicItem *di = [self.requirementDictList objectAtIndex:i];
+            [options addObject:di.dict_label];
+        }
+        RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
+                                                           {
+                                                               [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                           }];
+        // Adjust styles
+        optionsController.delegate = weakSelf;
+        optionsController.style = self.customerBaseInfoSection.style;
+        if (weakSelf.tableView.backgroundView == nil)
+        {
+            optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
+            optionsController.tableView.backgroundView = nil;
+        }
+        // Push the options controller
+        [weakSelf.navigationController pushViewController:optionsController animated:YES];
         
     }];
     [self.customerBaseInfoSection addItem:self.requirement_status];
@@ -72,19 +103,81 @@
 //    @property(nonatomic,strong) RERadioItem *client_gender;//客户性别
     self.client_gender = [[RERadioItem alloc] initWithTitle:@"性别" value:@"" selectionHandler:^(RERadioItem *item) {
         
+        [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
+        NSMutableArray *options = [[NSMutableArray alloc] init];
+        for (NSInteger i = 0; i < self.sex_dic_arr.count; i++)
+        {
+            DicItem *di = [self.sex_dic_arr objectAtIndex:i];
+            [options addObject:di.dict_label];
+        }
+        RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
+                                                           {
+                                                               [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                           }];
+        // Adjust styles
+        optionsController.delegate = weakSelf;
+        optionsController.style = self.customerBaseInfoSection.style;
+        if (weakSelf.tableView.backgroundView == nil)
+        {
+            optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
+            optionsController.tableView.backgroundView = nil;
+        }
+        // Push the options controller
+        [weakSelf.navigationController pushViewController:optionsController animated:YES];
+        
     }];
     [self.customerBaseInfoSection addItem:self.client_gender];
     
 //    @property(nonatomic,strong) RERadioItem *client_level;//客户等级
     self.client_level = [[RERadioItem alloc] initWithTitle:@"客户等级" value:@"" selectionHandler:^(RERadioItem *item) {
-        
+        [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
+        NSMutableArray *options = [[NSMutableArray alloc] init];
+        for (NSInteger i = 0; i < self.client_level_dic_arr.count; i++)
+        {
+            DicItem *di = [self.client_level_dic_arr objectAtIndex:i];
+            [options addObject:di.dict_label];
+        }
+        RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
+                                                           {
+                                                               [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                           }];
+        // Adjust styles
+        optionsController.delegate = weakSelf;
+        optionsController.style = self.customerBaseInfoSection.style;
+        if (weakSelf.tableView.backgroundView == nil)
+        {
+            optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
+            optionsController.tableView.backgroundView = nil;
+        }
+        // Push the options controller
+        [weakSelf.navigationController pushViewController:optionsController animated:YES];
     }];
     [self.customerBaseInfoSection addItem:self.client_level];
     
     
 //    @property(nonatomic,strong) RERadioItem *client_background;//客户类别
     self.client_background = [[RERadioItem alloc] initWithTitle:@"客户类别" value:@"" selectionHandler:^(RERadioItem *item) {
-        
+        [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
+        NSMutableArray *options = [[NSMutableArray alloc] init];
+        for (NSInteger i = 0; i < self.client_type_dic_arr.count; i++)
+        {
+            DicItem *di = [self.client_type_dic_arr objectAtIndex:i];
+            [options addObject:di.dict_label];
+        }
+        RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
+                                                           {
+                                                               [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                           }];
+        // Adjust styles
+        optionsController.delegate = weakSelf;
+        optionsController.style = self.customerBaseInfoSection.style;
+        if (weakSelf.tableView.backgroundView == nil)
+        {
+            optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
+            optionsController.tableView.backgroundView = nil;
+        }
+        // Push the options controller
+        [weakSelf.navigationController pushViewController:optionsController animated:YES];
     }];
     [self.customerBaseInfoSection addItem:self.client_background];
     
@@ -112,15 +205,116 @@
 
 -(void)createRequireItems
 {
+    __typeof (&*self) __weak weakSelf = self;
+    
     //    @property(nonatomic,strong) RERadioItem *requirement_house_urban;//所属城区编号
     self.requirement_house_urban = [[RERadioItem alloc] initWithTitle:@"需求城区" value:@"" selectionHandler:^(RERadioItem *item) {
+        
+        if (!self.areaDictList || self.areaDictList.count <= 0)
+        {
+            SHOWHUD_WINDOW;
+            [HouseDataPuller pullAreaListDataSuccess:^(NSArray *areaList)
+             {
+                 HIDEHUD_WINDOW;
+                 self.areaDictList = areaList;
+                 [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
+                 NSMutableArray *options = [[NSMutableArray alloc] init];
+                 for (NSInteger i = 0; i < self.areaDictList.count; i++)
+                 {
+                     [options addObject:[[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"areas_name"]];
+                 }
+                 RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
+                                                                    {
+                                                                        [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                                        [item reloadRowWithAnimation:UITableViewRowAnimationNone]; // same as [weakSelf.tableView reloadRowsAtIndexPaths:@[item.indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                                                                        self.requirement_house_area.value = @"";
+                                                                        [self.tableView reloadData];
+                                                                    }];
+                 // Adjust styles
+                 optionsController.delegate = weakSelf;
+                 optionsController.style = self.customerRequireSection.style;
+                 if (weakSelf.tableView.backgroundView == nil)
+                 {
+                     optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
+                     optionsController.tableView.backgroundView = nil;
+                 }
+                 // Push the options controller
+                 [weakSelf.navigationController pushViewController:optionsController animated:YES];
+             }
+                                             failure:^(NSError *error)
+             {
+                 HIDEHUD_WINDOW;
+             }];
+        }
+        else
+        {
+            [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
+            NSMutableArray *options = [[NSMutableArray alloc] init];
+            for (NSInteger i = 0; i < self.areaDictList.count; i++)
+            {
+                [options addObject:[[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"areas_name"]];
+            }
+            RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
+                                                               {
+                                                                   [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                                   [item reloadRowWithAnimation:UITableViewRowAnimationNone]; // same
+                                                                   self.requirement_house_area.value = @"";
+                                                                   [self.tableView reloadData];
+                                                               }];
+            // Adjust styles
+            optionsController.delegate = weakSelf;
+            optionsController.style = self.customerRequireSection.style;
+            if (weakSelf.tableView.backgroundView == nil)
+            {
+                optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
+                optionsController.tableView.backgroundView = nil;
+            }
+            // Push the options controller
+            [weakSelf.navigationController pushViewController:optionsController animated:YES];
+        }
+        
+        
+        
         
     }];
     [self.customerRequireSection addItem:self.requirement_house_urban];
     
     //    @property(nonatomic,strong) RERadioItem *requirement_house_area;//所属片区编号
     self.requirement_house_area = [[RERadioItem alloc] initWithTitle:@"需求片区" value:@"" selectionHandler:^(RERadioItem *item) {
+        [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
+        NSMutableArray *options = [[NSMutableArray alloc] init];
+        NSDictionary *dstDict = nil;
+        for (NSDictionary *areaDict in self.areaDictList)
+        {
+            if ([[[areaDict objectForKey:@"dict"] objectForKey:@"areas_name"] isEqualToString:self.requirement_house_urban.value])
+            {
+                dstDict = areaDict;
+                break;
+            }
+        }
+        if (dstDict && dstDict.count > 0)
+        {
+            for (NSInteger i = 0; i < dstDict.count; i++)
+            {
+                [options addObject:[[[dstDict objectForKey:@"sections"] objectAtIndex:i] objectForKey:@"areas_name"]];
+            }
+        }
+        RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
+                                                           {
+                                                               [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                               [item reloadRowWithAnimation:UITableViewRowAnimationNone]; // same as [weakSelf.tableView reloadRowsAtIndexPaths:@[item.indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                                                           }];
+        // Adjust styles
+        optionsController.delegate = weakSelf;
+        optionsController.style = self.customerRequireSection.style;
+        if (weakSelf.tableView.backgroundView == nil)
+        {
+            optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
+            optionsController.tableView.backgroundView = nil;
+        }
         
+        // Push the options controller
+        [weakSelf.navigationController pushViewController:optionsController animated:YES];
     }];
     [self.customerRequireSection addItem:self.requirement_house_area];
     
@@ -252,6 +446,26 @@
 
 -(void)adjustItems
 {
+    
+}
+
+-(void)initDic
+{
+    self.tene_application_dic_arr = [dictionaryManager getItemArrByType:DIC_TENE_APPLICATION];
+    self.tene_type_dic_arr = [dictionaryManager getItemArrByType:DIC_TENE_TYPE];
+    self.fitment_type_dic_arr = [dictionaryManager getItemArrByType:DIC_FITMENT_TYPE];
+    self.house_driect_dic_arr = [dictionaryManager getItemArrByType:DIC_HOUSE_DIRECT_TYPE];
+    self.use_situation_dic_arr = [dictionaryManager getItemArrByType:DIC_USE_SITUATION_TYPE];
+    self.client_source_dic_arr = [dictionaryManager getItemArrByType:DIC_CLIENT_SOURCE_TYPE];
+    self.look_permit_dic_arr = [dictionaryManager getItemArrByType:DIC_LOOK_PERMIT_TYPE];
+    
+    self.shop_rank_dic_arr = [dictionaryManager getItemArrByType:DIC_SHOP_RANK_TYPE];
+    self.office_rank_dic_arr = [dictionaryManager getItemArrByType:DIC_OFFICE_RANK_TYPE];
+    self.carport_rank_dic_arr = [dictionaryManager getItemArrByType:DIC_CARPORT_RANK_TYPE];
+    self.sex_dic_arr = [dictionaryManager getItemArrByType:DIC_SEX_TYPE];
+    self.requirementDictList = [dictionaryManager getItemArrByType:DIC_REQUIREMENT_STATE];
+    self.client_level_dic_arr = [dictionaryManager getItemArrByType:DIC_CLIENT_LEVEL];
+    self.client_type_dic_arr = [dictionaryManager getItemArrByType:DIC_CLIENT_BG];
     
 }
 
