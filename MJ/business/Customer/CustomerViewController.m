@@ -13,6 +13,7 @@
 #import "person.h"
 #import "CustomerFilter.h"
 #import "CustomerFilterController.h"
+#import "addCustomerTableViewController.h"
 
 
 @interface CustomerViewController ()
@@ -43,6 +44,7 @@
 
     // add title button
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"筛选" style:UIBarButtonItemStylePlain target:self action:@selector(onFilterAction:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(onAddCus:)];
     
     // add table view controller
     self.rentController = [[CustomerTableViewController alloc] initWithNibName:@"CustomerTableViewController" bundle:[NSBundle mainBundle]];
@@ -175,6 +177,15 @@
         self.nowControllerType = CCT_RENT;
     }
 }
+
+
+- (void)onAddCus:(id)sender
+{
+    addCustomerTableViewController*vc = [[addCustomerTableViewController alloc] init];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 /*
  #pragma mark - Navigation

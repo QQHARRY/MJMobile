@@ -64,6 +64,7 @@
 		4A6865A61A737573005394DD /* buildingItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6865A41A737573005394DD /* buildingItemTableViewCell.xib */; };
 		4A6865A91A7375EF005394DD /* building.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6865A81A7375EF005394DD /* building.m */; };
 		4A6865AC1A73765E005394DD /* buildingDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6865AB1A73765E005394DD /* buildingDetails.m */; };
+		4A6865AF1A753BFA005394DD /* addCustomerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6865AE1A753BFA005394DD /* addCustomerTableViewController.m */; };
 		4A6EF2A61A5E20CC008AB819 /* ContactsListPersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6EF2A41A5E20CC008AB819 /* ContactsListPersonTableViewCell.m */; };
 		4A6EF2A71A5E20CC008AB819 /* ContactsListPersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6EF2A51A5E20CC008AB819 /* ContactsListPersonTableViewCell.xib */; };
 		4A6EF2AB1A5E6E8D008AB819 /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6EF2A91A5E6E8D008AB819 /* libUMessage_Sdk_1.1.0.a */; };
@@ -366,6 +367,8 @@
 		4A6865A81A7375EF005394DD /* building.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = building.m; sourceTree = "<group>"; };
 		4A6865AA1A73765E005394DD /* buildingDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buildingDetails.h; sourceTree = "<group>"; };
 		4A6865AB1A73765E005394DD /* buildingDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = buildingDetails.m; sourceTree = "<group>"; };
+		4A6865AD1A753BFA005394DD /* addCustomerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addCustomerTableViewController.h; sourceTree = "<group>"; };
+		4A6865AE1A753BFA005394DD /* addCustomerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addCustomerTableViewController.m; sourceTree = "<group>"; };
 		4A6EF2A31A5E20CC008AB819 /* ContactsListPersonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsListPersonTableViewCell.h; sourceTree = "<group>"; };
 		4A6EF2A41A5E20CC008AB819 /* ContactsListPersonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsListPersonTableViewCell.m; sourceTree = "<group>"; };
 		4A6EF2A51A5E20CC008AB819 /* ContactsListPersonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsListPersonTableViewCell.xib; sourceTree = "<group>"; };
@@ -1460,6 +1463,8 @@
 				B93B14261A61652000121133 /* CustomerTableViewController.h */,
 				B93B14271A61652000121133 /* CustomerTableViewController.m */,
 				B93B14281A61652000121133 /* CustomerTableViewController.xib */,
+				4A6865AD1A753BFA005394DD /* addCustomerTableViewController.h */,
+				4A6865AE1A753BFA005394DD /* addCustomerTableViewController.m */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -1752,6 +1757,7 @@
 				4A56654F1A4C06EE00C3BA22 /* messageObj.m in Sources */,
 				4ABC22301A3C88000017FD94 /* AlertDetailsTableViewCell.m in Sources */,
 				4A8F93F41A3DE56100A769C1 /* contactDataManager.m in Sources */,
+				4A6865AF1A753BFA005394DD /* addCustomerTableViewController.m in Sources */,
 				4A5D244E1A4AC17500546698 /* cartTableViewCell.m in Sources */,
 				B98BD4C71A60747A003A35BE /* MJRefreshFooterView.m in Sources */,
 				4A9D01FE1A60341D00600BA0 /* dictionaryManager.m in Sources */,

@@ -316,6 +316,7 @@
 
 -(void)prepareItems
 {
+    [self createInfoSectionItems];
     [self prepareInfoSectionItems];
     
     [self prepareActionSectionsItems];
@@ -326,7 +327,7 @@
 -(void)prepareInfoSectionItems
 {
     [self.infoSection removeAllItems];
-    [self createInfoSectionItems];
+    
     [self.infoSection addItem:self.watchHouseImages];
     
     //    @property (strong, readwrite, nonatomic) RERadioItem * buildings_name;
@@ -757,44 +758,45 @@
 //    @property (strong, readwrite, nonatomic) RERadioItem * buildings_name;
 //    //String
 //    //楼盘名称
+    value = @"";
+    if (self.housePtcl && self.housePtcl.buildings_name)
+    {
+        value = self.housePtcl.buildings_name;
+    }
     self.buildings_name = [[RERadioItem alloc] initWithTitle:@"楼盘名称:" value:value selectionHandler:^(RERadioItem *item) {
-//        [item deselectRowAnimated:YES];
-//        BuildingsSelectTableViewController*selCtrl = [BuildingsSelectTableViewController initWithDelegate:weakSelf AndCompleteHandler:^(buildings *bld) {
-//            if (bld)
-//            {
-//                self.buildings_name.value = bld.buildings_name;
-//                self.urbanname.value = bld.urbanname;
-//                self.areaname.value = bld.areaname;
-//                self.buildings_address = bld.Buildings_address;
-//                SEL sel =@selector(setCurBuildings:);
-//                if ([self respondsToSelector:sel])
-//                {
-//                    [self performSelector:sel withObject:bld];
-//                    
-//                }
-//                [self.tableView reloadData];
-//            }
-//            
-//        }];
-//        
-//        [weakSelf.navigationController pushViewController:selCtrl animated:YES];
+
     }];
 //    @property (strong, readwrite, nonatomic) RETextItem * urbanname;
 //    //String
 //    //区域
-    self.urbanname = [[RETextItem alloc] initWithTitle:@"区域:" value:self.housePtcl.urbanname];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.urbanname)
+    {
+        value = self.housePtcl.urbanname;
+    }
+    self.urbanname = [[RETextItem alloc] initWithTitle:@"区域:" value:value];
     
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * areaname;
 //    //String
 //    //片区
-    self.areaname = [[RETextItem alloc] initWithTitle:@"片区:" value:self.housePtcl.areaname];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.areaname)
+    {
+        value = self.housePtcl.areaname;
+    }
+    self.areaname = [[RETextItem alloc] initWithTitle:@"片区:" value:value];
     
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem *buildings_address;
 //    //String
 //    //地址
-    self.buildings_address = [[RETextItem alloc] initWithTitle:@"地址:" value:self.housePtcl.buildings_address];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.buildings_address)
+    {
+        value = self.housePtcl.buildings_address;
+    }
+    self.buildings_address = [[RETextItem alloc] initWithTitle:@"地址:" value:value];
     
 //    
 //    @property (strong, readwrite, nonatomic) RENumberItem * build_structure_area;
@@ -826,13 +828,23 @@
 //    @property (strong, readwrite, nonatomic) RENumberItem * hall_num;
 //    //Int
 //    //房屋类型的厅的数量:如2厅
-    self.hall_num = [[RENumberItem alloc] initWithTitle:@"室:" value:self.housePtcl.hall_num];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.hall_num)
+    {
+        value = self.housePtcl.hall_num;
+    }
+    self.hall_num = [[RENumberItem alloc] initWithTitle:@"室:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RENumberItem * room_num;
 //    //Int
 //    //房
-    self.room_num = [[RENumberItem alloc] initWithTitle:@"房:" value:self.housePtcl.room_num];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.room_num)
+    {
+        value = self.housePtcl.room_num;
+    }
+    self.room_num = [[RENumberItem alloc] initWithTitle:@"房:" value:value];
 
 //
 //    @property (strong, readwrite, nonatomic) RENumberItem * kitchen_num;
@@ -840,20 +852,35 @@
 //    //的数量:如3室
 //    //Int
 //    //厨
-    self.kitchen_num = [[RENumberItem alloc] initWithTitle:@"厨房:" value:self.housePtcl.kitchen_num];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.kitchen_num)
+    {
+        value = self.housePtcl.kitchen_num;
+    }
+    self.kitchen_num = [[RENumberItem alloc] initWithTitle:@"厨房:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RENumberItem * toilet_num;
 //    //Int
 //    //卫
-    self.toilet_num = [[RENumberItem alloc] initWithTitle:@"卫生间:" value:self.housePtcl.toilet_num];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.toilet_num)
+    {
+        value = self.housePtcl.toilet_num;
+    }
+    self.toilet_num = [[RENumberItem alloc] initWithTitle:@"卫生间:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RENumberItem * balcony_num;
 //    //In
 //    //
 //    //阳台
-    self.balcony_num = [[RENumberItem alloc] initWithTitle:@"阳台:" value:self.housePtcl.balcony_num];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.balcony_num)
+    {
+        value = self.housePtcl.balcony_num;
+    }
+    self.balcony_num = [[RENumberItem alloc] initWithTitle:@"阳台:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * tene_application;
@@ -882,9 +909,7 @@
     // 商铺，商住，厂房，仓库，地皮表示位置:值取字典表中的
     title = @"";
     value = @"";
-    
-    
-    
+
     if (self.housePtcl)
     {
         if ([self.tene_application.value isEqualToString:@"商铺"] ||
@@ -994,25 +1019,46 @@
     //@property (strong, readwrite, nonatomic) RERadioItem * house_depth;
     // Float
     // 进深
-    self.house_depth = [[RENumberItem alloc] initWithTitle:@"进深:" value:self.housePtcl.house_depth];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.house_depth)
+    {
+        value = self.housePtcl.house_depth;
+    }
+    self.house_depth = [[RENumberItem alloc] initWithTitle:@"进深:" value:value];
     self.house_depth.keyboardType = UIKeyboardTypeDecimalPad;
     
     //@property (strong, readwrite, nonatomic) RERadioItem * floor_height;
     // Float
     // 层高
-    self.floor_height = [[RENumberItem alloc] initWithTitle:@"层高:" value:self.housePtcl.floor_height];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.floor_height)
+    {
+        value = self.housePtcl.floor_height;
+    }
+    self.floor_height = [[RENumberItem alloc] initWithTitle:@"层高:" value:value];
     self.floor_height.keyboardType = UIKeyboardTypeDecimalPad;
     
     //@property (strong, readwrite, nonatomic) RERadioItem * floor_count;
     // int
     // 层数(里面有几层)
-    self.floor_count = [[RENumberItem alloc] initWithTitle:@"层数:" value:self.housePtcl.floor_count];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.floor_count)
+    {
+        value = self.housePtcl.floor_count;
+    }
+    self.floor_count = [[RENumberItem alloc] initWithTitle:@"层数:" value:value];
     self.floor_count.keyboardType = UIKeyboardTypeDecimalPad;
     
     //@property (strong, readwrite, nonatomic) RERadioItem * efficiency_rate;
     // float
     // 实用率(百分比)
-    self.efficiency_rate = [[RENumberItem alloc] initWithTitle:@"实用率:" value:self.housePtcl.efficiency_rate];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.efficiency_rate)
+    {
+        value = self.housePtcl.efficiency_rate;
+    }
+    self.floor_count = [[RENumberItem alloc] initWithTitle:@"层数:" value:value];
+    self.efficiency_rate = [[RENumberItem alloc] initWithTitle:@"实用率:" value:value];
     self.efficiency_rate.keyboardType = UIKeyboardTypeDecimalPad;
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * tene_type;
@@ -1120,19 +1166,34 @@
 //    @property (strong, readwrite, nonatomic) RETextItem * cons_elevator_brand;
 //    //String
 //    //电梯（如奥旳斯
-    self.cons_elevator_brand = [[RETextItem alloc] initWithTitle:@"电梯:" value:self.housePtcl.cons_elevator_brand];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.cons_elevator_brand)
+    {
+        value = self.housePtcl.cons_elevator_brand;
+    }
+    self.cons_elevator_brand = [[RETextItem alloc] initWithTitle:@"电梯:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * facility_heating;
 //    //String
 //    //暖气
-    self.facility_heating = [[RETextItem alloc] initWithTitle:@"暖气:" value:self.housePtcl.facility_heating];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.facility_heating)
+    {
+        value = self.housePtcl.facility_heating;
+    }
+    self.facility_heating = [[RETextItem alloc] initWithTitle:@"暖气:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * facility_gas;
 //    //String
 //    //燃气
-    self.facility_gas = [[RETextItem alloc] initWithTitle:@"燃气:" value:self.housePtcl.facility_gas];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.facility_gas)
+    {
+        value = self.housePtcl.facility_gas;
+    }
+    self.facility_gas = [[RETextItem alloc] initWithTitle:@"燃气:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * build_year;
@@ -1218,7 +1279,12 @@
 //    @property (strong, readwrite, nonatomic) RENumberItem * build_floor_count;
 //    //Int
 //    //总楼层
-    self.build_floor_count = [[RENumberItem alloc] initWithTitle:@"总楼层:" value:@""];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.build_floor_count)
+    {
+        value = self.housePtcl.build_floor_count;
+    }
+    self.build_floor_count = [[RENumberItem alloc] initWithTitle:@"总楼层:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RENumberItem * sale_value_total;
@@ -1300,43 +1366,78 @@
 //    @property (strong, readwrite, nonatomic) RETextItem * client_remark;
 //    //String
 //    //备注
-    self.client_remark = [[RETextItem alloc] initWithTitle:@"备注:" value:self.housePtcl.client_remark];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.client_remark)
+    {
+        value = self.housePtcl.client_remark;
+    }
+    self.client_remark = [[RETextItem alloc] initWithTitle:@"备注:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * b_staff_describ;
 //    //String
 //    //房源描述
-    self.b_staff_describ = [[RETextItem alloc] initWithTitle:@"房源描述:" value:self.housePtcl.b_staff_describ];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.b_staff_describ)
+    {
+        value = self.housePtcl.b_staff_describ;
+    }
+    self.b_staff_describ = [[RETextItem alloc] initWithTitle:@"房源描述:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * owner_staff_name;
 //    //String
 //    //经纪人姓名
-    self.owner_staff_name = [[RETextItem alloc] initWithTitle:@"经纪人姓名:" value:self.housePtcl.owner_staff_name];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.owner_staff_name)
+    {
+        value = self.housePtcl.owner_staff_name;
+    }
+    self.owner_staff_name = [[RETextItem alloc] initWithTitle:@"经纪人姓名:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * owner_staff_dept;
 //    //String
 //    //经纪人所属部门
-    self.owner_staff_dept = [[RETextItem alloc] initWithTitle:@"经纪人部门:" value:self.housePtcl.owner_staff_dept ];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.owner_staff_dept)
+    {
+        value = self.housePtcl.owner_staff_dept;
+    }
+    self.owner_staff_dept = [[RETextItem alloc] initWithTitle:@"经纪人部门:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * owner_company_no;
 //    //String
 //    //经纪人所属公司编号
-    self.owner_company_no = [[RETextItem alloc] initWithTitle:@"经纪人公司编号:" value:self.housePtcl.owner_company_no];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.owner_company_no)
+    {
+        value = self.housePtcl.owner_company_no;
+    }
+    self.owner_company_no = [[RETextItem alloc] initWithTitle:@"经纪人公司编号:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * owner_compony_name;
 //    //String
 //    //经纪人所属公司名称
-    self.owner_compony_name = [[RETextItem alloc] initWithTitle:@"经纪人公司名称:" value:self.housePtcl.owner_compony_name ];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.owner_compony_name)
+    {
+        value = self.housePtcl.owner_compony_name;
+    }
+    self.owner_compony_name = [[RETextItem alloc] initWithTitle:@"经纪人公司名称:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * owner_mobile;
 //    //String
 //    //经纪人电话
-    self.owner_mobile = [[RETextItem alloc] initWithTitle:@"经纪人电话:" value:self.housePtcl.owner_mobile ];
+    value = @"";
+    if (self.housePtcl && self.housePtcl.owner_mobile)
+    {
+        value = self.housePtcl.owner_mobile;
+    }
+    self.owner_mobile = [[RETextItem alloc] initWithTitle:@"经纪人电话:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RERadioItem * client_source;
@@ -1433,7 +1534,12 @@
     //
     // String
     // 状态（出售）
-    self.sale_trade_state = [[RERadioItem alloc] initWithTitle:@"状态:" value:self.housePtcl.sale_trade_state selectionHandler:^(RERadioItem *item) {
+    value = @"";
+    if (self.housePtcl && self.housePtcl.sale_trade_state)
+    {
+        value = self.housePtcl.sale_trade_state;
+    }
+    self.sale_trade_state = [[RERadioItem alloc] initWithTitle:@"状态:" value:value selectionHandler:^(RERadioItem *item) {
         //todo
     }];
     
@@ -1442,7 +1548,12 @@
     //
     // String
     // 状态（出租）
-    self.lease_trade_state = [[RERadioItem alloc] initWithTitle:@"状态:" value:self.housePtcl.lease_trade_state selectionHandler:^(RERadioItem *item) {
+    value = @"";
+    if (self.housePtcl && self.housePtcl.lease_trade_state)
+    {
+        value = self.housePtcl.lease_trade_state;
+    }
+    self.lease_trade_state = [[RERadioItem alloc] initWithTitle:@"状态:" value:value selectionHandler:^(RERadioItem *item) {
         //todo
     }];
     

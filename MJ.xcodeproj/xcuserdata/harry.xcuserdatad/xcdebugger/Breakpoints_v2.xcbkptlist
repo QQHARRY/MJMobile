@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MJ/business/House/HouseFilterController.m"
-            timestampString = "443172855.686196"
+            filePath = "MJ/business/House/HouseAddNewViewController.m"
+            timestampString = "443886526.442581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "287"
-            endingLineNumber = "287"
-            landmarkName = "-addExactQueryControls"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "-prepareItems"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MJ/business/House/HouseFilterController.m"
-            timestampString = "443172870.853393"
+            filePath = "MJ/business/House/HouseAddNewViewController.m"
+            timestampString = "443894980.324726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "296"
-            endingLineNumber = "296"
-            landmarkName = "-addExactQueryControls"
+            startingLineNumber = "1085"
+            endingLineNumber = "1085"
+            landmarkName = "-prepareTeneApplicationSectionItemsStep1"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,29 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MJ/business/House/HouseFilterController.m"
-            timestampString = "443192804.235726"
+            filePath = "MJ/business/House/HouseAddNewViewController.m"
+            timestampString = "443894980.324726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "-addExactQueryControls"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MJ/business/House/HouseParticularTableViewController.m"
-            timestampString = "443813591.65052"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
-            landmarkName = "-adjustByTeneApplication"
+            startingLineNumber = "1099"
+            endingLineNumber = "1099"
+            landmarkName = "-prepareTeneApplicationSectionItemsStep1"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -84,7 +68,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MJ/business/House/HouseParticularTableViewController.m"
-            timestampString = "443813571.140191"
+            timestampString = "443876469.235238"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "174"
@@ -99,13 +83,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MJ/business/House/HouseAddNewViewController.m"
-            timestampString = "443816850.562445"
+            filePath = "MJ/business/House/HouseParticularTableViewController.m"
+            timestampString = "443876516.865367"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "684"
-            endingLineNumber = "684"
-            landmarkName = "-prepareAddInfoSectionItems"
+            startingLineNumber = "551"
+            endingLineNumber = "551"
+            landmarkName = "-prepareInfoSectionItems"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -116,55 +100,103 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MJ/business/House/HouseAddNewViewController.m"
-            timestampString = "443816850.562445"
+            timestampString = "443894980.324726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "680"
-            endingLineNumber = "680"
-            landmarkName = "-prepareAddInfoSectionItems"
+            startingLineNumber = "1003"
+            endingLineNumber = "1003"
+            landmarkName = "-createInfoSectionItems"
             landmarkType = "5">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__55-[HouseAddNewViewController prepareAddInfoSectionItems]_block_invoke"
+                  symbolName = "-[HouseAddNewViewController createInfoSectionItems]"
                   moduleName = "MJ"
                   urlString = "file:///Users/harry/work/private%20projects/meijia/src/MJMobile/MJ/business/House/HouseAddNewViewController.m"
-                  timestampString = "443816850.766991"
+                  timestampString = "443895268.788913"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "680"
-                  endingLineNumber = "680"
-                  offsetFromSymbolStart = "1924">
+                  startingLineNumber = "1003"
+                  endingLineNumber = "1003"
+                  offsetFromSymbolStart = "108">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__55-[HouseAddNewViewController prepareAddInfoSectionItems]_block_invoke"
+                  symbolName = "__51-[HouseAddNewViewController createInfoSectionItems]_block_invoke"
                   moduleName = "MJ"
                   urlString = "file:///Users/harry/work/private%20projects/meijia/src/MJMobile/MJ/business/House/HouseAddNewViewController.m"
-                  timestampString = "443816850.767159"
+                  timestampString = "443895268.789088"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "680"
-                  endingLineNumber = "680"
-                  offsetFromSymbolStart = "2060">
+                  startingLineNumber = "1003"
+                  endingLineNumber = "1003"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MJ/business/House/HouseParticularTableViewController.m"
+            timestampString = "443886147.792473"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "336"
+            endingLineNumber = "336"
+            landmarkName = "-prepareInfoSectionItems"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MJ/business/House/HouseParticularTableViewController.m"
+            timestampString = "443886184.37731"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "766"
+            endingLineNumber = "766"
+            landmarkName = "-createInfoSectionItems"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HouseParticularTableViewController createInfoSectionItems]"
+                  moduleName = "MJ"
+                  urlString = "file:///Users/harry/work/private%20projects/meijia/src/MJMobile/MJ/business/House/HouseParticularTableViewController.m"
+                  timestampString = "443895268.790327"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "766"
+                  endingLineNumber = "766"
+                  offsetFromSymbolStart = "672">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__55-[HouseAddNewViewController prepareAddInfoSectionItems]_block_invoke"
+                  symbolName = "__60-[HouseParticularTableViewController createInfoSectionItems]_block_invoke"
                   moduleName = "MJ"
-                  urlString = "file:///Users/harry/work/private%20projects/meijia/src/MJMobile/MJ/business/House/HouseAddNewViewController.m"
-                  timestampString = "443816850.767313"
+                  urlString = "file:///Users/harry/work/private%20projects/meijia/src/MJMobile/MJ/business/House/HouseParticularTableViewController.m"
+                  timestampString = "443895268.79048"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "680"
-                  endingLineNumber = "680"
-                  offsetFromSymbolStart = "2260">
+                  startingLineNumber = "766"
+                  endingLineNumber = "766"
+                  offsetFromSymbolStart = "48">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -176,28 +208,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MJ/business/House/HouseAddNewViewController.m"
-            timestampString = "443816850.562445"
+            timestampString = "443894980.324726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "674"
-            endingLineNumber = "674"
+            startingLineNumber = "1263"
+            endingLineNumber = "1263"
             landmarkName = "-prepareAddInfoSectionItems"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MJ/business/House/HouseAddNewViewController.m"
-            timestampString = "443816739.814983"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "412"
-            endingLineNumber = "412"
-            landmarkName = "-prepareTeneApplicationSectionItemsStep1"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

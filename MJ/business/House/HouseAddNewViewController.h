@@ -19,5 +19,5 @@
 @property(weak,nonatomic)id delegate;
 @property(nonatomic,strong)NSMutableArray*curBuilidngsOfCurBuildings;//楼盘中的所有栋座
 @property(nonatomic,strong)buildingDetails*curBuildingsDetails;
-@property(nonatomic,strong)HouseParticulars*housePtl;
+
 @end

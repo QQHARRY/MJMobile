@@ -14,16 +14,22 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[HouseParticularTableViewController prepareInfoSectionItems]:HouseParticularTableViewController.m">
+      </ContextState>
+      <ContextState
          contextName = "+[contactDataManager getDeptArr:]:contactDataManager.m">
       </ContextState>
       <ContextState
          contextName = "-[ShopTableViewController tableView:cellForRowAtIndexPath:]:ShopTableViewController.m">
       </ContextState>
       <ContextState
+         contextName = "__63-[HouseParticularTableViewController createAddInfoSectionItems]_block_invoke_6:HouseParticularTableViewController.m">
+      </ContextState>
+      <ContextState
          contextName = "-[HouseAddNewViewController prepareTeneApplicationSectionItemsStep2ByTenenType:]:HouseAddNewViewController.m">
       </ContextState>
       <ContextState
-         contextName = "__63-[HouseParticularTableViewController createAddInfoSectionItems]_block_invoke_6:HouseParticularTableViewController.m">
+         contextName = "-[HouseParticularTableViewController adjustUI]:HouseParticularTableViewController.m">
       </ContextState>
       <ContextState
          contextName = "__41-[MainPageViewController getPetitionData]_block_invoke:MainPageViewController.m">
@@ -55,6 +61,9 @@
                value = "">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__45-[HouseParticularTableViewController getData]_block_invoke:HouseParticularTableViewController.m">
       </ContextState>
       <ContextState
          contextName = "-[ShopCollectionViewController collectionView:cellForItemAtIndexPath:]:ShopCollectionViewController.m">
@@ -95,6 +104,9 @@
                value = "querySQL">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[RETableViewManager classForCellAtIndexPath:]:RETableViewManager.m">
       </ContextState>
       <ContextState
          contextName = "+[dictionaryManager getItemArrByType:]:dictionaryManager.m">

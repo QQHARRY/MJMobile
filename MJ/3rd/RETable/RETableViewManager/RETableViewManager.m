@@ -145,6 +145,7 @@
 
 - (Class)classForCellAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSInteger row = indexPath.row;
     RETableViewSection *section = [self.mutableSections objectAtIndex:indexPath.section];
     NSObject *item = [section.items objectAtIndex:indexPath.row];
     return [self.registeredClasses objectForKey:item.class];
