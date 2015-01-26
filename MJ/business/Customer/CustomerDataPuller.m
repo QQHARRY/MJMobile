@@ -12,6 +12,7 @@
 #import "NetWorkManager.h"
 #import "CustomerDetail.h"
 #import "bizManager.h"
+#import "UtilFun.h"
 
 @implementation CustomerDataPuller
 
@@ -144,5 +145,32 @@
          failure(error);
      }];
 }
+
+
++(void)pullAddCustomer:(NSDictionary *)dic Success:(void(^)(id obj))success failure:(void (^)(NSError *error))failure
+{
+    
+    NSMutableDictionary* dic1 = [NSMutableDictionary dictionaryWithDictionary:dic];
+    [dic1 setValue:[person me].job_no forKey:@"job_no"];
+    [dic1 setValue:[person me].password forKey:@"acc_password"];
+    [dic1 setValue:[UtilFun getUDID] forKey:@"DeviceID"];
+
+    
+    [NetWorkManager PostWithApiName:API_ADD_CUSTOM parameters:dic1 success:
+     ^(id responseObject)
+     {
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         {
+             
+             success(nil);
+         }
+     }
+                            failure:^(NSError *error)
+     {
+         failure(error);
+     }];
+}
+
 
 @end

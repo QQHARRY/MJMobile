@@ -93,6 +93,8 @@
 #define API_CUSTOM_PARTICULARS @"business/getCustomerDetails"
 // 50.查看客户保密信息
 #define API_CUSTOM_SECRET @"business/getCustomerSecretInfo"
+#define API_ADD_CUSTOM @"business/addCustomer"
+
 
 
 //字典表
@@ -123,6 +125,8 @@
 #define DIC_SEX_TYPE @"sex"
 #define DIC_CLIENT_LEVEL @"client_level"
 #define DIC_CLIENT_BG @"client_background"
+#define DIC_SALE_PRICE_UNIT_TYPE @"sale_price_unit"
+#define DIC_LEASE_PRICE_UNIT_TYPE @"lease_price_unit"
 
 
 //添加图片

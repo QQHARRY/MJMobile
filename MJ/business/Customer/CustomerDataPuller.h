@@ -17,5 +17,5 @@
 +(void)pullDataWithFilter:(CustomerFilter *)filter Success:(void (^)(NSArray *CustomerDetailList))success failure:(void (^)(NSError *error))failure;
 +(void)pullCustomerParticulars:(CustomerDetail *)detail Success:(void(^)(CustomerParticulars *particulars))success failure:(void (^)(NSError *error))failure;
 +(void)pullCustomerSecret:(CustomerDetail *)detail Success:(void(^)(CustomerSecret *secret))success failure:(void (^)(NSError *error))failure;
-
++(void)pullAddCustomer:(NSDictionary *)dic Success:(void(^)(id obj))success failure:(void (^)(NSError *error))failure;
 @end

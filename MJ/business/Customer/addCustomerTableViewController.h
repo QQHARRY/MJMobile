@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "RETableViewManager.h"
+#import "buildings.h"
+#import "person.h"
+#import "ContactListTableViewController.h"
 
-@interface addCustomerTableViewController : UITableViewController<RETableViewManagerDelegate>
+
+
+@interface addCustomerTableViewController : UITableViewController<RETableViewManagerDelegate,contacSelection>
 
 @property(strong,nonatomic)RETableViewManager*manager;
 @property(strong,nonatomic)RETableViewSection*customerBaseInfoSection;
@@ -77,4 +82,14 @@
 @property(strong, readwrite, nonatomic) NSArray* client_level_dic_arr;
 @property(strong, readwrite, nonatomic) NSArray* client_type_dic_arr;
 @property(strong, readwrite, nonatomic) NSArray *areaDictList;
+@property(strong, readwrite, nonatomic) NSArray* trade_type_dic_arr;
+
+@property(strong, readwrite, nonatomic) NSArray* sale_price_unit_dic_arr;
+@property(strong, readwrite, nonatomic) NSArray* lease_price_unit_dic_arr;
+
+@property(nonatomic,strong)buildings*curBuildings;//楼盘
+@property(nonatomic,strong)person*curPerson;//楼盘
+
+
+-(void)returnSelection:(NSArray*)curSelection;
 @end
