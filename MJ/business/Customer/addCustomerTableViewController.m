@@ -866,6 +866,7 @@
     //    @property(nonatomic,strong) RENumberItem *requirement_area_from;//最小面积要求
     self.requirement_area_from = [[RENumberItem alloc] initWithTitle:@"最小面积要求" value:@""];
     [self.customerRequireSection addItem:self.requirement_area_from];
+    self.requirement_area_from.keyboardType = UIKeyboardTypeDecimalPad;
     
     //    @property(nonatomic,strong) RENumberItem *requirement_area_to;//String最大面积要求
     self.requirement_area_to = [[RENumberItem alloc] initWithTitle:@"最大面积要求" value:@""];
