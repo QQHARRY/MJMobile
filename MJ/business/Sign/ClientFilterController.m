@@ -86,7 +86,7 @@
         if (self.sales)
         {
             filter.client_owner_no = self.sales.job_no;
-            filter.dept_current_no = self.sales.dept_no;
+            filter.dept_current_no = self.sales.department_no;
         }
         if (self.startTimeItem.value)
         {

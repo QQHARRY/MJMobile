@@ -21,6 +21,7 @@
 @synthesize  house_urban;//所属城区名称
 @synthesize  requirement_house_area;//所属片区编号
 @synthesize  buildings_name;//所属楼名称
+@synthesize  requirement_buildings_no;
 @synthesize  business_requirement_type;//求租或求购
 @synthesize  requirement_floor_from;//Int最低楼层要求
 @synthesize  requirement_floor_to;//Int最高楼层要求

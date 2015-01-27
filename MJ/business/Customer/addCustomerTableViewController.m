@@ -103,120 +103,77 @@
     return value;
 }
 
-
--(void)sumitBtnClicked:(id)sender
+-(NSDictionary*)getFiledsDic
 {
-    
-    NSArray*requiredFields =@[self.client_name,
-                              self.mobilePhone,
-                              self.requirement_house_urban,
-                              self.requirement_house_area,
-                              self.requirement_floor_from,
-                              self.requirement_floor_to,
-                              self.requirement_room_from,
-                              self.requirement_room_to,
-                              self.requirement_hall_from,
-                              self.requirement_hall_to,
-                              self.requirement_area_from,
-                              self.requirement_area_to,
-                              self.requirement_client_source
-                              ];
-    if (![self checkField:requiredFields])
-    {
-        return;
-    }
-    
-    if ([self.requirement_floor_to.value intValue] == 0 ||
-        [self.requirement_floor_from.value intValue] == 0)
-    {
-        PRESENTALERT(@"需求楼层不能为0", nil, nil, nil);
-        return;
-    }
-    
-    if ([self.requirement_room_to.value intValue] == 0 ||
-        [self.requirement_room_from.value intValue] == 0)
-    {
-        PRESENTALERT(@"需求户型不能填0室", nil, nil, nil);
-        return;
-    }
-    
-    if ([self.requirement_area_to.value floatValue] < 3 ||
-        [self.requirement_area_from.value floatValue] < 3)
-    {
-        PRESENTALERT(@"需求面积不能小于3", nil, nil, nil);
-        return;
-    }
-    
-    
     NSMutableDictionary* dic = [[NSMutableDictionary alloc] init];
     
     NSString*value = @"";
-//    @property(nonatomic,strong) RERadioItem *requirement_status;//客源状态
+    //    @property(nonatomic,strong) RERadioItem *requirement_status;//客源状态
     value = @"";
     value = self.requirement_status.value;
     value = [self DicValueFromValue:value AndDic:self.requirementDictList];
     [dic setValue:value forKey:@"requirement_status"];
     
-//    @property(nonatomic,strong) RETextItem *client_name;//客户姓名
+    //    @property(nonatomic,strong) RETextItem *client_name;//客户姓名
     value = @"";
     value = self.client_name.value;
     [dic setValue:value forKey:@"client_name"];
     
     
     
-//    @property(nonatomic,strong) RERadioItem *client_gender;//客户性别
+    //    @property(nonatomic,strong) RERadioItem *client_gender;//客户性别
     value = @"";
     value = self.client_gender.value;
     value = [self DicValueFromValue:value AndDic:self.sex_dic_arr];
     [dic setValue:value forKey:@"client_gender"];
     
     
-//    @property(nonatomic,strong) RERadioItem *client_level;//客户等级
+    //    @property(nonatomic,strong) RERadioItem *client_level;//客户等级
     value = @"";
     value = self.client_level.value;
     value = [self DicValueFromValue:value AndDic:self.client_level_dic_arr];
     [dic setValue:value forKey:@"client_level"];
     
     
-//    @property(nonatomic,strong) RERadioItem *client_background;//客户类别
+    //    @property(nonatomic,strong) RERadioItem *client_background;//客户类别
     value = @"";
-    value = self.client_level.value;
+    value = self.client_background.value;
     value = [self DicValueFromValue:value AndDic:self.client_type_dic_arr];
     [dic setValue:value forKey:@"client_background"];
     
-//    @property(nonatomic,strong) RETextItem *mobilePhone;//手机
+    //    @property(nonatomic,strong) RETextItem *mobilePhone;//手机
     value = @"";
     value = self.mobilePhone.value;
-    [dic setValue:value forKey:@"mobilePhone"];
-//    @property(nonatomic,strong) RETextItem *fixPhone;//固话
+    [dic setValue:value forKey:@"obj_mobile"];
+    //    @property(nonatomic,strong) RETextItem *fixPhone;//固话
     value = @"";
     value = self.fixPhone.value;
-    [dic setValue:value forKey:@"fixPhone"];
-//    @property(nonatomic,strong) RETextItem *idCardNO;//身份证
+    [dic setValue:value forKey:@"obj_fixtel"];
+    //    @property(nonatomic,strong) RETextItem *idCardNO;//身份证
     value = @"";
     value = self.idCardNO.value;
-    [dic setValue:value forKey:@"idCardNO"];
-//    @property(nonatomic,strong) RETextItem *homeAddress;//家庭地址
+    [dic setValue:value forKey:@"client_identity"];
+    //    @property(nonatomic,strong) RETextItem *homeAddress;//家庭地址
     value = @"";
     value = self.homeAddress.value;
-    [dic setValue:value forKey:@"homeAddress"];
-
+    [dic setValue:value forKey:@"obj_address"];
     
-//    @property(nonatomic,strong) RERadioItem *requirement_house_urban;//所属城区编号
+    
+    //    @property(nonatomic,strong) RERadioItem *requirement_house_urban;//所属城区编号
     value = @"";
     value = self.requirement_house_urban.value;
     for (NSInteger i = 0; i < self.areaDictList.count; i++)
     {
-       NSString*areaName = [[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"areas_name"];
+        NSString*areaName = [[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"areas_name"];
         if ([areaName isEqualToString:value])
         {
-            value = [[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"areas_type"];
+            value = [[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"areas_current_no"];
         }
     }
     [dic setValue:value forKey:@"requirement_house_urban"];
     
     
-//    @property(nonatomic,strong) RERadioItem *requirement_house_area;//所属片区编号
+    //    @property(nonatomic,strong) RERadioItem *requirement_house_area;//所属片区编号
     value = @"";
     value = self.requirement_house_area.value;
     NSDictionary*dstDict = nil;
@@ -234,101 +191,102 @@
         {
             if ([[[[dstDict objectForKey:@"sections"] objectAtIndex:i] objectForKey:@"areas_name"] isEqualToString:value])
             {
-                value = [[[dstDict objectForKey:@"sections"] objectAtIndex:i] objectForKey:@"areas_type"];
+                value = [[[dstDict objectForKey:@"sections"] objectAtIndex:i] objectForKey:@"areas_current_no"];
             }
         }
     }
-
+    
     [dic setValue:value forKey:@"requirement_house_area"];
     
     
-//    @property(nonatomic,strong) RERadioItem *buildings_name;//楼盘编号
+    //    @property(nonatomic,strong) RERadioItem *buildings_name;//楼盘编号
     value = @"";
     if (self.curBuildings)
     {
         value = self.curBuildings.buildings_dict_no;
     }
-    [dic setValue:value forKey:@"buildings_name"];
+    [dic setValue:value forKey:@"requirement_buildings_no"];
     
-//    @property(nonatomic,strong) RERadioItem *requirement_tene_application;//物业用途
+    
+    //    @property(nonatomic,strong) RERadioItem *requirement_tene_application;//物业用途
     value = @"";
     value = self.requirement_tene_application.value;
     value = [self DicValueFromValue:value AndDic:self.tene_application_dic_arr];
     [dic setValue:value forKey:@"requirement_tene_application"];
     
-//    @property(nonatomic,strong) RERadioItem *requirement_tene_type;//物业类型
+    //    @property(nonatomic,strong) RERadioItem *requirement_tene_type;//物业类型
     value = @"";
     value = self.requirement_tene_type.value;
     value = [self DicValueFromValue:value AndDic:self.tene_type_dic_arr];
     [dic setValue:value forKey:@"requirement_tene_type"];
     
-//    @property(nonatomic,strong) RERadioItem *requirement_fitment_type;//装修类型
+    //    @property(nonatomic,strong) RERadioItem *requirement_fitment_type;//装修类型
     value = @"";
     value = self.requirement_fitment_type.value;
     value = [self DicValueFromValue:value AndDic:self.fitment_type_dic_arr];
     [dic setValue:value forKey:@"requirement_fitment_type"];
     
-//    @property(nonatomic,strong) RERadioItem *requirement_house_driect;//朝向
+    //    @property(nonatomic,strong) RERadioItem *requirement_house_driect;//朝向
     value = @"";
     value = self.requirement_house_driect.value;
     value = [self DicValueFromValue:value AndDic:self.house_driect_dic_arr];
     [dic setValue:value forKey:@"requirement_house_driect"];
     
     
-//    @property(nonatomic,strong) RENumberItem *requirement_floor_from;//Int最低楼层要求
+    //    @property(nonatomic,strong) RENumberItem *requirement_floor_from;//Int最低楼层要求
     value = @"";
     value = self.requirement_floor_from.value;
     [dic setValue:value forKey:@"requirement_floor_from"];
     
     
-//    @property(nonatomic,strong) RENumberItem *requirement_floor_to;//Int最高楼层要求
+    //    @property(nonatomic,strong) RENumberItem *requirement_floor_to;//Int最高楼层要求
     value = @"";
     value = self.requirement_floor_to.value;
     [dic setValue:value forKey:@"requirement_floor_to"];
     
-//    @property(nonatomic,strong) RENumberItem *requirement_room_from;//Int最少卧室数量 要求
+    //    @property(nonatomic,strong) RENumberItem *requirement_room_from;//Int最少卧室数量 要求
     value = @"";
     value = self.requirement_room_from.value;
     [dic setValue:value forKey:@"requirement_room_from"];
     
     
-//    @property(nonatomic,strong) RENumberItem *requirement_room_to;//Int最大卧室数量 要求
+    //    @property(nonatomic,strong) RENumberItem *requirement_room_to;//Int最大卧室数量 要求
     value = @"";
     value = self.requirement_room_to.value;
     [dic setValue:value forKey:@"requirement_room_to"];
     
     
-//    @property(nonatomic,strong) RENumberItem *requirement_hall_from;//Int最少厅数量要 求
+    //    @property(nonatomic,strong) RENumberItem *requirement_hall_from;//Int最少厅数量要 求
     value = @"";
     value = self.requirement_hall_from.value;
     [dic setValue:value forKey:@"requirement_hall_from"];
     
-//    @property(nonatomic,strong) RENumberItem *requirement_hall_to;//Int最大厅数量要 求
+    //    @property(nonatomic,strong) RENumberItem *requirement_hall_to;//Int最大厅数量要 求
     value = @"";
     value = self.requirement_hall_to.value;
     [dic setValue:value forKey:@"requirement_hall_to"];
     
-//    @property(nonatomic,strong) RENumberItem *requirement_area_from;//最小面积要求
+    //    @property(nonatomic,strong) RENumberItem *requirement_area_from;//最小面积要求
     value = @"";
     value = self.requirement_area_from.value;
     [dic setValue:value forKey:@"requirement_area_from"];
     
     
-//    @property(nonatomic,strong) RENumberItem *requirement_area_to;//String最大面积要求
+    //    @property(nonatomic,strong) RENumberItem *requirement_area_to;//String最大面积要求
     value = @"";
     value = self.requirement_area_to.value;
     [dic setValue:value forKey:@"requirement_area_to"];
     
     
-//    @property(nonatomic,strong) RERadioItem *requirement_client_source;//String客户来源
+    //    @property(nonatomic,strong) RERadioItem *requirement_client_source;//String客户来源
     value = @"";
     value = self.requirement_client_source.value;
     value = [self DicValueFromValue:value AndDic:self.client_source_dic_arr];
     [dic setValue:value forKey:@"requirement_client_source"];
     
-//    
-//    
-//    @property(nonatomic,strong) RERadioItem *business_requirement_type;//求租或求购
+    //
+    //
+    //    @property(nonatomic,strong) RERadioItem *business_requirement_type;//求租或求购
     value = @"";
     value = self.business_requirement_type.value;
     
@@ -344,51 +302,111 @@
     
     [dic setValue:value forKey:@"business_requirement_type"];
     
-//    @property(nonatomic,strong) RENumberItem *requirement_sale_price_from;//String//￼最低求购价格
+    //    @property(nonatomic,strong) RENumberItem *requirement_sale_price_from;//String//￼最低求购价格
     value = @"";
     value = self.requirement_sale_price_from.value;
     [dic setValue:value forKey:@"requirement_sale_price_from"];
     
-//    @property(nonatomic,strong) RENumberItem *requirement_sale_price_to;//最高求购价格
+    //    @property(nonatomic,strong) RENumberItem *requirement_sale_price_to;//最高求购价格
     value = @"";
     value = self.requirement_sale_price_to.value;
     [dic setValue:value forKey:@"requirement_sale_price_to"];
     
-//    @property(nonatomic,strong) RERadioItem *sale_price_unit;//求购价格单位
+    //    @property(nonatomic,strong) RERadioItem *sale_price_unit;//求购价格单位
     value = @"";
     value = self.sale_price_unit.value;
     value = [self DicValueFromValue:value AndDic:self.sale_price_unit_dic_arr];
-    [dic setValue:value forKey:@"sale_price_unit"];
+    [dic setValue:value forKey:@"requirement_sale_price_unit"];
     
-//    @property(nonatomic,strong) RENumberItem *requirement_lease_price_from;//最低求租价格
+    
+
+    //    @property(nonatomic,strong) RENumberItem *requirement_lease_price_from;//最低求租价格
     value = @"";
     value = self.requirement_lease_price_from.value;
     [dic setValue:value forKey:@"requirement_lease_price_from"];
     
-//    @property(nonatomic,strong) RENumberItem *requirement_lease_price_to;//最高求租价格
+    //    @property(nonatomic,strong) RENumberItem *requirement_lease_price_to;//最高求租价格
     value = @"";
     value = self.requirement_lease_price_to.value;
     [dic setValue:value forKey:@"requirement_lease_price_to"];
     
-//    @property(nonatomic,strong) RERadioItem *lease_price_unit;//求租价格单位
+    //    @property(nonatomic,strong) RERadioItem *lease_price_unit;//求租价格单位
     value = @"";
     value = self.lease_price_unit.value;
     value = [self DicValueFromValue:value AndDic:self.lease_price_unit_dic_arr];
-    [dic setValue:value forKey:@"lease_price_unit"];
-//    
-//    @property(nonatomic,strong) RETextItem *requirement_memo;//备注
+    [dic setValue:value forKey:@"requirement_lease_price_unit"];
+    //
+    //    @property(nonatomic,strong) RETextItem *requirement_memo;//备注
     value = @"";
     value = self.requirement_memo.value;
     [dic setValue:value forKey:@"requirement_memo"];
-//    
-//    @property(nonatomic,strong) RERadioItem *name_full;//置业顾问名字
-    value = @"";
-    if (self.curPerson)
+    //
+    //    @property(nonatomic,strong) RERadioItem *name_full;//置业顾问名字
+//    value = @"";
+//    if (self.curPerson)
+//    {
+//        value = self.curPerson.job_no;
+//    }
+//    [dic setValue:value forKey:@"name_full"];
+    return dic;
+}
+
+-(BOOL)checkValid
+{
+    NSArray*requiredFields =@[self.client_name,
+                              self.mobilePhone,
+                              self.requirement_house_urban,
+                              self.requirement_house_area,
+                              self.requirement_floor_from,
+                              self.requirement_floor_to,
+                              self.requirement_room_from,
+                              self.requirement_room_to,
+                              self.requirement_hall_from,
+                              self.requirement_hall_to,
+                              self.requirement_area_from,
+                              self.requirement_area_to,
+                              self.requirement_client_source
+                              ];
+    if (![self checkField:requiredFields])
     {
-        value = self.curPerson.job_no;
+        return FALSE;
     }
-    [dic setValue:value forKey:@"name_full"];
-    [self submit:dic];
+    
+    if ([self.requirement_floor_to.value intValue] == 0 ||
+        [self.requirement_floor_from.value intValue] == 0)
+    {
+        PRESENTALERT(@"需求楼层不能为0", nil, nil, nil);
+        return FALSE;
+    }
+    
+    if ([self.requirement_room_to.value intValue] == 0 ||
+        [self.requirement_room_from.value intValue] == 0)
+    {
+        PRESENTALERT(@"需求户型不能填0室", nil, nil, nil);
+        return FALSE;
+    }
+    
+    if ([self.requirement_area_to.value floatValue] < 3 ||
+        [self.requirement_area_from.value floatValue] < 3)
+    {
+        PRESENTALERT(@"需求面积不能小于3", nil, nil, nil);
+        return FALSE;
+    }
+    
+    return TRUE;
+
+}
+
+-(void)sumitBtnClicked:(id)sender
+{
+    
+    if ([self checkValid])
+    {
+        [self submit:[self getFiledsDic]];
+    }
+    
+    
+    
 }
 
 -(void)submit:(NSDictionary*)dic
@@ -1010,7 +1028,7 @@
 {
     __typeof (&*self) __weak weakSelf = self;
     //    @property(nonatomic,strong) RETextItem *requirement_memo;//备注
-    self.requirement_memo = [[RETextItem alloc] initWithTitle:@"备注" value:@""];
+    self.requirement_memo = [[RETextItem alloc] initWithTitle:@"备注" value:@"" placeholder:@"客户需求,不受敏感信息保护，请勿填写电话号码!"];
     [self.remarkSection addItem:self.requirement_memo];
     
     
@@ -1024,7 +1042,7 @@
         vc.selectResultDelegate = self;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
-    [self.staffSection addItem:self.name_full];
+    //[self.staffSection addItem:self.name_full];
 }
 
 -(void)returnSelection:(NSArray*)curSelection

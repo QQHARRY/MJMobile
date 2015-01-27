@@ -112,6 +112,7 @@
          if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {
              CustomerParticulars *particulars = [[CustomerParticulars alloc] init];
+             NSDictionary*dic =[[resultDic  objectForKey:@"CustomerDetailsNode"] objectAtIndex:0];
              [particulars initWithDictionary:[[resultDic  objectForKey:@"CustomerDetailsNode"] objectAtIndex:0]];
              success(particulars);
          }
@@ -154,6 +155,7 @@
     [dic1 setValue:[person me].job_no forKey:@"job_no"];
     [dic1 setValue:[person me].password forKey:@"acc_password"];
     [dic1 setValue:[UtilFun getUDID] forKey:@"DeviceID"];
+    [dic1 setValue:[person me].department_no forKey:@"dept_no"];
 
     
     [NetWorkManager PostWithApiName:API_ADD_CUSTOM parameters:dic1 success:
@@ -172,5 +174,29 @@
      }];
 }
 
++(void)pullEditCustomer:(NSDictionary *)dic Success:(void(^)(id obj))success failure:(void (^)(NSError *error))failure
+{
+    
+    NSMutableDictionary* dic1 = [NSMutableDictionary dictionaryWithDictionary:dic];
+    [dic1 setValue:[person me].job_no forKey:@"job_no"];
+    [dic1 setValue:[person me].password forKey:@"acc_password"];
+    [dic1 setValue:[UtilFun getUDID] forKey:@"DeviceID"];
+    
+    
+    [NetWorkManager PostWithApiName:API_EDIT_CUSTOM parameters:dic1 success:
+     ^(id responseObject)
+     {
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         {
+             
+             success(nil);
+         }
+     }
+                            failure:^(NSError *error)
+     {
+         failure(error);
+     }];
+}
 
 @end

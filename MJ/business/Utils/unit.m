@@ -132,7 +132,7 @@
     {
         if (self == [department rootUnit])
         {
-            if ([((person*)unt).dept_no isEqualToString:@"DEPT_NO000000"])
+            if ([((person*)unt).department_no isEqualToString:@"DEPT_NO000000"])
             {
                 return self;
             }
@@ -151,7 +151,7 @@
         }
         else
         {
-            if ([((department*)self).dept_current_no isEqualToString:((person*)unt).dept_no])
+            if ([((department*)self).dept_current_no isEqualToString:((person*)unt).department_no])
             {
                 return self;
             }

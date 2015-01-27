@@ -141,6 +141,7 @@
 		4AD795531A218C4A00DEC779 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7951E1A218C4A00DEC779 /* UIWebView+AFNetworking.m */; };
 		4AD7955C1A218DF100DEC779 /* GTCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD795581A218DF100DEC779 /* GTCheckBox.m */; };
 		4AD7955D1A218DF100DEC779 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7955B1A218DF100DEC779 /* MBProgressHUD.m */; };
+		4AFA9F631A775CB7008A852F /* editCustomerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFA9F621A775CB7008A852F /* editCustomerTableViewController.m */; };
 		4AFC39A81A47CA3A000FB6F3 /* bind.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC39A61A47CA3A000FB6F3 /* bind.storyboard */; };
 		B93B141A1A61646600121133 /* CustomerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B14191A61646600121133 /* CustomerViewController.m */; };
 		B93B14291A61652000121133 /* CustomerDataPuller.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B141C1A61652000121133 /* CustomerDataPuller.m */; };
@@ -516,6 +517,8 @@
 		4AD795581A218DF100DEC779 /* GTCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTCheckBox.m; sourceTree = "<group>"; };
 		4AD7955A1A218DF100DEC779 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		4AD7955B1A218DF100DEC779 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		4AFA9F611A775CB7008A852F /* editCustomerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editCustomerTableViewController.h; sourceTree = "<group>"; };
+		4AFA9F621A775CB7008A852F /* editCustomerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editCustomerTableViewController.m; sourceTree = "<group>"; };
 		4AFC39A71A47CA3A000FB6F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/bind.storyboard; sourceTree = "<group>"; };
 		B93B14181A61646600121133 /* CustomerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerViewController.h; sourceTree = "<group>"; };
 		B93B14191A61646600121133 /* CustomerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerViewController.m; sourceTree = "<group>"; };
@@ -1470,6 +1473,8 @@
 				B93B14281A61652000121133 /* CustomerTableViewController.xib */,
 				4A6865AD1A753BFA005394DD /* addCustomerTableViewController.h */,
 				4A6865AE1A753BFA005394DD /* addCustomerTableViewController.m */,
+				4AFA9F611A775CB7008A852F /* editCustomerTableViewController.h */,
+				4AFA9F621A775CB7008A852F /* editCustomerTableViewController.m */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -1771,6 +1776,7 @@
 				4AD795241A218C4A00DEC779 /* AFURLConnectionOperation.m in Sources */,
 				B98BD5731A609185003A35BE /* REInlineDatePickerItem.m in Sources */,
 				4AD7954C1A218C4A00DEC779 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				4AFA9F631A775CB7008A852F /* editCustomerTableViewController.m in Sources */,
 				B9FF4B421A245FB300FE413E /* MoreViewController.m in Sources */,
 				B944457F1A62986B0033E998 /* ContractAddController.m in Sources */,
 				4A5665481A4C033D00C3BA22 /* MessageBriefTableViewCell.m in Sources */,

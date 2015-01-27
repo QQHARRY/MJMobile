@@ -22,6 +22,7 @@
 @property(nonatomic,strong) NSString *house_urban;//所属城区名称
 @property(nonatomic,strong) NSString *requirement_house_area;//所属片区编号
 @property(nonatomic,strong) NSString *buildings_name;//所属楼名称
+@property(nonatomic,strong) NSString *requirement_buildings_no;//所属楼盘编号
 @property(nonatomic,strong) NSString *business_requirement_type;//求租或求购
 @property(nonatomic,strong) NSString *requirement_floor_from;//Int最低楼层要求
 @property(nonatomic,strong) NSString *requirement_floor_to;//Int最高楼层要求

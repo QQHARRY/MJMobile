@@ -94,7 +94,7 @@
 // 50.查看客户保密信息
 #define API_CUSTOM_SECRET @"business/getCustomerSecretInfo"
 #define API_ADD_CUSTOM @"business/addCustomer"
-
+#define API_EDIT_CUSTOM @"business/editCustomerDetaills"
 
 
 //字典表

@@ -14,6 +14,7 @@
 #import "Macro.h"
 #import "CustomerDataPuller.h"
 #import "HouseDataPuller.h"
+#import "editCustomerTableViewController.h"
 
 @interface CustomerParticularTableViewController ()
 
@@ -246,7 +247,7 @@
         self.areaItem.enabled = false;
         [self.customerSection addItem:self.areaItem];
     }
-    self.buildingsItem = [RETextItem itemWithTitle:@"所属楼栋:" value:self.particulars.buildings_name placeholder:@""];
+    self.buildingsItem = [RETextItem itemWithTitle:@"需求楼盘:" value:self.particulars.buildings_name placeholder:@""];
     self.buildingsItem.enabled = false;
     [self.customerSection addItem:self.buildingsItem];
     {
@@ -474,7 +475,26 @@
 
 -(void)onEditAction:(id)sender
 {
-    // TODO  enter edit controller
+    __typeof (&*self) __weak weakSelf = self;
+
+    if (self.particulars && self.secret)
+    {
+        editCustomerTableViewController*editCtrl = [editCustomerTableViewController editCtrlWithCusParticulars:self.particulars AndSecrect:self.secret AreaDic:self.areaDictList Hander:^{
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+            
+            PRESENTALERT(@"编辑成功", nil, nil, nil);
+            [self reloadData];
+        }];
+        
+
+        [self.navigationController pushViewController:editCtrl animated:YES];
+        
+        
+        
+    }
+    
+    
+    
 }
 
 @end

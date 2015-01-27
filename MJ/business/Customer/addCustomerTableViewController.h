@@ -92,4 +92,10 @@
 
 
 -(void)returnSelection:(NSArray*)curSelection;
+
+
+-(void)createItems;
+-(void)adjustItemsByTradeType:(NSString*)tradeType;
+-(BOOL)checkValid;
+-(NSDictionary*)getFiledsDic;
 @end
