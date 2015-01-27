@@ -372,11 +372,6 @@
     self.memoItem.cellHeight = 100;
     self.memoItem.enabled = false;
     [self.customerSection addItem:self.memoItem];
-    // add title button
-    if ([self.particulars.edit_permit isEqualToString:@"1"])
-    {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(onEditAction:)];
-    }
 
     [self.secretSection removeAllItems];
     if (self.secret)
@@ -393,6 +388,11 @@
         self.sAddressItem = [RETextItem itemWithTitle:@"家庭住址:" value:self.secret.obj_address placeholder:@""];
         self.sAddressItem.enabled = false;
         [self.secretSection addItem:self.sAddressItem];
+        // add title button
+        if ([self.particulars.edit_permit isEqualToString:@"1"])
+        {
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(onEditAction:)];
+        }
     }
     else
     {
@@ -451,10 +451,6 @@
 
     [self.tableView reloadData];
 }
-
-
-
-
 
 -(void)pullSecret
 {
