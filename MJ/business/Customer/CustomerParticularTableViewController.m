@@ -20,6 +20,7 @@
 @property (strong, readwrite, nonatomic) RETableViewManager *manager;
 
 @property (strong, readwrite, nonatomic) RETableViewSection *customerSection;
+@property (strong, readwrite, nonatomic) RETextItem *customerIdItem;
 @property (strong, readwrite, nonatomic) RETextItem *customerNameItem;
 @property (strong, readwrite, nonatomic) RETextItem *customerLevelItem;
 @property (strong, readwrite, nonatomic) RETextItem *customerStatusItem;
@@ -144,6 +145,9 @@
     __typeof (&*self) __weak weakSelf = self;
 
     [self.customerSection removeAllItems];
+    self.customerIdItem = [RETextItem itemWithTitle:@"客户编号:" value:self.particulars.client_base_no placeholder:@""];
+    self.customerIdItem.enabled = false;
+    [self.customerSection addItem:self.customerIdItem];
     self.customerNameItem = [RETextItem itemWithTitle:@"客户姓名:" value:self.particulars.client_name placeholder:@""];
     self.customerNameItem.enabled = false;
     [self.customerSection addItem:self.customerNameItem];

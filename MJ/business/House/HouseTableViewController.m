@@ -132,7 +132,11 @@
             }
         }
     }
-  
+    if (self.houseList.count <= 0)
+    {
+        return cell;
+    }
+
     HouseDetail *hd = [self.houseList objectAtIndex:indexPath.row];
     NSString *thunmbnailStr = [SERVER_ADD stringByAppendingString:hd.ThumbnailUrl];
 //    NSLog(@"%@", thunmbnailStr);
