@@ -20,4 +20,13 @@
 {
     [[AFNMJInstance instance]  PostWithApiName:apiName parameters:parameters success:success failure:failure];
 }
+
+
++(void)PostImage:(UIImage*)image WithApiName:(NSString*)apiName parameters:(NSDictionary *)parameters
+               success:(void (^)(id responseObject))success
+               failure:(void (^)(NSError *error))failure
+{
+    [[AFNMJInstance instance]  PostImage:image WithApiName:apiName parameters:parameters success:success failure:false];
+}
+
 @end

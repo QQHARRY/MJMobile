@@ -9,9 +9,40 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#define SHOWWINDOWHUD(tip) ([UtilFun showWindowHUD:(tip)]);
+#define HIDEALLWINDOWHUD ([UtilFun hideAllWindowHUD]);
+
+#define SHOWHUD_WINDOW ([UtilFun showHUD:[UIApplication sharedApplication].keyWindow]);
+#define HIDEHUD_WINDOW ([UtilFun hideHUD:[UIApplication sharedApplication].keyWindow]);
 
 #define SHOWHUD(v) ([UtilFun showHUD:v]);
 #define HIDEHUD(v) ([UtilFun hideHUD:v]);
+#define PRESENTALERT(title,msg,action,sender)\
+if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)\
+{\
+    id tmpSender = sender;\
+    if(sender == nil) tmpSender = self;\
+    [UtilFun presentPopViewControllerWithTitle:title Message:msg SimpleAction:action Sender:tmpSender];\
+}\
+else\
+{\
+    UIAlertView*alertView = [[UIAlertView alloc] initWithTitle:title message:msg delegate:sender cancelButtonTitle:action otherButtonTitles:nil, nil];\
+    alertView.delegate = self;\
+    [alertView show];\
+}\
+
+
+#define PRESENTALERTWITHHANDER(title,msg,action,sender,hander)\
+if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)\
+{\
+[UtilFun presentPopViewControllerWithTitle:title Message:msg SimpleAction:action Handler:hander Sender:sender];\
+}\
+else\
+{\
+UIAlertView*alertView = [[UIAlertView alloc] initWithTitle:title message:msg delegate:sender cancelButtonTitle:action otherButtonTitles:nil, nil];\
+alertView.delegate = self;\
+[alertView show];\
+}\
 
 
 @interface UtilFun : NSObject
@@ -28,7 +59,19 @@
 +(void)showHUD:(UIView*)view;
 +(void)hideHUD:(UIView*)view;
 +(void)hideAllHUD:(UIView*)view;
++(void)showWindowHUD:(NSString *)tip;
++(void)hideAllWindowHUD;
+
++(NSString*)getUDID;
 
 
++(BOOL)isPureInt:(NSString*)string;
++(BOOL)isPureFloat:(NSString*)string;
+
+
++(BOOL)isIphoneAboutHardWare;
++(BOOL)isIphoneAboutUI;
+
++(UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize;
 
 @end

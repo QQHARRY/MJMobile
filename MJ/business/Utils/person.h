@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "unit.h"
 
-@interface person : NSObject
+@interface person : unit
 
 
 @property(strong,atomic)NSString*job_no;
@@ -21,8 +22,10 @@
 @property(strong,atomic)NSString*acc_content;
 @property(strong,atomic)NSString*photo;
 @property(strong,atomic)NSString*password;
+@property(strong,atomic)NSString*department_no;
+@property(strong,atomic)NSString*role_name;
 
--(BOOL)initWithDictionary:(NSDictionary*)dic;
+//-(BOOL)initWithDictionary:(NSDictionary*)dic;
 
 +(person*)initMe:(NSDictionary*)dic;
 +(person*)me;

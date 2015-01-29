@@ -10,6 +10,7 @@
 #import "Macro.h"
 #import "NetWorkManager.h"
 #import "UtilFun.h"
+#import "AppDelegate.h"
 
 @interface BindViewController ()
 
@@ -20,13 +21,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-  
-    [self initConstraint];
+//    self.idTxtFld.delegate = self;
+    self.idTxtFld.text = @"XA-";
+    //[self initConstraint];
     
 }
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  // return NO to not change text
+//{
+//    
+//    NSMutableString*oldStr = [[NSMutableString alloc] initWithString:textField.text];
+//    
+//    NSLog(@"old=%@",oldStr);
+//    NSLog(@"string=%@",string);
+//    NSLog(@"location=%ld,length=%ld",range.location,range.length);
+//    
+//    return YES;
+//}
 
-
-
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.idTxtFld resignFirstResponder];
+    [self.pwdTxtFld resignFirstResponder];
+}
 
 -(void)initConstraint
 {
@@ -62,20 +78,19 @@
 -(IBAction)onBindAction:(id)sender
 {
 
-    //NSString* strID = self.idTxtFld.text;
-    NSString* strID = @"XA-1200166";
+    NSString* strID = self.idTxtFld.text;
+
     
-    //NSString* strPwd = self.pwdTxtFld.text;
-    NSString* strPwd = @"1";
+    NSString* strPwd = self.pwdTxtFld.text;
+
     if ([strID length] <= 0 || [strPwd length] <= 0)
     {
-        [UtilFun presentPopViewControllerWithTitle:@"输入错误" Message:@"请输入正确的用户名和密码" SimpleAction:@"OK" Sender:self];
+        PRESENTALERT(@"输入错误",@"请输入正确的用户名和密码",@"OK",self);
         return;
     }
     
-    
-    //NSDictionary *parameters = @{@"job_no":@"XA-1200166", @"acc_password": @"1",@"DeviceID" : @"justfortest",@"DeviceType" : @"0"};
-    NSDictionary *parameters = @{@"job_no":strID , @"acc_password": strPwd,@"DeviceID" : @"justfortest",@"DeviceType" : DEVICE_IOS};
+
+    NSDictionary *parameters = @{@"job_no":strID , @"acc_password": strPwd,@"DeviceID" : [UtilFun getUDID],@"DeviceType" : DEVICE_IOS};
     [NetWorkManager PostWithApiName:API_REG parameters:parameters success:
      ^(id responseObject)
      {
@@ -86,7 +101,7 @@
         
          if (Status == nil || [Status  length] <= 0)
          {
-              [UtilFun presentPopViewControllerWithTitle:SERVER_NONCOMPLIANCE Message:SERVER_NONCOMPLIANCE_INFO SimpleAction:@"OK" Sender:self];
+             PRESENTALERT(SERVER_NONCOMPLIANCE,SERVER_NONCOMPLIANCE_INFO,@"OK",self);
          }
          else
          {
@@ -96,18 +111,20 @@
                  case 0:
                  {
                      [UtilFun setFirstBinded];
-                     [UtilFun presentPopViewControllerWithTitle:@"绑定成功" Message:@"请等待审核通过或联系管理员" SimpleAction:@"OK"  Handler:^(UIAlertAction *action)
-                      {
-                          [self performSegueWithIdentifier:@"bindOk" sender:self];
-                      }
-                      Sender:self];
+      
+                     PRESENTALERTWITHHANDER(@"绑定成功",@"请等待审核通过或联系管理员",@"OK",self,^(UIAlertAction *action)
+                     {
+                         [self toLoginPage];
+                     }
+                                           );
+                     
                      
                      return;
                  }
                      break;
                  case 1:
                  {
-                     [UtilFun presentPopViewControllerWithTitle:@"绑定失败" Message:@"用户名或密码错误,请重新输入" SimpleAction:@"OK" Sender:self];
+                     PRESENTALERT(@"绑定失败",@"用户名或密码错误,请重新输入",@"OK",self);
                      return;
                  }
                      break;
@@ -115,12 +132,12 @@
                  {
                      
                      [UtilFun setFirstBinded];
-                     [UtilFun presentPopViewControllerWithTitle:@"绑定成功" Message:@"管理员已审核通过,可登陆进入系统" SimpleAction:@"OK"  Handler:^(UIAlertAction *action)
-                      {
-                          [self performSegueWithIdentifier:@"bindOk" sender:self];
-                      }
-                                                         Sender:self];
 
+                     PRESENTALERTWITHHANDER(@"绑定成功",@"管理员已审核通过,可登陆进入系统",@"OK",self,^(UIAlertAction *action)
+                                           {
+                                               [self toLoginPage];
+                                           }
+                                           );
                  }
                      break;
                  default:
@@ -133,7 +150,8 @@
      {
          HIDEHUD(self.view);
          NSString*errorStr = [NSString stringWithFormat:@"%@",error];
-         [UtilFun presentPopViewControllerWithTitle:SERVER_NONCOMPLIANCE Message:errorStr SimpleAction:@"OK" Sender:self];
+         
+         PRESENTALERT(SERVER_NONCOMPLIANCE,errorStr,@"OK",self);
          
      }];
     
@@ -141,9 +159,23 @@
 
 }
 
+-(void)toLoginPage
+{
+    AppDelegate*app = [[UIApplication sharedApplication] delegate];
+    [app loadMainSotry:NO];
+}
+
 - (IBAction)onLoginAction:(id)sender
 {
-    [self performSegueWithIdentifier:@"bindOk" sender:self];
+    [self toLoginPage];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([alertView.title isEqualToString:@"绑定成功"] && buttonIndex == 0)
+    {
+        [self toLoginPage];
+    }
 }
 
 @end

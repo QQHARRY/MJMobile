@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewPagerController.h"
+#import "HouseTableViewController.h"
 
-@interface HouseViewController : UIViewController
+
+@interface HouseViewController : ViewPagerController
+    <ViewPagerDataSource, ViewPagerDelegate>
+
+@property (nonatomic) HOUSER_CONTROLLER_TYPE nowControllerType;
+@property (nonatomic, strong) HouseTableViewController *rentController;
+@property (nonatomic, strong) HouseTableViewController *sellController;
 
 @end
+

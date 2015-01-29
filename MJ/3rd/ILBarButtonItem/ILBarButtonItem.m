@@ -20,7 +20,7 @@
              target:(id)target action:(SEL)action {
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setFrame:CGRectMake(0.0f, 0.0f, 32, 32)];
+    [btn setFrame:CGRectMake(0.0f, 0.0f, 30, 30)];
     [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     [btn setImage:image forState:UIControlStateNormal];
     [btn setImage:selectedImage forState:UIControlStateHighlighted];

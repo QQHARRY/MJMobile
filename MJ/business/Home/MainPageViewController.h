@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainPageViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+#import "ContactListTableViewController.h"
 
-@property(strong,nonatomic)UITableView*tableView;
+@interface MainPageViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,contacSelection>
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+
+@property(strong,nonatomic)NSArray*mainAnncArr;
+@property(strong,nonatomic)NSArray*mainPetitionArr;
 
 
 @end

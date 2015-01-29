@@ -12,20 +12,22 @@
 
 - (void)awakeFromNib {
     // Initialization code
+     //self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
-    self.imageView.hidden = YES;
+   
 }
 
 -(void)initWithTitle:(NSString*)title isNew:(BOOL)isNew
 {
+
     self.title.text = title;
 
-    self.imageView.hidden = !isNew;
+    self.isNew.hidden = !isNew;
 }
 
 @end

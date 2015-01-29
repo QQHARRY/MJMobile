@@ -10,18 +10,20 @@
 	<string>MJ</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>2865c978-79cc-4856-a483-bbd765a2f553</key>
+		<string>svn://192.168.8.100/private</string>
 		<key>B626280C4D7410D9EAF62568FC32F6C811EE055C</key>
-		<string>https://github.com/QQHARRY/MJMobile.git</string>
+		<string>svn://192.168.8.100/private</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>MJ.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>2865c978-79cc-4856-a483-bbd765a2f553</key>
+		<string>../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../../..</string>
 		<key>B626280C4D7410D9EAF62568FC32F6C811EE055C</key>
-		<string>../..</string>
+		<string>../../../MJ</string>
 	</dict>
-	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/QQHARRY/MJMobile.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -30,11 +32,27 @@
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2865c978-79cc-4856-a483-bbd765a2f553</string>
+			<key>IDESourceControlWCCName</key>
+			<string>..</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>B626280C4D7410D9EAF62568FC32F6C811EE055C</string>
 			<key>IDESourceControlWCCName</key>
 			<string>MJ</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B626280C4D7410D9EAF62568FC32F6C811EE055C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MJMobile</string>
 		</dict>
 	</array>
 </dict>

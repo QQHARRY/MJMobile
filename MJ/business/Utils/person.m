@@ -23,29 +23,18 @@ __strong static person* _sharedObject = nil;
 @synthesize acc_content;
 @synthesize photo;
 @synthesize password;
+@synthesize department_no;
+@synthesize role_name;
 
--(BOOL)initWithDictionary:(NSDictionary*)dic
+-(id)init
 {
-    Class cls = [self class];
-    unsigned int ivarsCnt = 0;
-    Ivar *ivars = class_copyIvarList(cls, &ivarsCnt);
-
-    for (const Ivar *p = ivars; p < ivars + ivarsCnt; ++p)
+    self = [super init];
+    if (self)
     {
-        //Ivar const ivar = ;
-        NSString *key = [NSString stringWithUTF8String:ivar_getName(*p)];
-        NSString*value = [dic objectForKey:key];
-        if ([value length] == 0)
-        {
-            value = nil;
-        }
-        object_setIvar(self,*p,value);
+        self.isDept = NO;
     }
-
-    return TRUE;
+    return self;
 }
-
-
 
 
 +(person*)initMe:(NSDictionary*)dic
@@ -54,8 +43,9 @@ __strong static person* _sharedObject = nil;
     
     dispatch_once(&pred, ^{
         _sharedObject = [[self alloc] init];
-        [_sharedObject initWithDictionary:dic];
+        
     });
+    [_sharedObject initWithDictionary:dic];
     return _sharedObject;
 }
 
@@ -73,7 +63,7 @@ __strong static person* _sharedObject = nil;
     
     for (const Ivar *p = ivars; p < ivars + ivarsCnt; ++p)
     {
-        object_setIvar(self,*p,nil);
+        object_setIvar(_sharedObject,*p,@"");
     }
 }
 

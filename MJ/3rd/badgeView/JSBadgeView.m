@@ -84,7 +84,6 @@
 
 - (id)initWithParentView:(UIView *)parentView alignment:(JSBadgeViewAlignment)alignment
 {
-    CGRect fr = parentView.frame;
     if ((self = [self initWithFrame:CGRectZero]))
     {
         self.badgeAlignment = alignment;

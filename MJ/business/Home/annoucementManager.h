@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "bizManager.h"
 
-@interface annoucementManager : NSObject
+@interface annoucementManager : bizManager
 
-+(void)getAnnoucementListFrom:(NSString*)from To:(NSString*)to Count:(int)count Success:(void (^)(id responseObject))success
++(void)getListFrom:(NSString*)from To:(NSString*)to Count:(int)count Success:(void (^)(id responseObject))success
                         failure:(void (^)(NSError *error))failure;
 @end

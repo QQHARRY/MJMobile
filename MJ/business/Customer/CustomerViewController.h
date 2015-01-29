@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewPagerController.h"
+#import "CustomerTableViewController.h"
 
-@interface CustomerViewController : UIViewController
+
+@interface CustomerViewController : ViewPagerController
+    <ViewPagerDataSource, ViewPagerDelegate>
+
+@property (nonatomic) CUSTOMER_CONTROLLER_TYPE nowControllerType;
+@property (nonatomic, strong) CustomerTableViewController *rentController;
+@property (nonatomic, strong) CustomerTableViewController *sellController;
 
 @end
+

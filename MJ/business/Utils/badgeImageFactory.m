@@ -6,35 +6,52 @@
 //  Copyright (c) 2014年 Simtoon. All rights reserved.
 //
 
+
+#define BADGEEXTEND 0.65
+
 #import "badgeImageFactory.h"
+#import "JSBadgeView.h"
 
 @implementation badgeImageFactory
 
-
-+(UIImage *)addText:(UIImage *)img text:(NSString *)txt
++(UIImage*)getBadgeImageFromImage:(UIImage*)image andText:(NSString*)txt
 {
-    int w = img.size.width;
-    int h = img.size.height;
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    UIImageView*imgV = [[UIImageView alloc] initWithImage:image];
+    
+    CGRect rctOld = [imgV frame];
+    [imgV  setFrame:CGRectMake(0, imgV.frame.size.height*(1-BADGEEXTEND), imgV.frame.size.width, imgV.frame.size.height)];
+    
+    UIView*viewTmp = [[UIView alloc] initWithFrame:CGRectMake(0, 0, rctOld.size.width/BADGEEXTEND, rctOld.size.height/BADGEEXTEND)];
+    
+    
+    JSBadgeView *badgeView = [[JSBadgeView alloc] initWithParentView:imgV alignment:JSBadgeViewAlignmentTopRight];
+    badgeView.badgeText =txt;
 
-    CGContextRef context = CGBitmapContextCreate(NULL, w*2, h*2, 8, 4 * w*2, colorSpace, kCGImageAlphaPremultipliedFirst);
-    CGContextDrawImage(context, CGRectMake(0, 0, w, h), img.CGImage);
-    CGContextSetRGBFillColor(context, 0.0, 1.0, 1.0, 1);
-    char* text = (char *)[txt cStringUsingEncoding:NSASCIIStringEncoding];
-    int fontSize = 20;
-    char*fontName = [[UIFont systemFontOfSize:fontSize].fontName  UTF8String];
+    [viewTmp addSubview:imgV];
     
-    CGContextSelectFont(context, fontName, fontSize, kCGEncodingMacRoman);
-    CGContextSetTextDrawingMode(context, kCGTextFill);
-    CGContextSetRGBFillColor(context, 0, 0, 1, 1);
-    //CGContextSetTextMatrix(context, CGAffineTransformMakeRotation( -M_PI/4 ));
-    CGContextShowTextAtPoint(context, 40, 60, text, strlen(text));
-    //Create image ref from the context
-    CGImageRef imageMasked = CGBitmapContextCreateImage(context);
-    CGContextRelease(context);
-    CGColorSpaceRelease(colorSpace);
-    return [UIImage imageWithCGImage:imageMasked];
+    UIGraphicsBeginImageContext(viewTmp.bounds.size);
     
+    [viewTmp.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return img;
+}
+
+
++(UIImageView*)getBadgeImageViewFromImage:(UIImage*)image andText:(NSString*)txt
+{
+    UIImageView*imgV = [[UIImageView alloc] initWithImage:image];
+    //CGRect rct = [imgV frame];
+    
+    JSBadgeView *badgeView = [[JSBadgeView alloc] initWithParentView:imgV alignment:JSBadgeViewAlignmentTopRight];
+    badgeView.badgeText =txt;
+    
+    
+    
+    return imgV;
 }
 
 

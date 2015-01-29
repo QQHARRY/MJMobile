@@ -7,8 +7,24 @@
 //
 
 #import "AppDelegate.h"
+#import "UtilFun.h"
+#import "LoginViewController.h"
+#import "UMessage.h"
+
+#import "NetWorkManager.h"
+#import "UtilFun.h"
+#import "person.h"
+#import "Macro.h"
+#import "pushManagement.h"
+
+
+#define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define _IPHONE80_ 80000
 
 @interface AppDelegate ()
+{
+    pushManagement*pushMan;
+}
 
 @end
 
@@ -17,8 +33,180 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    if (![UtilFun hasFirstBinded])
+    {
+        [self loadBindStory];
+    }
+    else
+    {
+        [self loadMainSotry:YES];
+    }
+    
+
+    
+    [self.window makeKeyAndVisible];
+  
+    
+    [self initUMengPush:launchOptions];
     return YES;
 }
+
+
+-(void)initUMengPush:(NSDictionary *)launchOptions
+{
+    
+    //set AppKey and LaunchOptions
+    [UMessage startWithAppkey:@"54992c65fd98c5b50700105b" launchOptions:launchOptions];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
+    if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
+    {
+        //register remoteNotification types
+        UIMutableUserNotificationAction *action1 = [[UIMutableUserNotificationAction alloc] init];
+        action1.identifier = @"action1_identifier";
+        action1.title=@"打开APP";
+        action1.activationMode = UIUserNotificationActivationModeForeground;//当点击的时候启动程序
+        
+        UIMutableUserNotificationAction *action2 = [[UIMutableUserNotificationAction alloc] init];  //第二按钮
+        action2.identifier = @"action2_identifier";
+        action2.title=@"关闭";
+        action2.activationMode = UIUserNotificationActivationModeBackground;//当点击的时候不启动程序，在后台处理
+        action2.authenticationRequired = YES;//需要解锁才能处理，如果action.activationMode = UIUserNotificationActivationModeForeground;则这个属性被忽略；
+        action2.destructive = YES;
+        
+        UIMutableUserNotificationCategory *categorys = [[UIMutableUserNotificationCategory alloc] init];
+        categorys.identifier = @"category1";//这组动作的唯一标示
+        [categorys setActions:@[action1,action2] forContext:(UIUserNotificationActionContextDefault)];
+        
+        UIUserNotificationSettings *userSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge|UIUserNotificationTypeSound|UIUserNotificationTypeAlert
+                                                                                     categories:[NSSet setWithObject:categorys]];
+        [UMessage registerRemoteNotificationAndUserNotificationSettings:userSettings];
+        
+    } else{
+        //register remoteNotification types
+        [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
+         |UIRemoteNotificationTypeSound
+         |UIRemoteNotificationTypeAlert];
+    }
+#else
+    
+    //register remoteNotification types
+    [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
+     |UIRemoteNotificationTypeSound
+     |UIRemoteNotificationTypeAlert];
+    
+#endif
+    
+    //for log
+    //[UMessage setLogEnabled:YES];
+}
+
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    [UMessage registerDeviceToken:deviceToken];
+    
+    NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:      [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    [self setDeviceToken:token];
+}
+
+-(void)setDeviceToken:(NSString*)deviceToken
+{
+    if (pushMan == nil)
+    {
+        pushMan = [[pushManagement alloc] init];
+        
+    }
+    [pushMan setDeviceToken:deviceToken];
+    
+    
+    
+}
+-(void)setMemberID:(NSString*)memberID
+{
+    if (pushMan == nil)
+    {
+        pushMan = [[pushManagement alloc] init];
+        
+    }
+    [pushMan setMemberID:memberID];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    [UMessage setAutoAlert:NO];
+    
+    [UMessage didReceiveRemoteNotification:userInfo];
+    
+    
+    NSString*alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+    
+    
+    UILocalNotification* notify = [[UILocalNotification alloc]init];
+    
+    notify.fireDate = [[NSDate new] dateByAddingTimeInterval:0];
+    notify.alertBody = alert;
+    notify.repeatInterval = 0;
+    //notify.userInfo = @{@"lk_alarm_id":@"test local push"};
+    notify.soundName = UILocalNotificationDefaultSoundName;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:notify];
+    
+    
+    
+    
+    
+    //    self.userInfo = userInfo;
+    //    //定制自定的的弹出框
+    //    if([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
+    //    {
+    //        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"标题"
+    //                                                            message:@"Test On ApplicationStateActive"
+    //                                                           delegate:self
+    //                                                  cancelButtonTitle:@"确定"
+    //                                                  otherButtonTitles:nil];
+    //
+    //        [alertView show];
+    //        
+    //    }
+}
+
+-(void)loadBindStory
+{
+    _curStory = [UIStoryboard storyboardWithName:@"bind" bundle:[NSBundle mainBundle]];
+    
+    self.window.rootViewController=[_curStory instantiateInitialViewController];
+}
+-(void)loadMainSotry:(BOOL)autoLogin
+{
+    _curStory = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+
+    LoginViewController*login =[_curStory instantiateInitialViewController];
+    if ([login  isKindOfClass:[LoginViewController class]])
+    {
+        login.autoLogin = autoLogin;
+    }
+   
+    
+    self.window.rootViewController=login;
+}
+
+-(id)instantiateViewControllerWithIdentifier:(NSString*)identifier AndClass:(Class)cls
+{
+    if (identifier != nil && identifier.length > 0 && cls != nil)
+    {
+        id ctrl = [_curStory instantiateViewControllerWithIdentifier:identifier];
+        if ([ctrl class] == cls)
+        {
+            return ctrl;
+        }
+    }
+    
+    return nil;
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
