@@ -14,6 +14,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "Macro.h"
 #import "cartTableViewController.h"
+#import "MJRefresh.h"
 
 @interface ShopTableViewController ()
 
@@ -28,8 +29,49 @@
     
     self.shopItemArr = [[NSMutableArray alloc] init];
 
-    [self getData];
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"购物车" style:UIBarButtonItemStylePlain target:self action:@selector(cartButtonClicked:)];
+    
+    [self.tableView addHeaderWithTarget:self action:@selector(refreshData)];
+    [self.tableView addFooterWithTarget:self action:@selector(loadMore)];
+    
+    [self getData:YES];
+}
+
+-(void)refreshData
+{
+    [self clearData];
+    [self getData:NO];
+}
+
+-(void)loadMore
+{
+    [self getData:YES];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    //[self clearData];
+    //[self getData];
+}
+-(void)clearData
+{
+    [self.shopItemArr removeAllObjects];
+}
+
+
+
+-(void)endRefreshing:(BOOL)isFoot
+{
+    if (isFoot)
+    {
+        [self.tableView footerEndRefreshing];
+    }
+    else
+    {
+        [self.tableView headerEndRefreshing];
+    }
+    
 }
 
 -(void)cartButtonClicked:(id)sender
@@ -37,7 +79,7 @@
     [self performSegueWithIdentifier:@"shouShopCart" sender:self];
 }
 
--(void)getData
+-(void)getData:(BOOL)isFoot
 {
     SHOWHUD(self.view);
     NSString*from = @"0";
@@ -47,18 +89,43 @@
         from = obj.goods_no;
     }
 
-    [shopBizManager getListByType:self.shopType From:from To:@"" Count:1000 Success:^(id responseObject) {
+    [shopBizManager getListByType:self.shopType From:from To:@"" Count:5 Success:^(id responseObject) {
         HIDEHUD(self.view);
         [self.shopItemArr addObjectsFromArray:responseObject];
         
         [self.tableView reloadData];
-        
+        [self endRefreshing:isFoot];
         
     } failure:^(NSError *error) {
         HIDEHUD(self.view);
+        [self endRefreshing:isFoot];
     }];
     
 }
+
+//-(void)getData:(BOOL)isFoot
+//{
+//    SHOWHUD(self.view);
+//    NSString*from = @"0";
+//    if ([self.msgArr count] > 0)
+//    {
+//        messageObj*obj = [self.msgArr objectAtIndex:self.msgArr.count-1];
+//        from = obj.msg_cno;
+//    }
+//    
+//    [messageManager getMsgByType:self.msgType ListFrom:from To:@"" Count:8 Success:^(id responseObject) {
+//        HIDEHUD(self.view);
+//        [self.msgArr addObjectsFromArray:responseObject];
+//        
+//        [self.tableView reloadData];
+//        [self endRefreshing:isFoot];
+//        
+//    } failure:^(NSError *error) {
+//        HIDEHUD(self.view);
+//        [self endRefreshing:isFoot];
+//    }];
+//    
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -82,38 +149,42 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ShopItemTableViewCell *cell = (ShopItemTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"shopItemTableViewCell" forIndexPath:indexPath];
-    shopItem*obj = [shopItemArr objectAtIndex:indexPath.row];
-    if (obj)
+    if (indexPath.row < shopItemArr.count)
     {
-        cell.item = obj;
-        cell.delegate = self;
-        NSString*str = @"商品名称:";
-        str = [str stringByAppendingString:obj.goods_name];
-        cell.goodName.text = str;
-        str = @"规格:";
-        str = [str stringByAppendingString:obj.goods_spec];
-        cell.goodType.text = str;
-        str = @"价格:";
-        str = [str stringByAppendingString:obj.goods_price];
-        str = [str stringByAppendingString:@"元"];
-        cell.goodPrice.text = str;
-        str = @"库存数量:";
-        str = [str stringByAppendingString:obj.goods_num];
-        str = [str stringByAppendingString:obj.goods_unit];
-        cell.totalCountRestore.text = str;
-        cell.totalCountSelected.text = @"0";
-        str = @"订购金额:0元";
-        cell.goodTotalPrice.text = str;
-        
-        
-        cell.selectedCount = 0;
-        cell.unitPrice = [obj.goods_price floatValue];
-        cell.totalPrice = 0;
-        cell.maximunNumInStore = [obj.goods_num intValue];
-        
-        [cell.indicatorDn  startAnimating];
-        NSString*strUrl = [SERVER_ADD stringByAppendingString:obj.photo_file_name];
-        [cell.goodImage setImageWithURL:[NSURL URLWithString:strUrl]];
+        shopItem*obj = [shopItemArr objectAtIndex:indexPath.row];
+        if (obj)
+        {
+            cell.item = obj;
+            cell.delegate = self;
+            NSString*str = @"商品名称:";
+            str = [str stringByAppendingString:obj.goods_name];
+            cell.goodName.text = str;
+            str = @"规格:";
+            str = [str stringByAppendingString:obj.goods_spec];
+            cell.goodType.text = str;
+            str = @"价格:";
+            str = [str stringByAppendingString:obj.goods_price];
+            str = [str stringByAppendingString:@"元"];
+            cell.goodPrice.text = str;
+            str = @"库存数量:";
+            str = [str stringByAppendingString:obj.goods_num];
+            str = [str stringByAppendingString:obj.goods_unit];
+            cell.totalCountRestore.text = str;
+            cell.totalCountSelected.text = @"0";
+            str = @"订购金额:0元";
+            cell.goodTotalPrice.text = str;
+            
+            
+            cell.selectedCount = 0;
+            cell.unitPrice = [obj.goods_price floatValue];
+            cell.totalPrice = 0;
+            cell.maximunNumInStore = [obj.goods_num intValue];
+            
+            [cell.indicatorDn  startAnimating];
+            NSString*strUrl = [SERVER_ADD stringByAppendingString:obj.photo_file_name];
+            [cell.goodImage setImageWithURL:[NSURL URLWithString:strUrl]];
+        }
+
     }
     
     return cell;
@@ -126,7 +197,7 @@
         
         [self.shopItemArr  removeAllObjects];
         HIDEHUD(self.view);
-        [self getData];
+        [self refreshData];
     } failure:^(NSError *error) {
         HIDEHUD(self.view);
     }];

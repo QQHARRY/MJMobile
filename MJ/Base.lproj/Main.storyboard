@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dhG-tr-cMx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dhG-tr-cMx">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -1600,13 +1600,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YiL-N5-8ZA" id="oHZ-iE-iI4">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="9nd-RE-Ccm">
-                                            <rect key="frame" x="-10" y="-10" width="20" height="20"/>
-                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="56" y="41" width="37" height="37"/>
-                                            </variation>
-                                        </activityIndicatorView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TabItemHouse" translatesAutoresizingMaskIntoConstraints="NO" id="CNg-KM-T5X">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CNg-KM-T5X">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="150" id="3M1-Fp-9Fr"/>
@@ -1772,7 +1766,6 @@
                                     </subviews>
                                     <variation key="default">
                                         <mask key="subviews">
-                                            <exclude reference="9nd-RE-Ccm"/>
                                             <exclude reference="CNg-KM-T5X"/>
                                             <exclude reference="ar3-o5-7BU"/>
                                             <exclude reference="PwG-K4-lF1"/>
@@ -1780,7 +1773,6 @@
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
                                         <mask key="subviews">
-                                            <include reference="9nd-RE-Ccm"/>
                                             <include reference="CNg-KM-T5X"/>
                                             <include reference="ar3-o5-7BU"/>
                                             <include reference="PwG-K4-lF1"/>
@@ -1793,7 +1785,6 @@
                                     <outlet property="goodPrice" destination="4j4-aC-dcE" id="VmC-hN-VHI"/>
                                     <outlet property="goodTotalPrice" destination="nN9-SE-MeX" id="Sr5-Tn-IZp"/>
                                     <outlet property="goodType" destination="CEW-0R-KYc" id="XbT-fg-hd7"/>
-                                    <outlet property="indicatorDn" destination="9nd-RE-Ccm" id="pPd-M0-17b"/>
                                     <outlet property="totalCountRestore" destination="Kp5-64-mbU" id="yui-oz-kku"/>
                                     <outlet property="totalCountSelected" destination="JSa-Rh-YUm" id="6jJ-NV-7Am"/>
                                 </connections>

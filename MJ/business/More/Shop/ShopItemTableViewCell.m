@@ -51,7 +51,7 @@
     selectedCount--;
     totalPrice = unitPrice*selectedCount;
     
-    goodTotalPrice.text = [NSString stringWithFormat:@"订购金额:%.4f",totalPrice];
+    goodTotalPrice.text = [NSString stringWithFormat:@"订购金额:%.2f",totalPrice];
     
     totalCountSelected.text = [NSString stringWithFormat:@"%ld",(long)selectedCount];
 }
@@ -65,7 +65,7 @@
     
     totalPrice = unitPrice*selectedCount;
     
-    goodTotalPrice.text = [NSString stringWithFormat:@"订购金额:%.4f",totalPrice];
+    goodTotalPrice.text = [NSString stringWithFormat:@"订购金额:%.2f",totalPrice];
     
     totalCountSelected.text = [NSString stringWithFormat:@"%ld",(long)selectedCount];
 }
