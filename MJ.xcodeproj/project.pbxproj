@@ -2086,7 +2086,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e2b51873-381c-467a-8f4d-b59928a8cbb0";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2106,7 +2106,7 @@
 					"$(PROJECT_DIR)/MJ/3rd/UMessage_Sdk_1.1.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e2b51873-381c-467a-8f4d-b59928a8cbb0";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
