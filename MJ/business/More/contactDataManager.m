@@ -63,7 +63,7 @@
     });
     
     
-    if (unt.isDept &&[unt.subDept count] > 0)
+    if (unt.isDept &&[unt.subDept count] > 0 && [unt.subPerson count] > 0)
     {
         retirevedCount++;
         if (retirevedCount >= retrieveCount)
