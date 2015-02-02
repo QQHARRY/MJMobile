@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dhG-tr-cMx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dhG-tr-cMx">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -1600,13 +1600,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YiL-N5-8ZA" id="oHZ-iE-iI4">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="9nd-RE-Ccm">
-                                            <rect key="frame" x="-10" y="-10" width="20" height="20"/>
-                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="56" y="41" width="37" height="37"/>
-                                            </variation>
-                                        </activityIndicatorView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TabItemHouse" translatesAutoresizingMaskIntoConstraints="NO" id="CNg-KM-T5X">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CNg-KM-T5X">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="150" id="3M1-Fp-9Fr"/>
@@ -1772,7 +1766,6 @@
                                     </subviews>
                                     <variation key="default">
                                         <mask key="subviews">
-                                            <exclude reference="9nd-RE-Ccm"/>
                                             <exclude reference="CNg-KM-T5X"/>
                                             <exclude reference="ar3-o5-7BU"/>
                                             <exclude reference="PwG-K4-lF1"/>
@@ -1780,7 +1773,6 @@
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
                                         <mask key="subviews">
-                                            <include reference="9nd-RE-Ccm"/>
                                             <include reference="CNg-KM-T5X"/>
                                             <include reference="ar3-o5-7BU"/>
                                             <include reference="PwG-K4-lF1"/>
@@ -1793,7 +1785,6 @@
                                     <outlet property="goodPrice" destination="4j4-aC-dcE" id="VmC-hN-VHI"/>
                                     <outlet property="goodTotalPrice" destination="nN9-SE-MeX" id="Sr5-Tn-IZp"/>
                                     <outlet property="goodType" destination="CEW-0R-KYc" id="XbT-fg-hd7"/>
-                                    <outlet property="indicatorDn" destination="9nd-RE-Ccm" id="pPd-M0-17b"/>
                                     <outlet property="totalCountRestore" destination="Kp5-64-mbU" id="yui-oz-kku"/>
                                     <outlet property="totalCountSelected" destination="JSa-Rh-YUm" id="6jJ-NV-7Am"/>
                                 </connections>
@@ -1969,39 +1960,48 @@
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CVm-kp-4O9">
                                 <rect key="frame" x="0.0" y="65" width="600" height="121"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="所属公司:科威不动产" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EzP-Yz-UWI">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="所属公司:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EzP-Yz-UWI">
                                         <rect key="frame" x="15" y="31" width="185" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="15" y="32" width="112" height="15"/>
+                                        </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="所属部门:中介部" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jpc-wG-Ap3">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="所属部门:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jpc-wG-Ap3">
                                         <rect key="frame" x="15" y="57" width="185" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="登录角色:xiaopingguo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pBY-H4-mXR">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="登录角色:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pBY-H4-mXR">
                                         <rect key="frame" x="15" y="83" width="185" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="姓名:李自强" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqT-Xq-Bd8">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="姓名:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqT-Xq-Bd8">
                                         <rect key="frame" x="15" y="5" width="185" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="15" y="5" width="112" height="15"/>
+                                        </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akS-Vv-KY6">
                                         <rect key="frame" x="225" y="8" width="90" height="90"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="90" id="0N5-UC-Tjg"/>
-                                            <constraint firstAttribute="width" constant="90" id="Dtn-EG-4Gt"/>
+                                            <constraint firstAttribute="height" constant="75" id="0N5-UC-Tjg"/>
+                                            <constraint firstAttribute="width" constant="100" id="Dtn-EG-4Gt"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="defaultPhoto">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="147" y="8" width="90" height="90"/>
+                                        </variation>
                                         <connections>
                                             <action selector="clickPhotoBtn:" destination="aae-Bw-7KL" eventType="touchUpInside" id="ahS-0h-HlI"/>
                                         </connections>
@@ -2016,7 +2016,7 @@
                                     <constraint firstItem="EzP-Yz-UWI" firstAttribute="width" secondItem="sqT-Xq-Bd8" secondAttribute="width" id="jUp-Bl-eHs"/>
                                     <constraint firstItem="akS-Vv-KY6" firstAttribute="top" secondItem="CVm-kp-4O9" secondAttribute="top" constant="8" id="l9y-NC-TRX"/>
                                     <constraint firstItem="EzP-Yz-UWI" firstAttribute="trailing" secondItem="sqT-Xq-Bd8" secondAttribute="trailing" id="lrx-Hl-j6U"/>
-                                    <constraint firstItem="akS-Vv-KY6" firstAttribute="leading" secondItem="sqT-Xq-Bd8" secondAttribute="trailing" constant="20" id="y2l-3T-93c"/>
+                                    <constraint firstItem="akS-Vv-KY6" firstAttribute="leading" secondItem="sqT-Xq-Bd8" secondAttribute="trailing" constant="10" id="y2l-3T-93c"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -2024,10 +2024,16 @@
                                         <exclude reference="jHv-Rm-bis"/>
                                     </mask>
                                 </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="y2l-3T-93c"/>
+                                    </mask>
+                                </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="ekc-5R-e0w"/>
                                         <include reference="jHv-Rm-bis"/>
+                                        <include reference="y2l-3T-93c"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -2223,7 +2229,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sxz-RR-mJy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2283" y="56"/>
+            <point key="canvasLocation" x="2262" y="68"/>
         </scene>
         <!--Rest Pass Word View Controller-->
         <scene sceneID="7aN-rs-6m6">

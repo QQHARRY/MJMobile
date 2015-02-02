@@ -225,6 +225,15 @@ static NSMutableDictionary*selctions = nil;
             }
             else
             {
+                NSArray*allSelectKey = [selctions allKeys];
+                for (int i = 0; i < allSelectKey.count; i++)
+                {
+                    id tmpUnt = [selctions objectForKey:[allSelectKey objectAtIndex:i]];
+                    if ([tmpUnt class] != [unt class])
+                    {
+                        return;
+                    }
+                }
                 [selctions setObject:unt forKey:key];
                 [cell setBeSelected:YES];
             }

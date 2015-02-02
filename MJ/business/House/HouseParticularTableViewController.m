@@ -501,7 +501,7 @@
     //    @property (strong, readwrite, nonatomic) RETextItem * owner_company_no;
     //    //String
     //    //经纪人所属公司编号
-    [self.infoSection addItem:self.owner_company_no];
+    //[self.infoSection addItem:self.owner_company_no];
     
     //
     //    @property (strong, readwrite, nonatomic) RETextItem * owner_compony_name;

@@ -155,7 +155,7 @@
 {
     NSDictionary *parameters = @{@"job_no":[person me].job_no,
                                  @"acc_password":[person me].password,
-                                 @"bill_type":[NSNumber numberWithInt:(int)type],
+                                 @"bill_type":[NSNumber numberWithInt:(int)(type-1)],
                                  @"bill_name":@"",
                                  @"bill_state":@"",
                                  @"FromID":from,

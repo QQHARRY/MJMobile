@@ -50,8 +50,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    //[self clearData];
-    //[self getData];
+    [self refreshData];
 }
 -(void)clearData
 {

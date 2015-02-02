@@ -12,6 +12,7 @@
 #import "petitionManager.h"
 #import "petionListTableViewController.h"
 #import "MainPageViewController.h"
+#import "person.h"
 
 @interface petitionAgreementViewController ()
 
@@ -225,7 +226,17 @@
     [self.opinionForAgreement resignFirstResponder];
     if (indexPath.section == 2 && indexPath.row == 0)
     {
-        [self performSegueWithIdentifier:@"toChooseAssistDepartment" sender:self];
+        
+        
+        if ([petition isAffordDeptNow])
+        {
+            [self performSegueWithIdentifier:@"toChooseAssistDepartment" sender:self];
+        }
+        else
+        {
+            [tableView deselectRowAtIndexPath:indexPath animated:NO];
+            PRESENTALERT(@"对不起您不能添加汇办部门", @"只有承办部门才能添加汇办部门", nil, nil);
+        }
     }
 }
 
