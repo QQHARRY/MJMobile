@@ -921,7 +921,7 @@
     SHOWHUD_WINDOW;
     
     NSMutableDictionary*dic = [[NSMutableDictionary alloc] init];
-    [dic setValue:bldings.buildings_dict_no forKey:@"builds_dict_no"];
+    [dic setValue:blding.builds_dict_no forKey:@"builds_dict_no"];
     [dic setValue:unit forKey:@"house_unit"];
     [dic setValue:table forKey:@"house_tablet"];
     [dic setValue:[table substringToIndex:2] forKey:@"house_floor"];
