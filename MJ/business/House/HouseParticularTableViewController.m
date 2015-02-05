@@ -83,7 +83,24 @@
     self.carport_rank_dic_arr = [dictionaryManager getItemArrByType:DIC_CARPORT_RANK_TYPE];
     self.sex_dic_arr = [dictionaryManager getItemArrByType:DIC_SEX_TYPE];
     
+    
+    self.cons_elevator_brand_dic_arr = [dictionaryManager getItemArrByType:DIC_ELEVATOR_BRAND_TYPE];
+    self.facility_gas_dic_arr = [dictionaryManager getItemArrByType:DIC_GAS_TYPE];
+    self.facility_heating_dic_arr = [dictionaryManager getItemArrByType:DIC_HEATING_TYPE];
+    self.build_property_dic_arr = [dictionaryManager getItemArrByType:DIC_BUILD_PROPERTY];
+    
+    self.build_year_arr = [[NSMutableArray alloc] init];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSInteger unitFlags = NSYearCalendarUnit;
+    NSDateComponents *comps  = [calendar components:unitFlags fromDate:[NSDate date]];
+    NSInteger tmpYear= [comps year];
 
+    while (tmpYear>= 1901)
+    {
+        NSString*strYear = [NSString stringWithFormat:@"%ld",(long)tmpYear];
+        [self.build_year_arr addObject:strYear];
+        tmpYear--;
+    }
 }
 #pragma mark ---------------initDic----------------
 #pragma mark
@@ -415,13 +432,13 @@
     [self.infoSection addItem:self.facility_gas];
     
     //
-    //    @property (strong, readwrite, nonatomic) REDateTimeItem * build_year;
+    //    @property (strong, readwrite, nonatomic) RERadioItem * build_year;
     //    //Int
     //    //建房年代
     [self.infoSection addItem:self.build_year];
     
     //
-    //    @property (strong, readwrite, nonatomic) RENumberItem * build_property;
+    //    @property (strong, readwrite, nonatomic) RERadioItem * build_property;
     //    //Int
     //    //产权年限
     [self.infoSection addItem:self.build_property];
@@ -1166,11 +1183,21 @@
 //    @property (strong, readwrite, nonatomic) RETextItem * cons_elevator_brand;
 //    //String
 //    //电梯（如奥旳斯
+    
     value = @"";
-    if (self.housePtcl && self.housePtcl.cons_elevator_brand)
+    if (self.housePtcl&& self.housePtcl.cons_elevator_brand)
     {
-        value = self.housePtcl.cons_elevator_brand;
+        for (DicItem *di in self.cons_elevator_brand_dic_arr)
+        {
+            if ([di.dict_value isEqualToString:self.housePtcl.cons_elevator_brand])
+            {
+                value = di.dict_label;
+                break;
+            }
+        }
     }
+    
+
     self.cons_elevator_brand = [[RETextItem alloc] initWithTitle:@"电梯:" value:value];
 
 //    
@@ -1178,9 +1205,16 @@
 //    //String
 //    //暖气
     value = @"";
-    if (self.housePtcl && self.housePtcl.facility_heating)
+    if (self.housePtcl&& self.housePtcl.facility_heating)
     {
-        value = self.housePtcl.facility_heating;
+        for (DicItem *di in self.facility_heating_dic_arr)
+        {
+            if ([di.dict_value isEqualToString:self.housePtcl.facility_heating])
+            {
+                value = di.dict_label;
+                break;
+            }
+        }
     }
     self.facility_heating = [[RETextItem alloc] initWithTitle:@"暖气:" value:value];
 
@@ -1189,14 +1223,21 @@
 //    //String
 //    //燃气
     value = @"";
-    if (self.housePtcl && self.housePtcl.facility_gas)
+    if (self.housePtcl&& self.housePtcl.facility_gas)
     {
-        value = self.housePtcl.facility_gas;
+        for (DicItem *di in self.facility_gas_dic_arr)
+        {
+            if ([di.dict_value isEqualToString:self.housePtcl.facility_gas])
+            {
+                value = di.dict_label;
+                break;
+            }
+        }
     }
     self.facility_gas = [[RETextItem alloc] initWithTitle:@"燃气:" value:value];
 
 //    
-//    @property (strong, readwrite, nonatomic) RETextItem * build_year;
+//    @property (strong, readwrite, nonatomic) RERadioItem * build_year;
 //    //Int
 //    //建房年代
     value = @"";
@@ -1204,20 +1245,68 @@
     {
         value = self.housePtcl.build_year;
     }
-    self.build_year = [[RETextItem alloc] initWithTitle:@"建房年代:" value:value];
+    self.build_year = [[RERadioItem alloc] initWithTitle:@"建房年代:" value:value selectionHandler:^(RERadioItem *item) {
+        [item deselectRowAnimated:YES];
+
+        RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:self.build_year_arr multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
+                                                           {
+                                                               [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                               [item reloadRowWithAnimation:UITableViewRowAnimationNone]; //
+                                                           }];
+        
+        optionsController.delegate = weakSelf;
+        optionsController.style = self.infoSection.style;
+        if (weakSelf.tableView.backgroundView == nil)
+        {
+            optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
+            optionsController.tableView.backgroundView = nil;
+        }
+        
+        [weakSelf.navigationController pushViewController:optionsController animated:YES];
+    }];;
 
 //    
-//    @property (strong, readwrite, nonatomic) RENumberItem * build_property;
+//    @property (strong, readwrite, nonatomic) RERadioItem * build_property;
 //    //Int
 //    //产权年限
     value = @"";
-    if (self.housePtcl)
+    if (self.housePtcl&& self.housePtcl.build_property)
     {
-        value = self.housePtcl.build_property;
+        for (DicItem *di in self.build_property_dic_arr)
+        {
+            if ([di.dict_value isEqualToString:self.housePtcl.build_property])
+            {
+                value = di.dict_label;
+                break;
+            }
+        }
     }
-    self.build_property = [[RENumberItem alloc] initWithTitle:@"产权年限:" value:value];
+    self.build_property = [[RERadioItem alloc] initWithTitle:@"产权年限:" value:value selectionHandler:^(RERadioItem *item) {
+        [item deselectRowAnimated:YES];
+        NSMutableArray *options = [[NSMutableArray alloc] init];
+        for (NSInteger i = 0; i < self.build_property_dic_arr.count; i++)
+        {
+            DicItem *di = [self.build_property_dic_arr objectAtIndex:i];
+            [options addObject:di.dict_label];
+        }
+        RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
+                                                           {
+                                                               [weakSelf.navigationController popViewControllerAnimated:YES];
+                                                               [item reloadRowWithAnimation:UITableViewRowAnimationNone]; //
+                                                           }];
+        
+        optionsController.delegate = weakSelf;
+        optionsController.style = self.infoSection.style;
+        if (weakSelf.tableView.backgroundView == nil)
+        {
+            optionsController.tableView.backgroundColor = weakSelf.tableView.backgroundColor;
+            optionsController.tableView.backgroundView = nil;
+        }
+        
+        [weakSelf.navigationController pushViewController:optionsController animated:YES];
+    }];
 
-//    
+//
 //    @property (strong, readwrite, nonatomic) RERadioItem * use_situation;
 //    //Int
 //    //现状

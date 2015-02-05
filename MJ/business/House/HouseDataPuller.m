@@ -287,9 +287,7 @@
     NSMutableDictionary*mutDic = [[NSMutableDictionary alloc] initWithDictionary:condition];
     [mutDic setValue:[person me].job_no forKey:@"job_no"];
     [mutDic setValue:[person me].password forKey:@"acc_password"];
-    [mutDic setValue:@"" forKey:@"FromID"];
-    [mutDic setValue:@"" forKey:@"ToID"];
-    [mutDic setValue:@"" forKey:@"Count"];
+
 
     
     [NetWorkManager PostWithApiName:API_HOUSE_GET_BUILDINGS_LIST parameters:mutDic success:
@@ -374,6 +372,10 @@
              if (houseInfoNode)
              {
                  [housePtl initWithDictionary:houseInfoNode];
+             }
+             else
+             {
+                 
              }
          }
          housePtl.trade_type = status;

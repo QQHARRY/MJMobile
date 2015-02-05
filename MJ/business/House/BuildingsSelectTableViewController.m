@@ -11,6 +11,7 @@
 #import "UtilFun.h"
 #import "HouseDataPuller.h"
 #import "BuildingsTableCell.h"
+#import "MJRefresh.h"
 
 @interface BuildingsSelectTableViewController ()
 
@@ -41,6 +42,10 @@
     self.filterCtrl.buildingsSel = self;
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"筛选" style:UIBarButtonItemStylePlain target:self action:@selector(openFilter:)];
+    [self.tableView addHeaderWithTarget:self action:@selector(refreshData)];
+    [self.tableView addFooterWithTarget:self action:@selector(loadMore)];
+    
+    
     [self refreshData];
 }
 
@@ -67,10 +72,16 @@
     {
         filterDic = self.filterCtrl.queryCondition;
     }
-    
-    
+    if (filterDic ==nil)
+    {
+        filterDic = [[NSMutableDictionary alloc] init];
+    }
+    [filterDic setValue:@"0" forKey:@"FromID"];
+    [filterDic setValue:@"" forKey:@"ToID"];
+    [filterDic setValue:@"8" forKey:@"Count"];
     [HouseDataPuller pullBuildingByContidion:filterDic  Success:^(NSArray*buildingsArr)
      {
+         [self.tableView headerEndRefreshing];
          [self.buildingArr removeAllObjects];
          if (buildingsArr && [buildingsArr count] > 0)
          {
@@ -80,7 +91,48 @@
          HIDEHUD_WINDOW;
      }failure:^(NSError* error)
      {
-         
+         [self.tableView headerEndRefreshing];
+         HIDEHUD_WINDOW;
+     }];
+}
+
+
+- (void)loadMore
+{
+    SHOWHUD_WINDOW;
+    
+    NSMutableDictionary*filterDic = nil;
+    if (self.filterCtrl)
+    {
+        filterDic = self.filterCtrl.queryCondition;
+    }
+    
+    if (filterDic ==nil)
+    {
+        filterDic = [[NSMutableDictionary alloc] init];
+    }
+    
+    NSString*FromID = @"0";
+    if (self.buildingArr.count > 0)
+    {
+        FromID = ((buildings*)[self.buildingArr objectAtIndex:[self.buildingArr count]-1]).buildings_dict_no;
+    }
+    [filterDic setValue:FromID forKey:@"FromID"];
+    [filterDic setValue:@"" forKey:@"ToID"];
+    [filterDic setValue:@"8" forKey:@"Count"];
+    
+    [HouseDataPuller pullBuildingByContidion:filterDic  Success:^(NSArray*buildingsArr)
+     {
+         [self.tableView footerEndRefreshing];
+         if (buildingsArr && [buildingsArr count] > 0)
+         {
+             [self.buildingArr addObjectsFromArray:buildingsArr];
+         }
+         [self.tableView reloadData];
+         HIDEHUD_WINDOW;
+     }failure:^(NSError* error)
+     {
+         [self.tableView footerEndRefreshing];
          HIDEHUD_WINDOW;
      }];
 }

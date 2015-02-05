@@ -104,44 +104,64 @@
     }
     
 
-    //
-    //    @property (strong, readwrite, nonatomic) RETextItem * cons_elevator_brand;
-    //    //String
-    //    //电梯（如奥旳斯
+
+    
     value = @"";
-    if (self.housePtcl && self.housePtcl.cons_elevator_brand)
+    if (self.curBuildingsDetails && self.curBuildingsDetails.cons_elevator_brand)
     {
-        value = self.housePtcl.cons_elevator_brand;
-        self.cons_elevator_brand.value =value;
+        for (DicItem *di in self.cons_elevator_brand_dic_arr)
+        {
+            if ([di.dict_value isEqualToString:self.curBuildingsDetails.cons_elevator_brand])
+            {
+                value = di.dict_label;
+                break;
+            }
+        }
     }
     
+    
+    self.cons_elevator_brand = [[RETextItem alloc] initWithTitle:@"电梯:" value:value];
+    self.cons_elevator_brand.enabled = NO;
     
     //
     //    @property (strong, readwrite, nonatomic) RETextItem * facility_heating;
     //    //String
     //    //暖气
     value = @"";
-    if (self.housePtcl && self.housePtcl.facility_heating)
+    if (self.curBuildingsDetails&& self.curBuildingsDetails.facility_heating)
     {
-        value = self.housePtcl.facility_heating;
-        self.facility_heating.value =value;
+        for (DicItem *di in self.facility_heating_dic_arr)
+        {
+            if ([di.dict_value isEqualToString:self.curBuildingsDetails.facility_heating])
+            {
+                value = di.dict_label;
+                break;
+            }
+        }
     }
-    
+    self.facility_heating = [[RETextItem alloc] initWithTitle:@"暖气:" value:value];
+    self.facility_heating.enabled = NO;
     
     //
     //    @property (strong, readwrite, nonatomic) RETextItem * facility_gas;
     //    //String
     //    //燃气
     value = @"";
-    if (self.housePtcl && self.housePtcl.facility_gas)
+    if (self.curBuildingsDetails&& self.curBuildingsDetails.facility_gas)
     {
-        value = self.housePtcl.facility_gas;
-        self.facility_gas.value =value;
+        for (DicItem *di in self.facility_gas_dic_arr)
+        {
+            if ([di.dict_value isEqualToString:self.curBuildingsDetails.facility_gas])
+            {
+                value = di.dict_label;
+                break;
+            }
+        }
     }
-    
-    
+    self.facility_gas = [[RETextItem alloc] initWithTitle:@"燃气:" value:value];
+    self.facility_gas.enabled = NO;
     //
-    //    @property (strong, readwrite, nonatomic) RETextItem * build_year;
+    //    @property (strong, readwrite, nonatomic) RERadioItem * build_year;
     //    //Int
     //    //建房年代
     value = @"";
@@ -153,7 +173,7 @@
     
     
     //
-    //    @property (strong, readwrite, nonatomic) RENumberItem * build_property;
+    //    @property (strong, readwrite, nonatomic) RERadioItem * build_property;
     //    //Int
     //    //产权年限
     value = @"";
@@ -358,13 +378,13 @@
     [self.infoSection addItem:self.facility_gas];
     
     //
-    //    @property (strong, readwrite, nonatomic) REDateTimeItem * build_year;
+    //    @property (strong, readwrite, nonatomic) RERadioItem * build_year;
     //    //Int
     //    //建房年代
     [self.infoSection addItem:self.build_year];
     
     //
-    //    @property (strong, readwrite, nonatomic) RENumberItem * build_property;
+    //    @property (strong, readwrite, nonatomic) RERadioItem * build_property;
     //    //Int
     //    //产权年限
     [self.infoSection addItem:self.build_property];
@@ -381,7 +401,7 @@
     //    @property (strong, readwrite, nonatomic) RETextItem * client_remark;
     //    //String
     //    //备注
-    [self.infoSection addItem:self.client_remark];
+    //[self.infoSection addItem:self.client_remark];
     
     //
     //    @property (strong, readwrite, nonatomic) RETextItem * b_staff_describ;
@@ -498,6 +518,9 @@
                 self.house_driect.value = self.housePtcl.house_driect;
                 self.house_driect.enabled = NO;
                 
+                self.build_structure_area.value = self.housePtcl.build_structure_area;
+                self.build_structure_area.enabled = NO;
+                
                 self.house_depth.value = self.housePtcl.house_depth;
                 self.house_depth.enabled = NO;
                 
@@ -510,11 +533,28 @@
                 self.efficiency_rate.value = self.housePtcl.efficiency_rate;
                 self.efficiency_rate.enabled = NO;
                 
-                self.build_structure_area.value = self.housePtcl.build_structure_area;
-                self.build_structure_area.enabled = NO;
                 
                 self.build_year.value = self.housePtcl.build_year;
                 self.build_year.enabled = NO;
+                
+                
+                self.build_property.enabled = NO;
+                if (self.housePtcl&& self.housePtcl.build_property)
+                {
+                    for (DicItem *di in self.build_property_dic_arr)
+                    {
+                        if ([di.dict_value isEqualToString:self.housePtcl.build_property])
+                        {
+                            self.build_property.value = di.dict_label;
+                            break;
+                        }
+                    }
+                }
+                
+                
+                self.fitment_type.enabled = NO;
+
+                
             }
                 break;
             default:
@@ -535,12 +575,18 @@
          {
              [self.curBuilidngsOfCurBuildings addObjectsFromArray:arr];
              self.curBuildingsDetails = dtl;
+             self.buildname.enabled = YES;
+             self.judgementBtn.enabled = YES;
          }
          else
          {
              PRESENTALERT(@"楼盘未录入栋座",@"请先联系主管添加栋座信息",@"OK",self);
+             self.buildname.enabled = NO;
+             self.house_serect_unit.enabled = NO;
+             self.judgementBtn.enabled = NO;
          }
          HIDEHUD_WINDOW;
+         [self.tableView reloadData];
      }
                                             failure:^(NSError* error)
      {
@@ -562,7 +608,7 @@
                     [self.infoSection removeAllItems];
                     [self.secretSection removeAllItems];
                     [self.teneApplicationAbout removeAllItems];
-                    [self.judgementBtn setEnabled:YES];
+                    
                     self.curBuildings = bld;
                     self.buildings_name.value = bld.buildings_name;
                     self.urbanname.value = bld.urbanname;
@@ -574,7 +620,8 @@
                     self.buildname.enabled = YES;
                     
                     //self.house_tablet.enabled = YES;
-                    
+                    self.buildname.value = @"";
+                    self.house_serect_unit.value = @"";
                     [self.tableView reloadData];
                     [self performSelectorOnMainThread:@selector(getBuildingDetails) withObject:nil waitUntilDone:NO];
                     
@@ -598,11 +645,13 @@
                 [self.infoSection removeAllItems];
                 [self.secretSection removeAllItems];
                 [self.teneApplicationAbout removeAllItems];
-                [self.judgementBtn setEnabled:YES];
+                
                 self.buildname.value = bld.build_full_name;
                 self.build_floor_count.value = bld.floor_count;
                 self.curBuilding = bld;
                 self.house_serect_unit.enabled = YES;
+                self.house_serect_unit.value = @"";
+                
                 [self.tableView reloadData];
             }
             
@@ -620,7 +669,7 @@
                                                                [self.infoSection removeAllItems];
                                                                [self.secretSection removeAllItems];
                                                                [self.teneApplicationAbout removeAllItems];
-                                                               [self.judgementBtn setEnabled:YES];
+                                                               
                                                                [weakSelf.navigationController popViewControllerAnimated:YES];
                                                                
                                                                self.house_serect_unit.value = selectedItem.title;
@@ -809,11 +858,11 @@
     
     
     
-    
+    [self setInfoSectionItemsValue];
     [self prepareInfoSectionItems];
     [self adjustExistingProps];
     [self prepareSecretSectionItems];
-    [self setInfoSectionItemsValue];
+    
     
     [self.tableView reloadData];
 }
@@ -859,10 +908,15 @@
     
     //@property(strong,nonatomic)RETableViewItem* judgementBtn;
     //判重按钮
-    self.judgementBtn.enabled = NO;
+    
     self.judgementBtn = [RETableViewItem itemWithTitle:@"判重" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                          {
                              [item deselectRowAnimated:YES];
+                             if (self.judgementBtn.enabled == NO)
+                             {
+                                 return;
+                             }
+                             
                              
                              NSString*bldName = [self.buildname.value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                              
@@ -896,6 +950,7 @@
                              
                          }];
     self.judgementBtn.textAlignment = NSTextAlignmentCenter;
+    self.judgementBtn.enabled = NO;
     //判重按钮
     [self.addInfoSection addItem:self.judgementBtn];
 }
@@ -903,15 +958,38 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"value"])
+    if ([keyPath isEqualToString:@"value"] && [object isEqual:self.house_tablet])
     {
-        NSLog(@"value is changed! new=%@", [change valueForKey:NSKeyValueChangeNewKey]);
+        NSString*newValue =  [change valueForKey:NSKeyValueChangeNewKey];
         if (self.judgementBtn)
         {
             self.judgementBtn.enabled = YES;
-            
         }
-    } else {
+        if (self.house_floor)
+        {
+            if (newValue.length >=2)
+            {
+                if ([self.house_floor.value isEqualToString:@""])
+                {
+                    NSString*floorValue = [NSString stringWithFormat:@"%d",[[newValue substringToIndex:2] intValue]];
+                    self.house_floor.value =floorValue;
+                    [self.house_floor reloadRowWithAnimation:UITableViewRowAnimationBottom];
+                }
+                
+
+            }
+            else
+            {
+                if (![self.house_floor.value isEqualToString:@""])
+                {
+                    self.house_floor.value =@"";
+                    [self.house_floor reloadRowWithAnimation:UITableViewRowAnimationBottom];
+                }
+            }
+        }
+    }
+    else
+    {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }

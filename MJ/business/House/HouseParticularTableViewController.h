@@ -46,6 +46,11 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 @property(strong, readwrite, nonatomic) NSArray* office_rank_dic_arr;
 @property(strong, readwrite, nonatomic) NSArray* carport_rank_dic_arr;
 @property(strong, readwrite, nonatomic) NSArray* sex_dic_arr;
+@property(strong, readwrite, nonatomic) NSArray* cons_elevator_brand_dic_arr;
+@property(strong, readwrite, nonatomic) NSArray* facility_gas_dic_arr;
+@property(strong, readwrite, nonatomic) NSArray* facility_heating_dic_arr;
+@property(strong, readwrite, nonatomic) NSArray* build_property_dic_arr;
+@property(strong, readwrite, nonatomic) NSMutableArray* build_year_arr;
 @property (strong, readwrite, nonatomic) RETableViewManager *manager;
 #pragma mark ---------------sections----------------
 #pragma mark
@@ -207,11 +212,11 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 //String
 //燃气
 
-@property (strong, readwrite, nonatomic) RETextItem * build_year;
+@property (strong, readwrite, nonatomic) RERadioItem * build_year;
 //Int
 //建房年代
 
-@property (strong, readwrite, nonatomic) RENumberItem * build_property;
+@property (strong, readwrite, nonatomic) RERadioItem * build_property;
 //Int
 //产权年限
 

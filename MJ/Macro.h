@@ -127,6 +127,10 @@
 #define DIC_CLIENT_BG @"client_background"
 #define DIC_SALE_PRICE_UNIT_TYPE @"sale_price_unit"
 #define DIC_LEASE_PRICE_UNIT_TYPE @"lease_price_unit"
+#define DIC_ELEVATOR_BRAND_TYPE @"cons_elevator_brand"
+#define DIC_GAS_TYPE @"facility_gas"
+#define DIC_HEATING_TYPE @"facility_heating"
+#define DIC_BUILD_PROPERTY @"build_property"
 
 
 //添加图片
