@@ -33,7 +33,7 @@
          {
              NSArray*arr = [self getArr:resultDic];;
              
-             if ([from isEqual:@"0"])
+             if ([from isEqualToString:@"0"])
              {
                  announcement*annc = [arr objectAtIndex:0];
                  if (annc)
@@ -60,6 +60,7 @@
     {
         announcement* ann = [[announcement alloc] init];
         [ann initWithDictionary:dic];
+        ann.isNew = NO;
         [arr  addObject:ann];
         
     }
