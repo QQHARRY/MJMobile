@@ -36,6 +36,25 @@
     
     [self initUI];
     [self initConstraint];
+    
+    if(self.view.frame.size.height == 480)
+    {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+        [self.opinionForAgreement setTranslatesAutoresizingMaskIntoConstraints:YES];
+        [self.opinionLabel setTranslatesAutoresizingMaskIntoConstraints:YES];
+#endif
+
+        [self.opinionForAgreement setFrame:CGRectMake(10, 330, 300, 55)];
+        
+        
+        [self.opinionLabel setFrame:CGRectMake(10, 310, 300, 21)];
+    }
+    
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+
+    
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

@@ -11,5 +11,7 @@
 @interface petionDetailsItemTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *itemName;
 @property (strong, nonatomic) IBOutlet UILabel *itemValue;
+@property (strong, nonatomic) IBOutlet UITextView *itemTextViewValue;
 
+-(void)initWithValue:(NSString*)value;
 @end

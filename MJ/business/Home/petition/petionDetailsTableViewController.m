@@ -84,6 +84,16 @@
     return 0;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    NSDictionary*dic = [petDetail.details objectAtIndex:indexPath.row];
+//    NSString*key = [[dic allKeys] objectAtIndex:0];
+//    if ([key isEqualToString:@"说明"])
+//    {
+//        return 88;
+//    }
+    return 44;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -103,16 +113,24 @@
         
         cell.itemName.text = key;
         cell.itemValue.text = value;
+        cell.itemTextViewValue.text = value;
         
         if ([key isEqualToString:@"状态图"])
         {
             cell.AccessoryType = UITableViewCellAccessoryDetailButton;
             cell.itemValue.text = @"";
+             cell.itemTextViewValue.text = @"";
             petDetail.chartUrl = [NSString stringWithFormat:@"%@//%@", SERVER_URL_NOAPI, value];
         }
         else
         {
             cell.AccessoryType = UITableViewCellAccessoryNone;
+        }
+        
+        if ([key isEqualToString:@"说明"])
+        {
+            //[cell initWithValue:value];
+            
         }
     }
     else

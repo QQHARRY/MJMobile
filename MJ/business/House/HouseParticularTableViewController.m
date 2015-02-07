@@ -1400,7 +1400,7 @@
     {
         if (self.housePtcl.sale_value_single)
         {
-            value = [NSString stringWithFormat:@"%@万元",self.housePtcl.sale_value_single];
+            value = [NSString stringWithFormat:@"%@元",self.housePtcl.sale_value_single];
         }
     }
     self.sale_value_single = [[RENumberItem alloc] initWithTitle:@"出售单价:" value:value  placeholder:@"元/平米"];
@@ -1430,7 +1430,7 @@
     {
         if (self.housePtcl.lease_value_total)
         {
-            value = [NSString stringWithFormat:@"%@万元",self.housePtcl.lease_value_total];
+            value = [NSString stringWithFormat:@"%@元",self.housePtcl.lease_value_total];
         }
         
     }
