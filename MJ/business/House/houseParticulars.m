@@ -63,7 +63,7 @@
 @synthesize  floor_count;
 @synthesize  efficiency_rate;
 @synthesize  buildings_picture;
-
+@synthesize  house_dict_no;
 
 
 

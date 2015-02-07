@@ -51,6 +51,7 @@
                              [self.navigationController popViewControllerAnimated:YES];
                              
                          }];
+    [self.searchItem setTextAlignment:NSTextAlignmentCenter];
     [section addItem:self.searchItem];
     return section;
 }

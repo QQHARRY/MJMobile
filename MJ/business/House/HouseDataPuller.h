@@ -32,4 +32,6 @@
 +(void)pullBuildingDetailsByBuildingNO:(NSString *)buildingNO Success:(void (^)(buildingDetails*,NSArray*bldArr))success failure:(void (^)(NSError *error))failure;
 
 +(void)pullIsHouseExisting:(NSDictionary *)dic Success:(void (^)(HouseParticulars*hosuePtl))success failure:(void (^)(NSError *error))failure;
+
++(void)pushAddHouse:(NSDictionary *)partlDic Success:(void (^)(NSString *house_trade_no,NSString *buildings_picture))success failure:(void (^)(NSError *error))failure;
 @end

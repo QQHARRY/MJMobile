@@ -12,7 +12,7 @@
 #import "buildingDetails.h"
 #import "houseParticulars.h"
 
-@interface HouseAddNewViewController : HouseParticularTableViewController
+@interface HouseAddNewViewController : HouseParticularTableViewController<UIAlertViewDelegate>
 
 @property(nonatomic,strong)buildings*curBuildings;//楼盘
 @property(nonatomic,strong)building*curBuilding;//栋座

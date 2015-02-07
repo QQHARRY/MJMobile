@@ -1388,7 +1388,7 @@
             value = [NSString stringWithFormat:@"%@万元",self.housePtcl.sale_value_total];
         }
     }
-    self.sale_value_total = [[RENumberItem alloc] initWithTitle:@"出售总价:" value:value];
+    self.sale_value_total = [[RENumberItem alloc] initWithTitle:@"出售总价:" value:value  placeholder:@"万"];
 
 //    
 //    @property (strong, readwrite, nonatomic) RENumberItem * sale_value_single;
@@ -1403,7 +1403,7 @@
             value = [NSString stringWithFormat:@"%@万元",self.housePtcl.sale_value_single];
         }
     }
-    self.sale_value_single = [[RENumberItem alloc] initWithTitle:@"出售单价:" value:value];
+    self.sale_value_single = [[RENumberItem alloc] initWithTitle:@"出售单价:" value:value  placeholder:@"元/平米"];
 
 //    
 //    @property (strong, readwrite, nonatomic) RENumberItem * value_bottom;
@@ -1418,7 +1418,7 @@
             value = [NSString stringWithFormat:@"%@万元",self.housePtcl.value_bottom];
         }
     }
-    self.value_bottom = [[RENumberItem alloc] initWithTitle:@"出售底价:" value:value];
+    self.value_bottom = [[RENumberItem alloc] initWithTitle:@"出售底价:" value:value  placeholder:@"万"];
 
 //    
 //    @property (strong, readwrite, nonatomic) RENumberItem * lease_value_total;
@@ -1434,7 +1434,7 @@
         }
         
     }
-    self.lease_value_total = [[RENumberItem alloc] initWithTitle:@"出租总价:" value:value];
+    self.lease_value_total = [[RENumberItem alloc] initWithTitle:@"出租总价:" value:value  placeholder:@"元/月"];
 
 //    
 //    @property (strong, readwrite, nonatomic) RENumberItem * lease_value_single;
@@ -1449,7 +1449,7 @@
             value = [NSString stringWithFormat:@"%@元",self.housePtcl.lease_value_single];
         }
     }
-    self.lease_value_single = [[RENumberItem alloc] initWithTitle:@"出租单价:" value:value];
+    self.lease_value_single = [[RENumberItem alloc] initWithTitle:@"出租单价:" value:value placeholder:@"元/月/平米"];
 
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * client_remark;

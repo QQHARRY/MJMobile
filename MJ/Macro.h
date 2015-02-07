@@ -66,6 +66,7 @@
 #define API_HOUSE_GET_BUILDINGS_LIST @"business/getBuildingsList"
 #define API_HOUSE_GET_BULDINGS_DETAILS @"business/getBuildingsDetails"
 #define API_HOUSE_IS_ESTATE_EXISTING @"business/isEstateExist"
+#define API_ADD_ESTATE @"business/addEstate"
 
 //   44.获取城区片区列表
 #define API_AREA_LIST @"business/getAreaList"

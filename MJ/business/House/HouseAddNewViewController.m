@@ -286,65 +286,179 @@
     }
     
     
-    if (self.housePtcl && self.houseSecretPtcl)
+    NSMutableDictionary*dic = [[NSMutableDictionary alloc] init];
+    
+    NSMutableArray*requiredFields = [[NSMutableArray alloc] init];
+    [requiredFields addObjectsFromArray:[self.addInfoSection items]];
+    [requiredFields addObjectsFromArray:[self.teneApplicationAbout items]];
+    [requiredFields addObjectsFromArray:[self.infoSection items]];
+    [requiredFields addObjectsFromArray:[self.secretSection items]];
+    [requiredFields removeObject:self.judgementBtn];
+    [requiredFields removeObject:self.areaname];
+    [requiredFields removeObject:self.buildings_address];
+    [requiredFields removeObject:self.buildings_name];
+    [requiredFields removeObject:self.buildname];
+    [requiredFields removeObject:self.urbanname];
+    
+    for (RETableViewItem* item in requiredFields)
     {
-        NSMutableDictionary*dic = [[NSMutableDictionary alloc] init];
-        
-        NSArray*arr = [self.infoSection items];
-        
-        for (RETableViewItem* item in arr)
+        NSString*name = [self nameOfInstance:item];
+        if (name && [name hasPrefix:@"_"])
         {
-            NSString*name = [self nameOfInstance:item];
-            if (name && [name hasPrefix:@"_"])
+            name = [name substringFromIndex:1];
+            if ([name length] > 0)
             {
-                name = [name substringFromIndex:1];
-                if ([name length] > 0)
+                SEL sel =@selector(value);
+                if ([item respondsToSelector:sel])
                 {
-                    SEL sel =@selector(value);
-                    if ([item respondsToSelector:sel])
+                    NSString*vl = [item performSelector:sel];
+                    NSString*tmp = [self convertToDicValueForItem:name FromValue:vl];
+                    if ([tmp length] > 0)
                     {
-                        NSString*vl = [item performSelector:sel];
-                        NSString*tmp = [self convertToDicValueForItem:name FromValue:vl];
-                        if ([tmp length] > 0)
-                        {
-                            vl = tmp;
-                        }
-                        [dic setValue:vl forKey:name];
+                        vl = tmp;
                     }
-                    
+                    [dic setValue:vl forKey:name];
                 }
+                
+            }
+        }
+        
+    }
+    
+    [dic setValue:self.curBuildings.buildings_dict_no forKey:@"buildings_dict_no"];
+    [dic setValue:self.curBuilding.builds_dict_no forKey:@"builds_dict_no"];
+    int existingTradeType = [self.housePtcl.trade_type intValue];
+    if (existingTradeType == 0)
+    {
+        [dic setValue:@"" forKey:@"house_dict_no"];
+        [dic setValue:@"1"forKey:@"add_estate"];
+        
+        
+    }
+    else if (existingTradeType == 1 || existingTradeType == 2 || existingTradeType == 3)
+    {
+        [dic setValue:self.housePtcl.house_dict_no forKey:@"house_dict_no"];
+        [dic setValue:@"0"forKey:@"add_estate"];
+    }
+    
+    SHOWHUD_WINDOW;
+    [HouseDataPuller pushAddHouse:dic Success:^(NSString *house_trade_no, NSString *buildings_picture) {
+        HIDEHUD_WINDOW;
+        SEL sel = @selector(setNeedRefresh);
+        if (self.delegate && [self.delegate respondsToSelector:sel])
+        {
+            [self.delegate performSelector:sel];
+        }
+        
+        PRESENTALERTWITHHANDER(@"添加成功",@"",@"OK",self,^(UIAlertAction *action)
+                               {
+                                   [self.navigationController popViewControllerAnimated:YES];
+                               }
+                               );
+    } failure:^(NSError *error) {
+        HIDEHUD_WINDOW;
+        NSString*errorStr = [NSString stringWithFormat:@"%@",error];
+        PRESENTALERTWITHHANDER(@"添加失败",errorStr,@"OK",self,^(UIAlertAction *action)
+                               {
+                                   
+                               }
+                               );
+    }];
+}
+
+
+-(NSString*)convertToDicValueForItem:(NSString*)itemName FromValue:(NSString*)value
+{
+    NSString*dicValue = @"";
+    
+    NSArray*arr = nil;
+    
+    if(value && itemName)
+    {
+        if([itemName isEqualToString:@"house_driect"])
+        {
+            arr =  self.house_driect_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"fitment_type"])
+        {
+            arr =  self.fitment_type_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"use_situation"])
+        {
+            arr =  self.use_situation_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"client_gender"])
+        {
+            arr =  self.sex_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"look_permit"])
+        {
+            arr =  self.look_permit_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"client_source"])
+        {
+            arr =  self.client_source_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"tene_application"])
+        {
+            arr =  self.tene_application_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"house_driect"])
+        {
+            arr =  self.house_driect_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"build_property"])
+        {
+            arr =  self.build_property_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"cons_elevator_brand"])
+        {
+            arr =  self.cons_elevator_brand_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"facility_gas"])
+        {
+            arr =  self.facility_gas_dic_arr;
+        }
+        else if ([itemName isEqualToString:@"facility_heating"])
+        {
+            arr =  self.facility_heating_dic_arr;
+        }
+        
+        else if ([itemName isEqualToString:@"trade_type"])
+        {
+            if ([self.trade_type.value isEqualToString:@"出售"])
+            {
+                return @"100";
+            }
+            else if ([self.trade_type.value isEqualToString:@"出租"])
+            {
+                return @"101";
+            }
+            else if ([self.trade_type.value isEqualToString:@"租售"])
+            {
+                return @"102";
             }
             
         }
-        
-        [dic setValue:self.houseDtl.house_trade_no forKey:@"house_trade_no"];
-        SHOWHUD_WINDOW;
-        [HouseDataPuller pushHouseEditedParticulars:dic Success:^(houseSecretParticulars *housePtl) {
-            HIDEHUD_WINDOW;
-            SEL sel = @selector(setNeedRefresh);
-            if (self.delegate && [self.delegate respondsToSelector:sel])
-            {
-                [self.delegate performSelector:sel];
-            }
-            
-            PRESENTALERTWITHHANDER(@"编辑成功",@"",@"OK",self,^(UIAlertAction *action)
-                                  {
-                                      [self.navigationController popViewControllerAnimated:YES];
-                                  }
-                                  );
-            
-            
-        } failure:^(NSError *error) {
-            HIDEHUD_WINDOW;
-            NSString*errorStr = [NSString stringWithFormat:@"%@",error];
-            PRESENTALERTWITHHANDER(@"编辑失败",errorStr,@"OK",self,^(UIAlertAction *action)
-                                  {
-                                      [self.navigationController popViewControllerAnimated:YES];
-                                  }
-                                  );
-        }];
     }
+    
+    
+    
+    if (arr)
+    {
+        for (DicItem*di in arr)
+        {
+            if ([value  isEqualToString:di.dict_label])
+            {
+                return di.dict_value;
+            }
+        }
+    }
+    return  dicValue;
 }
+
+
+
 -(void)prepareInfoSectionItems
 {
     [self.infoSection removeAllItems];
@@ -434,6 +548,10 @@
 
     [self.secretSection removeAllItems];
     
+    self.client_name.value = @"";
+    self.obj_mobile.value = @"";
+    self.client_secret_remark.value = @"";
+    
     [self.secretSection addItem:self.client_name];
     [self.secretSection addItem:self.obj_mobile];
     [self.secretSection addItem:self.client_secret_remark];
@@ -497,7 +615,17 @@
             case 2:
             case 3:
             {
-                self.tene_application.value = self.housePtcl.tene_application;
+                if (self.housePtcl&& self.housePtcl.tene_application)
+                {
+                    for (DicItem *di in self.tene_application_dic_arr)
+                    {
+                        if ([di.dict_value isEqualToString:self.housePtcl.tene_application])
+                        {
+                            self.tene_application.value = di.dict_label;
+                            break;
+                        }
+                    }
+                }
                 self.tene_application.enabled = NO;
                 
                 self.room_num.value = self.housePtcl.room_num;
@@ -558,6 +686,54 @@
             }
                 break;
             default:
+            {
+                self.tene_application.enabled = YES;
+                
+                self.room_num.value = @"";
+                self.room_num.enabled = YES;
+                
+                self.hall_num.value = @"";
+                self.hall_num.enabled = YES;
+                
+                self.kitchen_num.value = @"";
+                self.kitchen_num.enabled = YES;
+                
+                self.toilet_num.value = @"";
+                self.toilet_num.enabled = YES;
+                
+                self.balcony_num.value = @"";
+                self.balcony_num.enabled = YES;
+                
+                self.house_driect.value = @"";
+                self.house_driect.enabled = YES;
+                
+                self.build_structure_area.value = @"";
+                self.build_structure_area.enabled = YES;
+                
+                self.house_depth.value = @"";
+                self.house_depth.enabled = YES;
+                
+                self.floor_height.value = @"";
+                self.floor_height.enabled = YES;
+                
+                self.floor_count.value = @"";
+                self.floor_count.enabled = YES;
+                
+                self.efficiency_rate.value = @"";
+                self.efficiency_rate.enabled = YES;
+                
+                
+                self.build_year.value = @"";
+                self.build_year.enabled = YES;
+                
+                self.build_property.value = @"";
+                self.build_property.enabled = YES;
+                
+                
+                
+                self.fitment_type.value = @"";
+                self.fitment_type.enabled = YES;
+            }
                 break;
         }
     }
@@ -1003,6 +1179,7 @@
     [dic setValue:unit forKey:@"house_unit"];
     [dic setValue:table forKey:@"house_tablet"];
     [dic setValue:[table substringToIndex:2] forKey:@"house_floor"];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     [HouseDataPuller pullIsHouseExisting:dic Success:^(HouseParticulars*hosuePtl)
      {
          self.housePtcl = hosuePtl;
@@ -1032,13 +1209,18 @@
              case 4:
              {
                  PRESENTALERT(@"该房源存在租售交易信息", @"不能再添加交易信息", nil, self);
+                 
              }
                  break;
              default:
                  break;
          }
+         if (tradeState != 4)
+         {
+             self.navigationItem.rightBarButtonItem.enabled = YES;
+             [self prepareTeneApplicationSectionItemsStep1];
+         }
          
-         [self prepareTeneApplicationSectionItemsStep1];
          HIDEHUD_WINDOW;
      }
                                              failure:^(NSError* error)
@@ -1056,12 +1238,64 @@
     [requiredFields addObjectsFromArray:[self.infoSection items]];
     [requiredFields addObjectsFromArray:[self.secretSection items]];
     
-    [requiredFields removeObject:self.balcony_num];
-    [requiredFields removeObject:self.build_year];
-    [requiredFields removeObject:self.build_property];
-    [requiredFields removeObject:self.value_bottom];
-    [requiredFields removeObject:self.client_remark];
-    [requiredFields removeObject:self.look_permit];
+    
+    if (self.housePtcl && self.housePtcl.trade_type)
+    {
+        int tradeState = [self.housePtcl.trade_type intValue];
+        switch (tradeState)
+        {
+            case 0://新增房源
+            {
+                [requiredFields removeObject:self.balcony_num];
+                [requiredFields removeObject:self.toilet_num];
+                [requiredFields removeObject:self.build_year];
+                [requiredFields removeObject:self.build_property];
+                [requiredFields removeObject:self.value_bottom];
+                [requiredFields removeObject:self.client_remark];
+                [requiredFields removeObject:self.look_permit];
+                [requiredFields removeObject:self.judgementBtn];
+                [requiredFields removeObject:self.client_secret_remark];
+                [requiredFields removeObject:self.sale_value_single];
+                [requiredFields removeObject:self.lease_value_single];
+            }
+                break;
+            case 1://新增交易信息
+            case 2:
+            case 3:
+            {
+                [requiredFields removeAllObjects];
+                [requiredFields addObject:self.use_situation];
+                [requiredFields addObject:self.b_staff_describ];
+                [requiredFields addObject:self.client_source];
+                
+                [requiredFields addObject:self.client_name];
+                [requiredFields addObject:self.obj_mobile];
+                
+                
+                if ([self.trade_type.value isEqualToString:@"出租"])
+                {
+                    [requiredFields addObject:self.lease_value_total];
+                    [requiredFields addObject:self.lease_value_single];
+                }
+                else if ([self.trade_type.value isEqualToString:@"出售"])
+                {
+                    [requiredFields addObject:self.sale_value_total];
+                    [requiredFields addObject:self.sale_value_single];
+                }
+                else if ([self.trade_type.value isEqualToString:@"租售"])
+                {
+                    [requiredFields addObject:self.lease_value_total];
+                    [requiredFields addObject:self.lease_value_single];
+                    [requiredFields addObject:self.sale_value_total];
+                    [requiredFields addObject:self.sale_value_single];
+                }
+            }
+                break;
+            default:
+                break;
+        }
+    }
+    
 
     
     return [self checkField:requiredFields];
@@ -1116,6 +1350,14 @@
     }
     
     return allOK;
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([alertView.title isEqualToString:@"添加成功"])
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end

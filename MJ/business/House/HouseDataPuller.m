@@ -447,5 +447,30 @@
 }
 
 
++(void)pushAddHouse:(NSDictionary *)partlDic Success:(void (^)(NSString *house_trade_no,NSString *buildings_picture))success failure:(void (^)(NSError *error))failure
+{
+    NSMutableDictionary*mutDic = [[NSMutableDictionary alloc] initWithDictionary:partlDic];
+    [mutDic setValue:[person me].job_no forKey:@"job_no"];
+    [mutDic setValue:[person me].password forKey:@"acc_password"];
+    [mutDic setValue:[UtilFun getUDID] forKey:@"DeviceID"];
+    [mutDic setValue:[person me].department_no forKey:@"dept_no"];
+    
+    [NetWorkManager PostWithApiName:API_ADD_ESTATE parameters:mutDic success:
+     ^(id responseObject)
+     {
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([bizManager checkReturnStatus:resultDic Success:nil failure:failure ShouldReturnWhenSuccess:NO])
+         {
+             
+             success(nil,nil);
+         }
+         
+     }
+                            failure:^(NSError *error)
+     {
+         failure(error);
+     }];
+}
+
 
 @end

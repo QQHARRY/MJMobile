@@ -243,6 +243,6 @@
 // String
 // 房源图片ID
 
-
+@property(nonatomic,strong)NSString*house_dict_no;
 
 @end
