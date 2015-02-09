@@ -1515,7 +1515,7 @@
     {
         value = self.housePtcl.owner_company_name;
     }
-    self.owner_company_name = [[RETextItem alloc] initWithTitle:@"经纪人公司名称:" value:value];
+    self.owner_company_name = [[RETextItem alloc] initWithTitle:@"经纪人公司:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * owner_mobile;
