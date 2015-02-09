@@ -105,6 +105,8 @@
 		4A9D025C1A62B13F00600BA0 /* CustomerParticularTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D025B1A62B13F00600BA0 /* CustomerParticularTableViewController.m */; };
 		4AA0385C1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA0385B1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m */; };
 		4AA543711A8894630089C0F2 /* photoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA543701A8894630089C0F2 /* photoManager.m */; };
+		4AA543741A88B2480089C0F2 /* ReMultiTextItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA543731A88B2480089C0F2 /* ReMultiTextItem.m */; };
+		4AA543771A88B33F0089C0F2 /* RETableViewMultiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA543761A88B33F0089C0F2 /* RETableViewMultiCell.m */; };
 		4AB0EFA61A30540C00C24A44 /* AFNMJInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */; };
 		4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA81A30558000C24A44 /* NetWorkManager.m */; };
 		4AB0EFAF1A308CED00C24A44 /* UtilFun.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFAE1A308CED00C24A44 /* UtilFun.m */; };
@@ -446,6 +448,10 @@
 		4AA0385B1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFNavigationBarDrawer.m; sourceTree = "<group>"; };
 		4AA5436F1A8894630089C0F2 /* photoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = photoManager.h; sourceTree = "<group>"; };
 		4AA543701A8894630089C0F2 /* photoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = photoManager.m; sourceTree = "<group>"; };
+		4AA543721A88B2480089C0F2 /* ReMultiTextItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReMultiTextItem.h; sourceTree = "<group>"; };
+		4AA543731A88B2480089C0F2 /* ReMultiTextItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReMultiTextItem.m; sourceTree = "<group>"; };
+		4AA543751A88B33F0089C0F2 /* RETableViewMultiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RETableViewMultiCell.h; sourceTree = "<group>"; };
+		4AA543761A88B33F0089C0F2 /* RETableViewMultiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RETableViewMultiCell.m; sourceTree = "<group>"; };
 		4AB0EFA41A30540C00C24A44 /* AFNMJInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNMJInstance.h; sourceTree = "<group>"; };
 		4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNMJInstance.m; sourceTree = "<group>"; };
 		4AB0EFA71A30558000C24A44 /* NetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkManager.h; sourceTree = "<group>"; };
@@ -1371,6 +1377,8 @@
 				B98BD5171A609185003A35BE /* RETableViewPickerCell.m */,
 				B98BD5181A609185003A35BE /* RETableViewSegmentedCell.h */,
 				B98BD5191A609185003A35BE /* RETableViewSegmentedCell.m */,
+				4AA543751A88B33F0089C0F2 /* RETableViewMultiCell.h */,
+				4AA543761A88B33F0089C0F2 /* RETableViewMultiCell.m */,
 				B98BD51A1A609185003A35BE /* RETableViewTextCell.h */,
 				B98BD51B1A609185003A35BE /* RETableViewTextCell.m */,
 			);
@@ -1406,6 +1414,8 @@
 				B98BD5321A609185003A35BE /* RERadioItem.m */,
 				B98BD5331A609185003A35BE /* RESegmentedItem.h */,
 				B98BD5341A609185003A35BE /* RESegmentedItem.m */,
+				4AA543721A88B2480089C0F2 /* ReMultiTextItem.h */,
+				4AA543731A88B2480089C0F2 /* ReMultiTextItem.m */,
 				B98BD5351A609185003A35BE /* RETextItem.h */,
 				B98BD5361A609185003A35BE /* RETextItem.m */,
 			);
@@ -1784,6 +1794,7 @@
 				4AFA9F631A775CB7008A852F /* editCustomerTableViewController.m in Sources */,
 				B9FF4B421A245FB300FE413E /* MoreViewController.m in Sources */,
 				B944457F1A62986B0033E998 /* ContractAddController.m in Sources */,
+				4AA543741A88B2480089C0F2 /* ReMultiTextItem.m in Sources */,
 				4A5665481A4C033D00C3BA22 /* MessageBriefTableViewCell.m in Sources */,
 				B98BD5611A609185003A35BE /* NSString+RENumberFormat.m in Sources */,
 				4A3A2EF81A42F26000AA8A70 /* chooseAssistDeptTableViewController.m in Sources */,
@@ -1942,6 +1953,7 @@
 				4AD795221A218C4A00DEC779 /* AFNetworkReachabilityManager.m in Sources */,
 				B944458A1A62A6860033E998 /* SignAddController.m in Sources */,
 				B98BD5701A609185003A35BE /* RECreditCardItem.m in Sources */,
+				4AA543771A88B33F0089C0F2 /* RETableViewMultiCell.m in Sources */,
 				B98BD57A1A609185003A35BE /* RESegmentedItem.m in Sources */,
 				B94445801A62986B0033E998 /* ContractDataPuller.m in Sources */,
 				B98BD58D1A609185003A35BE /* RELengthValidator.m in Sources */,

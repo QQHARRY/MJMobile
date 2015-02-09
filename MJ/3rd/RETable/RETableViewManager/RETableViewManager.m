@@ -109,6 +109,7 @@
     self[@"REInlineDatePickerItem"] = @"RETableViewInlineDatePickerCell";
     self[@"REInlinePickerItem"] = @"RETableViewInlinePickerCell";
     self[@"MultilineTextItem"] = @"MultilineTextCell";
+    self[@"ReMultiTextItem"] = @"RETableViewMultiCell";
 }
 
 - (void)registerClass:(NSString *)objectClass forCellWithReuseIdentifier:(NSString *)identifier

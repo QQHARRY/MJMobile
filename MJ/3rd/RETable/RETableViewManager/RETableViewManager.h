@@ -51,6 +51,7 @@
 #import "RESegmentedItem.h"
 #import "REInlineDatePickerItem.h"
 #import "REInlinePickerItem.h"
+#import "ReMultiTextItem.h"
 
 @protocol RETableViewManagerDelegate;
 

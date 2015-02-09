@@ -114,7 +114,7 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 //String
 //片区
 
-@property (strong, readwrite, nonatomic) RETextItem *buildings_address;
+@property (strong, readwrite, nonatomic) ReMultiTextItem *buildings_address;
 //String
 //地址
 

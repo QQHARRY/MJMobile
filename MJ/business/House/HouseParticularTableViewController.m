@@ -813,7 +813,7 @@
     {
         value = self.housePtcl.buildings_address;
     }
-    self.buildings_address = [[RETextItem alloc] initWithTitle:@"地址:" value:value];
+    self.buildings_address = [[ReMultiTextItem alloc] initWithTitle:@"地址:" value:value];
     
 //    
 //    @property (strong, readwrite, nonatomic) RENumberItem * build_structure_area;
