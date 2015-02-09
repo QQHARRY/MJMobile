@@ -89,7 +89,7 @@
         from = obj.goods_no;
     }
 
-    [shopBizManager getListByType:self.shopType From:from To:@"" Count:5 Success:^(id responseObject) {
+    [shopBizManager getListByType:self.shopType From:from To:@"" Count:4 Success:^(id responseObject) {
         HIDEHUD(self.view);
         [self.shopItemArr addObjectsFromArray:responseObject];
         
@@ -149,6 +149,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ShopItemTableViewCell *cell = (ShopItemTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"shopItemTableViewCell" forIndexPath:indexPath];
+    
+    
+//    NSString*key = @"shopItemTableViewCell";
+//    ShopItemTableViewCell *cell = nil;
+//    if (!cell)
+//    {
+//        cell = [[ShopItemTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:key];
+//    }
+    
+    
+    
+    cell.goodImage.image = [UIImage imageNamed:@"goods"];
     if (indexPath.row < shopItemArr.count)
     {
         shopItem*obj = [shopItemArr objectAtIndex:indexPath.row];
@@ -180,9 +192,18 @@
             cell.totalPrice = 0;
             cell.maximunNumInStore = [obj.goods_num intValue];
             
-            [cell.indicatorDn  startAnimating];
             NSString*strUrl = [SERVER_ADD stringByAppendingString:obj.photo_file_name];
-            [cell.goodImage setImageWithURL:[NSURL URLWithString:strUrl]];
+            
+            [cell downLoadImage:[NSURL URLWithString:strUrl]];
+//            NSLog(@"strUrl = %@",strUrl);
+//            [cell.goodImage getImageWithURL:[NSURL URLWithString:strUrl] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+//                cell.goodImage.image = image;
+//                NSLog(@"load image from %@ success",request.URL.absoluteString);
+//                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+//            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+//                NSLog(@"load image from %@ fail",request.URL.absoluteString);
+//            }];
+            //[cell.goodImage setImageWithURL:[NSURL URLWithString:strUrl]];
         }
 
     }

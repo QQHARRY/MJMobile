@@ -19,7 +19,7 @@
 
 @interface ShopItemTableViewCell : UITableViewCell<UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *goodImage;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *indicatorDn;
+
 
 @property (strong, nonatomic) IBOutlet UILabel *goodName;
 @property (strong, nonatomic) IBOutlet UILabel *goodType;
@@ -37,6 +37,8 @@
 @property (assign, nonatomic)NSInteger selectedCount;
 @property(assign, nonatomic)NSInteger maximunNumInStore;
 
+
+-(void)downLoadImage:(NSURL*)url;
 
 
 

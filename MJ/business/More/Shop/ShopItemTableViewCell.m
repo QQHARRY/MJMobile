@@ -8,6 +8,7 @@
 
 #import "ShopItemTableViewCell.h"
 #import "UtilFun.h"
+#import "UIImageView+AFNetworking.h"
 
 @implementation ShopItemTableViewCell
 
@@ -78,12 +79,6 @@
 }
 
 
--(void)setWidthAndWidth:(CGFloat)width Height:(CGFloat)height
-{
-    //    self.frame.size.width = rct.size.width/2.0;
-    //    self.frame.size.height = rct.si.width/2.0;
-}
-
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  // return NO to not change text
 {
@@ -116,4 +111,10 @@
     
     return NO;
 }
+
+-(void)downLoadImage:(NSURL*)url
+{
+    [self.goodImage setImageWithURL:url];
+}
+
 @end

@@ -42,7 +42,7 @@
 @synthesize  owner_staff_name;
 @synthesize  owner_staff_dept;
 @synthesize  owner_company_no;
-@synthesize  owner_compony_name;
+@synthesize  owner_company_name;
 @synthesize  owner_mobile;
 @synthesize  client_source;
 @synthesize  edit_permit;

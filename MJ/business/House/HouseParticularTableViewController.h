@@ -271,7 +271,7 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 //String
 //经纪人所属公司编号
 
-@property (strong, readwrite, nonatomic) RETextItem * owner_compony_name;
+@property (strong, readwrite, nonatomic) RETextItem * owner_company_name;
 //String
 //经纪人所属公司名称
 

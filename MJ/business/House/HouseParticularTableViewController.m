@@ -524,7 +524,7 @@
     //    @property (strong, readwrite, nonatomic) RETextItem * owner_compony_name;
     //    //String
     //    //经纪人所属公司名称
-    [self.infoSection addItem:self.owner_compony_name];
+    [self.infoSection addItem:self.owner_company_name];
     
     //
     //    @property (strong, readwrite, nonatomic) RETextItem * owner_mobile;
@@ -1511,11 +1511,11 @@
 //    //String
 //    //经纪人所属公司名称
     value = @"";
-    if (self.housePtcl && self.housePtcl.owner_compony_name)
+    if (self.housePtcl && self.housePtcl.owner_company_name)
     {
-        value = self.housePtcl.owner_compony_name;
+        value = self.housePtcl.owner_company_name;
     }
-    self.owner_compony_name = [[RETextItem alloc] initWithTitle:@"经纪人公司名称:" value:value];
+    self.owner_company_name = [[RETextItem alloc] initWithTitle:@"经纪人公司名称:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * owner_mobile;

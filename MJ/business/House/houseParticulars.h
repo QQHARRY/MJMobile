@@ -143,7 +143,7 @@
 //String
 //经纪人所属公司编号
 
-@property(nonatomic,strong)NSString* owner_compony_name;
+@property(nonatomic,strong)NSString* owner_company_name;
 //String
 //经纪人所属公司名称
 
