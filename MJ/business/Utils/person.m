@@ -26,6 +26,7 @@ __strong static person* _sharedObject = nil;
 @synthesize department_no;
 @synthesize role_name;
 
+
 -(id)init
 {
     self = [super init];
@@ -63,7 +64,7 @@ __strong static person* _sharedObject = nil;
     
     for (const Ivar *p = ivars; p < ivars + ivarsCnt; ++p)
     {
-        object_setIvar(_sharedObject,*p,@"");
+        object_setIvar(_sharedObject,*p,nil);
     }
 }
 

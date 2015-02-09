@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "unit.h"
+#import <UIKit/UIKit.h>
 
 @interface person : unit
 
@@ -24,6 +25,7 @@
 @property(strong,atomic)NSString*password;
 @property(strong,atomic)NSString*department_no;
 @property(strong,atomic)NSString*role_name;
+
 
 //-(BOOL)initWithDictionary:(NSDictionary*)dic;
 

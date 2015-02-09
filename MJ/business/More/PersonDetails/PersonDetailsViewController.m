@@ -14,6 +14,8 @@
 #import "UIButton+AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
 #import "AFNetworking.h"
+#import "photoManager.h"
+#import "photoManager.h"
 
 @interface PersonDetailsViewController ()
 
@@ -94,26 +96,36 @@
     
     
     NSString*photoUrl = psn.photo;
-    if ([photoUrl length] == 0)
+    
+
+    if ([photoManager getPhotoByPerson:[person me]] != nil)
     {
-        [self.myPhoto setBackgroundImage:[UIImage imageNamed:@"defaultPhoto"] forState:UIControlStateNormal];
+        
+        [self.myPhoto setBackgroundImage:[photoManager getPhotoByPerson:[person me]] forState:UIControlStateNormal];;
     }
     else
     {
-        NSString*strUrl = [SERVER_ADD stringByAppendingString:photoUrl];
+        
+        if ([photoUrl length] == 0)
+        {
+            [self.myPhoto setBackgroundImage:[UIImage imageNamed:@"defaultPhoto"] forState:UIControlStateNormal];
+        }
+        else
+        {
+            NSString*strUrl = [SERVER_ADD stringByAppendingString:photoUrl];
+            UIImageView*imgV = [[UIImageView alloc] init];
+            [imgV getImageWithURL:[NSURL URLWithString:strUrl] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                [photoManager setPhoto:image ForPerson:[person me]];
+                [self.myPhoto setBackgroundImage:image forState:UIControlStateNormal];
+                
+            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
 
-        [self.myPhoto setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:strUrl]];
+            }];
+        }
     }
     
     
-    UIImageView*imgV = [[UIImageView alloc] init];
     
-    [imgV getImageWithURL:[NSURL URLWithString:photoUrl] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-        NSLog(@"success");
-        [self.myPhoto setBackgroundImage:image forState:UIControlStateNormal];
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        NSLog(@"Faild");
-    }];
     
     // Do any additional setup after loading the view.
     
@@ -204,17 +216,17 @@
 
 - (void)setPhoto
 {
-    NSString*userID = psn.job_no;
-
-    NSString *fullPath = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]  stringByAppendingPathComponent:userID] stringByAppendingString:@"_"]stringByAppendingString:@"myPhotoName"];
-    
-    UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
-    if (savedImage == nil)
-    {
-        savedImage = [UIImage imageNamed:@"defaultPhoto"];
-    }
-    
-    [self.myPhoto setBackgroundImage:savedImage forState:UIControlStateNormal];
+//    NSString*userID = psn.job_no;
+//
+//    NSString *fullPath = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]  stringByAppendingPathComponent:userID] stringByAppendingString:@"_"]stringByAppendingString:@"myPhotoName"];
+//    
+//    UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
+//    if (savedImage == nil)
+//    {
+//        savedImage = [UIImage imageNamed:@"defaultPhoto"];
+//    }
+//    
+//    [self.myPhoto setBackgroundImage:savedImage forState:UIControlStateNormal];
 }
 
 #pragma mark - image picker delegte
@@ -222,8 +234,43 @@
 {
     [picker dismissViewControllerAnimated:YES completion:^{}];
     
-    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-    [self saveImage:image withName:@"myPhotoName"];
+    __block UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    if (image ==nil)
+    {
+        return;
+    }
+
+    
+    self.photoChanged = NO;
+    
+    NSData*data = UIImageJPEGRepresentation(image, 0.5);
+    
+    NSDictionary *parameters = @{@"job_no":psn.job_no,
+                                 @"acc_password": psn.password,
+                                 @"DeviceID" : [UtilFun getUDID],
+                                 };
+    SHOWHUD_WINDOW;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:[NSString stringWithFormat:@"%@%@", SERVER_URL, EDIT_PERSON_PHOTO] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+     {
+         [formData appendPartWithFormData:data name:@"photo"];
+         
+     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+         
+         
+         dispatch_async(dispatch_get_main_queue(), ^{
+             [photoManager setPhoto:image ForPerson:[person me]];
+             [self.myPhoto setBackgroundImage:image forState:UIControlStateNormal];
+         });
+         
+         HIDEHUD_WINDOW;
+         PRESENTALERT(@"修改成功", nil, nil, nil);
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         HIDEHUD_WINDOW;
+         PRESENTALERT(@"修改失败", nil, nil, nil);
+     }];
+    
+    
     [self setPhoto];
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -235,15 +282,15 @@
 #pragma mark - save image to bundle
 - (void) saveImage:(UIImage *)currentImage withName:(NSString *)imageName
 {
-    NSString*userID = psn.job_no;
-
-    NSData *imageData = UIImagePNGRepresentation(currentImage);
-    
-    NSString *fullPath = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]  stringByAppendingPathComponent:userID] stringByAppendingString:@"_"]stringByAppendingString:imageName];
-    
-    [imageData writeToFile:fullPath atomically:NO];
-    
-    self.photoChanged = YES;
+//    NSString*userID = psn.job_no;
+//
+//    NSData *imageData = UIImagePNGRepresentation(currentImage);
+//    
+//    NSString *fullPath = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]  stringByAppendingPathComponent:userID] stringByAppendingString:@"_"]stringByAppendingString:imageName];
+//    
+//    [imageData writeToFile:fullPath atomically:NO];
+//    
+//    self.photoChanged = YES;
 }
 
 - (IBAction)phoneBtnClicked:(id)sender {
@@ -326,42 +373,9 @@
          [person me].acc_content = chInfo;
          
          
+         HIDEHUD(self.view);
          
-         
-         
-         
-         
-         
-         if (self.photoChanged)
-         {
-             self.photoChanged = NO;
-             
-             UIImage*image = [self.myPhoto backgroundImageForState:UIControlStateNormal];
-             NSData*data = UIImageJPEGRepresentation(image, 0.5);
-             
-             NSDictionary *parameters = @{@"job_no":psn.job_no,
-                                          @"acc_password": psn.password,
-                                          @"DeviceID" : [UtilFun getUDID],
-                                          };
-             AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-             [manager POST:[NSString stringWithFormat:@"%@%@", SERVER_URL, EDIT_PERSON_PHOTO] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
-              {
-                  [formData appendPartWithFormData:data name:@"photo"];
-              } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                  HIDEHUD(self.view);
-                  PRESENTALERT(@"修改成功", nil, nil, nil);
-              } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                  HIDEHUD(self.view);
-                  PRESENTALERT(@"修改失败", nil, nil, nil);
-              }];
-             
-         }
-         else
-         {
-             PRESENTALERT(@"修改成功", nil, nil, nil);
-             HIDEHUD(self.view);
-         }
-         
+         PRESENTALERT(@"修改成功",nil, nil, nil);
          
      }
                             failure:^(NSError *error)

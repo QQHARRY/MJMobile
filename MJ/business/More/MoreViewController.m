@@ -15,6 +15,7 @@
 #import "PersonDetailsViewController.h"
 #import "Macro.h"
 #import "UIImageView+AFNetworking.h"
+#import "photoManager.h"
 
 @interface MoreViewController ()
 
@@ -103,6 +104,8 @@
 
 -(void)toLoginPage
 {
+    [person cleanMe];
+    [photoManager clean];
     AppDelegate*app = [[UIApplication sharedApplication] delegate];
     [app loadMainSotry:NO];
 }
@@ -141,18 +144,26 @@
                 }
             }
         }
-        
-        NSString*photoUrl = [person me].photo;
-        if ([photoUrl length] == 0)
+        if ([photoManager getPhotoByPerson:[person me]])
         {
-            cell.myPhoto.image = [UIImage imageNamed:@"defaultPhoto"];
+            cell.myPhoto.image = [photoManager getPhotoByPerson:[person me]];
         }
         else
         {
-            NSString*strUrl = [SERVER_ADD stringByAppendingString:photoUrl];
-            
-            [cell.myPhoto setImageWithURL:[NSURL URLWithString:strUrl]];
+            NSString*photoUrl = [person me].photo;
+            if ([photoUrl length] == 0)
+            {
+                cell.myPhoto.image = [UIImage imageNamed:@"defaultPhoto"];
+            }
+            else
+            {
+                NSString*strUrl = [SERVER_ADD stringByAppendingString:photoUrl];
+                
+                [cell.myPhoto setImageWithURL:[NSURL URLWithString:strUrl]];
+            }
         }
+        
+        
         
         cell.myName.text = [person me].name_full;
         cell.myXX.text = [person me].acc_remarks;
