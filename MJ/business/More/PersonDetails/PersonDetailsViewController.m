@@ -105,6 +105,16 @@
         [self.myPhoto setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:strUrl]];
     }
     
+    
+    UIImageView*imgV = [[UIImageView alloc] init];
+    
+    [imgV getImageWithURL:[NSURL URLWithString:photoUrl] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        NSLog(@"success");
+        [self.myPhoto setBackgroundImage:image forState:UIControlStateNormal];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        NSLog(@"Faild");
+    }];
+    
     // Do any additional setup after loading the view.
     
     [self initConstrains];
@@ -314,6 +324,11 @@
          [person me].obj_mobile = phoneNumMobile;
          [person me].acc_remarks = chSign;
          [person me].acc_content = chInfo;
+         
+         
+         
+         
+         
          
          
          

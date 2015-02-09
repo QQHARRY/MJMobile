@@ -205,7 +205,11 @@
             NSDictionary*dic = [self.petition.historyNodes objectAtIndex:indexPath.row];
             NSString*key = [dic objectForKey:@"key"];
             NSString*value = [dic objectForKey:@"value"];
-            cell.textLabel.text = [[key stringByAppendingString:@" "] stringByAppendingString:value];
+            value =[[key stringByAppendingString:@" "] stringByAppendingString:value];
+            
+            
+            value = [NSString stringWithFormat:@"%d,%@",indexPath.row,value];
+            cell.textLabel.text =value;
         }
         else
         {

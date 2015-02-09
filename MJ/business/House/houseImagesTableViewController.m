@@ -50,7 +50,7 @@
 
 -(void)createxqtSection
 {
-    self.xqtSection = [RETableViewSection sectionWithHeaderTitle:@"小区图"];
+    self.xqtSection = [RETableViewSection sectionWithHeaderTitle:@"主图"];
     self.xqtSection.headerHeight = SECTION_HEIGHT;
     [self.manager addSection:self.xqtSection];
     
@@ -208,7 +208,7 @@
                                       [self addPhoto];
                                   }];
         addBtn.textAlignment = NSTextAlignmentCenter;
-        [section addItem:addBtn];
+        //[section addItem:addBtn];
     }
     
     

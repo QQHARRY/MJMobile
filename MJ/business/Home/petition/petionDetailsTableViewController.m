@@ -54,9 +54,27 @@
          NSArray*hisArr = [dic objectForKey:@"PetitionHistories"];
          
          self.petDetail.allDetails = dicDetails;
-         self.petDetail.details = [petitionDictionary petitionArrByDic:dicDetails];
+         NSArray*tmpArr = [petitionDictionary petitionArrByDic:dicDetails];
+         NSMutableArray*mutArr = [[NSMutableArray alloc] init];
+         for (NSDictionary*dic in tmpArr)
+         {
+             NSString*key = [[dic allKeys] objectAtIndex:0];
+             if (![key isEqualToString:@"节点"] && ![key isEqualToString:@"办理状态"])
+             {
+                 [mutArr addObject:dic];
+             }
+         }
+         
+         self.petDetail.details = mutArr;
          
          self.petDetail.historyNodes = hisArr;
+         
+         
+         
+         
+         
+         
+         
          HIDEHUD(self.view);
          [self.tableView reloadData];
     } failure:^(NSError *error) {
@@ -79,7 +97,7 @@
 
     if (petDetail.details != nil)
     {
-        return [petDetail.details count];
+        return [petDetail.details count]+1;
     }
     return 0;
 }
@@ -106,32 +124,46 @@
     
     if (petDetail.details)
     {
-        NSDictionary*dic = [petDetail.details objectAtIndex:indexPath.row];
-        
-        NSString*key = [[dic allKeys] objectAtIndex:0];
-        NSString*value = [[dic allValues ] objectAtIndex:0];
-        
-        cell.itemName.text = key;
-        cell.itemValue.text = value;
-        cell.itemTextViewValue.text = value;
-        
-        if ([key isEqualToString:@"状态图"])
+        if (indexPath.row == 0)
         {
-            cell.AccessoryType = UITableViewCellAccessoryDetailButton;
-            cell.itemValue.text = @"";
-             cell.itemTextViewValue.text = @"";
-            petDetail.chartUrl = [NSString stringWithFormat:@"%@//%@", SERVER_URL_NOAPI, value];
+            cell.itemName.text = @"流程类型";
+            cell.itemTextViewValue.text = self.petitionTypeString;
         }
         else
         {
-            cell.AccessoryType = UITableViewCellAccessoryNone;
-        }
-        
-        if ([key isEqualToString:@"说明"])
-        {
-            //[cell initWithValue:value];
+            NSDictionary*dic = [petDetail.details objectAtIndex:indexPath.row-1];
             
+            NSString*key = [[dic allKeys] objectAtIndex:0];
+            NSString*value = [[dic allValues ] objectAtIndex:0];
+            if([key isEqualToString:@"版本"])
+            {
+                NSString* tmp = @"V";
+                value = [tmp stringByAppendingString:value];
+            }
+            
+            cell.itemName.text = key;
+            cell.itemValue.text = value;
+            cell.itemTextViewValue.text = value;
+            
+            if ([key isEqualToString:@"状态图"])
+            {
+                cell.AccessoryType = UITableViewCellAccessoryDetailButton;
+                cell.itemValue.text = @"";
+                cell.itemTextViewValue.text = @"";
+                petDetail.chartUrl = [NSString stringWithFormat:@"%@//%@", SERVER_URL_NOAPI, value];
+            }
+            else
+            {
+                cell.AccessoryType = UITableViewCellAccessoryNone;
+            }
+            
+            if ([key isEqualToString:@"说明"])
+            {
+                //[cell initWithValue:value];
+                
+            }
         }
+       
     }
     else
     {

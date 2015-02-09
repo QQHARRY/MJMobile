@@ -210,6 +210,7 @@
             NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
             contactLst.petitionID = ((petiotionBrief*)[self.petitionArr objectAtIndex:selectIndexPath.row]).id;
             contactLst.petitionTaskID = ((petiotionBrief*)[self.petitionArr objectAtIndex:selectIndexPath.row]).taskid;
+            contactLst.petitionTypeString = ((petiotionBrief*)[self.petitionArr objectAtIndex:selectIndexPath.row]).flowtype;
         }
         else
         {
