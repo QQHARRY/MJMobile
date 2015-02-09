@@ -1826,7 +1826,7 @@
                         {
                             if (self.housePtcl &&
                                 ([self.housePtcl.edit_permit isEqualToString:@"1"] ||
-                                [self.housePtcl.look_permit isEqualToString:@"1"]))
+                                [self.housePtcl.secret_permit isEqualToString:@"1"]))
                             {
                                 if ([[self.manager sections] objectAtIndex:1] == self.secretSection)
                                 {
