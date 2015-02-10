@@ -74,6 +74,7 @@
     
     NSArray*arr = [super getEditAbleFields];
 
+    
     for (NSString* name in arr)
     {
         id item = [self instanceOfName:name];
@@ -87,9 +88,29 @@
     self.build_structure_area.value = self.housePtcl.build_structure_area;
 
     [self adjustByTeneApplication];
+    
+    [self createWatchImageBtn];
 }
 
-
+- (void)createWatchImageBtn
+{
+    __typeof (&*self) __weak weakSelf = self;
+    self.watchHouseImages = [RETableViewItem itemWithTitle:@"点击查看并编辑图片" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
+                             {
+                                 if(self.houseImageCtrl == nil)
+                                 {
+                                     self.houseImageCtrl = [[houseImagesTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                                     self.houseImageCtrl.housePtcl = self.housePtcl;
+                                     self.houseImageCtrl.houseDtl = self.houseDtl;
+                                     self.houseImageCtrl.isEditMode = YES;
+                                 }
+                                 
+                                 
+                                 [weakSelf.navigationController pushViewController:self.houseImageCtrl animated:YES];
+                             }];
+    self.watchHouseImages.textAlignment = NSTextAlignmentCenter;
+    [self.infoSection addItem:self.watchHouseImages];
+}
 
 
 -(void)sumitBtnClicked:(id)sender

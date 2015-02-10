@@ -1812,9 +1812,13 @@
     __typeof (&*self) __weak weakSelf = self;
     self.watchHouseImages = [RETableViewItem itemWithTitle:@"点击查看图片" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                                    {
-                                       self.houseImageCtrl = [[houseImagesTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-                                       self.houseImageCtrl.housePtcl = self.housePtcl;
-                                       self.houseImageCtrl.houseDtl = self.houseDtl;
+                                       if(self.houseImageCtrl == nil)
+                                       {
+                                           self.houseImageCtrl = [[houseImagesTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                                           self.houseImageCtrl.housePtcl = self.housePtcl;
+                                           self.houseImageCtrl.houseDtl = self.houseDtl;
+                                       }
+                                       
                                        
                                        [weakSelf.navigationController pushViewController:self.houseImageCtrl animated:YES];
                                    }];

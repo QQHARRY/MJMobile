@@ -69,6 +69,7 @@
     
     NSString*strContactMethod = self.concactMethod.text;
     BOOL isAnnoymous = self.annoymous.on;
+    NSString*anonymous = isAnnoymous?@"true":@"false";
     
     SHOWHUD(self.view);
     
@@ -80,7 +81,7 @@
                                  @"VersionName" : version,
                                  @"Title" : strTitle,
                                  @"Content" : strContent,
-                                 @"Anonymous":[NSNumber numberWithBool:isAnnoymous],
+                                 @"Anonymous":anonymous,
                                  @"ContactEmail":strContactMethod
                                  };
     [NetWorkManager PostWithApiName:SUGGESTION_FEEDBACK parameters:parameters success:

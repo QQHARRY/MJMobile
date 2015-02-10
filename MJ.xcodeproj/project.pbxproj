@@ -23,6 +23,7 @@
 		4A2EE11D1A42774600899976 /* petitionFollowChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2EE11C1A42774600899976 /* petitionFollowChartViewController.m */; };
 		4A2EE1201A42872600899976 /* petitionDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2EE11F1A42872600899976 /* petitionDetail.m */; };
 		4A2EE1231A428F1000899976 /* petitionAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2EE1221A428F1000899976 /* petitionAgreementViewController.m */; };
+		4A32CD711A89A9B700B768CC /* postFileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A32CD701A89A9B700B768CC /* postFileUtils.m */; };
 		4A3923DF1A4C737000B0D232 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 4A3923DE1A4C737000B0D232 /* index.html */; };
 		4A3A2EF51A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A2EF41A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.m */; };
 		4A3A2EF81A42F26000AA8A70 /* chooseAssistDeptTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A2EF71A42F26000AA8A70 /* chooseAssistDeptTableViewController.m */; };
@@ -298,6 +299,8 @@
 		4A2EE11F1A42872600899976 /* petitionDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petitionDetail.m; sourceTree = "<group>"; };
 		4A2EE1211A428F1000899976 /* petitionAgreementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = petitionAgreementViewController.h; sourceTree = "<group>"; };
 		4A2EE1221A428F1000899976 /* petitionAgreementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petitionAgreementViewController.m; sourceTree = "<group>"; };
+		4A32CD6F1A89A9B700B768CC /* postFileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = postFileUtils.h; sourceTree = "<group>"; };
+		4A32CD701A89A9B700B768CC /* postFileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = postFileUtils.m; sourceTree = "<group>"; };
 		4A3923DE1A4C737000B0D232 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		4A3A2EF31A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = petitionHistoryNodeTableViewCell.h; sourceTree = "<group>"; };
 		4A3A2EF41A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petitionHistoryNodeTableViewCell.m; sourceTree = "<group>"; };
@@ -965,6 +968,8 @@
 				4A9D02001A6051E500600BA0 /* sqlite3 */,
 				4A9D01FB1A60341D00600BA0 /* dictionary */,
 				4AB0EFA41A30540C00C24A44 /* AFNMJInstance.h */,
+				4A32CD6F1A89A9B700B768CC /* postFileUtils.h */,
+				4A32CD701A89A9B700B768CC /* postFileUtils.m */,
 				4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */,
 				4AB0EFA71A30558000C24A44 /* NetWorkManager.h */,
 				4AB0EFA81A30558000C24A44 /* NetWorkManager.m */,
@@ -1913,6 +1918,7 @@
 				4A2EE11A1A41B41D00899976 /* petitionDictionary.m in Sources */,
 				4A5665571A4C1C4100C3BA22 /* ViewPagerController.m in Sources */,
 				4AD795251A218C4A00DEC779 /* AFURLRequestSerialization.m in Sources */,
+				4A32CD711A89A9B700B768CC /* postFileUtils.m in Sources */,
 				4A5665291A4BDFF800C3BA22 /* editOrderViewController.m in Sources */,
 				B98BD58C1A609185003A35BE /* REEmailValidator.m in Sources */,
 				B98BD4AA1A604408003A35BE /* HouseFilter.m in Sources */,

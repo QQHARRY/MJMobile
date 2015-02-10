@@ -16,6 +16,7 @@
 #import "AFNetworking.h"
 #import "photoManager.h"
 #import "photoManager.h"
+#import "postFileUtils.h"
 
 @interface PersonDetailsViewController ()
 
@@ -98,7 +99,7 @@
     NSString*photoUrl = psn.photo;
     
 
-    if ([photoManager getPhotoByPerson:[person me]] != nil)
+    if ([photoManager getPhotoByPerson:self.psn] != nil)
     {
         
         [self.myPhoto setBackgroundImage:[photoManager getPhotoByPerson:[person me]] forState:UIControlStateNormal];;
@@ -249,6 +250,8 @@
                                  @"acc_password": psn.password,
                                  @"DeviceID" : [UtilFun getUDID],
                                  };
+    
+#if 0
     SHOWHUD_WINDOW;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:[NSString stringWithFormat:@"%@%@", SERVER_URL, EDIT_PERSON_PHOTO] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
@@ -269,9 +272,42 @@
          HIDEHUD_WINDOW;
          PRESENTALERT(@"修改失败", nil, nil, nil);
      }];
+#endif
     
+    NSMutableDictionary*params = [[NSMutableDictionary alloc] init];
+    [params setValue:[person me].job_no forKey:@"job_no"];
+    [params setValue:[person me].password forKey:@"acc_password"];
+    [params setValue:[UtilFun getUDID] forKey:@"DeviceID"];
     
-    [self setPhoto];
+
+    NSString*strUrl = [NSString stringWithFormat:@"%@%@", SERVER_URL, EDIT_PERSON_PHOTO];
+    
+    SHOWHUD_WINDOW;
+    [postFileUtils postFileWithURL:[NSURL URLWithString:strUrl] data:data Parameter:params ServerParamName:@"photo" FileName:@"myPhoto" MimeType:@"image/jpeg" Success:^{
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [photoManager setPhoto:image ForPerson:[person me]];
+            [self.myPhoto setBackgroundImage:image forState:UIControlStateNormal];
+            HIDEHUD_WINDOW;
+            PRESENTALERT(@"修改成功", nil, nil, nil);
+        });
+        
+        
+    } failure:^(NSError *error) {
+        NSString*errMsg = SERVER_NONCOMPLIANCE_INFO;
+        if (error)
+        {
+            errMsg = error.description;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            HIDEHUD_WINDOW;
+            PRESENTALERT(@"修改失败", errMsg, nil, nil);
+        });
+        
+        
+        
+    }];
+
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
@@ -280,17 +316,18 @@
 
 
 #pragma mark - save image to bundle
-- (void) saveImage:(UIImage *)currentImage withName:(NSString *)imageName
+- (NSString*) saveImage:(UIImage *)currentImage withName:(NSString *)imageName
 {
-//    NSString*userID = psn.job_no;
-//
-//    NSData *imageData = UIImagePNGRepresentation(currentImage);
-//    
-//    NSString *fullPath = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]  stringByAppendingPathComponent:userID] stringByAppendingString:@"_"]stringByAppendingString:imageName];
-//    
-//    [imageData writeToFile:fullPath atomically:NO];
-//    
-//    self.photoChanged = YES;
+    NSString*userID = psn.job_no;
+
+    NSData *imageData = UIImagePNGRepresentation(currentImage);
+    
+    NSString *fullPath = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]  stringByAppendingPathComponent:userID] stringByAppendingString:@"_"]stringByAppendingString:imageName];
+    
+    [imageData writeToFile:fullPath atomically:NO];
+    
+    self.photoChanged = YES;
+    return fullPath;
 }
 
 - (IBAction)phoneBtnClicked:(id)sender {

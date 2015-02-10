@@ -16,4 +16,5 @@
 @interface houseImagesTableViewController : UITableViewController<RETableViewManagerDelegate,UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property(strong,nonatomic)HouseDetail*houseDtl;
 @property(strong,nonatomic)HouseParticulars*housePtcl;
+@property(assign,nonatomic)BOOL isEditMode;
 @end

@@ -64,7 +64,7 @@
             for (NSString*imgName in arr)
             {
                 RETableViewItem*item = [[RETableViewItem alloc] init];
-                item.cellHeight = self.view.frame.size.width;
+                //item.cellHeight = self.view.frame.size.width;
                 //item.cellHeight = 200;
                 [self.xqtSection addItem:item];
                 
@@ -199,16 +199,26 @@
 
 - (void)createAddImageButton:(RETableViewSection*)section
 {
-    if (section != nil)
+    if (section != nil && self.isEditMode)
     {
         //__typeof (&*self) __weak weakSelf = self;
         RETableViewItem*addBtn = [RETableViewItem itemWithTitle:@"添加图片" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                                   {
+                                      if (section == self.xqtSection)
+                                      {
+                                          NSArray*arr = [self.housePtcl.xqt componentsSeparatedByString:@";"];
+                                          int xqtCount = 0;
+                                          for (NSString*imgName in arr)
+                                          {
+                                              xqtCount++;
+                                          }
+                                          //PRESENTALERTWITHHANDER(@"", <#msg#>, <#action#>, <#sender#>, <#hander#>)
+                                      }
                                       self.curSection = section;
                                       [self addPhoto];
                                   }];
         addBtn.textAlignment = NSTextAlignmentCenter;
-        //[section addItem:addBtn];
+        [section addItem:addBtn];
     }
     
     
