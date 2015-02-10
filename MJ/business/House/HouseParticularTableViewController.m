@@ -595,7 +595,7 @@
     [self createActionSectionItems];
     [self.actionSection removeAllItems];
     [self.actionSection addItem:self.addGenJinActions];
-    [self.actionSection addItem:self.addDaiKanActions];
+    //[self.actionSection addItem:self.addDaiKanActions];
     [self.actionSection addItem:self.addWeiTuoActions];
     [self.actionSection addItem:self.addQianYueActions];
 }
@@ -1446,7 +1446,7 @@
     {
         if (self.housePtcl.lease_value_single)
         {
-            value = [NSString stringWithFormat:@"%@元",self.housePtcl.lease_value_single];
+            value = [NSString stringWithFormat:@"%@元/月/平米",self.housePtcl.lease_value_single];
         }
     }
     self.lease_value_single = [[RENumberItem alloc] initWithTitle:@"出租单价:" value:value placeholder:@"元/月/平米"];

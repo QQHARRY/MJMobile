@@ -113,10 +113,10 @@
     self.maxAreaItem = [RETextItem itemWithTitle:@"最大面积" value:nil placeholder:@"单位：m²"];
     self.maxAreaItem.keyboardType = UIKeyboardTypeNumberPad;
     [section addItem:self.maxAreaItem];
-    self.minPriceItem = [RETextItem itemWithTitle:@"最小价格" value:nil placeholder:(self.hvc.nowControllerType == HCT_SELL) ? @"单位：元" : @"单位：元/月"];
+    self.minPriceItem = [RETextItem itemWithTitle:@"最小价格" value:nil placeholder:(self.hvc.nowControllerType == HCT_SELL) ? @"单位：万元" : @"单位：元/月"];
     self.minPriceItem.keyboardType = UIKeyboardTypeNumberPad;
     [section addItem:self.minPriceItem];
-    self.maxPriceItem = [RETextItem itemWithTitle:@"最大价格" value:nil placeholder:(self.hvc.nowControllerType == HCT_SELL) ? @"单位：元" : @"单位：元/月"];
+    self.maxPriceItem = [RETextItem itemWithTitle:@"最大价格" value:nil placeholder:(self.hvc.nowControllerType == HCT_SELL) ? @"单位：万元" : @"单位：元/月"];
     self.maxPriceItem.keyboardType = UIKeyboardTypeNumberPad;
     [section addItem:self.maxPriceItem];
     self.minFloorItem = [RETextItem itemWithTitle:@"最低楼层" value:nil placeholder:@""];

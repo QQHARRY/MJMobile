@@ -1069,6 +1069,7 @@
     
     //门牌号
     self.house_tablet.enabled = NO;
+    self.house_tablet.placeholder = @"楼层(2位) + 房间号(数字)";
     [self.addInfoSection addItem:self.house_tablet];
 
     [self.house_tablet addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];

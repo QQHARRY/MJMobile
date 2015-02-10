@@ -452,7 +452,7 @@
                                   [weakSelf.navigationController pushViewController:vc animated:YES];
                               }];
     self.appointActionItem.textAlignment = NSTextAlignmentCenter;
-    [self.actionSection addItem:self.appointActionItem];
+    //[self.actionSection addItem:self.appointActionItem];
 
     [self.tableView reloadData];
 }
