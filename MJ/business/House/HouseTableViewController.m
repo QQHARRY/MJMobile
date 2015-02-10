@@ -183,6 +183,10 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row >= self.houseList.count)
+    {
+        return;
+    }
     HouseDetail *hd = [self.houseList objectAtIndex:indexPath.row];
     HouseParticularTableViewController*ptcl = [[HouseParticularTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     ptcl.houseDtl = hd;

@@ -13,7 +13,9 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "HouseDataPuller.h"
 #import "UtilFun.h"
-
+#import "person.h"
+#import "postFileUtils.h"
+#import "Macro.h"
 
 #define SECTION_HEIGHT 22
 
@@ -60,23 +62,24 @@
     {
         if (self.housePtcl.xqt)
         {
-            NSArray*arr = [self.housePtcl.xqt componentsSeparatedByString:@";"];
+            NSLog(@"小区图=%@",self.housePtcl.xqt);
+            NSArray*arr = [self.housePtcl.xqt componentsSeparatedByString:@", "];
             for (NSString*imgName in arr)
             {
-                RETableViewItem*item = [[RETableViewItem alloc] init];
-                //item.cellHeight = self.view.frame.size.width;
-                //item.cellHeight = 200;
-                [self.xqtSection addItem:item];
+                
                 
                 NSString *imgStr = [SERVER_ADD stringByAppendingString:imgName];
+                NSLog(@"%@",imgStr);
                 UIImageView* imageV = [[UIImageView alloc] init];
                 [imageV getImageWithURL:[NSURL URLWithString:imgStr] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
                  {
+                     RETableViewItem*item = [[RETableViewItem alloc] init];
                      CGFloat scale =  (self.view.frame.size.width-30)/image.size.width;
                      UIImage*covertedImg = [UtilFun scaleImage:image toScale:scale];
                      item.cellHeight = image.size.height * scale;
                      item.image = covertedImg;
-                     [item reloadRowWithAnimation:UITableViewRowAnimationRight];
+                     [self.xqtSection addItem:item];
+                     [self.tableView reloadData];
                      
                  } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                      
@@ -99,22 +102,22 @@
     {
         if (self.housePtcl.hxt)
         {
-            NSArray*arr = [self.housePtcl.hxt componentsSeparatedByString:@";"];
+            NSLog(@"户型图=%@",self.housePtcl.hxt);
+            NSArray*arr = [self.housePtcl.hxt componentsSeparatedByString:@", "];
             for (NSString*imgName in arr)
             {
-                RETableViewItem*item = [[RETableViewItem alloc] init];
-                //item.cellHeight = 200;
-                [self.hxtSection addItem:item];
-                
                 NSString *imgStr = [SERVER_ADD stringByAppendingString:imgName];
+                NSLog(@"%@",imgStr);
                 UIImageView* imageV = [[UIImageView alloc] init];
                 [imageV getImageWithURL:[NSURL URLWithString:imgStr] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
                  {
+                     RETableViewItem*item = [[RETableViewItem alloc] init];
                      CGFloat scale =  (self.view.frame.size.width-30)/image.size.width;
                      UIImage*covertedImg = [UtilFun scaleImage:image toScale:scale];
                      item.cellHeight = image.size.height * scale;
                      item.image = covertedImg;
-                     [item reloadRowWithAnimation:UITableViewRowAnimationRight];
+                     [self.hxtSection addItem:item];
+                     [self.tableView reloadData];
                      
                  } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                      
@@ -138,23 +141,25 @@
     {
         if (self.housePtcl.snt)
         {
-            NSArray*arr = [self.housePtcl.snt componentsSeparatedByString:@";"];
+            NSLog(@"室内图=%@",self.housePtcl.snt);
+            NSArray*arr = [self.housePtcl.snt componentsSeparatedByString:@", "];
             for (NSString*imgName in arr)
             {
-                RETableViewItem*item = [[RETableViewItem alloc] init];
-                //item.cellHeight = 200;
-                [self.sntSection addItem:item];
+                
                 
                 NSString *imgStr = [SERVER_ADD stringByAppendingString:imgName];
+                NSLog(@"%@",imgStr);
                 UIImageView* imageV = [[UIImageView alloc] init];
 
                 [imageV getImageWithURL:[NSURL URLWithString:imgStr] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
                  {
+                     RETableViewItem*item = [[RETableViewItem alloc] init];
                      CGFloat scale =  (self.view.frame.size.width-30)/image.size.width;
                      UIImage*covertedImg = [UtilFun scaleImage:image toScale:scale];
                      item.cellHeight = image.size.height * scale;
                      item.image = covertedImg;
-                     [item reloadRowWithAnimation:UITableViewRowAnimationRight];
+                     [self.sntSection addItem:item];
+                     [self.tableView reloadData];
                      
                  } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                      
@@ -204,16 +209,6 @@
         //__typeof (&*self) __weak weakSelf = self;
         RETableViewItem*addBtn = [RETableViewItem itemWithTitle:@"添加图片" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                                   {
-                                      if (section == self.xqtSection)
-                                      {
-                                          NSArray*arr = [self.housePtcl.xqt componentsSeparatedByString:@";"];
-                                          int xqtCount = 0;
-                                          for (NSString*imgName in arr)
-                                          {
-                                              xqtCount++;
-                                          }
-                                          //PRESENTALERTWITHHANDER(@"", <#msg#>, <#action#>, <#sender#>, <#hander#>)
-                                      }
                                       self.curSection = section;
                                       [self addPhoto];
                                   }];
@@ -282,6 +277,7 @@
     [picker dismissViewControllerAnimated:YES completion:^{}];
     
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    NSData*data = UIImageJPEGRepresentation(image, 0.5);
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     if (image && [type isEqualToString:(NSString *)kUTTypeImage])
     {
@@ -300,42 +296,111 @@
             }
         }
         
-        SHOWHUD_WINDOW;
-        [HouseDataPuller pushImage:image ToHouse:self.houseDtl HouseParticulars:self.housePtcl ImageType:strImageFor Success:^(id responseObject) {
-            
-            RETableViewItem*item = [[RETableViewItem alloc] init];
-            CGFloat scale =  (self.view.frame.size.width-30)/image.size.width;
-            UIImage*covertedImg = [UtilFun scaleImage:image toScale:scale];
-            item.cellHeight = image.size.height * scale;
-            item.image = covertedImg;
-            
-            
-            if (self.curSection == self.hxtSection)
+        NSDictionary *parameters = @{@"job_no":[person me].job_no,
+                                     @"acc_password":[person me].password,
+                                     @"DeviceID":[UtilFun getUDID],
+                                     @"obj_type":@"房源",
+                                     @"obj_no":self.housePtcl.buildings_picture,
+                                     @"imageType":strImageFor,
+                                     };
+         SHOWHUD_WINDOW;
+        [postFileUtils postFileWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", SERVER_URL, ADD_IMAGE] ] data:data Parameter:parameters ServerParamName:@"imagedata" FileName:strImageFor MimeType:type Success:^{
             {
-                [self.hxtSection removeLastItem];
-                [self.hxtSection addItem:item ];
-                [self createAddImageButton:self.hxtSection];
-            }
-            else if (self.curSection == self.sntSection)
-            {
-                [self.sntSection removeLastItem];
-                [self.sntSection addItem:item];
-                [self createAddImageButton:self.sntSection];
-            }
-            else if (self.curSection == self.xqtSection)
-            {
-                [self.xqtSection removeLastItem];
-                [self.xqtSection addItem:item];
-                [self createAddImageButton:self.xqtSection];
-            }
+                
+                RETableViewItem*item = [[RETableViewItem alloc] init];
+                CGFloat scale =  (self.view.frame.size.width-30)/image.size.width;
+                UIImage*covertedImg = [UtilFun scaleImage:image toScale:scale];
+                item.cellHeight = image.size.height * scale;
+                item.image = covertedImg;
+                
+                
+                if (self.curSection == self.hxtSection)
+                {
+                    [self.hxtSection removeLastItem];
+                    [self.hxtSection addItem:item ];
+                    [self createAddImageButton:self.hxtSection];
+                }
+                else if (self.curSection == self.sntSection)
+                {
+                    [self.sntSection removeLastItem];
+                    [self.sntSection addItem:item];
+                    [self createAddImageButton:self.sntSection];
+                }
+                else if (self.curSection == self.xqtSection)
+                {
+                    [self.xqtSection removeAllItems];
+                    [self.xqtSection addItem:item];
+                    [self createAddImageButton:self.xqtSection];
+                }
+                
+                
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                    HIDEHUD_WINDOW;
 
-            [self.tableView reloadData];
-            
-            HIDEHUD_WINDOW;
+                });
+
+            }
         } failure:^(NSError *error) {
-            
-            HIDEHUD_WINDOW;
+            {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    HIDEHUD_WINDOW;
+                    
+                });
+            }
         }];
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+//        SHOWHUD_WINDOW;
+//        [HouseDataPuller pushImage:image ToHouse:self.houseDtl HouseParticulars:self.housePtcl ImageType:strImageFor Success:^(id responseObject) {
+//            
+//            RETableViewItem*item = [[RETableViewItem alloc] init];
+//            CGFloat scale =  (self.view.frame.size.width-30)/image.size.width;
+//            UIImage*covertedImg = [UtilFun scaleImage:image toScale:scale];
+//            item.cellHeight = image.size.height * scale;
+//            item.image = covertedImg;
+//            
+//            
+//            if (self.curSection == self.hxtSection)
+//            {
+//                [self.hxtSection removeLastItem];
+//                [self.hxtSection addItem:item ];
+//                [self createAddImageButton:self.hxtSection];
+//            }
+//            else if (self.curSection == self.sntSection)
+//            {
+//                [self.sntSection removeLastItem];
+//                [self.sntSection addItem:item];
+//                [self createAddImageButton:self.sntSection];
+//            }
+//            else if (self.curSection == self.xqtSection)
+//            {
+//                [self.xqtSection removeLastItem];
+//                [self.xqtSection addItem:item];
+//                [self createAddImageButton:self.xqtSection];
+//            }
+//
+//            [self.tableView reloadData];
+//            
+//            HIDEHUD_WINDOW;
+//        } failure:^(NSError *error) {
+//            
+//            HIDEHUD_WINDOW;
+//        }];
         
         //save image to album
         if (picker.sourceType == UIImagePickerControllerSourceTypeCamera)
