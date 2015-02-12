@@ -93,6 +93,7 @@
         HIDEHUD(self.view);
         [self.shopItemArr addObjectsFromArray:responseObject];
         
+        [self.tableView setContentSize:CGSizeMake(self.view.frame.size.width, 100*self.shopItemArr.count+44)];
         [self.tableView reloadData];
         [self endRefreshing:isFoot];
         

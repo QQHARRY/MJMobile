@@ -197,7 +197,7 @@
         cell = [[UITableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:key];
     }
     
-    [cell.textLabel setFont:[UIFont systemFontOfSize:12]];
+    [cell.textLabel setFont:[UIFont systemFontOfSize:10]];
     if (indexPath.section == 0)
     {
         if (self.petition && self.petition.historyNodes && self.petition.historyNodes.count > 0)
@@ -205,10 +205,10 @@
             NSDictionary*dic = [self.petition.historyNodes objectAtIndex:indexPath.row];
             NSString*key = [dic objectForKey:@"key"];
             NSString*value = [dic objectForKey:@"value"];
-            value =[[key stringByAppendingString:@" "] stringByAppendingString:value];
+            value =[[key stringByAppendingString:@"  "] stringByAppendingString:value];
             
             
-            value = [NSString stringWithFormat:@"%d,%@",indexPath.row,value];
+            //value = [NSString stringWithFormat:@"%d  %@",indexPath.row,value];
             cell.textLabel.text =value;
         }
         else

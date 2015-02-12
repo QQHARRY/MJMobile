@@ -368,7 +368,7 @@
     [self.customerSection addItem:self.salesItem];
     self.salesCompItem = [RETextItem itemWithTitle:@"顾问公司:" value:self.particulars.comp_no placeholder:@""];
     self.salesCompItem.enabled = false;
-    [self.customerSection addItem:self.salesCompItem];
+    //[self.customerSection addItem:self.salesCompItem];
     self.salesDeptItem = [RETextItem itemWithTitle:@"顾问部门:" value:self.particulars.dept_name/*b_dept_no*/ placeholder:@""];
     self.salesDeptItem.enabled = false;
     [self.customerSection addItem:self.salesDeptItem];
