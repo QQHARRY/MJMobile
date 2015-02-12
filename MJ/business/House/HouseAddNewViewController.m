@@ -87,10 +87,16 @@
     NSString*title = @"";
     NSString*value = @"";
     __typeof (&*self) __weak weakSelf = self;
+    
+    
+    
+    
+    
     //
     //    @property (strong, readwrite, nonatomic) RENumberItem * build_structure_area;
     //    //float
     //    //面积
+    [self.build_structure_area addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     value = @"";
     if (self.housePtcl)
     {
@@ -866,6 +872,138 @@
         // Push the options controller
         [weakSelf.navigationController pushViewController:optionsController animated:YES];
     }];
+    
+    
+    void(^validationBlock)(RETableViewItem* item) = ^(RETableViewItem* item)
+    {
+        if ([item isEqual:weakSelf.lease_value_single] ||
+            [item isEqual:weakSelf.lease_value_total] ||
+            [item isEqual:weakSelf.sale_value_single] ||
+            [item isEqual:weakSelf.sale_value_total])
+        {
+            if ([weakSelf.build_structure_area.value isEqualToString:@""] || [weakSelf.build_structure_area.value isEqualToString:@"0"] || [weakSelf.build_structure_area.value floatValue] == 0 )
+            {
+                [weakSelf.build_structure_area selectRowAnimated:YES scrollPosition:UITableViewScrollPositionMiddle];
+                [weakSelf.tableView reloadData];
+                PRESENTALERT(@"请先填写有效的房源建筑面积!", nil, nil, weakSelf);
+                return;
+            }
+        }
+            
+        
+    };
+    
+    void(^autoFillBlock)(RETableViewItem* item) = ^(RETableViewItem* item)
+    {
+        if ([item isEqual:weakSelf.lease_value_single] ||
+            [item isEqual:weakSelf.lease_value_total] ||
+            [item isEqual:weakSelf.sale_value_single] ||
+            [item isEqual:weakSelf.sale_value_total])
+        {
+            if ([weakSelf.build_structure_area.value isEqualToString:@""] || [weakSelf.build_structure_area.value isEqualToString:@"0"] || [weakSelf.build_structure_area.value floatValue] == 0 )
+            {
+                return;
+            }
+            else
+            {
+                if ([item isEqual:weakSelf.lease_value_single])
+                {
+                    NSString*newValue =  weakSelf.lease_value_single.value;
+                    
+                    if (self.lease_value_total)
+                    {
+                        if ([newValue isEqualToString:@""])
+                        {
+                            self.lease_value_total.value = @"";
+                        }
+                        else
+                        {
+                            float value = [newValue floatValue];
+                            value = value*[self.build_structure_area.value floatValue];
+                            self.lease_value_total.value = [[NSString alloc] initWithFormat:@"%.2f",value];
+                        }
+                    }
+                }
+                else if ([item isEqual:weakSelf.lease_value_total])
+                {
+                    NSString*newValue =  weakSelf.lease_value_total.value;
+                    
+                    if (self.lease_value_single)
+                    {
+                        if ([newValue isEqualToString:@""])
+                        {
+                            self.lease_value_single.value = @"";
+                        }
+                        else
+                        {
+                            float value = [newValue floatValue];
+                            value = value/[self.build_structure_area.value floatValue];
+                            self.lease_value_single.value = [[NSString alloc] initWithFormat:@"%.2f",value];
+                        }
+                    }
+                }
+                else if ([item isEqual:weakSelf.sale_value_total])
+                {
+                    NSString*newValue =  weakSelf.sale_value_total.value;
+                    
+                    if (self.sale_value_single)
+                    {
+                        if ([newValue isEqualToString:@""])
+                        {
+                            self.sale_value_single.value = @"";
+                        }
+                        else
+                        {
+                            float value = [newValue floatValue];
+                            value = value/[self.build_structure_area.value floatValue];
+                            self.sale_value_single.value = [[NSString alloc] initWithFormat:@"%.2f",value];
+                        }
+                    }
+                }
+                else if ([item isEqual:weakSelf.sale_value_single])
+                {
+                    NSString*newValue =  weakSelf.sale_value_single.value;
+                    
+                    if (self.sale_value_total)
+                    {
+                        if ([newValue isEqualToString:@""])
+                        {
+                            self.sale_value_total.value = @"";
+                        }
+                        else
+                        {
+                            float value = [newValue floatValue];
+                            value = value*[self.build_structure_area.value floatValue];
+                            self.sale_value_total.value = [[NSString alloc] initWithFormat:@"%.2f",value];
+                        }
+                    }
+                }
+                [weakSelf.tableView reloadData];
+            }
+        }
+        
+        
+    };
+    
+    
+    
+    
+    self.lease_value_single.onBeginEditing =validationBlock;
+    self.lease_value_total.onBeginEditing = validationBlock;
+    self.sale_value_total.onBeginEditing = validationBlock;
+    self.sale_value_single.onBeginEditing = validationBlock;
+    
+    self.lease_value_single.onEndEditing =autoFillBlock;
+    self.lease_value_total.onEndEditing = autoFillBlock;
+    self.sale_value_total.onEndEditing = autoFillBlock;
+    self.sale_value_single.onEndEditing = autoFillBlock;
+    
+    
+//    [self.lease_value_single addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    //[self.lease_value_total addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    
+    //[self.sale_value_total addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    //[self.sale_value_single addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
 }
 
 -(void)prepareTeneApplicationSectionItemsStep1
@@ -1163,6 +1301,65 @@
                     [self.house_floor reloadRowWithAnimation:UITableViewRowAnimationBottom];
                 }
             }
+        }
+    }
+    else if([keyPath isEqualToString:@"value"] && [object isEqual:self.build_structure_area])
+    {
+        
+    }
+    else if([keyPath isEqualToString:@"value"] && [object isEqual:self.lease_value_single])
+    {
+        if ([self.build_structure_area.value isEqualToString:@""] || [self.build_structure_area.value isEqualToString:@"0"])
+        {
+            //[self.lease_value_single removeObserver:self forKeyPath:@"value" context:NULL];
+            
+            //[self.lease_value_single addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+            
+            PRESENTALERT(@"请先填写有效的房源建筑面积!", nil, nil, nil);
+            return;
+        }
+        
+        NSString*newValue =  [change valueForKey:NSKeyValueChangeNewKey];
+
+        if (self.lease_value_total)
+        {
+            if ([newValue isEqualToString:@""])
+            {
+                self.lease_value_total.value = @"";
+            }
+            else
+            {
+                float value = [newValue floatValue];
+                value = value*[self.build_structure_area.value floatValue];
+                self.lease_value_total.value = [[NSString alloc] initWithFormat:@"%.2f",value];
+            }
+        }
+    }
+    else if([keyPath isEqualToString:@"value"] && [object isEqual:self.lease_value_total])
+    {
+        if ([self.build_structure_area.value isEqualToString:@""] || [self.build_structure_area.value isEqualToString:@"0"])
+        {
+            PRESENTALERT(@"请先填写有效的房源建筑面积!", nil, nil, nil);
+            return;
+        }
+        
+        
+        
+    }
+    else if([keyPath isEqualToString:@"value"] && [object isEqual:self.sale_value_single])
+    {
+        if ([self.build_structure_area.value isEqualToString:@""] || [self.build_structure_area.value isEqualToString:@"0"])
+        {
+            PRESENTALERT(@"请先填写有效的房源建筑面积!", nil, nil, nil);
+            return;
+        }
+    }
+    else if([keyPath isEqualToString:@"value"] && [object isEqual:self.sale_value_total])
+    {
+        if ([self.build_structure_area.value isEqualToString:@""] || [self.build_structure_area.value isEqualToString:@"0"])
+        {
+            PRESENTALERT(@"请先填写有效的房源建筑面积!", nil, nil, nil);
+            return;
         }
     }
     else

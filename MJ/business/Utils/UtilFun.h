@@ -27,7 +27,9 @@ if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)\
 else\
 {\
     UIAlertView*alertView = [[UIAlertView alloc] initWithTitle:title message:msg delegate:sender cancelButtonTitle:action otherButtonTitles:nil, nil];\
-    alertView.delegate = self;\
+    id tmpSender = sender;\
+    if(sender == nil) tmpSender = self;\
+    alertView.delegate = tmpSender;\
     [alertView show];\
 }\
 

@@ -886,6 +886,7 @@
             <objects>
                 <navigationController title="房源" id="dBp-GJ-70H" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="房源" image="TabItemHouse" id="CYb-jF-6BT"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xvW-GF-JqY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -907,6 +908,7 @@
             <objects>
                 <navigationController title="客源" id="rx4-UC-bWe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="客源" image="TabItemCustom" id="oBE-2z-Mzr"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TQu-b4-wtl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -928,6 +930,7 @@
             <objects>
                 <navigationController title="更多" id="ZBp-0i-wcP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="更多" image="TabItemMore" id="C6e-uD-ohE"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oqW-TE-91s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
