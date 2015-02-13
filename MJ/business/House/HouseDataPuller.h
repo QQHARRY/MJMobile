@@ -34,4 +34,6 @@
 +(void)pullIsHouseExisting:(NSDictionary *)dic Success:(void (^)(HouseParticulars*hosuePtl))success failure:(void (^)(NSError *error))failure;
 
 +(void)pushAddHouse:(NSDictionary *)partlDic Success:(void (^)(NSString *house_trade_no,NSString *buildings_picture))success failure:(void (^)(NSError *error))failure;
+
++(void)pushImage:(UIImage*)image TradeNo:(NSString *)tradeNO PictureNO:(NSString*)picNO Type:(NSString*)type Success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 @end

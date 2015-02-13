@@ -17,6 +17,7 @@
 @property(strong,atomic)NSString*name_full;
 @property(strong,atomic)NSString*company_name;
 @property(strong,atomic)NSString*department_name;
+@property(strong,atomic)NSString*dept_name;
 @property(strong,atomic)NSString*job_name;
 @property(strong,atomic)NSString*obj_mobile;
 @property(strong,atomic)NSString*acc_remarks;
@@ -25,7 +26,7 @@
 @property(strong,atomic)NSString*password;
 @property(strong,atomic)NSString*department_no;
 @property(strong,atomic)NSString*role_name;
-
+@property(strong,atomic)NSString*technical_post_name;
 
 //-(BOOL)initWithDictionary:(NSDictionary*)dic;
 

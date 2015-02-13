@@ -102,7 +102,7 @@
                                      self.houseImageCtrl = [[houseImagesTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
                                      self.houseImageCtrl.housePtcl = self.housePtcl;
                                      self.houseImageCtrl.houseDtl = self.houseDtl;
-                                     self.houseImageCtrl.isEditMode = YES;
+                                     self.houseImageCtrl.watchMode = EDITMODE;
                                  }
                                  
                                  

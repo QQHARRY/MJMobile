@@ -45,6 +45,8 @@
         self.phoneBtn.hidden = YES;
         self.smsBtn.hidden = YES;
         self.saveBtn.hidden = NO;
+        self.loginNameLabel.text = @"登录名";
+        self.loginName.text = psn.job_name;
     }
     else
     {
@@ -58,9 +60,12 @@
         self.saveBtn.hidden = YES;
         self.smsBtn.enabled = NO;
         self.phoneBtn.enabled = NO;
+        self.character.text = @"职位:";
+        self.loginNameLabel.text = @"员工编号";
+        self.loginName.text = psn.job_no;
     }
     
-    self.loginName.text = psn.job_name;
+    
     
     if (psn.obj_mobile && psn.obj_mobile.length > 0)
     {
@@ -81,13 +86,31 @@
     self.company.text = [tmp stringByAppendingString:psn.company_name];
     
     tmp = @"所属部门:";
-    self.department.text = [tmp stringByAppendingString:psn.department_name];
+    if (psn == [person me])
+    {
+        self.department.text = [tmp stringByAppendingString:psn.department_name];
+    }
+    else
+    {
+        self.department.text = [tmp stringByAppendingString:self.psn.dept_name];
+    }
+    
     
     tmp = @"姓名:";
     self.myName.text = [tmp stringByAppendingString:psn.name_full];
     
-    tmp = @"登录角色:";
-    self.character.text = [tmp stringByAppendingString:psn.role_name];
+    
+    if (self.psn == [person me])
+    {
+        tmp = @"登录角色:";
+        self.character.text = [tmp stringByAppendingString:psn.role_name];
+    }
+    else
+    {
+        tmp = @"职位:";
+        self.character.text = [tmp stringByAppendingString:self.psn.technical_post_name];
+    }
+    
     
     tmp = @"最后登录IP:";
     self.lastLoginIP.text = tmp;
@@ -116,7 +139,7 @@
             NSString*strUrl = [SERVER_ADD stringByAppendingString:photoUrl];
             UIImageView*imgV = [[UIImageView alloc] init];
             [imgV getImageWithURL:[NSURL URLWithString:strUrl] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                [photoManager setPhoto:image ForPerson:[person me]];
+                [photoManager setPhoto:image ForPerson:self.psn];
                 [self.myPhoto setBackgroundImage:image forState:UIControlStateNormal];
                 
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {

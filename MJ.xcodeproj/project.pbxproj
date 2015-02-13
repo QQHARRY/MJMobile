@@ -50,6 +50,8 @@
 		4A5665531A4C127A00C3BA22 /* sendMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5665511A4C127A00C3BA22 /* sendMessageViewController.m */; };
 		4A5665541A4C127A00C3BA22 /* sendMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5665521A4C127A00C3BA22 /* sendMessageViewController.xib */; };
 		4A5665571A4C1C4100C3BA22 /* ViewPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5665561A4C1C4100C3BA22 /* ViewPagerController.m */; };
+		4A56C70D1A8CAF6700AF8CB6 /* updateDataPuller.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A56C70C1A8CAF6700AF8CB6 /* updateDataPuller.m */; };
+		4A56C7101A8CAFC800AF8CB6 /* versionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A56C70F1A8CAFC800AF8CB6 /* versionInfo.m */; };
 		4A5D23B51A48522100546698 /* shopRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D23B41A48522100546698 /* shopRootTableViewController.m */; };
 		4A5D243C1A4A62A800546698 /* ShopTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D243B1A4A62A800546698 /* ShopTableViewController.m */; };
 		4A5D243F1A4A6E9C00546698 /* ShopItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D243E1A4A6E9C00546698 /* ShopItemTableViewCell.m */; };
@@ -346,6 +348,10 @@
 		4A5665521A4C127A00C3BA22 /* sendMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = sendMessageViewController.xib; sourceTree = "<group>"; };
 		4A5665551A4C1C4100C3BA22 /* ViewPagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPagerController.h; sourceTree = "<group>"; };
 		4A5665561A4C1C4100C3BA22 /* ViewPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPagerController.m; sourceTree = "<group>"; };
+		4A56C70B1A8CAF6700AF8CB6 /* updateDataPuller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = updateDataPuller.h; sourceTree = "<group>"; };
+		4A56C70C1A8CAF6700AF8CB6 /* updateDataPuller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = updateDataPuller.m; sourceTree = "<group>"; };
+		4A56C70E1A8CAFC800AF8CB6 /* versionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = versionInfo.h; sourceTree = "<group>"; };
+		4A56C70F1A8CAFC800AF8CB6 /* versionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = versionInfo.m; sourceTree = "<group>"; };
 		4A5D23B31A48522100546698 /* shopRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shopRootTableViewController.h; sourceTree = "<group>"; };
 		4A5D23B41A48522100546698 /* shopRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = shopRootTableViewController.m; sourceTree = "<group>"; };
 		4A5D243A1A4A62A800546698 /* ShopTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopTableViewController.h; sourceTree = "<group>"; };
@@ -818,6 +824,10 @@
 			children = (
 				4A2AD1921A457F8C0074DCA0 /* CheckNewVersion.h */,
 				4A2AD1931A457F8C0074DCA0 /* CheckNewVersion.m */,
+				4A56C70B1A8CAF6700AF8CB6 /* updateDataPuller.h */,
+				4A56C70C1A8CAF6700AF8CB6 /* updateDataPuller.m */,
+				4A56C70E1A8CAFC800AF8CB6 /* versionInfo.h */,
+				4A56C70F1A8CAFC800AF8CB6 /* versionInfo.m */,
 			);
 			path = Update;
 			sourceTree = "<group>";
@@ -1807,6 +1817,7 @@
 				4A8D01D91A33381200EA59EA /* MainPageTableViewHeaderCell.m in Sources */,
 				4A2EE1231A428F1000899976 /* petitionAgreementViewController.m in Sources */,
 				B98BD5821A609185003A35BE /* RETableViewItem.m in Sources */,
+				4A56C7101A8CAFC800AF8CB6 /* versionInfo.m in Sources */,
 				B98BD56B1A609185003A35BE /* RETableViewOptionCell.m in Sources */,
 				B98BD56E1A609185003A35BE /* RETableViewTextCell.m in Sources */,
 				4A6865A11A7374EF005394DD /* HouseSelectBuildingTableViewController.m in Sources */,
@@ -1839,6 +1850,7 @@
 				4A5D24481A4AC14F00546698 /* order.m in Sources */,
 				B98BD5861A609185003A35BE /* RETableViewSection.m in Sources */,
 				4A9D02031A60521700600BA0 /* DataPersistence.m in Sources */,
+				4A56C70D1A8CAF6700AF8CB6 /* updateDataPuller.m in Sources */,
 				4A5D24541A4AF22900546698 /* orderTableViewController.m in Sources */,
 				4A8D01FF1A3734A000EA59EA /* badgeImageFactory.m in Sources */,
 				4AD795531A218C4A00DEC779 /* UIWebView+AFNetworking.m in Sources */,

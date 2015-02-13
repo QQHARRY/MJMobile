@@ -16,6 +16,8 @@
 #import "Macro.h"
 #import "UIImageView+AFNetworking.h"
 #import "photoManager.h"
+#import "UtilFun.h"
+#import "UtilFun.h"
 
 @interface MoreViewController ()
 
@@ -79,9 +81,14 @@
     {
         [self performSegueWithIdentifier:@"showAboutView" sender:self];
     }
+    else if(indexPath.row == 4)
+    {
+        [[[CheckNewVersion alloc] init]  checkNewVersion:self];
+    }
     else if(indexPath.row == 5)
     {
         [self performSegueWithIdentifier:@"showSuggestionView" sender:self];
+        
     }
     else if(indexPath.row == 6)
     {
@@ -92,6 +99,38 @@
         
     }
     
+}
+
+-(void)hasNewVersion:(BOOL)bHasNewVersion VersionName:(NSString *)vName VersionSize:(NSString *)size VersionAddress:(NSString *)address RequiredToUpdate:(BOOL)updateRequired
+{
+    if (bHasNewVersion)
+    {
+        if (updateRequired)
+        {
+            NSString*versionPromot = [[NSString alloc] initWithFormat:@"版本号:%@\r\n当前版本将不再可用",vName];
+            PRESENTALERTWITHHANDER(NEWVERSION_REQUIRED_PROMOT, versionPromot, @"现在更新",self,^(UIAlertAction *action)
+                                                                          {
+                                                                              [self toLoginPage];
+                                                                              [[UIApplication sharedApplication] openURL:[NSURL URLWithString:address]];
+                                                                          }
+                                                                          );
+            
+        }
+        else
+        {
+            NSString*versionPromot = [[NSString alloc] initWithFormat:@"版本号:%@\r\n是否更新到最新版本?",vName];
+            PRESENTALERTWITHHANDER_WITHDEFAULTCANCEL(NEWVERSION_PROMPT, versionPromot, @"现在更新",self,^(UIAlertAction *action)
+                                   {
+                                       [[UIApplication sharedApplication] openURL:[NSURL URLWithString:address]];
+                                   }
+                                   );
+        }
+        
+    }
+    else
+    {
+        PRESENTALERT(@"当前版本已是最新版", nil, nil, nil);
+    }
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

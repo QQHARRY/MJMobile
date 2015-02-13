@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "person.h"
+#import "department.h"
 
 @interface PersonDetailsViewController : UIViewController<UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutlet UILabel *myName;
@@ -19,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *lastLoginIP;
 @property (strong, nonatomic) IBOutlet UILabel *lastLoginTime;
 @property (strong, nonatomic) IBOutlet UIButton *myPhoto;
+@property (strong, nonatomic) IBOutlet UILabel *loginNameLabel;
 @property (strong, nonatomic) IBOutlet UITextField *loginName;
 @property (strong, nonatomic) IBOutlet UITextField *mobileNum;
 @property (strong, nonatomic) IBOutlet UITextField *chracterSign;
@@ -27,6 +29,7 @@
 @property (assign, nonatomic)BOOL photoChanged;
 
 @property (strong, nonatomic)person*psn;
+@property (strong, nonatomic)department*dpt;
 @property (strong, nonatomic) IBOutlet UIButton *saveBtn;
 @property (strong, nonatomic) IBOutlet UIButton *phoneBtn;
 @property (strong, nonatomic) IBOutlet UIButton *smsBtn;

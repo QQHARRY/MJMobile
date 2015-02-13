@@ -26,4 +26,5 @@
 -(unit*)findSubUnitByIndex:(NSInteger*)index;
 
 -(void)setSubUnits:(NSArray*)units;
+-(unit*)findSuperUnitOfUnit:(unit*)unt;
 @end

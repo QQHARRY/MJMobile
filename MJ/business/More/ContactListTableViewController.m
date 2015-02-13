@@ -279,7 +279,6 @@ static NSMutableDictionary*selctions = nil;
             
             
             detailController.psn = self.curSelected;
-
         }
         else
         {

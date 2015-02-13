@@ -16,6 +16,13 @@
 
 @interface HouseAddNewViewController ()
 @property(strong,readwrite,nonatomic)RETableViewSection*teneApplicationAbout;
+@property(strong,readwrite,nonatomic)RETableViewSection*imageSection;
+@property(strong,readwrite,nonatomic)NSMutableArray*xqtArr;
+@property(strong,readwrite,nonatomic)NSMutableArray*hxtArr;
+@property(strong,readwrite,nonatomic)NSMutableArray*sntArr;
+@property (nonatomic) NSInteger uploadProgress;
+@property (nonatomic,strong)NSString*succeedHouseTradeNo;
+@property (nonatomic,strong)NSString*succeedHouseImageNo;
 @end
 
 @implementation HouseAddNewViewController
@@ -61,6 +68,8 @@
     self.secretSection = [RETableViewSection sectionWithHeaderTitle:@""];
     self.secretSection.headerHeight = 1;
     self.addInfoSection = [RETableViewSection sectionWithHeaderTitle:@""];
+    self.imageSection = [RETableViewSection sectionWithHeaderTitle:@""];
+    self.imageSection.headerHeight = 1;
 }
 
 -(void)prepareSections
@@ -70,6 +79,7 @@
     [self.manager addSection:self.teneApplicationAbout];
     [self.manager addSection:self.infoSection];
     [self.manager addSection:self.secretSection];
+    [self.manager addSection:self.imageSection];
     
 }
 
@@ -79,6 +89,28 @@
     [self createAddInfoSectionItems];
     [self createInfoSectionItems];
     [self prepareAddInfoSectionItems];
+//    self.watchHouseImages.title = @"点击添加房源图片";
+//    [self.imageSection addItem:self.watchHouseImages];
+}
+
+- (void)createWatchImageBtn
+{
+    __typeof (&*self) __weak weakSelf = self;
+    self.watchHouseImages = [RETableViewItem itemWithTitle:@"点击查看并编辑图片" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
+                             {
+                                 if(self.houseImageCtrl == nil)
+                                 {
+                                     self.houseImageCtrl = [[houseImagesTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                                     self.houseImageCtrl.housePtcl = self.housePtcl;
+                                     self.houseImageCtrl.houseDtl = self.houseDtl;
+                                     self.houseImageCtrl.watchMode = ADDMODE;
+                                 }
+                                 
+                                 
+                                 [weakSelf.navigationController pushViewController:self.houseImageCtrl animated:YES];
+                             }];
+    self.watchHouseImages.textAlignment = NSTextAlignmentCenter;
+    [self.imageSection addItem:self.watchHouseImages];
 }
 
 
@@ -349,28 +381,162 @@
     
     SHOWHUD_WINDOW;
     [HouseDataPuller pushAddHouse:dic Success:^(NSString *house_trade_no, NSString *buildings_picture) {
-        HIDEHUD_WINDOW;
+        
         SEL sel = @selector(setNeedRefresh);
         if (self.delegate && [self.delegate respondsToSelector:sel])
         {
             [self.delegate performSelector:sel];
         }
-        
-        PRESENTALERTWITHHANDER(@"添加成功",@"",@"OK",self,^(UIAlertAction *action)
-                               {
-                                   [self.navigationController popViewControllerAnimated:YES];
-                               }
-                               );
+
+        HIDEHUD_WINDOW;
+        self.succeedHouseTradeNo = house_trade_no;
+        self.succeedHouseImageNo = buildings_picture;
+        [self getImageArr];
+        self.uploadProgress = 0;
+        [self uploadImage];
     } failure:^(NSError *error) {
         HIDEHUD_WINDOW;
         NSString*errorStr = [NSString stringWithFormat:@"%@",error];
         PRESENTALERTWITHHANDER(@"添加失败",errorStr,@"OK",self,^(UIAlertAction *action)
                                {
-                                   
+                                   [self.navigationController popViewControllerAnimated:YES];
                                }
                                );
     }];
 }
+
+-(void)getImageArr
+{
+    if (self.xqtArr == nil)
+    {
+        self.xqtArr = [[NSMutableArray alloc] init];
+    }
+    else
+    {
+        [self.xqtArr  removeAllObjects];
+    }
+    
+    if (self.hxtArr == nil)
+    {
+        self.hxtArr = [[NSMutableArray alloc] init];
+    }
+    else
+    {
+        [self.hxtArr  removeAllObjects];
+    }
+    
+    if (self.sntArr == nil)
+    {
+        self.sntArr = [[NSMutableArray alloc] init];
+    }
+    else
+    {
+        [self.sntArr  removeAllObjects];
+    }
+    
+    
+    if (self.houseImageCtrl)
+    {
+        if (self.houseImageCtrl.xqtArr)
+        {
+            if (self.xqtArr == nil)
+            {
+                self.xqtArr = [[NSMutableArray alloc] init];
+            }
+            else
+            {
+                [self.xqtArr  removeAllObjects];
+            }
+            for (NSDictionary*dic in self.houseImageCtrl.xqtArr)
+            {
+                UIImage*image = [[dic allValues] objectAtIndex:0];
+                if (image && [image isKindOfClass:[UIImage class]])
+                {
+                    [self.xqtArr addObject:image];
+                }
+            }
+        }
+
+        if (self.houseImageCtrl.hxtArr)
+        {
+            for (NSDictionary*dic in self.houseImageCtrl.hxtArr)
+            {
+                UIImage*image = [[dic allValues] objectAtIndex:0];
+                if (image && [image isKindOfClass:[UIImage class]])
+                {
+                    [self.hxtArr addObject:image];
+                }
+            }
+        }
+        
+        if (self.houseImageCtrl.sntArr)
+        {
+            for (NSDictionary*dic in self.houseImageCtrl.sntArr)
+            {
+                UIImage*image = [[dic allValues] objectAtIndex:0];
+                if (image && [image isKindOfClass:[UIImage class]])
+                {
+                    [self.sntArr addObject:image];
+                }
+            }
+        }
+
+    }
+}
+
+-(void)uploadImage
+{
+    UIImage *image = nil;
+    NSString *type = @"";
+    NSString *tip = @"";
+    if (self.uploadProgress < self.xqtArr.count)
+    {
+        image = [self.xqtArr objectAtIndex:self.uploadProgress];
+        type = @"xqt";
+        tip = [NSString stringWithFormat:@"正在上传主图第%ld张(共%lu张)...", (self.uploadProgress + 1), (unsigned long)self.xqtArr.count];
+    }
+    else if (self.uploadProgress < (self.xqtArr.count + self.hxtArr.count) )
+    {
+        image = [self.hxtArr objectAtIndex:(self.uploadProgress - self.xqtArr.count) ];
+        type = @"hxt";
+        tip = [NSString stringWithFormat:@"正在上传户型图第%ld张(共%lu张)...", (self.uploadProgress + 1 - self.xqtArr.count), (unsigned long)self.hxtArr.count];
+    }
+    else if (self.uploadProgress < (self.xqtArr.count + self.hxtArr.count + self.sntArr.count) )
+    {
+        image = [self.sntArr objectAtIndex:(self.uploadProgress - self.xqtArr.count - self.hxtArr.count) ];
+        type = @"snt";
+        tip = [NSString stringWithFormat:@"正在上传室内图第%ld张(共%lu张)...", (self.uploadProgress + 1 - self.xqtArr.count - self.hxtArr.count), (unsigned long)self.sntArr.count];
+    }
+    else
+    {
+        
+        
+        
+        PRESENTALERTWITHHANDER(@"成功", @"添加房源成功!",@"OK", nil, ^(UIAlertAction *action)
+                               {
+                                   [self.navigationController popViewControllerAnimated:YES];
+                               });
+        return;
+    }
+    SHOWWINDOWHUD(tip);
+    [HouseDataPuller pushImage:image TradeNo:self.succeedHouseTradeNo PictureNO:self.succeedHouseImageNo Type:type Success:^(id responseObject)
+     {
+         HIDEALLWINDOWHUD;
+         self.uploadProgress++;
+         [self uploadImage];
+     }
+                          failure:^(NSError *error)
+     {
+         HIDEALLWINDOWHUD;
+         PRESENTALERTWITHHANDER(@"失败", @"上传图片时失败，请稍后再试！",@"OK", nil, ^(UIAlertAction *action)
+                                {
+                                    [self.navigationController popViewControllerAnimated:YES];
+                                });
+         return;
+     }];
+
+}
+
 
 
 -(NSString*)convertToDicValueForItem:(NSString*)itemName FromValue:(NSString*)value

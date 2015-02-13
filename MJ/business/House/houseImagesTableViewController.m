@@ -26,6 +26,8 @@
 @property (strong, readwrite, nonatomic) RETableViewSection *sntSection;
 
 @property (strong, readwrite, nonatomic) RETableViewSection *curSection;
+
+
 @end
 
 @implementation houseImagesTableViewController
@@ -204,7 +206,7 @@
 
 - (void)createAddImageButton:(RETableViewSection*)section
 {
-    if (section != nil && self.isEditMode)
+    if (section != nil && (self.watchMode == EDITMODE || self.watchMode == ADDMODE))
     {
         //__typeof (&*self) __weak weakSelf = self;
         RETableViewItem*addBtn = [RETableViewItem itemWithTitle:@"添加图片" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
@@ -281,128 +283,192 @@
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     if (image && [type isEqualToString:(NSString *)kUTTypeImage])
     {
-        
-        //updae image to server
-        NSString*strImageFor = @"xqt";
-        if (self.curSection != self.xqtSection)
+        if (self.watchMode == EDITMODE)
         {
-            if (self.curSection == self.hxtSection)
+            NSString*strImageFor = @"xqt";
+            if (self.curSection != self.xqtSection)
             {
-                strImageFor = @"hxt";
-            }
-            else if (self.curSection == self.sntSection)
-            {
-                strImageFor = @"snt";
-            }
-        }
-        
-        NSDictionary *parameters = @{@"job_no":[person me].job_no,
-                                     @"acc_password":[person me].password,
-                                     @"DeviceID":[UtilFun getUDID],
-                                     @"obj_type":@"房源",
-                                     @"obj_no":self.housePtcl.buildings_picture,
-                                     @"imageType":strImageFor,
-                                     };
-         SHOWHUD_WINDOW;
-        [postFileUtils postFileWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", SERVER_URL, ADD_IMAGE] ] data:data Parameter:parameters ServerParamName:@"imagedata" FileName:strImageFor MimeType:type Success:^{
-            {
-                
-                RETableViewItem*item = [[RETableViewItem alloc] init];
-                CGFloat scale =  (self.view.frame.size.width-30)/image.size.width;
-                UIImage*covertedImg = [UtilFun scaleImage:image toScale:scale];
-                item.cellHeight = image.size.height * scale;
-                item.image = covertedImg;
-                
-                
                 if (self.curSection == self.hxtSection)
                 {
-                    [self.hxtSection removeLastItem];
-                    [self.hxtSection addItem:item ];
-                    [self createAddImageButton:self.hxtSection];
+                    strImageFor = @"hxt";
                 }
                 else if (self.curSection == self.sntSection)
                 {
-                    [self.sntSection removeLastItem];
-                    [self.sntSection addItem:item];
-                    [self createAddImageButton:self.sntSection];
+                    strImageFor = @"snt";
                 }
-                else if (self.curSection == self.xqtSection)
+            }
+            
+            NSDictionary *parameters = @{@"job_no":[person me].job_no,
+                                         @"acc_password":[person me].password,
+                                         @"DeviceID":[UtilFun getUDID],
+                                         @"obj_type":@"房源",
+                                         @"obj_no":self.housePtcl.buildings_picture,
+                                         @"imageType":strImageFor,
+                                         };
+            SHOWHUD_WINDOW;
+            [postFileUtils postFileWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", SERVER_URL, ADD_IMAGE] ] data:data Parameter:parameters ServerParamName:@"imagedata" FileName:strImageFor MimeType:type Success:^{
                 {
-                    [self.xqtSection removeAllItems];
-                    [self.xqtSection addItem:item];
-                    [self createAddImageButton:self.xqtSection];
+                    
+                    RETableViewItem*item = [[RETableViewItem alloc] init];
+                    CGFloat scale =  (self.view.frame.size.width-30)/image.size.width;
+                    UIImage*covertedImg = [UtilFun scaleImage:image toScale:scale];
+                    item.cellHeight = image.size.height * scale;
+                    item.image = covertedImg;
+                    
+                    
+                    
+                    
+                    if (self.curSection == self.hxtSection)
+                    {
+                        [self.hxtSection removeLastItem];
+                        [self.hxtSection addItem:item ];
+                        [self createAddImageButton:self.hxtSection];
+                    }
+                    else if (self.curSection == self.sntSection)
+                    {
+                        [self.sntSection removeLastItem];
+                        [self.sntSection addItem:item];
+                        [self createAddImageButton:self.sntSection];
+                    }
+                    else if (self.curSection == self.xqtSection)
+                    {
+                        [self.xqtSection removeAllItems];
+                        [self.xqtSection addItem:item];
+                        [self createAddImageButton:self.xqtSection];
+                    }
+                    
+                    
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.tableView reloadData];
+                        HIDEHUD_WINDOW;
+                        
+                    });
+                    
+                }
+            } failure:^(NSError *error) {
+                {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        HIDEHUD_WINDOW;
+                        
+                    });
+                }
+            }];
+
+        }
+        else if (self.watchMode == ADDMODE)
+        {
+            RETableViewItem*item = [[RETableViewItem alloc] init];
+            CGFloat scale =  (self.view.frame.size.width-30)/image.size.width;
+
+            UIImage*covertedImg = [UtilFun scaleImage:image toScale:scale];
+            item.cellHeight = image.size.height * scale;
+            item.image = covertedImg;
+            //item.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+            //item.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cancel"]];
+            item.editingStyle = UITableViewCellEditingStyleDelete;
+            
+            item.deletionHandler = ^(RETableViewItem* item)
+            {
+                RETableViewSection*section =  item.section;
+                if (section == self.hxtSection)
+                {
+                    if (self.hxtArr !=nil)
+                    {
+                        for (NSDictionary*dic in self.hxtArr)
+                        {
+                            id key = [[dic allKeys] objectAtIndex:0];
+                            if ([key isEqualToString:[NSString stringWithFormat:@"%@",item]])
+                            {
+                                [self.hxtArr removeObject:dic];
+                                break;
+                            }
+                        }
+                    }
+                    //[self.hxtSection removeItem:item];
+                }
+                else if (section == self.sntSection)
+                {
+                    if (self.sntArr !=nil)
+                    {
+                        for (NSDictionary*dic in self.sntArr)
+                        {
+                            id key = [[dic allKeys] objectAtIndex:0];
+                            if ([key isEqualToString:[NSString stringWithFormat:@"%@",item]])
+                            {
+                                [self.sntArr removeObject:dic];
+                                break;
+                            }
+                        }
+                    }
+                    
+                    //[self.sntSection removeItem:item];
+                }
+                else if (section == self.xqtSection)
+                {
+                    if (self.xqtArr !=nil)
+                    {
+                        [self.xqtArr removeAllObjects];
+                    }
+                    
+                    //[self.xqtSection removeItem:item];
+                    
+                }
+                [self.tableView reloadData];
+                
+                
+            };
+            
+            if (self.curSection == self.hxtSection)
+            {
+                if (self.hxtArr ==nil)
+                {
+                    self.hxtArr = [[NSMutableArray alloc] init];
                 }
                 
+                NSString*key = [NSString stringWithFormat:@"%@",item];
+                [self.hxtArr addObject:[NSDictionary dictionaryWithObject:image forKey:key]];
                 
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView reloadData];
-                    HIDEHUD_WINDOW;
-
-                });
-
+                [self.hxtSection removeLastItem];
+                [self.hxtSection addItem:item];
+                [self createAddImageButton:self.hxtSection];
             }
-        } failure:^(NSError *error) {
+            else if (self.curSection == self.sntSection)
             {
+                if (self.sntArr ==nil)
+                {
+                    self.sntArr = [[NSMutableArray alloc] init];
+                }
                 
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    HIDEHUD_WINDOW;
-                    
-                });
+                NSString*key = [NSString stringWithFormat:@"%@",item];
+                [self.sntArr addObject:[NSDictionary dictionaryWithObject:image forKey:key]];
+                
+                [self.sntSection removeLastItem];
+                [self.sntSection addItem:item];
+                [self createAddImageButton:self.sntSection];
             }
-        }];
+            else
+            {
+                if (self.xqtArr ==nil)
+                {
+                    self.xqtArr = [[NSMutableArray alloc] init];
+                }
+                
+                [self.xqtArr removeAllObjects];
+                
+                NSString*key = [NSString stringWithFormat:@"%@",item];
+                [self.xqtArr addObject:[NSDictionary dictionaryWithObject:image forKey:key]];
+                
+                [self.xqtSection removeAllItems];
+                [self.xqtSection addItem:item];
+                [self createAddImageButton:self.xqtSection];
+                
+            }
+            [self.tableView reloadData];
+        }
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-//        SHOWHUD_WINDOW;
-//        [HouseDataPuller pushImage:image ToHouse:self.houseDtl HouseParticulars:self.housePtcl ImageType:strImageFor Success:^(id responseObject) {
-//            
-//            RETableViewItem*item = [[RETableViewItem alloc] init];
-//            CGFloat scale =  (self.view.frame.size.width-30)/image.size.width;
-//            UIImage*covertedImg = [UtilFun scaleImage:image toScale:scale];
-//            item.cellHeight = image.size.height * scale;
-//            item.image = covertedImg;
-//            
-//            
-//            if (self.curSection == self.hxtSection)
-//            {
-//                [self.hxtSection removeLastItem];
-//                [self.hxtSection addItem:item ];
-//                [self createAddImageButton:self.hxtSection];
-//            }
-//            else if (self.curSection == self.sntSection)
-//            {
-//                [self.sntSection removeLastItem];
-//                [self.sntSection addItem:item];
-//                [self createAddImageButton:self.sntSection];
-//            }
-//            else if (self.curSection == self.xqtSection)
-//            {
-//                [self.xqtSection removeLastItem];
-//                [self.xqtSection addItem:item];
-//                [self createAddImageButton:self.xqtSection];
-//            }
-//
-//            [self.tableView reloadData];
-//            
-//            HIDEHUD_WINDOW;
-//        } failure:^(NSError *error) {
-//            
-//            HIDEHUD_WINDOW;
-//        }];
-        
-        //save image to album
         if (picker.sourceType == UIImagePickerControllerSourceTypeCamera)
         {
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);

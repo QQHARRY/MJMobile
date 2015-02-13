@@ -97,6 +97,11 @@
 #define API_ADD_CUSTOM @"business/addCustomer"
 #define API_EDIT_CUSTOM @"business/editCustomerDetaills"
 
+#define API_CHECK_NEW_VERSION @"other/checkNewVersion"
+
+
+
+
 
 //字典表
 #define GET_DICTIONARY @"business/getDictionary"

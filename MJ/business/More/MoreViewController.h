@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CheckNewVersion.h"
 
-@interface MoreViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
+@interface MoreViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,updateDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 

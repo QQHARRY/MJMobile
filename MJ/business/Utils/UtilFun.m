@@ -50,6 +50,23 @@ static NSString*UDIDSTRING=nil;
 #endif
 }
 
++(void)presentPopViewControllerWithTitle1:(NSString*)title Message:(NSString*)msg SimpleAction:(NSString*)actionTitle Handler:(void (^)(UIAlertAction *action))handle Sender:(UIViewController*)sender
+{
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:msg
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:actionTitle
+                                              style:UIAlertActionStyleDefault
+                                            handler:handle]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消"
+                                              style:UIAlertActionStyleDefault
+                                            handler:nil]];
+    [sender presentViewController:alert animated:YES completion:nil];
+#endif
+}
+
 +(void)presentPopViewControllerWithTitle:(NSString*)title Message:(NSString*)msg Actions:(NSArray*)actArr Sender:(UIViewController*)sender
 {
     

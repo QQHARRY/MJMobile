@@ -13,8 +13,18 @@
 #import "HouseParticulars.h"
 #import "houseSecretParticulars.h"
 
+typedef enum {
+    READMODE        =1,
+    EDITMODE               = 2,
+    ADDMODE                  = 3,
+} imageWatherMode;
+
 @interface houseImagesTableViewController : UITableViewController<RETableViewManagerDelegate,UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property(strong,nonatomic)HouseDetail*houseDtl;
 @property(strong,nonatomic)HouseParticulars*housePtcl;
-@property(assign,nonatomic)BOOL isEditMode;
+@property(assign,nonatomic)imageWatherMode watchMode;
+
+@property (strong,readwrite, nonatomic)NSMutableArray*xqtArr;
+@property (strong,readwrite, nonatomic)NSMutableArray*hxtArr;
+@property (strong,readwrite, nonatomic)NSMutableArray*sntArr;
 @end

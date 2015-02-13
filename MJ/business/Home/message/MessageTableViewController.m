@@ -33,7 +33,7 @@
     msgArr = [[NSMutableArray alloc ] init];
     [self.tableView addHeaderWithTarget:self action:@selector(refreshData)];
     [self.tableView addFooterWithTarget:self action:@selector(loadMore)];
-    [self getData:YES];
+    //[self getData:YES];
 }
 
 
@@ -67,7 +67,7 @@
         from = obj.msg_cno;
     }
     
-    [messageManager getMsgByType:self.msgType ListFrom:from To:@"" Count:8 Success:^(id responseObject) {
+    [messageManager getMsgByType:self.msgType ListFrom:from To:@"" Count:4 Success:^(id responseObject) {
         HIDEHUD(self.view);
         [self.msgArr addObjectsFromArray:responseObject];
         
@@ -162,6 +162,13 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    NSLog(@"row=%d",indexPath.row);
+    
+    if (indexPath.row >= msgArr.count)
+    {
+        return cell;
+    }
     
     messageObj*obj = [msgArr objectAtIndex:indexPath.row];
     if (obj)

@@ -16,6 +16,7 @@
 #import "AFNetworking.h"
 #import "buildings.h"
 #import "building.h"
+#import "postFileUtils.h"
 
 //#import "AFHTTPRequestOperation.h"
 
@@ -461,9 +462,9 @@
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          if ([bizManager checkReturnStatus:resultDic Success:nil failure:failure ShouldReturnWhenSuccess:NO])
          {
-             
-             success(nil,nil);
+             success([resultDic objectForKey:@"house_trade_no"],[resultDic objectForKey:@"buildings_picture"]);
          }
+         
          
      }
                             failure:^(NSError *error)
@@ -471,6 +472,33 @@
          failure(error);
      }];
 }
+
++(void)pushImage:(UIImage*)image TradeNo:(NSString *)tradeNO PictureNO:(NSString*)picNO Type:(NSString*)type Success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    NSDictionary *parameters = @{@"job_no":[person me].job_no,
+                                 @"acc_password":[person me].password,
+                                 @"DeviceID":[UtilFun getUDID],
+                                 @"obj_type":@"房源",
+                                 @"obj_no":picNO,
+                                 @"imageType":type,
+                                 };
+    
+    NSData*data = UIImageJPEGRepresentation(image, 0.5);
+    
+    [postFileUtils postFileWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", SERVER_URL, ADD_IMAGE] ] data:data Parameter:parameters ServerParamName:@"imagedata" FileName:@"" MimeType:@"image/jpeg" Success:^{
+        {
+            
+            success(nil);
+            
+        }
+    } failure:^(NSError *error) {
+        {
+            
+            failure(error);
+        }
+    }];
+}
+
 
 
 @end

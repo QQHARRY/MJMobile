@@ -47,11 +47,24 @@ alertView.delegate = self;\
 }\
 
 
+#define PRESENTALERTWITHHANDER_WITHDEFAULTCANCEL(title,msg,action,sender,hander)\
+if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)\
+{\
+[UtilFun presentPopViewControllerWithTitle1:title Message:msg SimpleAction:action Handler:hander Sender:sender];\
+}\
+else\
+{\
+UIAlertView*alertView = [[UIAlertView alloc] initWithTitle:title message:msg delegate:sender cancelButtonTitle:action otherButtonTitles:@"取消", nil];\
+alertView.delegate = self;\
+[alertView show];\
+}\
+
+
 @interface UtilFun : NSObject
 
 +(void)presentPopViewControllerWithTitle:(NSString*)title Message:(NSString*)msg SimpleAction:(NSString*)action Sender:(UIViewController*)sender;
 +(void)presentPopViewControllerWithTitle:(NSString*)title Message:(NSString*)msg SimpleAction:(NSString*)action Handler:(void (^)(UIAlertAction *action))handle Sender:(UIViewController*)sender;
-
++(void)presentPopViewControllerWithTitle1:(NSString*)title Message:(NSString*)msg SimpleAction:(NSString*)action Handler:(void (^)(UIAlertAction *action))handle Sender:(UIViewController*)sender;
 +(void)presentPopViewControllerWithTitle:(NSString*)title Message:(NSString*)msg Actions:(NSArray*)actArr Sender:(UIViewController*)sender;
 
 

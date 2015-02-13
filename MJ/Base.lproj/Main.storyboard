@@ -2263,6 +2263,7 @@
                         <outlet property="company" destination="EzP-Yz-UWI" id="2Mo-kF-h8k"/>
                         <outlet property="department" destination="jpc-wG-Ap3" id="V9K-2X-R2j"/>
                         <outlet property="loginName" destination="2E1-J0-Fsr" id="e7P-eg-UD2"/>
+                        <outlet property="loginNameLabel" destination="ny2-wV-DlE" id="DP8-Hk-IyR"/>
                         <outlet property="mobileNum" destination="Mr4-Hn-OQA" id="8pG-Ng-JZN"/>
                         <outlet property="myName" destination="sqT-Xq-Bd8" id="bVh-lh-qWV"/>
                         <outlet property="myPhoto" destination="akS-Vv-KY6" id="QrP-iZ-tNe"/>
