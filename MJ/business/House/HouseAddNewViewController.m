@@ -397,9 +397,9 @@
     } failure:^(NSError *error) {
         HIDEHUD_WINDOW;
         NSString*errorStr = [NSString stringWithFormat:@"%@",error];
-        PRESENTALERTWITHHANDER(@"添加失败",errorStr,@"OK",self,^(UIAlertAction *action)
+        PRESENTALERTWITHHANDER(@"添加失败,请稍候重试",errorStr,@"OK",self,^(UIAlertAction *action)
                                {
-                                   [self.navigationController popViewControllerAnimated:YES];
+                                   
                                }
                                );
     }];
@@ -486,6 +486,7 @@
 
 -(void)uploadImage
 {
+     NSLog(@"start to pushimage");
     UIImage *image = nil;
     NSString *type = @"";
     NSString *tip = @"";
@@ -509,25 +510,34 @@
     }
     else
     {
+        NSLog(@"push image all finished");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            PRESENTALERTWITHHANDER(@"成功", @"添加房源成功!",@"OK", self, ^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"push image all finished ok btn clicked");
+                                       [self.navigationController popViewControllerAnimated:YES];
+                                       
+                                   });
+        });
         
         
-        
-        PRESENTALERTWITHHANDER(@"成功", @"添加房源成功!",@"OK", nil, ^(UIAlertAction *action)
-                               {
-                                   [self.navigationController popViewControllerAnimated:YES];
-                               });
         return;
     }
+    
+    NSLog(@"push image tip=%@",tip);
     SHOWWINDOWHUD(tip);
     [HouseDataPuller pushImage:image TradeNo:self.succeedHouseTradeNo PictureNO:self.succeedHouseImageNo Type:type Success:^(id responseObject)
      {
          HIDEALLWINDOWHUD;
+         NSLog(@"push image one finished,start to next");
          self.uploadProgress++;
          [self uploadImage];
+         return;
      }
                           failure:^(NSError *error)
      {
          HIDEALLWINDOWHUD;
+         NSLog(@"push image one failed,exit");
          PRESENTALERTWITHHANDER(@"失败", @"上传图片时失败，请稍后再试！",@"OK", nil, ^(UIAlertAction *action)
                                 {
                                     [self.navigationController popViewControllerAnimated:YES];
@@ -1264,6 +1274,7 @@
     [self.floor_count setValue:@""];
     [self.house_rank setValue:@""];
     
+    [self.trade_type setValue:@""];
     
     self.floor_height.title = @"高度";
     if ([type  isEqualToString:@"商铺"])
