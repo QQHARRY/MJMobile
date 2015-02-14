@@ -114,7 +114,7 @@ failure:(void (^)(NSError *error))failure;
     NSMutableDictionary*param = [[NSMutableDictionary alloc ] init];
     
     int i = 0;
-    NSString*assistDepts = @"";
+    NSString*assistDepts = @"{\"task_performer_no\"=\"";
     for(NSString*str in assits)
     {
         if(i > 0)
@@ -125,9 +125,10 @@ failure:(void (^)(NSError *error))failure;
         assistDepts = [assistDepts stringByAppendingString:str];
         i++;
     }
+    assistDepts = [assistDepts stringByAppendingString:@"\";};"];
     
-    //[param setValue:assistDepts forKey:@"task_performer_no"];
-    [param setValue:@"DEPT_NO000041" forKey:@"task_performer_no"];
+    [param setValue:assistDepts forKey:@"task_performer_no"];
+    
     
     NSDictionary *parameters = @{@"job_no":[person me].job_no,
                                  @"acc_password":[person me].password,
@@ -136,7 +137,7 @@ failure:(void (^)(NSError *error))failure;
                                  @"taskid":[NSNumber numberWithInt:[taskID intValue]],
                                  @"Action_Type":[NSNumber numberWithInt:actionType],
                                  @"Reason":reason,
-                                 @"params":param
+                                 @"params":assistDepts
                                  
                                  };
     

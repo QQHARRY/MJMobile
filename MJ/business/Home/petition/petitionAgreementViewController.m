@@ -319,6 +319,8 @@
             NSString*value = [[dic allValues] objectAtIndex:0];
             [arr addObject:value];
         }
+        
+        //[arr addObject:@"DPT000041"];
         [petitionManager approveID:[self.petition getID] TaskID:self.petitionTaskID ActionType:0 Reason:opinionForAgreement.text AssistDepts:arr Success:^(id responseObject) {
             [UtilFun presentPopViewControllerWithTitle:@"审批成功" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
              {
