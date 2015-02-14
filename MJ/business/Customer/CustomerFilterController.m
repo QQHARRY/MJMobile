@@ -144,9 +144,10 @@
                                   }
                                   if (dstDict && dstDict.count > 0)
                                   {
-                                      for (NSInteger i = 0; i < dstDict.count; i++)
+                                      NSArray*sectionArr = [dstDict objectForKey:@"sections"];
+                                      for (NSInteger i = 0; i < sectionArr.count; i++)
                                       {
-                                          [options addObject:[[[dstDict objectForKey:@"sections"] objectAtIndex:i] objectForKey:@"areas_name"]];
+                                          [options addObject:[[sectionArr objectAtIndex:i] objectForKey:@"areas_name"]];
                                       }
                                   }
                                   RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)

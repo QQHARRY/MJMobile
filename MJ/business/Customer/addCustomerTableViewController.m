@@ -187,7 +187,7 @@
     }
     if (dstDict && dstDict.count > 0)
     {
-        for (NSInteger i = 0; i < dstDict.count; i++)
+        for (NSInteger i = 0; i < [[dstDict objectForKey:@"sections"] count]; i++)
         {
             if ([[[[dstDict objectForKey:@"sections"] objectAtIndex:i] objectForKey:@"areas_name"] isEqualToString:value])
             {
@@ -701,7 +701,7 @@
         }
         if (dstDict && dstDict.count > 0)
         {
-            for (NSInteger i = 0; i < dstDict.count; i++)
+            for (NSInteger i = 0; i < [[dstDict objectForKey:@"sections"] count]; i++)
             {
                 [options addObject:[[[dstDict objectForKey:@"sections"] objectAtIndex:i] objectForKey:@"areas_name"]];
             }
