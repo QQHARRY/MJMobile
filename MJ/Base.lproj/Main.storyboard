@@ -244,10 +244,10 @@
             </objects>
             <point key="canvasLocation" x="-624" y="57"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tabbar Controller-->
         <scene sceneID="ZAd-3R-8cR">
             <objects>
-                <tabBarController id="bCD-A9-OFp" sceneMemberID="viewController">
+                <tabBarController id="bCD-A9-OFp" customClass="MJTabbarController" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="4JZ-tr-hXG">
