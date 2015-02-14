@@ -321,7 +321,9 @@
         }
         
         //[arr addObject:@"DPT000041"];
+        SHOWHUD_WINDOW;
         [petitionManager approveID:[self.petition getID] TaskID:self.petitionTaskID ActionType:0 Reason:opinionForAgreement.text AssistDepts:arr Success:^(id responseObject) {
+            HIDEHUD_WINDOW
             [UtilFun presentPopViewControllerWithTitle:@"审批成功" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
              {
                  [self quit];
@@ -329,6 +331,7 @@
                                                 Sender:self];
             
         } failure:^(NSError *error) {
+            HIDEHUD_WINDOW
             [UtilFun presentPopViewControllerWithTitle:@"审批失败" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
              {
                  [self quit];

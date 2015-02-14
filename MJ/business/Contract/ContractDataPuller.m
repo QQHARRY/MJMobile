@@ -14,6 +14,7 @@
 #import "bizManager.h"
 #import "UtilFun.h"
 #import "AFNetworking.h"
+#import "postFileUtils.h"
 
 @implementation ContractDataPuller
 
@@ -61,7 +62,7 @@
 
 +(void)pushImage:(UIImage*)image No:(NSString *)no Type:(NSString*)type Success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    NSData*data = UIImageJPEGRepresentation(image, 1);
+    NSData*data = UIImageJPEGRepresentation(image, 0.5);
     NSDictionary *parameters = @{@"job_no":[person me].job_no,
                                  @"acc_password":[person me].password,
                                  @"DeviceID":[UtilFun getUDID],
@@ -69,19 +70,29 @@
                                  @"obj_no":no,
                                  @"imageType":type,
                                  };
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:[NSString stringWithFormat:@"%@%@", SERVER_URL, ADD_IMAGE] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
-    {
-        [formData appendPartWithFormData:data name:@"imagedata"];
-    }
-          success:^(AFHTTPRequestOperation *operation, id responseObject)
-    {
+    
+    [postFileUtils postFileWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"%@%@", SERVER_URL, ADD_IMAGE]] data:data Parameter:parameters ServerParamName:@"imagedata" FileName:@"" MimeType:@"image/jpeg" Success:^{
         success(nil);
-    }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error)
-    {
+    } failure:^(NSError *error) {
         failure(nil);
     }];
+    
+    
+    
+    
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    [manager POST:[NSString stringWithFormat:@"%@%@", SERVER_URL, ADD_IMAGE] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+//    {
+//        [formData appendPartWithFormData:data name:@"imagedata"];
+//    }
+//          success:^(AFHTTPRequestOperation *operation, id responseObject)
+//    {
+//        success(nil);
+//    }
+//          failure:^(AFHTTPRequestOperation *operation, NSError *error)
+//    {
+//        failure(nil);
+//    }];
 }
 
 @end

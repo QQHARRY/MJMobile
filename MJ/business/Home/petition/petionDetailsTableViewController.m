@@ -14,6 +14,7 @@
 #import "Macro.h"
 #import "petitionFollowChartViewController.h"
 #import "petitionAgreementViewController.h"
+#import "UtilFun.h"
 
 @interface petionDetailsTableViewController ()
 
@@ -44,7 +45,9 @@
 
 -(void)assignBtnClicked:(id)sender
 {
+    SHOWHUD_WINDOW;
     [petitionManager approveID:self.petitionID TaskID:self.petitionTaskID ActionType:3 Reason:@"" AssistDepts:[[NSArray alloc]init] Success:^(id responseObject) {
+        HIDEHUD_WINDOW;
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc ] initWithTitle:@"审批" style:UIBarButtonItemStylePlain target:self action:@selector(agreenBtnClicked:)  ];
         [UtilFun presentPopViewControllerWithTitle:@"签收成功" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
          {
@@ -53,6 +56,7 @@
                                             Sender:self];
         
     } failure:^(NSError *error) {
+        HIDEHUD_WINDOW;
         [UtilFun presentPopViewControllerWithTitle:@"签收失败" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
          {
              
