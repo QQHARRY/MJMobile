@@ -526,7 +526,7 @@
                             <constraint firstItem="nng-lu-J0c" firstAttribute="leading" secondItem="RmC-2X-YVy" secondAttribute="leading" constant="15" id="puV-yO-Q48"/>
                             <constraint firstItem="wPa-Fa-zlD" firstAttribute="top" secondItem="nng-lu-J0c" secondAttribute="bottom" constant="15" id="q3T-x0-9sC"/>
                             <constraint firstItem="nng-lu-J0c" firstAttribute="top" secondItem="fEw-Us-Zp3" secondAttribute="bottom" constant="10" id="qe0-YF-wMF"/>
-                            <constraint firstAttribute="bottom" secondItem="wPa-Fa-zlD" secondAttribute="bottom" constant="50" id="sWc-Yv-WqW"/>
+                            <constraint firstAttribute="bottom" secondItem="wPa-Fa-zlD" secondAttribute="bottom" constant="70" id="sWc-Yv-WqW"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">

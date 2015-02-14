@@ -44,7 +44,7 @@
         [self.opinionLabel setTranslatesAutoresizingMaskIntoConstraints:YES];
 #endif
 
-        [self.opinionForAgreement setFrame:CGRectMake(10, 330, 300, 55)];
+        [self.opinionForAgreement setFrame:CGRectMake(10, 310, 300, 55)];
         
         
         [self.opinionLabel setFrame:CGRectMake(10, 310, 300, 21)];
