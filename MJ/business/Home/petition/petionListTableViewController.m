@@ -192,7 +192,7 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-    
+    NSLog(@"dfsdfds");
     UIViewController *controller;
     if ([segue.destinationViewController isKindOfClass:[UINavigationController class]]) {
         UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
@@ -206,11 +206,15 @@
     {
         if ([controller isKindOfClass:[petionDetailsTableViewController class]])
         {
+            
             petionDetailsTableViewController*contactLst = (petionDetailsTableViewController*)controller;
             NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
+            
+            petiotionBrief*pt = [self.petitionArr objectAtIndex:selectIndexPath.row];
             contactLst.petitionID = ((petiotionBrief*)[self.petitionArr objectAtIndex:selectIndexPath.row]).id;
             contactLst.petitionTaskID = ((petiotionBrief*)[self.petitionArr objectAtIndex:selectIndexPath.row]).taskid;
             contactLst.petitionTypeString = ((petiotionBrief*)[self.petitionArr objectAtIndex:selectIndexPath.row]).flowtype;
+            contactLst.task_state = [((petiotionBrief*)[self.petitionArr objectAtIndex:selectIndexPath.row]).task_state intValue] != 0;
         }
         else
         {

@@ -199,7 +199,18 @@ static NSMutableDictionary*selctions = nil;
         {
             ContactsListTableViewCell*cell = (ContactsListTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
             unit*unt = cell.unitKeeped;
-            if ([unt isKindOfClass:[person class]])
+            if (self.singleSelectCanSelectDepart && [unt isKindOfClass:[person class]])
+            {
+                if (self.selectResultDelegate)
+                {
+                    NSMutableArray*arr = [[NSMutableArray alloc] init];
+                    [arr addObject:unt];
+                    
+                    [self.selectResultDelegate returnSelection:arr];
+                }
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else
             {
                 if (self.selectResultDelegate)
                 {

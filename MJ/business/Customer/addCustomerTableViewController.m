@@ -1039,6 +1039,7 @@
         ContactListTableViewController *vc = [(AppDelegate *)[[UIApplication sharedApplication] delegate] instantiateViewControllerWithIdentifier:@"ContactListTableViewController" AndClass:[ContactListTableViewController class]];
         vc.selectMode = YES;
         vc.singleSelect = YES;
+        vc.singleSelectCanSelectDepart = NO;
         vc.selectResultDelegate = self;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];

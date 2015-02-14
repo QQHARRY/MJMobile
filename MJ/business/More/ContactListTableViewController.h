@@ -24,6 +24,7 @@
 @property(nonatomic,strong)unit*contactListTreeHead;
 @property(nonatomic,assign)BOOL selectMode;
 @property(nonatomic,assign)BOOL singleSelect;
+@property(nonatomic,assign)BOOL singleSelectCanSelectDepart;
 @property(nonatomic,assign)id<contacSelection>selectResultDelegate;
 - (IBAction)expandBtnClicked:(id)sender;
 @property(nonatomic,strong)unit*curSelected;

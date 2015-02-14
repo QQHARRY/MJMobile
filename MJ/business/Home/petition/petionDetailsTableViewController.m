@@ -28,11 +28,39 @@
     petDetail = [[petitionDetail alloc]init];
     [self getPetionDetails:self.petitionID];
     
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc ] initWithTitle:@"审批" style:UIBarButtonItemStylePlain target:self action:@selector(agreenBtnClicked:)  ];
+    if (self.task_state)
+    {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc ] initWithTitle:@"审批" style:UIBarButtonItemStylePlain target:self action:@selector(agreenBtnClicked:)  ];
+    }
+    else
+    {
+         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc ] initWithTitle:@"签收" style:UIBarButtonItemStylePlain target:self action:@selector(assignBtnClicked:)  ];
+    }
     
     //[petitionDictionary petitionDicByDic:nil];
 }
+
+
+
+-(void)assignBtnClicked:(id)sender
+{
+    [petitionManager approveID:self.petitionID TaskID:self.petitionTaskID ActionType:3 Reason:@"" AssistDepts:[[NSArray alloc]init] Success:^(id responseObject) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc ] initWithTitle:@"审批" style:UIBarButtonItemStylePlain target:self action:@selector(agreenBtnClicked:)  ];
+        [UtilFun presentPopViewControllerWithTitle:@"签收成功" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
+         {
+             
+         }
+                                            Sender:self];
+        
+    } failure:^(NSError *error) {
+        [UtilFun presentPopViewControllerWithTitle:@"签收失败" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
+         {
+             
+         }
+                                            Sender:self];
+    }];
+}
+
 
 -(void)agreenBtnClicked:(id)sender
 {

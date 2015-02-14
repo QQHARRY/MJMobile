@@ -126,7 +126,8 @@ failure:(void (^)(NSError *error))failure;
         i++;
     }
     
-    [param setValue:assistDepts forKey:@"task_performer_no"];
+    //[param setValue:assistDepts forKey:@"task_performer_no"];
+    [param setValue:@"DEPT_NO000041" forKey:@"task_performer_no"];
     
     NSDictionary *parameters = @{@"job_no":[person me].job_no,
                                  @"acc_password":[person me].password,

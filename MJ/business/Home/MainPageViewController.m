@@ -523,6 +523,7 @@
             contactLst.petitionID = ((petiotionBrief*)[self.mainPetitionArr objectAtIndex:selectIndexPath.row]).id;
             contactLst.petitionTaskID = ((petiotionBrief*)[self.mainPetitionArr objectAtIndex:selectIndexPath.row]).taskid;
             contactLst.petitionTypeString = ((petiotionBrief*)[self.mainPetitionArr objectAtIndex:selectIndexPath.row]).flowtype;
+            contactLst.task_state = [((petiotionBrief*)[self.mainPetitionArr objectAtIndex:selectIndexPath.row]).task_state intValue] != 0;
         }
         else
         {

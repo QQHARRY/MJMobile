@@ -16,6 +16,7 @@
 @property(strong,nonatomic)NSString*petitionID;
 @property(strong,nonatomic)NSString*petitionTaskID;
 @property(strong,nonatomic)NSString*petitionTypeString;
+@property(assign,nonatomic)BOOL task_state;//签收状态
 //@property(strong,nonatomic)NSArray*petionDetails;
 //@property(strong,nonatomic)NSString*petionStatusChartUrl;
 @property(strong,nonatomic)petitionDetail*petDetail;

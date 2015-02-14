@@ -534,6 +534,7 @@
     ContactListTableViewController*ctrl =[app instantiateViewControllerWithIdentifier:@"ContactListTableViewController" AndClass:[ContactListTableViewController class]];
     ctrl.selectMode = YES;
     ctrl.singleSelect = NO;
+    ctrl.singleSelectCanSelectDepart = NO;
     ctrl.selectResultDelegate = self;
     [self.navigationController pushViewController:ctrl animated:YES];
 }
