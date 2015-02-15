@@ -39,6 +39,16 @@
 
 - (void)onAddAction:(id)sender
 {
+    if (self.ContractList.count > 0)
+    {
+        NSDictionary *lastContract = [self.ContractList firstObject];
+        if ([[lastContract objectForKey:@"contract_status"] isEqualToString:@"1"] &&
+            [[lastContract objectForKey:@"contract_type"] isEqualToString:@"10"])
+        {
+            PRESENTALERT(@"错 误", @"该房源已有有效的独家委托，不能添加新的委托", @"O K", self);
+            return;
+        }
+    }
     ContractAddController *vc = [[ContractAddController alloc] initWithStyle:UITableViewStyleGrouped];
     vc.sid = self.sid;
     [self.navigationController pushViewController:vc animated:YES];

@@ -324,7 +324,25 @@
             PRESENTALERT(@"错 误", @"请选择委托结束日期", @"O K", self);
             return;
         }
-        [param setValue:self.endItem.value forKey:@"contract_end_date"];
+        {
+            NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+            NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+            NSDateComponents *components = [calendar components:unitFlags fromDate:self.startItem.value toDate:self.endItem.value options:unitFlags];
+            if (components.year == 0 &&
+                (components.month == 0 || components.month == 1 || components.month == 2) &&
+                components.day >= 0 &&
+                components.hour >= 0 &&
+                components.minute >= 0 &&
+                components.second >= 0)
+            {
+                [param setValue:self.endItem.value forKey:@"contract_end_date"];
+            }
+            else
+            {
+                PRESENTALERT(@"错 误", @"委托结束时间应大于开始时间且不能超过三个月", @"O K", self);
+                return;
+            }
+        }
         if (self.wtImageList.count <= 0)
         {
             PRESENTALERT(@"错 误", @"请立刻上传委托协议图片", @"O K", self);
@@ -372,25 +390,25 @@
     {
         image = [self.wtImageList objectAtIndex:self.uploadProgress];
         type = @"wt";
-        tip = [NSString stringWithFormat:@"正在上传委托协议第%ld张(共%lu张)...", (self.uploadProgress + 1), (unsigned long)self.wtImageList.count];
+        tip = [NSString stringWithFormat:@"正在上传委托协议第%lu张(共%lu张)...", (self.uploadProgress + 1), (unsigned long)self.wtImageList.count];
     }
     else if (self.uploadProgress < (self.qcImageList.count + self.wtImageList.count) )
     {
         image = [self.qcImageList objectAtIndex:(self.uploadProgress - self.wtImageList.count) ];
         type = @"qc";
-        tip = [NSString stringWithFormat:@"正在上传产权证明第%ld张(共%lu张)...", (self.uploadProgress + 1 - self.wtImageList.count), (unsigned long)self.qcImageList.count];
+        tip = [NSString stringWithFormat:@"正在上传产权证明第%lu张(共%lu张)...", (self.uploadProgress + 1 - self.wtImageList.count), (unsigned long)self.qcImageList.count];
     }
     else if (self.uploadProgress < (self.qcImageList.count + self.wtImageList.count + self.sfImageList.count) )
     {
         image = [self.sfImageList objectAtIndex:(self.uploadProgress - self.wtImageList.count - self.qcImageList.count) ];
         type = @"sf";
-        tip = [NSString stringWithFormat:@"正在上传身份证明第%ld张(共%lu张)...", (self.uploadProgress + 1 - self.wtImageList.count - self.qcImageList.count), (unsigned long)self.sfImageList.count];
+        tip = [NSString stringWithFormat:@"正在上传身份证明第%lu张(共%lu张)...", (self.uploadProgress + 1 - self.wtImageList.count - self.qcImageList.count), (unsigned long)self.sfImageList.count];
     }
     else if (self.uploadProgress < (self.qcImageList.count + self.wtImageList.count + self.sfImageList.count + self.qtImageList.count) )
     {
         image = [self.qtImageList objectAtIndex:(self.uploadProgress - self.wtImageList.count - self.qcImageList.count - self.qtImageList.count) ];
         type = @"qt";
-        tip = [NSString stringWithFormat:@"正在上传其他图片第%ld张(共%lu张)...", (self.uploadProgress + 1 - self.wtImageList.count - self.qcImageList.count - self.qtImageList.count), (unsigned long)self.qtImageList.count];
+        tip = [NSString stringWithFormat:@"正在上传其他图片第%lu张(共%lu张)...", (self.uploadProgress + 1 - self.wtImageList.count - self.qcImageList.count - self.qtImageList.count), (unsigned long)self.qtImageList.count];
     }
     else
     {
