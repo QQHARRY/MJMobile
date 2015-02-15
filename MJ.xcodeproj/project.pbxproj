@@ -150,6 +150,10 @@
 		4AD7955D1A218DF100DEC779 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7955B1A218DF100DEC779 /* MBProgressHUD.m */; };
 		4AFA9F631A775CB7008A852F /* editCustomerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFA9F621A775CB7008A852F /* editCustomerTableViewController.m */; };
 		4AFC39A81A47CA3A000FB6F3 /* bind.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC39A61A47CA3A000FB6F3 /* bind.storyboard */; };
+		B93A1C7F1A910109002D5C58 /* SignDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A1C7A1A910109002D5C58 /* SignDetailCell.m */; };
+		B93A1C801A910109002D5C58 /* SignDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B93A1C7B1A910109002D5C58 /* SignDetailCell.xib */; };
+		B93A1C811A910109002D5C58 /* SignTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A1C7D1A910109002D5C58 /* SignTableViewController.m */; };
+		B93A1C821A910109002D5C58 /* SignTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B93A1C7E1A910109002D5C58 /* SignTableViewController.xib */; };
 		B93B141A1A61646600121133 /* CustomerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B14191A61646600121133 /* CustomerViewController.m */; };
 		B93B14291A61652000121133 /* CustomerDataPuller.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B141C1A61652000121133 /* CustomerDataPuller.m */; };
 		B93B142A1A61652000121133 /* CustomerDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B93B141E1A61652000121133 /* CustomerDetail.m */; };
@@ -541,6 +545,12 @@
 		4AFA9F611A775CB7008A852F /* editCustomerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editCustomerTableViewController.h; sourceTree = "<group>"; };
 		4AFA9F621A775CB7008A852F /* editCustomerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editCustomerTableViewController.m; sourceTree = "<group>"; };
 		4AFC39A71A47CA3A000FB6F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/bind.storyboard; sourceTree = "<group>"; };
+		B93A1C791A910109002D5C58 /* SignDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignDetailCell.h; sourceTree = "<group>"; };
+		B93A1C7A1A910109002D5C58 /* SignDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignDetailCell.m; sourceTree = "<group>"; };
+		B93A1C7B1A910109002D5C58 /* SignDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignDetailCell.xib; sourceTree = "<group>"; };
+		B93A1C7C1A910109002D5C58 /* SignTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignTableViewController.h; sourceTree = "<group>"; };
+		B93A1C7D1A910109002D5C58 /* SignTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignTableViewController.m; sourceTree = "<group>"; };
+		B93A1C7E1A910109002D5C58 /* SignTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignTableViewController.xib; sourceTree = "<group>"; };
 		B93B14181A61646600121133 /* CustomerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerViewController.h; sourceTree = "<group>"; };
 		B93B14191A61646600121133 /* CustomerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerViewController.m; sourceTree = "<group>"; };
 		B93B141B1A61652000121133 /* CustomerDataPuller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerDataPuller.h; sourceTree = "<group>"; };
@@ -1280,6 +1290,12 @@
 				B94445871A62A6860033E998 /* SignAddController.m */,
 				B94445881A62A6860033E998 /* SignDataPuller.h */,
 				B94445891A62A6860033E998 /* SignDataPuller.m */,
+				B93A1C791A910109002D5C58 /* SignDetailCell.h */,
+				B93A1C7A1A910109002D5C58 /* SignDetailCell.m */,
+				B93A1C7B1A910109002D5C58 /* SignDetailCell.xib */,
+				B93A1C7C1A910109002D5C58 /* SignTableViewController.h */,
+				B93A1C7D1A910109002D5C58 /* SignTableViewController.m */,
+				B93A1C7E1A910109002D5C58 /* SignTableViewController.xib */,
 			);
 			path = Sign;
 			sourceTree = "<group>";
@@ -1742,8 +1758,10 @@
 				B93B14301A61652000121133 /* CustomerTableViewController.xib in Resources */,
 				B98BD5831A609185003A35BE /* RETableViewManager.bundle in Resources */,
 				B94445841A62986B0033E998 /* ContractTableViewController.xib in Resources */,
+				B93A1C821A910109002D5C58 /* SignTableViewController.xib in Resources */,
 				4A20DAE21A6A2B85002E68EC /* BuildingsTableCell.xib in Resources */,
 				4A6865A61A737573005394DD /* buildingItemTableViewCell.xib in Resources */,
+				B93A1C801A910109002D5C58 /* SignDetailCell.xib in Resources */,
 				B98BD4B21A60616A003A35BE /* HouseDetailCell.xib in Resources */,
 				B93B142C1A61652000121133 /* CustomerDetailCell.xib in Resources */,
 				4AFC39A81A47CA3A000FB6F3 /* bind.storyboard in Resources */,
@@ -1884,6 +1902,7 @@
 				B98BD4A71A604045003A35BE /* HouseDetail.m in Sources */,
 				4A56654C1A4C05C300C3BA22 /* messageManager.m in Sources */,
 				4A5137481A3B18C1007B504B /* bizManager.m in Sources */,
+				B93A1C7F1A910109002D5C58 /* SignDetailCell.m in Sources */,
 				B98BD5891A609185003A35BE /* NSError+REValidation.m in Sources */,
 				4A6865A91A7375EF005394DD /* building.m in Sources */,
 				B95BEC4F1A73B59C00C2FB90 /* ClientFilter.m in Sources */,
@@ -1897,6 +1916,7 @@
 				B93B141A1A61646600121133 /* CustomerViewController.m in Sources */,
 				B98BD5741A609185003A35BE /* REInlinePickerItem.m in Sources */,
 				4A51374B1A3B2AAA007B504B /* dic2Object.m in Sources */,
+				B93A1C811A910109002D5C58 /* SignTableViewController.m in Sources */,
 				4A5D243F1A4A6E9C00546698 /* ShopItemTableViewCell.m in Sources */,
 				4A6EF2AF1A5E7401008AB819 /* pushManagement.m in Sources */,
 				4AD794621A208F4400DEC779 /* AppDelegate.m in Sources */,
