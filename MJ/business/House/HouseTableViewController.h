@@ -20,5 +20,6 @@ typedef NS_ENUM(NSInteger, HOUSER_CONTROLLER_TYPE)
 @property (nonatomic) HOUSER_CONTROLLER_TYPE controllerType;
 @property (nonatomic) HouseFilter *filter;
 @property (nonatomic, weak) id container;
+- (void)refreshData;
 
 @end

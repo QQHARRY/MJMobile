@@ -79,6 +79,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (self.nowControllerType == HCT_SELL)
+    {
+        [self.sellController refreshData];
+    }
+    else if (self.nowControllerType == HCT_RENT)
+    {
+        [self.rentController refreshData];
+    }
+    
+    [super viewDidAppear:animated];
+}
+
 - (void)onFilterAction:(id)sender
 {
     HouseFilterController *vc = [[HouseFilterController alloc] initWithStyle:UITableViewStyleGrouped];

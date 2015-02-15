@@ -393,14 +393,14 @@
         self.sAddressItem = [RETextItem itemWithTitle:@"家庭住址:" value:self.secret.obj_address placeholder:@""];
         self.sAddressItem.enabled = false;
         [self.secretSection addItem:self.sAddressItem];
+    }
+    else
+    {
         // add title button
         if ([self.particulars.edit_permit isEqualToString:@"1"])
         {
             self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(onEditAction:)];
         }
-    }
-    else
-    {
         if ([self.particulars.edit_permit isEqualToString:@"1"] || [self.particulars.secret_permit isEqualToString:@"1"])
         {
             self.secretActionItem = [RETableViewItem itemWithTitle:@"查看保密信息" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)

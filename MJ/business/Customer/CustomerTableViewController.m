@@ -35,12 +35,13 @@
     // header & footer refresh
     [self.tableView addHeaderWithTarget:self action:@selector(refreshData)];
     [self.tableView addFooterWithTarget:self action:@selector(loadMore)];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
+    
     [self refreshData];
 }
+
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//}
 
 - (void)refreshData
 {

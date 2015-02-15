@@ -70,6 +70,20 @@
     [super viewDidLoad];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (self.nowControllerType == CCT_SELL)
+    {
+        [self.sellController refreshData];
+    }
+    else if (self.nowControllerType == CCT_RENT)
+    {
+        [self.rentController refreshData];
+    }
+
+    [super viewDidAppear:animated];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -82,10 +96,6 @@
     vc.hvc = self;
     [self.navigationController pushViewController:vc animated:YES];
 }
-
-
-
-
 
 #pragma mark - ViewPagerDataSource
 - (NSUInteger)numberOfTabsForViewPager:(ViewPagerController *)viewPager

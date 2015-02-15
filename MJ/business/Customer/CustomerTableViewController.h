@@ -20,5 +20,6 @@ typedef NS_ENUM(NSInteger, CUSTOMER_CONTROLLER_TYPE)
 @property (nonatomic) CUSTOMER_CONTROLLER_TYPE controllerType;
 @property (nonatomic) CustomerFilter *filter;
 @property (nonatomic, weak) id container;
+- (void)refreshData;
 
 @end
