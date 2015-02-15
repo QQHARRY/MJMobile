@@ -348,9 +348,10 @@
                 }
             } failure:^(NSError *error) {
                 {
-                    
+                    __block NSString*err = [error description
+                                            ];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        
+                        PRESENTALERT(@"编辑失败",err, nil, nil);
                         HIDEHUD_WINDOW;
                         
                     });

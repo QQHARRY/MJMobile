@@ -191,13 +191,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSString*key = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:key];
+    UITableViewCell *cell = nil;
+    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:key];
     if (cell == nil)
     {
         cell = [[UITableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:key];
     }
     
-    [cell.textLabel setFont:[UIFont systemFontOfSize:10]];
+    [cell.textLabel setFont:[UIFont systemFontOfSize:12]];
     if (indexPath.section == 0)
     {
         if (self.petition && self.petition.historyNodes && self.petition.historyNodes.count > 0)
@@ -205,11 +206,25 @@
             NSDictionary*dic = [self.petition.historyNodes objectAtIndex:indexPath.row];
             NSString*key = [dic objectForKey:@"key"];
             NSString*value = [dic objectForKey:@"value"];
+           
             value =[[key stringByAppendingString:@"  "] stringByAppendingString:value];
-            
+            //value = @"dsaklfdsfjdskljfksldjfkdsjfksdjfksdjfkdsjdsaklfdsfjdskljfksldjfkdsjfksdjfksdjfkdsjdsaklfdsfjdskljfksldjfkdsjfksdjfksdjfkdsjdsaklfdsfjdskljfksldjfkdsjfksdjfksdjfkdsjdsaklfdsfjdskljfksldjfkdsjfksdjfksdjfkdsj";
             
             //value = [NSString stringWithFormat:@"%d  %@",indexPath.row,value];
             cell.textLabel.text =value;
+            cell.textLabel.hidden = YES;
+            CGRect frame = cell.frame;
+            frame.origin.x = 12;
+            frame.size.width -= 24;
+            UITextView*textV = [[UITextView alloc] initWithFrame:frame];
+            [textV setFont:[UIFont systemFontOfSize:12]];
+            textV.text = value;
+            textV.editable = NO;
+            textV.selectable = NO;
+            textV.scrollEnabled = YES;
+            
+            [cell addSubview:textV];
+            
         }
         else
         {

@@ -45,8 +45,9 @@
         self.phoneBtn.hidden = YES;
         self.smsBtn.hidden = YES;
         self.saveBtn.hidden = NO;
-        self.loginNameLabel.text = @"登录名";
-        self.loginName.text = psn.job_name;
+        self.character.text = @"职位:";
+        self.loginNameLabel.text = @"员工编号";
+        self.loginName.text = psn.job_no;
     }
     else
     {
@@ -100,16 +101,10 @@
     self.myName.text = [tmp stringByAppendingString:psn.name_full];
     
     
-    if (self.psn == [person me])
-    {
-        tmp = @"登录角色:";
-        self.character.text = [tmp stringByAppendingString:psn.role_name];
-    }
-    else
-    {
-        tmp = @"职位:";
-        self.character.text = [tmp stringByAppendingString:self.psn.technical_post_name];
-    }
+    
+    tmp = @"职位:";
+    self.character.text = [tmp stringByAppendingString:self.psn.technical_post_name];
+
     
     
     tmp = @"最后登录IP:";
@@ -258,7 +253,7 @@
 {
     [picker dismissViewControllerAnimated:YES completion:^{}];
     
-    __block UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     if (image ==nil)
     {
         return;
@@ -266,15 +261,16 @@
 
     
     self.photoChanged = NO;
-    
     NSData*data = UIImageJPEGRepresentation(image, 0.5);
     
+    
+#if 0
     NSDictionary *parameters = @{@"job_no":psn.job_no,
                                  @"acc_password": psn.password,
                                  @"DeviceID" : [UtilFun getUDID],
                                  };
     
-#if 0
+
     SHOWHUD_WINDOW;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager POST:[NSString stringWithFormat:@"%@%@", SERVER_URL, EDIT_PERSON_PHOTO] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData)

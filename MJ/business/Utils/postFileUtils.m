@@ -70,7 +70,7 @@
             NSError*error;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
             
-            if ([[json objectForKey:@"status"] intValue] == 0)
+            if (json && [[json objectForKey:@"Status"] intValue] == 0)
             {
                 if (success)
                 {
@@ -81,7 +81,17 @@
             {
                 if (failure)
                 {
-                    failure(nil);
+                    if (error)
+                    {
+                        failure(error);
+                    }
+                    else
+                    {
+                        NSError*error = [NSError errorWithDomain:@"" code:[[json objectForKey:@"Status"]  intValue] userInfo:@{@"":@""}];
+                        
+                        failure(error);
+                    }
+                    
                 }
             }
         }
