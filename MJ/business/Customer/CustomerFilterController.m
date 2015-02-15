@@ -14,6 +14,7 @@
 #import "HouseDataPuller.h"
 #import "AppDelegate.h"
 #import "person.h"
+#import "department.h"
 
 @interface CustomerFilterController ()
 
@@ -32,6 +33,7 @@
 @property (strong, readwrite, nonatomic) RETableViewSection *commitSection;
 
 @property (nonatomic, strong) person *sales;
+@property (nonatomic, strong) department *saled;
 @property (nonatomic, strong) NSArray *requirementDictList;
 @property (nonatomic, strong) NSArray *areaDictList;
 
@@ -172,7 +174,7 @@
     [section addItem:self.startTimeItem];
     self.endTimeItem = [REDateTimeItem itemWithTitle:@"最晚登记日期" value:nil placeholder:nil format:@"yyyy-MM-dd hh:mm" datePickerMode:UIDatePickerModeDateAndTime];
     [section addItem:self.endTimeItem];
-    self.salesNameItem = [RERadioItem itemWithTitle:@"员工姓名" value:@"" selectionHandler:^(RERadioItem *item)
+    self.salesNameItem = [RERadioItem itemWithTitle:@"员工(或部门)" value:@"" selectionHandler:^(RERadioItem *item)
                               {
                                   [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
                                   ContactListTableViewController *vc = [(AppDelegate *)[[UIApplication sharedApplication] delegate] instantiateViewControllerWithIdentifier:@"ContactListTableViewController" AndClass:[ContactListTableViewController class]];
@@ -284,6 +286,14 @@
         {
             filter.user_no = @"";
         }
+        if (self.saled)
+        {
+            filter.dept_no = self.saled.dept_current_no;
+        }
+        else
+        {
+            filter.dept_no = @"";
+        }
         [self.navigationController popViewControllerAnimated:YES];
     }];
     buttonItem.textAlignment = NSTextAlignmentCenter;
@@ -293,15 +303,29 @@
 
 -(void)returnSelection:(NSArray*)curSelection
 {
-    person *p = [curSelection lastObject];
-    if (!p || ![p isKindOfClass:[person class]])
+    id o = [curSelection lastObject];
+    if ([o isKindOfClass:[person class]])
+    {
+        person *p = o;
+        self.salesNameItem.value = p.name_full;
+        self.sales = p;
+        self.saled = nil;
+        [self.tableView reloadData];
+    }
+    else if ([o isKindOfClass:[department class]])
+    {
+        department *d = o;
+        self.salesNameItem.value = d.dept_name;
+        self.saled = d;
+        self.sales = nil;
+        [self.tableView reloadData];
+    }
+    else
     {
         self.sales = nil;
+        self.saled = nil;
         return;
     }
-    self.salesNameItem.value = p.name_full;
-    self.sales = p;
-    [self.tableView reloadData];
 }
 
 @end
