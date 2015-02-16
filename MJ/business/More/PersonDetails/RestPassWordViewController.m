@@ -61,20 +61,27 @@
                                  @"newPassword" : newPwd1,
 
                                  };
+    SHOWHUD_WINDOW;
     [NetWorkManager PostWithApiName:EDIT_PIN_NO parameters:parameters success:
      ^(id responseObject)
      {
-         HIDEHUD(self.view);
+         HIDEHUD_WINDOW;
+         [person me].password = newPwd1;
+         self.oldPwd.text = @"";
+         self.pwd1.text = @"";
+         self.pwd2.text = @"";
           [UtilFun presentPopViewControllerWithTitle:@"修改成功" Message:@"" SimpleAction:@"OK" Sender:self];
          
      }
                             failure:^(NSError *error)
      {
-         HIDEHUD(self.view);
+         HIDEHUD_WINDOW;
          [UtilFun presentPopViewControllerWithTitle:@"修改失败" Message:@"" SimpleAction:@"OK" Sender:self];
          
      }];
     
    
 }
+
+
 @end
