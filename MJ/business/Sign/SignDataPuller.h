@@ -19,4 +19,6 @@
 +(void)pullSignConditionListDataSuccess:(void (^)(NSDictionary *conditionSrc))success failure:(void (^)(NSError *error))failure;
 +(void)pullClientWithFilter:(ClientFilter *)filter Success:(void (^)(NSArray *clientList))success failure:(void (^)(NSError *error))failure;
 
++(void)pullMySignListWithFrom:(NSString *)fid To:(NSString *)tid Success:(void (^)(NSArray *ContractList))success failure:(void (^)(NSError *error))failure;
+
 @end

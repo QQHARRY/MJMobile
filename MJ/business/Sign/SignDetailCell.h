@@ -24,11 +24,15 @@
 //1 审核通过
 //2 签约完成
 
-@property (strong, nonatomic) IBOutlet UILabel *type;
-@property (strong, nonatomic) IBOutlet UILabel *state;
-@property (strong, nonatomic) IBOutlet UILabel *dept;
-@property (strong, nonatomic) IBOutlet UILabel *man;
-@property (strong, nonatomic) IBOutlet UILabel *limit;
+@property (strong, nonatomic) IBOutlet UILabel *no;
+@property (strong, nonatomic) IBOutlet UILabel *tno;
+@property (strong, nonatomic) IBOutlet UILabel *addr;
+@property (strong, nonatomic) IBOutlet UILabel *apper;
+@property (strong, nonatomic) IBOutlet UILabel *room;
 @property (strong, nonatomic) IBOutlet UILabel *time;
+@property (strong, nonatomic) IBOutlet UILabel *block;
+@property (strong, nonatomic) IBOutlet UILabel *dept;
+@property (strong, nonatomic) IBOutlet UILabel *signer;
+@property (strong, nonatomic) IBOutlet UILabel *status;
 
 @end

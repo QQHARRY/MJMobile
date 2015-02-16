@@ -18,8 +18,6 @@
 #import "building.h"
 #import "postFileUtils.h"
 
-//#import "AFHTTPRequestOperation.h"
-
 @implementation HouseDataPuller
 
 +(void)pullDataWithFilter:(HouseFilter *)filter Success:(void (^)(NSArray *houseDetailList))success failure:(void (^)(NSError *error))failure;

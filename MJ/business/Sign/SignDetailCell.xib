@@ -117,12 +117,16 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="dept" destination="87H-vN-wzN" id="gWk-w1-Keo"/>
-                <outlet property="limit" destination="fbl-rv-z8b" id="xV0-38-EpX"/>
-                <outlet property="man" destination="seU-gV-J3R" id="gzr-ub-hGO"/>
-                <outlet property="state" destination="jvC-9V-c6P" id="1jN-YS-uo4"/>
-                <outlet property="time" destination="1Rq-ye-sgl" id="D4N-Bp-Hgb"/>
-                <outlet property="type" destination="zpk-by-nHd" id="TRH-80-jVv"/>
+                <outlet property="addr" destination="87H-vN-wzN" id="t1e-Sk-UCo"/>
+                <outlet property="apper" destination="seU-gV-J3R" id="JWa-NF-twM"/>
+                <outlet property="block" destination="Oiu-0H-cve" id="pVa-xG-hfa"/>
+                <outlet property="dept" destination="X5H-hi-h9Z" id="tJc-ei-HP2"/>
+                <outlet property="no" destination="zpk-by-nHd" id="UHx-14-Bsr"/>
+                <outlet property="room" destination="fbl-rv-z8b" id="hpS-Od-pRv"/>
+                <outlet property="signer" destination="xMx-Pg-xnb" id="eEE-rD-7ws"/>
+                <outlet property="status" destination="Mxy-Ir-bSW" id="R2g-nG-7bU"/>
+                <outlet property="time" destination="1Rq-ye-sgl" id="drY-W3-S64"/>
+                <outlet property="tno" destination="jvC-9V-c6P" id="WQ7-gc-iSV"/>
             </connections>
             <point key="canvasLocation" x="229" y="230.5"/>
         </tableViewCell>

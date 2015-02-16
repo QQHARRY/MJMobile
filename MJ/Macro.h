@@ -67,7 +67,8 @@
 #define API_HOUSE_GET_BULDINGS_DETAILS @"business/getBuildingsDetails"
 #define API_HOUSE_IS_ESTATE_EXISTING @"business/isEstateExist"
 #define API_ADD_ESTATE @"business/addEstate"
-
+// 43 获取我的预约签约列表
+#define API_MY_SIGN_LIST @"business/getAppointmentSigningList"
 //   44.获取城区片区列表
 #define API_AREA_LIST @"business/getAreaList"
 // 45.获取客源简要信息列表

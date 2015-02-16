@@ -43,7 +43,7 @@
     {
         NSDictionary *lastContract = [self.ContractList firstObject];
         if ([[lastContract objectForKey:@"contract_status"] isEqualToString:@"1"] &&
-            [[lastContract objectForKey:@"contract_type"] isEqualToString:@"10"])
+            [[lastContract objectForKey:@"consignment_type"] isEqualToString:@"A-独家"])
         {
             PRESENTALERT(@"错 误", @"该房源已有有效的独家委托，不能添加新的委托", @"O K", self);
             return;
@@ -118,8 +118,8 @@
     }
   
     NSDictionary *d = [self.ContractList objectAtIndex:indexPath.row];
-    cell.type.text = [d objectForKey:@"contract_type"];
-    cell.state.text = [d objectForKey:@"contract_status"];
+    cell.type.text = [[d objectForKey:@"contract_type"] isEqualToString:@"100"] ? @"出售" : @"出租";
+    cell.state.text = [[d objectForKey:@"contract_status"] isEqualToString:@"1"] ? @"有效" : @"无效";
     cell.dept.text = [d objectForKey:@"department_name"];
     cell.man.text = [d objectForKey:@"name_full"];
     cell.limit.text = [d objectForKey:@"contract_end_date"];

@@ -17,7 +17,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "photoManager.h"
 #import "UtilFun.h"
-#import "UtilFun.h"
+#import "SignTableViewController.h"
 
 @interface MoreViewController ()
 
@@ -79,24 +79,26 @@
     }
     else if(indexPath.row == 3)
     {
-        [self performSegueWithIdentifier:@"showAboutView" sender:self];
+        SignTableViewController *c = [[SignTableViewController alloc] initWithNibName:@"SignTableViewController" bundle:nil];
+        [self.navigationController pushViewController:c animated:YES];
     }
     else if(indexPath.row == 4)
     {
-        [[[CheckNewVersion alloc] init]  checkNewVersion:self];
+        [self performSegueWithIdentifier:@"showAboutView" sender:self];
     }
     else if(indexPath.row == 5)
+    {
+        [[[CheckNewVersion alloc] init]  checkNewVersion:self];
+    }
+    else if(indexPath.row == 6)
     {
         [self performSegueWithIdentifier:@"showSuggestionView" sender:self];
         
     }
-    else if(indexPath.row == 6)
+    else if(indexPath.row == 7)
     {
-
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"确定退出登录" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alert show];
-        
-        
     }
     
 }
@@ -230,17 +232,21 @@
         }
         else if(indexPath.row == 3)
         {
-            cell.textLabel.text = @"关于";
+            cell.textLabel.text = @"预约签约";
         }
         else if(indexPath.row == 4)
         {
-            cell.textLabel.text = @"检查更新";
+            cell.textLabel.text = @"关于";
         }
         else if(indexPath.row == 5)
         {
+            cell.textLabel.text = @"检查更新";
+        }
+        else if(indexPath.row == 6)
+        {
             cell.textLabel.text = @"意见反馈";
         }
-        else if (indexPath.row == 6)
+        else if (indexPath.row == 7)
         {
             cell.textLabel.text = @"退出登录";
         }
