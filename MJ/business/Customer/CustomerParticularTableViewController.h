@@ -19,4 +19,5 @@
 @property (strong, nonatomic) CustomerDetail *detail;
 @property (strong, nonatomic) CustomerParticulars *particulars;
 
+
 @end

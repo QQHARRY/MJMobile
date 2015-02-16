@@ -72,6 +72,9 @@
 
 @property (strong, nonatomic) CustomerSecret *secret;
 
+
+@property (assign,nonatomic)BOOL wantEditSerect;
+
 @end
 
 @implementation CustomerParticularTableViewController
@@ -80,6 +83,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     
     // title
     self.title = @"客源详情";
@@ -104,6 +108,8 @@
     [self.manager addSection:self.secretSection];
     self.actionSection = [RETableViewSection sectionWithHeaderTitle:@"相关操作"];
     [self.manager addSection:self.actionSection];
+    
+    self.wantEditSerect = NO;
 
     [self reloadData];
 }
@@ -464,7 +470,17 @@
      {
          HIDEHUD_WINDOW;
          self.secret = secret;
-         [self reloadUI];
+         if (self.wantEditSerect)
+         {
+             self.wantEditSerect = NO;
+             [self onEditAction:nil];
+         }
+         else
+         {
+             
+             [self reloadUI];
+         }
+         
      }
                                         failure:^(NSError *error)
      {
@@ -491,6 +507,11 @@
         
         
         
+    }
+    else if(self.particulars)
+    {
+        self.wantEditSerect = YES;
+        [self pullSecret];
     }
     
     
