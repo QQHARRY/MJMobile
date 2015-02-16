@@ -52,6 +52,7 @@
     
     self.navigationController.navigationBar.hidden = NO;
     
+    [self.tabBarController.tabBar setBackgroundColor:[UIColor whiteColor]];
     // 修改tabbar图标为原图颜色
     {
         UITabBarItem *item = [self.tabBarController.tabBar.items objectAtIndex:0];
