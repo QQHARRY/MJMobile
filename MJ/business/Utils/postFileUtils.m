@@ -80,12 +80,15 @@
     
    
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        sleep(1);
         if (connectionError)
         {
-            if (failure)
-            {
-                failure(connectionError);
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (failure)
+                {
+                    failure(connectionError);
+                }
+            });
         }
         else
         {
@@ -94,10 +97,13 @@
             
             if (json && [[json objectForKey:@"Status"] intValue] == 0)
             {
-                if (success)
-                {
-                    success();
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (success)
+                    {
+                        success();
+                    }
+                });
+                
             }
             else
             {
@@ -105,13 +111,18 @@
                 {
                     if (error)
                     {
-                        failure(error);
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            failure(error);
+                        });
+                        
                     }
                     else
                     {
                         NSError*error = [NSError errorWithDomain:@"" code:[[json objectForKey:@"Status"]  intValue] userInfo:@{@"":@""}];
                         
-                        failure(error);
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            failure(error);
+                        });
                     }
                     
                 }

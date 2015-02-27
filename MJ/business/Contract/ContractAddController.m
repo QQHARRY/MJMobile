@@ -419,9 +419,9 @@
     }
     else if (self.uploadProgress < (self.qcImageList.count + self.wtImageList.count + self.sfImageList.count + self.qtImageList.count) )
     {
-        image = [self.qtImageList objectAtIndex:(self.uploadProgress - self.wtImageList.count - self.qcImageList.count - self.qtImageList.count) ];
+        image = [self.qtImageList objectAtIndex:(self.uploadProgress - self.wtImageList.count - self.qcImageList.count - self.sfImageList.count) ];
         type = @"qt";
-        tip = [NSString stringWithFormat:@"正在上传其他图片第%lu张(共%lu张)...", (self.uploadProgress + 1 - self.wtImageList.count - self.qcImageList.count - self.qtImageList.count), (unsigned long)self.qtImageList.count];
+        tip = [NSString stringWithFormat:@"正在上传其他图片第%lu张(共%lu张)...", (self.uploadProgress + 1 - self.wtImageList.count - self.qcImageList.count - self.sfImageList.count), (unsigned long)self.qtImageList.count];
     }
     else
     {

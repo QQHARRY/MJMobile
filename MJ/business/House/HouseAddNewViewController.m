@@ -531,7 +531,7 @@
          HIDEALLWINDOWHUD;
          NSLog(@"push image one finished,start to next");
          self.uploadProgress++;
-         [self uploadImage];
+         [self performSelectorOnMainThread:@selector(uploadImage) withObject:nil waitUntilDone:YES];
          return;
      }
                           failure:^(NSError *error)
