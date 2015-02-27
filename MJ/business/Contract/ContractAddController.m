@@ -180,11 +180,24 @@
                      {
                          [item deselectRowAnimated:YES]; // same as [weakSelf.tableView deselectRowAtIndexPath:item.indexPath animated:YES];
                          NSMutableArray *options = [[NSMutableArray alloc] init];
-                         for (NSInteger i = 0; i < self.typeDictList.count; i++)
+                         if ([self.type isEqualToString:@"出售"])
                          {
-                             DicItem *di = [self.typeDictList objectAtIndex:i];
-                             [options addObject:di.dict_label];
+                             [options addObject:@"出售"];
                          }
+                         else if ([self.type isEqualToString:@"出租"])
+                         {
+                             [options addObject:@"出租"];
+                         }
+                         else if ([self.type isEqualToString:@"租售"])
+                         {
+                             [options addObject:@"出售"];
+                             [options addObject:@"出租"];
+                         }
+//                         for (NSInteger i = 0; i < self.typeDictList.count; i++)
+//                         {
+//                             DicItem *di = [self.typeDictList objectAtIndex:i];
+//                             [options addObject:di.dict_label];
+//                         }
                          RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
                                                                             {
                                                                                 [weakSelf.navigationController popViewControllerAnimated:YES];

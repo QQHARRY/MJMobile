@@ -16,5 +16,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *man;
 @property (strong, nonatomic) IBOutlet UILabel *limit;
 @property (strong, nonatomic) IBOutlet UILabel *time;
+@property (strong, nonatomic) IBOutlet UILabel *ttype;
 
 @end

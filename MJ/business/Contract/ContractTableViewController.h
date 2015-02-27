@@ -11,5 +11,6 @@
 @interface ContractTableViewController : UITableViewController
 
 @property (nonatomic, strong) NSString *sid;
+@property (nonatomic, strong) NSString *type;
 
 @end

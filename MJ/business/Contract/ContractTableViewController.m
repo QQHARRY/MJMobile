@@ -51,6 +51,7 @@
     }
     ContractAddController *vc = [[ContractAddController alloc] initWithStyle:UITableViewStyleGrouped];
     vc.sid = self.sid;
+    vc.type = self.type;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -98,7 +99,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 130;
+    return 150;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,7 +119,8 @@
     }
   
     NSDictionary *d = [self.ContractList objectAtIndex:indexPath.row];
-    cell.type.text = [[d objectForKey:@"contract_type"] isEqualToString:@"100"] ? @"出售" : @"出租";
+    cell.type.text = [d objectForKey:@"consignment_type"];
+    cell.ttype.text = [[d objectForKey:@"contract_type"] isEqualToString:@"100"] ? @"出售" : @"出租";
     cell.state.text = [[d objectForKey:@"contract_status"] isEqualToString:@"1"] ? @"有效" : @"无效";
     cell.dept.text = [d objectForKey:@"department_name"];
     cell.man.text = [d objectForKey:@"name_full"];
