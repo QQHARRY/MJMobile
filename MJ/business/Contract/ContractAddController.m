@@ -267,9 +267,9 @@
                             [weakSelf.navigationController pushViewController:optionsController animated:YES];
                         }];
     [section addItem:self.payItem];
-    self.startItem = [REDateTimeItem itemWithTitle:@"委托开始日期" value:nil placeholder:nil format:@"yyyy-MM-dd hh:mm" datePickerMode:UIDatePickerModeDateAndTime];
+    self.startItem = [REDateTimeItem itemWithTitle:@"委托开始日期" value:nil placeholder:nil format:@"yyyy-MM-dd" datePickerMode:UIDatePickerModeDate];
     [section addItem:self.startItem];
-    self.endItem = [REDateTimeItem itemWithTitle:@"委托结束日期" value:nil placeholder:nil format:@"yyyy-MM-dd hh:mm" datePickerMode:UIDatePickerModeDateAndTime];
+    self.endItem = [REDateTimeItem itemWithTitle:@"委托结束日期" value:nil placeholder:nil format:@"yyyy-MM-dd" datePickerMode:UIDatePickerModeDate];
     [section addItem:self.endItem];
 
     return section;
@@ -331,7 +331,13 @@
             PRESENTALERT(@"错 误", @"请选择委托开始日期", @"O K", self);
             return;
         }
-        [param setValue:self.startItem.value forKey:@"contract_start_date"];
+        {
+            NSDateFormatter* fmt = [[NSDateFormatter alloc] init];
+            fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
+            fmt.dateFormat = @"yyyy-MM-dd";
+            NSString* dateString = [fmt stringFromDate:self.startItem.value];
+            [param setValue:dateString forKey:@"contract_start_date"];
+        }
         if (!self.endItem.value)
         {
             PRESENTALERT(@"错 误", @"请选择委托结束日期", @"O K", self);
@@ -348,7 +354,11 @@
                 components.minute >= 0 &&
                 components.second >= 0)
             {
-                [param setValue:self.endItem.value forKey:@"contract_end_date"];
+                NSDateFormatter* fmt = [[NSDateFormatter alloc] init];
+                fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
+                fmt.dateFormat = @"yyyy-MM-dd";
+                NSString* dateString = [fmt stringFromDate:self.endItem.value];
+                [param setValue:dateString forKey:@"contract_end_date"];
             }
             else
             {
@@ -403,25 +413,25 @@
     {
         image = [self.wtImageList objectAtIndex:self.uploadProgress];
         type = @"wt";
-        tip = [NSString stringWithFormat:@"正在上传委托协议第%lu张(共%lu张)...", (self.uploadProgress + 1), (unsigned long)self.wtImageList.count];
+        tip = [NSString stringWithFormat:@"正在上传委托协议第%lu张(共%lu张)...", (unsigned long)(self.uploadProgress + 1), (unsigned long)self.wtImageList.count];
     }
     else if (self.uploadProgress < (self.qcImageList.count + self.wtImageList.count) )
     {
         image = [self.qcImageList objectAtIndex:(self.uploadProgress - self.wtImageList.count) ];
         type = @"qc";
-        tip = [NSString stringWithFormat:@"正在上传产权证明第%lu张(共%lu张)...", (self.uploadProgress + 1 - self.wtImageList.count), (unsigned long)self.qcImageList.count];
+        tip = [NSString stringWithFormat:@"正在上传产权证明第%lu张(共%lu张)...",(unsigned long)(self.uploadProgress + 1 - self.wtImageList.count), (unsigned long)self.qcImageList.count];
     }
     else if (self.uploadProgress < (self.qcImageList.count + self.wtImageList.count + self.sfImageList.count) )
     {
         image = [self.sfImageList objectAtIndex:(self.uploadProgress - self.wtImageList.count - self.qcImageList.count) ];
         type = @"sf";
-        tip = [NSString stringWithFormat:@"正在上传身份证明第%lu张(共%lu张)...", (self.uploadProgress + 1 - self.wtImageList.count - self.qcImageList.count), (unsigned long)self.sfImageList.count];
+        tip = [NSString stringWithFormat:@"正在上传身份证明第%lu张(共%lu张)...", (unsigned long)(self.uploadProgress + 1 - self.wtImageList.count - self.qcImageList.count), (unsigned long)self.sfImageList.count];
     }
     else if (self.uploadProgress < (self.qcImageList.count + self.wtImageList.count + self.sfImageList.count + self.qtImageList.count) )
     {
         image = [self.qtImageList objectAtIndex:(self.uploadProgress - self.wtImageList.count - self.qcImageList.count - self.sfImageList.count) ];
         type = @"qt";
-        tip = [NSString stringWithFormat:@"正在上传其他图片第%lu张(共%lu张)...", (self.uploadProgress + 1 - self.wtImageList.count - self.qcImageList.count - self.sfImageList.count), (unsigned long)self.qtImageList.count];
+        tip = [NSString stringWithFormat:@"正在上传其他图片第%lu张(共%lu张)...", (unsigned long)(self.uploadProgress + 1 - self.wtImageList.count - self.qcImageList.count - self.sfImageList.count), (unsigned long)self.qtImageList.count];
     }
     else
     {
