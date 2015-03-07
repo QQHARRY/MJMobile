@@ -2,9 +2,17 @@
 
 
 // Server
+#ifndef PRODUCTIONENV
 #define SERVER_ADD @"http://115.28.76.58:9090/KWOA/"
 #define SERVER_URL @"http://115.28.76.58:9090/KWOA/device/"
 #define SERVER_URL_NOAPI @"http://115.28.76.58:9090/KWOA"
+#else
+#define SERVER_ADD @"http://121.42.26.3:9090/KWOA/"
+#define SERVER_URL @"http://121.42.26.3:9090/KWOA/device/"
+#define SERVER_URL_NOAPI @"http://121.42.26.3:9090/KWOA"
+
+
+#endif
 // API
 // 1.申请绑定设备
 #define API_REG @"login/regDevice"
@@ -149,5 +157,5 @@
 
 
 #define SERVER_NONCOMPLIANCE @"服务器返回错误"
-#define SERVER_NONCOMPLIANCE_INFO @"服务器返回的数据不符合要求"
+#define SERVER_NONCOMPLIANCE_INFO @"服务器返回错误"
 #define SERVER_NONCOMPLIANCE_UNAVALIABLE @"连接服务器失败"
