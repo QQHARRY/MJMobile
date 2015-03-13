@@ -1855,7 +1855,20 @@
     __typeof (&*self) __weak weakSelf = self;
     self.addGenJinActions = [RETableViewItem itemWithTitle:@"跟进" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                         {
+                            [item deselectRowAnimated:YES];
+                            
+                            
                             FollowTableViewController *vc = [[FollowTableViewController alloc] initWithNibName:@"FollowTableViewController" bundle:[NSBundle mainBundle]];
+                            if ([self.housePtcl.edit_permit isEqualToString:@"1"] || [self.housePtcl.secret_permit isEqualToString:@"1"])
+                            {
+                                vc.hasAddPermit = YES;
+                            }
+                            else
+                            {
+                                vc.hasAddPermit = NO;
+                            }
+                            
+                            
                             vc.sid = self.houseDtl.house_trade_no;
                             vc.type = self.housePtcl.trade_type;
                             [weakSelf.navigationController pushViewController:vc animated:YES];
@@ -1891,6 +1904,13 @@
     __typeof (&*self) __weak weakSelf = self;
     self.addQianYueActions = [RETableViewItem itemWithTitle:@"签约" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                         {
+                            [item deselectRowAnimated:YES];
+                            if (![self.housePtcl.edit_permit isEqualToString:@"1"] && ![self.housePtcl.secret_permit isEqualToString:@"1"])
+                            {
+                                PRESENTALERT(@"添加失败", @"对不起您没有权限对该房源新增签约", @"OK", self);
+                                return;
+                            }
+                            
                             SignAddController *vc = [[SignAddController alloc] initWithStyle:UITableViewStyleGrouped];
                             vc.sid = self.houseDtl.house_trade_no;
                             [weakSelf.navigationController pushViewController:vc animated:YES];

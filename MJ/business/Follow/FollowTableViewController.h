@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) NSString *sid;
 @property (nonatomic, strong) NSString *type;
+@property (nonatomic, assign) BOOL hasAddPermit;
 
 @end

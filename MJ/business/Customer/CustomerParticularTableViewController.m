@@ -429,8 +429,22 @@
     [self.actionSection removeAllItems];
     self.followActionItem = [RETableViewItem itemWithTitle:@"跟进" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                              {
+                                 [item deselectRowAnimated:YES];
+                                 
+                                 
                                  FollowTableViewController *vc = [[FollowTableViewController alloc] initWithNibName:@"FollowTableViewController" bundle:[NSBundle mainBundle]];
                                  vc.sid = self.detail.business_requirement_no;
+                                 
+                                 if ([self.particulars.edit_permit isEqualToString:@"1"] || [self.particulars.secret_permit isEqualToString:@"1"])
+                                 {
+                                     vc.hasAddPermit = YES;
+                                 }
+                                 else
+                                 {
+                                     vc.hasAddPermit = NO;
+                                 }
+                                 
+                                 
                                  if ([self.particulars.business_requirement_type isEqualToString:@"200"])
                                  {
                                      vc.type = @"求购";
@@ -485,7 +499,7 @@
                                         failure:^(NSError *error)
      {
          HIDEHUD_WINDOW;
-         PRESENTALERT(@"获取失败", @"可能是网络问题，请稍候再试", @"O K", self);
+         PRESENTALERT(@"获取失败", @"可能是网络问题，请稍候再试", @"OK", self);
      }];
 }
 

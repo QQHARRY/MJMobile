@@ -123,8 +123,11 @@
         return;
     }
     
+    NSString*actualVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    actualVersion = [NSString stringWithFormat:@"V%@",actualVersion];
     
-    NSDictionary *parameters = @{@"job_no":strID , @"acc_password": strPwd,@"DeviceID" : [UtilFun getUDID],@"DeviceType" : DEVICE_IOS};
+    NSDictionary *parameters = @{@"job_no":strID , @"acc_password": strPwd,@"DeviceID" : [UtilFun getUDID],@"DeviceType" : DEVICE_IOS,@"device_version":actualVersion};
+    
     [NetWorkManager PostWithApiName:API_LOGIN parameters:parameters success:
      ^(id responseObject)
      {

@@ -12,6 +12,7 @@
 #import "FollowDataPuller.h"
 #import "FollowAddController.h"
 #import "FollowDetailCell.h"
+#import "UtilFun.h"
 
 @interface FollowTableViewController ()
 
@@ -20,6 +21,8 @@
 @end
 
 @implementation FollowTableViewController
+
+@synthesize hasAddPermit;
 
 - (void)viewDidLoad
 {
@@ -39,6 +42,11 @@
 
 - (void)onAddAction:(id)sender
 {
+    if (!hasAddPermit)
+    {
+        PRESENTALERT(@"添加失败", @"对不起,您没有权限新增跟进!", @"OK", self);
+        return;
+    }
     FollowAddController *vc = [[FollowAddController alloc] initWithStyle:UITableViewStyleGrouped];
     vc.sid = self.sid;
     vc.type = self.type;
