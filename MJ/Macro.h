@@ -1,16 +1,22 @@
 
+#define PRODUCTIONENV
+//#define USE_LOCAL_NETWORK
+
+
 
 
 // Server
 #ifndef PRODUCTIONENV
+
+#ifndef USE_LOCAL_NETWORK
 #define SERVER_ADD @"http://115.28.76.58:9090/KWOA/"
 #define SERVER_URL @"http://115.28.76.58:9090/KWOA/device/"
 #define SERVER_URL_NOAPI @"http://115.28.76.58:9090/KWOA"
-
-//#define SERVER_ADD @"http://192.168.1.106:9090/KWOA/"
-//#define SERVER_URL @"http://192.168.1.106:9090/KWOA/device/"
-//#define SERVER_URL_NOAPI @"http://192.168.1.106:9090/KWOA"
-
+#else
+#define SERVER_ADD @"http://192.168.1.106:9090/KWOA/"
+#define SERVER_URL @"http://192.168.1.106:9090/KWOA/device/"
+#define SERVER_URL_NOAPI @"http://192.168.1.106:9090/KWOA"
+#endif
 
 #else
 #define SERVER_ADD @"http://121.42.26.3:9090/KWOA/"

@@ -37,7 +37,7 @@
     if (psn == [person me])
     {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc ] initWithTitle:@"修改密码" style:UIBarButtonItemStylePlain target:self action:@selector(editPassWordBtnClicked:)];
-        self.loginName.enabled = YES;
+        self.loginName.enabled = NO;
         self.mobileNum.enabled = YES;
         self.chracterSign.enabled = YES;
         self.personalInfo.enabled = YES;

@@ -182,7 +182,7 @@
                 cell.AccessoryType = UITableViewCellAccessoryDetailButton;
                 cell.itemValue.text = @"";
                 cell.itemTextViewValue.text = @"";
-                petDetail.chartUrl = [NSString stringWithFormat:@"%@//%@", SERVER_URL_NOAPI, value];
+                petDetail.chartUrl = [NSString stringWithFormat:@"%@/%@", SERVER_URL_NOAPI, value];
             }
             else
             {
