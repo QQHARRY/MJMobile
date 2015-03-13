@@ -239,10 +239,24 @@
         [SignDataPuller pushNewSignWithParam:param Success:^(NSString *att)
         {
             HIDEHUD_WINDOW;
-            PRESENTALERTWITHHANDER(@"成功", @"预约签约成功！",@"OK", self, ^(UIAlertAction *action)
-                                   {
-                                       [self.navigationController popViewControllerAnimated:YES];
-                                   });
+            if ([att isEqualToString:@"E-1003"])
+            {
+                PRESENTALERT(@"提交错误", @"您没有新增该房源跟进的权限", @"O K", self);
+                return;
+            }
+            else if ([att isEqualToString:@"E-1001"])
+            {
+                PRESENTALERT(@"提交错误", @"新增预约有重复，添加失败", @"O K", self);
+                return;
+            }
+            else
+            {
+                PRESENTALERTWITHHANDER(@"成功", @"预约签约成功！",@"OK", self, ^(UIAlertAction *action)
+                                       {
+                                           [self.navigationController popViewControllerAnimated:YES];
+                                       });
+                return;
+            }
         }
                                          failure:^(NSError *error)
         {

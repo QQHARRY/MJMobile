@@ -378,7 +378,16 @@
         [FollowDataPuller pushNewFollowWithParam:param Success:^(NSString *followNo)
         {
             HIDEHUD_WINDOW;
-            [self.navigationController popViewControllerAnimated:YES];
+            if ([followNo isEqualToString:@"E-1003"])
+            {
+                PRESENTALERT(@"提交错误", @"您没有新增该房源跟进的权限", @"O K", self);
+                return;
+            }
+            else
+            {
+                [self.navigationController popViewControllerAnimated:YES];
+                return;
+            }
         }
                                          failure:^(NSError *error)
         {

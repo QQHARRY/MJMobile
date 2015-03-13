@@ -23,8 +23,23 @@
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {
-             NSString *src = [resultDic objectForKey:@"meeting_sign_apply_no"];
-             success(src);
+             NSString *statusCode = [resultDic objectForKey:@"Status"];
+             if ([statusCode isEqualToString:@"3"])
+             {
+                 success(@"E-1003");
+                 return;
+             }
+             else if ([statusCode isEqualToString:@"1"])
+             {
+                 success(@"E-1001");
+                 return;
+             }
+             else
+             {
+                 NSString *src = [resultDic objectForKey:@"meeting_sign_apply_no"];
+                 success(src);
+                 return;
+             }
          }
      }
                             failure:^(NSError *error)
