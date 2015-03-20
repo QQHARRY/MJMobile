@@ -334,8 +334,9 @@
 -(void)prepareItems
 {
     [self createInfoSectionItems];
+    [self createAddInfoSectionItems];
     [self prepareInfoSectionItems];
-    
+    [self prepareAddInfoSectionItems];
     [self prepareActionSectionsItems];
     [self enableOrDisableItems];
     [self adjustByTeneApplication];
@@ -600,6 +601,22 @@
     [self.actionSection addItem:self.addQianYueActions];
 }
 
+-(void)prepareAddInfoSectionItems
+{
+    NSArray*arr = [self.infoSection items];
+    int i = 0;
+    for (id item in arr)
+    {
+        if ([item isEqual:self.sale_value_total])
+        {
+            [self.infoSection insertItem:self.trade_type atIndex:i];
+            break;
+        }
+        i++;
+    }
+    
+}
+
 
 #pragma mark ---------------Prepare UI----------------
 #pragma mark
@@ -758,6 +775,7 @@
             [weakSelf.navigationController pushViewController:optionsController animated:YES];
         }
     }];
+
 }
 
 
@@ -1628,7 +1646,7 @@
     {
         value = self.housePtcl.sale_trade_state;
     }
-    self.sale_trade_state = [[RERadioItem alloc] initWithTitle:@"状态:" value:value selectionHandler:^(RERadioItem *item) {
+    self.sale_trade_state = [[RERadioItem alloc] initWithTitle:@"出售状态:" value:value selectionHandler:^(RERadioItem *item) {
         //todo
     }];
     
@@ -1642,7 +1660,7 @@
     {
         value = self.housePtcl.lease_trade_state;
     }
-    self.lease_trade_state = [[RERadioItem alloc] initWithTitle:@"状态:" value:value selectionHandler:^(RERadioItem *item) {
+    self.lease_trade_state = [[RERadioItem alloc] initWithTitle:@"出租状态:" value:value selectionHandler:^(RERadioItem *item) {
         //todo
     }];
     
