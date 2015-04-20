@@ -35,7 +35,6 @@
     opinionForAgreement.layer.borderWidth= 1.0f;
     
     [self initUI];
-    [self initConstraint];
     
     if(self.view.frame.size.height == 480)
     {
@@ -89,10 +88,6 @@
         self.disAgreeBtn.hidden = YES;
         self.cancelBtn.hidden = NO;
     }
-//    CGRect rct = [historyNodeTableView frame];
-//    CGRect rct1 = opinionLabel.frame;
-//    rct1.origin.y = rct.origin.y + rct.size.height + 0;
-//    opinionLabel.frame = rct1;
 }
 -(void)initTableView
 {
@@ -103,22 +98,7 @@
 }
 
 
--(void)initConstraint
-{
- //   self.historyNodeTableView.translatesAutoresizingMaskIntoConstraints = NO;
-//    self.opinionForAgreement.translatesAutoresizingMaskIntoConstraints = NO;
-    
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.historyNodeTableView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeHeight multiplier:0.45 constant:0]];
-//    
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.historyNodeTableView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
-//    
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.opinionForAgreement attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:0.95 constant:0]];
-//
-//   [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.opinionForAgreement attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeHeight multiplier:0.2 constant:0]];
-    
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.opinionLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:historyNodeTableView attribute:NSLayoutAttributeBottom multiplier:0 constant:5]];
-    
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -193,7 +173,7 @@
     NSString*key = @"cell";
     UITableViewCell *cell = nil;
     //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:key];
-    if (cell == nil)
+    //if (cell == nil)
     {
         cell = [[UITableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:key];
     }
@@ -208,9 +188,7 @@
             NSString*value = [dic objectForKey:@"value"];
            
             value =[[key stringByAppendingString:@"  "] stringByAppendingString:value];
-            //value = @"dsaklfdsfjdskljfksldjfkdsjfksdjfksdjfkdsjdsaklfdsfjdskljfksldjfkdsjfksdjfksdjfkdsjdsaklfdsfjdskljfksldjfkdsjfksdjfksdjfkdsjdsaklfdsfjdskljfksldjfkdsjfksdjfksdjfkdsjdsaklfdsfjdskljfksldjfkdsjfksdjfksdjfkdsj";
-            
-            //value = [NSString stringWithFormat:@"%d  %@",indexPath.row,value];
+
             cell.textLabel.text =value;
             cell.textLabel.hidden = YES;
             CGRect frame = cell.frame;
@@ -264,8 +242,6 @@
     [self.opinionForAgreement resignFirstResponder];
     if (indexPath.section == 2 && indexPath.row == 0)
     {
-        
-        
         if ([petition isAffordDeptNow])
         {
             [self performSegueWithIdentifier:@"toChooseAssistDepartment" sender:self];
@@ -283,12 +259,15 @@
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     UIViewController *controller;
-    if ([segue.destinationViewController isKindOfClass:[UINavigationController class]]) {
+    if ([segue.destinationViewController isKindOfClass:[UINavigationController class]])
+    {
         UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
         controller = [navController.viewControllers objectAtIndex:0];
-    } else {
+    }
+    else {
         controller = segue.destinationViewController;
     }
     
@@ -298,11 +277,8 @@
         if ([controller isKindOfClass:[chooseAssistDeptTableViewController class]])
         {
             chooseAssistDeptTableViewController *detailController = (chooseAssistDeptTableViewController *)controller;
-            
-            
+
             detailController.delegate = self;
-            
-            
         }
         else
         {
@@ -324,8 +300,7 @@
 }
 
 - (IBAction)agreeBtnClicked:(id)sender {
-    
-    
+
     if ([self fieldVerification])
     {
         NSMutableArray*arr = [[NSMutableArray alloc] init];
