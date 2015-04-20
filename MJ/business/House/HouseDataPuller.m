@@ -116,7 +116,7 @@
     }
     if (filter.keyword && filter.keyword.length > 0)
     {
-        [param setValue:filter.keyword forKey:@"keyword"];
+        [param setValue:filter.keyword forKey:@"Keyword"];
     }
     if (filter.FromID && filter.FromID.length > 0)
     {
@@ -164,7 +164,7 @@
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {
-            NSArray *src = [resultDic objectForKey:@"AreaNode "];
+            NSArray *src = [resultDic objectForKey:@"AreaNode"];
             NSMutableArray *dst = [NSMutableArray array];
             // search area
              for (NSDictionary *dict in src)

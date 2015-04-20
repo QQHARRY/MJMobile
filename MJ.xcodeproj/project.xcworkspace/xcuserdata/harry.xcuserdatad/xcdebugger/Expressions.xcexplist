@@ -47,6 +47,14 @@
          contextName = "-[HouseAddNewViewController getBuildingDetails]:HouseAddNewViewController.m">
       </ContextState>
       <ContextState
+         contextName = "__55-[HouseAddNewViewController prepareAddInfoSectionItems]_block_invoke:HouseAddNewViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[MainPageViewController tableView:cellForRowAtIndexPath:]:MainPageViewController.m">
          <PersistentStrings>
             <PersistentString
@@ -58,26 +66,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__45-[HouseParticularTableViewController getData]_block_invoke:HouseParticularTableViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "__55-[HouseAddNewViewController prepareAddInfoSectionItems]_block_invoke:HouseAddNewViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[ShopCollectionViewController collectionView:cellForItemAtIndexPath:]:ShopCollectionViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "__51-[HouseAddNewViewController createInfoSectionItems]_block_invoke_2250:HouseAddNewViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "__51-[HouseAddNewViewController createInfoSectionItems]_block_invoke244:HouseAddNewViewController.m">
-      </ContextState>
-      <ContextState
          contextName = "__98+[postFileUtils postFileWithURL:data:Parameter:ServerParamName:FileName:MimeType:Success:failure:]_block_invoke48:postFileUtils.m">
          <PersistentStrings>
             <PersistentString
@@ -86,10 +74,30 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[ShopCollectionViewController collectionView:cellForItemAtIndexPath:]:ShopCollectionViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__45-[HouseParticularTableViewController getData]_block_invoke:HouseParticularTableViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__51-[HouseAddNewViewController createInfoSectionItems]_block_invoke244:HouseAddNewViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__51-[HouseAddNewViewController createInfoSectionItems]_block_invoke_2250:HouseAddNewViewController.m">
+      </ContextState>
+      <ContextState
          contextName = "__66+[HouseDataPuller pullBuildingDetailsByContidion:Success:failure:]_block_invoke:HouseDataPuller.m">
       </ContextState>
       <ContextState
          contextName = "__55+[contactDataManager getSubDeptOfUnit:Success:failure:]_block_invoke:contactDataManager.m">
+      </ContextState>
+      <ContextState
+         contextName = "__40-[HouseFilterController addCommitButton]_block_invoke:HouseFilterController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "filter">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "__51-[HouseAddNewViewController createInfoSectionItems]_block_invoke_2:HouseAddNewViewController.m">
