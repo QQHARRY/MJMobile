@@ -1,5 +1,5 @@
 
-#define PRODUCTIONENV
+//#define PRODUCTIONENV
 //#define USE_LOCAL_NETWORK
 
 

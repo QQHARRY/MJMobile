@@ -86,16 +86,16 @@
     {
         [self performSegueWithIdentifier:@"showAboutView" sender:self];
     }
+//    else if(indexPath.row == 5)
+//    {
+//        [[[CheckNewVersion alloc] init]  checkNewVersion:self];
+//    }
     else if(indexPath.row == 5)
-    {
-        [[[CheckNewVersion alloc] init]  checkNewVersion:self];
-    }
-    else if(indexPath.row == 6)
     {
         [self performSegueWithIdentifier:@"showSuggestionView" sender:self];
         
     }
-    else if(indexPath.row == 7)
+    else if(indexPath.row == 6)
     {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"确定退出登录" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alert show];
@@ -164,7 +164,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 8;
+    return 7;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -238,15 +238,15 @@
         {
             cell.textLabel.text = @"关于";
         }
+//        else if(indexPath.row == 5)
+//        {
+//            cell.textLabel.text = @"检查更新";
+//        }
         else if(indexPath.row == 5)
-        {
-            cell.textLabel.text = @"检查更新";
-        }
-        else if(indexPath.row == 6)
         {
             cell.textLabel.text = @"意见反馈";
         }
-        else if (indexPath.row == 7)
+        else if (indexPath.row == 6)
         {
             cell.textLabel.text = @"退出登录";
         }

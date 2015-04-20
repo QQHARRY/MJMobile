@@ -183,11 +183,8 @@
     SHOWHUD(self.view);
     [petitionManager getListFrom:@"0" To:@"" Count:4 Success:^(id responseObject) {
         HIDEHUD(self.view);
-        if (responseObject != nil)
-        {
-            self.mainPetitionArr = responseObject;
+        self.mainPetitionArr = responseObject;
 
-        }
         [self.tableView reloadData];
         
     } failure:^(NSError *error) {
