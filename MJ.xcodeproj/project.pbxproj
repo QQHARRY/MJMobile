@@ -9,10 +9,7 @@
 /* Begin PBXBuildFile section */
 		4A06BEB61AE6314C00809C52 /* contactDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06BE9E1AE6314C00809C52 /* contactDataManager.m */; };
 		4A06BEB71AE6314C00809C52 /* ContactListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06BEA01AE6314C00809C52 /* ContactListTableViewController.m */; };
-		4A06BEB81AE6314C00809C52 /* ContactListUnitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06BEA21AE6314C00809C52 /* ContactListUnitTableViewCell.m */; };
 		4A06BEB91AE6314C00809C52 /* ContactDeptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06BEA51AE6314C00809C52 /* ContactDeptViewController.m */; };
-		4A06BEBA1AE6314C00809C52 /* ContactsListPersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06BEA71AE6314C00809C52 /* ContactsListPersonTableViewCell.m */; };
-		4A06BEBB1AE6314C00809C52 /* ContactsListPersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A06BEA81AE6314C00809C52 /* ContactsListPersonTableViewCell.xib */; };
 		4A06BEBC1AE6314C00809C52 /* ContactsListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06BEAA1AE6314C00809C52 /* ContactsListTableViewCell.m */; };
 		4A06BEBD1AE6314C00809C52 /* ContactsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A06BEAB1AE6314C00809C52 /* ContactsListTableViewCell.xib */; };
 		4A06BEBE1AE6314C00809C52 /* department.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06BEAD1AE6314C00809C52 /* department.m */; };
@@ -20,6 +17,8 @@
 		4A06BEC01AE6314C00809C52 /* PersonDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06BEB11AE6314C00809C52 /* PersonDetailsViewController.m */; };
 		4A06BEC11AE6314C00809C52 /* RestPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06BEB31AE6314C00809C52 /* RestPassWordViewController.m */; };
 		4A06BEC21AE6314C00809C52 /* unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06BEB51AE6314C00809C52 /* unit.m */; };
+		4A06BEC61AE631CA00809C52 /* ContactDeptVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06BEC41AE631CA00809C52 /* ContactDeptVCCell.m */; };
+		4A06BEC71AE631CA00809C52 /* ContactDeptVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A06BEC51AE631CA00809C52 /* ContactDeptVCCell.xib */; };
 		4A20860C1A63B49A00F3CB5A /* HouseEditParticularsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20860B1A63B49A00F3CB5A /* HouseEditParticularsViewController.m */; };
 		4A20DADD1A6A2B5A002E68EC /* BuildingsSelectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20DADC1A6A2B5A002E68EC /* BuildingsSelectTableViewController.m */; };
 		4A20DAE11A6A2B85002E68EC /* BuildingsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20DADF1A6A2B85002E68EC /* BuildingsTableCell.m */; };
@@ -280,13 +279,8 @@
 		4A06BE9E1AE6314C00809C52 /* contactDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactDataManager.m; sourceTree = "<group>"; };
 		4A06BE9F1AE6314C00809C52 /* ContactListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListTableViewController.h; sourceTree = "<group>"; };
 		4A06BEA01AE6314C00809C52 /* ContactListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactListTableViewController.m; sourceTree = "<group>"; };
-		4A06BEA11AE6314C00809C52 /* ContactListUnitTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListUnitTableViewCell.h; sourceTree = "<group>"; };
-		4A06BEA21AE6314C00809C52 /* ContactListUnitTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactListUnitTableViewCell.m; sourceTree = "<group>"; };
 		4A06BEA41AE6314C00809C52 /* ContactDeptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDeptViewController.h; sourceTree = "<group>"; };
 		4A06BEA51AE6314C00809C52 /* ContactDeptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDeptViewController.m; sourceTree = "<group>"; };
-		4A06BEA61AE6314C00809C52 /* ContactsListPersonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsListPersonTableViewCell.h; sourceTree = "<group>"; };
-		4A06BEA71AE6314C00809C52 /* ContactsListPersonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsListPersonTableViewCell.m; sourceTree = "<group>"; };
-		4A06BEA81AE6314C00809C52 /* ContactsListPersonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsListPersonTableViewCell.xib; sourceTree = "<group>"; };
 		4A06BEA91AE6314C00809C52 /* ContactsListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsListTableViewCell.h; sourceTree = "<group>"; };
 		4A06BEAA1AE6314C00809C52 /* ContactsListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsListTableViewCell.m; sourceTree = "<group>"; };
 		4A06BEAB1AE6314C00809C52 /* ContactsListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsListTableViewCell.xib; sourceTree = "<group>"; };
@@ -300,6 +294,9 @@
 		4A06BEB31AE6314C00809C52 /* RestPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestPassWordViewController.m; sourceTree = "<group>"; };
 		4A06BEB41AE6314C00809C52 /* unit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unit.h; sourceTree = "<group>"; };
 		4A06BEB51AE6314C00809C52 /* unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = unit.m; sourceTree = "<group>"; };
+		4A06BEC31AE631CA00809C52 /* ContactDeptVCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDeptVCCell.h; sourceTree = "<group>"; };
+		4A06BEC41AE631CA00809C52 /* ContactDeptVCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDeptVCCell.m; sourceTree = "<group>"; };
+		4A06BEC51AE631CA00809C52 /* ContactDeptVCCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactDeptVCCell.xib; sourceTree = "<group>"; };
 		4A20860A1A63B49A00F3CB5A /* HouseEditParticularsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseEditParticularsViewController.h; sourceTree = "<group>"; };
 		4A20860B1A63B49A00F3CB5A /* HouseEditParticularsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseEditParticularsViewController.m; sourceTree = "<group>"; };
 		4A20DADB1A6A2B5A002E68EC /* BuildingsSelectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingsSelectTableViewController.h; sourceTree = "<group>"; };
@@ -785,11 +782,6 @@
 				4A06BE9E1AE6314C00809C52 /* contactDataManager.m */,
 				4A06BE9F1AE6314C00809C52 /* ContactListTableViewController.h */,
 				4A06BEA01AE6314C00809C52 /* ContactListTableViewController.m */,
-				4A06BEA11AE6314C00809C52 /* ContactListUnitTableViewCell.h */,
-				4A06BEA21AE6314C00809C52 /* ContactListUnitTableViewCell.m */,
-				4A06BEA61AE6314C00809C52 /* ContactsListPersonTableViewCell.h */,
-				4A06BEA71AE6314C00809C52 /* ContactsListPersonTableViewCell.m */,
-				4A06BEA81AE6314C00809C52 /* ContactsListPersonTableViewCell.xib */,
 				4A06BEA91AE6314C00809C52 /* ContactsListTableViewCell.h */,
 				4A06BEAA1AE6314C00809C52 /* ContactsListTableViewCell.m */,
 				4A06BEAB1AE6314C00809C52 /* ContactsListTableViewCell.xib */,
@@ -812,6 +804,9 @@
 			children = (
 				4A06BEA41AE6314C00809C52 /* ContactDeptViewController.h */,
 				4A06BEA51AE6314C00809C52 /* ContactDeptViewController.m */,
+				4A06BEC31AE631CA00809C52 /* ContactDeptVCCell.h */,
+				4A06BEC41AE631CA00809C52 /* ContactDeptVCCell.m */,
+				4A06BEC51AE631CA00809C52 /* ContactDeptVCCell.xib */,
 			);
 			path = contactNew;
 			sourceTree = "<group>";
@@ -1759,13 +1754,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B93B144F1A62773700121133 /* FollowDetailCell.xib in Resources */,
-				4A06BEBB1AE6314C00809C52 /* ContactsListPersonTableViewCell.xib in Resources */,
 				4A3923DF1A4C737000B0D232 /* index.html in Resources */,
 				4A5665541A4C127A00C3BA22 /* sendMessageViewController.xib in Resources */,
 				B98BD55F1A609185003A35BE /* LICENSE in Resources */,
 				B94445821A62986B0033E998 /* ContractDetailCell.xib in Resources */,
 				4ABC22221A3C3F940017FD94 /* LoadMoreTableViewCell.xib in Resources */,
 				B98BD4C41A60747A003A35BE /* MJRefresh.bundle in Resources */,
+				4A06BEC71AE631CA00809C52 /* ContactDeptVCCell.xib in Resources */,
 				4A8D01E41A369F2E00EA59EA /* PetitionTableViewCell.xib in Resources */,
 				4AD794681A208F4400DEC779 /* Main.storyboard in Resources */,
 				B93B14301A61652000121133 /* CustomerTableViewController.xib in Resources */,
@@ -1957,6 +1952,7 @@
 				B93B144E1A62773700121133 /* FollowDetailCell.m in Sources */,
 				B98BD4C91A60747A003A35BE /* UIScrollView+MJExtension.m in Sources */,
 				4A8D02131A37F78400EA59EA /* JSBadgeView.m in Sources */,
+				4A06BEC61AE631CA00809C52 /* ContactDeptVCCell.m in Sources */,
 				4A23AD131A66BBFE00F5A02A /* HouseAddNewViewController.m in Sources */,
 				B98BD5881A609185003A35BE /* README.md in Sources */,
 				4A5D24511A4AF21000546698 /* orderTableViewCell.m in Sources */,
@@ -1999,7 +1995,6 @@
 				B9FF4B441A245FB300FE413E /* LoginViewController.m in Sources */,
 				4A5665391A4BF4E400C3BA22 /* MessageDetailsViewController.m in Sources */,
 				B93B14411A625A5A00121133 /* FollowDataPuller.m in Sources */,
-				4A06BEBA1AE6314C00809C52 /* ContactsListPersonTableViewCell.m in Sources */,
 				B98BD5811A609185003A35BE /* RETableViewCellStyle.m in Sources */,
 				B98BD4AD1A60464F003A35BE /* HouseDataPuller.m in Sources */,
 				4A06BEB91AE6314C00809C52 /* ContactDeptViewController.m in Sources */,
@@ -2014,7 +2009,6 @@
 				B94445801A62986B0033E998 /* ContractDataPuller.m in Sources */,
 				B98BD58D1A609185003A35BE /* RELengthValidator.m in Sources */,
 				B93B142B1A61652000121133 /* CustomerDetailCell.m in Sources */,
-				4A06BEB81AE6314C00809C52 /* ContactListUnitTableViewCell.m in Sources */,
 				B98BD57C1A609185003A35BE /* NSString+RETableViewManagerAdditions.m in Sources */,
 				4A40C2211A4175BC00944AB2 /* petionDetailsItemTableViewCell.m in Sources */,
 				4A06BEBC1AE6314C00809C52 /* ContactsListTableViewCell.m in Sources */,

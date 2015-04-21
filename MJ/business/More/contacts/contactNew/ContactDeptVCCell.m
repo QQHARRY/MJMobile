@@ -1,14 +1,14 @@
 //
-//  ContactsListPersonTableViewCell.m
+//  ContactDeptVCCell.m
 //  MJ
 //
-//  Created by harry on 15/1/8.
+//  Created by harry on 15/4/21.
 //  Copyright (c) 2015年 Simtoon. All rights reserved.
 //
 
-#import "ContactsListPersonTableViewCell.h"
+#import "ContactDeptVCCell.h"
 
-@implementation ContactsListPersonTableViewCell
+@implementation ContactDeptVCCell
 
 - (void)awakeFromNib {
     // Initialization code
