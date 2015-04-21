@@ -15,10 +15,7 @@
 
 @implementation contactDataManager
 
-+(unit*)getContactList
-{
-    return nil;
-}
+
 
 +(void)WaitForDataB4ExpandUnit:(unit*)unt Success:(void (^)(id responseObject))success
                        failure:(void (^)(NSError *error))failure
@@ -28,14 +25,10 @@
         success(nil);
     }
     
-    
     int retrieveCount = 2;
     __block int retirevedCount = 0;
     
-    
-    
-    
-    
+
     static dispatch_once_t pred = 0;
     if (pred < 0) {
         retrieveCount = 1;
@@ -127,12 +120,7 @@
          if ([self checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {
              NSArray*arr = [self getDeptArr:resultDic superUnit:unt];;
-//             for (unit*objUnt in arr)
-//             {
-//                 
-//                 objUnt.superUnit = unt;
-//                 objUnt.level = unt.level+1;
-//             }
+
              [unt setSubUnits:arr];
              success(nil);
          }

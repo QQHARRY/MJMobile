@@ -53,6 +53,12 @@ static NSMutableDictionary*selctions = nil;
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    CGFloat height = [UIScreen mainScreen].bounds.size.height - 100;
+    [self.tableView setFrame:CGRectMake(0, 100, self.tableView.frame.size.width, height)];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

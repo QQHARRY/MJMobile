@@ -78,8 +78,6 @@
         return nil;
     }
     
-    //tmpindex--;
-    
     for (int i = 0; i < self.subDept.count; i++)
     {
         unit*tmpUnit = [self.subDept objectAtIndex:i];

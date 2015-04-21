@@ -297,7 +297,7 @@
     }
     else
     {
-        [cell initWithTitle:@"签程" andAction:^(UIButton *btn)
+        [cell initWithTitle:@"签呈" andAction:^(UIButton *btn)
          {
              [self toPetitionListView:btn];
          }];

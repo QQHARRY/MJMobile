@@ -91,4 +91,6 @@ alertView.delegate = self;\
 
 +(UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize;
 
+
+
 @end

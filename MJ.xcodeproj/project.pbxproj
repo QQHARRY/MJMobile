@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A06BE8E1AE61E8A00809C52 /* department.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06BE891AE61E8A00809C52 /* department.m */; };
+		4A06BE8F1AE61E8A00809C52 /* person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06BE8B1AE61E8A00809C52 /* person.m */; };
+		4A06BE901AE61E8A00809C52 /* unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06BE8D1AE61E8A00809C52 /* unit.m */; };
 		4A20860C1A63B49A00F3CB5A /* HouseEditParticularsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20860B1A63B49A00F3CB5A /* HouseEditParticularsViewController.m */; };
 		4A20DADD1A6A2B5A002E68EC /* BuildingsSelectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20DADC1A6A2B5A002E68EC /* BuildingsSelectTableViewController.m */; };
 		4A20DAE11A6A2B85002E68EC /* BuildingsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20DADF1A6A2B85002E68EC /* BuildingsTableCell.m */; };
@@ -36,6 +39,7 @@
 		4A3A44731AE4D4FA0049710F /* ContactsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A3A44681AE4D4FA0049710F /* ContactsListTableViewCell.xib */; };
 		4A3A447A1AE4D5770049710F /* PersonDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A44771AE4D5770049710F /* PersonDetailsViewController.m */; };
 		4A3A447B1AE4D5770049710F /* RestPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A44791AE4D5770049710F /* RestPassWordViewController.m */; };
+		4A3A447E1AE4E3A80049710F /* ContactDeptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A447D1AE4E3A80049710F /* ContactDeptViewController.m */; };
 		4A40C2181A41745E00944AB2 /* petionDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A40C2171A41745E00944AB2 /* petionDetailsTableViewController.m */; };
 		4A40C21B1A41748100944AB2 /* petionListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A40C21A1A41748100944AB2 /* petionListTableViewController.m */; };
 		4A40C2211A4175BC00944AB2 /* petionDetailsItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A40C2201A4175BC00944AB2 /* petionDetailsItemTableViewCell.m */; };
@@ -83,7 +87,6 @@
 		4A8D01DF1A369DCE00EA59EA /* PublicAnncTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A8D01DD1A369DCE00EA59EA /* PublicAnncTableViewCell.xib */; };
 		4A8D01E31A369F2E00EA59EA /* PetitionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01E11A369F2E00EA59EA /* PetitionTableViewCell.m */; };
 		4A8D01E41A369F2E00EA59EA /* PetitionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A8D01E21A369F2E00EA59EA /* PetitionTableViewCell.xib */; };
-		4A8D01E71A36C9C100EA59EA /* person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01E61A36C9C100EA59EA /* person.m */; };
 		4A8D01EA1A36E46700EA59EA /* unReadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01E91A36E46700EA59EA /* unReadManager.m */; };
 		4A8D01ED1A36F60800EA59EA /* announcement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01EC1A36F60800EA59EA /* announcement.m */; };
 		4A8D01F31A36F9AB00EA59EA /* annoucementManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01F21A36F9AB00EA59EA /* annoucementManager.m */; };
@@ -92,8 +95,6 @@
 		4A8D01FC1A36FB9C00EA59EA /* petitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01FB1A36FB9C00EA59EA /* petitionManager.m */; };
 		4A8D01FF1A3734A000EA59EA /* badgeImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01FE1A3734A000EA59EA /* badgeImageFactory.m */; };
 		4A8D02131A37F78400EA59EA /* JSBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D02121A37F78400EA59EA /* JSBadgeView.m */; };
-		4A8F93EB1A3DD36C00A769C1 /* unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F93EA1A3DD36C00A769C1 /* unit.m */; };
-		4A8F93F71A3EB47300A769C1 /* department.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F93F61A3EB47300A769C1 /* department.m */; };
 		4A9AEEEB1A3B43D300FDA403 /* petiotionBrief.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9AEEEA1A3B43D300FDA403 /* petiotionBrief.m */; };
 		4A9D01FE1A60341D00600BA0 /* dictionaryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D01FD1A60341D00600BA0 /* dictionaryManager.m */; };
 		4A9D02031A60521700600BA0 /* DataPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D02021A60521700600BA0 /* DataPersistence.m */; };
@@ -275,6 +276,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A06BE881AE61E8A00809C52 /* department.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = department.h; path = MJ/business/Contract/department.h; sourceTree = SOURCE_ROOT; };
+		4A06BE891AE61E8A00809C52 /* department.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = department.m; path = MJ/business/Contract/department.m; sourceTree = SOURCE_ROOT; };
+		4A06BE8A1AE61E8A00809C52 /* person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = person.h; path = MJ/business/Contract/person.h; sourceTree = SOURCE_ROOT; };
+		4A06BE8B1AE61E8A00809C52 /* person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = person.m; path = MJ/business/Contract/person.m; sourceTree = SOURCE_ROOT; };
+		4A06BE8C1AE61E8A00809C52 /* unit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = unit.h; path = MJ/business/Contract/unit.h; sourceTree = SOURCE_ROOT; };
+		4A06BE8D1AE61E8A00809C52 /* unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = unit.m; path = MJ/business/Contract/unit.m; sourceTree = SOURCE_ROOT; };
 		4A20860A1A63B49A00F3CB5A /* HouseEditParticularsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseEditParticularsViewController.h; sourceTree = "<group>"; };
 		4A20860B1A63B49A00F3CB5A /* HouseEditParticularsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseEditParticularsViewController.m; sourceTree = "<group>"; };
 		4A20DADB1A6A2B5A002E68EC /* BuildingsSelectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingsSelectTableViewController.h; sourceTree = "<group>"; };
@@ -328,6 +335,8 @@
 		4A3A44771AE4D5770049710F /* PersonDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonDetailsViewController.m; path = contacts/PersonDetailsViewController.m; sourceTree = "<group>"; };
 		4A3A44781AE4D5770049710F /* RestPassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestPassWordViewController.h; path = contacts/RestPassWordViewController.h; sourceTree = "<group>"; };
 		4A3A44791AE4D5770049710F /* RestPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestPassWordViewController.m; path = contacts/RestPassWordViewController.m; sourceTree = "<group>"; };
+		4A3A447C1AE4E3A80049710F /* ContactDeptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactDeptViewController.h; path = contacts/ContactDeptViewController.h; sourceTree = "<group>"; };
+		4A3A447D1AE4E3A80049710F /* ContactDeptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactDeptViewController.m; path = contacts/ContactDeptViewController.m; sourceTree = "<group>"; };
 		4A40C2161A41745E00944AB2 /* petionDetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = petionDetailsTableViewController.h; sourceTree = "<group>"; };
 		4A40C2171A41745E00944AB2 /* petionDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petionDetailsTableViewController.m; sourceTree = "<group>"; };
 		4A40C2191A41748100944AB2 /* petionListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = petionListTableViewController.h; sourceTree = "<group>"; };
@@ -414,8 +423,6 @@
 		4A8D01E01A369F2E00EA59EA /* PetitionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PetitionTableViewCell.h; sourceTree = "<group>"; };
 		4A8D01E11A369F2E00EA59EA /* PetitionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PetitionTableViewCell.m; sourceTree = "<group>"; };
 		4A8D01E21A369F2E00EA59EA /* PetitionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PetitionTableViewCell.xib; sourceTree = "<group>"; };
-		4A8D01E51A36C9C100EA59EA /* person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = person.h; sourceTree = "<group>"; };
-		4A8D01E61A36C9C100EA59EA /* person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = person.m; sourceTree = "<group>"; };
 		4A8D01E81A36E46700EA59EA /* unReadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unReadManager.h; sourceTree = "<group>"; };
 		4A8D01E91A36E46700EA59EA /* unReadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = unReadManager.m; sourceTree = "<group>"; };
 		4A8D01EB1A36F60800EA59EA /* announcement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = announcement.h; sourceTree = "<group>"; };
@@ -432,10 +439,6 @@
 		4A8D01FE1A3734A000EA59EA /* badgeImageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = badgeImageFactory.m; sourceTree = "<group>"; };
 		4A8D02111A37F78400EA59EA /* JSBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBadgeView.h; sourceTree = "<group>"; };
 		4A8D02121A37F78400EA59EA /* JSBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBadgeView.m; sourceTree = "<group>"; };
-		4A8F93E91A3DD36C00A769C1 /* unit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unit.h; sourceTree = "<group>"; };
-		4A8F93EA1A3DD36C00A769C1 /* unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = unit.m; sourceTree = "<group>"; };
-		4A8F93F51A3EB47300A769C1 /* department.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = department.h; sourceTree = "<group>"; };
-		4A8F93F61A3EB47300A769C1 /* department.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = department.m; sourceTree = "<group>"; };
 		4A9AEEE91A3B43D300FDA403 /* petiotionBrief.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = petiotionBrief.h; sourceTree = "<group>"; };
 		4A9AEEEA1A3B43D300FDA403 /* petiotionBrief.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petiotionBrief.m; sourceTree = "<group>"; };
 		4A9D01FC1A60341D00600BA0 /* dictionaryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dictionaryManager.h; sourceTree = "<group>"; };
@@ -837,6 +840,12 @@
 		4A3A445C1AE4D4E30049710F /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				4A06BE881AE61E8A00809C52 /* department.h */,
+				4A06BE891AE61E8A00809C52 /* department.m */,
+				4A06BE8A1AE61E8A00809C52 /* person.h */,
+				4A06BE8B1AE61E8A00809C52 /* person.m */,
+				4A06BE8C1AE61E8A00809C52 /* unit.h */,
+				4A06BE8D1AE61E8A00809C52 /* unit.m */,
 				4A3A44761AE4D5770049710F /* PersonDetailsViewController.h */,
 				4A3A44771AE4D5770049710F /* PersonDetailsViewController.m */,
 				4A3A44781AE4D5770049710F /* RestPassWordViewController.h */,
@@ -853,6 +862,8 @@
 				4A3A44661AE4D4FA0049710F /* ContactsListTableViewCell.h */,
 				4A3A44671AE4D4FA0049710F /* ContactsListTableViewCell.m */,
 				4A3A44681AE4D4FA0049710F /* ContactsListTableViewCell.xib */,
+				4A3A447C1AE4E3A80049710F /* ContactDeptViewController.h */,
+				4A3A447D1AE4E3A80049710F /* ContactDeptViewController.m */,
 			);
 			name = Contacts;
 			sourceTree = "<group>";
@@ -1012,16 +1023,10 @@
 				4AB0EFAE1A308CED00C24A44 /* UtilFun.m */,
 				4A8D01D31A33039D00EA59EA /* UIViewController+FastNavgationBarItem.h */,
 				4A8D01D41A33039D00EA59EA /* UIViewController+FastNavgationBarItem.m */,
-				4A8D01E51A36C9C100EA59EA /* person.h */,
-				4A8D01E61A36C9C100EA59EA /* person.m */,
 				4A8D01FD1A3734A000EA59EA /* badgeImageFactory.h */,
 				4A8D01FE1A3734A000EA59EA /* badgeImageFactory.m */,
 				4A5137491A3B2AAA007B504B /* dic2Object.h */,
 				4A51374A1A3B2AAA007B504B /* dic2Object.m */,
-				4A8F93E91A3DD36C00A769C1 /* unit.h */,
-				4A8F93EA1A3DD36C00A769C1 /* unit.m */,
-				4A8F93F51A3EB47300A769C1 /* department.h */,
-				4A8F93F61A3EB47300A769C1 /* department.m */,
 				4AA5436F1A8894630089C0F2 /* photoManager.h */,
 				4AA543701A8894630089C0F2 /* photoManager.m */,
 			);
@@ -1803,7 +1808,6 @@
 				4AD795521A218C4A00DEC779 /* UIRefreshControl+AFNetworking.m in Sources */,
 				B98BD5851A609185003A35BE /* RETableViewOptionsController.m in Sources */,
 				B95BEC471A73A36D00C2FB90 /* ClientFilterController.m in Sources */,
-				4A8D01E71A36C9C100EA59EA /* person.m in Sources */,
 				B95BEC581A73B6FF00C2FB90 /* ClientDetailCell.m in Sources */,
 				B98BD57E1A609185003A35BE /* RECommonFunctions.m in Sources */,
 				4A8D01F61A36F9BC00EA59EA /* alertManager.m in Sources */,
@@ -1853,15 +1857,14 @@
 				B98BD5671A609185003A35BE /* RETableViewInlineDatePickerCell.m in Sources */,
 				4A20DAE81A6A3205002E68EC /* buildingsFilterViewController.m in Sources */,
 				B98BD5721A609185003A35BE /* REFloatItem.m in Sources */,
-				4A8F93EB1A3DD36C00A769C1 /* unit.m in Sources */,
 				B98BD57F1A609185003A35BE /* REPlaceholderTextView.m in Sources */,
 				4A5500C91A3BF32F00E5307D /* AnncDetailsViewController.m in Sources */,
+				4A06BE8F1AE61E8A00809C52 /* person.m in Sources */,
 				4AD7955D1A218DF100DEC779 /* MBProgressHUD.m in Sources */,
 				4ABC22251A3C45490017FD94 /* AlertListTableViewController.m in Sources */,
 				B93B142D1A61652000121133 /* CustomerFilter.m in Sources */,
 				B94445721A6282510033E998 /* AppointTableViewController.m in Sources */,
 				4A20860C1A63B49A00F3CB5A /* HouseEditParticularsViewController.m in Sources */,
-				4A8F93F71A3EB47300A769C1 /* department.m in Sources */,
 				4AD7952A1A218C4A00DEC779 /* UIImage+FX.m in Sources */,
 				4AD795201A218C4A00DEC779 /* AFHTTPRequestOperationManager.m in Sources */,
 				4A8D01F31A36F9AB00EA59EA /* annoucementManager.m in Sources */,
@@ -1932,10 +1935,12 @@
 				B98BD4B11A60616A003A35BE /* HouseDetailCell.m in Sources */,
 				B9FF4B431A245FB300FE413E /* BindViewController.m in Sources */,
 				B93B143D1A62539D00121133 /* FollowTableViewController.m in Sources */,
+				4A06BE8E1AE61E8A00809C52 /* department.m in Sources */,
 				4A6865A51A737573005394DD /* buildingItemTableViewCell.m in Sources */,
 				4A8D01DE1A369DCE00EA59EA /* PublicAnncTableViewCell.m in Sources */,
 				B98BD57D1A609185003A35BE /* REActionBar.m in Sources */,
 				4ABC221D1A3C31910017FD94 /* AnncListViewController.m in Sources */,
+				4A06BE901AE61E8A00809C52 /* unit.m in Sources */,
 				4AD795231A218C4A00DEC779 /* AFSecurityPolicy.m in Sources */,
 				B9B97CB41A75580E00942DC6 /* CustomerSecret.m in Sources */,
 				4A20DAE51A6A2FAB002E68EC /* buildings.m in Sources */,
@@ -1972,6 +1977,7 @@
 				4A5D24421A4A783100546698 /* shopItem.m in Sources */,
 				4A2EE1201A42872600899976 /* petitionDetail.m in Sources */,
 				4A8D01D51A33039D00EA59EA /* UIViewController+FastNavgationBarItem.m in Sources */,
+				4A3A447E1AE4E3A80049710F /* ContactDeptViewController.m in Sources */,
 				B98BD58E1A609185003A35BE /* REPresenceValidator.m in Sources */,
 				4A2AD1941A457F8C0074DCA0 /* CheckNewVersion.m in Sources */,
 				4A8D01FC1A36FB9C00EA59EA /* petitionManager.m in Sources */,

@@ -71,7 +71,10 @@
     }
     else if(indexPath.row == 1)
     {
-        [self performSegueWithIdentifier:@"showContactList" sender:self];
+        //[self performSegueWithIdentifier:@"showContactList" sender:self];
+        [self performSegueWithIdentifier:@"showContactNew" sender:self];
+
+        
     }
     else if(indexPath.row == 2)
     {
