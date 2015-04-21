@@ -8,6 +8,10 @@
 
 #import "ContactDeptViewController.h"
 #import "ContactsListTableViewCell.h"
+#import "contactDataManager.h"
+#import "UtilFun.h"
+#import "department.h"
+
 
 
 @interface ContactDeptViewController ()
@@ -20,16 +24,37 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
+    [self initUI];
+    [self loadData];
+}
+
+-(void)loadData
+{
+    SHOWHUD_WINDOW
+    [contactDataManager WaitForDataB4ExpandUnit:self.superUnit Success:^(id responseObject)
+     {
+         
+         HIDEHUD_WINDOW
+         [self.tableview reloadData];
+         
+     }
+                                        failure:^(NSError *error)
+     {
+         HIDEHUD_WINDOW
+         [self.tableview reloadData];
+     }];
+}
+
+-(void)initUI
+{
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     
     UIImageView*imagV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"放大镜icon-ios"]];
-    
     self.searchTextField.leftViewMode = UITextFieldViewModeUnlessEditing;
     self.searchTextField.leftView = imagV;
     
     self.searchTextField.layer.cornerRadius = 10.0f;
-    
     self.searchTextField.layer.borderColor = [UIColor colorWithRed:0xa7/225.0 green:0xab/225.0 blue:0xc6/225.0 alpha:1].CGColor;
     self.searchTextField.layer.borderWidth= 1.0f;
 }
@@ -48,7 +73,20 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    NSInteger count = 0;
+    if ([self.superUnit isEqual:[department rootUnit]])
+    {
+        if ([self.superUnit subDept] != nil && [[self.superUnit subDept] count] > 0 &&[[[self.superUnit subDept] objectAtIndex:0] subDept] != nil)
+        {
+            count = [[[[self.superUnit subDept] objectAtIndex:0] subDept] count];
+        }
+        
+    }
+    else
+    {
+        count = [[self.superUnit subDept] count] + [[self.superUnit subPerson] count];
+    }
+    return count;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

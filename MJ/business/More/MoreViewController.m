@@ -18,6 +18,7 @@
 #import "photoManager.h"
 #import "UtilFun.h"
 #import "SignTableViewController.h"
+#import "ContactDeptViewController.h"
 
 @interface MoreViewController ()
 
@@ -72,9 +73,7 @@
     else if(indexPath.row == 1)
     {
         //[self performSegueWithIdentifier:@"showContactList" sender:self];
-        [self performSegueWithIdentifier:@"showContactNew" sender:self];
-
-        
+        [self performSegueWithIdentifier:@"showContactNew" sender:self]; 
     }
     else if(indexPath.row == 2)
     {
@@ -298,6 +297,22 @@
             
         }
         
+    }
+    else if([segue.identifier isEqual:@"showContactNew"])
+    {
+        if ([controller isKindOfClass:[ContactDeptViewController class]])
+        {
+            ContactDeptViewController *vc = (ContactDeptViewController *)controller;
+            
+            
+            vc.superUnit = [department rootUnit];
+            
+            
+        }
+        else
+        {
+            
+        }
     }
 
     

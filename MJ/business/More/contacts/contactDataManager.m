@@ -25,10 +25,11 @@
         success(nil);
     }
     
-    int retrieveCount = 2;
+    
+    int retrieveCount = 2;//需要获取子部门数据和本部门直属员工数据
+    //所有部门数据一次性获取，无需重复
     __block int retirevedCount = 0;
     
-
     static dispatch_once_t pred = 0;
     if (pred < 0) {
         retrieveCount = 1;
