@@ -98,6 +98,8 @@
 		4A96ECA11AE73AD200577AA6 /* ContactPathTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A96EC9F1AE73AD200577AA6 /* ContactPathTableViewCell.xib */; };
 		4A96ECA41AE742F900577AA6 /* UIImage+xtRoundedRectImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A96ECA31AE742F900577AA6 /* UIImage+xtRoundedRectImage.m */; };
 		4A96ECB41AE781A700577AA6 /* ContactPsnListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A96ECB31AE781A700577AA6 /* ContactPsnListViewController.m */; };
+		4A96ECB81AE7893300577AA6 /* ContactPsnVCCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A96ECB61AE7893300577AA6 /* ContactPsnVCCellTableViewCell.m */; };
+		4A96ECB91AE7893300577AA6 /* ContactPsnVCCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A96ECB71AE7893300577AA6 /* ContactPsnVCCellTableViewCell.xib */; };
 		4A9AEEEB1A3B43D300FDA403 /* petiotionBrief.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9AEEEA1A3B43D300FDA403 /* petiotionBrief.m */; };
 		4A9D01FE1A60341D00600BA0 /* dictionaryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D01FD1A60341D00600BA0 /* dictionaryManager.m */; };
 		4A9D02031A60521700600BA0 /* DataPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D02021A60521700600BA0 /* DataPersistence.m */; };
@@ -447,6 +449,9 @@
 		4A96ECA31AE742F900577AA6 /* UIImage+xtRoundedRectImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+xtRoundedRectImage.m"; sourceTree = "<group>"; };
 		4A96ECB21AE781A700577AA6 /* ContactPsnListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPsnListViewController.h; sourceTree = "<group>"; };
 		4A96ECB31AE781A700577AA6 /* ContactPsnListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPsnListViewController.m; sourceTree = "<group>"; };
+		4A96ECB51AE7893300577AA6 /* ContactPsnVCCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPsnVCCellTableViewCell.h; sourceTree = "<group>"; };
+		4A96ECB61AE7893300577AA6 /* ContactPsnVCCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPsnVCCellTableViewCell.m; sourceTree = "<group>"; };
+		4A96ECB71AE7893300577AA6 /* ContactPsnVCCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPsnVCCellTableViewCell.xib; sourceTree = "<group>"; };
 		4A9AEEE91A3B43D300FDA403 /* petiotionBrief.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = petiotionBrief.h; sourceTree = "<group>"; };
 		4A9AEEEA1A3B43D300FDA403 /* petiotionBrief.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petiotionBrief.m; sourceTree = "<group>"; };
 		4A9D01FC1A60341D00600BA0 /* dictionaryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dictionaryManager.h; sourceTree = "<group>"; };
@@ -823,6 +828,9 @@
 				4A96EC9F1AE73AD200577AA6 /* ContactPathTableViewCell.xib */,
 				4A96ECB21AE781A700577AA6 /* ContactPsnListViewController.h */,
 				4A96ECB31AE781A700577AA6 /* ContactPsnListViewController.m */,
+				4A96ECB51AE7893300577AA6 /* ContactPsnVCCellTableViewCell.h */,
+				4A96ECB61AE7893300577AA6 /* ContactPsnVCCellTableViewCell.m */,
+				4A96ECB71AE7893300577AA6 /* ContactPsnVCCellTableViewCell.xib */,
 			);
 			path = contactNew;
 			sourceTree = "<group>";
@@ -1796,6 +1804,7 @@
 				4A8D01DF1A369DCE00EA59EA /* PublicAnncTableViewCell.xib in Resources */,
 				B94445731A6282510033E998 /* AppointTableViewController.xib in Resources */,
 				B98BD5871A609185003A35BE /* LICENSE in Resources */,
+				4A96ECB91AE7893300577AA6 /* ContactPsnVCCellTableViewCell.xib in Resources */,
 				4A8D01DA1A33381200EA59EA /* MainPageTableViewHeaderCell.xib in Resources */,
 				B98BD4A41A603B51003A35BE /* HouseTableViewController.xib in Resources */,
 				4A96ECA11AE73AD200577AA6 /* ContactPathTableViewCell.xib in Resources */,
@@ -1980,6 +1989,7 @@
 				4A2EE11A1A41B41D00899976 /* petitionDictionary.m in Sources */,
 				4A5665571A4C1C4100C3BA22 /* ViewPagerController.m in Sources */,
 				4AD795251A218C4A00DEC779 /* AFURLRequestSerialization.m in Sources */,
+				4A96ECB81AE7893300577AA6 /* ContactPsnVCCellTableViewCell.m in Sources */,
 				4A32CD711A89A9B700B768CC /* postFileUtils.m in Sources */,
 				4A5665291A4BDFF800C3BA22 /* editOrderViewController.m in Sources */,
 				B98BD58C1A609185003A35BE /* REEmailValidator.m in Sources */,

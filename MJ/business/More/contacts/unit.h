@@ -17,6 +17,7 @@
 @property(strong,nonatomic)NSMutableArray* subDept;
 @property(strong,nonatomic)NSMutableArray* subPerson;
 @property(assign,nonatomic)BOOL closed;
+@property(assign,nonatomic)NSInteger sectionNum;
 
 -(BOOL)hasSubUnits;
 

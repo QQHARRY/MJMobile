@@ -18,6 +18,6 @@
 
 
 @property (strong,nonatomic)unit*superUnit;
-
+@property (strong,nonatomic)unit*selected;
 
 @end

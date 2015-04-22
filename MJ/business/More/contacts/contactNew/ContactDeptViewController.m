@@ -18,6 +18,7 @@
 #import "UIImage+FX.h"
 #import "Macro.h"
 #import "PersonDetailsViewController.h"
+#import "ContactPsnListViewController.h"
 
 #define DEFAULT_PATH_IMAGE @"陕西住商不动产"
 #define DEFAULT_PERSON_IAMGE @"个人icon"
@@ -308,6 +309,7 @@
     
     if (unt != nil)
     {
+        self.selected = unt;
         if ([unt isKindOfClass:[department class]])
         {
             SHOWHUD_WINDOW
@@ -327,7 +329,7 @@
                  }
                  else if([unt.subPerson count] > 0)
                  {
-                     [self performSegueWithIdentifier:@"toViewPsnListVC" sender:self];
+                     [self performSegueWithIdentifier:@"toPsnListVC" sender:self];
                  }
              }
                                                 failure:^(NSError *error)
@@ -352,15 +354,40 @@
     }
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    UIViewController *controller;
+    if ([segue.destinationViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        controller = [navController.viewControllers objectAtIndex:0];
+    } else {
+        controller = segue.destinationViewController;
+    }
+    
+    
+    if ([segue.identifier isEqual:@"toPsnListVC"])
+    {
+        if ([controller isKindOfClass:[ContactPsnListViewController class]])
+        {
+            ContactPsnListViewController *vc = (ContactPsnListViewController *)controller;
+            
+            
+            vc.superUnt = self.selected;
+        }
+        else
+        {
+            
+        }
+        
+    }
+    
 }
-*/
+
 
 - (IBAction)onSearch:(id)sender {
     

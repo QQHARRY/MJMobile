@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "unit.h"
 
-@interface ContactPsnListViewController : UIViewController
+@interface ContactPsnListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@property (strong, nonatomic) IBOutlet UITextField *searchTextField;
+@property (strong, nonatomic) IBOutlet UIButton *searchBtn;
+@property (strong, nonatomic) IBOutlet UITableView *tableview;
+
+
+@property(strong,nonatomic)unit*superUnt;
+@property(strong,nonatomic)NSMutableArray*listContent;
+
+
+- (IBAction)onSearch:(id)sender;
 
 @end
