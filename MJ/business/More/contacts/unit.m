@@ -186,12 +186,14 @@
         {
 
             unit*superUnt = [self findSuperUnitOfUnit:subUnt];
+
             if (superUnt)
             {
-
+                subUnt.superUnit = superUnt;
                 if (subUnt.isDept)
                 {
                     subUnt.level = superUnt.level+1;
+                    
                     [superUnt.subDept addObject:subUnt];
                     processedUnt = subUnt;
                     break;

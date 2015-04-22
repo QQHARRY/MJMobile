@@ -166,8 +166,10 @@
              for (unit*objUnt in arr)
              {
                  objUnt.superUnit = unt;
-                 objUnt.level = unt.level+1;
+                 objUnt.level = unt.level+1; 
              }
+             
+             
              [unt.subPerson addObjectsFromArray:arr];
              success(nil);
              return;

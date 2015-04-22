@@ -13,10 +13,10 @@
 @property(strong,nonatomic)NSString*dept_current_no;
 @property(strong,nonatomic)NSString*dept_name;
 @property(strong,nonatomic)NSString*dept_parent_no;
+@property(strong,nonatomic)NSString*dept_type;
 
 
 
-
-
+-(BOOL)isCompany;
 +(unit*)rootUnit;
 @end

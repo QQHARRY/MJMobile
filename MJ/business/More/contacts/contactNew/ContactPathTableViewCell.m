@@ -1,18 +1,17 @@
 //
-//  ContactDeptVCCell.m
+//  ContactPathTableViewCell.m
 //  MJ
 //
-//  Created by harry on 15/4/21.
+//  Created by harry on 15/4/22.
 //  Copyright (c) 2015年 Simtoon. All rights reserved.
 //
 
-#import "ContactDeptVCCell.h"
+#import "ContactPathTableViewCell.h"
 
-@implementation ContactDeptVCCell
+@implementation ContactPathTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
-    self.image.layer.cornerRadius = 16.0f;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

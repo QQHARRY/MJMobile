@@ -3,54 +3,35 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "+[contactDataManager getSubDeptOfUnit:Success:failure:]:contactDataManager.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[petitionAgreementViewController tableView:cellForRowAtIndexPath:]:petitionAgreementViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "+[contactDataManager WaitForDataB4ExpandUnit:Success:failure:]:contactDataManager.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "pred">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[HouseParticularTableViewController prepareInfoSectionItems]:HouseParticularTableViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "+[contactDataManager getDeptArr:]:contactDataManager.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[HouseParticularTableViewController adjustUI]:HouseParticularTableViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "__63-[HouseParticularTableViewController createAddInfoSectionItems]_block_invoke_6:HouseParticularTableViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[ShopTableViewController tableView:cellForRowAtIndexPath:]:ShopTableViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[HouseAddNewViewController prepareTeneApplicationSectionItemsStep2ByTenenType:]:HouseAddNewViewController.m">
-      </ContextState>
-      <ContextState
          contextName = "__41-[MainPageViewController getPetitionData]_block_invoke:MainPageViewController.m">
       </ContextState>
       <ContextState
-         contextName = "+[contactDataManager getDeptArr:superUnit:]:contactDataManager.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[ContactListTableViewController expandBtnClicked:]:ContactListTableViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[HouseAddNewViewController getBuildingDetails]:HouseAddNewViewController.m">
+         contextName = "+[Sqlite3DataPersistence insertObj:ToTable:]:Sqlite3DataPersistence.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "insertSQL">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "__55-[HouseAddNewViewController prepareAddInfoSectionItems]_block_invoke:HouseAddNewViewController.m">
          <PersistentStrings>
             <PersistentString
                value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__63-[HouseParticularTableViewController createAddInfoSectionItems]_block_invoke_6:HouseParticularTableViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[ShopCollectionViewController collectionView:cellForItemAtIndexPath:]:ShopCollectionViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "+[contactDataManager WaitForDataB4ExpandUnit:Success:failure:]:contactDataManager.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "pred">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -66,6 +47,9 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[ContactDeptViewController tableView:cellForRowAtIndexPath:]:ContactDeptViewController.m">
+      </ContextState>
+      <ContextState
          contextName = "__98+[postFileUtils postFileWithURL:data:Parameter:ServerParamName:FileName:MimeType:Success:failure:]_block_invoke48:postFileUtils.m">
          <PersistentStrings>
             <PersistentString
@@ -74,47 +58,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[ShopCollectionViewController collectionView:cellForItemAtIndexPath:]:ShopCollectionViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "__45-[HouseParticularTableViewController getData]_block_invoke:HouseParticularTableViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "__51-[HouseAddNewViewController createInfoSectionItems]_block_invoke244:HouseAddNewViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "__51-[HouseAddNewViewController createInfoSectionItems]_block_invoke_2250:HouseAddNewViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "__66+[HouseDataPuller pullBuildingDetailsByContidion:Success:failure:]_block_invoke:HouseDataPuller.m">
-      </ContextState>
-      <ContextState
-         contextName = "__55+[contactDataManager getSubDeptOfUnit:Success:failure:]_block_invoke:contactDataManager.m">
-      </ContextState>
-      <ContextState
-         contextName = "__40-[HouseFilterController addCommitButton]_block_invoke:HouseFilterController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "filter">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__51-[HouseAddNewViewController createInfoSectionItems]_block_invoke_2:HouseAddNewViewController.m">
-      </ContextState>
-      <ContextState
          contextName = "__51-[HouseAddNewViewController createInfoSectionItems]_block_invoke268:HouseAddNewViewController.m">
       </ContextState>
       <ContextState
-         contextName = "-[PersonDetailsViewController commiteInfo]:PersonDetailsViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "+[Sqlite3DataPersistence insertObj:ToTable:]:Sqlite3DataPersistence.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "insertSQL">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "+[dictionaryManager getItemArrByType:]:dictionaryManager.m">
       </ContextState>
       <ContextState
          contextName = "+[Sqlite3DataPersistence seachRecordWithCondition:]:Sqlite3DataPersistence.m">
@@ -125,7 +72,61 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[RETableViewManager classForCellAtIndexPath:]:RETableViewManager.m">
+         contextName = "-[petitionAgreementViewController tableView:cellForRowAtIndexPath:]:petitionAgreementViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__51-[HouseAddNewViewController createInfoSectionItems]_block_invoke_2250:HouseAddNewViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__45-[HouseParticularTableViewController getData]_block_invoke:HouseParticularTableViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__55+[contactDataManager getSubDeptOfUnit:Success:failure:]_block_invoke:contactDataManager.m">
+      </ContextState>
+      <ContextState
+         contextName = "__58+[contactDataManager getSubPersonsOfUnit:Success:failure:]_block_invoke:contactDataManager.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "arr">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "+[contactDataManager getDeptArr:superUnit:]:contactDataManager.m">
+      </ContextState>
+      <ContextState
+         contextName = "__40-[HouseFilterController addCommitButton]_block_invoke:HouseFilterController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "filter">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__62+[shopBizManager getListByType:From:To:Count:Success:failure:]_block_invoke:shopBizManager.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "parameters">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ContactListTableViewController expandBtnClicked:]:ContactListTableViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "+[contactDataManager getDeptArr:]:contactDataManager.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[HouseParticularTableViewController adjustUI]:HouseParticularTableViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[ShopTableViewController tableView:cellForRowAtIndexPath:]:ShopTableViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__51-[HouseAddNewViewController createInfoSectionItems]_block_invoke_2:HouseAddNewViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[HouseAddNewViewController getBuildingDetails]:HouseAddNewViewController.m">
       </ContextState>
       <ContextState
          contextName = "+[postFileUtils postFileWithURL:data:Parameter:ServerParamName:FileName:MimeType:Success:failure:]:postFileUtils.m">
@@ -136,15 +137,25 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "+[dictionaryManager getItemArrByType:]:dictionaryManager.m">
+         contextName = "-[PersonDetailsViewController commiteInfo]:PersonDetailsViewController.m">
       </ContextState>
       <ContextState
-         contextName = "__62+[shopBizManager getListByType:From:To:Count:Success:failure:]_block_invoke:shopBizManager.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "parameters">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "__66+[HouseDataPuller pullBuildingDetailsByContidion:Success:failure:]_block_invoke:HouseDataPuller.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[HouseAddNewViewController prepareTeneApplicationSectionItemsStep2ByTenenType:]:HouseAddNewViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[RETableViewManager classForCellAtIndexPath:]:RETableViewManager.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[HouseParticularTableViewController prepareInfoSectionItems]:HouseParticularTableViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "+[contactDataManager getSubDeptOfUnit:Success:failure:]:contactDataManager.m">
+      </ContextState>
+      <ContextState
+         contextName = "__51-[HouseAddNewViewController createInfoSectionItems]_block_invoke244:HouseAddNewViewController.m">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

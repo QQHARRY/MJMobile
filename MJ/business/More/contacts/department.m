@@ -16,6 +16,7 @@ static unit*rootUnit = nil;
 @synthesize dept_current_no;
 @synthesize dept_name;
 @synthesize dept_parent_no;
+@synthesize dept_type;
 
 -(id)init
 {
@@ -40,6 +41,11 @@ static unit*rootUnit = nil;
     });
     return rootUnit;
     
+}
+
+-(BOOL)isCompany
+{
+    return [self.dept_type isEqualToString:@"1"];
 }
 
 

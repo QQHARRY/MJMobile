@@ -94,6 +94,10 @@
 		4A8D01FC1A36FB9C00EA59EA /* petitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01FB1A36FB9C00EA59EA /* petitionManager.m */; };
 		4A8D01FF1A3734A000EA59EA /* badgeImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01FE1A3734A000EA59EA /* badgeImageFactory.m */; };
 		4A8D02131A37F78400EA59EA /* JSBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D02121A37F78400EA59EA /* JSBadgeView.m */; };
+		4A96ECA01AE73AD200577AA6 /* ContactPathTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A96EC9E1AE73AD200577AA6 /* ContactPathTableViewCell.m */; };
+		4A96ECA11AE73AD200577AA6 /* ContactPathTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A96EC9F1AE73AD200577AA6 /* ContactPathTableViewCell.xib */; };
+		4A96ECA41AE742F900577AA6 /* UIImage+xtRoundedRectImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A96ECA31AE742F900577AA6 /* UIImage+xtRoundedRectImage.m */; };
+		4A96ECB41AE781A700577AA6 /* ContactPsnListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A96ECB31AE781A700577AA6 /* ContactPsnListViewController.m */; };
 		4A9AEEEB1A3B43D300FDA403 /* petiotionBrief.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9AEEEA1A3B43D300FDA403 /* petiotionBrief.m */; };
 		4A9D01FE1A60341D00600BA0 /* dictionaryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D01FD1A60341D00600BA0 /* dictionaryManager.m */; };
 		4A9D02031A60521700600BA0 /* DataPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D02021A60521700600BA0 /* DataPersistence.m */; };
@@ -436,6 +440,13 @@
 		4A8D01FE1A3734A000EA59EA /* badgeImageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = badgeImageFactory.m; sourceTree = "<group>"; };
 		4A8D02111A37F78400EA59EA /* JSBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBadgeView.h; sourceTree = "<group>"; };
 		4A8D02121A37F78400EA59EA /* JSBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBadgeView.m; sourceTree = "<group>"; };
+		4A96EC9D1AE73AD200577AA6 /* ContactPathTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPathTableViewCell.h; sourceTree = "<group>"; };
+		4A96EC9E1AE73AD200577AA6 /* ContactPathTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPathTableViewCell.m; sourceTree = "<group>"; };
+		4A96EC9F1AE73AD200577AA6 /* ContactPathTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPathTableViewCell.xib; sourceTree = "<group>"; };
+		4A96ECA21AE742F900577AA6 /* UIImage+xtRoundedRectImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+xtRoundedRectImage.h"; sourceTree = "<group>"; };
+		4A96ECA31AE742F900577AA6 /* UIImage+xtRoundedRectImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+xtRoundedRectImage.m"; sourceTree = "<group>"; };
+		4A96ECB21AE781A700577AA6 /* ContactPsnListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPsnListViewController.h; sourceTree = "<group>"; };
+		4A96ECB31AE781A700577AA6 /* ContactPsnListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPsnListViewController.m; sourceTree = "<group>"; };
 		4A9AEEE91A3B43D300FDA403 /* petiotionBrief.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = petiotionBrief.h; sourceTree = "<group>"; };
 		4A9AEEEA1A3B43D300FDA403 /* petiotionBrief.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petiotionBrief.m; sourceTree = "<group>"; };
 		4A9D01FC1A60341D00600BA0 /* dictionaryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dictionaryManager.h; sourceTree = "<group>"; };
@@ -807,6 +818,11 @@
 				4A06BEC31AE631CA00809C52 /* ContactDeptVCCell.h */,
 				4A06BEC41AE631CA00809C52 /* ContactDeptVCCell.m */,
 				4A06BEC51AE631CA00809C52 /* ContactDeptVCCell.xib */,
+				4A96EC9D1AE73AD200577AA6 /* ContactPathTableViewCell.h */,
+				4A96EC9E1AE73AD200577AA6 /* ContactPathTableViewCell.m */,
+				4A96EC9F1AE73AD200577AA6 /* ContactPathTableViewCell.xib */,
+				4A96ECB21AE781A700577AA6 /* ContactPsnListViewController.h */,
+				4A96ECB31AE781A700577AA6 /* ContactPsnListViewController.m */,
 			);
 			path = contactNew;
 			sourceTree = "<group>";
@@ -1032,6 +1048,8 @@
 				4A51374A1A3B2AAA007B504B /* dic2Object.m */,
 				4AA5436F1A8894630089C0F2 /* photoManager.h */,
 				4AA543701A8894630089C0F2 /* photoManager.m */,
+				4A96ECA21AE742F900577AA6 /* UIImage+xtRoundedRectImage.h */,
+				4A96ECA31AE742F900577AA6 /* UIImage+xtRoundedRectImage.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1780,6 +1798,7 @@
 				B98BD5871A609185003A35BE /* LICENSE in Resources */,
 				4A8D01DA1A33381200EA59EA /* MainPageTableViewHeaderCell.xib in Resources */,
 				B98BD4A41A603B51003A35BE /* HouseTableViewController.xib in Resources */,
+				4A96ECA11AE73AD200577AA6 /* ContactPathTableViewCell.xib in Resources */,
 				4A5665441A4C025100C3BA22 /* MessageTableViewController.xib in Resources */,
 				B94445711A6282510033E998 /* AppointDetailCell.xib in Resources */,
 				B95BEC591A73B6FF00C2FB90 /* ClientDetailCell.xib in Resources */,
@@ -1998,9 +2017,12 @@
 				B98BD5811A609185003A35BE /* RETableViewCellStyle.m in Sources */,
 				B98BD4AD1A60464F003A35BE /* HouseDataPuller.m in Sources */,
 				4A06BEB91AE6314C00809C52 /* ContactDeptViewController.m in Sources */,
+				4A96ECA41AE742F900577AA6 /* UIImage+xtRoundedRectImage.m in Sources */,
 				B98BD4A31A603B51003A35BE /* HouseTableViewController.m in Sources */,
+				4A96ECA01AE73AD200577AA6 /* ContactPathTableViewCell.m in Sources */,
 				4A06BEB71AE6314C00809C52 /* ContactListTableViewController.m in Sources */,
 				4AB0EFAF1A308CED00C24A44 /* UtilFun.m in Sources */,
+				4A96ECB41AE781A700577AA6 /* ContactPsnListViewController.m in Sources */,
 				4AD795221A218C4A00DEC779 /* AFNetworkReachabilityManager.m in Sources */,
 				B944458A1A62A6860033E998 /* SignAddController.m in Sources */,
 				B98BD5701A609185003A35BE /* RECreditCardItem.m in Sources */,

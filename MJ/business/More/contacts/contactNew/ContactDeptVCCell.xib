@@ -19,12 +19,16 @@
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBn-1x-Ixf">
                         <rect key="frame" x="54" y="16" width="240" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="image" destination="ZD0-j2-8z0" id="ytU-Yc-dSy"/>
+                <outlet property="name" destination="eBn-1x-Ixf" id="hbe-6Q-Ym8"/>
+            </connections>
             <point key="canvasLocation" x="330" y="348.75"/>
         </tableViewCell>
     </objects>
