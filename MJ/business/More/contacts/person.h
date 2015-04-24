@@ -27,6 +27,7 @@
 @property(strong,atomic)NSString*department_no;
 @property(strong,atomic)NSString*role_name;
 @property(strong,atomic)NSString*technical_post_name;
+@property(strong,atomic)NSString*members;
 
 //-(BOOL)initWithDictionary:(NSDictionary*)dic;
 

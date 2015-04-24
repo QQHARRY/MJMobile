@@ -320,7 +320,6 @@
 
     if (webViewExpand == NO)
     {
-         NSLog(@"keyboardWillShow1111111");
         webViewExpand = YES;
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.3];

@@ -35,6 +35,7 @@
 		4A2EE1231A428F1000899976 /* petitionAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A2EE1221A428F1000899976 /* petitionAgreementViewController.m */; };
 		4A32CD711A89A9B700B768CC /* postFileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A32CD701A89A9B700B768CC /* postFileUtils.m */; };
 		4A3923DF1A4C737000B0D232 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 4A3923DE1A4C737000B0D232 /* index.html */; };
+		4A3990151AE8A2AD00CA5640 /* ContactPersonDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3990141AE8A2AD00CA5640 /* ContactPersonDetailsViewController.m */; };
 		4A3A2EF51A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A2EF41A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.m */; };
 		4A3A2EF81A42F26000AA8A70 /* chooseAssistDeptTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A2EF71A42F26000AA8A70 /* chooseAssistDeptTableViewController.m */; };
 		4A3A2F311A45113200AA8A70 /* myBriefTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A2F2F1A45113200AA8A70 /* myBriefTableViewCell.m */; };
@@ -76,8 +77,13 @@
 		4A6865A91A7375EF005394DD /* building.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6865A81A7375EF005394DD /* building.m */; };
 		4A6865AC1A73765E005394DD /* buildingDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6865AB1A73765E005394DD /* buildingDetails.m */; };
 		4A6865AF1A753BFA005394DD /* addCustomerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6865AE1A753BFA005394DD /* addCustomerTableViewController.m */; };
+		4A6971641AE9D01700EA8E3D /* ContactPersonDetailsVCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6971621AE9D01700EA8E3D /* ContactPersonDetailsVCTableViewCell.m */; };
+		4A6971651AE9D01700EA8E3D /* ContactPersonDetailsVCTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6971631AE9D01700EA8E3D /* ContactPersonDetailsVCTableViewCell.xib */; };
 		4A6EF2AB1A5E6E8D008AB819 /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6EF2A91A5E6E8D008AB819 /* libUMessage_Sdk_1.1.0.a */; };
 		4A6EF2AF1A5E7401008AB819 /* pushManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6EF2AE1A5E7401008AB819 /* pushManagement.m */; };
+		4A8788481AE8D87300FB3F91 /* ContactPsnDtlVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8788461AE8D87300FB3F91 /* ContactPsnDtlVCCell.m */; };
+		4A8788491AE8D87300FB3F91 /* ContactPsnDtlVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A8788471AE8D87300FB3F91 /* ContactPsnDtlVCCell.xib */; };
+		4A87884C1AE8E94800FB3F91 /* ContacCustomizedBarBtnItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A87884B1AE8E94800FB3F91 /* ContacCustomizedBarBtnItemView.m */; };
 		4A8D01CF1A33023900EA59EA /* ILBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01CE1A33023900EA59EA /* ILBarButtonItem.m */; };
 		4A8D01D51A33039D00EA59EA /* UIViewController+FastNavgationBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01D41A33039D00EA59EA /* UIViewController+FastNavgationBarItem.m */; };
 		4A8D01D91A33381200EA59EA /* MainPageTableViewHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01D71A33381200EA59EA /* MainPageTableViewHeaderCell.m */; };
@@ -154,6 +160,7 @@
 		4AD795531A218C4A00DEC779 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7951E1A218C4A00DEC779 /* UIWebView+AFNetworking.m */; };
 		4AD7955C1A218DF100DEC779 /* GTCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD795581A218DF100DEC779 /* GTCheckBox.m */; };
 		4AD7955D1A218DF100DEC779 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7955B1A218DF100DEC779 /* MBProgressHUD.m */; };
+		4AE5E3F31AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE5E3F21AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.m */; };
 		4AFA9F631A775CB7008A852F /* editCustomerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFA9F621A775CB7008A852F /* editCustomerTableViewController.m */; };
 		4AFC39A81A47CA3A000FB6F3 /* bind.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC39A61A47CA3A000FB6F3 /* bind.storyboard */; };
 		B93A1C7F1A910109002D5C58 /* SignDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A1C7A1A910109002D5C58 /* SignDetailCell.m */; };
@@ -333,6 +340,8 @@
 		4A32CD6F1A89A9B700B768CC /* postFileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = postFileUtils.h; sourceTree = "<group>"; };
 		4A32CD701A89A9B700B768CC /* postFileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = postFileUtils.m; sourceTree = "<group>"; };
 		4A3923DE1A4C737000B0D232 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		4A3990131AE8A2AD00CA5640 /* ContactPersonDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPersonDetailsViewController.h; sourceTree = "<group>"; };
+		4A3990141AE8A2AD00CA5640 /* ContactPersonDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPersonDetailsViewController.m; sourceTree = "<group>"; };
 		4A3A2EF31A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = petitionHistoryNodeTableViewCell.h; sourceTree = "<group>"; };
 		4A3A2EF41A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petitionHistoryNodeTableViewCell.m; sourceTree = "<group>"; };
 		4A3A2EF61A42F26000AA8A70 /* chooseAssistDeptTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chooseAssistDeptTableViewController.h; sourceTree = "<group>"; };
@@ -409,10 +418,18 @@
 		4A6865AB1A73765E005394DD /* buildingDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = buildingDetails.m; sourceTree = "<group>"; };
 		4A6865AD1A753BFA005394DD /* addCustomerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addCustomerTableViewController.h; sourceTree = "<group>"; };
 		4A6865AE1A753BFA005394DD /* addCustomerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addCustomerTableViewController.m; sourceTree = "<group>"; };
+		4A6971611AE9D01700EA8E3D /* ContactPersonDetailsVCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPersonDetailsVCTableViewCell.h; sourceTree = "<group>"; };
+		4A6971621AE9D01700EA8E3D /* ContactPersonDetailsVCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPersonDetailsVCTableViewCell.m; sourceTree = "<group>"; };
+		4A6971631AE9D01700EA8E3D /* ContactPersonDetailsVCTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPersonDetailsVCTableViewCell.xib; sourceTree = "<group>"; };
 		4A6EF2A91A5E6E8D008AB819 /* libUMessage_Sdk_1.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.1.0.a; sourceTree = "<group>"; };
 		4A6EF2AA1A5E6E8D008AB819 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		4A6EF2AD1A5E7401008AB819 /* pushManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pushManagement.h; sourceTree = "<group>"; };
 		4A6EF2AE1A5E7401008AB819 /* pushManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pushManagement.m; sourceTree = "<group>"; };
+		4A8788451AE8D87300FB3F91 /* ContactPsnDtlVCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPsnDtlVCCell.h; sourceTree = "<group>"; };
+		4A8788461AE8D87300FB3F91 /* ContactPsnDtlVCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPsnDtlVCCell.m; sourceTree = "<group>"; };
+		4A8788471AE8D87300FB3F91 /* ContactPsnDtlVCCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPsnDtlVCCell.xib; sourceTree = "<group>"; };
+		4A87884A1AE8E94800FB3F91 /* ContacCustomizedBarBtnItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContacCustomizedBarBtnItemView.h; sourceTree = "<group>"; };
+		4A87884B1AE8E94800FB3F91 /* ContacCustomizedBarBtnItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContacCustomizedBarBtnItemView.m; sourceTree = "<group>"; };
 		4A8D01CD1A33023900EA59EA /* ILBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILBarButtonItem.h; sourceTree = "<group>"; };
 		4A8D01CE1A33023900EA59EA /* ILBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILBarButtonItem.m; sourceTree = "<group>"; };
 		4A8D01D31A33039D00EA59EA /* UIViewController+FastNavgationBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FastNavgationBarItem.h"; sourceTree = "<group>"; };
@@ -558,6 +575,8 @@
 		4AD795581A218DF100DEC779 /* GTCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTCheckBox.m; sourceTree = "<group>"; };
 		4AD7955A1A218DF100DEC779 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		4AD7955B1A218DF100DEC779 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		4AE5E3F11AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+AutoMoveCovered.h"; sourceTree = "<group>"; };
+		4AE5E3F21AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+AutoMoveCovered.m"; sourceTree = "<group>"; };
 		4AFA9F611A775CB7008A852F /* editCustomerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editCustomerTableViewController.h; sourceTree = "<group>"; };
 		4AFA9F621A775CB7008A852F /* editCustomerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editCustomerTableViewController.m; sourceTree = "<group>"; };
 		4AFC39A71A47CA3A000FB6F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/bind.storyboard; sourceTree = "<group>"; };
@@ -831,6 +850,16 @@
 				4A96ECB51AE7893300577AA6 /* ContactPsnVCCellTableViewCell.h */,
 				4A96ECB61AE7893300577AA6 /* ContactPsnVCCellTableViewCell.m */,
 				4A96ECB71AE7893300577AA6 /* ContactPsnVCCellTableViewCell.xib */,
+				4A3990131AE8A2AD00CA5640 /* ContactPersonDetailsViewController.h */,
+				4A3990141AE8A2AD00CA5640 /* ContactPersonDetailsViewController.m */,
+				4A8788451AE8D87300FB3F91 /* ContactPsnDtlVCCell.h */,
+				4A8788461AE8D87300FB3F91 /* ContactPsnDtlVCCell.m */,
+				4A8788471AE8D87300FB3F91 /* ContactPsnDtlVCCell.xib */,
+				4A87884A1AE8E94800FB3F91 /* ContacCustomizedBarBtnItemView.h */,
+				4A87884B1AE8E94800FB3F91 /* ContacCustomizedBarBtnItemView.m */,
+				4A6971611AE9D01700EA8E3D /* ContactPersonDetailsVCTableViewCell.h */,
+				4A6971621AE9D01700EA8E3D /* ContactPersonDetailsVCTableViewCell.m */,
+				4A6971631AE9D01700EA8E3D /* ContactPersonDetailsVCTableViewCell.xib */,
 			);
 			path = contactNew;
 			sourceTree = "<group>";
@@ -1058,6 +1087,8 @@
 				4AA543701A8894630089C0F2 /* photoManager.m */,
 				4A96ECA21AE742F900577AA6 /* UIImage+xtRoundedRectImage.h */,
 				4A96ECA31AE742F900577AA6 /* UIImage+xtRoundedRectImage.m */,
+				4AE5E3F11AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.h */,
+				4AE5E3F21AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1796,6 +1827,7 @@
 				4A20DAE21A6A2B85002E68EC /* BuildingsTableCell.xib in Resources */,
 				4A6865A61A737573005394DD /* buildingItemTableViewCell.xib in Resources */,
 				B93A1C801A910109002D5C58 /* SignDetailCell.xib in Resources */,
+				4A8788491AE8D87300FB3F91 /* ContactPsnDtlVCCell.xib in Resources */,
 				B98BD4B21A60616A003A35BE /* HouseDetailCell.xib in Resources */,
 				B93B142C1A61652000121133 /* CustomerDetailCell.xib in Resources */,
 				4AFC39A81A47CA3A000FB6F3 /* bind.storyboard in Resources */,
@@ -1807,6 +1839,7 @@
 				4A96ECB91AE7893300577AA6 /* ContactPsnVCCellTableViewCell.xib in Resources */,
 				4A8D01DA1A33381200EA59EA /* MainPageTableViewHeaderCell.xib in Resources */,
 				B98BD4A41A603B51003A35BE /* HouseTableViewController.xib in Resources */,
+				4A6971651AE9D01700EA8E3D /* ContactPersonDetailsVCTableViewCell.xib in Resources */,
 				4A96ECA11AE73AD200577AA6 /* ContactPathTableViewCell.xib in Resources */,
 				4A5665441A4C025100C3BA22 /* MessageTableViewController.xib in Resources */,
 				B94445711A6282510033E998 /* AppointDetailCell.xib in Resources */,
@@ -1874,6 +1907,7 @@
 				4A2EE1231A428F1000899976 /* petitionAgreementViewController.m in Sources */,
 				B98BD5821A609185003A35BE /* RETableViewItem.m in Sources */,
 				4A56C7101A8CAFC800AF8CB6 /* versionInfo.m in Sources */,
+				4A87884C1AE8E94800FB3F91 /* ContacCustomizedBarBtnItemView.m in Sources */,
 				B98BD56B1A609185003A35BE /* RETableViewOptionCell.m in Sources */,
 				B98BD56E1A609185003A35BE /* RETableViewTextCell.m in Sources */,
 				4A6865A11A7374EF005394DD /* HouseSelectBuildingTableViewController.m in Sources */,
@@ -1913,6 +1947,7 @@
 				B98BD5681A609185003A35BE /* RETableViewInlinePickerCell.m in Sources */,
 				B93B14471A62668E00121133 /* MultilineTextItem.m in Sources */,
 				4A5665301A4BF43700C3BA22 /* MessagePageViewController.m in Sources */,
+				4A8788481AE8D87300FB3F91 /* ContactPsnDtlVCCell.m in Sources */,
 				B98BD58B1A609185003A35BE /* REValidator.m in Sources */,
 				B98BD5631A609185003A35BE /* RETableViewBoolCell.m in Sources */,
 				4A40C2181A41745E00944AB2 /* petionDetailsTableViewController.m in Sources */,
@@ -1953,7 +1988,10 @@
 				4A8D01ED1A36F60800EA59EA /* announcement.m in Sources */,
 				4A5D243C1A4A62A800546698 /* ShopTableViewController.m in Sources */,
 				4A2AD1911A457F6C0074DCA0 /* SuggestionViewController.m in Sources */,
+				4A6971641AE9D01700EA8E3D /* ContactPersonDetailsVCTableViewCell.m in Sources */,
+				4A3990151AE8A2AD00CA5640 /* ContactPersonDetailsViewController.m in Sources */,
 				4A40C21B1A41748100944AB2 /* petionListTableViewController.m in Sources */,
+				4AE5E3F31AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.m in Sources */,
 				4A3A2EF51A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.m in Sources */,
 				4AD7945F1A208F4400DEC779 /* main.m in Sources */,
 				B944456F1A6282510033E998 /* AppointDataPuller.m in Sources */,

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "unit.h"
 
+
 @interface ContactPsnListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *searchTextField;
 @property (strong, nonatomic) IBOutlet UIButton *searchBtn;
@@ -17,6 +18,8 @@
 
 @property(strong,nonatomic)unit*superUnt;
 @property(strong,nonatomic)NSMutableArray*listContent;
+
+@property(strong,nonatomic)unit*selectedUnt;
 
 
 - (IBAction)onSearch:(id)sender;

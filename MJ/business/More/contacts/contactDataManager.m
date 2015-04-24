@@ -156,7 +156,7 @@
                                  };
     
     
-    [NetWorkManager PostWithApiName:API_GET_SUB_PERSON parameters:parameters success:
+    [NetWorkManager PostWithApiName:API_GET_SUB_UNIT parameters:parameters success:
      ^(id responseObject)
      {
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];

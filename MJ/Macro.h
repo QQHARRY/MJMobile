@@ -51,6 +51,9 @@
 //获取部门的直接下属人员
 #define API_GET_SUB_PERSON @"person/getContractDeptUsrlist"
 
+//获取部门的直属子部门和员工
+#define API_GET_SUB_UNIT @"person/getContractDeptUsrAndOneSubDept"
+
 //编辑个人信息
 #define EDIT_STAFF_INFO @"person/editStaffInfo"
 //修改密码

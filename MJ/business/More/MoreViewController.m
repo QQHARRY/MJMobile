@@ -19,6 +19,7 @@
 #import "UtilFun.h"
 #import "SignTableViewController.h"
 #import "ContactDeptViewController.h"
+#import "ContactPersonDetailsViewController.h"
 
 @interface MoreViewController ()
 
@@ -68,7 +69,15 @@
 {
     if(indexPath.row == 0)
     {
-        [self performSegueWithIdentifier:@"showPersonDetails" sender:self];
+        //[self performSegueWithIdentifier:@"showPersonDetails" sender:self];
+        UIStoryboard* curStory = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        
+        ContactPersonDetailsViewController*vc =[curStory instantiateViewControllerWithIdentifier:@"ContactPersonDetailsViewController"];
+        if ([vc  isKindOfClass:[ContactPersonDetailsViewController class]])
+        {
+            vc.psn = [person me];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
     else if(indexPath.row == 1)
     {
@@ -285,12 +294,12 @@
     {
         if ([controller isKindOfClass:[PersonDetailsViewController class]])
         {
-            PersonDetailsViewController *detailController = (PersonDetailsViewController *)controller;
+//            PersonDetailsViewController *detailController = (PersonDetailsViewController *)controller;
+//            
+//            
+//            detailController.psn = [person me];
             
-            
-            detailController.psn = [person me];
-            
-            
+          
         }
         else
         {

@@ -12,6 +12,8 @@
 #import "UtilFun.h"
 #import "contactDataManager.h"
 #import "person.h"
+#import "PersonDetailsViewController.h"
+#import "ContactPersonDetailsViewController.h"
 
 #define DEFAULT_PATH_IMAGE @"陕西住商不动产"
 #define DEFAULT_PERSON_IAMGE @"个人icon"
@@ -188,6 +190,25 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    person*psn = [[self.listContent objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    self.selectedUnt = psn;
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+#ifdef OLDDESIGN
+    UIStoryboard* curStory = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    
+    PersonDetailsViewController*vc =[curStory instantiateViewControllerWithIdentifier:@"PersonDetailsViewController"];
+    if ([vc  isKindOfClass:[PersonDetailsViewController class]])
+    {
+        vc.psn = psn;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+#else
+    
+    [self performSegueWithIdentifier:@"toShowPersonDetails" sender:self];
+#endif
+}
 
 
 
@@ -206,14 +227,15 @@
     }
     
     
-    if ([segue.identifier isEqual:@"ContactPsnListViewController"])
+    if ([segue.identifier isEqual:@"toShowPersonDetails"])
     {
-        if ([controller isKindOfClass:[ContactPsnListViewController class]])
+        if ([controller isKindOfClass:[ContactPersonDetailsViewController class]])
         {
-            ContactPsnListViewController *detailController = (ContactPsnListViewController *)controller;
-            
-            
-            //detailController.psn = self.curSelected;
+            ContactPersonDetailsViewController *vc = (ContactPersonDetailsViewController *)controller;
+            if ([self.selectedUnt isKindOfClass:[person class]])
+            {
+                vc.psn = (person*)self.selectedUnt;
+            }
         }
         else
         {
