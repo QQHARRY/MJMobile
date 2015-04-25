@@ -7,6 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "person.h"
+
+@class ContactPsnVCCellTableViewCell;
+
+@protocol ContactPsnCellDelegate <NSObject>
+
+
+
+@required
+
+-(void)callBtnPressedOnCell:(ContactPsnVCCellTableViewCell*)cell;
+-(void)imBtnPressedOnCell:(ContactPsnVCCellTableViewCell*)cell;
+-(void)smsBtnPressedOnCell:(ContactPsnVCCellTableViewCell*)cell;
+
+@end
+
 
 @interface ContactPsnVCCellTableViewCell : UITableViewCell
 
@@ -16,6 +32,44 @@
 @property (strong, nonatomic) IBOutlet UIButton *phoneBtn;
 @property (strong, nonatomic) IBOutlet UIButton *imBtn;
 
+@property (weak,nonatomic)person*psn;
+@property (weak,nonatomic)id<ContactPsnCellDelegate>delegate;
+
+
+- (void)setPerson:(person*)person;
+- (IBAction)smsBtnClicked:(id)sender;
+- (IBAction)phoneBtnClicked:(id)sender;
+- (IBAction)imBtnClicked:(id)sender;
+
+
+
+
 
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

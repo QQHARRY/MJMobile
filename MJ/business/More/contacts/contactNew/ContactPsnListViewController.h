@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "unit.h"
+#import "ContactPsnVCCellTableViewCell.h"
 
-
-@interface ContactPsnListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface ContactPsnListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,ContactPsnCellDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *searchTextField;
 @property (strong, nonatomic) IBOutlet UIButton *searchBtn;
 @property (strong, nonatomic) IBOutlet UITableView *tableview;

@@ -315,7 +315,7 @@
             
             
             vc.superUnit = [department rootUnit];
-            
+            vc.isSearchMode = NO;
             
         }
         else

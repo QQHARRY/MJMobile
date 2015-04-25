@@ -19,4 +19,5 @@
 
 -(BOOL)isCompany;
 +(unit*)rootUnit;
+-(department*)findSubDepartmentByNo:(NSString*)no;
 @end

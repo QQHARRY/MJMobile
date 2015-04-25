@@ -21,7 +21,7 @@
                             <constraint firstAttribute="width" constant="34" id="tml-x7-Gzf"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="路人甲" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dm6-Bl-JRc">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dm6-Bl-JRc">
                         <rect key="frame" x="51" y="10" width="106" height="26"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="106" id="Eaz-BT-nYX"/>
@@ -31,7 +31,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AXR-kB-tbn">
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AXR-kB-tbn">
                         <rect key="frame" x="160" y="10" width="25" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="29.5" id="6O8-If-JpE"/>
@@ -40,8 +40,11 @@
                         <state key="normal" backgroundImage="message_icon">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="smsBtnClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="wHg-Yk-9zi"/>
+                        </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFa-nf-3LZ">
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFa-nf-3LZ">
                         <rect key="frame" x="216" y="10" width="20" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="24.5" id="OcQ-bD-Oi0"/>
@@ -50,23 +53,29 @@
                         <state key="normal" backgroundImage="phone_icon1">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="phoneBtnClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cOS-Ph-Vcc"/>
+                        </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EM-1Z-Lgy">
-                        <rect key="frame" x="263" y="10" width="45" height="26"/>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EM-1Z-Lgy">
+                        <rect key="frame" x="263" y="10" width="72" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="26" id="1XK-1n-fgZ"/>
-                            <constraint firstAttribute="width" constant="45" id="uEH-cC-aSy"/>
+                            <constraint firstAttribute="height" constant="21" id="1XK-1n-fgZ"/>
+                            <constraint firstAttribute="width" constant="72" id="uEH-cC-aSy"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <state key="normal" title="未开通">
+                        <state key="normal">
                             <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="imBtnClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="6Nv-sK-9ou"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="3s2-2e-Usx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="9" id="3hN-pQ-oED"/>
-                    <constraint firstItem="MFa-nf-3LZ" firstAttribute="leading" secondItem="AXR-kB-tbn" secondAttribute="trailing" constant="20" id="Hhm-FY-LT5"/>
+                    <constraint firstItem="MFa-nf-3LZ" firstAttribute="leading" secondItem="AXR-kB-tbn" secondAttribute="trailing" constant="25" id="Hhm-FY-LT5"/>
                     <constraint firstItem="Dm6-Bl-JRc" firstAttribute="leading" secondItem="3s2-2e-Usx" secondAttribute="trailing" constant="8" id="Ry1-8L-TE7"/>
                     <constraint firstAttribute="centerY" secondItem="9EM-1Z-Lgy" secondAttribute="centerY" id="TRc-iz-k0t"/>
                     <constraint firstAttribute="centerY" secondItem="Dm6-Bl-JRc" secondAttribute="centerY" id="b21-Sh-ge7"/>
@@ -74,7 +83,7 @@
                     <constraint firstAttribute="centerY" secondItem="3s2-2e-Usx" secondAttribute="centerY" id="mAs-6s-nDC"/>
                     <constraint firstAttribute="centerY" secondItem="AXR-kB-tbn" secondAttribute="centerY" id="sI1-XN-K06"/>
                     <constraint firstAttribute="centerY" secondItem="MFa-nf-3LZ" secondAttribute="centerY" id="wEC-np-EMU"/>
-                    <constraint firstItem="9EM-1Z-Lgy" firstAttribute="leading" secondItem="MFa-nf-3LZ" secondAttribute="trailing" constant="14" id="yyd-da-zFF"/>
+                    <constraint firstItem="9EM-1Z-Lgy" firstAttribute="leading" secondItem="MFa-nf-3LZ" secondAttribute="trailing" constant="20" id="yyd-da-zFF"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

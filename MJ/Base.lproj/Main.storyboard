@@ -360,10 +360,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="woy-Qg-koe">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="搜索" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O15-et-wmd">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="搜索" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="O15-et-wmd">
                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFy-ct-Cyu">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -485,6 +485,7 @@
                         <outlet property="searchTextField" destination="O15-et-wmd" id="oQf-8V-ef7"/>
                         <outlet property="tableview" destination="8yK-5Y-TYx" id="8ca-m7-PYo"/>
                         <segue destination="JU2-fh-RYg" kind="show" identifier="toPsnListVC" id="0IN-OJ-IlM"/>
+                        <segue destination="2oa-94-ts9" kind="show" identifier="toShowPersonDetailsVC1" id="Kp2-sj-FKl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rQe-9O-INv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -530,10 +531,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yyn-R0-LRp">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="搜索" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v0R-tw-Dny">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="搜索" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="v0R-tw-Dny">
                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7Y-pu-YKP">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -661,7 +662,7 @@
                 <searchDisplayController id="iau-Ju-gJs"/>
                 <searchDisplayController id="wMY-ka-Ker"/>
             </objects>
-            <point key="canvasLocation" x="2217" y="-3108"/>
+            <point key="canvasLocation" x="2193" y="-3061.5"/>
         </scene>
         <!--Contact Person Details View Controller-->
         <scene sceneID="6sO-xn-b1d">
@@ -898,7 +899,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X9N-jo-NBj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2895" y="-3108"/>
+            <point key="canvasLocation" x="3039" y="-3189.75"/>
         </scene>
         <!--Contact List Table View Controller-->
         <scene sceneID="D7e-r5-zSI">
@@ -3265,8 +3266,9 @@
         <image name="背景图片" width="720" height="444"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="kPa-Q7-pPJ"/>
+        <segue reference="ECB-7v-soF"/>
         <segue reference="C9H-or-Nhi"/>
         <segue reference="MPC-oG-oz9"/>
-        <segue reference="kPa-Q7-pPJ"/>
     </inferredMetricsTieBreakers>
 </document>

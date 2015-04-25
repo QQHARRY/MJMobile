@@ -50,6 +50,9 @@
 #define API_GET_SUB_DEPT @"person/getContractDeptSubDept"
 //获取部门的直接下属人员
 #define API_GET_SUB_PERSON @"person/getContractDeptUsrlist"
+//73. 按人名或部门名搜索通讯录信息
+#define API_SEARCH_BY_KEWORD @"person/searchAddressList"
+
 
 //获取部门的直属子部门和员工
 #define API_GET_SUB_UNIT @"person/getContractDeptUsrAndOneSubDept"

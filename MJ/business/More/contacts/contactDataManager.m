@@ -7,6 +7,7 @@
 //
 
 #import "contactDataManager.h"
+#import "UtilFun.h"
 #import "unit.h"
 #import "NetWorkManager.h"
 #import "person.h"
@@ -15,6 +16,27 @@
 
 @implementation contactDataManager
 
+
++(void)DownloadDepartmentTreeSuccess:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    static dispatch_once_t pred = 0;
+    dispatch_once(&pred, ^{
+        [self getSubDeptOfUnit:[department rootUnit] Success:^(id responseObject)
+         {
+
+                 success(nil);
+                 return;
+
+         }
+                       failure:^(NSError *error)
+         {
+
+                 success(nil);
+
+         }];
+        
+    });
+}
 
 
 +(void)WaitForDataB4ExpandUnit:(unit*)unt Success:(void (^)(id responseObject))success
@@ -212,6 +234,115 @@
     
     return arr;
 }
+
+
++(void)searchUnitByKeyWord:(NSString *)kw Success:(void (^)(NSArray *personArr,NSArray*dptArr))success failure:(void (^)(NSError *error))failure
+{
+    void (^searchBlock) (NSString*kw)  = ^(NSString*a){
+        NSMutableDictionary*mutDic = [[NSMutableDictionary alloc] init];
+        [mutDic setValue:[person me].job_no forKey:@"job_no"];
+        [mutDic setValue:[person me].password forKey:@"acc_password"];
+        [mutDic setValue:[UtilFun getUDID] forKey:@"DeviceID"];
+        [mutDic setValue:DEVICE_IOS forKey:@"DeviceType"];
+        [mutDic setValue:kw forKey:@"SearchName"];
+        
+        [NetWorkManager PostWithApiName:API_SEARCH_BY_KEWORD parameters:mutDic success:
+         ^(id responseObject)
+         {
+             NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+             if ([bizManager checkReturnStatus:resultDic Success:nil failure:failure ShouldReturnWhenSuccess:NO])
+             {
+                 success([self getSearchResultPersonArr:resultDic],[self getSearchResultDeptArr:resultDic]);
+             }
+             
+             
+         }
+                                failure:^(NSError *error)
+         {
+             failure(error);
+         }];
+    };
+    
+    
+    
+    if ([[[department rootUnit] subDept] count] == 0)
+    {
+        [self DownloadDepartmentTreeSuccess:^(id responseObject) {
+            
+            searchBlock(kw);
+            
+        } failure:^(NSError *error) {
+            failure(error);
+        }];
+    }
+    else
+    {
+        searchBlock(kw);
+    }
+
+}
+
++(NSArray*)getSearchResultPersonArr:(NSDictionary*)dic
+{
+    NSArray*annArr = [dic objectForKey:@"AddressListNode"];
+    NSMutableArray* arr = [[NSMutableArray alloc] init];
+    if ([annArr respondsToSelector:@selector(count)])
+    {
+        if ([annArr count] > 0)
+        {
+            for (NSDictionary*dic in annArr)
+            {
+                person* psn = [[person alloc] init];
+                [psn initWithDictionary:dic];
+
+                [arr  addObject:psn];
+                
+            }
+        }
+        
+    }
+    
+    if ([arr count] == 0)
+    {
+        return nil;
+    }
+    
+    return arr;
+}
+
++(NSArray*)getSearchResultDeptArr:(NSDictionary*)dic
+{
+    NSArray*annArr = [dic objectForKey:@"DeptListNode"];
+    NSMutableArray* arr = [[NSMutableArray alloc] init];
+    if ([annArr respondsToSelector:@selector(count)])
+    {
+        if ([annArr count] > 0)
+        {
+            for (NSDictionary*dic in annArr)
+            {
+                department* dpt = [[department alloc] init];
+                [dpt initWithDictionary:dic];
+                department*dptFound = [(department*)[department rootUnit] findSubDepartmentByNo:dpt.dept_current_no];
+                
+                
+                
+                
+                [arr  addObject:dptFound];
+                
+            }
+        }
+        
+    }
+    
+    if ([arr count] == 0)
+    {
+        return nil;
+    }
+    
+    return arr;
+}
+
+
 
 
 @end

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "unit.h"
 
-@interface ContactDeptViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface ContactDeptViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UIButton *searchBtn;
 @property (strong, nonatomic) IBOutlet UITextField *searchTextField;
@@ -19,5 +19,9 @@
 
 @property (strong,nonatomic)unit*superUnit;
 @property (strong,nonatomic)unit*selected;
+@property (assign,nonatomic)BOOL isSearchMode;
+@property (strong,nonatomic)NSMutableArray*untArr;
+
+
 
 @end

@@ -423,9 +423,11 @@
         
         UIBarButtonItem* callBtn = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(onCall)];
         [callBtn setImage:[UIImage imageNamed:DADIANHUAIMAGE]];
+        callBtn.enabled = (self.psn.obj_mobile!= nil)&&(self.psn.obj_mobile.length) > 0;
         
         UIBarButtonItem* shortMsgBtn = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(onShortMessage)];
         [shortMsgBtn setImage:[UIImage imageNamed:FADUANXINIMAGE]];
+        shortMsgBtn.enabled = (self.psn.obj_mobile!= nil)&&(self.psn.obj_mobile.length) > 0;
         
 
         callBtn.enabled = [UtilFun isIphoneAboutHardWare];

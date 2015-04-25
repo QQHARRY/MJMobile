@@ -8,7 +8,7 @@
 
 #import "ContactPsnListViewController.h"
 #import "ContactPathTableViewCell.h"
-#import "ContactPsnVCCellTableViewCell.h"
+
 #import "UtilFun.h"
 #import "contactDataManager.h"
 #import "person.h"
@@ -18,6 +18,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "UIImage+FX.h"
 #import "UIImageView+RoundImage.h"
+#import "ContactDeptViewController.h"
 
 #define DEFAULT_PATH_IMAGE @"陕西住商不动产"
 #define DEFAULT_PERSON_IAMGE @"个人icon"
@@ -91,6 +92,7 @@
     UIImageView*imagV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:MAG_IMAGE]];
     self.searchTextField.leftViewMode = UITextFieldViewModeUnlessEditing;
     self.searchTextField.leftView = imagV;
+    self.searchTextField.delegate = self;
     
     self.searchTextField.layer.cornerRadius = 10.0f;
     self.searchTextField.layer.borderColor = [UIColor colorWithRed:0xa7/225.0 green:0xab/225.0 blue:0xc6/225.0 alpha:1].CGColor;
@@ -188,9 +190,11 @@
         }
     };
     
+
     person*psn = [[self.listContent objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     cell.name.text = psn.name_full;
-    
+    [cell setPerson:psn];
+    cell.delegate = self;
 
     
     if (psn.photo == nil || [psn.photo isEqualToString:@""])
@@ -278,6 +282,111 @@
 }
 
 
-- (IBAction)onSearch:(id)sender {
+- (IBAction)onSearch:(id)sender
+{
+    if ([self.searchTextField.text length] > 0)
+    {
+        SHOWHUD_WINDOW
+        
+        [contactDataManager searchUnitByKeyWord:self.searchTextField.text Success:^(NSArray *personArr, NSArray *dptArr) {
+            
+            HIDEHUD_WINDOW
+            NSMutableArray*arr = [[NSMutableArray alloc] init];
+
+            
+            [arr addObjectsFromArray:dptArr];
+            [arr addObjectsFromArray:personArr];
+            
+
+                UIStoryboard* curStory = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+                
+                ContactDeptViewController*vc =[curStory instantiateViewControllerWithIdentifier:@"Contact Dept View Controller"];
+                if ([vc  isKindOfClass:[ContactDeptViewController class]])
+                {
+                    vc.superUnit = nil;
+                    vc.isSearchMode = YES;
+                    vc.untArr = arr;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+
+            
+        } failure:^(NSError *error) {
+            HIDEHUD_WINDOW
+        }];
+    }
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if ([textField isEqual:self.searchTextField])
+    {
+        [self.searchTextField resignFirstResponder];
+        [self onSearch:self.searchTextField.text];
+    }
+    
+    return YES;
+}
+
+
+-(void)callBtnPressedOnCell:(ContactPsnVCCellTableViewCell *)cell
+{
+    [self onCall:cell.psn];
+}
+
+-(void)imBtnPressedOnCell:(ContactPsnVCCellTableViewCell *)cell
+{
+    IMSTATE imState = [cell.psn imState:nil];
+    if (imState == IM_OPENED_NOT_FRIEND)
+    {
+        [self onAddFriend:cell.psn];
+    }
+    else if(imState == IM_FRIEND)
+    {
+        [self onImMessage:cell.psn];
+        
+    }
+    
+}
+
+-(void)smsBtnPressedOnCell:(ContactPsnVCCellTableViewCell *)cell
+{
+    [self onShortMessage:cell.psn];
+   
+}
+
+-(void)onImMessage:(person*)psn
+{
+    PRESENTALERT(@"发消息", nil, nil, nil);
+}
+
+-(void)onAddFriend:(person*)psn
+{
+    if ([[person me] isImOpened])
+    {
+        PRESENTALERT(@"加好友", nil, nil, nil);
+    }
+    else
+    {
+        PRESENTALERT(@"添加好友失败", @"您尚未开通IM,请先联系管理员开通", nil, nil);
+    }
+    
+}
+
+-(void)onCall:(person*)psn
+{
+    UIWebView*callWebview =[[UIWebView alloc] initWithFrame:CGRectZero];
+    NSURL *telURL =[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",psn.obj_mobile]];
+    [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
+    [self.view addSubview:callWebview];
+}
+
+-(void)onShortMessage:(person*)psn
+{
+    
+    UIWebView*callWebview =[[UIWebView alloc] initWithFrame:CGRectZero];
+    NSURL *telURL =[NSURL URLWithString:[NSString stringWithFormat:@"sms:%@",psn.obj_mobile]];
+    [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
+    [self.view addSubview:callWebview];
+}
+
 @end

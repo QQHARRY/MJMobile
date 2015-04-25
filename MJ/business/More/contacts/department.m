@@ -48,5 +48,31 @@ static unit*rootUnit = nil;
     return [self.dept_type isEqualToString:@"1"];
 }
 
+-(department*)findSubDepartmentByNo:(NSString*)no
+{
+    if (self.subDept == nil || [self.subDept count] == 0)
+    {
+        return nil;
+    }
+    else
+    {
+        for (department*dpt in self.subDept)
+        {
+            if ([dpt.dept_current_no isEqualToString:no])
+            {
+                return dpt;
+            }
+            else
+            {
+                department*dptTmp = [dpt findSubDepartmentByNo:no];
+                if(dptTmp)
+                {
+                    return dptTmp;
+                }
+            }
+        }
+    }
+    return nil;
+}
 
 @end

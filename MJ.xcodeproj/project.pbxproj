@@ -125,6 +125,7 @@
 		4AA543771A88B33F0089C0F2 /* RETableViewMultiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA543761A88B33F0089C0F2 /* RETableViewMultiCell.m */; };
 		4AAFAC9D1AEB368D0029BAB3 /* UIImageView+RoundImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFAC9C1AEB368D0029BAB3 /* UIImageView+RoundImage.m */; };
 		4AAFACA01AEB49A60029BAB3 /* ImFriendListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFAC9F1AEB49A60029BAB3 /* ImFriendListManager.m */; };
+		4AAFACA31AEB4C4C0029BAB3 /* ContactDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFACA21AEB4C4C0029BAB3 /* ContactDataProvider.m */; };
 		4AB0EFA61A30540C00C24A44 /* AFNMJInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */; };
 		4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA81A30558000C24A44 /* NetWorkManager.m */; };
 		4AB0EFAF1A308CED00C24A44 /* UtilFun.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFAE1A308CED00C24A44 /* UtilFun.m */; };
@@ -507,6 +508,8 @@
 		4AAFAC9C1AEB368D0029BAB3 /* UIImageView+RoundImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+RoundImage.m"; sourceTree = "<group>"; };
 		4AAFAC9E1AEB49A60029BAB3 /* ImFriendListManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImFriendListManager.h; sourceTree = "<group>"; };
 		4AAFAC9F1AEB49A60029BAB3 /* ImFriendListManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImFriendListManager.m; sourceTree = "<group>"; };
+		4AAFACA11AEB4C4C0029BAB3 /* ContactDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDataProvider.h; sourceTree = "<group>"; };
+		4AAFACA21AEB4C4C0029BAB3 /* ContactDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDataProvider.m; sourceTree = "<group>"; };
 		4AB0EFA41A30540C00C24A44 /* AFNMJInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNMJInstance.h; sourceTree = "<group>"; };
 		4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNMJInstance.m; sourceTree = "<group>"; };
 		4AB0EFA71A30558000C24A44 /* NetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkManager.h; sourceTree = "<group>"; };
@@ -868,6 +871,8 @@
 				4A6971611AE9D01700EA8E3D /* ContactPersonDetailsVCTableViewCell.h */,
 				4A6971621AE9D01700EA8E3D /* ContactPersonDetailsVCTableViewCell.m */,
 				4A6971631AE9D01700EA8E3D /* ContactPersonDetailsVCTableViewCell.xib */,
+				4AAFACA11AEB4C4C0029BAB3 /* ContactDataProvider.h */,
+				4AAFACA21AEB4C4C0029BAB3 /* ContactDataProvider.m */,
 			);
 			path = contactNew;
 			sourceTree = "<group>";
@@ -1927,6 +1932,7 @@
 				B9FF4B411A245FB300FE413E /* HouseViewController.m in Sources */,
 				B9FF4B401A245FB300FE413E /* MainPageViewController.m in Sources */,
 				4A8D01CF1A33023900EA59EA /* ILBarButtonItem.m in Sources */,
+				4AAFACA31AEB4C4C0029BAB3 /* ContactDataProvider.m in Sources */,
 				4AD7951F1A218C4A00DEC779 /* AFHTTPRequestOperation.m in Sources */,
 				B95BEC5C1A73EC1200C2FB90 /* CustomerParticulars.m in Sources */,
 				B94445811A62986B0033E998 /* ContractDetailCell.m in Sources */,
