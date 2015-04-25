@@ -123,6 +123,8 @@
 		4AA543711A8894630089C0F2 /* photoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA543701A8894630089C0F2 /* photoManager.m */; };
 		4AA543741A88B2480089C0F2 /* ReMultiTextItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA543731A88B2480089C0F2 /* ReMultiTextItem.m */; };
 		4AA543771A88B33F0089C0F2 /* RETableViewMultiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA543761A88B33F0089C0F2 /* RETableViewMultiCell.m */; };
+		4AAFAC9D1AEB368D0029BAB3 /* UIImageView+RoundImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFAC9C1AEB368D0029BAB3 /* UIImageView+RoundImage.m */; };
+		4AAFACA01AEB49A60029BAB3 /* ImFriendListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFAC9F1AEB49A60029BAB3 /* ImFriendListManager.m */; };
 		4AB0EFA61A30540C00C24A44 /* AFNMJInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */; };
 		4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA81A30558000C24A44 /* NetWorkManager.m */; };
 		4AB0EFAF1A308CED00C24A44 /* UtilFun.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFAE1A308CED00C24A44 /* UtilFun.m */; };
@@ -501,6 +503,10 @@
 		4AA543731A88B2480089C0F2 /* ReMultiTextItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReMultiTextItem.m; sourceTree = "<group>"; };
 		4AA543751A88B33F0089C0F2 /* RETableViewMultiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RETableViewMultiCell.h; sourceTree = "<group>"; };
 		4AA543761A88B33F0089C0F2 /* RETableViewMultiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RETableViewMultiCell.m; sourceTree = "<group>"; };
+		4AAFAC9B1AEB368D0029BAB3 /* UIImageView+RoundImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+RoundImage.h"; sourceTree = "<group>"; };
+		4AAFAC9C1AEB368D0029BAB3 /* UIImageView+RoundImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+RoundImage.m"; sourceTree = "<group>"; };
+		4AAFAC9E1AEB49A60029BAB3 /* ImFriendListManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImFriendListManager.h; sourceTree = "<group>"; };
+		4AAFAC9F1AEB49A60029BAB3 /* ImFriendListManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImFriendListManager.m; sourceTree = "<group>"; };
 		4AB0EFA41A30540C00C24A44 /* AFNMJInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNMJInstance.h; sourceTree = "<group>"; };
 		4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNMJInstance.m; sourceTree = "<group>"; };
 		4AB0EFA71A30558000C24A44 /* NetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkManager.h; sourceTree = "<group>"; };
@@ -830,6 +836,8 @@
 				4A06BEB31AE6314C00809C52 /* RestPassWordViewController.m */,
 				4A06BEB41AE6314C00809C52 /* unit.h */,
 				4A06BEB51AE6314C00809C52 /* unit.m */,
+				4AAFAC9E1AEB49A60029BAB3 /* ImFriendListManager.h */,
+				4AAFAC9F1AEB49A60029BAB3 /* ImFriendListManager.m */,
 			);
 			path = contacts;
 			sourceTree = "<group>";
@@ -1089,6 +1097,8 @@
 				4A96ECA31AE742F900577AA6 /* UIImage+xtRoundedRectImage.m */,
 				4AE5E3F11AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.h */,
 				4AE5E3F21AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.m */,
+				4AAFAC9B1AEB368D0029BAB3 /* UIImageView+RoundImage.h */,
+				4AAFAC9C1AEB368D0029BAB3 /* UIImageView+RoundImage.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1893,6 +1903,7 @@
 				4AD795271A218C4A00DEC779 /* AFURLSessionManager.m in Sources */,
 				B93B144A1A62669600121133 /* MultilineTextCell.m in Sources */,
 				4AD795241A218C4A00DEC779 /* AFURLConnectionOperation.m in Sources */,
+				4AAFAC9D1AEB368D0029BAB3 /* UIImageView+RoundImage.m in Sources */,
 				B98BD5731A609185003A35BE /* REInlineDatePickerItem.m in Sources */,
 				4AD7954C1A218C4A00DEC779 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				4AFA9F631A775CB7008A852F /* editCustomerTableViewController.m in Sources */,
@@ -1939,6 +1950,7 @@
 				4A9D02031A60521700600BA0 /* DataPersistence.m in Sources */,
 				4A56C70D1A8CAF6700AF8CB6 /* updateDataPuller.m in Sources */,
 				4A5D24541A4AF22900546698 /* orderTableViewController.m in Sources */,
+				4AAFACA01AEB49A60029BAB3 /* ImFriendListManager.m in Sources */,
 				4A8D01FF1A3734A000EA59EA /* badgeImageFactory.m in Sources */,
 				4A9D3F7A1A8F481200BCDAD8 /* MJTabbarController.m in Sources */,
 				4AD795531A218C4A00DEC779 /* UIWebView+AFNetworking.m in Sources */,

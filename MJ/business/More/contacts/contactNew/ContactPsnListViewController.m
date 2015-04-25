@@ -14,6 +14,10 @@
 #import "person.h"
 #import "PersonDetailsViewController.h"
 #import "ContactPersonDetailsViewController.h"
+#import "Macro.h"
+#import "UIImageView+AFNetworking.h"
+#import "UIImage+FX.h"
+#import "UIImageView+RoundImage.h"
 
 #define DEFAULT_PATH_IMAGE @"陕西住商不动产"
 #define DEFAULT_PERSON_IAMGE @"个人icon"
@@ -186,6 +190,34 @@
     
     person*psn = [[self.listContent objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     cell.name.text = psn.name_full;
+    
+
+    
+    if (psn.photo == nil || [psn.photo isEqualToString:@""])
+    {
+        cell.psnImage.image = [UIImage imageNamed:DEFAULT_PERSON_IAMGE];
+    }
+    else
+    {
+        NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
+        NSString*imgName =  [strUrl pathExtension];
+        if (imgName != nil && imgName.length > 0)
+        {
+            __typeof (ContactPsnVCCellTableViewCell*) __weak weakCell = cell;
+            [cell.psnImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:DEFAULT_PERSON_IAMGE] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
+             {
+                 [weakCell.psnImage setImageToRound:image];
+                 
+             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                 
+             }];
+        }
+        else
+        {
+            cell.psnImage.image = [UIImage imageNamed:DEFAULT_PERSON_IAMGE];
+        }
+        
+    }
     
     return cell;
 }

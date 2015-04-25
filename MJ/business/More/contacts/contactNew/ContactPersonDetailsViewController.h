@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "person.h"
 
-@interface ContactPersonDetailsViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate>
+
+
+
+@interface ContactPersonDetailsViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,UIGestureRecognizerDelegate,UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *backGroundView;
 @property (strong, nonatomic) IBOutlet UIImageView *photoImage;
@@ -21,7 +24,9 @@
 @property (assign, nonatomic) NSInteger keyBoardHeight;
 @property (strong, nonatomic)person*psn;
 - (IBAction)onBack:(id)sender;
-
-
 @property(assign,nonatomic)BOOL editState;
+
+
+
+
 @end

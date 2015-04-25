@@ -19,6 +19,7 @@
 #import "Macro.h"
 #import "PersonDetailsViewController.h"
 #import "ContactPsnListViewController.h"
+#import "UIImageView+RoundImage.h"
 
 #define DEFAULT_PATH_IMAGE @"陕西住商不动产"
 #define DEFAULT_PERSON_IAMGE @"个人icon"
@@ -235,10 +236,7 @@
                         __typeof (ContactDeptVCCell*) __weak weakCell = cell;
                         [cell.image setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:DEFAULT_PERSON_IAMGE] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
                          {
-                             CGFloat size = image.size.height > image.size.width?image.size.width:image.size.height;
-                             UIImage*scaledImag = [image imageScaledToSize:CGSizeMake(size, size)];
-                             UIImage*roundImage = [scaledImag imageWithCornerRadius:scaledImag.size.width];
-                             weakCell.image.image = roundImage;
+                             [weakCell.image setImageToRound:image];
                             
                         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                             

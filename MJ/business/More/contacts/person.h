@@ -10,6 +10,17 @@
 #import "unit.h"
 #import <UIKit/UIKit.h>
 
+
+typedef enum
+{
+    IM_NOT_OPEN,
+    IM_OPENED_NOT_FRIEND,
+    IM_FRIEND
+    
+}IMSTATE;
+
+
+
 @interface person : unit
 
 
@@ -34,4 +45,7 @@
 +(person*)initMe:(NSDictionary*)dic;
 +(person*)me;
 +(void)cleanMe;
+
+-(BOOL)isImOpened;
+-(IMSTATE)imState:(NSArray*)friendArr;
 @end

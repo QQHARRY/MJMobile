@@ -13,7 +13,7 @@
 @interface photoManager : NSObject
 
 
-@property(strong,nonatomic)UIImage*photoImage;
+
 
 @property(strong,nonatomic)NSMutableDictionary*photoDic;
 

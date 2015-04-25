@@ -119,8 +119,7 @@
 
     if ([photoManager getPhotoByPerson:self.psn] != nil)
     {
-        
-        [self.myPhoto setBackgroundImage:[photoManager getPhotoByPerson:[person me]] forState:UIControlStateNormal];;
+        [self.myPhoto setBackgroundImage:[photoManager getPhotoByPerson:self.psn] forState:UIControlStateNormal];;
     }
     else
     {
@@ -134,7 +133,11 @@
             NSString*strUrl = [SERVER_ADD stringByAppendingString:photoUrl];
             UIImageView*imgV = [[UIImageView alloc] init];
             [imgV getImageWithURL:[NSURL URLWithString:strUrl] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                [photoManager setPhoto:image ForPerson:self.psn];
+                if ([self.psn isEqual:[person me]])
+                {
+                    [photoManager setPhoto:image ForPerson:self.psn];
+                }
+                
                 [self.myPhoto setBackgroundImage:image forState:UIControlStateNormal];
                 
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {

@@ -12,7 +12,7 @@ __strong static photoManager* _sharedObject = nil;
 
 @implementation photoManager
 
-@synthesize photoImage;
+
 
 
 +(photoManager*)sharedInstance

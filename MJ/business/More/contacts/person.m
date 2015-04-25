@@ -70,4 +70,36 @@ __strong static person* _sharedObject = nil;
     }
 }
 
+-(BOOL)isImOpened
+{
+    return [self.members isEqualToString:@"1"];
+}
+-(IMSTATE)imState:(NSArray*)friendArr
+{
+    if (![self isImOpened])
+    {
+        return IM_NOT_OPEN;
+    }
+    else
+    {
+        if (friendArr == nil)
+        {
+            return IM_OPENED_NOT_FRIEND;
+        }
+        else
+        {
+            for (person* psn in friendArr)
+            {
+                if ([psn.job_no isEqualToString:self.job_no])
+                {
+                    return IM_FRIEND;
+                }
+                
+            }
+            return  IM_OPENED_NOT_FRIEND;
+        }
+    }
+    return IM_NOT_OPEN;
+}
+
 @end
