@@ -58,10 +58,10 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EM-1Z-Lgy">
-                        <rect key="frame" x="263" y="10" width="72" height="21"/>
+                        <rect key="frame" x="263" y="10" width="22" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="1XK-1n-fgZ"/>
-                            <constraint firstAttribute="width" constant="72" id="uEH-cC-aSy"/>
+                            <constraint firstAttribute="width" constant="23" id="uEH-cC-aSy"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal">

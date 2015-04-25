@@ -23,8 +23,8 @@
 - (void)setPerson:(person*)person
 {
     self.psn = person;
-    self.phoneBtn.enabled = (self.psn.obj_mobile!=nil) && (self.psn.obj_mobile.length >0);
-    self.msgBtn.enabled = (self.psn.obj_mobile!=nil) && (self.psn.obj_mobile.length >0);
+    self.phoneBtn.hidden = !((self.psn.obj_mobile!=nil) && (self.psn.obj_mobile.length >0));
+    self.msgBtn.hidden = !((self.psn.obj_mobile!=nil) && (self.psn.obj_mobile.length >0));
     IMSTATE imState = [self.psn imState:nil];
     
     
@@ -34,26 +34,26 @@
     {
         case IM_NOT_OPEN:
         {
-            [self.imBtn setBackgroundImage:[UIImage imageNamed:@"未开通new"] forState:UIControlStateNormal];
-            self.imBtn.enabled = NO;
+            [self.imBtn setBackgroundImage:[UIImage imageNamed:@"未开通icon"] forState:UIControlStateNormal];
+            self.imBtn.hidden = YES;
         }
             break;
         case IM_OPENED_NOT_FRIEND:
         {
-            [self.imBtn setBackgroundImage:[UIImage imageNamed:@"加好友new"] forState:UIControlStateNormal];
-            self.imBtn.enabled = YES;
+            [self.imBtn setBackgroundImage:[UIImage imageNamed:@"加好友icon"] forState:UIControlStateNormal];
+            self.imBtn.hidden = NO;
         }
             break;
         case IM_FRIEND:
         {
-            [self.imBtn setBackgroundImage:[UIImage imageNamed:@"发消息new"] forState:UIControlStateNormal];
-            self.imBtn.enabled = YES;
+            [self.imBtn setBackgroundImage:[UIImage imageNamed:@"发消息icon"] forState:UIControlStateNormal];
+            self.imBtn.hidden = NO;
         }
             break;
         default:
         {
-            [self.imBtn setBackgroundImage:[UIImage imageNamed:@"未开通new"] forState:UIControlStateNormal];
-            self.imBtn.enabled = NO;
+            [self.imBtn setBackgroundImage:[UIImage imageNamed:@"未开通icon"] forState:UIControlStateNormal];
+            self.imBtn.hidden = YES;
         }
             break;
     }
