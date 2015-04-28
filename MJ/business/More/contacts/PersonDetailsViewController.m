@@ -231,6 +231,7 @@
         
         imagePickerController.sourceType = sourceType;
         
+        
         [self presentViewController:imagePickerController animated:YES completion:^{}];
         
     }
