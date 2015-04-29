@@ -18,3 +18,7 @@ MJ.xcodeproj/project.xcworkspace/xcshareddata/MJ.xccheckout
 MJ.xcodeproj/project.xcworkspace/xcuserdata/harry.xcuserdatad/UserInterfaceState.xcuserstate
 
 MJ.xcodeproj/xcuserdata/harry.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+
+MJ/3rd/EaseMobSDK/include/CallService/EMCallManager/delegates/EMCallManagerCallDelegate.h
+
+MJ/3rd/EaseMobSDK/include/CallService/EMCallManager/delegates/EMCallManagerDelegate.h
