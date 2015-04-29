@@ -22,3 +22,7 @@ MJ.xcodeproj/xcuserdata/harry.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
 MJ/3rd/EaseMobSDK/include/CallService/EMCallManager/delegates/EMCallManagerCallDelegate.h
 
 MJ/3rd/EaseMobSDK/include/CallService/EMCallManager/delegates/EMCallManagerDelegate.h
+
+MJ/3rd/EaseMobSDK/lib/libEaseMobClientSDK.a
+
+MJ/3rd/EaseMobSDK/lib/libEaseMobClientSDKLite.a
