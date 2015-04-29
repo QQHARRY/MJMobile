@@ -16,6 +16,8 @@
 #import "person.h"
 #import "Macro.h"
 #import "pushManagement.h"
+#import "AppDelegate+EaseMob.h"
+
 
 
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
@@ -35,6 +37,7 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    
     if (![UtilFun hasFirstBinded])
     {
         [self loadBindStory];
@@ -43,15 +46,122 @@
     {
         [self loadMainSotry:YES];
     }
-    
 
+    [self initUMengPush:launchOptions];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loginStateChange:)
+                                                 name:KNOTIFICATION_LOGINCHANGE
+                                               object:nil];
+    [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
+    
+    [self logoutEasemob];
     
     [self.window makeKeyAndVisible];
-  
     
-    [self initUMengPush:launchOptions];
     return YES;
 }
+
+
+
+-(void)logoutEasemob
+{
+    [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
+        NSLog(@"logout arealdy");
+    } onQueue:nil];
+}
+
+-(void)loginStateChange:(NSNotification *)notification
+{
+    BOOL isAutoLogin = [[[EaseMob sharedInstance] chatManager] isAutoLoginEnabled];
+    BOOL loginSuccess = [notification.object boolValue];
+    
+    NSLog(@"loginStateChanged isAutoLogin=:%d loginSuccess=%d",isAutoLogin,loginSuccess);
+    
+
+    if (!isAutoLogin && !loginSuccess)
+    {
+        [self loginToEaseMob:nil ReloadData:NO];
+    }
+}
+
+
+
+-(void)loginToEaseMob:(void (^)(BOOL loginSuccess))success ReloadData:(BOOL)reload
+{
+    NSString*easeMobAcc = [[person me].job_no  lowercaseString];
+    NSString*easeMobPwd = [LoginViewController getEasePwd];
+    BOOL isAutoLogin = [[[EaseMob sharedInstance] chatManager] isAutoLoginEnabled];
+    
+    
+     NSLog(@"loginToEaseMob isAutoLogin=:%d",isAutoLogin);
+    if (!isAutoLogin)
+    {
+        //异步登陆账号
+        [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:easeMobAcc
+                                                            password:easeMobPwd
+                                                          completion:
+         ^(NSDictionary *loginInfo, EMError *error) {
+             
+             if (loginInfo && !error)
+             {
+                 if (reload)
+                 {
+                     //获取群组列表
+                     [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
+                     
+                     //设置是否自动登录
+                     [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+                     
+                     //将旧版的coredata数据导入新的数据库
+                     EMError *error = [[EaseMob sharedInstance].chatManager importDataToNewDatabase];
+                     if (!error) {
+                         error = [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+                     }
+                 }
+                 if(success)
+                 {
+                     success(YES);
+                 }
+                 
+                 
+             }
+             else
+             {
+                 if(success)
+                 {
+                     success(NO);
+                 }
+                 switch (error.errorCode)
+                 {
+                     case EMErrorServerNotReachable:
+                         TTAlertNoTitle(NSLocalizedString(@"error.connectServerFail", @"Connect to the server failed!"));
+                         break;
+                     case EMErrorServerAuthenticationFailure:
+                         TTAlertNoTitle(error.description);
+                         break;
+                     case EMErrorServerTimeout:
+                         TTAlertNoTitle(NSLocalizedString(@"error.connectServerTimeout", @"Connect to the server timed out!"));
+                         break;
+                     default:
+                         TTAlertNoTitle(NSLocalizedString(@"login.fail", @"Logon failure"));
+                         break;
+                 }
+             }
+         } onQueue:nil];
+
+    }
+    else
+    {
+        if (success) {
+            
+            success(YES);
+        }
+    }
+   
+}
+
 
 
 -(void)initUMengPush:(NSDictionary *)launchOptions
@@ -83,7 +193,9 @@
                                                                                      categories:[NSSet setWithObject:categorys]];
         [UMessage registerRemoteNotificationAndUserNotificationSettings:userSettings];
         
-    } else{
+    }
+    else
+    {
         //register remoteNotification types
         [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
          |UIRemoteNotificationTypeSound
@@ -103,14 +215,24 @@
 }
 
 
+
+
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     [UMessage registerDeviceToken:deviceToken];
+    [[EaseMob sharedInstance] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+    
     
     NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:      [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
     [self setDeviceToken:token];
 }
+
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    [[EaseMob sharedInstance] application:application didFailToRegisterForRemoteNotificationsWithError:error];
+}
+
 
 -(void)setDeviceToken:(NSString*)deviceToken
 {
@@ -120,9 +242,6 @@
         
     }
     [pushMan setDeviceToken:deviceToken];
-    
-    
-    
 }
 -(void)setMemberID:(NSString*)memberID
 {
@@ -149,28 +268,10 @@
     notify.fireDate = [[NSDate new] dateByAddingTimeInterval:0];
     notify.alertBody = alert;
     notify.repeatInterval = 0;
-    //notify.userInfo = @{@"lk_alarm_id":@"test local push"};
     notify.soundName = UILocalNotificationDefaultSoundName;
     
     [[UIApplication sharedApplication] scheduleLocalNotification:notify];
     
-    
-    
-    
-    
-    //    self.userInfo = userInfo;
-    //    //定制自定的的弹出框
-    //    if([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
-    //    {
-    //        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"标题"
-    //                                                            message:@"Test On ApplicationStateActive"
-    //                                                           delegate:self
-    //                                                  cancelButtonTitle:@"确定"
-    //                                                  otherButtonTitles:nil];
-    //
-    //        [alertView show];
-    //        
-    //    }
 }
 
 -(void)loadBindStory

@@ -292,7 +292,7 @@
     [self.tableview deselectRowAtIndexPath:indexPath animated:NO];
 }
 
-#pragma mark - 键盘的处理
+
 - (void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = YES;

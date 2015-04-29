@@ -17,6 +17,10 @@
 
 #define SHOWHUD(v) ([UtilFun showHUD:v]);
 #define HIDEHUD(v) ([UtilFun hideHUD:v]);
+
+//#define SHOWHUD(v) ([self showHudInView:v hint:@""]);
+//#define HIDEHUD(v) ([self hideHud]);
+
 #define PRESENTALERT(title,msg,action,sender)\
 if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)\
 {\

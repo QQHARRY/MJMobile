@@ -77,11 +77,20 @@
     }
     {
         UITabBarItem *item = [self.tabBarController.tabBar.items objectAtIndex:3];
+        item.selectedImage = [[UIImage imageNamed:@"TabItemMessage"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        item.image = [[UIImage imageNamed:@"TabItemMessageNormal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:1/255.0f green:0/255.0f blue:107/255.0f alpha:1]} forState:UIControlStateSelected];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:4/255.0f green:43/255.0f blue:202/255.0f alpha:1]} forState:UIControlStateNormal];
+    }
+    
+    {
+        UITabBarItem *item = [self.tabBarController.tabBar.items objectAtIndex:4];
         item.selectedImage = [[UIImage imageNamed:@"TabItemMore"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         item.image = [[UIImage imageNamed:@"TabItemMoreNormal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:1/255.0f green:0/255.0f blue:107/255.0f alpha:1]} forState:UIControlStateSelected];
         [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:4/255.0f green:43/255.0f blue:202/255.0f alpha:1]} forState:UIControlStateNormal];
     }
+
     
     [self setNavBarTitleTextAttribute];
     [self initBadgeNavBarWithUnReadAlertCount:0 andMsgCount:0];

@@ -40,6 +40,7 @@ typedef enum
 @property(strong,atomic)NSString*technical_post_name;
 @property(strong,atomic)NSString*members;
 
+
 //-(BOOL)initWithDictionary:(NSDictionary*)dic;
 
 +(person*)initMe:(NSDictionary*)dic;

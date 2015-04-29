@@ -16,6 +16,9 @@
 - (IBAction)loginBtnClicked:(id)sender;
 - (IBAction)applyForBindingBtnClicked:(id)sender;
 
++(void)writeEasePwd:(NSString*)pwd;
++(NSString*)getEasePwd;
+
 @property (assign, nonatomic) BOOL autoLogin;
 
 @end

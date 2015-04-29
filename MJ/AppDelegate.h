@@ -10,7 +10,11 @@
 
 
 
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+{
+    EMConnectionState _connectionState;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 
@@ -20,9 +24,11 @@
 -(void)setMemberID:(NSString*)memberID;
 
 @property (strong, nonatomic)UIStoryboard*curStory;
-
+@property (strong, nonatomic) UITabBarController *mainController;
 
 -(id)instantiateViewControllerWithIdentifier:(NSString*)identifier AndClass:(Class)cls;
+
+-(void)loginToEaseMob:(void (^)(BOOL loginSuccess))success ReloadData:(BOOL)reload;
 
 @end
 

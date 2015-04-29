@@ -111,6 +111,22 @@
 
 }
 
++(void)writeEasePwd:(NSString*)pwd
+{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setValue:pwd forKey:@"easePwd"];
+    [prefs synchronize];
+}
+
++(NSString*)getEasePwd
+{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+
+    NSString*pwd =[prefs stringForKey:@"easePwd"];
+        
+    return pwd;
+}
+
 
 - (IBAction)loginBtnClicked:(id)sender {
 
@@ -128,6 +144,7 @@
     
     NSDictionary *parameters = @{@"job_no":strID , @"acc_password": strPwd,@"DeviceID" : [UtilFun getUDID],@"DeviceType" : DEVICE_IOS,@"device_version":actualVersion};
     
+    SHOWHUD(self.view);
     [NetWorkManager PostWithApiName:API_LOGIN parameters:parameters success:
      ^(id responseObject)
      {
@@ -154,9 +171,28 @@
                      [[person initMe:[arrTmp objectAtIndex:0]] setPassword:strPwd];
                      
                      [self writeDefaultMsg];
-                     [self performSegueWithIdentifier:@"LoginToMainPage" sender:self];
+                     [LoginViewController writeEasePwd:[[arrTmp objectAtIndex:0] objectForKey:@"acc_password"]];
+                     
+                     
+                     
                      AppDelegate*app = [[UIApplication sharedApplication] delegate];
                      [app setMemberID:[person me].job_no];
+                     
+                     
+                     
+                     [self performSegueWithIdentifier:@"LoginToMainPage" sender:self];
+                     
+//                      SHOWHUD(self.view);
+//                     [app loginToEaseMob:^(BOOL loginSuccess)
+//                      {
+//                          HIDEHUD(self.view);
+//                         [self performSegueWithIdentifier:@"LoginToMainPage" sender:self];
+//                         
+//                     } ReloadData:YES];
+                     
+ 
+                     
+                     
                      return;
                  }
                      break;
@@ -179,6 +215,8 @@
                  }
                      break;
                  default:
+                 {
+                 }
                      break;
              }
          }

@@ -48,6 +48,8 @@ __strong static person* _sharedObject = nil;
         _sharedObject = [[self alloc] init];
         
     });
+    
+    
     [_sharedObject initWithDictionary:dic];
     return _sharedObject;
 }
