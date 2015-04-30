@@ -22,6 +22,7 @@
 #import "ContactsViewController.h"
 #import "UIBarButtonItem+Badge.h"
 #import "ApplyViewController.h"
+#import "EMConversation.h"
 
 @interface ChatListViewController ()<UITableViewDelegate,UITableViewDataSource, UISearchDisplayDelegate,SRRefreshDelegate, UISearchBarDelegate, IChatManagerDelegate>
 
@@ -454,8 +455,9 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.dataSource searchText:(NSString *)searchText collationStringSelector:@selector(chatter) resultBlock:^(NSArray *results) {
-        if (results) {
+    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.dataSource searchText:(NSString *)searchText collationStringSelector:@selector(realName) resultBlock:^(NSArray *results) {
+        if (results)
+        {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.searchController.resultsSource removeAllObjects];
                 [self.searchController.resultsSource addObjectsFromArray:results];
