@@ -98,7 +98,7 @@
         self.edgesForExtendedLayout =  UIRectEdgeNone;
     }
     
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     
     //以下三行代码必须写，注册为SDK的ChatManager的delegate
     [[[EaseMob sharedInstance] deviceManager] addDelegate:self onQueue:nil];
@@ -299,7 +299,7 @@
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.backgroundColor = [UIColor lightGrayColor];
+        _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.tableFooterView = [[UIView alloc] init];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
