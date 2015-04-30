@@ -36,11 +36,5 @@
                                action:action];
     
     [vc.navigationItem setRightBarButtonItem:item animated:YES];
-    
-    
-    CGRect rct = vc.navigationItem.titleView.frame;
-    rct.origin.x ;
-    
-    vc.navigationItem.titleView.frame = rct;
 }
 @end

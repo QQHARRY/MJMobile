@@ -17,6 +17,7 @@
 #import "Macro.h"
 #import "pushManagement.h"
 #import "AppDelegate+EaseMob.h"
+#import "photoManager.h"
 
 
 
@@ -329,6 +330,17 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(void)appLogout
+{
+    [person cleanMe];
+    [photoManager clean];
+    self.mainController = nil;
+    [self logoutEasemob];
+
+    
+    [self loadMainSotry:NO];
 }
 
 @end

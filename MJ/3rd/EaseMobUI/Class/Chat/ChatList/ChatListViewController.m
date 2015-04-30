@@ -19,6 +19,7 @@
 #import "ChatViewController.h"
 #import "EMSearchDisplayController.h"
 #import "ConvertToCommonEmoticonsHelper.h"
+#import "ContactsViewController.h"
 
 @interface ChatListViewController ()<UITableViewDelegate,UITableViewDataSource, UISearchDisplayDelegate,SRRefreshDelegate, UISearchBarDelegate, IChatManagerDelegate>
 
@@ -28,8 +29,9 @@
 @property (nonatomic, strong) EMSearchBar           *searchBar;
 @property (nonatomic, strong) SRRefreshView         *slimeView;
 @property (nonatomic, strong) UIView                *networkStateView;
-
+@property (nonatomic, strong) UIBarButtonItem       *rightButtonItem;
 @property (strong, nonatomic) EMSearchDisplayController *searchController;
+@property (strong, nonatomic) ContactsViewController* contactsVC;
 
 @end
 
@@ -41,6 +43,10 @@
     if (self) {
         _dataSource = [NSMutableArray array];
     }
+
+    
+    _contactsVC = [[ContactsViewController alloc] initWithNibName:nil bundle:nil];
+    
     return self;
 }
 
@@ -54,10 +60,17 @@
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.slimeView];
     [self networkStateView];
+    
+    self.rightButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"好友" style:UIBarButtonItemStylePlain target:self action:@selector(rightButtonClicked)];
+    
 
     [self searchController];
 }
 
+-(void)rightButtonClicked
+{
+    
+}
 
 
 - (void)didReceiveMemoryWarning

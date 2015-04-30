@@ -9,7 +9,13 @@
 #import <UIKit/UIKit.h>
 
 
+@protocol EaseMobStatusMonitorDelegate <NSObject>
 
+- (void)setupUntreatedApplyCount;
+
+- (void)networkChanged:(EMConnectionState)connectionState;
+
+@end
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
@@ -24,11 +30,12 @@
 -(void)setMemberID:(NSString*)memberID;
 
 @property (strong, nonatomic)UIStoryboard*curStory;
-@property (strong, nonatomic) UITabBarController *mainController;
+@property (weak, nonatomic) id<EaseMobStatusMonitorDelegate> mainController;
 
 -(id)instantiateViewControllerWithIdentifier:(NSString*)identifier AndClass:(Class)cls;
 
 -(void)loginToEaseMob:(void (^)(BOOL loginSuccess))success ReloadData:(BOOL)reload;
 
+-(void)appLogout;
 @end
 

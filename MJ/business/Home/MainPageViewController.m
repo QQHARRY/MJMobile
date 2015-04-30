@@ -35,8 +35,13 @@
 
 #import "dictionaryManager.h"
 
+#import "ChatListViewController.h"
+#import "AppDelegate.h"
+#import "UIBarButtonItem+Badge.h"
+
 
 @interface MainPageViewController ()
+
 
 @end
 
@@ -51,6 +56,7 @@
     [super viewDidLoad];
     
     self.navigationController.navigationBar.hidden = NO;
+
     
     [self.tabBarController.tabBar setBackgroundColor:[UIColor whiteColor]];
     // 修改tabbar图标为原图颜色
@@ -93,7 +99,8 @@
 
     
     [self setNavBarTitleTextAttribute];
-    [self initBadgeNavBarWithUnReadAlertCount:0 andMsgCount:0];
+    [self initBadgeNavBarWithUnReadAlertCount];
+    [self setBadgeWithUnReadAlertCount:0 andMsgCount:0];
     [self initTable];
     
 }
@@ -114,9 +121,9 @@
     
 }
 
--(void)initBadgeNavBarWithUnReadAlertCount:(int)alertCnt andMsgCount:(int)msgCnt
+-(void)initBadgeNavBarWithUnReadAlertCount
 {
-    //self.navigationItem.rightBarButtonItem.
+
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
     if ([[UIDevice currentDevice].systemVersion floatValue] > 7.0)
     {
@@ -125,28 +132,44 @@
 #endif
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    
-    NSString*unReadAlertStr =(alertCnt<=0)?@"":[NSString stringWithFormat:@"%d",alertCnt];
-    NSString*unReadMsgStr =(msgCnt<=0)?@"":[NSString stringWithFormat:@"%d",msgCnt];
-
-    
-    UIImage*alertImage = [badgeImageFactory getBadgeImageFromImage:[UIImage imageNamed:@"ButtonUnreadAlert"] andText:unReadAlertStr];
-    UIImage*msgImage = [badgeImageFactory getBadgeImageFromImage:[UIImage imageNamed:@"ButtonUnreadMessage"] andText:unReadMsgStr];
+    UIImage*alertImage =[UIImage imageNamed:@"ButtonUnreadAlert"];
+    UIImage*msgImage = [UIImage imageNamed:@"ButtonUnreadMessage"];
     
     [self setupLeftMenuButtonOfVC:self Image:msgImage action:@selector(leftMsgBtnSelected:)];
     [self setupRightMenuButtonOfVC:self Image:alertImage action:@selector(rightAlertBtnSelected:)];
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc ] initWithTitle:@"提醒" style:UIBarButtonItemStylePlain target:self action:@selector(leftMsgBtnSelected:)];
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc ] initWithTitle:@"站内信" style:UIBarButtonItemStylePlain target:self action:@selector(rightAlertBtnSelected:)];
+
+    self.navigationItem.leftBarButtonItem.badgeBGColor = [UIColor redColor];
+    self.navigationItem.rightBarButtonItem.badgeBGColor = [UIColor redColor];
+}
+
+-(void)setBadgeWithUnReadAlertCount:(int)alertCnt andMsgCount:(int)msgCnt
+{
+   NSString*unReadAlertStr = @"";
+    
+    
+    if (alertCnt > 0)
+    {
+         unReadAlertStr =(alertCnt<=0)?@"":[NSString stringWithFormat:@"%d",alertCnt];
+        
+    }
+    
+    NSString*unReadMsgStr =@"";
+    
+    if (msgCnt > 0)
+    {
+        
+        unReadMsgStr =(msgCnt<=0)?@"":[NSString stringWithFormat:@"%d",msgCnt];
+    }
+    
+    self.navigationItem.rightBarButtonItem.badgeValue = unReadAlertStr;
+    self.navigationItem.leftBarButtonItem.badgeValue = unReadMsgStr;
 }
 
 
 -(void)initTable
 {
-    
-    //self.tableView = [[UITableView alloc ] initWithFrame:self.view.frame];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    //[self.view addSubview:self.tableView];
 }
 
 
@@ -167,7 +190,7 @@
    [unReadManager getUnReadAlertCntSuccess:^(id responseObject) {
        HIDEHUD(self.view);
        
-       [self initBadgeNavBarWithUnReadAlertCount:[unReadManager unReadAlertCnt] andMsgCount:[unReadManager unReadMessageCount]];
+       [self setBadgeWithUnReadAlertCount:[unReadManager unReadAlertCnt] andMsgCount:[unReadManager unReadMessageCount]];
        
    } failure:^(NSError *error) {
        HIDEHUD(self.view);
@@ -180,7 +203,7 @@
     SHOWHUD(self.view);
     [unReadManager getUnReadMessageCntSuccess:^(id responseObject) {
         HIDEHUD(self.view);
-        [self initBadgeNavBarWithUnReadAlertCount:[unReadManager unReadAlertCnt] andMsgCount:[unReadManager unReadMessageCount]];
+        [self setBadgeWithUnReadAlertCount:[unReadManager unReadAlertCnt] andMsgCount:[unReadManager unReadMessageCount]];
         
     } failure:^(NSError *error) {
         HIDEHUD(self.view);

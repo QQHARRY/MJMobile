@@ -156,10 +156,9 @@
 
 -(void)toLoginPage
 {
-    [person cleanMe];
-    [photoManager clean];
     AppDelegate*app = [[UIApplication sharedApplication] delegate];
-    [app loadMainSotry:NO];
+
+    [app appLogout];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

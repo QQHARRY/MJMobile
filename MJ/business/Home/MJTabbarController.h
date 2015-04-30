@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
-@interface MJTabbarController : UITabBarController<UITabBarControllerDelegate>
 
+@interface MJTabbarController : UITabBarController<UITabBarControllerDelegate,UIAlertViewDelegate, IChatManagerDelegate, EMCallManagerDelegate,EaseMobStatusMonitorDelegate>
+{
+    EMConnectionState _connectionState;
+}
+
+
+- (void)setupUntreatedApplyCount;
+
+- (void)networkChanged:(EMConnectionState)connectionState;
 @end

@@ -20,6 +20,7 @@
 #import "postFileUtils.h"
 #import "UtilFun.h"
 #import "UIImageView+RoundImage.h"
+#import "EaseMob.h"
 
 #define BEIJINGIMAGE @"背景图片"
 #define WEIKAITONGIMAGE @"未开通new"
@@ -516,7 +517,23 @@
 {
     if ([[person me] isImOpened])
     {
-        PRESENTALERT(@"加好友", nil, nil, nil);
+        
+        [self showHudInView:self.view hint:NSLocalizedString(@"friend.sendApply", @"sending application...")];
+        person*psnMe = [person me];
+        NSString*message = [[NSString alloc] initWithFormat:@"%@ %@:%@ 申请添加您为好友",psnMe.company_name, psnMe.department_name,psnMe.name_full];
+        EMError *error;
+        [[EaseMob sharedInstance].chatManager addBuddy:[self.psn.job_no lowercaseString] message:message error:&error];
+        [self hideHud];
+        if (error)
+        {
+            PRESENTALERT(@"",NSLocalizedString(@"friend.sendApplyFail", @"send application fails, please operate again"), nil, nil);
+        }
+        else
+        {
+            PRESENTALERT(@"", NSLocalizedString(@"friend.sendApplySuccess", @"send successfully"), nil, nil);
+            
+        }
+        
     }
     else
     {

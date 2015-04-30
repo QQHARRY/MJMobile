@@ -447,6 +447,8 @@
 		4AA543711A8894630089C0F2 /* photoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA543701A8894630089C0F2 /* photoManager.m */; };
 		4AA543741A88B2480089C0F2 /* ReMultiTextItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA543731A88B2480089C0F2 /* ReMultiTextItem.m */; };
 		4AA543771A88B33F0089C0F2 /* RETableViewMultiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA543761A88B33F0089C0F2 /* RETableViewMultiCell.m */; };
+		4AAE1A511AF1C96000F01D95 /* UIBarButtonItem+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE1A4E1AF1C96000F01D95 /* UIBarButtonItem+Badge.m */; };
+		4AAE1A521AF1C96000F01D95 /* UIButton+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE1A501AF1C96000F01D95 /* UIButton+Badge.m */; };
 		4AAFAC9D1AEB368D0029BAB3 /* UIImageView+RoundImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFAC9C1AEB368D0029BAB3 /* UIImageView+RoundImage.m */; };
 		4AAFACA01AEB49A60029BAB3 /* ImFriendListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFAC9F1AEB49A60029BAB3 /* ImFriendListManager.m */; };
 		4AAFACA31AEB4C4C0029BAB3 /* ContactDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFACA21AEB4C4C0029BAB3 /* ContactDataProvider.m */; };
@@ -1357,6 +1359,10 @@
 		4AA543731A88B2480089C0F2 /* ReMultiTextItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReMultiTextItem.m; sourceTree = "<group>"; };
 		4AA543751A88B33F0089C0F2 /* RETableViewMultiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RETableViewMultiCell.h; sourceTree = "<group>"; };
 		4AA543761A88B33F0089C0F2 /* RETableViewMultiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RETableViewMultiCell.m; sourceTree = "<group>"; };
+		4AAE1A4D1AF1C96000F01D95 /* UIBarButtonItem+Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Badge.h"; sourceTree = "<group>"; };
+		4AAE1A4E1AF1C96000F01D95 /* UIBarButtonItem+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Badge.m"; sourceTree = "<group>"; };
+		4AAE1A4F1AF1C96000F01D95 /* UIButton+Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Badge.h"; sourceTree = "<group>"; };
+		4AAE1A501AF1C96000F01D95 /* UIButton+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Badge.m"; sourceTree = "<group>"; };
 		4AAFAC9B1AEB368D0029BAB3 /* UIImageView+RoundImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+RoundImage.h"; sourceTree = "<group>"; };
 		4AAFAC9C1AEB368D0029BAB3 /* UIImageView+RoundImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+RoundImage.m"; sourceTree = "<group>"; };
 		4AAFAC9E1AEB49A60029BAB3 /* ImFriendListManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImFriendListManager.h; sourceTree = "<group>"; };
@@ -3089,6 +3095,17 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
+		4AAE1A4C1AF1C96000F01D95 /* UIBarButtonItem+Badge */ = {
+			isa = PBXGroup;
+			children = (
+				4AAE1A4D1AF1C96000F01D95 /* UIBarButtonItem+Badge.h */,
+				4AAE1A4E1AF1C96000F01D95 /* UIBarButtonItem+Badge.m */,
+				4AAE1A4F1AF1C96000F01D95 /* UIButton+Badge.h */,
+				4AAE1A501AF1C96000F01D95 /* UIButton+Badge.m */,
+			);
+			path = "UIBarButtonItem+Badge";
+			sourceTree = "<group>";
+		};
 		4AB0EFA31A30538D00C24A44 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -3217,6 +3234,7 @@
 		4AD794A61A218C4A00DEC779 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				4AAE1A4C1AF1C96000F01D95 /* UIBarButtonItem+Badge */,
 				4AA18B6C1AEF55ED00685603 /* EaseMobSDK */,
 				4AA188451AEF549800685603 /* EaseMobUI */,
 				B98BD4F91A609185003A35BE /* RETable */,
@@ -4152,6 +4170,7 @@
 				4A6865A11A7374EF005394DD /* HouseSelectBuildingTableViewController.m in Sources */,
 				4A20DADD1A6A2B5A002E68EC /* BuildingsSelectTableViewController.m in Sources */,
 				4AA18A681AEF549A00685603 /* NSDate+Category.m in Sources */,
+				4AAE1A511AF1C96000F01D95 /* UIBarButtonItem+Badge.m in Sources */,
 				4AA18A3C1AEF549A00685603 /* MWPhoto.m in Sources */,
 				4AD7954E1A218C4A00DEC779 /* UIAlertView+AFNetworking.m in Sources */,
 				4AA18AA61AEF549A00685603 /* EMSearchBar.m in Sources */,
@@ -4195,6 +4214,7 @@
 				4AA18A5C1AEF549A00685603 /* PSTGridLayoutItem.m in Sources */,
 				4A9D02031A60521700600BA0 /* DataPersistence.m in Sources */,
 				4A56C70D1A8CAF6700AF8CB6 /* updateDataPuller.m in Sources */,
+				4AAE1A521AF1C96000F01D95 /* UIButton+Badge.m in Sources */,
 				4AA18AA01AEF549A00685603 /* MainViewController.m in Sources */,
 				4A5D24541A4AF22900546698 /* orderTableViewController.m in Sources */,
 				4AAFACA01AEB49A60029BAB3 /* ImFriendListManager.m in Sources */,

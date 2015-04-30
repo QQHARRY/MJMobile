@@ -218,8 +218,13 @@
     }
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"title":username, @"username":username, @"applyMessage":message, @"applyStyle":[NSNumber numberWithInteger:ApplyStyleFriend]}];
     [[ApplyViewController shareController] addNewApply:dic];
-    if (self.mainController) {
-        //[self.mainController setupUntreatedApplyCount];
+    if (self.mainController)
+    {
+        if ([self.mainController respondsToSelector:@selector(setupUntreatedApplyCount)])
+        {
+            [self.mainController setupUntreatedApplyCount];
+        }
+        
     }
 }
 
@@ -285,7 +290,10 @@
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"title":groupname, @"groupId":groupId, @"username":username, @"groupname":groupname, @"applyMessage":reason, @"applyStyle":[NSNumber numberWithInteger:ApplyStyleJoinGroup]}];
         [[ApplyViewController shareController] addNewApply:dic];
         if (self.mainController) {
-            //[self.mainController setupUntreatedApplyCount];
+            if ([self.mainController respondsToSelector:@selector(setupUntreatedApplyCount)])
+            {
+                [self.mainController setupUntreatedApplyCount];
+            }
         }
     }
 }
@@ -322,7 +330,12 @@
 - (void)didConnectionStateChanged:(EMConnectionState)connectionState
 {
     _connectionState = connectionState;
-    //[self.mainController networkChanged:connectionState];
+    if ([self.mainController respondsToSelector:@selector(networkChanged:)])
+    {
+        [self.mainController networkChanged:connectionState];
+    }
+    
+
 }
 
 // 打印收到的apns信息
