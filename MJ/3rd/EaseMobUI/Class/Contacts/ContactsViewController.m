@@ -359,10 +359,13 @@
         {
             if (_groupController == nil) {
                 _groupController = [[GroupListViewController alloc] initWithStyle:UITableViewStylePlain];
+                
             }
             else{
                 [_groupController reloadDataSource];
             }
+            
+            _groupController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:_groupController animated:YES];
         }
     }

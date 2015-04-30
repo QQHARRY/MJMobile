@@ -20,6 +20,8 @@
 #import "EMSearchDisplayController.h"
 #import "ConvertToCommonEmoticonsHelper.h"
 #import "ContactsViewController.h"
+#import "UIBarButtonItem+Badge.h"
+#import "ApplyViewController.h"
 
 @interface ChatListViewController ()<UITableViewDelegate,UITableViewDataSource, UISearchDisplayDelegate,SRRefreshDelegate, UISearchBarDelegate, IChatManagerDelegate>
 
@@ -31,7 +33,7 @@
 @property (nonatomic, strong) UIView                *networkStateView;
 @property (nonatomic, strong) UIBarButtonItem       *rightButtonItem;
 @property (strong, nonatomic) EMSearchDisplayController *searchController;
-@property (strong, nonatomic) ContactsViewController* contactsVC;
+
 
 @end
 
@@ -45,14 +47,25 @@
     }
 
     
-    _contactsVC = [[ContactsViewController alloc] initWithNibName:nil bundle:nil];
+   
     
     return self;
 }
 
+
+-(void)awakeFromNib
+{
+    
+}
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    
     self.title = @"消息";
     [self removeEmptyConversationsFromDB];
 
@@ -61,14 +74,26 @@
     [self.tableView addSubview:self.slimeView];
     [self networkStateView];
     
-    self.rightButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"好友" style:UIBarButtonItemStylePlain target:self action:@selector(rightButtonClicked)];
+    
+    
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"好友" style:UIBarButtonItemStylePlain target:self action:@selector(rightButtonClicked)];
+    
+    
     
 
     [self searchController];
 }
 
+
+
 -(void)rightButtonClicked
 {
+    if (_contactsVC != nil)
+    {
+        [self.navigationController pushViewController:_contactsVC animated:YES];
+    }
+    
     
 }
 
@@ -80,16 +105,24 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    
+    
     [super viewWillAppear:animated];
+    
     
     [self refreshDataSource];
     [self registerNotifications];
+    
+    
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+   
+
     [super viewWillDisappear:animated];
-    [self unregisterNotifications];
+       [self unregisterNotifications];
 }
 
 - (void)removeEmptyConversationsFromDB
@@ -389,6 +422,9 @@
     NSString *chatter = conversation.chatter;
     chatController = [[ChatViewController alloc] initWithChatter:chatter isGroup:conversation.isGroup];
     chatController.title = title;
+    chatController.hidesBottomBarWhenPushed = YES;
+   
+
     [self.navigationController pushViewController:chatController animated:YES];
 }
 
@@ -498,6 +534,17 @@
 {
     self.dataSource = [self loadDataSource];
     [_tableView reloadData];
+    
+    
+    int unReadApplyCnt = (int)[[ApplyViewController shareController].dataSource count];
+    NSString*strUnReadApplyCnt = @"";
+    if (unReadApplyCnt > 0)
+    {
+        strUnReadApplyCnt = [NSString stringWithFormat:@"%d",unReadApplyCnt];
+    }
+    self.navigationItem.rightBarButtonItem.badgeValue = strUnReadApplyCnt;
+    
+    
     [self hideHud];
 }
 
@@ -529,5 +576,22 @@
     NSLog(NSLocalizedString(@"message.endReceiveOffine", @"End to receive offline messages"));
     [self refreshDataSource];
 }
+
+- (void)buddyListChanged
+{
+    if (_contactsVC)
+    {
+        [_contactsVC reloadDataSource];
+    }
+}
+
+- (void)reloadGroupView
+{
+    if (_contactsVC)
+    {
+        [_contactsVC reloadGroupView];
+    }
+}
+
 
 @end

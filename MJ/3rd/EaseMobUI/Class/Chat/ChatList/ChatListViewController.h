@@ -12,6 +12,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import "ContactsViewController.h"
 
 @interface ChatListViewController : BaseViewController
 
@@ -19,5 +20,8 @@
 
 - (void)isConnect:(BOOL)isConnect;
 - (void)networkChanged:(EMConnectionState)connectionState;
+- (void)buddyListChanged;
+- (void)reloadGroupView;
 
+@property (strong, nonatomic) ContactsViewController* contactsVC;
 @end

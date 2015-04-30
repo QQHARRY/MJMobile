@@ -18,6 +18,7 @@
 #import "pushManagement.h"
 #import "AppDelegate+EaseMob.h"
 #import "photoManager.h"
+#import "ApplyViewController.h"
 
 
 
@@ -85,6 +86,10 @@
     {
         [self loginToEaseMob:nil ReloadData:NO];
     }
+    else
+    {
+        [[ApplyViewController shareController] loadDataSourceFromLocalDB];
+    }
 }
 
 
@@ -107,8 +112,10 @@
              
              if (loginInfo && !error)
              {
+                 
                  if (reload)
                  {
+                     
                      //获取群组列表
                      [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
                      

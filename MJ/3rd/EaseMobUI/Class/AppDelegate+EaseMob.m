@@ -197,6 +197,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
     }
     else{
+        
         //获取群组列表
         [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
         

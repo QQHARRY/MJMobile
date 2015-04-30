@@ -79,7 +79,7 @@
         _chatter = chatter;
         _isChatGroup = isGroup;
         _messages = [NSMutableArray array];
-        
+        self.hidesBottomBarWhenPushed = YES;
         //根据接收者的username获取当前会话的管理者
         _conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:chatter isGroup:_isChatGroup];
         [_conversation markAllMessagesAsRead:YES];
@@ -98,7 +98,9 @@
         self.edgesForExtendedLayout =  UIRectEdgeNone;
     }
     
-    #warning 以下三行代码必须写，注册为SDK的ChatManager的delegate
+    
+    
+    //以下三行代码必须写，注册为SDK的ChatManager的delegate
     [[[EaseMob sharedInstance] deviceManager] addDelegate:self onQueue:nil];
     [[EaseMob sharedInstance].chatManager removeDelegate:self];
     //注册为SDK的ChatManager的delegate
@@ -131,21 +133,25 @@
 
 - (void)setupBarButtonItem
 {
+    
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"arrow_back"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     [self.navigationItem setLeftBarButtonItem:backItem];
     
     if (_isChatGroup) {
         UIButton *detailButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
-        [detailButton setImage:[UIImage imageNamed:@"group_detail"] forState:UIControlStateNormal];
+        [detailButton setTitle:@"详情" forState:UIControlStateNormal];
+        //[detailButton setImage:[UIImage imageNamed:@"group_detail"] forState:UIControlStateNormal];
         [detailButton addTarget:self action:@selector(showRoomContact:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:detailButton];
     }
     else{
         UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-        [clearButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+        //[clearButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+        [clearButton setTitle:@"清空" forState:UIControlStateNormal];
         [clearButton addTarget:self action:@selector(removeAllMessages:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:clearButton];
     }
@@ -160,6 +166,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"isShowPicker"];
     if (_isScrollToBottom) {

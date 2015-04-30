@@ -38,6 +38,7 @@ static ApplyViewController *controller = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         controller = [[self alloc] initWithStyle:UITableViewStylePlain];
+        controller.hidesBottomBarWhenPushed = YES;
     });
     
     return controller;
@@ -240,15 +241,19 @@ static ApplyViewController *controller = nil;
         NSString *applyUsername = [dictionary objectForKey:@"username"];
         ApplyStyle style = [[dictionary objectForKey:@"applyStyle"] intValue];
         
-        if (applyUsername && applyUsername.length > 0) {
-            for (int i = ((int)[_dataSource count] - 1); i >= 0; i--) {
+        if (applyUsername && applyUsername.length > 0)
+        {
+            for (int i = ((int)[_dataSource count] - 1); i >= 0; i--)
+            {
                 ApplyEntity *oldEntity = [_dataSource objectAtIndex:i];
                 ApplyStyle oldStyle = [oldEntity.style intValue];
-                if (oldStyle == style && [applyUsername isEqualToString:oldEntity.applicantUsername]) {
+                if (oldStyle == style && [applyUsername isEqualToString:oldEntity.applicantUsername])
+                {
                     if(style != ApplyStyleFriend)
                     {
                         NSString *newGroupid = [dictionary objectForKey:@"groupname"];
-                        if (newGroupid || [newGroupid length] > 0 || [newGroupid isEqualToString:oldEntity.groupId]) {
+                        if (newGroupid || [newGroupid length] > 0 || [newGroupid isEqualToString:oldEntity.groupId])
+                        {
                             break;
                         }
                     }

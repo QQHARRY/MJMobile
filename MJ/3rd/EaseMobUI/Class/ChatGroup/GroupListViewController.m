@@ -67,12 +67,16 @@
     [self searchController];
     
     UIButton *publicButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 44)];
-    [publicButton setImage:[UIImage imageNamed:@"nav_createGroup"] forState:UIControlStateNormal];
+    publicButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    //[publicButton setImage:[UIImage imageNamed:@"nav_createGroup"] forState:UIControlStateNormal];
+    [publicButton setTitle:@"公共群" forState:UIControlStateNormal];
     [publicButton addTarget:self action:@selector(showPublicGroupList) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *publicItem = [[UIBarButtonItem alloc] initWithCustomView:publicButton];
     
     UIButton *createButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 44)];
-    [createButton setImage:[UIImage imageNamed:@"add.png"] forState:UIControlStateNormal];
+    createButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    //[createButton setImage:[UIImage imageNamed:@"add.png"] forState:UIControlStateNormal];
+    [createButton setTitle:@"创建" forState:UIControlStateNormal];
     [createButton addTarget:self action:@selector(createGroup) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *createGroupItem = [[UIBarButtonItem alloc] initWithCustomView:createButton];
     

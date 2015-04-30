@@ -10,6 +10,7 @@
 #import "ApplyViewController.h"
 #import "ChatListViewController.h"
 #import "CallSessionViewController.h"
+#import "ContactsViewController.h"
 
 
 //两次提示的默认间隔
@@ -18,6 +19,7 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 @interface MJTabbarController ()
 {
     ChatListViewController *_chatListVC;
+    ContactsViewController *_contactsVC;
     CallSessionViewController *_callController;
 }
 
@@ -33,6 +35,8 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     [super viewDidLoad];
     self.delegate = self;
     
+    
+    [self setupSubviews];
     ((AppDelegate*)[UIApplication sharedApplication].delegate).mainController = self;
     
     //if 使tabBarController中管理的viewControllers都符合 UIRectEdgeNone
@@ -49,10 +53,10 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callOutWithChatter:) name:@"callOutWithChatter" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callControllerClose:) name:@"callControllerClose" object:nil];
     
-    [self setupSubviews];
+    
     self.selectedIndex = 0;
     
-    
+    [[ApplyViewController shareController] loadDataSourceFromLocalDB];
     [self setupUnreadMessageCount];
     [self setupUntreatedApplyCount];
 }
@@ -128,39 +132,47 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     }
     
     [_chatListVC networkChanged:_connectionState];
-    
-    
-    
+    _contactsVC = [[ContactsViewController alloc] initWithNibName:nil bundle:nil];
+
+    _chatListVC.contactsVC = _contactsVC;
 }
 
--(void)unSelectedTapTabBarItems:(UITabBarItem *)tabBarItem
-{
-    [tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                        [UIFont systemFontOfSize:14], UITextAttributeFont,[UIColor whiteColor],UITextAttributeTextColor,
-                                        nil] forState:UIControlStateNormal];
-}
-
--(void)selectedTapTabBarItems:(UITabBarItem *)tabBarItem
-{
-    [tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                        [UIFont systemFontOfSize:14],
-                                        UITextAttributeFont,[UIColor colorWithRed:0.393 green:0.553 blue:1.000 alpha:1.000],UITextAttributeTextColor,
-                                        nil] forState:UIControlStateSelected];
-}
+//-(void)unSelectedTapTabBarItems:(UITabBarItem *)tabBarItem
+//{
+//    [tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+//                                        [UIFont systemFontOfSize:14], UITextAttributeFont,[UIColor whiteColor],UITextAttributeTextColor,
+//                                        nil] forState:UIControlStateNormal];
+//}
+//
+//-(void)selectedTapTabBarItems:(UITabBarItem *)tabBarItem
+//{
+//    [tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+//                                        [UIFont systemFontOfSize:14],
+//                                        UITextAttributeFont,[UIColor colorWithRed:0.393 green:0.553 blue:1.000 alpha:1.000],UITextAttributeTextColor,
+//                                        nil] forState:UIControlStateSelected];
+//}
 
 // 统计未读消息数
 -(void)setupUnreadMessageCount
 {
     NSArray *conversations = [[[EaseMob sharedInstance] chatManager] conversations];
     NSInteger unreadCount = 0;
-    for (EMConversation *conversation in conversations) {
+    for (EMConversation *conversation in conversations)
+    {
         unreadCount += conversation.unreadMessagesCount;
     }
-    if (_chatListVC) {
-        if (unreadCount > 0) {
-            _chatListVC.tabBarItem.badgeValue = [NSString stringWithFormat:@"%i",(int)unreadCount];
-        }else{
-            _chatListVC.tabBarItem.badgeValue = nil;
+    
+    unreadCount += [[[ApplyViewController shareController] dataSource] count];
+    
+    if (_chatListVC)
+    {
+        if (unreadCount > 0)
+        {
+            _chatListVC.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%i",(int)unreadCount];
+        }
+        else
+        {
+            _chatListVC.navigationController.tabBarItem.badgeValue = nil;
         }
     }
     
@@ -170,8 +182,11 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 
 - (void)setupUntreatedApplyCount
 {
-    
+    [self setupUnreadMessageCount];
 }
+
+
+
 
 - (void)networkChanged:(EMConnectionState)connectionState
 {
@@ -232,7 +247,7 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 
 - (void)didFinishedReceiveOfflineCmdMessages:(NSArray *)offlineCmdMessages
 {
-    
+    [self setupUnreadMessageCount];
 }
 
 - (BOOL)needShowNotification:(NSString *)fromChatter
@@ -395,6 +410,15 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     }
 #endif
     
+    if (_contactsVC)
+    {
+        [_contactsVC reloadApplyView];
+    }
+    
+    if (_chatListVC)
+    {
+        [_chatListVC refreshDataSource];
+    }
     
 }
 
@@ -402,30 +426,39 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
             changedBuddies:(NSArray *)changedBuddies
                      isAdd:(BOOL)isAdd
 {
-    
+    if (_contactsVC)
+    {
+        [_contactsVC reloadDataSource];
+    }
 }
 
 - (void)didRemovedByBuddy:(NSString *)username
 {
     [[EaseMob sharedInstance].chatManager removeConversationByChatter:username deleteMessages:YES append2Chat:YES];
     [_chatListVC refreshDataSource];
-   
+    [_contactsVC reloadDataSource];
 }
 
 - (void)didAcceptedByBuddy:(NSString *)username
 {
-    
+    [_contactsVC reloadDataSource];
+    [_chatListVC refreshDataSource];
+    [self setupUntreatedApplyCount];
 }
 
 - (void)didRejectedByBuddy:(NSString *)username
 {
     NSString *message = [NSString stringWithFormat:NSLocalizedString(@"friend.beRefusedToAdd", @"you are shameless refused by '%@'"), username];
     TTAlertNoTitle(message);
+    [self setupUntreatedApplyCount];
+    
+    [_chatListVC refreshDataSource];
 }
 
 - (void)didAcceptBuddySucceed:(NSString *)username
 {
-    
+    [_contactsVC reloadDataSource];
+    [_chatListVC refreshDataSource];
 }
 
 #pragma mark - IChatManagerDelegate 群组变化
@@ -437,6 +470,11 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 #if !TARGET_IPHONE_SIMULATOR
     [self playSoundAndVibration];
 #endif
+    
+    if (_contactsVC)
+    {
+        [_contactsVC reloadGroupView];
+    }
     
     
 }
@@ -453,7 +491,11 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
         [self playSoundAndVibration];
 #endif
         
-        
+        if (_contactsVC)
+        {
+            [_contactsVC reloadGroupView];
+        }
+
     }
 }
 
@@ -494,24 +536,24 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     } onQueue:nil];
 }
 
-//- (void)didConnectionStateChanged:(EMConnectionState)connectionState
-//{
-//    [_chatListVC networkChanged:connectionState];
-//}
+- (void)didConnectionStateChanged:(EMConnectionState)connectionState
+{
+    [_chatListVC networkChanged:connectionState];
+}
 
 #pragma mark - 自动登录回调
 
 - (void)willAutoReconnect{
-    [self hideHud];
-    [self showHint:NSLocalizedString(@"reconnection.ongoing", @"reconnecting...")];
+    //[self hideHud];
+    //[self showHint:NSLocalizedString(@"reconnection.ongoing", @"reconnecting...")];
 }
 
 - (void)didAutoReconnectFinishedWithError:(NSError *)error{
     [self hideHud];
     if (error) {
-        [self showHint:NSLocalizedString(@"reconnection.fail", @"reconnection failure, later will continue to reconnection")];
+        //[self showHint:NSLocalizedString(@"reconnection.fail", @"reconnection failure, later will continue to reconnection")];
     }else{
-        [self showHint:NSLocalizedString(@"reconnection.success", @"reconnection successful！")];
+        //[self showHint:NSLocalizedString(@"reconnection.success", @"reconnection successful！")];
     }
 }
 
