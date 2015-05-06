@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 #import "ContactListTableViewController.h"
+#import "CheckNewVersion.h"
 
-@interface MainPageViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,contacSelection>
+@interface MainPageViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,contacSelection,updateDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 

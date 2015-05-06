@@ -12,6 +12,7 @@
 #import "Macro.h"
 #import "UtilFun.h"
 #import "person.h"
+#import "CheckNewVersion.h"
 
 
 #import "unReadManager.h"
@@ -57,6 +58,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[[CheckNewVersion alloc] init] checkNewVersion:self];
     
     self.navigationController.navigationBar.hidden = NO;
 
@@ -106,6 +109,42 @@
     [self setBadgeWithUnReadAlertCount:0 andMsgCount:0];
     [self initTable];
     
+}
+
+-(void)hasNewVersion:(BOOL)bHasNewVersion VersionName:(NSString*)vName VersionSize:(NSString*)size VersionAddress:(NSString*)address RequiredToUpdate:(BOOL)updateRequired
+{
+    if (bHasNewVersion)
+    {
+        if (updateRequired)
+        {
+            NSString*versionPromot = [[NSString alloc] initWithFormat:@"版本号:%@\r\n当前版本将不再可用",vName];
+            PRESENTALERTWITHHANDER(NEWVERSION_REQUIRED_PROMOT, versionPromot, @"现在更新",self,^(UIAlertAction *action)
+                                   {
+                                       AppDelegate*app = [[UIApplication sharedApplication] delegate];
+                                       
+                                       [app appLogout];
+                                       [[UIApplication sharedApplication] openURL:[NSURL URLWithString:address]];
+                                   }
+                                   );
+            
+        }
+        else
+        {
+            NSString*versionPromot = [[NSString alloc] initWithFormat:@"版本号:%@\r\n是否更新到最新版本?",vName];
+            PRESENTALERTWITHHANDER_WITHDEFAULTCANCEL(NEWVERSION_PROMPT, versionPromot, @"现在更新",self,^(UIAlertAction *action)
+                                                     {
+                                                         AppDelegate*app = [[UIApplication sharedApplication] delegate];
+                                                         [app appLogout];
+                                                         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:address]];
+                                                     }
+                                                     );
+        }
+        
+    }
+    else
+    {
+        
+    }
 }
 
 

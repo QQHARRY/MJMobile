@@ -14,6 +14,9 @@
 #import "NetWorkManager.h"
 #import "person.h"
 #import "AppDelegate.h"
+#import "CheckNewVersion.h"
+
+
 @interface LoginViewController ()
 
 @end
@@ -26,6 +29,9 @@
     self.idTxt.text = @"XA-";
     [self readDefaultMsg];
     // Do any additional setup after loading the view.
+    
+    
+    
     
 }
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -130,6 +136,7 @@
 
 - (IBAction)loginBtnClicked:(id)sender {
 
+    
     NSString* strID = self.idTxt.text;
     
     NSString* strPwd = self.pwdTxt.text;
