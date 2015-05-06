@@ -25,7 +25,7 @@
     self.psn = person;
     self.phoneBtn.hidden = !((self.psn.obj_mobile!=nil) && (self.psn.obj_mobile.length >0));
     self.msgBtn.hidden = !((self.psn.obj_mobile!=nil) && (self.psn.obj_mobile.length >0));
-    IMSTATE imState = [self.psn imState:nil];
+    IMSTATE imState = [self.psn imState];
     
     
     

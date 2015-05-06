@@ -22,6 +22,12 @@
 #import "ApplyViewController.h"
 #import "GroupListViewController.h"
 #import "ChatViewController.h"
+#import "UIImageView+RoundImage.h"
+#import "UIImageView+AFNetworking.h"
+#import "contactDataManager.h"
+#import "EaseMobFriendsManger.h"
+#import "Macro.h"
+#import "UtilFun.h"
 
 @interface ContactsViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, UIActionSheetDelegate, BaseTableCellDelegate, SRRefreshDelegate>
 {
@@ -243,10 +249,48 @@
             cell.imageView.image = [UIImage imageNamed:@"groupPrivateHeader"];
             cell.textLabel.text = NSLocalizedString(@"title.group", @"Group");
         }
-        else{
+        else
+        {
             EMBuddy *buddy = [[self.dataSource objectAtIndex:(indexPath.section - 1)] objectAtIndex:indexPath.row];
             cell.imageView.image = [UIImage imageNamed:@"chatListCellHead.png"];
             cell.textLabel.text = buddy.username;
+
+            __weak __typeof(cell) weakChatCell = cell;
+            
+            [[EaseMobFriendsManger sharedInstance] getFriendByUserName:buddy.username Success:^(BOOL success, person *psn) {
+                if (weakChatCell!=nil)
+                {
+                    __strong typeof(weakChatCell) strongChatcell = weakChatCell;
+                    strongChatcell.textLabel.text = psn.name_full;
+                    if ([psn.photo hasSuffix:@".jpg"] ||
+                        [psn.photo hasSuffix:@".png"])
+                    {
+                        
+                        NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
+                        
+                        
+                        
+                        //dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        [strongChatcell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:@"chatListCellHead.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                            
+                            if (image != nil)
+                            {
+                                [weakChatCell.imageView setImageToRound:image];
+                            }
+                            
+                            
+                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                            
+                        }];
+                        // });
+                    }
+                }
+                
+                
+                
+            }];
+            
         }
     }
     
@@ -541,6 +585,7 @@
 
 - (void)reloadDataSource
 {
+    NSLog(@"reloadDataSource");
     [self.dataSource removeAllObjects];
     [self.contactsSource removeAllObjects];
     

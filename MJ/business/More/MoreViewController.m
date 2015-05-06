@@ -7,8 +7,8 @@
 //
 
 #import "MoreViewController.h"
-#import "badgeImageFactory.h"
-#import "JSBadgeView.h"
+
+
 #import "myBriefTableViewCell.h"
 #import "person.h"
 #import "AppDelegate.h"
@@ -20,6 +20,8 @@
 #import "SignTableViewController.h"
 #import "ContactDeptViewController.h"
 #import "ContactPersonDetailsViewController.h"
+#import "SettingsViewController.h"
+#import "PushNotificationViewController.h"
 
 @interface MoreViewController ()
 
@@ -93,7 +95,13 @@
         SignTableViewController *c = [[SignTableViewController alloc] initWithNibName:@"SignTableViewController" bundle:nil];
         [self.navigationController pushViewController:c animated:YES];
     }
-    else if(indexPath.row == 4)
+    else if (indexPath.row == 4)
+    {
+        PushNotificationViewController *pushController = [[PushNotificationViewController alloc] initWithStyle:UITableViewStylePlain];
+        [self.navigationController pushViewController:pushController animated:YES];
+
+    }
+    else if(indexPath.row == 5)
     {
         [self performSegueWithIdentifier:@"showAboutView" sender:self];
     }
@@ -101,12 +109,12 @@
 //    {
 //        [[[CheckNewVersion alloc] init]  checkNewVersion:self];
 //    }
-    else if(indexPath.row == 5)
+    else if(indexPath.row == 6)
     {
         [self performSegueWithIdentifier:@"showSuggestionView" sender:self];
         
     }
-    else if(indexPath.row == 6)
+    else if(indexPath.row == 7)
     {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"确定退出登录" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alert show];
@@ -174,7 +182,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 7;
+    return 8;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -246,7 +254,7 @@
         }
         else if(indexPath.row == 4)
         {
-            cell.textLabel.text = @"关于";
+            cell.textLabel.text = @"消息推送设置";
         }
 //        else if(indexPath.row == 5)
 //        {
@@ -254,9 +262,13 @@
 //        }
         else if(indexPath.row == 5)
         {
+            cell.textLabel.text = @"关于";
+        }
+        else if(indexPath.row == 6)
+        {
             cell.textLabel.text = @"意见反馈";
         }
-        else if (indexPath.row == 6)
+        else if (indexPath.row == 7)
         {
             cell.textLabel.text = @"退出登录";
         }

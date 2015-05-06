@@ -12,6 +12,8 @@
 #import "CallSessionViewController.h"
 #import "ContactsViewController.h"
 
+#import "EaseMobFriendsManger.h"
+
 
 //两次提示的默认间隔
 static const CGFloat kDefaultPlaySoundInterval = 3.0;
@@ -32,6 +34,10 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 
 - (void)viewDidLoad
 {
+
+    
+    
+    
     [super viewDidLoad];
     self.delegate = self;
     
@@ -361,8 +367,8 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
         notification.alertBody = NSLocalizedString(@"receiveMessage", @"you have a new message");
     }
     
-#warning 去掉注释会显示[本地]开头, 方便在开发中区分是否为本地推送
-    //notification.alertBody = [[NSString alloc] initWithFormat:@"[本地]%@", notification.alertBody];
+//#warning 去掉注释会显示[本地]开头, 方便在开发中区分是否为本地推送
+    notification.alertBody = [[NSString alloc] initWithFormat:@"[本地]%@", notification.alertBody];
     
     notification.alertAction = NSLocalizedString(@"open", @"Open");
     notification.timeZone = [NSTimeZone defaultTimeZone];
@@ -377,7 +383,8 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 
 - (void)didLoginWithInfo:(NSDictionary *)loginInfo error:(EMError *)error
 {
-    if (error) {
+    if (error)
+    {
         NSString *hintText = NSLocalizedString(@"reconnection.retry", @"Fail to log in your account, is try again... \nclick 'logout' button to jump to the login page \nclick 'continue to wait for' button for reconnection successful");
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt")
                                                             message:hintText
@@ -388,6 +395,11 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
         alertView.tag = 99;
         [alertView show];
         [_chatListVC isConnect:NO];
+        
+    }
+    else
+    {
+        NSLog(@"didLoginWithInfo with no error");
     }
 }
 
@@ -426,10 +438,21 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
             changedBuddies:(NSArray *)changedBuddies
                      isAdd:(BOOL)isAdd
 {
+    
     if (_contactsVC)
     {
         [_contactsVC reloadDataSource];
     }
+    
+    if (isAdd)
+    {
+        [[EaseMobFriendsManger sharedInstance] addEMFriends:buddyList isFriend:YES];
+    }
+    else
+    {
+        [[EaseMobFriendsManger sharedInstance] deleteEMFriends:changedBuddies];
+    }
+    
 }
 
 - (void)didRemovedByBuddy:(NSString *)username
@@ -471,11 +494,17 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     [self playSoundAndVibration];
 #endif
     
+    
+    
     if (_contactsVC)
     {
         [_contactsVC reloadGroupView];
     }
     
+    if (_chatListVC)
+    {
+        [_chatListVC refreshDataSource];
+    }
     
 }
 
@@ -495,6 +524,11 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
         {
             [_contactsVC reloadGroupView];
         }
+        
+        if (_chatListVC)
+        {
+            [_chatListVC refreshDataSource];
+        }
 
     }
 }
@@ -505,14 +539,36 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 {
     NSString *message = [NSString stringWithFormat:NSLocalizedString(@"friend.beRefusedToAdd", @"you are shameless refused by '%@'"), username];
     TTAlertNoTitle(message);
+    
+    
+    
 }
 
 
 - (void)didReceiveAcceptApplyToJoinGroup:(NSString *)groupId
                                groupname:(NSString *)groupname
 {
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"group.agreedToJoin", @"agreed to join the group of \'%@\'"), groupname];
+    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"group.agreedAndJoined", @"agreed to join the group of \'%@\'"), groupname];
     [self showHint:message];
+}
+
+- (void)group:(EMGroup *)group didLeave:(EMGroupLeaveReason)reason error:(EMError *)error
+{
+    
+    if (!error) {
+#if !TARGET_IPHONE_SIMULATOR
+        [self playSoundAndVibration];
+#endif
+    if (_contactsVC)
+    {
+        [_contactsVC reloadGroupView];
+    }
+    
+    if (_chatListVC)
+    {
+        [_chatListVC refreshDataSource];
+    }
+    }
 }
 
 #pragma mark - IChatManagerDelegate 登录状态变化

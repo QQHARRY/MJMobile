@@ -13,7 +13,7 @@
 #import "UtilFun.h"
 #import "person.h"
 
-#import "badgeImageFactory.h"
+
 #import "unReadManager.h"
 #import "annoucementManager.h"
 #import "petitionManager.h"
@@ -38,6 +38,9 @@
 #import "ChatListViewController.h"
 #import "AppDelegate.h"
 #import "UIBarButtonItem+Badge.h"
+
+
+#import "Macro.h"
 
 
 @interface MainPageViewController ()
@@ -287,9 +290,50 @@
     }
     else if(indexPath.section == 1)
     {
+        
+        UIWebView*webV = [[UIWebView alloc] initWithFrame:CGRectMake(0, 66, self.view.frame.size.width, self.view.frame.size.height-66-44)];
+        [self.view addSubview:webV];
+        
+        NSString*str = [NSString stringWithFormat:@"%@%@", SERVER_URL, API_PETITION_DETAIL];
+        
+        NSMutableDictionary*param = [[NSMutableDictionary alloc] init];
+           [param setObject:[person me].job_no forKey:@"job_no"];
+           [param setObject:[person me].password forKey:@"acc_password"];
+        
+            petiotionBrief*brief = [self.mainPetitionArr objectAtIndex:indexPath.row];
+            [param setObject:brief.id forKey:@"id"];
+            [param setObject:brief.taskid forKey:@"taskid"];
+        
+
+        
+           NSString *array = @"";
+           int i=0;
+           for(NSString *key in param)
+           {
+               if(i>0)
+               {
+                   array = [array stringByAppendingString:@"&"];
+               }
+               
+               array = [array stringByAppendingString:[NSString stringWithFormat:@"%@=%@", key, [param objectForKey:key]]];
+               i++;
+           }
+        
+        
+        //self.navigationController.navigationBar.hidden = YES;
+        //self.tabBarController.tabBar.hidden = YES;
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL: [NSURL URLWithString:str]];
+        [request setHTTPMethod: @"POST"];
+        
+        [request setHTTPBody: [array dataUsingEncoding: NSUTF8StringEncoding]];
+        
+        [webV loadRequest:request];
+        
+       
+        
         if (self.mainPetitionArr && [self.mainPetitionArr count] > indexPath.row)
         {
-            [self performSegueWithIdentifier:@"toPetionDetails" sender:self];
+            //[self performSegueWithIdentifier:@"toPetionDetails" sender:self];
         }
     }
 }

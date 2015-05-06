@@ -11,6 +11,11 @@
 #import "BaseTableViewCell.h"
 #import "SRRefreshView.h"
 #import "ChineseToPinyin.h"
+#import "contactDataManager.h"
+#import "EaseMobFriendsManger.h"
+#import "Macro.h"
+#import "UIImageView+RoundImage.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface BlackListViewController ()<IChatManagerDelegate, UITableViewDataSource, UITableViewDelegate, SRRefreshDelegate>
 {
@@ -105,9 +110,50 @@
         cell = [[BaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
+    
+    
+    
+    
     NSString *username = [[self.dataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     cell.imageView.image = [UIImage imageNamed:@"chatListCellHead.png"];
     cell.textLabel.text = username;
+    
+    __weak typeof(cell) weakChatCell = cell;
+    
+    [[EaseMobFriendsManger sharedInstance] addEMFriends:@[username] isFriend:NO];
+    [[EaseMobFriendsManger sharedInstance] getFriendByUserName:username Success:^(BOOL success, person *psn) {
+        if (weakChatCell!=nil)
+        {
+            __strong typeof(cell) strongChatcell = weakChatCell;
+            strongChatcell.textLabel.text = psn.name_full;
+            if ([psn.photo hasSuffix:@".jpg"] ||
+                [psn.photo hasSuffix:@".png"])
+            {
+                
+                NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
+                
+                
+                
+                //dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [strongChatcell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:@"chatListCellHead.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                    
+                    if (image != nil)
+                    {
+                        [weakChatCell.imageView setImageToRound:image];
+                                            }
+                    
+                    
+                } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                    
+                }];
+                // });
+            }
+        }
+        
+        
+        
+    }];
     
     return cell;
 }

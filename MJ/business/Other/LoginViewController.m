@@ -180,15 +180,15 @@
                      
                      
                      
-                     [self performSegueWithIdentifier:@"LoginToMainPage" sender:self];
+                     //[self performSegueWithIdentifier:@"LoginToMainPage" sender:self];
                      
-//                      SHOWHUD(self.view);
-//                     [app loginToEaseMob:^(BOOL loginSuccess)
-//                      {
-//                          HIDEHUD(self.view);
-//                         [self performSegueWithIdentifier:@"LoginToMainPage" sender:self];
-//                         
-//                     } ReloadData:YES];
+                      SHOWHUD(self.view);
+                     [app loginToEaseMob:^(BOOL loginSuccess)
+                      {
+                          HIDEHUD(self.view);
+                         [self performSegueWithIdentifier:@"LoginToMainPage" sender:self];
+                         
+                     } ReloadData:YES];
                      
  
                      
@@ -231,7 +231,7 @@
          
      }];
     
-    SHOWHUD(self.view);
+    //SHOWHUD(self.view);
 }
 
 - (IBAction)applyForBindingBtnClicked:(id)sender {

@@ -8,6 +8,7 @@
 
 #import "person.h"
 #import <objc/runtime.h>
+#import "EaseMobFriendsManger.h"
 
 __strong static person* _sharedObject = nil;
 
@@ -76,32 +77,18 @@ __strong static person* _sharedObject = nil;
 {
     return [self.members isEqualToString:@"1"];
 }
--(IMSTATE)imState:(NSArray*)friendArr
+-(IMSTATE)imState
 {
-    if (![self isImOpened])
+    IMSTATE state = IM_NOT_OPEN;
+
+    if ([self isImOpened])
     {
-        return IM_NOT_OPEN;
+        
+        state = [[EaseMobFriendsManger sharedInstance] hasFriendWithUserName:self.job_no.uppercaseString]?IM_FRIEND:IM_OPENED_NOT_FRIEND;
     }
-    else
-    {
-        if (friendArr == nil)
-        {
-            return IM_OPENED_NOT_FRIEND;
-        }
-        else
-        {
-            for (person* psn in friendArr)
-            {
-                if ([psn.job_no isEqualToString:self.job_no])
-                {
-                    return IM_FRIEND;
-                }
-                
-            }
-            return  IM_OPENED_NOT_FRIEND;
-        }
-    }
-    return IM_NOT_OPEN;
+
+    
+    return state;
 }
 
 @end

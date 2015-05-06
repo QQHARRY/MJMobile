@@ -11,11 +11,12 @@
   */
 
 #import <UIKit/UIKit.h>
+#import "EMChatViewCell.h"
 
-@interface ChatViewController : UIViewController
+@interface ChatViewController : UIViewController<tapProtraitOnCell>
 
 - (instancetype)initWithChatter:(NSString *)chatter isGroup:(BOOL)isGroup;
 
 - (void)reloadData;
-
+@property (strong, nonatomic) NSString *chatter;
 @end

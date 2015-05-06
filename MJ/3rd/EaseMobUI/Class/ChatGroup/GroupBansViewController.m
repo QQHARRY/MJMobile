@@ -10,6 +10,13 @@
 
 #import "ContactView.h"
 #import "EMGroup.h"
+#import "EaseMobFriendsManger.h"
+#import "Macro.h"
+#import "UIImageView+AFNetworking.h"
+#import "UIImageView+RoundImage.h"
+#import "ContactPersonDetailsViewController.h"
+#import "UtilFun.h"
+#import "contactDataManager.h"
 
 #define kColOfRow 5
 #define kContactSize 60
@@ -169,6 +176,40 @@
                 contactView.index = i * kColOfRow + j;
                 contactView.image = [UIImage imageNamed:@"chatListCellHead.png"];
                 contactView.remark = username;
+                contactView.tag = index;
+                
+                
+                UITapGestureRecognizer*tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnContact:)];
+                [contactView addGestureRecognizer:tapGesture];
+                
+                __weak typeof(contactView) weakObj = contactView;
+                [[EaseMobFriendsManger sharedInstance] getFriendByUserName:username Success:^(BOOL success, person *psn) {
+                    
+                    
+                    __strong typeof(contactView) strongObj = weakObj;
+                    
+                    if ([psn.photo hasSuffix:@".jpg"] ||
+                        [psn.photo hasSuffix:@".png"])
+                    {
+                        
+                        NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
+                        
+                        [[strongObj getImageView]  setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:@"chatListCellHead.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                            
+                            if (image != nil)
+                            {
+                                [[weakObj getImageView] setImageToRound:image];
+                            }
+                            
+                            
+                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                            
+                        }];
+                    }
+                    weakObj.remark = psn.name_full;
+                }];
+                
+                
                 if (![username isEqualToString:loginUsername]) {
                     contactView.editing = _isEditing;
                 }
@@ -194,6 +235,63 @@
             }
         }
     }
+}
+                 
+-(void)tapOnContact:(UITapGestureRecognizer*)tap
+{
+
+    
+    int index = (int)tap.view.tag;
+    
+    if (index < [_group.bans count])
+    {
+        NSString *username = [_group.bans objectAtIndex:index];
+        if (username != nil && username.length > 0)
+        {
+            UIStoryboard* curStory = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            ContactPersonDetailsViewController*vc =[curStory instantiateViewControllerWithIdentifier:@"ContactPersonDetailsViewController"];
+            if (![vc  isKindOfClass:[ContactPersonDetailsViewController class]])
+            {
+                return;
+                
+            }
+            
+            if ([username.uppercaseString isEqualToString:[person me].job_no])
+            {
+                vc.psn = [person me];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            else
+            {
+                __weak typeof(self)weakSelf = self;
+                
+                SHOWHUD(self.view);
+                [[EaseMobFriendsManger sharedInstance] getFriendByUserName:username Success:^(BOOL success, person *psn) {
+                    HIDEHUD(self.view);
+                    //dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    if (psn)
+                    {
+                        SHOWHUD(self.view);
+                        [contactDataManager getPsnByJobNo:psn.job_no Success:^(id responseObject) {
+                            HIDEHUD(self.view);
+                            vc.psn = responseObject;
+                            [weakSelf.navigationController pushViewController:vc animated:YES];
+                        } failure:^(NSError *error) {
+                            HIDEHUD(self.view);
+                        }];
+                        
+                        
+                    }
+                    //});
+                    
+                }];
+            }
+            
+        }
+        
+    }
+    
 }
 
 - (void)fetchGroupBans

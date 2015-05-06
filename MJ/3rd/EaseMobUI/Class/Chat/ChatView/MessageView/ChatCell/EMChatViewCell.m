@@ -13,6 +13,10 @@
 #import "EMChatViewCell.h"
 #import "EMChatVideoBubbleView.h"
 #import "UIResponder+Router.h"
+#import "UIImageView+AFNetworking.h"
+#import "EaseMobFriendsManger.h"
+#import "Macro.h"
+#import "UIImageView+RoundImage.h"
 
 NSString *const kResendButtonTapEventName = @"kResendButtonTapEventName";
 NSString *const kShouldResendCell = @"kShouldResendCell";
@@ -105,14 +109,75 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     }
 }
 
+
+-(void)setUpHeadImageView
+{
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapHeadImage:)];
+    self.headImageView.userInteractionEnabled = YES;
+    [self.headImageView addGestureRecognizer:recognizer];
+    
+    UIImage *placeholderImage = [UIImage imageNamed:@"chatListCellHead"];
+    
+     self.headImageView.image = placeholderImage;
+}
+
+-(void)onTapHeadImage:(UITapGestureRecognizer *)tap
+{
+    if(self.delegate && [self.delegate respondsToSelector:@selector(didTapImageOnCell:)])
+    {
+        [self.delegate didTapImageOnCell:_messageModel.username];
+    }
+}
+
 - (void)setMessageModel:(MessageModel *)model
 {
     [super setMessageModel:model];
     
-    if (model.isChatGroup) {
-        _nameLabel.text = model.username;
-        _nameLabel.hidden = model.isSender;
-    }
+    
+    [self setUpHeadImageView];
+    
+    [[EaseMobFriendsManger sharedInstance] addEMFriends:@[model.username] isFriend:NO];
+    
+    __weak typeof(self) weakSelf = self;
+    [[EaseMobFriendsManger sharedInstance] getFriendByUserName:model.username Success:^(BOOL success, person *psn) {
+        if (success)
+        {
+            __strong typeof(self)strongSelf = weakSelf;
+            
+            if (model.isChatGroup) {
+                
+                strongSelf.nameLabel.text = psn.name_full;
+                strongSelf.nameLabel.hidden = model.isSender;
+            }
+            
+            if ([psn.photo hasSuffix:@".jpg"] ||
+                [psn.photo hasSuffix:@".png"])
+            {
+                
+                NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    
+                    UIImage *placeholderImage = [UIImage imageNamed:@"chatListCellHead"];
+                    [weakSelf.headImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:placeholderImage success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                        if (image != nil)
+                        {
+                            [weakSelf.headImageView setImageToRound:image];
+                        }
+                        
+                        
+ 
+                    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                        
+                    }];
+                });
+            }
+        }
+    }];
+    //
+    
+    
     
     _bubbleView.model = self.messageModel;
     [_bubbleView sizeToFit];

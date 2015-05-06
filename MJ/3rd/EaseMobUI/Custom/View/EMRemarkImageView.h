@@ -26,4 +26,6 @@
 @property (strong, nonatomic) NSString *remark;
 @property (strong, nonatomic) UIImage *image;
 
+-(UIImageView*)getImageView;
+
 @end

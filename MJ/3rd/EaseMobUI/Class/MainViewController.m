@@ -518,7 +518,7 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 - (void)didReceiveAcceptApplyToJoinGroup:(NSString *)groupId
                                groupname:(NSString *)groupname
 {
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"group.agreedToJoin", @"agreed to join the group of \'%@\'"), groupname];
+    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"group.agreedAndJoined", @"agreed to join the group of \'%@\'"), groupname];
     [self showHint:message];
 }
 

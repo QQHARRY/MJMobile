@@ -19,4 +19,7 @@
 
 
 +(void)searchUnitByKeyWord:(NSString *)kw Success:(void (^)(NSArray *personArr,NSArray*dptArr))success failure:(void (^)(NSError *error))failure;
+
+
++(void)getPsnByJobNo:(NSString*)jobNo Success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 @end

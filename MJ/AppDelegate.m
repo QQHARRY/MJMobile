@@ -19,6 +19,7 @@
 #import "AppDelegate+EaseMob.h"
 #import "photoManager.h"
 #import "ApplyViewController.h"
+#import "EaseMobFriendsManger.h"
 
 
 
@@ -82,6 +83,8 @@
     NSLog(@"loginStateChanged isAutoLogin=:%d loginSuccess=%d",isAutoLogin,loginSuccess);
     
 
+    
+    
     if (!isAutoLogin && !loginSuccess)
     {
         [self loginToEaseMob:nil ReloadData:NO];
@@ -113,6 +116,9 @@
              if (loginInfo && !error)
              {
                  
+                 //将旧版的coredata数据导入新的数据库
+                 EMError *error = [[EaseMob sharedInstance].chatManager importDataToNewDatabase];
+                 
                  if (reload)
                  {
                      
@@ -122,8 +128,7 @@
                      //设置是否自动登录
                      [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
                      
-                     //将旧版的coredata数据导入新的数据库
-                     EMError *error = [[EaseMob sharedInstance].chatManager importDataToNewDatabase];
+                     
                      if (!error) {
                          error = [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
                      }
@@ -141,21 +146,21 @@
                  {
                      success(NO);
                  }
-                 switch (error.errorCode)
-                 {
-                     case EMErrorServerNotReachable:
-                         TTAlertNoTitle(NSLocalizedString(@"error.connectServerFail", @"Connect to the server failed!"));
-                         break;
-                     case EMErrorServerAuthenticationFailure:
-                         TTAlertNoTitle(error.description);
-                         break;
-                     case EMErrorServerTimeout:
-                         TTAlertNoTitle(NSLocalizedString(@"error.connectServerTimeout", @"Connect to the server timed out!"));
-                         break;
-                     default:
-                         TTAlertNoTitle(NSLocalizedString(@"login.fail", @"Logon failure"));
-                         break;
-                 }
+//                 switch (error.errorCode)
+//                 {
+//                     case EMErrorServerNotReachable:
+//                         TTAlertNoTitle(NSLocalizedString(@"error.connectServerFail", @"Connect to the server failed!"));
+//                         break;
+//                     case EMErrorServerAuthenticationFailure:
+//                         TTAlertNoTitle(error.description);
+//                         break;
+//                     case EMErrorServerTimeout:
+//                         TTAlertNoTitle(NSLocalizedString(@"error.connectServerTimeout", @"Connect to the server timed out!"));
+//                         break;
+//                     default:
+//                         TTAlertNoTitle(NSLocalizedString(@"login.fail", @"Logon failure"));
+//                         break;
+//                 }
              }
          } onQueue:nil];
 
@@ -345,6 +350,7 @@
     [photoManager clean];
     self.mainController = nil;
     [self logoutEasemob];
+    [[EaseMobFriendsManger sharedInstance] clean];
 
     
     [self loadMainSotry:NO];

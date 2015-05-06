@@ -32,6 +32,12 @@
 #import "DXMessageToolBar.h"
 #import "DXChatBarMoreView.h"
 #import "ChatViewController+Category.h"
+#import "EaseMobFriendsManger.h"
+#import "ContactPersonDetailsViewController.h"
+#import "contactDataManager.h"
+#import "EaseMobFriendsManger.h"
+#import "UtilFun.h"
+
 #define KPageCount 20
 
 @interface ChatViewController ()<UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, SRRefreshDelegate, IChatManagerDelegate, DXChatBarMoreViewDelegate, DXMessageToolBarDelegate, LocationViewDelegate, IDeviceManagerDelegate>
@@ -50,7 +56,7 @@
 }
 
 @property (nonatomic) BOOL isChatGroup;
-@property (strong, nonatomic) NSString *chatter;
+
 
 @property (strong, nonatomic) NSMutableArray *dataSource;//tableView数据源
 @property (strong, nonatomic) SRRefreshView *slimeView;
@@ -129,6 +135,15 @@
     
     //通过会话管理者获取已收发消息
     [self loadMoreMessages];
+    
+    if (!_isChatGroup)
+    {
+        __weak typeof(self) weakSelf = self;
+        [[EaseMobFriendsManger sharedInstance] getFriendByUserName:self.chatter Success:^(BOOL success, person *psn) {
+            weakSelf.title = psn.name_full;
+        }];
+    }
+    
 }
 
 - (void)setupBarButtonItem
@@ -371,9 +386,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row < [self.dataSource count]) {
+    if (indexPath.row < [self.dataSource count])
+    {
         id obj = [self.dataSource objectAtIndex:indexPath.row];
-        if ([obj isKindOfClass:[NSString class]]) {
+        if ([obj isKindOfClass:[NSString class]])
+        {
             EMChatTimeCell *timeCell = (EMChatTimeCell *)[tableView dequeueReusableCellWithIdentifier:@"MessageCellTime"];
             if (timeCell == nil) {
                 timeCell = [[EMChatTimeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MessageCellTime"];
@@ -395,12 +412,60 @@
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
             cell.messageModel = model;
+            cell.delegate = self;
             
             return cell;
         }
     }
     
     return nil;
+}
+
+-(void)didTapImageOnCell:(NSString *)username
+{
+    if (username != nil && username.length > 0)
+    {
+        UIStoryboard* curStory = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        ContactPersonDetailsViewController*vc =[curStory instantiateViewControllerWithIdentifier:@"ContactPersonDetailsViewController"];
+        if (![vc  isKindOfClass:[ContactPersonDetailsViewController class]])
+        {
+            return;
+            
+        }
+        
+        if ([username.uppercaseString isEqualToString:[person me].job_no])
+        {
+            vc.psn = [person me];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else
+        {
+            __weak typeof(self)weakSelf = self;
+            SHOWHUD(self.view);
+            [[EaseMobFriendsManger sharedInstance] getFriendByUserName:username Success:^(BOOL success, person *psn) {
+                
+                HIDEHUD(self.view);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    if (psn)
+                    {
+                        SHOWHUD(self.view);
+                        [contactDataManager getPsnByJobNo:psn.job_no Success:^(id responseObject) {
+                            HIDEHUD(self.view);
+                            vc.psn = responseObject;
+                            [weakSelf.navigationController pushViewController:vc animated:YES];
+                        } failure:^(NSError *error) {
+                            HIDEHUD(self.view);
+                        }];
+                        
+                        
+                    }
+                });
+                
+            }];
+        }
+        
+    }
 }
 
 #pragma mark - Table view delegate

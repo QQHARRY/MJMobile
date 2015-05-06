@@ -21,6 +21,8 @@
 #import "UtilFun.h"
 #import "UIImageView+RoundImage.h"
 #import "EaseMob.h"
+#import "UIImage+FX.h"
+#import "ChatViewController.h"
 
 #define BEIJINGIMAGE @"背景图片"
 #define WEIKAITONGIMAGE @"未开通new"
@@ -77,6 +79,9 @@
     [self setActionBarItems];
     [self setUpPhotoAbout];
 }
+
+
+
 
 -(void)setUpPhotoAbout
 {
@@ -383,7 +388,7 @@
     {
         UIBarButtonItem*imBtn = nil;
         
-        IMSTATE imState = [self.psn imState:nil];
+        IMSTATE imState = [self.psn imState];
         
         switch (imState)
         {
@@ -511,7 +516,25 @@
 
 -(void)onImMessage
 {
-    PRESENTALERT(@"发消息", nil, nil, nil);
+    NSArray*arr = [self.navigationController viewControllers];
+    
+    for (UIViewController*vc in arr)
+    {
+        if ([vc isKindOfClass:[ChatViewController class]])
+        {
+            if ([((ChatViewController*)vc).chatter isEqualToString:self.psn.job_no.lowercaseString])
+            {
+                [self.navigationController  popToViewController:vc animated:YES];
+                return;
+            }
+            
+        }
+    }
+    
+    
+    ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:[self.psn.job_no lowercaseString] isGroup:NO];
+    chatVC.title = self.psn.name_full;
+    [self.navigationController pushViewController:chatVC animated:YES];
 }
 
 -(void)onAddFriend
@@ -659,13 +682,14 @@
     [picker dismissViewControllerAnimated:YES completion:^{}];
     
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+
     if (image ==nil)
     {
         return;
     }
     
     
-    NSData*data = UIImageJPEGRepresentation(image, 0.5);
+    NSData*data = UIImageJPEGRepresentation(image, 0.25);
     
     
 #if 0

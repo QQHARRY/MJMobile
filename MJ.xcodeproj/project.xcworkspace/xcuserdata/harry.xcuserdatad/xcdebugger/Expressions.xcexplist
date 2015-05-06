@@ -75,13 +75,10 @@
          contextName = "-[petitionAgreementViewController tableView:cellForRowAtIndexPath:]:petitionAgreementViewController.m">
       </ContextState>
       <ContextState
-         contextName = "__51-[HouseAddNewViewController createInfoSectionItems]_block_invoke_2250:HouseAddNewViewController.m">
-      </ContextState>
-      <ContextState
          contextName = "__45-[HouseParticularTableViewController getData]_block_invoke:HouseParticularTableViewController.m">
       </ContextState>
       <ContextState
-         contextName = "__55+[contactDataManager getSubDeptOfUnit:Success:failure:]_block_invoke:contactDataManager.m">
+         contextName = "__51-[HouseAddNewViewController createInfoSectionItems]_block_invoke_2250:HouseAddNewViewController.m">
       </ContextState>
       <ContextState
          contextName = "__58+[contactDataManager getSubPersonsOfUnit:Success:failure:]_block_invoke:contactDataManager.m">
@@ -90,6 +87,9 @@
                value = "arr">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__55+[contactDataManager getSubDeptOfUnit:Success:failure:]_block_invoke:contactDataManager.m">
       </ContextState>
       <ContextState
          contextName = "+[contactDataManager getDeptArr:superUnit:]:contactDataManager.m">
@@ -124,6 +124,14 @@
       </ContextState>
       <ContextState
          contextName = "__51-[HouseAddNewViewController createInfoSectionItems]_block_invoke_2:HouseAddNewViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[MJTabbarController viewDidLoad]:MJTabbarController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "a">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "-[HouseAddNewViewController getBuildingDetails]:HouseAddNewViewController.m">

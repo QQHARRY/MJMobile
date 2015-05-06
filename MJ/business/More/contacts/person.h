@@ -48,5 +48,5 @@ typedef enum
 +(void)cleanMe;
 
 -(BOOL)isImOpened;
--(IMSTATE)imState:(NSArray*)friendArr;
+-(IMSTATE)imState;
 @end

@@ -335,7 +335,7 @@
 
 -(void)imBtnPressedOnCell:(ContactPsnVCCellTableViewCell *)cell
 {
-    IMSTATE imState = [cell.psn imState:nil];
+    IMSTATE imState = [cell.psn imState];
     if (imState == IM_OPENED_NOT_FRIEND)
     {
         [self onAddFriend:cell.psn];

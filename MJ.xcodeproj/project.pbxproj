@@ -97,8 +97,11 @@
 		4A8D01F61A36F9BC00EA59EA /* alertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01F51A36F9BC00EA59EA /* alertManager.m */; };
 		4A8D01F91A36FB8000EA59EA /* internalMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01F81A36FB8000EA59EA /* internalMessageManager.m */; };
 		4A8D01FC1A36FB9C00EA59EA /* petitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01FB1A36FB9C00EA59EA /* petitionManager.m */; };
-		4A8D01FF1A3734A000EA59EA /* badgeImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D01FE1A3734A000EA59EA /* badgeImageFactory.m */; };
-		4A8D02131A37F78400EA59EA /* JSBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8D02121A37F78400EA59EA /* JSBadgeView.m */; };
+		4A8F095A1AF85C8000C44B99 /* MJCatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F09591AF85C8000C44B99 /* MJCatch.m */; };
+		4A8F09621AF87AD200C44B99 /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F095F1AF87AD200C44B99 /* MBProgressHUD+Add.m */; };
+		4A8F09631AF87AD200C44B99 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8F09611AF87AD200C44B99 /* MBProgressHUD.m */; };
+		4A94F9161AF72A7900B209FF /* EaseMobFriendsManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A94F9151AF72A7900B209FF /* EaseMobFriendsManger.m */; };
+		4A94F9191AF7563900B209FF /* EaseMobContacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A94F9181AF7563900B209FF /* EaseMobContacter.m */; };
 		4A96ECA01AE73AD200577AA6 /* ContactPathTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A96EC9E1AE73AD200577AA6 /* ContactPathTableViewCell.m */; };
 		4A96ECA11AE73AD200577AA6 /* ContactPathTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A96EC9F1AE73AD200577AA6 /* ContactPathTableViewCell.xib */; };
 		4A96ECA41AE742F900577AA6 /* UIImage+xtRoundedRectImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A96ECA31AE742F900577AA6 /* UIImage+xtRoundedRectImage.m */; };
@@ -133,8 +136,6 @@
 		4AA188431AEF506400685603 /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6EF2A91A5E6E8D008AB819 /* libUMessage_Sdk_1.1.0.a */; };
 		4AA18A351AEF549A00685603 /* Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA188491AEF549800685603 /* Emoji.m */; };
 		4AA18A361AEF549A00685603 /* EmojiEmoticons.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA1884B1AEF549800685603 /* EmojiEmoticons.m */; };
-		4AA18A371AEF549A00685603 /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA1884F1AEF549800685603 /* MBProgressHUD+Add.m */; };
-		4AA18A381AEF549A00685603 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA188511AEF549800685603 /* MBProgressHUD.m */; };
 		4AA18A391AEF549A00685603 /* MWCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA188551AEF549800685603 /* MWCaptionView.m */; };
 		4AA18A3A1AEF549A00685603 /* MWGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA188581AEF549800685603 /* MWGridCell.m */; };
 		4AA18A3B1AEF549A00685603 /* MWGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA1885A1AEF549800685603 /* MWGridViewController.m */; };
@@ -784,10 +785,16 @@
 		4A8D01F81A36FB8000EA59EA /* internalMessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = internalMessageManager.m; sourceTree = "<group>"; };
 		4A8D01FA1A36FB9C00EA59EA /* petitionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = petitionManager.h; sourceTree = "<group>"; };
 		4A8D01FB1A36FB9C00EA59EA /* petitionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petitionManager.m; sourceTree = "<group>"; };
-		4A8D01FD1A3734A000EA59EA /* badgeImageFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = badgeImageFactory.h; sourceTree = "<group>"; };
-		4A8D01FE1A3734A000EA59EA /* badgeImageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = badgeImageFactory.m; sourceTree = "<group>"; };
-		4A8D02111A37F78400EA59EA /* JSBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBadgeView.h; sourceTree = "<group>"; };
-		4A8D02121A37F78400EA59EA /* JSBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBadgeView.m; sourceTree = "<group>"; };
+		4A8F09581AF85C8000C44B99 /* MJCatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJCatch.h; sourceTree = "<group>"; };
+		4A8F09591AF85C8000C44B99 /* MJCatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJCatch.m; sourceTree = "<group>"; };
+		4A8F095E1AF87AD200C44B99 /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
+		4A8F095F1AF87AD200C44B99 /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
+		4A8F09601AF87AD200C44B99 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		4A8F09611AF87AD200C44B99 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		4A94F9141AF72A7900B209FF /* EaseMobFriendsManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseMobFriendsManger.h; sourceTree = "<group>"; };
+		4A94F9151AF72A7900B209FF /* EaseMobFriendsManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseMobFriendsManger.m; sourceTree = "<group>"; };
+		4A94F9171AF7563900B209FF /* EaseMobContacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseMobContacter.h; sourceTree = "<group>"; };
+		4A94F9181AF7563900B209FF /* EaseMobContacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseMobContacter.m; sourceTree = "<group>"; };
 		4A96EC9D1AE73AD200577AA6 /* ContactPathTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPathTableViewCell.h; sourceTree = "<group>"; };
 		4A96EC9E1AE73AD200577AA6 /* ContactPathTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPathTableViewCell.m; sourceTree = "<group>"; };
 		4A96EC9F1AE73AD200577AA6 /* ContactPathTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPathTableViewCell.xib; sourceTree = "<group>"; };
@@ -841,10 +848,6 @@
 		4AA1884A1AEF549800685603 /* EmojiEmoticons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiEmoticons.h; sourceTree = "<group>"; };
 		4AA1884B1AEF549800685603 /* EmojiEmoticons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiEmoticons.m; sourceTree = "<group>"; };
 		4AA1884C1AEF549800685603 /* macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macros.h; sourceTree = "<group>"; };
-		4AA1884E1AEF549800685603 /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
-		4AA1884F1AEF549800685603 /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
-		4AA188501AEF549800685603 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		4AA188511AEF549800685603 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		4AA188541AEF549800685603 /* MWCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWCaptionView.h; sourceTree = "<group>"; };
 		4AA188551AEF549800685603 /* MWCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWCaptionView.m; sourceTree = "<group>"; };
 		4AA188561AEF549800685603 /* MWCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWCommon.h; sourceTree = "<group>"; };
@@ -1726,6 +1729,7 @@
 		4A06BEA31AE6314C00809C52 /* contactNew */ = {
 			isa = PBXGroup;
 			children = (
+				4A94F9131AF72A3A00B209FF /* EaseMobAbout */,
 				4A06BEA41AE6314C00809C52 /* ContactDeptViewController.h */,
 				4A06BEA51AE6314C00809C52 /* ContactDeptViewController.m */,
 				4A06BEC31AE631CA00809C52 /* ContactDeptVCCell.h */,
@@ -1909,13 +1913,35 @@
 			path = ILBarButtonItem;
 			sourceTree = "<group>";
 		};
-		4A8D02101A37F78400EA59EA /* badgeView */ = {
+		4A8F09571AF85C4600C44B99 /* catch */ = {
 			isa = PBXGroup;
 			children = (
-				4A8D02111A37F78400EA59EA /* JSBadgeView.h */,
-				4A8D02121A37F78400EA59EA /* JSBadgeView.m */,
+				4A8F09581AF85C8000C44B99 /* MJCatch.h */,
+				4A8F09591AF85C8000C44B99 /* MJCatch.m */,
 			);
-			path = badgeView;
+			name = catch;
+			sourceTree = "<group>";
+		};
+		4A8F095D1AF87AD200C44B99 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				4A8F095E1AF87AD200C44B99 /* MBProgressHUD+Add.h */,
+				4A8F095F1AF87AD200C44B99 /* MBProgressHUD+Add.m */,
+				4A8F09601AF87AD200C44B99 /* MBProgressHUD.h */,
+				4A8F09611AF87AD200C44B99 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		4A94F9131AF72A3A00B209FF /* EaseMobAbout */ = {
+			isa = PBXGroup;
+			children = (
+				4A94F9141AF72A7900B209FF /* EaseMobFriendsManger.h */,
+				4A94F9151AF72A7900B209FF /* EaseMobFriendsManger.m */,
+				4A94F9171AF7563900B209FF /* EaseMobContacter.h */,
+				4A94F9181AF7563900B209FF /* EaseMobContacter.m */,
+			);
+			name = EaseMobAbout;
 			sourceTree = "<group>";
 		};
 		4A9D01FB1A60341D00600BA0 /* dictionary */ = {
@@ -1991,7 +2017,6 @@
 			children = (
 				4AA188471AEF549800685603 /* Emoji */,
 				4AA1884C1AEF549800685603 /* macros.h */,
-				4AA1884D1AEF549800685603 /* MBProgressHUD */,
 				4AA188521AEF549800685603 /* MWPhotoBrowser */,
 				4AA188AB1AEF549800685603 /* SlimeRefresh */,
 				4AA188B31AEF549800685603 /* THProgressView */,
@@ -2011,17 +2036,6 @@
 				4AA1884B1AEF549800685603 /* EmojiEmoticons.m */,
 			);
 			path = Emoji;
-			sourceTree = "<group>";
-		};
-		4AA1884D1AEF549800685603 /* MBProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				4AA1884E1AEF549800685603 /* MBProgressHUD+Add.h */,
-				4AA1884F1AEF549800685603 /* MBProgressHUD+Add.m */,
-				4AA188501AEF549800685603 /* MBProgressHUD.h */,
-				4AA188511AEF549800685603 /* MBProgressHUD.m */,
-			);
-			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		4AA188521AEF549800685603 /* MWPhotoBrowser */ = {
@@ -3114,6 +3128,7 @@
 		4AB0EFA31A30538D00C24A44 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4A8F09571AF85C4600C44B99 /* catch */,
 				4A9D02001A6051E500600BA0 /* sqlite3 */,
 				4A9D01FB1A60341D00600BA0 /* dictionary */,
 				4AB0EFA41A30540C00C24A44 /* AFNMJInstance.h */,
@@ -3126,8 +3141,6 @@
 				4AB0EFAE1A308CED00C24A44 /* UtilFun.m */,
 				4A8D01D31A33039D00EA59EA /* UIViewController+FastNavgationBarItem.h */,
 				4A8D01D41A33039D00EA59EA /* UIViewController+FastNavgationBarItem.m */,
-				4A8D01FD1A3734A000EA59EA /* badgeImageFactory.h */,
-				4A8D01FE1A3734A000EA59EA /* badgeImageFactory.m */,
 				4A5137491A3B2AAA007B504B /* dic2Object.h */,
 				4A51374A1A3B2AAA007B504B /* dic2Object.m */,
 				4AA5436F1A8894630089C0F2 /* photoManager.h */,
@@ -3239,6 +3252,7 @@
 		4AD794A61A218C4A00DEC779 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				4A8F095D1AF87AD200C44B99 /* MBProgressHUD */,
 				4AAE1A4C1AF1C96000F01D95 /* UIBarButtonItem+Badge */,
 				4AA18B6C1AEF55ED00685603 /* EaseMobSDK */,
 				4AA188451AEF549800685603 /* EaseMobUI */,
@@ -3247,7 +3261,6 @@
 				4A6EF2A81A5E6E8D008AB819 /* UMessage_Sdk_1.1.0 */,
 				4AA038591A3D30F0003E9CA6 /* BFNavigationBarDrawer */,
 				4ABC22291A3C83F20017FD94 /* PageView */,
-				4A8D02101A37F78400EA59EA /* badgeView */,
 				4A8D01CC1A33023900EA59EA /* ILBarButtonItem */,
 				4AD795561A218DF100DEC779 /* checkbox */,
 				4AD795591A218DF100DEC779 /* HUD */,
@@ -4166,6 +4179,7 @@
 				4A8D01D91A33381200EA59EA /* MainPageTableViewHeaderCell.m in Sources */,
 				4A2EE1231A428F1000899976 /* petitionAgreementViewController.m in Sources */,
 				B98BD5821A609185003A35BE /* RETableViewItem.m in Sources */,
+				4A8F095A1AF85C8000C44B99 /* MJCatch.m in Sources */,
 				4A56C7101A8CAFC800AF8CB6 /* versionInfo.m in Sources */,
 				4AA18A941AEF549A00685603 /* PublicGroupDetailViewController.m in Sources */,
 				4A87884C1AE8E94800FB3F91 /* ContacCustomizedBarBtnItemView.m in Sources */,
@@ -4201,6 +4215,7 @@
 				4AA18A641AEF549A00685603 /* THProgressView.m in Sources */,
 				B93B142D1A61652000121133 /* CustomerFilter.m in Sources */,
 				4AA18A841AEF549A00685603 /* EMChatTextBubbleView.m in Sources */,
+				4A94F9191AF7563900B209FF /* EaseMobContacter.m in Sources */,
 				4AA18A671AEF549A00685603 /* WCAlertView.m in Sources */,
 				B94445721A6282510033E998 /* AppointTableViewController.m in Sources */,
 				4A20860C1A63B49A00F3CB5A /* HouseEditParticularsViewController.m in Sources */,
@@ -4208,7 +4223,6 @@
 				4AD795201A218C4A00DEC779 /* AFHTTPRequestOperationManager.m in Sources */,
 				4A8D01F31A36F9AB00EA59EA /* annoucementManager.m in Sources */,
 				4AA18A4A1AEF549A00685603 /* NSData+EMImageContentType.m in Sources */,
-				4AA18A371AEF549A00685603 /* MBProgressHUD+Add.m in Sources */,
 				4A5665531A4C127A00C3BA22 /* sendMessageViewController.m in Sources */,
 				B98BD56C1A609185003A35BE /* RETableViewPickerCell.m in Sources */,
 				4A5D24481A4AC14F00546698 /* order.m in Sources */,
@@ -4223,7 +4237,6 @@
 				4AA18AA01AEF549A00685603 /* MainViewController.m in Sources */,
 				4A5D24541A4AF22900546698 /* orderTableViewController.m in Sources */,
 				4AAFACA01AEB49A60029BAB3 /* ImFriendListManager.m in Sources */,
-				4A8D01FF1A3734A000EA59EA /* badgeImageFactory.m in Sources */,
 				4A9D3F7A1A8F481200BCDAD8 /* MJTabbarController.m in Sources */,
 				4AD795531A218C4A00DEC779 /* UIWebView+AFNetworking.m in Sources */,
 				B98BD5601A609185003A35BE /* README.md in Sources */,
@@ -4233,6 +4246,7 @@
 				B98BD5681A609185003A35BE /* RETableViewInlinePickerCell.m in Sources */,
 				B93B14471A62668E00121133 /* MultilineTextItem.m in Sources */,
 				4A5665301A4BF43700C3BA22 /* MessagePageViewController.m in Sources */,
+				4A8F09631AF87AD200C44B99 /* MBProgressHUD.m in Sources */,
 				4A8788481AE8D87300FB3F91 /* ContactPsnDtlVCCell.m in Sources */,
 				B98BD58B1A609185003A35BE /* REValidator.m in Sources */,
 				4AA18A571AEF549A00685603 /* PSTCollectionViewFlowLayout.m in Sources */,
@@ -4294,6 +4308,7 @@
 				4A6971641AE9D01700EA8E3D /* ContactPersonDetailsVCTableViewCell.m in Sources */,
 				4A3990151AE8A2AD00CA5640 /* ContactPersonDetailsViewController.m in Sources */,
 				4AA18A3D1AEF549A00685603 /* MWPhotoBrowser.m in Sources */,
+				4A8F09621AF87AD200C44B99 /* MBProgressHUD+Add.m in Sources */,
 				4AA18A871AEF549A00685603 /* EMChatViewBaseCell.m in Sources */,
 				4A40C21B1A41748100944AB2 /* petionListTableViewController.m in Sources */,
 				4AA18AA71AEF549A00685603 /* EMTextView.m in Sources */,
@@ -4310,6 +4325,7 @@
 				B9FF4B431A245FB300FE413E /* BindViewController.m in Sources */,
 				4A06BEBE1AE6314C00809C52 /* department.m in Sources */,
 				B93B143D1A62539D00121133 /* FollowTableViewController.m in Sources */,
+				4A94F9161AF72A7900B209FF /* EaseMobFriendsManger.m in Sources */,
 				4A6865A51A737573005394DD /* buildingItemTableViewCell.m in Sources */,
 				4A8D01DE1A369DCE00EA59EA /* PublicAnncTableViewCell.m in Sources */,
 				B98BD57D1A609185003A35BE /* REActionBar.m in Sources */,
@@ -4328,7 +4344,6 @@
 				4A8D01EA1A36E46700EA59EA /* unReadManager.m in Sources */,
 				B93B144E1A62773700121133 /* FollowDetailCell.m in Sources */,
 				B98BD4C91A60747A003A35BE /* UIScrollView+MJExtension.m in Sources */,
-				4A8D02131A37F78400EA59EA /* JSBadgeView.m in Sources */,
 				4A06BEC61AE631CA00809C52 /* ContactDeptVCCell.m in Sources */,
 				4A23AD131A66BBFE00F5A02A /* HouseAddNewViewController.m in Sources */,
 				4AA18A6B1AEF549A00685603 /* UIResponder+Router.m in Sources */,
@@ -4397,7 +4412,6 @@
 				B93B14411A625A5A00121133 /* FollowDataPuller.m in Sources */,
 				B98BD5811A609185003A35BE /* RETableViewCellStyle.m in Sources */,
 				B98BD4AD1A60464F003A35BE /* HouseDataPuller.m in Sources */,
-				4AA18A381AEF549A00685603 /* MBProgressHUD.m in Sources */,
 				4A06BEB91AE6314C00809C52 /* ContactDeptViewController.m in Sources */,
 				4A96ECA41AE742F900577AA6 /* UIImage+xtRoundedRectImage.m in Sources */,
 				B98BD4A31A603B51003A35BE /* HouseTableViewController.m in Sources */,

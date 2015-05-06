@@ -20,7 +20,7 @@
 #import "PersonDetailsViewController.h"
 #import "ContactPsnListViewController.h"
 #import "UIImageView+RoundImage.h"
-#import "ContactDataProvider.h"
+
 #import "ContactPersonDetailsViewController.h"
 
 #define DEFAULT_PATH_IMAGE @"陕西住商不动产"
@@ -172,6 +172,8 @@
                     }
                 }
             }
+            cell.backgroundColor = [UIColor whiteColor];
+            
             
             NSString*path = @"";
             

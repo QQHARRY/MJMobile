@@ -54,4 +54,9 @@
     _imageView.image = image;
 }
 
+-(UIImageView*)getImageView
+{
+    return _imageView;
+}
+
 @end

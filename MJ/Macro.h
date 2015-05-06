@@ -12,6 +12,10 @@
 #define SERVER_ADD @"http://115.28.76.58:9090/KWOA/"
 #define SERVER_URL @"http://115.28.76.58:9090/KWOA/device/"
 #define SERVER_URL_NOAPI @"http://115.28.76.58:9090/KWOA"
+
+//#define SERVER_ADD       @"http://192.168.1.142:8080/KWOA/"
+//#define SERVER_URL       @"http://192.168.1.142:8080/KWOA/device/"
+//#define SERVER_URL_NOAPI @"http://192.168.1.142:8080/KWOA"
 #else
 #define SERVER_ADD @"http://192.168.1.106:9090/KWOA/"
 #define SERVER_URL @"http://192.168.1.106:9090/KWOA/device/"
@@ -52,6 +56,10 @@
 #define API_GET_SUB_PERSON @"person/getContractDeptUsrlist"
 //73. 按人名或部门名搜索通讯录信息
 #define API_SEARCH_BY_KEWORD @"person/searchAddressList"
+//72. 获取我的环信好友列表信息
+#define API_GET_HX_FRIEND_LIST @"person/getHxFriendsList"
+//74. 根据工号获取某人详细信息
+#define API_GET_PSN_DETAILS @"person/getUserInfoByJobNo"
 
 
 //获取部门的直属子部门和员工

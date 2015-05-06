@@ -241,7 +241,9 @@
     }
     
     if (isUpdate) {
-        [[EaseMob sharedInstance].chatManager asyncUpdatePushOptions:options];
+        [[EaseMob sharedInstance].chatManager asyncUpdatePushOptions:options completion:^(EMPushNotificationOptions *options, EMError *error) {
+            NSLog(@"updated");
+        } onQueue:nil];
     }
     
     [self.navigationController popViewControllerAnimated:YES];

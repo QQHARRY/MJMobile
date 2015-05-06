@@ -23,6 +23,10 @@
 #import "UIBarButtonItem+Badge.h"
 #import "ApplyViewController.h"
 #import "EMConversation.h"
+#import "EaseMobFriendsManger.h"
+#import "UIImageView+AFNetworking.h"
+#import "Macro.h"
+#import "UIImageView+RoundImage.h"
 
 @interface ChatListViewController ()<UITableViewDelegate,UITableViewDataSource, UISearchDisplayDelegate,SRRefreshDelegate, UISearchBarDelegate, IChatManagerDelegate>
 
@@ -79,9 +83,6 @@
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"好友" style:UIBarButtonItemStylePlain target:self action:@selector(rightButtonClicked)];
-    
-    
-    
 
     [self searchController];
 }
@@ -358,6 +359,8 @@
 
 #pragma mark - TableViewDelegate & TableViewDatasource
 
+
+
 -(UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -369,8 +372,45 @@
     }
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
     cell.name = conversation.chatter;
+    
+
+   __weak __typeof(cell) weakChatCell = cell;
     if (!conversation.isGroup) {
         cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
+        [[EaseMobFriendsManger sharedInstance] getFriendByUserName:conversation.chatter Success:^(BOOL success, person *psn) {
+            if (weakChatCell!=nil)
+            {
+                __strong typeof(weakChatCell) strongChatcell = weakChatCell;
+                strongChatcell.name = psn.name_full;
+                if ([psn.photo hasSuffix:@".jpg"] ||
+                    [psn.photo hasSuffix:@".png"])
+                {
+                    
+                    NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
+                    
+                    
+                    
+                    //dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        [strongChatcell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:@"chatListCellHead.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                            
+                            if (image != nil)
+                            {
+                                [weakChatCell.imageView setImageToRound:image];
+                                weakChatCell.placeholderImage = weakChatCell.imageView.image;
+                            }
+                            
+                            
+                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                            
+                        }];
+                   // });
+                }
+            }
+            
+            
+            
+        }];
     }
     else{
         NSString *imageName = @"groupPublicHeader";
@@ -405,6 +445,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
     

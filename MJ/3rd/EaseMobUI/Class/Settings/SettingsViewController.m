@@ -52,6 +52,7 @@
     
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.tableFooterView = self.footerView;
+    [self refreshConfig];
 }
 
 - (void)didReceiveMemoryWarning
