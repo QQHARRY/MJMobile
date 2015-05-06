@@ -19,6 +19,7 @@
 #import "Macro.h"
 #import "HouseEditParticularsViewController.h"
 #import "BuildingsSelectTableViewController.h"
+#import "houseDescribeViewController.h"
 
 @interface HouseParticularTableViewController ()
 
@@ -225,6 +226,7 @@
             ((RERadioItem*)item).enabled = NO;
         }
     }
+    self.b_staff_describ_to_view_html.enabled = YES;
 }
 
 
@@ -497,11 +499,16 @@
     //    //备注
     [self.infoSection addItem:self.client_remark];
     
+    
+   
+    
     //
     //    @property (strong, readwrite, nonatomic) RETextItem * b_staff_describ;
     //    //String
     //    //房源描述
-    [self.infoSection addItem:self.b_staff_describ];
+    //[self.infoSection addItem:self.b_staff_describ];
+    
+     [self.infoSection addItem:self.b_staff_describ_to_view_html];
     
     //
     //    @property (strong, readwrite, nonatomic) RETextItem * owner_staff_name;
@@ -1479,6 +1486,9 @@
         value = self.housePtcl.client_remark;
     }
     self.client_remark = [[RETextItem alloc] initWithTitle:@"备注:" value:value];
+    
+    
+    
 
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * b_staff_describ;
@@ -1490,6 +1500,22 @@
         value = self.housePtcl.b_staff_describ;
     }
     self.b_staff_describ = [[RETextItem alloc] initWithTitle:@"房源描述:" value:value];
+    
+    
+    //@property (strong, readwrite, nonatomic) RERadioItem * b_staff_describ_to_view_html;
+    //String
+    //房源描述,点击后进入html页面查看html格式的房源描述
+    value = @"";
+    if (self.housePtcl && self.housePtcl.b_staff_describ)
+    {
+        value = self.housePtcl.b_staff_describ;
+    }
+    self.b_staff_describ_to_view_html = [[RERadioItem alloc] initWithTitle:@"房源描述" value:value selectionHandler:^(RERadioItem *item) {
+        houseDescribeViewController*vc = [[houseDescribeViewController alloc] init];
+        vc.client_remark = value;
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
 
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * owner_staff_name;

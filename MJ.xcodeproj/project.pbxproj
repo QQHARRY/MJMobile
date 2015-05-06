@@ -450,6 +450,7 @@
 		4AA543771A88B33F0089C0F2 /* RETableViewMultiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA543761A88B33F0089C0F2 /* RETableViewMultiCell.m */; };
 		4AAE1A511AF1C96000F01D95 /* UIBarButtonItem+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE1A4E1AF1C96000F01D95 /* UIBarButtonItem+Badge.m */; };
 		4AAE1A521AF1C96000F01D95 /* UIButton+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE1A501AF1C96000F01D95 /* UIButton+Badge.m */; };
+		4AAEFB4A1AFA0BB700501344 /* houseDescribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAEFB491AFA0BB700501344 /* houseDescribeViewController.m */; };
 		4AAFAC9D1AEB368D0029BAB3 /* UIImageView+RoundImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFAC9C1AEB368D0029BAB3 /* UIImageView+RoundImage.m */; };
 		4AAFACA01AEB49A60029BAB3 /* ImFriendListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFAC9F1AEB49A60029BAB3 /* ImFriendListManager.m */; };
 		4AAFACA31AEB4C4C0029BAB3 /* ContactDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFACA21AEB4C4C0029BAB3 /* ContactDataProvider.m */; };
@@ -1367,6 +1368,8 @@
 		4AAE1A4E1AF1C96000F01D95 /* UIBarButtonItem+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Badge.m"; sourceTree = "<group>"; };
 		4AAE1A4F1AF1C96000F01D95 /* UIButton+Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Badge.h"; sourceTree = "<group>"; };
 		4AAE1A501AF1C96000F01D95 /* UIButton+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Badge.m"; sourceTree = "<group>"; };
+		4AAEFB481AFA0BB700501344 /* houseDescribeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = houseDescribeViewController.h; sourceTree = "<group>"; };
+		4AAEFB491AFA0BB700501344 /* houseDescribeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = houseDescribeViewController.m; sourceTree = "<group>"; };
 		4AAFAC9B1AEB368D0029BAB3 /* UIImageView+RoundImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+RoundImage.h"; sourceTree = "<group>"; };
 		4AAFAC9C1AEB368D0029BAB3 /* UIImageView+RoundImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+RoundImage.m"; sourceTree = "<group>"; };
 		4AAFAC9E1AEB49A60029BAB3 /* ImFriendListManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImFriendListManager.h; sourceTree = "<group>"; };
@@ -3753,6 +3756,8 @@
 				4A6865AB1A73765E005394DD /* buildingDetails.m */,
 				4A6865A71A7375EF005394DD /* building.h */,
 				4A6865A81A7375EF005394DD /* building.m */,
+				4AAEFB481AFA0BB700501344 /* houseDescribeViewController.h */,
+				4AAEFB491AFA0BB700501344 /* houseDescribeViewController.m */,
 			);
 			path = House;
 			sourceTree = "<group>";
@@ -4467,6 +4472,7 @@
 				B98BD5841A609185003A35BE /* RETableViewManager.m in Sources */,
 				4AA18A391AEF549A00685603 /* MWCaptionView.m in Sources */,
 				4AA18A431AEF549A00685603 /* EMSDWebImageCompat.m in Sources */,
+				4AAEFB4A1AFA0BB700501344 /* houseDescribeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

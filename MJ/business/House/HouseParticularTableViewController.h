@@ -255,9 +255,18 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 //String
 //备注
 
+
+
+
 @property (strong, readwrite, nonatomic) RETextItem * b_staff_describ;
 //String
 //房源描述
+
+@property (strong, readwrite, nonatomic) RERadioItem * b_staff_describ_to_view_html;
+//String
+//房源描述,点击后进入html页面查看html格式的房源描述
+
+
 
 @property (strong, readwrite, nonatomic) RETextItem * owner_staff_name;
 //String

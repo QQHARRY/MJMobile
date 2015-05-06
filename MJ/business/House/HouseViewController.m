@@ -17,6 +17,8 @@
 
 @interface HouseViewController ()
 
+@property(nonatomic,strong)HouseFilterController *houseFilterVC;
+
 @end
 
 @implementation HouseViewController
@@ -95,9 +97,14 @@
 
 - (void)onFilterAction:(id)sender
 {
-    HouseFilterController *vc = [[HouseFilterController alloc] initWithStyle:UITableViewStyleGrouped];
-    vc.hvc = self;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (_houseFilterVC == nil)
+    {
+        _houseFilterVC = [[HouseFilterController alloc] initWithStyle:UITableViewStyleGrouped];
+    }
+    
+    
+    _houseFilterVC.hvc = self;
+    [self.navigationController pushViewController:_houseFilterVC animated:YES];
 }
 
 - (void)onAddEstate:(id)sender

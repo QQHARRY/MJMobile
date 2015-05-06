@@ -1627,6 +1627,7 @@
                 [requiredFields removeObject:self.build_property];
                 [requiredFields removeObject:self.value_bottom];
                 [requiredFields removeObject:self.client_remark];
+                [requiredFields removeObject:self.b_staff_describ_to_view_html];
                 [requiredFields removeObject:self.look_permit];
                 [requiredFields removeObject:self.judgementBtn];
                 [requiredFields removeObject:self.client_secret_remark];

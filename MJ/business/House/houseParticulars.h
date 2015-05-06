@@ -127,6 +127,7 @@
 //String
 //备注
 
+
 @property(nonatomic,strong)NSString* b_staff_describ;
 //String
 //房源描述
