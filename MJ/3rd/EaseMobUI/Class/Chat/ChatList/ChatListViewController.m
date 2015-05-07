@@ -464,7 +464,7 @@
     NSString *chatter = conversation.chatter;
     chatController = [[ChatViewController alloc] initWithChatter:chatter isGroup:conversation.isGroup];
     chatController.title = title;
-    chatController.hidesBottomBarWhenPushed = YES;
+    //chatController.hidesBottomBarWhenPushed = YES;
    
 
     [self.navigationController pushViewController:chatController animated:YES];

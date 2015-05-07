@@ -65,7 +65,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.hidden = YES;
-    self.navigationController.tabBarController.tabBar.hidden = YES;
+    //self.navigationController.tabBarController.tabBar.hidden = YES;
+    //self.hidesBottomBarWhenPushed = YES;
     self.tableview.dataSource = self;
     self.tableview.delegate = self;
     self.tableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -302,7 +303,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = YES;
-    self.navigationController.tabBarController.tabBar.hidden = YES;
+    //self.navigationController.tabBarController.tabBar.hidden = YES;
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardDidShowNotification object:nil];
@@ -315,7 +316,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = NO;
-    self.navigationController.tabBarController.tabBar.hidden = NO;
+    //self.navigationController.tabBarController.tabBar.hidden = NO;
 
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidHideNotification object:nil];
