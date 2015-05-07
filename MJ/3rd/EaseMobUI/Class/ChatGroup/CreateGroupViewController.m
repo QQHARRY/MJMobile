@@ -222,7 +222,7 @@
         }
     }
     
-//    setting.groupMaxUsersCount = 4;
+    setting.groupMaxUsersCount = 1000;
     __weak CreateGroupViewController *weakSelf = self;
     NSDictionary *loginInfo = [[[EaseMob sharedInstance] chatManager] loginInfo];
     NSString *username = [loginInfo objectForKey:kSDKUsername];

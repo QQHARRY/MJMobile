@@ -34,26 +34,34 @@
     {
         case IM_NOT_OPEN:
         {
-            [self.imBtn setBackgroundImage:[UIImage imageNamed:@"未开通icon"] forState:UIControlStateNormal];
-            self.imBtn.hidden = YES;
+            //[self.imBtn setBackgroundImage:[UIImage imageNamed:@"未开通icon"] forState:UIControlStateNormal];
+            [self.imBtn setTitle:@"未开通" forState:UIControlStateNormal];
+            [self.imBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+            self.imBtn.enabled = NO;
         }
             break;
         case IM_OPENED_NOT_FRIEND:
         {
             [self.imBtn setBackgroundImage:[UIImage imageNamed:@"加好友icon"] forState:UIControlStateNormal];
-            self.imBtn.hidden = NO;
+            [self.imBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [self.imBtn setTitle:@"+好友" forState:UIControlStateNormal];
+            self.imBtn.enabled = YES;
         }
             break;
         case IM_FRIEND:
         {
             [self.imBtn setBackgroundImage:[UIImage imageNamed:@"发消息icon"] forState:UIControlStateNormal];
-            self.imBtn.hidden = NO;
+            [self.imBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [self.imBtn setTitle:@"发消息" forState:UIControlStateNormal];
+            self.imBtn.enabled = YES;
         }
             break;
         default:
         {
-            [self.imBtn setBackgroundImage:[UIImage imageNamed:@"未开通icon"] forState:UIControlStateNormal];
-            self.imBtn.hidden = YES;
+            //[self.imBtn setBackgroundImage:[UIImage imageNamed:@"未开通icon"] forState:UIControlStateNormal];
+            [self.imBtn setTitle:@"未开通" forState:UIControlStateNormal];
+            [self.imBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+            self.imBtn.enabled = NO;
         }
             break;
     }

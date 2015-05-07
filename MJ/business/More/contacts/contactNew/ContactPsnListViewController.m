@@ -19,6 +19,7 @@
 #import "UIImage+FX.h"
 #import "UIImageView+RoundImage.h"
 #import "ContactDeptViewController.h"
+#import "UIViewController+ContactsFunction.h"
 
 #define DEFAULT_PATH_IMAGE @"陕西住商不动产"
 #define DEFAULT_PERSON_IAMGE @"个人icon"
@@ -169,6 +170,11 @@
     } else {
         return [[_listContent objectAtIndex:section] count];
     }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
 }
 
 
@@ -356,37 +362,22 @@
 
 -(void)onImMessage:(person*)psn
 {
-    PRESENTALERT(@"发消息", nil, nil, nil);
+    [self ct_onImMessage:psn];
 }
 
 -(void)onAddFriend:(person*)psn
 {
-    if ([[person me] isImOpened])
-    {
-        PRESENTALERT(@"加好友", nil, nil, nil);
-    }
-    else
-    {
-        PRESENTALERT(@"添加好友失败", @"您尚未开通IM,请先联系管理员开通", nil, nil);
-    }
-    
+    [self ct_onAddFriend:psn];
 }
 
 -(void)onCall:(person*)psn
 {
-    UIWebView*callWebview =[[UIWebView alloc] initWithFrame:CGRectZero];
-    NSURL *telURL =[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",psn.obj_mobile]];
-    [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
-    [self.view addSubview:callWebview];
+    [self ct_onCall:psn];
 }
 
 -(void)onShortMessage:(person*)psn
 {
-    
-    UIWebView*callWebview =[[UIWebView alloc] initWithFrame:CGRectZero];
-    NSURL *telURL =[NSURL URLWithString:[NSString stringWithFormat:@"sms:%@",psn.obj_mobile]];
-    [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
-    [self.view addSubview:callWebview];
+    [self ct_onShortMessage:psn];
 }
 
 @end

@@ -8,13 +8,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="ContactPsnVCCellTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="人员列表默认头像" translatesAutoresizingMaskIntoConstraints="NO" id="3s2-2e-Usx">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="人员列表默认头像" translatesAutoresizingMaskIntoConstraints="NO" id="3s2-2e-Usx">
                         <rect key="frame" x="9" y="5" width="34" height="34"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="f3C-HQ-2P6"/>
@@ -32,10 +32,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AXR-kB-tbn">
-                        <rect key="frame" x="160" y="10" width="25" height="22"/>
+                        <rect key="frame" x="160" y="8" width="40" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="29.5" id="6O8-If-JpE"/>
-                            <constraint firstAttribute="height" constant="26" id="DEf-7S-6cx"/>
+                            <constraint firstAttribute="width" constant="40" id="6O8-If-JpE"/>
+                            <constraint firstAttribute="height" constant="40" id="DEf-7S-6cx"/>
                         </constraints>
                         <state key="normal" backgroundImage="message_icon">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -45,10 +45,10 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFa-nf-3LZ">
-                        <rect key="frame" x="216" y="10" width="20" height="22"/>
+                        <rect key="frame" x="216" y="8" width="40" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="24.5" id="OcQ-bD-Oi0"/>
-                            <constraint firstAttribute="height" constant="26" id="nw8-Og-iUd"/>
+                            <constraint firstAttribute="width" constant="40" id="OcQ-bD-Oi0"/>
+                            <constraint firstAttribute="height" constant="40" id="nw8-Og-iUd"/>
                         </constraints>
                         <state key="normal" backgroundImage="phone_icon1">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -58,10 +58,10 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EM-1Z-Lgy">
-                        <rect key="frame" x="263" y="10" width="22" height="22"/>
+                        <rect key="frame" x="263" y="8" width="40" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="1XK-1n-fgZ"/>
-                            <constraint firstAttribute="width" constant="23" id="uEH-cC-aSy"/>
+                            <constraint firstAttribute="height" constant="40" id="1XK-1n-fgZ"/>
+                            <constraint firstAttribute="width" constant="40" id="uEH-cC-aSy"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal">
@@ -96,8 +96,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="message_icon" width="59" height="52"/>
-        <image name="phone_icon1" width="49" height="52"/>
+        <image name="message_icon" width="40" height="40"/>
+        <image name="phone_icon1" width="40" height="40"/>
         <image name="人员列表默认头像" width="34" height="34"/>
     </resources>
 </document>

@@ -41,6 +41,8 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     [super viewDidLoad];
     self.delegate = self;
     
+    NSArray *buddyList = [[EaseMob sharedInstance].chatManager buddyList];
+    [[EaseMobFriendsManger sharedInstance] addEMFriends:buddyList isFriend:YES];
     
     [self setupSubviews];
     ((AppDelegate*)[UIApplication sharedApplication].delegate).mainController = self;
@@ -439,13 +441,11 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
                      isAdd:(BOOL)isAdd
 {
     
-    if (_contactsVC)
-    {
-        [_contactsVC reloadDataSource];
-    }
+   
     
     if (isAdd)
     {
+        
         [[EaseMobFriendsManger sharedInstance] addEMFriends:buddyList isFriend:YES];
     }
     else
@@ -453,6 +453,11 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
         [[EaseMobFriendsManger sharedInstance] deleteEMFriends:changedBuddies];
     }
     
+    
+    if (_contactsVC)
+    {
+        [_contactsVC reloadDataSource];
+    }
 }
 
 - (void)didRemovedByBuddy:(NSString *)username

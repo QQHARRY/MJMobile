@@ -75,7 +75,35 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
     
 }
 
+-(person*)getFriendByUserName:(NSString*)userName
+{
+    id friend = [_EaseMobFriend objectForKey:[userName uppercaseString]];
+    if (friend)
+    {
+        if (((EaseMobContacter*)friend).psn)
+        {
+            return ((EaseMobContacter*)friend).psn;
+        }
+        else
+        {
+            return  nil;
+        }
+        
+    }
+    
+    return nil;
+}
+
 -(void)addEMFriends:(NSArray*)friendsArr isFriend:(BOOL)isFriend
+{
+    
+    
+    [self pullFriendsDataFromServer:[self addEMFriendsToList:friendsArr isFriend:isFriend] Success:nil];
+
+}
+
+
+-(NSArray*)addEMFriendsToList:(NSArray*)friendsArr isFriend:(BOOL)isFriend
 {
     if (!self.initedMe) {
         [self addMeToList];
@@ -117,11 +145,8 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
         }
     }
     
-
-    [self pullFriendsDataFromServer:newFriends];
-
+    return newFriends;
 }
-
 
 
 -(void)deleteEMFriends:(NSArray*)friendsArr
@@ -140,10 +165,14 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
 }
 
 
--(void)pullFriendsDataFromServer:(NSArray*)friendsArr
+-(void)pullFriendsDataFromServer:(NSArray*)friendsArr Success:(void(^)(BOOL bSuccess))success
 {
     if (friendsArr == nil || [friendsArr count] <= 0)
     {
+        if (success)
+        {
+            success(YES);
+        }
         return;
     }
     NSString*friendStrList = [[NSString alloc ]init];
@@ -156,6 +185,10 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
     
     if (friendStrList.length == 0)
     {
+        if (success)
+        {
+            success(YES);
+        }
         return;
     }
     
@@ -175,11 +208,18 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
          if ([bizManager checkReturnStatus:resultDic Success:nil failure:nil ShouldReturnWhenSuccess:NO ])
          {
              [self addMJFriends:[self getPsnList:resultDic]];
+             if (success)
+             {
+                 success(YES);
+             }
          }
      }
                             failure:^(NSError *error)
      {
-         
+         if (success)
+         {
+             success(NO);
+         }
      }];
 }
 
@@ -239,4 +279,21 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
     return  [_EaseMobFriend objectForKey:[userName uppercaseString]] != nil;
 }
 
+
+-(void)initEMFriendsSuccess:(void(^)(BOOL bSuccess))success
+{
+    NSArray *buddyList = [[EaseMob sharedInstance].chatManager buddyList];
+    [self addEMFriendsToList:buddyList isFriend:YES];
+    
+    
+    NSArray*arr = [self.EaseMobFriend allKeys];
+    
+    [self pullFriendsDataFromServer:arr Success:success];
+    
+}
+
+-(void)freshEMFriendsSuccess:(void(^)(BOOL bSuccess))success
+{
+    [self initEMFriendsSuccess:success];
+}
 @end

@@ -133,7 +133,6 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
 {
     [super setMessageModel:model];
     
-    
     [self setUpHeadImageView];
     
     [[EaseMobFriendsManger sharedInstance] addEMFriends:@[model.username] isFriend:NO];

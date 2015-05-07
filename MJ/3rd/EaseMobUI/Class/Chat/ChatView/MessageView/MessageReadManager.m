@@ -136,8 +136,13 @@ static MessageReadManager *detailInstance = nil;
         self.photos = photoArray;
     }
     
-    UIViewController *rootController = [self.keyWindow rootViewController];
-    [rootController presentViewController:self.photoNavigationController animated:YES completion:nil];
+    
+    //UIViewController *rootController = [self.keyWindow rootViewController];
+    if(self.vc)
+    {
+        [self.vc.navigationController presentViewController:self.photoNavigationController animated:YES completion:nil];
+    }
+    
 }
 
 - (BOOL)prepareMessageAudioModel:(MessageModel *)messageModel

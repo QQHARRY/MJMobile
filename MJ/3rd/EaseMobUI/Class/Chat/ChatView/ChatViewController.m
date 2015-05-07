@@ -357,6 +357,7 @@
 {
     if (_messageReadManager == nil) {
         _messageReadManager = [MessageReadManager defaultManager];
+        _messageReadManager.vc = self;
     }
     
     return _messageReadManager;
@@ -386,6 +387,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"cellForRowAtIndexPath");
     if (indexPath.row < [self.dataSource count])
     {
         id obj = [self.dataSource objectAtIndex:indexPath.row];
@@ -406,11 +408,13 @@
             MessageModel *model = (MessageModel *)obj;
             NSString *cellIdentifier = [EMChatViewCell cellIdentifierForMessageModel:model];
             EMChatViewCell *cell = (EMChatViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            
             if (cell == nil) {
                 cell = [[EMChatViewCell alloc] initWithMessageModel:model reuseIdentifier:cellIdentifier];
                 cell.backgroundColor = [UIColor clearColor];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
+            
             cell.messageModel = model;
             cell.delegate = self;
             
@@ -531,8 +535,13 @@
 
 - (void)reloadData{
     _chatTagDate = nil;
-    self.dataSource = [[self formatMessages:self.messages] mutableCopy];
-    [self.tableView reloadData];
+    NSMutableArray*arr = [[self formatMessages:self.messages] mutableCopy];
+    //self.dataSource = [[self formatMessages:self.messages] mutableCopy];
+    if (arr.count != self.dataSource.count)
+    {
+        self.dataSource = arr;
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark - UIResponder actions

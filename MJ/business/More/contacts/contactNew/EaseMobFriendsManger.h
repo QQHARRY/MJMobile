@@ -22,4 +22,9 @@
 -(void)getFriendByUserName:(NSString*)userName Success:(void (^)(BOOL success,person* psn))success;
 -(BOOL)hasFriendWithUserName:(NSString*)userName;
 -(void)clean;
+-(void)initEMFriendsSuccess:(void(^)(BOOL bSuccess))success;
+-(void)freshEMFriendsSuccess:(void(^)(BOOL bSuccess))success;
+
+//同步方法,会立即返回，但是如果没有从美嘉服务器获取到好友列表数据，则反悔空
+-(person*)getFriendByUserName:(NSString*)userName;
 @end

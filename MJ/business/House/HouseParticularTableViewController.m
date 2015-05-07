@@ -1510,7 +1510,7 @@
     {
         value = self.housePtcl.b_staff_describ;
     }
-    self.b_staff_describ_to_view_html = [[RERadioItem alloc] initWithTitle:@"房源描述" value:value selectionHandler:^(RERadioItem *item) {
+    self.b_staff_describ_to_view_html = [[RERadioItem alloc] initWithTitle:@"房源描述" value:@"点击查看" selectionHandler:^(RERadioItem *item) {
         houseDescribeViewController*vc = [[houseDescribeViewController alloc] init];
         vc.client_remark = value;
         [self.navigationController pushViewController:vc animated:YES];

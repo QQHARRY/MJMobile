@@ -317,18 +317,26 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-
+    
     if (indexPath.section == 0)
     {
         if (self.mainAnncArr && [self.mainAnncArr count] > indexPath.row)
         {
              [self performSegueWithIdentifier:@"viewAnncDetails" sender:self];
         }
-        
+        else
+        {
+            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        }
         
     }
     else if(indexPath.section == 1)
     {
+        if (self.mainPetitionArr == nil || indexPath.row > self.mainPetitionArr.count)
+        {
+            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+            return;
+        }
         
         UIWebView*webV = [[UIWebView alloc] initWithFrame:CGRectMake(0, 66, self.view.frame.size.width, self.view.frame.size.height-66-44)];
         [self.view addSubview:webV];
@@ -338,6 +346,7 @@
         NSMutableDictionary*param = [[NSMutableDictionary alloc] init];
            [param setObject:[person me].job_no forKey:@"job_no"];
            [param setObject:[person me].password forKey:@"acc_password"];
+        
         
             petiotionBrief*brief = [self.mainPetitionArr objectAtIndex:indexPath.row];
             [param setObject:brief.id forKey:@"id"];
@@ -418,7 +427,7 @@
              [self toPetitionListView:btn];
          }];
     }
-    
+    cell.backgroundColor = [UIColor whiteColor];
     
     
     return cell;

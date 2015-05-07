@@ -23,6 +23,7 @@
 #import "EaseMob.h"
 #import "UIImage+FX.h"
 #import "ChatViewController.h"
+#import "UIViewController+ContactsFunction.h"
 
 #define BEIJINGIMAGE @"背景图片"
 #define WEIKAITONGIMAGE @"未开通new"
@@ -517,71 +518,23 @@
 
 -(void)onImMessage
 {
-    NSArray*arr = [self.navigationController viewControllers];
-    
-    for (UIViewController*vc in arr)
-    {
-        if ([vc isKindOfClass:[ChatViewController class]])
-        {
-            if ([((ChatViewController*)vc).chatter isEqualToString:self.psn.job_no.lowercaseString])
-            {
-                [self.navigationController  popToViewController:vc animated:YES];
-                return;
-            }
-            
-        }
-    }
-    
-    
-    ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:[self.psn.job_no lowercaseString] isGroup:NO];
-    chatVC.title = self.psn.name_full;
-    [self.navigationController pushViewController:chatVC animated:YES];
+    [self ct_onImMessage:self.psn];
 }
 
 -(void)onAddFriend
 {
-    if ([[person me] isImOpened])
-    {
-        
-        [self showHudInView:self.view hint:NSLocalizedString(@"friend.sendApply", @"sending application...")];
-        person*psnMe = [person me];
-        NSString*message = [[NSString alloc] initWithFormat:@"%@ %@:%@ 申请添加您为好友",psnMe.company_name, psnMe.department_name,psnMe.name_full];
-        EMError *error;
-        [[EaseMob sharedInstance].chatManager addBuddy:[self.psn.job_no lowercaseString] message:message error:&error];
-        [self hideHud];
-        if (error)
-        {
-            PRESENTALERT(@"",NSLocalizedString(@"friend.sendApplyFail", @"send application fails, please operate again"), nil, nil);
-        }
-        else
-        {
-            PRESENTALERT(@"", NSLocalizedString(@"friend.sendApplySuccess", @"send successfully"), nil, nil);
-            
-        }
-        
-    }
-    else
-    {
-        PRESENTALERT(@"添加好友失败", @"您尚未开通IM,请先联系管理员开通", nil, nil);
-    }
+    [self ct_onAddFriend:self.psn];
     
 }
 
 -(void)onCall
 {
-    UIWebView*callWebview =[[UIWebView alloc] initWithFrame:CGRectZero];
-    NSURL *telURL =[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",psn.obj_mobile]];
-    [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
-    [self.view addSubview:callWebview];
+    [self ct_onCall:self.psn];
 }
 
 -(void)onShortMessage
 {
-    
-    UIWebView*callWebview =[[UIWebView alloc] initWithFrame:CGRectZero];
-    NSURL *telURL =[NSURL URLWithString:[NSString stringWithFormat:@"sms:%@",psn.obj_mobile]];
-    [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
-    [self.view addSubview:callWebview];
+    [self ct_onShortMessage:self.psn];
 }
 
 

@@ -15,6 +15,7 @@
 #import "person.h"
 #import "AppDelegate.h"
 #import "CheckNewVersion.h"
+#import "EaseMobFriendsManger.h"
 
 
 @interface LoginViewController ()
@@ -192,8 +193,14 @@
                       SHOWHUD(self.view);
                      [app loginToEaseMob:^(BOOL loginSuccess)
                       {
-                          HIDEHUD(self.view);
-                         [self performSegueWithIdentifier:@"LoginToMainPage" sender:self];
+                          
+                          
+                          [[EaseMobFriendsManger sharedInstance] initEMFriendsSuccess:^(BOOL bSuccess) {
+                              HIDEHUD(self.view);
+                              [self performSegueWithIdentifier:@"LoginToMainPage" sender:self];
+                          }];
+                          
+                         
                          
                      } ReloadData:YES];
                      

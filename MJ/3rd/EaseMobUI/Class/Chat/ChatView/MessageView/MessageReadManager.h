@@ -25,6 +25,7 @@ typedef void (^PlayBlock)(BOOL playing, MessageModel *messageModel);
 @property (strong, nonatomic) FinishBlock finishBlock;
 
 @property (strong, nonatomic) MessageModel *audioMessageModel;
+@property (strong, nonatomic) UIViewController*vc;
 
 + (id)defaultManager;
 

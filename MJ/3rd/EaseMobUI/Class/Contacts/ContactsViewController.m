@@ -378,8 +378,10 @@
 {
     NSMutableArray * existTitles = [NSMutableArray array];
     //section数组为空的title过滤掉，不显示
-    for (int i = 0; i < [self.sectionTitles count]; i++) {
-        if ([[self.dataSource objectAtIndex:i] count] > 0) {
+    for (int i = 0; i < [self.sectionTitles count]; i++)
+    {
+        if ([[self.dataSource objectAtIndex:i] count] > 0)
+        {
             [existTitles addObject:[self.sectionTitles objectAtIndex:i]];
         }
     }
@@ -508,7 +510,12 @@
 {
     __weak ContactsViewController *weakSelf = self;
     [[[EaseMob sharedInstance] chatManager] asyncFetchBuddyListWithCompletion:^(NSArray *buddyList, EMError *error) {
-        [weakSelf.slimeView endRefresh];
+        
+        [[EaseMobFriendsManger sharedInstance] freshEMFriendsSuccess:^(BOOL bSuccess) {
+            [weakSelf.slimeView endRefresh];
+            [self reloadDataSource];
+        }];
+        
     } onQueue:nil];
 }
 
@@ -553,9 +560,20 @@
     }
     
     //名字分section
-    for (EMBuddy *buddy in dataArray) {
+    for (EMBuddy *buddy in dataArray)
+    {
         //getUserName是实现中文拼音检索的核心，见NameIndex类
-        NSString *firstLetter = [ChineseToPinyin pinyinFromChineseString:buddy.username];
+        person*psn = [[EaseMobFriendsManger sharedInstance] getFriendByUserName:buddy.username];
+        NSString*tmp = @"";
+        if (psn)
+        {
+            tmp = psn.name_full;
+        }
+        else
+        {
+            tmp = buddy.username;
+        }
+        NSString *firstLetter = [ChineseToPinyin pinyinFromChineseString:tmp];
         NSInteger section = [indexCollation sectionForObject:[firstLetter substringToIndex:1] collationStringSelector:@selector(uppercaseString)];
         
         NSMutableArray *array = [sortedArray objectAtIndex:section];
@@ -596,12 +614,12 @@
         }
     }
     
-    NSDictionary *loginInfo = [[[EaseMob sharedInstance] chatManager] loginInfo];
-    NSString *loginUsername = [loginInfo objectForKey:kSDKUsername];
-    if (loginUsername && loginUsername.length > 0) {
-        EMBuddy *loginBuddy = [EMBuddy buddyWithUsername:loginUsername];
-        [self.contactsSource addObject:loginBuddy];
-    }
+//    NSDictionary *loginInfo = [[[EaseMob sharedInstance] chatManager] loginInfo];
+//    NSString *loginUsername = [loginInfo objectForKey:kSDKUsername];
+//    if (loginUsername && loginUsername.length > 0) {
+//        EMBuddy *loginBuddy = [EMBuddy buddyWithUsername:loginUsername];
+//        [self.contactsSource addObject:loginBuddy];
+//    }
     
     [self.dataSource addObjectsFromArray:[self sortDataArray:self.contactsSource]];
     
