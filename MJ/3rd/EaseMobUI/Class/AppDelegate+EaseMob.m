@@ -32,9 +32,9 @@
     
     NSString *apnsCertName = nil;
 #ifndef PRODUCTIONENV
-    apnsCertName = @"dev";
+    apnsCertName = @"simtoon_mj_dev";
 #else
-    apnsCertName = @"production";
+    apnsCertName = @"simtoon_mj_pro";
 #endif
 
     [[EaseMob sharedInstance] registerSDKWithAppKey:@"simtoon#mos"

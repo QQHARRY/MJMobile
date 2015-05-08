@@ -62,11 +62,14 @@ static LocationViewController *defaultLocation = nil;
     
     self.title = NSLocalizedString(@"location.messageType", @"location message");
     
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    [backButton setTintColor:[UIColor whiteColor]];
     [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [backButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [self.navigationItem setLeftBarButtonItem:backItem];
+    //[self.navigationItem setLeftBarButtonItem:backItem];
     
     _mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
     _mapView.delegate = self;
@@ -78,9 +81,10 @@ static LocationViewController *defaultLocation = nil;
         _mapView.showsUserLocation = YES;//显示当前位置
         
         UIButton *sendButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
+        [sendButton setTintColor:[UIColor whiteColor]];
         [sendButton setTitle:NSLocalizedString(@"send", @"Send") forState:UIControlStateNormal];
-        [sendButton setTitleColor:[UIColor colorWithRed:32 / 255.0 green:134 / 255.0 blue:158 / 255.0 alpha:1.0] forState:UIControlStateNormal];
-        [sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        //[sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
         [sendButton addTarget:self action:@selector(sendLocation) forControlEvents:UIControlEventTouchUpInside];
         [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:sendButton]];
         self.navigationItem.rightBarButtonItem.enabled = NO;
@@ -175,8 +179,8 @@ static LocationViewController *defaultLocation = nil;
     if([CLLocationManager locationServicesEnabled]){
         _locationManager = [[CLLocationManager alloc] init];
         _locationManager.delegate = self;
-        _locationManager.distanceFilter = 5;
-        _locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;//kCLLocationAccuracyBest;
+        _locationManager.distanceFilter = 10;
+        _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;//kCLLocationAccuracyBest;
         if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
             [_locationManager requestWhenInUseAuthorization];
         }

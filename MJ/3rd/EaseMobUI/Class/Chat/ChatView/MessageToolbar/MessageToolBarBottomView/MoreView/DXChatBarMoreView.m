@@ -12,8 +12,9 @@
 
 #import "DXChatBarMoreView.h"
 
-#define CHAT_BUTTON_SIZE 60
+#define CHAT_BUTTON_SIZE 70
 #define INSETS 8
+#define CHAT_BTN_TITLE_SIZE 12
 
 @implementation DXChatBarMoreView
 
@@ -37,6 +38,8 @@
     [_photoButton setImage:[UIImage imageNamed:@"chatBar_colorMore_photo"] forState:UIControlStateNormal];
     [_photoButton setImage:[UIImage imageNamed:@"chatBar_colorMore_photoSelected"] forState:UIControlStateHighlighted];
     [_photoButton addTarget:self action:@selector(photoAction) forControlEvents:UIControlEventTouchUpInside];
+    [_photoButton.titleLabel setFont:[UIFont systemFontOfSize:CHAT_BTN_TITLE_SIZE]];
+    [_photoButton setTitle:@"照片" forState:UIControlStateNormal];
     [self addSubview:_photoButton];
     
     _locationButton =[UIButton buttonWithType:UIButtonTypeCustom];
@@ -44,6 +47,8 @@
     [_locationButton setImage:[UIImage imageNamed:@"chatBar_colorMore_location"] forState:UIControlStateNormal];
     [_locationButton setImage:[UIImage imageNamed:@"chatBar_colorMore_locationSelected"] forState:UIControlStateHighlighted];
     [_locationButton addTarget:self action:@selector(locationAction) forControlEvents:UIControlEventTouchUpInside];
+    [_locationButton.titleLabel setFont:[UIFont systemFontOfSize:CHAT_BTN_TITLE_SIZE]];
+    [_locationButton setTitle:@"位置" forState:UIControlStateNormal];
     [self addSubview:_locationButton];
     
     _takePicButton =[UIButton buttonWithType:UIButtonTypeCustom];
@@ -51,6 +56,8 @@
     [_takePicButton setImage:[UIImage imageNamed:@"chatBar_colorMore_camera"] forState:UIControlStateNormal];
     [_takePicButton setImage:[UIImage imageNamed:@"chatBar_colorMore_cameraSelected"] forState:UIControlStateHighlighted];
     [_takePicButton addTarget:self action:@selector(takePicAction) forControlEvents:UIControlEventTouchUpInside];
+    [_takePicButton.titleLabel setFont:[UIFont systemFontOfSize:CHAT_BTN_TITLE_SIZE]];
+    [_takePicButton setTitle:@"拍照" forState:UIControlStateNormal];
     [self addSubview:_takePicButton];
     
     
@@ -59,6 +66,8 @@
     [_videoButton setImage:[UIImage imageNamed:@"chatBar_colorMore_video"] forState:UIControlStateNormal];
     [_videoButton setImage:[UIImage imageNamed:@"chatBar_colorMore_videoSelected"] forState:UIControlStateHighlighted];
     [_videoButton addTarget:self action:@selector(takeVideoAction) forControlEvents:UIControlEventTouchUpInside];
+    [_videoButton.titleLabel setFont:[UIFont systemFontOfSize:CHAT_BTN_TITLE_SIZE]];
+    [_videoButton setTitle:@"视频" forState:UIControlStateNormal];
     [self addSubview:_videoButton];
     
     CGRect frame = self.frame;
@@ -70,6 +79,8 @@
         [_audioCallButton setImage:[UIImage imageNamed:@"chatBar_colorMore_audioCall"] forState:UIControlStateNormal];
         [_audioCallButton setImage:[UIImage imageNamed:@"chatBar_colorMore_audioCallSelected"] forState:UIControlStateHighlighted];
         [_audioCallButton addTarget:self action:@selector(takeAudioCallAction) forControlEvents:UIControlEventTouchUpInside];
+        [_audioCallButton.titleLabel setFont:[UIFont systemFontOfSize:CHAT_BTN_TITLE_SIZE]];
+        [_audioCallButton setTitle:@"通话" forState:UIControlStateNormal];
         [self addSubview:_audioCallButton];
     }
     else if (type == ChatMoreTypeGroupChat)

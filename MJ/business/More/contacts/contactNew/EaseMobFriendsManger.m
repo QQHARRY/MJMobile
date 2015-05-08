@@ -77,6 +77,9 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
 
 -(person*)getFriendByUserName:(NSString*)userName
 {
+    if (userName == nil || userName.length == 0) {
+        return nil;
+    }
     id friend = [_EaseMobFriend objectForKey:[userName uppercaseString]];
     if (friend)
     {

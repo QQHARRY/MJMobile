@@ -69,7 +69,7 @@
     [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [backButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [self.navigationItem setLeftBarButtonItem:backItem];
+    //[self.navigationItem setLeftBarButtonItem:backItem];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
     [self.view addSubview:self.textField];

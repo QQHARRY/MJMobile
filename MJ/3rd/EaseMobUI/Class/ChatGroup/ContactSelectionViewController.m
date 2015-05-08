@@ -16,6 +16,8 @@
 #import "EMRemarkImageView.h"
 #import "EMSearchDisplayController.h"
 #import "RealtimeSearchUtil.h"
+#import "EaseMobFriendsManger.h"
+#import "UIImageView+LoadPortraitOfPerson.h"
 
 @interface ContactSelectionViewController ()<UISearchBarDelegate, UISearchDisplayDelegate>
 
@@ -78,7 +80,7 @@
     [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [backButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [self.navigationItem setLeftBarButtonItem:backItem];
+    //[self.navigationItem setLeftBarButtonItem:backItem];
     
     [self.view addSubview:self.searchBar];
     [self.view addSubview:self.footerView];
@@ -243,7 +245,17 @@
     
     EMBuddy *buddy = [[_dataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     cell.imageView.image = [UIImage imageNamed:@"chatListCellHead.png"];
-    cell.textLabel.text = buddy.username;
+    
+    
+    
+    NSString*name = buddy.username;
+    person*psn = [[EaseMobFriendsManger sharedInstance] getFriendByUserName:name];
+    if (psn) {
+        name = psn.name_full;
+        [cell.imageView loadPortraitOfPerson:psn];
+    }
+    
+    cell.textLabel.text = name;
     
     return cell;
 }
@@ -366,7 +378,16 @@
         EMBuddy *buddy = [self.selectedContacts objectAtIndex:i];
         EMRemarkImageView *remarkView = [[EMRemarkImageView alloc] initWithFrame:CGRectMake(i * imageSize, 0, imageSize, imageSize)];
         remarkView.image = [UIImage imageNamed:@"chatListCellHead.png"];
-        remarkView.remark = buddy.username;
+        
+        
+        NSString*name = buddy.username;
+        person*psn = [[EaseMobFriendsManger sharedInstance] getFriendByUserName:name];
+        if (psn) {
+            name = psn.name_full;
+            [[remarkView getImageView] loadPortraitOfPerson:psn];
+        }
+
+        remarkView.remark =name;
         [self.footerScrollView addSubview:remarkView];
     }
     

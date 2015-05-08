@@ -19,4 +19,7 @@
 - (void)setupUntreatedApplyCount;
 
 - (void)networkChanged:(EMConnectionState)connectionState;
+
+- (void)jumpToChatList;
+
 @end

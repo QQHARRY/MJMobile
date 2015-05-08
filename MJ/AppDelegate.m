@@ -23,6 +23,7 @@
 
 
 
+
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 #define _IPHONE80_ 80000
 
@@ -223,7 +224,7 @@
     
 #endif
     
-    //for log
+    //for log 
     //[UMessage setLogEnabled:YES];
 }
 
@@ -284,7 +285,18 @@
     notify.soundName = UILocalNotificationDefaultSoundName;
     
     [[UIApplication sharedApplication] scheduleLocalNotification:notify];
-    
+    if (_mainController) {
+        
+        [_mainController jumpToChatList];
+    }
+}
+
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    if (_mainController) {
+        [_mainController jumpToChatList];
+    }
 }
 
 -(void)loadBindStory

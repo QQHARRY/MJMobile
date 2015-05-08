@@ -353,6 +353,11 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
         }
         
         NSString *title = message.from;
+        person*psn = [[EaseMobFriendsManger sharedInstance] getFriendByUserName:title];
+        if (psn) {
+            title = psn.name_full;
+        }
+        
         if (message.isGroup) {
             NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
             for (EMGroup *group in groupArray) {
@@ -370,11 +375,12 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     }
     
 //#warning 去掉注释会显示[本地]开头, 方便在开发中区分是否为本地推送
-    notification.alertBody = [[NSString alloc] initWithFormat:@"[本地]%@", notification.alertBody];
+    //notification.alertBody = [[NSString alloc] initWithFormat:@"[本地]%@", notification.alertBody];
     
     notification.alertAction = NSLocalizedString(@"open", @"Open");
     notification.timeZone = [NSTimeZone defaultTimeZone];
     notification.soundName = UILocalNotificationDefaultSoundName;
+
     //发送通知
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     //    UIApplication *application = [UIApplication sharedApplication];
