@@ -16,6 +16,7 @@
 #import "AppDelegate.h"
 #import "CheckNewVersion.h"
 #import "EaseMobFriendsManger.h"
+#import <PgySDK/PgyManager.h>
 
 
 @interface LoginViewController ()

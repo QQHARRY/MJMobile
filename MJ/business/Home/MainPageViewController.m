@@ -39,9 +39,11 @@
 #import "ChatListViewController.h"
 #import "AppDelegate.h"
 #import "UIBarButtonItem+Badge.h"
-
+#import "UIViewController+logoutAndDownloadNewVersion.h"
 
 #import "Macro.h"
+
+#define TABBARTITLECOLOR [UIColor colorWithRed:1/255.0f green:0xaf/255.0f blue:0xe8/255.0f alpha:1]
 
 
 @interface MainPageViewController ()
@@ -61,6 +63,8 @@
     
     [[[CheckNewVersion alloc] init] checkNewVersion:self];
     
+
+    
     self.navigationController.navigationBar.hidden = NO;
 
     
@@ -70,37 +74,37 @@
         UITabBarItem *item = [self.tabBarController.tabBar.items objectAtIndex:0];
         item.selectedImage = [[UIImage imageNamed:@"TabItemHome"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         item.image = [[UIImage imageNamed:@"TabItemHomeNormal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:1/255.0f green:0/255.0f blue:107/255.0f alpha:1]} forState:UIControlStateSelected];
-        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:4/255.0f green:43/255.0f blue:202/255.0f alpha:1]} forState:UIControlStateNormal];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:TABBARTITLECOLOR} forState:UIControlStateSelected];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:TABBARTITLECOLOR} forState:UIControlStateNormal];
     }
     {
         UITabBarItem *item = [self.tabBarController.tabBar.items objectAtIndex:1];
         item.selectedImage = [[UIImage imageNamed:@"TabItemHouse"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         item.image = [[UIImage imageNamed:@"TabItemHouseNormal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:1/255.0f green:0/255.0f blue:107/255.0f alpha:1]} forState:UIControlStateSelected];
-        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:4/255.0f green:43/255.0f blue:202/255.0f alpha:1]} forState:UIControlStateNormal];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:TABBARTITLECOLOR} forState:UIControlStateSelected];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:TABBARTITLECOLOR} forState:UIControlStateNormal];
     }
     {
         UITabBarItem *item = [self.tabBarController.tabBar.items objectAtIndex:2];
         item.selectedImage = [[UIImage imageNamed:@"TabItemCustom"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         item.image = [[UIImage imageNamed:@"TabItemCustomNormal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:1/255.0f green:0/255.0f blue:107/255.0f alpha:1]} forState:UIControlStateSelected];
-        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:4/255.0f green:43/255.0f blue:202/255.0f alpha:1]} forState:UIControlStateNormal];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:TABBARTITLECOLOR} forState:UIControlStateSelected];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:TABBARTITLECOLOR} forState:UIControlStateNormal];
     }
     {
         UITabBarItem *item = [self.tabBarController.tabBar.items objectAtIndex:3];
         item.selectedImage = [[UIImage imageNamed:@"TabItemMessage"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         item.image = [[UIImage imageNamed:@"TabItemMessageNormal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:1/255.0f green:0/255.0f blue:107/255.0f alpha:1]} forState:UIControlStateSelected];
-        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:4/255.0f green:43/255.0f blue:202/255.0f alpha:1]} forState:UIControlStateNormal];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:TABBARTITLECOLOR} forState:UIControlStateSelected];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:TABBARTITLECOLOR} forState:UIControlStateNormal];
     }
     
     {
         UITabBarItem *item = [self.tabBarController.tabBar.items objectAtIndex:4];
         item.selectedImage = [[UIImage imageNamed:@"TabItemMore"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         item.image = [[UIImage imageNamed:@"TabItemMoreNormal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:1/255.0f green:0/255.0f blue:107/255.0f alpha:1]} forState:UIControlStateSelected];
-        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:4/255.0f green:43/255.0f blue:202/255.0f alpha:1]} forState:UIControlStateNormal];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:TABBARTITLECOLOR} forState:UIControlStateSelected];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:TABBARTITLECOLOR} forState:UIControlStateNormal];
     }
 
     
@@ -117,32 +121,10 @@
     {
         if (updateRequired)
         {
-            NSString*versionPromot = [[NSString alloc] initWithFormat:@"版本号:%@\r\n当前版本将不再可用",vName];
-            PRESENTALERTWITHHANDER(NEWVERSION_REQUIRED_PROMOT, versionPromot, @"现在更新",self,^(UIAlertAction *action)
-                                   {
-                                       AppDelegate*app = [[UIApplication sharedApplication] delegate];
-                                       
-                                       [app appLogout];
-                                       [[UIApplication sharedApplication] openURL:[NSURL URLWithString:address]];
-                                   }
-                                   );
+            [self quitAndDLNewVersion:vName Address:address];
             
         }
-        else
-        {
-            NSString*versionPromot = [[NSString alloc] initWithFormat:@"版本号:%@\r\n是否更新到最新版本?",vName];
-            PRESENTALERTWITHHANDER_WITHDEFAULTCANCEL(NEWVERSION_PROMPT, versionPromot, @"现在更新",self,^(UIAlertAction *action)
-                                                     {
-                                                         AppDelegate*app = [[UIApplication sharedApplication] delegate];
-                                                         [app appLogout];
-                                                         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:address]];
-                                                     }
-                                                     );
-        }
-        
-    }
-    else
-    {
+       
         
     }
 }

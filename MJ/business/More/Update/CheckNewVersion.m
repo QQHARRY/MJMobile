@@ -9,6 +9,7 @@
 #import "CheckNewVersion.h"
 #import "updateDataPuller.h"
 #import "UtilFun.h"
+#import <PgySDK/PgyManager.h>
 
 #define NEWVERSION_CODE_PRE @"newversion_code"
 #define NEWVERSION_REQUIRED_PRE @"newversion_required"
@@ -22,7 +23,46 @@
 {
     self.delegate = vc;
     
-    [self updateVersionInfo];
+    //[self updateVersionInfo];
+    [self checkUpdateUsingPgy];
+}
+
+-(void)checkUpdateUsingPgy
+{
+    [[PgyManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateMethod:)];
+}
+
+- (void)updateMethod:(NSDictionary *)response
+{
+//    appUrl = "http://www.pgyer.com/HVAS";
+//    build = 1;
+//    downloadURL = "itms-services://?action=download-manifest&url=https://ssl.pgyer.com/app/plist/2aecd923b6095c05558663f7f6506152";
+//    lastBuild = 1;
+//    releaseNote = "\U66f4\U65b0\U5230\U7248\U672c: 1.1.1.0(build1)";
+//    versionCode = 6;
+//    versionName = "1.1.1.0";
+    
+    if (response != nil)
+    {
+        NSString*versionName = [response objectForKey:@"versionName"];
+        NSString*updateNow = @"1";
+        NSString*versionAddress = [response objectForKey:@"downloadURL"];
+        
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        [prefs setValue:versionName forKey:NEWVERSION_CODE_PRE];
+        [prefs setValue:updateNow forKey:NEWVERSION_REQUIRED_PRE];
+        [prefs setValue:versionAddress forKey:NEWVERSION_ADDRESS_PRE];
+        [prefs synchronize];
+        
+        [self checkVersion];
+    }
+    else
+    {
+        if (self.delegate)
+        {
+            [self.delegate hasNewVersion:NO VersionName:@"" VersionSize:@"" VersionAddress:@"" RequiredToUpdate:NO];
+        }
+    }
     
 }
 
@@ -47,14 +87,14 @@
 -(void)checkVersion
 {
     NSString*actualVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
-    actualVersion = [NSString stringWithFormat:@"V%@",actualVersion];
+    //actualVersion = [NSString stringWithFormat:@"V%@",actualVersion];
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     NSString*requiredVersion =[prefs stringForKey:NEWVERSION_CODE_PRE];
     NSString*versionAddress = [prefs stringForKey:NEWVERSION_ADDRESS_PRE];
     NSString*required =[prefs stringForKey:NEWVERSION_REQUIRED_PRE];
     
-    BOOL updateRequired = [[required stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@"true"];
+    BOOL updateRequired = [[required stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@"1"];
     
     if ([requiredVersion compare:actualVersion options:NSNumericSearch] == NSOrderedDescending)
     {
@@ -63,46 +103,15 @@
         {
             [self.delegate hasNewVersion:YES VersionName:requiredVersion VersionSize:@"" VersionAddress:versionAddress RequiredToUpdate:updateRequired];
         }
-        
-        
-        //if ([self isNewVersionRequired])
-        {
-            NSString*versionPromot = [[NSString alloc] initWithFormat:@"版本号:%@\r\n当前版本将不再可用",requiredVersion];
-            if (self.delegate)
-            {
-                
-//                PRESENTALERTWITHHANDER(NEWVERSION_REQUIRED_PROMOT, versionPromot, @"现在更新",self.delegate,^(UIAlertAction *action)
-//                                       {
-//                                           
-//                                           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:versionAddress]];
-//                                       }
-//                                       );
-            }
-            
-        }
-        //else
-        {
-            NSString*versionPromot = [NSString stringWithFormat:@"版本号:%@\r\n建议您更新到最新版本",requiredVersion];
-//            if (self.delegate)
-//            {
-//                PRESENTALERTWITHHANDER_WITHDEFAULTCANCEL(NEWVERSION_REQUIRED_PROMOT, versionPromot, @"现在更新",self.delegate,^(UIAlertAction *action)
-//                                                         {
-//                                                             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:versionAddress]];
-//                                                         }
-//                                                         );
-//            }
-            
-        }
-        
     }
     else
     {
         if (self.delegate)
         {
-            [self.delegate hasNewVersion:NO VersionName:nil VersionSize:nil VersionAddress:nil RequiredToUpdate:NO];
+            [self.delegate hasNewVersion:NO VersionName:@"" VersionSize:@"" VersionAddress:@"" RequiredToUpdate:NO];
         }
     }
-    
+
 }
 
 

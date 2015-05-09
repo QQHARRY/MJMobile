@@ -8,6 +8,9 @@
 
 #import "AboutViewController.h"
 
+
+#define STATESTRING @"Copyright © 2013-2014 美嘉Online - Powered By Simtoon "
+
 @interface AboutViewController ()
 
 @end
@@ -17,6 +20,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    NSString*actualVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    //Copyright © 2013-2014 美嘉Online - Powered By Simtoon
+    NSString*state = [NSString stringWithFormat:@"%@%@",STATESTRING,actualVersion];
+    self.aboutState.text = state;
 }
 
 - (void)didReceiveMemoryWarning {

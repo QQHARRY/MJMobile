@@ -362,7 +362,15 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
             NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
             for (EMGroup *group in groupArray) {
                 if ([group.groupId isEqualToString:message.conversationChatter]) {
-                    title = [NSString stringWithFormat:@"%@(%@)", message.groupSenderName, group.groupSubject];
+                    
+                    title = message.groupSenderName;
+                    person*psn = [[EaseMobFriendsManger sharedInstance] getFriendByUserName:message.groupSenderName];
+                    if (psn) {
+                        title = psn.name_full;
+                    }
+                    
+
+                    title = [NSString stringWithFormat:@"%@(%@)", title, group.groupSubject];
                     break;
                 }
             }
@@ -651,7 +659,8 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     if(_chatListVC)
     {
         [self.navigationController popToViewController:self animated:NO];
-        [self setSelectedViewController:_chatListVC];
+        [self setSelectedIndex:3];
+        //[self setSelectedViewController:_chatListVC];
     }
 }
 

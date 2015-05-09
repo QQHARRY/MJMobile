@@ -1580,7 +1580,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Copyright © 2013-2014 美嘉Online - Powered By Simtoon V1.0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLc-GH-X9v">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Copyright © 2013-2014 美嘉Online - Powered By Simtoon" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLc-GH-X9v">
                                 <rect key="frame" x="137" y="238" width="290" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="290" id="BhR-mb-C7O"/>
@@ -1599,6 +1599,9 @@
                             <constraint firstAttribute="centerX" secondItem="HLc-GH-X9v" secondAttribute="centerX" id="b7l-Ev-SCe"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="aboutState" destination="HLc-GH-X9v" id="PDO-qm-ugU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="46b-JA-kKD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

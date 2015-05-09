@@ -10,6 +10,8 @@
 #import <CoreTelephony/CTCall.h>
 #import <AVFoundation/AVFoundation.h>
 #import "CallSessionViewController.h"
+#import "person.h"
+#import "EaseMobFriendsManger.h"
 
 #define kAlertViewTag_Close 1000
 
@@ -37,6 +39,8 @@
 }
 
 @property (strong, nonatomic) EMCallSession *callSession;
+
+@property (assign,nonatomic)CGFloat lastInputGain;
 
 @end
 
@@ -153,6 +157,12 @@
     _nameLabel.textColor = [UIColor whiteColor];
     _nameLabel.textAlignment = NSTextAlignmentCenter;
     _nameLabel.text = _chatter;
+    
+    person*psn = [[EaseMobFriendsManger sharedInstance] getFriendByUserName:_chatter];
+    if (psn)
+    {
+        _nameLabel.text = psn.name_full;
+    }
     [self.view addSubview:_nameLabel];
     
     CGFloat tmpWidth = self.view.frame.size.width / 2;
@@ -160,7 +170,7 @@
     [_silenceButton setImage:[UIImage imageNamed:@"call_silence"] forState:UIControlStateNormal];
     [_silenceButton setImage:[UIImage imageNamed:@"call_silence_h"] forState:UIControlStateSelected];
     [_silenceButton addTarget:self action:@selector(silenceAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_silenceButton];
+    //[self.view addSubview:_silenceButton];
     
     _silenceLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(_silenceButton.frame), CGRectGetMaxY(_silenceButton.frame) + 5, 40, 20)];
     _silenceLabel.backgroundColor = [UIColor clearColor];
@@ -168,13 +178,13 @@
     _silenceLabel.font = [UIFont systemFontOfSize:13.0];
     _silenceLabel.textAlignment = NSTextAlignmentCenter;
     _silenceLabel.text = @"静音";
-    [self.view addSubview:_silenceLabel];
+    //[self.view addSubview:_silenceLabel];
     
     _speakerOutButton = [[UIButton alloc] initWithFrame:CGRectMake(tmpWidth + (tmpWidth - 40) / 2, self.view.frame.size.height - 230, 40, 40)];
     [_speakerOutButton setImage:[UIImage imageNamed:@"call_out"] forState:UIControlStateNormal];
     [_speakerOutButton setImage:[UIImage imageNamed:@"call_out_h"] forState:UIControlStateSelected];
     [_speakerOutButton addTarget:self action:@selector(speakerOutAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_speakerOutButton];
+    //[self.view addSubview:_speakerOutButton];
     
     _outLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(_speakerOutButton.frame), CGRectGetMaxY(_speakerOutButton.frame) + 5, 40, 20)];
     _outLabel.backgroundColor = [UIColor clearColor];
@@ -182,7 +192,7 @@
     _outLabel.font = [UIFont systemFontOfSize:13.0];
     _outLabel.textAlignment = NSTextAlignmentCenter;
     _outLabel.text = @"免提";
-    [self.view addSubview:_outLabel];
+    //[self.view addSubview:_outLabel];
     
     _hangupButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 200) / 2, self.view.frame.size.height - 120, 200, 40)];
     [_hangupButton setTitle:@"挂断" forState:UIControlStateNormal];
@@ -218,6 +228,12 @@
     {
         _statusLabel.text = @"正在建立连接...";
         _nameLabel.text = _chatter;
+        
+        person*psn = [[EaseMobFriendsManger sharedInstance] getFriendByUserName:_chatter];
+        if (psn)
+        {
+            _nameLabel.text = psn.name_full;
+        }
         
         [_answerButton removeFromSuperview];
         _hangupButton.frame = CGRectMake((self.view.frame.size.width - 200) / 2, self.view.frame.size.height - 120, 200, 40);
@@ -272,23 +288,23 @@
 
 - (void)_beginRing
 {
-//    [_player stop];
-//    
-//    NSString *musicPath = [[NSBundle mainBundle] pathForResource:@"callRing" ofType:@"mp3"];
-//    NSURL *url = [[NSURL alloc] initFileURLWithPath:musicPath];
-//    
-//    _player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
-//    [_player setVolume:1];
-//    _player.numberOfLoops = -1; //设置音乐播放次数  -1为一直循环
-//    if([_player prepareToPlay])
-//    {
-//        [_player play]; //播放
-//    }
+    [_player stop];
+    
+    NSString *musicPath = [[NSBundle mainBundle] pathForResource:@"callRing" ofType:@"mp3"];
+    NSURL *url = [[NSURL alloc] initFileURLWithPath:musicPath];
+    
+    _player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    [_player setVolume:1];
+    _player.numberOfLoops = -1; //设置音乐播放次数  -1为一直循环
+    if([_player prepareToPlay])
+    {
+        [_player play]; //播放
+    }
 }
 
 - (void)_stopRing
 {
-//    [_player stop];
+    [_player stop];
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -314,7 +330,7 @@
             [self _insertMessageWithStr:@"语音通话失败"];
             
             _statusLabel.text = @"连接失败";
-            alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"error", @"Error") message:error.description delegate:self cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
+            alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"error", @"Error") message:NSLocalizedString(error.description, error.description) delegate:self cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
             alertView.tag = kAlertViewTag_Close;
             [alertView show];
         }
@@ -386,6 +402,20 @@
 - (void)silenceAction:(id)sender
 {
     _silenceButton.selected = !_silenceButton.selected;
+    
+    
+    NSError *setCategoryError = nil;
+    if (_silenceButton.selected)
+    {
+        _lastInputGain = [AVAudioSession sharedInstance].inputGain;
+        [[AVAudioSession sharedInstance] setInputGain:0 error:&setCategoryError] ;
+    }
+    else
+    {
+        [[AVAudioSession sharedInstance] setInputGain:_lastInputGain error:&setCategoryError] ;
+    }
+    
+    
 }
 
 - (void)speakerOutAction:(id)sender
@@ -405,7 +435,12 @@
         reason = _callType == CallIn ? eCallReason_Reject : eCallReason_Hangup;
     }
     
-    [[EMSDKFull sharedInstance].callManager asyncEndCall:_callSession.sessionId reason:reason];
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [[EMSDKFull sharedInstance].callManager asyncEndCall:self.callSession.sessionId reason:reason];
+    });
+    
+    
     
     [self _close];
 }

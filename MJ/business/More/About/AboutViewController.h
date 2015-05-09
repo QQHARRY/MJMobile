@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface AboutViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UILabel *aboutState;
 
 @end

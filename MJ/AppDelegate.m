@@ -20,6 +20,7 @@
 #import "photoManager.h"
 #import "ApplyViewController.h"
 #import "EaseMobFriendsManger.h"
+#import <PgySDK/PgyManager.h>
 
 
 
@@ -52,6 +53,7 @@
     }
 
     [self initUMengPush:launchOptions];
+    [self initPGY];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -67,6 +69,12 @@
     return YES;
 }
 
+
+-(void)initPGY
+{
+    [[PgyManager sharedPgyManager] startManagerWithAppId:@"ad25e17fbef2bd2033e1a4c7a415861c"];
+    [[PgyManager sharedPgyManager] setEnableFeedback:NO];
+}
 
 
 -(void)logoutEasemob

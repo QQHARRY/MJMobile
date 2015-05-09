@@ -13,6 +13,8 @@
 #import "EMChooseViewController.h"
 
 #import "UIViewController+HUD.h"
+#import "person.h"
+#import "EaseMobFriendsManger.h"
 
 @interface EMChooseViewController ()
 
@@ -279,7 +281,37 @@
     if (_objectComparisonStringBlock) {
         for (id object in recordArray) {
             //getUserName是实现中文拼音检索的核心，见NameIndex类
+            
+            
+//            id objTmp = object;
+//            if ([object isKindOfClass:[EMBuddy class]])
+//            {
+//                NSString*nameTmp = ((EMBuddy*)object).username;
+//                person*psn = [[EaseMobFriendsManger sharedInstance] getFriendByUserName:nameTmp];
+//                
+//                if (psn)
+//                {
+//                    nameTmp = psn.name_full;
+//                    EMBuddy*buddyTmp = [EMBuddy buddyWithUsername:nameTmp];
+//                    objTmp = buddyTmp;
+//                    
+//                }
+//
+//            }
+
+            
+            
+            
             NSString *objStr = _objectComparisonStringBlock(object);
+            
+            person*psn = [[EaseMobFriendsManger sharedInstance] getFriendByUserName:objStr];
+            if (psn)
+            {
+                objStr = psn.name_full;
+                
+                
+            }
+            
             NSInteger section = [_indexCollation sectionForObject:objStr collationStringSelector:@selector(uppercaseString)];
             
             NSMutableArray *array = [sortedArray objectAtIndex:section];
