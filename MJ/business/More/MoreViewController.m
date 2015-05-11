@@ -198,13 +198,13 @@
             NSString*photoUrl = [person me].photo;
             if ([photoUrl length] == 0)
             {
-                cell.myPhoto.image = [UIImage imageNamed:@"defaultPhoto"];
+                cell.myPhoto.image = [UIImage imageNamed:@"个人详情默认头像"];
             }
             else
             {
                 NSString*strUrl = [SERVER_ADD stringByAppendingString:photoUrl];
                 
-                [cell.myPhoto setImageWithURL:[NSURL URLWithString:strUrl]];
+                [cell.myPhoto setImageWithURL:[NSURL URLWithString:strUrl] placeholderImage:[UIImage imageNamed:@"个人详情默认头像"]];
             }
         }
         
