@@ -34,36 +34,28 @@
 
 - (void)updateMethod:(NSDictionary *)response
 {
-//    appUrl = "http://www.pgyer.com/HVAS";
-//    build = 1;
-//    downloadURL = "itms-services://?action=download-manifest&url=https://ssl.pgyer.com/app/plist/2aecd923b6095c05558663f7f6506152";
-//    lastBuild = 1;
-//    releaseNote = "\U66f4\U65b0\U5230\U7248\U672c: 1.1.1.0(build1)";
-//    versionCode = 6;
-//    versionName = "1.1.1.0";
-    
     if (response != nil)
     {
-        NSString*versionName = [response objectForKey:@"versionName"];
-        NSString*updateNow = @"1";
+        NSString*newVersion = [response objectForKey:@"versionName"];
         NSString*versionAddress = [response objectForKey:@"downloadURL"];
+        NSString*nowVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+
         
-        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-        [prefs setValue:versionName forKey:NEWVERSION_CODE_PRE];
-        [prefs setValue:updateNow forKey:NEWVERSION_REQUIRED_PRE];
-        [prefs setValue:versionAddress forKey:NEWVERSION_ADDRESS_PRE];
-        [prefs synchronize];
-        
-        [self checkVersion];
-    }
-    else
-    {
-        if (self.delegate)
+        if ([newVersion compare:nowVersion options:NSNumericSearch] == NSOrderedDescending)
         {
-            [self.delegate hasNewVersion:NO VersionName:@"" VersionSize:@"" VersionAddress:@"" RequiredToUpdate:NO];
+            
+            if (self.delegate)
+            {
+                [self.delegate hasNewVersion:YES VersionName:newVersion VersionSize:@"" VersionAddress:versionAddress RequiredToUpdate:YES];
+                return;
+            }
         }
     }
-    
+
+    if (self.delegate)
+    {
+        [self.delegate hasNewVersion:NO VersionName:@"" VersionSize:@"" VersionAddress:@"" RequiredToUpdate:NO];
+    }
 }
 
 -(void)updateVersionInfo

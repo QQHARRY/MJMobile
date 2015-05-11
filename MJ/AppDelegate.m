@@ -72,7 +72,13 @@
 
 -(void)initPGY
 {
+#ifdef PRODUCTIONENV
     [[PgyManager sharedPgyManager] startManagerWithAppId:@"ad25e17fbef2bd2033e1a4c7a415861c"];
+    
+#else
+    [[PgyManager sharedPgyManager] startManagerWithAppId:@"0902eb25a35f290f23aeac8b6e5786c0"];
+    
+#endif
     [[PgyManager sharedPgyManager] setEnableFeedback:NO];
 }
 

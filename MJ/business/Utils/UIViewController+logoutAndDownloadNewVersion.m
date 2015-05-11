@@ -11,7 +11,7 @@
 #import "UtilFun.h"
 
 
-#define NEWVERSION_REQUIRED_PROMOT @"发现必须更新的新版本"
+#define NEWVERSION_REQUIRED_PROMOT @"发现一个必须更新的新版本"
 
 @implementation UIViewController (logoutAndDownloadNewVersion)
 -(void)quitAndDLNewVersion:(NSString*)vName Address:(NSString*)address

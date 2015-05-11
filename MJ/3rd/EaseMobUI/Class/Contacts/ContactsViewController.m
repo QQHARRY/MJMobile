@@ -72,6 +72,7 @@
     self.tableView.frame = CGRectMake(0, self.searchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.searchBar.frame.size.height);
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.slimeView];
+    [self reloadDataSource];
 }
 
 - (void)didReceiveMemoryWarning

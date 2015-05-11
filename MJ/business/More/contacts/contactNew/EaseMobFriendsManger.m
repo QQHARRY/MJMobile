@@ -285,13 +285,16 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
 
 -(void)initEMFriendsSuccess:(void(^)(BOOL bSuccess))success
 {
-    NSArray *buddyList = [[EaseMob sharedInstance].chatManager buddyList];
-    [self addEMFriendsToList:buddyList isFriend:YES];
+   [[EaseMob sharedInstance].chatManager asyncFetchBuddyListWithCompletion:^(NSArray *buddyList, EMError *error) {
+        [self addEMFriendsToList:buddyList isFriend:YES];
+       NSArray*arr = [self.EaseMobFriend allKeys];
+       
+       [self pullFriendsDataFromServer:arr Success:success];
+    } onQueue:nil];
     
     
-    NSArray*arr = [self.EaseMobFriend allKeys];
     
-    [self pullFriendsDataFromServer:arr Success:success];
+    
     
 }
 
