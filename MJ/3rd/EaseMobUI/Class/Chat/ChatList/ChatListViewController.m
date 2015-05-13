@@ -27,6 +27,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "Macro.h"
 #import "UIImageView+RoundImage.h"
+#import "EMConversation+realName.h"
 
 @interface ChatListViewController ()<UITableViewDelegate,UITableViewDataSource, UISearchDisplayDelegate,SRRefreshDelegate, UISearchBarDelegate, IChatManagerDelegate>
 
@@ -79,8 +80,8 @@
     [self.tableView addSubview:self.slimeView];
     [self networkStateView];
     
-    
-    
+    [self.navigationController.tabBarController.tabBar setBackgroundColor:[UIColor whiteColor]];
+    //[self.tabBarController.tabBar setBackgroundColor:[UIColor whiteColor]];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"好友" style:UIBarButtonItemStylePlain target:self action:@selector(rightButtonClicked)];
 
@@ -214,7 +215,7 @@
             }
             
             EMConversation *conversation = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
-            cell.name = conversation.chatter;
+            cell.name = [conversation getRealName];
             if (!conversation.isGroup) {
                 cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
             }
@@ -377,11 +378,13 @@
    __weak __typeof(cell) weakChatCell = cell;
     if (!conversation.isGroup) {
         cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
+        //cell.name = []
         [[EaseMobFriendsManger sharedInstance] getFriendByUserName:conversation.chatter Success:^(BOOL success, person *psn) {
             if (weakChatCell!=nil)
             {
                 __strong typeof(weakChatCell) strongChatcell = weakChatCell;
                 strongChatcell.name = psn.name_full;
+                
                 if ([psn.photo hasSuffix:@".jpg"] ||
                     [psn.photo hasSuffix:@".png"])
                 {
@@ -495,7 +498,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.dataSource searchText:(NSString *)searchText collationStringSelector:@selector(realName) resultBlock:^(NSArray *results) {
+    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.dataSource searchText:(NSString *)searchText collationStringSelector:@selector(getRealName) resultBlock:^(NSArray *results) {
         if (results)
         {
             dispatch_async(dispatch_get_main_queue(), ^{

@@ -32,7 +32,7 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     // default is sell controller
     self.nowControllerType = HCT_SELL;
-    
+    self.applyForRefresh = NO;
     // ios version fixed code
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
     if ([[UIDevice currentDevice].systemVersion floatValue] > 7.0)
@@ -83,15 +83,25 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    
+    
     if (self.nowControllerType == HCT_SELL)
     {
-        [self.sellController refreshData];
+        if (self.applyForRefresh)
+        {
+            [self.sellController refreshData];
+        }
+        
     }
     else if (self.nowControllerType == HCT_RENT)
     {
-        [self.rentController refreshData];
+        if (self.applyForRefresh)
+        {
+            [self.rentController refreshData];
+        }
+       
     }
-    
+    self.applyForRefresh = NO;
     [super viewDidAppear:animated];
 }
 

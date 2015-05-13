@@ -9,7 +9,7 @@
 #import "AppDelegate+EaseMob.h"
 #import "ApplyViewController.h"
 #import "Macro.h"
-
+#import "person.h"
 
 /**
  *  本类中做了EaseMob初始化和推送等操作
@@ -30,14 +30,18 @@
     
     
     
-    NSString *apnsCertName = nil;
-#ifndef PRODUCTIONENV
-    apnsCertName = @"simtoon_mj_dev";
-#else
-    apnsCertName = @"simtoon_mj_pro";
-#endif
 
-    [[EaseMob sharedInstance] registerSDKWithAppKey:@"simtoon#mos"
+#ifndef PRODUCTIONENV
+    NSString *apnsCertName = @"simtoon_mj_dev";
+    NSString *easeMobAppKey = @"simtoon#mostest";
+#else
+    NSString *apnsCertName = @"simtoon_mj_pro";
+    NSString *easeMobAppKey = @"simtoon#mos";
+#endif
+    
+
+
+    [[EaseMob sharedInstance] registerSDKWithAppKey:easeMobAppKey
                                        apnsCertName:apnsCertName
                                         otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
     
@@ -351,8 +355,18 @@
                                                    delegate:nil
                                           cancelButtonTitle:NSLocalizedString(@"ok", @"OK")
                                           otherButtonTitles:nil];
-    [alert show];
+    //[alert show];
 
+}
+
+- (NSString *)nicknameForAccount:(NSString *)account
+                         inGroup:(NSString *)groupId
+{
+    person*me = [person me];
+    if (me) {
+        return me.name_full;
+    }
+    return nil;
 }
 
 @end

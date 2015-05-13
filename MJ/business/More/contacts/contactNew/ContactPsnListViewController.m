@@ -20,6 +20,7 @@
 #import "UIImageView+RoundImage.h"
 #import "ContactDeptViewController.h"
 #import "UIViewController+ContactsFunction.h"
+#import "MJRefresh.h"
 
 #define DEFAULT_PATH_IMAGE @"陕西住商不动产"
 #define DEFAULT_PERSON_IAMGE @"个人icon"
@@ -37,6 +38,26 @@
     // Do any additional setup after loading the view.
     [self initUI];
     [self prepareData];
+    
+    [self.tableview addHeaderWithTarget:self action:@selector(refreshData)];
+}
+
+-(void)refreshData
+{
+    [self prepareData];
+}
+
+-(void)endRefreshing:(BOOL)isFoot
+{
+    if (isFoot)
+    {
+        [self.tableview footerEndRefreshing];
+    }
+    else
+    {
+        [self.tableview headerEndRefreshing];
+    }
+    
 }
 
 -(void)prepareData
@@ -77,11 +98,14 @@
             NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(name_full)];
             [self.listContent addObject:sortedSection];
         }
-        
+        [self.tableview reloadData];
+        [self endRefreshing:NO];
         
         
     } failure:^(NSError *error) {
         HIDEHUD_WINDOW
+        [self.tableview reloadData];
+        [self endRefreshing:NO];
     }];
 }
 

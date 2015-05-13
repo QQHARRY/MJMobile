@@ -14,6 +14,8 @@
 
 #import "ApplyFriendCell.h"
 #import "InvitationManager.h"
+#import "EaseMobFriendsManger.h"
+#import "UtilFun.h"
 
 static ApplyViewController *controller = nil;
 
@@ -56,10 +58,12 @@ static ApplyViewController *controller = nil;
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    //UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     //[self.navigationItem setLeftBarButtonItem:backItem];
     
+    SHOWHUD(self.view);
     [self loadDataSourceFromLocalDB];
+    HIDEHUD(self.view);
 }
 
 - (void)didReceiveMemoryWarning
@@ -130,14 +134,29 @@ static ApplyViewController *controller = nil;
             }
             else if (applyStyle == ApplyStyleJoinGroup)
             {
-                cell.titleLabel.text = NSLocalizedString(@"title.groupApply", @"Group Notification");
+                cell.titleLabel.text = [NSString stringWithFormat:@"群:%@",entity.groupSubject];
                 cell.headerImageView.image = [UIImage imageNamed:@"groupPrivateHeader"];
             }
             else if(applyStyle == ApplyStyleFriend){
                 cell.titleLabel.text = entity.applicantUsername;
                 cell.headerImageView.image = [UIImage imageNamed:@"chatListCellHead"];
             }
-            cell.contentLabel.text = entity.reason;
+            
+            
+            cell.contentLabel.text = [NSString stringWithFormat:@"%@ 申请加入",entity.applicantUsername];
+            
+            [[EaseMobFriendsManger sharedInstance] getFriendByUserName:[entity.applicantUsername uppercaseString] Success:^(BOOL success, person *psn) {
+                if (psn)
+                {
+                    cell.contentLabel.text = [NSString stringWithFormat:@"%@ 申请加入",psn.name_full];
+                }
+                
+            }];
+            
+            
+            
+            
+            
         }
     }
     
@@ -168,6 +187,7 @@ static ApplyViewController *controller = nil;
 
 - (void)applyCellAddFriendAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if (indexPath.row < [self.dataSource count]) {
         [self showHudInView:self.view hint:NSLocalizedString(@"sendingApply", @"sending apply...")];
         
@@ -196,11 +216,16 @@ static ApplyViewController *controller = nil;
         else{
             [self showHint:NSLocalizedString(@"acceptFail", @"accept failure")];
         }
+        
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"setupUntreatedApplyCount" object:nil];
     }
+    
+   
 }
 
 - (void)applyCellRefuseFriendAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if (indexPath.row < [self.dataSource count]) {
         [self showHudInView:self.view hint:NSLocalizedString(@"sendingApply", @"sending apply...")];
         ApplyEntity *entity = [self.dataSource objectAtIndex:indexPath.row];
@@ -230,7 +255,11 @@ static ApplyViewController *controller = nil;
         else{
             [self showHint:NSLocalizedString(@"rejectFail", @"reject failure")];
         }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"setupUntreatedApplyCount" object:nil];
     }
+    
+    
 }
 
 #pragma mark - public

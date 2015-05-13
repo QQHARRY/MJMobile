@@ -72,6 +72,14 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
         }
         
     }
+    else
+    {
+        [self pullFriendsDataFromServer:[self addEMFriendsToList:@[userName] isFriend:NO AndFetchPsn:success] Success:nil];
+        
+       
+    }
+    
+    
     
 }
 
@@ -99,11 +107,11 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
 
 -(void)addEMFriends:(NSArray*)friendsArr isFriend:(BOOL)isFriend
 {
-    
-    
     [self pullFriendsDataFromServer:[self addEMFriendsToList:friendsArr isFriend:isFriend] Success:nil];
 
 }
+
+
 
 
 -(NSArray*)addEMFriendsToList:(NSArray*)friendsArr isFriend:(BOOL)isFriend
@@ -150,6 +158,58 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
     
     return newFriends;
 }
+
+
+-(NSArray*)addEMFriendsToList:(NSArray*)friendsArr isFriend:(BOOL)isFriend AndFetchPsn:(void(^)(BOOL bSuccess,person*psn))success
+{
+    if (!self.initedMe) {
+        [self addMeToList];
+        self.initedMe = YES;
+    }
+    NSMutableArray*newFriends = [[NSMutableArray alloc] init];
+    (_EaseMobFriend == nil)?(_EaseMobFriend = [[NSMutableDictionary alloc] init]):nil;
+    
+    for (EMBuddy*buddy in friendsArr)
+    {
+        NSString*EMName = nil;
+        if ([buddy isKindOfClass:[EMBuddy class]])
+        {
+            EMName = [[buddy username] uppercaseString];
+        }
+        else if ([buddy isKindOfClass:[NSString class]])
+        {
+            EMName = [(NSString*)buddy uppercaseString];
+        }
+        else
+        {
+            break;
+        }
+        
+        if (EMName != nil && EMName.length > 0)
+        {
+            id friend = [_EaseMobFriend objectForKey:EMName];
+            if (friend == nil)
+            {
+                EaseMobContacter*contacter = [ [EaseMobContacter alloc] initWithBuddy:buddy Person:nil];
+                if (success)
+                {
+                    [contacter.requestBlock addObject:success];
+                }
+                
+                contacter.isFriend = isFriend;
+                [newFriends addObject:EMName];
+                [_EaseMobFriend setObject:contacter forKey:EMName];
+            }
+            else
+            {
+                
+            }
+        }
+    }
+    
+    return newFriends;
+}
+
 
 
 -(void)deleteEMFriends:(NSArray*)friendsArr

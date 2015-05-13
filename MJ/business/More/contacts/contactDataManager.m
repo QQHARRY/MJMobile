@@ -79,16 +79,16 @@
     });
     
     
-    if (unt.isDept &&[unt.subDept count] > 0 && [unt.subPerson count] > 0)
-    {
-        retirevedCount++;
-        if (retirevedCount >= retrieveCount)
-        {
-            success(nil);
-            return;
-        }
-    }
-    else
+//    if (unt.isDept &&[unt.subDept count] > 0 && [unt.subPerson count] > 0)
+//    {
+//        retirevedCount++;
+//        if (retirevedCount >= retrieveCount)
+//        {
+//            success(nil);
+//            return;
+//        }
+//    }
+//    else
     {
         
         [self getSubPersonsOfUnit:unt Success:^(id responseObject)
@@ -165,11 +165,11 @@
     
     //为了提高速度，已经取过的数据不再重新获取
     //如果需要重新获取必须重启客户端
-    if ([unt.subPerson count] > 0)
-    {
-        success(nil);
-        return;
-    }
+//    if ([unt.subPerson count] > 0)
+//    {
+//        success(nil);
+//        return;
+//    }
     
      NSString*no = unt.isDept?(((department*)unt).dept_current_no):(((person*)unt).job_no);
     NSDictionary *parameters = @{@"job_no":[person me].job_no,
@@ -185,14 +185,32 @@
          if ([self checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {
              NSArray*arr = [self getPersonArr:resultDic];;
-             for (unit*objUnt in arr)
+             NSMutableArray*tmpArr = [[NSMutableArray alloc] init];
+             for (person*objUnt in arr)
              {
-                 objUnt.superUnit = unt;
-                 objUnt.level = unt.level+1; 
+                 BOOL bExist = NO;
+                 for (person*psn in unt.subPerson)
+                 {
+                     if ([psn.job_no isEqualToString:objUnt.job_no])
+                     {
+                         [psn copyInfo:objUnt];
+                         bExist = YES;
+                         break;
+                     }
+                 }
+                 
+                 if (!bExist)
+                 {
+                     objUnt.superUnit = unt;
+                     objUnt.level = unt.level+1;
+                     [tmpArr addObject:objUnt];
+                 }
              }
              
              
-             [unt.subPerson addObjectsFromArray:arr];
+             
+             
+             [unt.subPerson addObjectsFromArray:tmpArr];
              success(nil);
              return;
          }

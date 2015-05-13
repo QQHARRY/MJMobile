@@ -158,11 +158,13 @@
     _nameLabel.textAlignment = NSTextAlignmentCenter;
     _nameLabel.text = _chatter;
     
-    person*psn = [[EaseMobFriendsManger sharedInstance] getFriendByUserName:_chatter];
-    if (psn)
-    {
-        _nameLabel.text = psn.name_full;
-    }
+    [[EaseMobFriendsManger sharedInstance] getFriendByUserName:_chatter Success:^(BOOL success, person *psn) {
+        if (psn)
+        {
+            _nameLabel.text = psn.name_full;
+        }
+    }];
+    
     [self.view addSubview:_nameLabel];
     
     CGFloat tmpWidth = self.view.frame.size.width / 2;
@@ -229,11 +231,13 @@
         _statusLabel.text = @"正在建立连接...";
         _nameLabel.text = _chatter;
         
-        person*psn = [[EaseMobFriendsManger sharedInstance] getFriendByUserName:_chatter];
-        if (psn)
-        {
-            _nameLabel.text = psn.name_full;
-        }
+        [[EaseMobFriendsManger sharedInstance] getFriendByUserName:_chatter Success:^(BOOL success, person *psn) {
+            if (psn)
+            {
+                _nameLabel.text = psn.name_full;
+            }
+        }];
+        
         
         [_answerButton removeFromSuperview];
         _hangupButton.frame = CGRectMake((self.view.frame.size.width - 200) / 2, self.view.frame.size.height - 120, 200, 40);

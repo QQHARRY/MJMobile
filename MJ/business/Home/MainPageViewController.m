@@ -28,6 +28,7 @@
 
 #import "AnncDetailsViewController.h"
 #import "AnncListViewController.h"
+#import "MJRefresh.h"
 
 
 #import "petionDetailsTableViewController.h"
@@ -47,7 +48,9 @@
 
 
 @interface MainPageViewController ()
-
+{
+    int waitForAsynPulls;
+}
 
 @end
 
@@ -112,7 +115,37 @@
     [self initBadgeNavBarWithUnReadAlertCount];
     [self setBadgeWithUnReadAlertCount:0 andMsgCount:0];
     [self initTable];
+    [self loadData];
     
+    [self.tableView addHeaderWithTarget:self action:@selector(refreshData)];
+}
+
+-(void)refreshData
+{
+    
+    [self loadData];
+}
+
+-(void)endRefreshing:(BOOL)isFoot
+{
+    if (isFoot)
+    {
+        [self.tableView footerEndRefreshing];
+    }
+    else
+    {
+        [self.tableView headerEndRefreshing];
+    }
+    
+}
+
+-(void)tryEndRefreshing:(BOOL)isFoot
+{
+    waitForAsynPulls--;
+    if (waitForAsynPulls ==0)
+    {
+        [self endRefreshing:isFoot];
+    }
 }
 
 -(void)hasNewVersion:(BOOL)bHasNewVersion VersionName:(NSString*)vName VersionSize:(NSString*)size VersionAddress:(NSString*)address RequiredToUpdate:(BOOL)updateRequired
@@ -132,7 +165,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self loadData];
+    
 }
 -(void)setNavBarTitleTextAttribute
 {
@@ -215,9 +248,10 @@
        HIDEHUD(self.view);
        
        [self setBadgeWithUnReadAlertCount:[unReadManager unReadAlertCnt] andMsgCount:[unReadManager unReadMessageCount]];
-       
+       [self tryEndRefreshing:NO];
    } failure:^(NSError *error) {
        HIDEHUD(self.view);
+       [self tryEndRefreshing:NO];
    }];
 }
 
@@ -228,9 +262,10 @@
     [unReadManager getUnReadMessageCntSuccess:^(id responseObject) {
         HIDEHUD(self.view);
         [self setBadgeWithUnReadAlertCount:[unReadManager unReadAlertCnt] andMsgCount:[unReadManager unReadMessageCount]];
-        
+        [self tryEndRefreshing:NO];
     } failure:^(NSError *error) {
         HIDEHUD(self.view);
+        [self tryEndRefreshing:NO];
     }];
 }
 
@@ -242,9 +277,10 @@
         self.mainPetitionArr = responseObject;
 
         [self.tableView reloadData];
-        
+        [self tryEndRefreshing:NO];
     } failure:^(NSError *error) {
         HIDEHUD(self.view);
+        [self tryEndRefreshing:NO];
     }];
     
 }
@@ -256,9 +292,10 @@
         HIDEHUD(self.view);
         self.mainAnncArr = responseObject;
         [self.tableView reloadData];
-        
+        [self tryEndRefreshing:NO];
     } failure:^(NSError *error) {
         HIDEHUD(self.view);
+        [self tryEndRefreshing:NO];
     }];
 
 }
@@ -269,8 +306,10 @@
     SHOWHUD(self.view);
     [dictionaryManager updateDicSuccess:^(id responseObject) {
         HIDEHUD(self.view);
+        [self tryEndRefreshing:NO];
     } failure:^(NSError *error) {
         HIDEHUD(self.view);
+        [self tryEndRefreshing:NO];
     }];
         
     
@@ -281,12 +320,15 @@
 
 -(void)loadData
 {
+    waitForAsynPulls = 5;
     [self getDicData];
     [self getUnReadAlertCnt];
     [self getUnReadMsgCnt];
     [self getPetitionData];
     [self getAnncData];
 }
+
+
 
 #pragma mark
 #pragma mark
@@ -319,7 +361,9 @@
             [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
             return;
         }
+      
         
+#if 0
         UIWebView*webV = [[UIWebView alloc] initWithFrame:CGRectMake(0, 66, self.view.frame.size.width, self.view.frame.size.height-66-44)];
         [self.view addSubview:webV];
         
@@ -350,20 +394,19 @@
            }
         
         
-        //self.navigationController.navigationBar.hidden = YES;
-        //self.tabBarController.tabBar.hidden = YES;
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL: [NSURL URLWithString:str]];
         [request setHTTPMethod: @"POST"];
         
         [request setHTTPBody: [array dataUsingEncoding: NSUTF8StringEncoding]];
         
         [webV loadRequest:request];
+#endif
         
        
         
         if (self.mainPetitionArr && [self.mainPetitionArr count] > indexPath.row)
         {
-            //[self performSegueWithIdentifier:@"toPetionDetails" sender:self];
+            [self performSegueWithIdentifier:@"toPetionDetails" sender:self];
         }
     }
 }

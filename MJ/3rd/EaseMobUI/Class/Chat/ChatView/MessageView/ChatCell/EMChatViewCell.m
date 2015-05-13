@@ -137,6 +137,8 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     
     [[EaseMobFriendsManger sharedInstance] addEMFriends:@[model.username] isFriend:NO];
     
+    self.nameLabel.text = model.nickName;
+    
     __weak typeof(self) weakSelf = self;
     [[EaseMobFriendsManger sharedInstance] getFriendByUserName:model.username Success:^(BOOL success, person *psn) {
         if (success)

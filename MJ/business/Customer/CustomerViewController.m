@@ -21,6 +21,7 @@
 @end
 
 @implementation CustomerViewController
+@synthesize applyForRefresh;
 
 - (void)viewDidLoad
 {
@@ -65,7 +66,7 @@
     self.sellController.filter.FromID = @"0";
     self.sellController.filter.ToID = @"0";
     self.sellController.filter.Count = @"10";
-
+    self.applyForRefresh = NO;
     // super fun
     [super viewDidLoad];
 }
@@ -74,13 +75,20 @@
 {
     if (self.nowControllerType == CCT_SELL)
     {
-        [self.sellController refreshData];
+        if (applyForRefresh)
+        {
+            [self.sellController refreshData];
+        }
+        
     }
     else if (self.nowControllerType == CCT_RENT)
     {
-        [self.rentController refreshData];
+        if (applyForRefresh) {
+            [self.rentController refreshData];
+        }
+        
     }
-
+    applyForRefresh = NO;
     [super viewDidAppear:animated];
 }
 

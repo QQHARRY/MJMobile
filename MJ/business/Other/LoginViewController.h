@@ -13,6 +13,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *idTxt;
 @property (strong, nonatomic) IBOutlet UITextField *pwdTxt;
 @property (strong, nonatomic) IBOutlet UISwitch *autoLoginSwitchBtn;
+@property (strong, nonatomic) IBOutlet UILabel *versionLabel;
 - (IBAction)loginBtnClicked:(id)sender;
 - (IBAction)applyForBindingBtnClicked:(id)sender;
 

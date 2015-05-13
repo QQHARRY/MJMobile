@@ -91,4 +91,24 @@ __strong static person* _sharedObject = nil;
     return state;
 }
 
+-(void)copyInfo:(person*)psn
+{
+    if (psn && [psn.job_no isEqualToString:self.job_no])
+    {
+        self.photo = psn.photo;
+        self.department_name = psn.department_name;
+        self.job_name = psn.job_name;
+        self.obj_mobile = psn.obj_mobile;
+        self.acc_content = psn.acc_content;
+        self.acc_remarks = psn.acc_remarks;
+        self.department_no = psn.department_no;
+        self.role_name = psn.role_name;
+        self.dept_name = psn.dept_name;
+        self.technical_post_name = psn.technical_post_name;
+        self.members = psn.members;
+
+        
+    }
+}
+
 @end

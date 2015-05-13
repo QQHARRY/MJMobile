@@ -17,6 +17,7 @@
 #import "CheckNewVersion.h"
 #import "EaseMobFriendsManger.h"
 #import <PgySDK/PgyManager.h>
+#import "WCAlertView.h"
 
 
 @interface LoginViewController ()
@@ -32,7 +33,10 @@
     [self readDefaultMsg];
     // Do any additional setup after loading the view.
     
+    NSString*actualVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    actualVersion = [NSString stringWithFormat:@"V %@",actualVersion];
     
+    self.versionLabel.text = actualVersion;
     
     
 }
@@ -194,12 +198,31 @@
                       SHOWHUD(self.view);
                      [app loginToEaseMob:^(BOOL loginSuccess)
                       {
-                          
-                          
-                          [[EaseMobFriendsManger sharedInstance] initEMFriendsSuccess:^(BOOL bSuccess) {
+                          if (loginSuccess)
+                          {
+                              [[EaseMobFriendsManger sharedInstance] initEMFriendsSuccess:^(BOOL bSuccess) {
+                                  HIDEHUD(self.view);
+                                  [self performSegueWithIdentifier:@"LoginToMainPage" sender:self];
+                                  return;
+                              }];
+                          }
+                          else
+                          {
                               HIDEHUD(self.view);
-                              [self performSegueWithIdentifier:@"LoginToMainPage" sender:self];
-                          }];
+                              
+                              [WCAlertView showAlertWithTitle:@"登录失败" message:@"失败原因:IM登录失败" customizationBlock:^(WCAlertView *alertView) {
+                                  
+                              } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
+                                  if(buttonIndex == 1)
+                                  {
+                                      [self loginBtnClicked:nil];
+                                  }
+                              } cancelButtonTitle:@"取消" otherButtonTitles:@"重新登录", nil];
+                              //PRESENTALERT(@"登录失败",@"失败原因:IM登录失败,点击重新登录",@"OK",self);
+                              return;
+                          }
+                          
+                          
                           
                          
                          

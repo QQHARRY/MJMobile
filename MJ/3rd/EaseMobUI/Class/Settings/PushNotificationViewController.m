@@ -7,6 +7,7 @@
 //
 
 #import "PushNotificationViewController.h"
+#import "person.h"
 
 @interface PushNotificationViewController ()
 {
@@ -228,9 +229,9 @@
         isUpdate = YES;
     }
     
-    if (_nickName && _nickName.length > 0 && ![_nickName isEqualToString:options.nickname])
+    //if (_nickName && _nickName.length > 0 && ![_nickName isEqualToString:options.nickname])
     {
-        options.nickname = _nickName;
+        options.nickname = [person me].name_full;
         isUpdate = YES;
     }
     if (options.noDisturbingStartH != _noDisturbingStart || options.noDisturbingEndH != _noDisturbingEnd){
@@ -252,7 +253,6 @@
 - (void)pushDisplayChanged:(UISwitch *)pushDisplaySwitch
 {
     if (pushDisplaySwitch.isOn) {
-#warning 此处设置详情显示时的昵称，比如_nickName = @"环信";
         _pushDisplayStyle = ePushNotificationDisplayStyle_messageSummary;
     }
     else{

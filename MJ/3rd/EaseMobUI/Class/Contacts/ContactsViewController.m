@@ -28,6 +28,7 @@
 #import "EaseMobFriendsManger.h"
 #import "Macro.h"
 #import "UtilFun.h"
+#import "EMBuddy+namefull.h"
 
 @interface ContactsViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, UIActionSheetDelegate, BaseTableCellDelegate, SRRefreshDelegate>
 {
@@ -169,7 +170,7 @@
             
             EMBuddy *buddy = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
             cell.imageView.image = [UIImage imageNamed:@"chatListCellHead.png"];
-            cell.textLabel.text = buddy.username;
+            cell.textLabel.text = [buddy getNamefull];
             
             return cell;
         }];
@@ -446,7 +447,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.contactsSource searchText:(NSString *)searchText collationStringSelector:@selector(username) resultBlock:^(NSArray *results) {
+    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.contactsSource searchText:(NSString *)searchText collationStringSelector:@selector(getNamefull) resultBlock:^(NSArray *results) {
         if (results) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.searchController.resultsSource removeAllObjects];

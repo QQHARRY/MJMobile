@@ -15,5 +15,5 @@
 
 -(void)loadPortraitOfPerson:(person*)psn;
      -(void)loadPortraitOfUser:(NSString*)userName;
--(void)quickLoadPortraitOfUser:(NSString*)userName;
+//-(void)quickLoadPortraitOfUser:(NSString*)userName;
 @end

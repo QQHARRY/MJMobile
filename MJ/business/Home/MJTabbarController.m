@@ -358,7 +358,8 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
             title = psn.name_full;
         }
         
-        if (message.isGroup) {
+        if (message.isGroup)
+        {
             NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
             for (EMGroup *group in groupArray) {
                 if ([group.groupId isEqualToString:message.conversationChatter]) {
@@ -459,12 +460,28 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     
     if (isAdd)
     {
-        
-        [[EaseMobFriendsManger sharedInstance] addEMFriends:buddyList isFriend:YES];
+        NSMutableArray*tmpArr = [[NSMutableArray alloc] init];
+        for (EMBuddy* buddy in buddyList)
+        {
+            if (buddy.followState != eEMBuddyFollowState_NotFollowed)
+            {
+                [tmpArr addObject:buddy];
+            }
+        }
+        [[EaseMobFriendsManger sharedInstance] addEMFriends:tmpArr isFriend:YES];
     }
     else
     {
-        [[EaseMobFriendsManger sharedInstance] deleteEMFriends:changedBuddies];
+        NSMutableArray*tmpArr = [[NSMutableArray alloc] init];
+        for (EMBuddy* buddy in changedBuddies)
+        {
+            if (buddy.followState == eEMBuddyFollowState_NotFollowed)
+            {
+                [tmpArr addObject:buddy];
+            }
+        }
+        
+        [[EaseMobFriendsManger sharedInstance] deleteEMFriends:tmpArr];
     }
     
     
@@ -588,6 +605,13 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
         [_chatListVC refreshDataSource];
     }
     }
+}
+
+
+- (NSString *)nicknameForAccount:(NSString *)account
+                         inGroup:(NSString *)groupId
+{
+    return [person me].name_full;
 }
 
 #pragma mark - IChatManagerDelegate 登录状态变化

@@ -49,4 +49,5 @@ typedef enum
 
 -(BOOL)isImOpened;
 -(IMSTATE)imState;
+-(void)copyInfo:(person*)psn;
 @end

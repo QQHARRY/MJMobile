@@ -287,6 +287,7 @@
         [self showHudInView:self.view hint:NSLocalizedString(@"friend.sendApply", @"sending application...")];
         EMError *error;
         [[EaseMob sharedInstance].chatManager addBuddy:buddyName message:message error:&error];
+        
         [self hideHud];
         if (error) {
             [self showHint:NSLocalizedString(@"friend.sendApplyFail", @"send application fails, please operate again")];

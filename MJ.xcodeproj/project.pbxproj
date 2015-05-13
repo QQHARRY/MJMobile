@@ -472,6 +472,7 @@
 		4ABC22281A3C4BFD0017FD94 /* alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABC22271A3C4BFD0017FD94 /* alert.m */; };
 		4ABC22301A3C88000017FD94 /* AlertDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABC222E1A3C88000017FD94 /* AlertDetailsTableViewCell.m */; };
 		4ABC22311A3C88000017FD94 /* AlertDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ABC222F1A3C88000017FD94 /* AlertDetailsTableViewCell.xib */; };
+		4AC5E9351B03092A00AB56CD /* EMBuddy+namefull.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC5E9341B03092A00AB56CD /* EMBuddy+namefull.m */; };
 		4AD788F41AFB5EFA008D6593 /* UIViewController+ContactsFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD788F31AFB5EFA008D6593 /* UIViewController+ContactsFunction.m */; };
 		4AD7945F1A208F4400DEC779 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7945E1A208F4400DEC779 /* main.m */; };
 		4AD794621A208F4400DEC779 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD794611A208F4400DEC779 /* AppDelegate.m */; };
@@ -1413,6 +1414,8 @@
 		4ABC222D1A3C88000017FD94 /* AlertDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertDetailsTableViewCell.h; sourceTree = "<group>"; };
 		4ABC222E1A3C88000017FD94 /* AlertDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertDetailsTableViewCell.m; sourceTree = "<group>"; };
 		4ABC222F1A3C88000017FD94 /* AlertDetailsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertDetailsTableViewCell.xib; sourceTree = "<group>"; };
+		4AC5E9331B03092A00AB56CD /* EMBuddy+namefull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMBuddy+namefull.h"; sourceTree = "<group>"; };
+		4AC5E9341B03092A00AB56CD /* EMBuddy+namefull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMBuddy+namefull.m"; sourceTree = "<group>"; };
 		4AD788F21AFB5EFA008D6593 /* UIViewController+ContactsFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ContactsFunction.h"; sourceTree = "<group>"; };
 		4AD788F31AFB5EFA008D6593 /* UIViewController+ContactsFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ContactsFunction.m"; sourceTree = "<group>"; };
 		4AD794591A208F4400DEC779 /* MJ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MJ.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2476,6 +2479,8 @@
 				4AA1892F1AEF549900685603 /* FriendApply */,
 				4AA189381AEF549900685603 /* RealtimeSearchUtil.h */,
 				4AA189391AEF549900685603 /* RealtimeSearchUtil.m */,
+				4AC5E9331B03092A00AB56CD /* EMBuddy+namefull.h */,
+				4AC5E9341B03092A00AB56CD /* EMBuddy+namefull.m */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -4224,6 +4229,7 @@
 				4A2EE1231A428F1000899976 /* petitionAgreementViewController.m in Sources */,
 				B98BD5821A609185003A35BE /* RETableViewItem.m in Sources */,
 				4A8F095A1AF85C8000C44B99 /* MJCatch.m in Sources */,
+				4AC5E9351B03092A00AB56CD /* EMBuddy+namefull.m in Sources */,
 				4A56C7101A8CAFC800AF8CB6 /* versionInfo.m in Sources */,
 				4AA18A941AEF549A00685603 /* PublicGroupDetailViewController.m in Sources */,
 				4A87884C1AE8E94800FB3F91 /* ContacCustomizedBarBtnItemView.m in Sources */,

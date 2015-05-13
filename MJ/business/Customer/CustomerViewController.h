@@ -17,6 +17,6 @@
 @property (nonatomic) CUSTOMER_CONTROLLER_TYPE nowControllerType;
 @property (nonatomic, strong) CustomerTableViewController *rentController;
 @property (nonatomic, strong) CustomerTableViewController *sellController;
-
+@property (nonatomic, assign)BOOL applyForRefresh;
 @end
 

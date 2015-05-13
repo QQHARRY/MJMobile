@@ -294,6 +294,7 @@
         {
             filter.dept_no = @"";
         }
+        _hvc.applyForRefresh = YES;
         [self.navigationController popViewControllerAnimated:YES];
     }];
     buttonItem.textAlignment = NSTextAlignmentCenter;

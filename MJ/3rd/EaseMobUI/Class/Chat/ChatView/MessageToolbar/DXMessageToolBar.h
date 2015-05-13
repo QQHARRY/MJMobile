@@ -18,10 +18,10 @@
 #import "DXFaceView.h"
 #import "DXRecordView.h"
 
-#define kInputTextViewMinHeight 36
+#define kInputTextViewMinHeight 32
 #define kInputTextViewMaxHeight 200
 #define kHorizontalPadding 8
-#define kVerticalPadding 5
+#define kVerticalPadding 3
 
 #define kTouchToRecord NSLocalizedString(@"message.toolBar.record.touch", @"hold down to talk")
 #define kTouchToFinish NSLocalizedString(@"message.toolBar.record.send", @"loosen to send")

@@ -27,6 +27,7 @@
 @end
 
 @implementation HouseTableViewController
+@synthesize needRefreshData;
 
 - (void)viewDidLoad
 {
@@ -43,14 +44,20 @@
     // header & footer refresh
     [self.tableView addHeaderWithTarget:self action:@selector(refreshData)];
     [self.tableView addFooterWithTarget:self action:@selector(loadMore)];
+    needRefreshData = NO;
     
     [self refreshData];
 }
 
-//- (void)viewDidAppear:(BOOL)animated
-//{
-//    [self refreshData];
-//}
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (needRefreshData)
+    {
+        needRefreshData = NO;
+        [self refreshData];
+    }
+    
+}
 
 - (void)refreshData
 {
@@ -60,17 +67,17 @@
     self.filter.FromID = @"0";
     self.filter.ToID = @"0";
     // get
-    SHOWHUD_WINDOW;
+    SHOWHUD(self.view);
     [HouseDataPuller pullDataWithFilter:self.filter Success:^(NSArray *houseDetailList)
     {
-        HIDEHUD_WINDOW;
+        HIDEHUD(self.view);
         [self.houseList addObjectsFromArray:houseDetailList];
         [self.tableView reloadData];
         [self.tableView headerEndRefreshing];
     }
                                 failure:^(NSError *e)
     {
-        HIDEHUD_WINDOW;
+        HIDEHUD(self.view);
         [self.tableView headerEndRefreshing];
     }];
 }
@@ -82,17 +89,17 @@
     self.filter.ToID = @"0";
     self.filter.FromID = hd.house_trade_no;
     // get
-    SHOWHUD_WINDOW;
+    SHOWHUD(self.view);
     [HouseDataPuller pullDataWithFilter:self.filter Success:^(NSArray *houseDetailList)
      {
-         HIDEHUD_WINDOW;
+         HIDEHUD(self.view);
          [self.houseList addObjectsFromArray:houseDetailList];
          [self.tableView reloadData];
          [self.tableView footerEndRefreshing];
      }
                                 failure:^(NSError *e)
      {
-         HIDEHUD_WINDOW;
+         HIDEHUD(self.view);
          [self.tableView footerEndRefreshing];
      }];
 }

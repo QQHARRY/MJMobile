@@ -18,6 +18,7 @@
 #import "RealtimeSearchUtil.h"
 #import "EaseMobFriendsManger.h"
 #import "UIImageView+LoadPortraitOfPerson.h"
+#import "EMBuddy+namefull.h"
 
 @interface ContactSelectionViewController ()<UISearchBarDelegate, UISearchDisplayDelegate>
 
@@ -152,7 +153,7 @@
             
             EMBuddy *buddy = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
             cell.imageView.image = [UIImage imageNamed:@"chatListCellHead.png"];
-            cell.textLabel.text = buddy.username;
+            cell.textLabel.text = [buddy getNamefull];
             
             return cell;
         }];
@@ -249,13 +250,16 @@
     
     
     NSString*name = buddy.username;
-    person*psn = [[EaseMobFriendsManger sharedInstance] getFriendByUserName:name];
-    if (psn) {
-        name = psn.name_full;
-        [cell.imageView loadPortraitOfPerson:psn];
-    }
-    
     cell.textLabel.text = name;
+    [[EaseMobFriendsManger sharedInstance] getFriendByUserName:name Success:^(BOOL success, person *psn) {
+        if (psn) {
+            cell.textLabel.text = psn.name_full;
+            [cell.imageView loadPortraitOfPerson:psn];
+        }
+    }];
+    
+    
+    
     
     return cell;
 }
@@ -306,7 +310,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.contactsSource searchText:searchText collationStringSelector:@selector(username) resultBlock:^(NSArray *results) {
+    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.contactsSource searchText:searchText collationStringSelector:@selector(getNamefull) resultBlock:^(NSArray *results) {
         if (results) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.searchController.resultsSource removeAllObjects];
@@ -381,13 +385,16 @@
         
         
         NSString*name = buddy.username;
-        person*psn = [[EaseMobFriendsManger sharedInstance] getFriendByUserName:name];
-        if (psn) {
-            name = psn.name_full;
-            [[remarkView getImageView] loadPortraitOfPerson:psn];
-        }
-
         remarkView.remark =name;
+        [[EaseMobFriendsManger sharedInstance] getFriendByUserName:name Success:^(BOOL success, person *psn) {
+            if (psn) {
+                remarkView.remark = psn.name_full;
+                [[remarkView getImageView] loadPortraitOfPerson:psn];
+            }
+        }];
+        
+
+        
         [self.footerScrollView addSubview:remarkView];
     }
     

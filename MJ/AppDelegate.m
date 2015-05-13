@@ -119,7 +119,7 @@
     BOOL isAutoLogin = [[[EaseMob sharedInstance] chatManager] isAutoLoginEnabled];
     
     
-     NSLog(@"loginToEaseMob isAutoLogin=:%d",isAutoLogin);
+     //NSLog(@"loginToEaseMob isAutoLogin=:%d",isAutoLogin);
     if (!isAutoLogin)
     {
         //异步登陆账号
@@ -133,7 +133,7 @@
                  
                  //将旧版的coredata数据导入新的数据库
                  EMError *error = [[EaseMob sharedInstance].chatManager importDataToNewDatabase];
-                 
+                 [[EaseMob sharedInstance].chatManager setApnsNickname:[person me].name_full];
                  if (reload)
                  {
                      
@@ -141,7 +141,7 @@
                      [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
                      
                      //设置是否自动登录
-                     [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+                     [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:NO];
                      
                      
                      if (!error) {

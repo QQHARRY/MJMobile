@@ -11,5 +11,5 @@
 @interface EMConversation (realName)
 
 
--(NSString*)realName;
+-(NSString*)getRealName;
 @end

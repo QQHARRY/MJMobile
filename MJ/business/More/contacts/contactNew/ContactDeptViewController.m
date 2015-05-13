@@ -22,6 +22,7 @@
 #import "UIImageView+RoundImage.h"
 
 #import "ContactPersonDetailsViewController.h"
+#import "MJRefresh.h"
 
 #define DEFAULT_PATH_IMAGE @"陕西住商不动产"
 #define DEFAULT_PERSON_IAMGE @"个人icon"
@@ -45,6 +46,27 @@
         [self loadData];
     }
 
+    [self.tableview addHeaderWithTarget:self action:@selector(refreshData)];
+}
+
+-(void)refreshData
+{
+    if (!self.isSearchMode)
+    {
+        [self loadData];
+    }
+}
+
+-(void)endRefreshing:(BOOL)isFoot
+{
+    if (isFoot)
+    {
+        [self.tableview footerEndRefreshing];
+    }
+    else
+    {
+        [self.tableview headerEndRefreshing];
+    }
     
 }
 
@@ -56,12 +78,13 @@
          
          HIDEHUD_WINDOW
          [self.tableview reloadData];
-         
+         [self endRefreshing:NO];
      }
                                         failure:^(NSError *error)
      {
          HIDEHUD_WINDOW
          [self.tableview reloadData];
+         [self endRefreshing:NO];
      }];
 }
 

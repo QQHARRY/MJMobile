@@ -592,29 +592,16 @@
             }
             else
             {
-                __weak typeof(self)weakSelf = self;
                 
                 SHOWHUD(self.view);
-                [[EaseMobFriendsManger sharedInstance] getFriendByUserName:username Success:^(BOOL success, person *psn) {
+                [contactDataManager getPsnByJobNo:[username uppercaseString] Success:^(id responseObject) {
                     HIDEHUD(self.view);
-                    //dispatch_async(dispatch_get_main_queue(), ^{
-                        
-                        if (psn)
-                        {
-                            SHOWHUD(self.view);
-                            [contactDataManager getPsnByJobNo:psn.job_no Success:^(id responseObject) {
-                                HIDEHUD(self.view);
-                                vc.psn = responseObject;
-                                [weakSelf.navigationController pushViewController:vc animated:YES];
-                            } failure:^(NSError *error) {
-                                HIDEHUD(self.view);
-                            }];
-                            
-                            
-                        }
-                    //});
-                    
+                    vc.psn = responseObject;
+                    [self.navigationController pushViewController:vc animated:YES];
+                } failure:^(NSError *error) {
+                    HIDEHUD(self.view);
                 }];
+                
             }
             
         }

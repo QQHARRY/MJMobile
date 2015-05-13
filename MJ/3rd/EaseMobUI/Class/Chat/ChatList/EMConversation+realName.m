@@ -7,12 +7,13 @@
 //
 
 #import "EMConversation+realName.h"
+#import "EaseMobFriendsManger.h"
 
 
 @implementation EMConversation (realName)
 
 
--(NSString*)realName
+-(NSString*)getRealName
 {
     if (self.isGroup)
     {
@@ -23,6 +24,14 @@
             {
                 return  group.groupSubject;
             }
+        }
+    }
+    else
+    {
+        person*psn = [[EaseMobFriendsManger sharedInstance] getFriendByUserName:[self.chatter uppercaseString]];
+        if (psn)
+        {
+            return psn.name_full;
         }
     }
 

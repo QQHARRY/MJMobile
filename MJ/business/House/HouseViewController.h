@@ -17,6 +17,6 @@
 @property (nonatomic) HOUSER_CONTROLLER_TYPE nowControllerType;
 @property (nonatomic, strong) HouseTableViewController *rentController;
 @property (nonatomic, strong) HouseTableViewController *sellController;
-
+@property (nonatomic, assign) BOOL applyForRefresh;
 @end
 

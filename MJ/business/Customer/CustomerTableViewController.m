@@ -51,17 +51,17 @@
     self.filter.FromID = @"0";
     self.filter.ToID = @"0";
     // get
-    SHOWHUD_WINDOW;
+    SHOWHUD(self.view);
     [CustomerDataPuller pullDataWithFilter:self.filter Success:^(NSArray *CustomerDetailList)
     {
-        HIDEHUD_WINDOW;
+        HIDEHUD(self.view);
         [self.CustomerList addObjectsFromArray:CustomerDetailList];
         [self.tableView reloadData];
         [self.tableView headerEndRefreshing];
     }
                                 failure:^(NSError *e)
     {
-        HIDEHUD_WINDOW;
+        HIDEHUD(self.view);
         [self.tableView headerEndRefreshing];
     }];
 }
@@ -73,17 +73,17 @@
     self.filter.ToID = @"0";
     self.filter.FromID = hd.business_requirement_no;
     // get
-    SHOWHUD_WINDOW;
+    SHOWHUD(self.view);
     [CustomerDataPuller pullDataWithFilter:self.filter Success:^(NSArray *CustomerDetailList)
      {
-         HIDEHUD_WINDOW;
+         HIDEHUD(self.view);
          [self.CustomerList addObjectsFromArray:CustomerDetailList];
          [self.tableView reloadData];
          [self.tableView footerEndRefreshing];
      }
                                 failure:^(NSError *e)
      {
-         HIDEHUD_WINDOW;
+         HIDEHUD(self.view);
          [self.tableView footerEndRefreshing];
      }];
 }

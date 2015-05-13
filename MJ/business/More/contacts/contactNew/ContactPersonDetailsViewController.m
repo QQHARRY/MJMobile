@@ -248,7 +248,7 @@
                 }
                 else
                 {
-                    cell.value.text = self.psn.dept_name;
+                    cell.value.text = self.psn.department_name;
                 }
                 
                 [cell setEditAble:NO];
@@ -258,7 +258,7 @@
             {
                 cell.typeImage.image = [UIImage imageNamed:ZHIWEIIMAGE];
                 cell.type.text = ZHIWEI;
-                cell.value.text = self.psn.job_name;
+                cell.value.text = self.psn.technical_post_name;
                 [cell setEditAble:NO];
             }
                 break;
@@ -397,6 +397,7 @@
         UIBarButtonItem*imBtn = nil;
         
         IMSTATE imState = [self.psn imState];
+        BOOL boolMyIMOpened = [[person me] isImOpened];
         
         switch (imState)
         {
