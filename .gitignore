@@ -26,3 +26,5 @@ MJ/3rd/EaseMobSDK/include/CallService/EMCallManager/delegates/EMCallManagerDeleg
 MJ/3rd/EaseMobSDK/lib/libEaseMobClientSDK.a
 
 MJ/3rd/EaseMobSDK/lib/libEaseMobClientSDKLite.a
+
+MJ/Macro.h
