@@ -473,6 +473,7 @@
 		4ABC22301A3C88000017FD94 /* AlertDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABC222E1A3C88000017FD94 /* AlertDetailsTableViewCell.m */; };
 		4ABC22311A3C88000017FD94 /* AlertDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ABC222F1A3C88000017FD94 /* AlertDetailsTableViewCell.xib */; };
 		4AC5E9351B03092A00AB56CD /* EMBuddy+namefull.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC5E9341B03092A00AB56CD /* EMBuddy+namefull.m */; };
+		4AC5E9381B03469000AB56CD /* NSString+isValidPhotoUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC5E9371B03469000AB56CD /* NSString+isValidPhotoUrl.m */; };
 		4AD788F41AFB5EFA008D6593 /* UIViewController+ContactsFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD788F31AFB5EFA008D6593 /* UIViewController+ContactsFunction.m */; };
 		4AD7945F1A208F4400DEC779 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7945E1A208F4400DEC779 /* main.m */; };
 		4AD794621A208F4400DEC779 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD794611A208F4400DEC779 /* AppDelegate.m */; };
@@ -1416,6 +1417,8 @@
 		4ABC222F1A3C88000017FD94 /* AlertDetailsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		4AC5E9331B03092A00AB56CD /* EMBuddy+namefull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMBuddy+namefull.h"; sourceTree = "<group>"; };
 		4AC5E9341B03092A00AB56CD /* EMBuddy+namefull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMBuddy+namefull.m"; sourceTree = "<group>"; };
+		4AC5E9361B03469000AB56CD /* NSString+isValidPhotoUrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+isValidPhotoUrl.h"; sourceTree = "<group>"; };
+		4AC5E9371B03469000AB56CD /* NSString+isValidPhotoUrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+isValidPhotoUrl.m"; sourceTree = "<group>"; };
 		4AD788F21AFB5EFA008D6593 /* UIViewController+ContactsFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ContactsFunction.h"; sourceTree = "<group>"; };
 		4AD788F31AFB5EFA008D6593 /* UIViewController+ContactsFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ContactsFunction.m"; sourceTree = "<group>"; };
 		4AD794591A208F4400DEC779 /* MJ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MJ.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3198,6 +3201,8 @@
 				4AAFAC9C1AEB368D0029BAB3 /* UIImageView+RoundImage.m */,
 				4A9ED8B41AFDD7B400227498 /* UIViewController+logoutAndDownloadNewVersion.h */,
 				4A9ED8B51AFDD7B400227498 /* UIViewController+logoutAndDownloadNewVersion.m */,
+				4AC5E9361B03469000AB56CD /* NSString+isValidPhotoUrl.h */,
+				4AC5E9371B03469000AB56CD /* NSString+isValidPhotoUrl.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -4467,6 +4472,7 @@
 				B98BD4AD1A60464F003A35BE /* HouseDataPuller.m in Sources */,
 				4A06BEB91AE6314C00809C52 /* ContactDeptViewController.m in Sources */,
 				4A96ECA41AE742F900577AA6 /* UIImage+xtRoundedRectImage.m in Sources */,
+				4AC5E9381B03469000AB56CD /* NSString+isValidPhotoUrl.m in Sources */,
 				B98BD4A31A603B51003A35BE /* HouseTableViewController.m in Sources */,
 				4A96ECA01AE73AD200577AA6 /* ContactPathTableViewCell.m in Sources */,
 				4AA18A911AEF549A00685603 /* GroupListViewController.m in Sources */,

@@ -131,27 +131,40 @@ static ApplyViewController *controller = nil;
             if (applyStyle == ApplyStyleGroupInvitation) {
                 cell.titleLabel.text = NSLocalizedString(@"title.groupApply", @"Group Notification");
                 cell.headerImageView.image = [UIImage imageNamed:@"groupPrivateHeader"];
+                cell.contentLabel.text = entity.reason;
+                
             }
             else if (applyStyle == ApplyStyleJoinGroup)
             {
                 cell.titleLabel.text = [NSString stringWithFormat:@"群:%@",entity.groupSubject];
                 cell.headerImageView.image = [UIImage imageNamed:@"groupPrivateHeader"];
+                cell.contentLabel.text = [NSString stringWithFormat:@"%@ 申请加入群",entity.applicantUsername];
+                [[EaseMobFriendsManger sharedInstance] getFriendByUserName:[entity.applicantUsername uppercaseString] Success:^(BOOL success, person *psn) {
+                    if (psn)
+                    {
+                        cell.contentLabel.text = [NSString stringWithFormat:@"%@ 申请加入群",psn.name_full];
+                    }
+                    
+                }];
             }
             else if(applyStyle == ApplyStyleFriend){
                 cell.titleLabel.text = entity.applicantUsername;
                 cell.headerImageView.image = [UIImage imageNamed:@"chatListCellHead"];
+                
+                cell.contentLabel.text = [NSString stringWithFormat:@"%@ 申请添加好友",entity.applicantUsername];
+                [[EaseMobFriendsManger sharedInstance] getFriendByUserName:[entity.applicantUsername uppercaseString] Success:^(BOOL success, person *psn) {
+                    if (psn)
+                    {
+                        cell.contentLabel.text = [NSString stringWithFormat:@"%@ 申请添加好友",psn.name_full];
+                    }
+                    
+                }];
             }
             
             
-            cell.contentLabel.text = [NSString stringWithFormat:@"%@ 申请加入",entity.applicantUsername];
             
-            [[EaseMobFriendsManger sharedInstance] getFriendByUserName:[entity.applicantUsername uppercaseString] Success:^(BOOL success, person *psn) {
-                if (psn)
-                {
-                    cell.contentLabel.text = [NSString stringWithFormat:@"%@ 申请加入",psn.name_full];
-                }
-                
-            }];
+            
+            
             
             
             

@@ -29,6 +29,7 @@
 #import "Macro.h"
 #import "UtilFun.h"
 #import "EMBuddy+namefull.h"
+#import "NSString+isValidPhotoUrl.h"
 
 @interface ContactsViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, UIActionSheetDelegate, BaseTableCellDelegate, SRRefreshDelegate>
 {
@@ -264,8 +265,7 @@
                 {
                     __strong typeof(weakChatCell) strongChatcell = weakChatCell;
                     strongChatcell.textLabel.text = psn.name_full;
-                    if ([psn.photo hasSuffix:@".jpg"] ||
-                        [psn.photo hasSuffix:@".png"])
+                    if ([psn.photo isValidPhotoUrl])
                     {
                         
                         NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];

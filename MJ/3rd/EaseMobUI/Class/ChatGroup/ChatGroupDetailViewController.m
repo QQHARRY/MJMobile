@@ -25,6 +25,7 @@
 #import "ContactPersonDetailsViewController.h"
 #import "contactDataManager.h"
 #import "UtilFun.h"
+#import "NSString+isValidPhotoUrl.h"
 
 #pragma mark - ChatGroupDetailViewController
 
@@ -480,8 +481,7 @@
                     
                     __strong typeof(contactView) strongObj = weakObj;
                     
-                    if ([psn.photo hasSuffix:@".jpg"] ||
-                        [psn.photo hasSuffix:@".png"])
+                    if ([psn.photo isValidPhotoUrl])
                     {
                         
                         NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];

@@ -16,6 +16,7 @@
 #import "Macro.h"
 #import "UIImageView+RoundImage.h"
 #import "UIImageView+AFNetworking.h"
+#import "NSString+isValidPhotoUrl.h"
 
 @interface BlackListViewController ()<IChatManagerDelegate, UITableViewDataSource, UITableViewDelegate, SRRefreshDelegate>
 {
@@ -126,8 +127,7 @@
         {
             __strong typeof(cell) strongChatcell = weakChatCell;
             strongChatcell.textLabel.text = psn.name_full;
-            if ([psn.photo hasSuffix:@".jpg"] ||
-                [psn.photo hasSuffix:@".png"])
+            if ([psn.photo isValidPhotoUrl])
             {
                 
                 NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];

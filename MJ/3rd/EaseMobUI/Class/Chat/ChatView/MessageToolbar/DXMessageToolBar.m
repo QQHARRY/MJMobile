@@ -280,8 +280,11 @@
     CGFloat allButtonWidth = 0.0;
     CGFloat textViewLeftMargin = 6.0;
     
+    CGFloat btnY = (self.toolbarView.frame.size.height - kInputBtnViewWidthHeight)/2;
+    
+    
     //转变输入样式
-    self.styleChangeButton = [[UIButton alloc] initWithFrame:CGRectMake(kHorizontalPadding, kVerticalPadding, kInputTextViewMinHeight, kInputTextViewMinHeight)];
+    self.styleChangeButton = [[UIButton alloc] initWithFrame:CGRectMake(kHorizontalPadding, btnY, kInputBtnViewWidthHeight, kInputBtnViewWidthHeight)];
     self.styleChangeButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     [self.styleChangeButton setImage:[UIImage imageNamed:@"chatBar_record"] forState:UIControlStateNormal];
     [self.styleChangeButton setImage:[UIImage imageNamed:@"chatBar_keyboard"] forState:UIControlStateSelected];
@@ -291,7 +294,7 @@
     textViewLeftMargin += CGRectGetMaxX(self.styleChangeButton.frame);
     
     //更多
-    self.moreButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.bounds) - kHorizontalPadding - kInputTextViewMinHeight, kVerticalPadding, kInputTextViewMinHeight, kInputTextViewMinHeight)];
+    self.moreButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.bounds) - kHorizontalPadding - kInputBtnViewWidthHeight, btnY, kInputBtnViewWidthHeight, kInputBtnViewWidthHeight)];
     self.moreButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
     [self.moreButton setImage:[UIImage imageNamed:@"chatBar_more"] forState:UIControlStateNormal];
     [self.moreButton setImage:[UIImage imageNamed:@"chatBar_moreSelected"] forState:UIControlStateHighlighted];
@@ -301,7 +304,7 @@
     allButtonWidth += CGRectGetWidth(self.moreButton.frame) + kHorizontalPadding * 2.5;
     
     //表情
-    self.faceButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.moreButton.frame) - kInputTextViewMinHeight - kHorizontalPadding, kVerticalPadding, kInputTextViewMinHeight, kInputTextViewMinHeight)];
+    self.faceButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.moreButton.frame) - kInputBtnViewWidthHeight - kHorizontalPadding, btnY, kInputBtnViewWidthHeight, kInputBtnViewWidthHeight)];
     self.faceButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
     [self.faceButton setImage:[UIImage imageNamed:@"chatBar_face"] forState:UIControlStateNormal];
     [self.faceButton setImage:[UIImage imageNamed:@"chatBar_faceSelected"] forState:UIControlStateHighlighted];

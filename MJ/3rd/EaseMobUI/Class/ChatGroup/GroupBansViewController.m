@@ -17,6 +17,7 @@
 #import "ContactPersonDetailsViewController.h"
 #import "UtilFun.h"
 #import "contactDataManager.h"
+#import "NSString+isValidPhotoUrl.h"
 
 #define kColOfRow 5
 #define kContactSize 60
@@ -188,8 +189,7 @@
                     
                     __strong typeof(contactView) strongObj = weakObj;
                     
-                    if ([psn.photo hasSuffix:@".jpg"] ||
-                        [psn.photo hasSuffix:@".png"])
+                    if ([psn.photo isValidPhotoUrl])
                     {
                         
                         NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];

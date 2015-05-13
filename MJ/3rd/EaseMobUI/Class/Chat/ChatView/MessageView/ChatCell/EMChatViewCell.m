@@ -17,6 +17,7 @@
 #import "EaseMobFriendsManger.h"
 #import "Macro.h"
 #import "UIImageView+RoundImage.h"
+#import "NSString+isValidPhotoUrl.h"
 
 NSString *const kResendButtonTapEventName = @"kResendButtonTapEventName";
 NSString *const kShouldResendCell = @"kShouldResendCell";
@@ -151,8 +152,7 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
                 strongSelf.nameLabel.hidden = model.isSender;
             }
             
-            if ([psn.photo hasSuffix:@".jpg"] ||
-                [psn.photo hasSuffix:@".png"])
+            if ([psn.photo isValidPhotoUrl])
             {
                 
                 NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];

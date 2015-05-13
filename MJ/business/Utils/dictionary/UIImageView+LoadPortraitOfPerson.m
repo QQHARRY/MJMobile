@@ -11,6 +11,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "UIImageView+RoundImage.h"
 #import "EaseMobFriendsManger.h"
+#import "NSString+isValidPhotoUrl.h"
 
 @implementation UIImageView (LoadPortraitOfPerson)
 
@@ -21,8 +22,7 @@
         return;
     }
     
-    if ([psn.photo hasSuffix:@".jpg"] ||
-        [psn.photo hasSuffix:@".png"])
+    if ([psn.photo isValidPhotoUrl])
     {
         
         NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];

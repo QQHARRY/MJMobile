@@ -28,6 +28,7 @@
 #import "Macro.h"
 #import "UIImageView+RoundImage.h"
 #import "EMConversation+realName.h"
+#import "NSString+isValidPhotoUrl.h"
 
 @interface ChatListViewController ()<UITableViewDelegate,UITableViewDataSource, UISearchDisplayDelegate,SRRefreshDelegate, UISearchBarDelegate, IChatManagerDelegate>
 
@@ -385,8 +386,7 @@
                 __strong typeof(weakChatCell) strongChatcell = weakChatCell;
                 strongChatcell.name = psn.name_full;
                 
-                if ([psn.photo hasSuffix:@".jpg"] ||
-                    [psn.photo hasSuffix:@".png"])
+                if ([psn.photo isValidPhotoUrl])
                 {
                     
                     NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
