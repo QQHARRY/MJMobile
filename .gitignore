@@ -28,3 +28,11 @@ MJ/3rd/EaseMobSDK/lib/libEaseMobClientSDK.a
 MJ/3rd/EaseMobSDK/lib/libEaseMobClientSDKLite.a
 
 MJ/Macro.h
+
+MJ/business/Other/LoginViewController.m
+
+MJ/3rd/EaseMobUI/Class/AppDelegate+EaseMob.m
+
+MJ/3rd/EaseMobUI/Class/AppDelegate+UMeng.m
+
+MJ/business/Other/LoginViewController.m
