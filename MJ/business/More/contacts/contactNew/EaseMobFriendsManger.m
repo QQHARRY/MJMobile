@@ -151,7 +151,10 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
             }
             else
             {
-                
+                if ([friend isKindOfClass:[EaseMobContacter class]])
+                {
+                    ((EaseMobContacter*)friend).isFriend = isFriend;
+                }
             }
         }
     }
@@ -202,7 +205,10 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
             }
             else
             {
-                
+                if ([friend isKindOfClass:[EaseMobContacter class]])
+                {
+                    ((EaseMobContacter*)friend).isFriend = isFriend;
+                }
             }
         }
     }
@@ -221,7 +227,11 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
             id friend = [_EaseMobFriend objectForKey:[buddy.username uppercaseString]];
             if (friend)
             {
-                [_EaseMobFriend removeObjectForKey:[buddy.username uppercaseString]];
+                if ([friend isKindOfClass:[EaseMobContacter class]])
+                {
+                    ((EaseMobContacter*)friend).isFriend = NO;
+                }
+                //[_EaseMobFriend removeObjectForKey:[buddy.username uppercaseString]];
             }
         }
     }
@@ -346,7 +356,18 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
 -(void)initEMFriendsSuccess:(void(^)(BOOL bSuccess))success
 {
    [[EaseMob sharedInstance].chatManager asyncFetchBuddyListWithCompletion:^(NSArray *buddyList, EMError *error) {
-        [self addEMFriendsToList:buddyList isFriend:YES];
+       
+       NSMutableArray*tmpArr = [[NSMutableArray alloc] init];
+       for (EMBuddy*buddy in buddyList)
+       {
+           if (buddy.followState != eEMBuddyFollowState_NotFollowed)
+           {
+               [tmpArr addObject:buddy];
+           }
+       }
+       
+       
+        [self addEMFriendsToList:tmpArr isFriend:YES];
        NSArray*arr = [self.EaseMobFriend allKeys];
        
        [self pullFriendsDataFromServer:arr Success:success];

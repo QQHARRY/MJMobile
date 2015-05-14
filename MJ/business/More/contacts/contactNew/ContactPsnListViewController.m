@@ -21,6 +21,7 @@
 #import "ContactDeptViewController.h"
 #import "UIViewController+ContactsFunction.h"
 #import "MJRefresh.h"
+#import "UIImageView+LoadPortraitOfPerson.h"
 
 #define DEFAULT_PATH_IMAGE @"陕西住商不动产"
 #define DEFAULT_PERSON_IAMGE @"个人icon"
@@ -226,32 +227,33 @@
     [cell setPerson:psn];
     cell.delegate = self;
 
+    [cell.psnImage loadPortraitOfPerson:psn withDefault:[UIImage imageNamed:DEFAULT_PERSON_IAMGE]];
     
-    if (psn.photo == nil || [psn.photo isEqualToString:@""])
-    {
-        cell.psnImage.image = [UIImage imageNamed:DEFAULT_PERSON_IAMGE];
-    }
-    else
-    {
-        NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
-        NSString*imgName =  [strUrl pathExtension];
-        if (imgName != nil && imgName.length > 0)
-        {
-            __typeof (ContactPsnVCCellTableViewCell*) __weak weakCell = cell;
-            [cell.psnImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:DEFAULT_PERSON_IAMGE] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
-             {
-                 [weakCell.psnImage setImageToRound:image];
-                 
-             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                 
-             }];
-        }
-        else
-        {
-            cell.psnImage.image = [UIImage imageNamed:DEFAULT_PERSON_IAMGE];
-        }
-        
-    }
+//    if (psn.photo == nil || [psn.photo isEqualToString:@""])
+//    {
+//        cell.psnImage.image = [UIImage imageNamed:DEFAULT_PERSON_IAMGE];
+//    }
+//    else
+//    {
+//        NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
+//        NSString*imgName =  [strUrl pathExtension];
+//        if (imgName != nil && imgName.length > 0)
+//        {
+//            __typeof (ContactPsnVCCellTableViewCell*) __weak weakCell = cell;
+//            [cell.psnImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:DEFAULT_PERSON_IAMGE] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
+//             {
+//                 [weakCell.psnImage setImageToRound:image];
+//                 
+//             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+//                 
+//             }];
+//        }
+//        else
+//        {
+//            cell.psnImage.image = [UIImage imageNamed:DEFAULT_PERSON_IAMGE];
+//        }
+//        
+//    }
     
     return cell;
 }

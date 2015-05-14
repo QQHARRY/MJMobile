@@ -23,9 +23,10 @@
 
 #import "ContactPersonDetailsViewController.h"
 #import "MJRefresh.h"
+#import "UIImageView+LoadPortraitOfPerson.h"
 
 #define DEFAULT_PATH_IMAGE @"陕西住商不动产"
-#define DEFAULT_PERSON_IAMGE @"个人icon"
+
 #define DEFAULT_DEPT_IMAGE @"部门icon"
 #define MAG_IMAGE @"放大镜icon-ios"
 
@@ -261,35 +262,7 @@
         {
             person*psn = (person*)unt;
             cell.name.text = [NSString stringWithFormat:@"%@(%@)",psn.name_full,psn.department_name];
-            cell.image.image = [UIImage imageNamed:DEFAULT_PERSON_IAMGE];
-            
-            if (psn.photo == nil || [psn.photo isEqualToString:@""])
-            {
-                cell.image.image = [UIImage imageNamed:DEFAULT_PERSON_IAMGE];
-            }
-            else
-            {
-                NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
-                NSString*imgName =  [strUrl pathExtension];
-                if (imgName != nil && imgName.length > 0)
-                {
-                    __typeof (ContactDeptVCCell*) __weak weakCell = cell;
-                    [cell.image setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:DEFAULT_PERSON_IAMGE] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
-                     {
-                         [weakCell.image setImageToRound:image];
-                         
-                     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                         
-                     }];
-                }
-                else
-                {
-                    cell.image.image = [UIImage imageNamed:DEFAULT_PERSON_IAMGE];
-                }
-                
-            }
-
-            
+            [cell.image loadPortraitOfPerson:psn withDefault:[UIImage imageNamed:DEFAULT_PERSON_IAMGE]];
         }
         else
         {
@@ -353,32 +326,7 @@
                 {
                     person*psn = (person*)unt;
                     cell.name.text = psn.name_full;
-                    
-                    if (psn.photo == nil || [psn.photo isEqualToString:@""])
-                    {
-                        cell.image.image = [UIImage imageNamed:DEFAULT_PERSON_IAMGE];
-                    }
-                    else
-                    {
-                        NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
-                        NSString*imgName =  [strUrl pathExtension];
-                        if (imgName != nil && imgName.length > 0)
-                        {
-                            __typeof (ContactDeptVCCell*) __weak weakCell = cell;
-                            [cell.image setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:DEFAULT_PERSON_IAMGE] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
-                             {
-                                 [weakCell.image setImageToRound:image];
-                                 
-                             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                 
-                             }];
-                        }
-                        else
-                        {
-                            cell.image.image = [UIImage imageNamed:DEFAULT_PERSON_IAMGE];
-                        }
-                        
-                    }
+                    [cell.image loadPortraitOfPerson:psn withDefault:[UIImage imageNamed:DEFAULT_PERSON_IAMGE]];
                 }
             }
         }

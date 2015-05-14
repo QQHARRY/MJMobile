@@ -30,6 +30,7 @@
 #import "UtilFun.h"
 #import "EMBuddy+namefull.h"
 #import "NSString+isValidPhotoUrl.h"
+#import "UIImageView+LoadPortraitOfPerson.h"
 
 @interface ContactsViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, UIActionSheetDelegate, BaseTableCellDelegate, SRRefreshDelegate>
 {
@@ -261,32 +262,32 @@
             __weak __typeof(cell) weakChatCell = cell;
             
             [[EaseMobFriendsManger sharedInstance] getFriendByUserName:buddy.username Success:^(BOOL success, person *psn) {
-                if (weakChatCell!=nil)
+                if (weakChatCell!=nil && psn != nil)
                 {
-                    __strong typeof(weakChatCell) strongChatcell = weakChatCell;
-                    strongChatcell.textLabel.text = psn.name_full;
-                    if ([psn.photo isValidPhotoUrl])
-                    {
-                        
-                        NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
-                        
-                        
-                        
-                        //dispatch_async(dispatch_get_main_queue(), ^{
-                        
-                        [strongChatcell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:@"chatListCellHead.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                            
-                            if (image != nil)
-                            {
-                                [weakChatCell.imageView setImageToRound:image];
-                            }
-                            
-                            
-                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                            
-                        }];
-                        // });
-                    }
+                    weakChatCell.textLabel.text = psn.name_full;
+                    [weakChatCell.imageView loadPortraitOfPerson:psn];
+//                    if ([psn.photo isValidPhotoUrl])
+//                    {
+//                        
+//                        NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
+//                        
+//                        
+//                        
+//                        //dispatch_async(dispatch_get_main_queue(), ^{
+//                        
+//                        [strongChatcell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:@"chatListCellHead.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+//                            
+//                            if (image != nil)
+//                            {
+//                                [weakChatCell.imageView setImageToRound:image];
+//                            }
+//                            
+//                            
+//                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+//                            
+//                        }];
+//                        // });
+//                    }
                 }
                 
                 

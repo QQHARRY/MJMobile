@@ -2192,6 +2192,7 @@
     editCtrl.houseSecretPtcl = self.houseSecretPtcl;
     editCtrl.houseDtl = self.houseDtl;
     editCtrl.delegate = self;
+    editCtrl.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:editCtrl animated:YES];
 }
 

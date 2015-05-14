@@ -17,6 +17,9 @@
 #import "UIImageView+RoundImage.h"
 #import "UIImageView+AFNetworking.h"
 #import "NSString+isValidPhotoUrl.h"
+#import "person.h"
+#import "EaseMobFriendsManger.h"
+#import "UIImageView+LoadPortraitOfPerson.h"
 
 @interface BlackListViewController ()<IChatManagerDelegate, UITableViewDataSource, UITableViewDelegate, SRRefreshDelegate>
 {
@@ -60,19 +63,20 @@
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc] init];
     [self.view addSubview:_tableView];
+    [self reloadDataSource];
     
-    _slimeView = [[SRRefreshView alloc] init];
-    _slimeView.delegate = self;
-    _slimeView.upInset = 0;
-    _slimeView.slimeMissWhenGoingBack = YES;
-    _slimeView.slime.bodyColor = [UIColor grayColor];
-    _slimeView.slime.skinColor = [UIColor grayColor];
-    _slimeView.slime.lineWith = 1;
-    _slimeView.slime.shadowBlur = 4;
-    _slimeView.slime.shadowColor = [UIColor grayColor];
-    [self.tableView addSubview:_slimeView];
-    
-    [self.slimeView setLoadingWithExpansion];
+//    _slimeView = [[SRRefreshView alloc] init];
+//    _slimeView.delegate = self;
+//    _slimeView.upInset = 0;
+//    _slimeView.slimeMissWhenGoingBack = YES;
+//    _slimeView.slime.bodyColor = [UIColor grayColor];
+//    _slimeView.slime.skinColor = [UIColor grayColor];
+//    _slimeView.slime.lineWith = 1;
+//    _slimeView.slime.shadowBlur = 4;
+//    _slimeView.slime.shadowColor = [UIColor grayColor];
+//    [self.tableView addSubview:_slimeView];
+//    
+//    [self.slimeView setLoadingWithExpansion];
 }
 
 - (void)didReceiveMemoryWarning
@@ -123,36 +127,11 @@
     
     [[EaseMobFriendsManger sharedInstance] addEMFriends:@[username] isFriend:NO];
     [[EaseMobFriendsManger sharedInstance] getFriendByUserName:username Success:^(BOOL success, person *psn) {
-        if (weakChatCell!=nil)
+        if (weakChatCell!=nil && psn)
         {
-            __strong typeof(cell) strongChatcell = weakChatCell;
-            strongChatcell.textLabel.text = psn.name_full;
-            if ([psn.photo isValidPhotoUrl])
-            {
-                
-                NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
-                
-                
-                
-                //dispatch_async(dispatch_get_main_queue(), ^{
-                
-                [strongChatcell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:@"chatListCellHead.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                    
-                    if (image != nil)
-                    {
-                        [weakChatCell.imageView setImageToRound:image];
-                                            }
-                    
-                    
-                } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                    
-                }];
-                // });
-            }
+            weakChatCell.textLabel.text = psn.name_full;
+            [weakChatCell.imageView loadPortraitOfPerson:psn];
         }
-        
-        
-        
     }];
     
     return cell;
@@ -269,6 +248,17 @@
     //名字分section
     for (NSString *username in dataArray) {
         //getUserName是实现中文拼音检索的核心，见NameIndex类
+        person*psn = [[EaseMobFriendsManger sharedInstance] getFriendByUserName:username];
+        NSString*tmp = @"";
+        if (psn)
+        {
+            tmp = psn.name_full;
+        }
+        else
+        {
+            tmp = username;
+        }
+        
         NSString *firstLetter = [ChineseToPinyin pinyinFromChineseString:username];
         NSInteger section = [indexCollation sectionForObject:[firstLetter substringToIndex:1] collationStringSelector:@selector(uppercaseString)];
         

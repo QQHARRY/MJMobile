@@ -14,6 +14,7 @@
 @interface UIImageView (LoadPortraitOfPerson)
 
 -(void)loadPortraitOfPerson:(person*)psn;
-     -(void)loadPortraitOfUser:(NSString*)userName;
+-(void)loadPortraitOfPerson:(person*)psn withDefault:(UIImage*)image;
+-(void)loadPortraitOfUser:(NSString*)userName;
 //-(void)quickLoadPortraitOfUser:(NSString*)userName;
 @end

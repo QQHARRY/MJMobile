@@ -12,6 +12,7 @@
 #import "CallSessionViewController.h"
 #import "person.h"
 #import "EaseMobFriendsManger.h"
+#import "UIImageView+LoadPortraitOfPerson.h"
 
 #define kAlertViewTag_Close 1000
 
@@ -162,6 +163,7 @@
         if (psn)
         {
             _nameLabel.text = psn.name_full;
+           [_headerImageView loadPortraitOfPerson:psn];
         }
     }];
     
@@ -231,12 +233,6 @@
         _statusLabel.text = @"正在建立连接...";
         _nameLabel.text = _chatter;
         
-        [[EaseMobFriendsManger sharedInstance] getFriendByUserName:_chatter Success:^(BOOL success, person *psn) {
-            if (psn)
-            {
-                _nameLabel.text = psn.name_full;
-            }
-        }];
         
         
         [_answerButton removeFromSuperview];
@@ -247,6 +243,12 @@
         _outLabel.hidden = NO;
     }
     
+    [[EaseMobFriendsManger sharedInstance] getFriendByUserName:_chatter Success:^(BOOL success, person *psn) {
+        if (psn)
+        {
+            _nameLabel.text = psn.name_full;
+        }
+    }];
     
     if (_callSession) {
 //        _statusLabel.text = @"通话进行中...";

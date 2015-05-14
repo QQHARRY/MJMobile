@@ -18,20 +18,21 @@
 
 -(void)loadPortraitOfPerson:(person*)psn
 {
-    if (psn == nil || psn.photo == nil || psn.photo.length == 0) {
-        return;
-    }
+    [self loadPortraitOfPerson:psn withDefault:[UIImage imageNamed:@"chatListCellHead.png"]];
+}
+
+-(void)loadPortraitOfPerson:(person*)psn withDefault:(UIImage*)image
+{
     
-    if ([psn.photo isValidPhotoUrl])
+    if (psn != nil && psn.photo != nil && [psn.photo isValidPhotoUrl])
     {
         
         NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
         
         
-        
         __weak typeof(self) weakSelf = self;
         
-        [self setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:@"chatListCellHead.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        [self setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:image success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
             
             if (image != nil)
             {
@@ -43,9 +44,14 @@
         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
             
         }];
-
+        
+    }
+    else
+    {
+        [self setImage:image];
     }
 }
+
 
 
 -(void)loadPortraitOfUser:(NSString*)userName

@@ -114,13 +114,14 @@
     
     
     _houseFilterVC.hvc = self;
+    _houseFilterVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:_houseFilterVC animated:YES];
 }
 
 - (void)onAddEstate:(id)sender
 {
     HouseAddNewViewController*vc = [[HouseAddNewViewController alloc] init];
-    
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -24,6 +24,7 @@
 #import "UIImage+FX.h"
 #import "ChatViewController.h"
 #import "UIViewController+ContactsFunction.h"
+#import "UIImageView+LoadPortraitOfPerson.h"
 
 #define BEIJINGIMAGE @"背景图片"
 #define WEIKAITONGIMAGE @"未开通new"
@@ -94,39 +95,37 @@
     self.photoImage.userInteractionEnabled = YES;
     [self.photoImage addGestureRecognizer:recognizer];
 
-    
-    
-    NSString*photoUrl = psn.photo;
-    
-    
-    if ([photoManager getPhotoByPerson:psn] != nil)
-    {
-        UIImage*image = [photoManager getPhotoByPerson:psn];
-        [self.photoImage setImageToRound:image];
-    }
-    else
-    {
-        NSString*strUrl = [SERVER_ADD stringByAppendingString:photoUrl];
 
-        NSString*imgName =  [strUrl pathExtension];
-        if (imgName != nil && imgName.length > 0)
-        {
-
-            __typeof (UIImageView*) __weak imagV = self.photoImage;
-            __typeof (person*) __weak tmpPsn = self.psn;
-            [self.photoImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
-             {
-                [imagV setImageToRound:image];
-                 if ([tmpPsn isEqual:[person me]])
-                 {
-                     [photoManager setPhoto:image ForPerson:tmpPsn];
-                 }
-             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                 
-             }];
-        }
-        
-    }
+    [self.photoImage loadPortraitOfPerson:psn withDefault:[UIImage imageNamed:DEFAULT_PERSON_IAMGE]];
+//    NSString*photoUrl = psn.photo;
+//    if ([photoManager getPhotoByPerson:psn] != nil)
+//    {
+//        UIImage*image = [photoManager getPhotoByPerson:psn];
+//        [self.photoImage setImageToRound:image];
+//    }
+//    else
+//    {
+//        NSString*strUrl = [SERVER_ADD stringByAppendingString:photoUrl];
+//
+//        NSString*imgName =  [strUrl pathExtension];
+//        if (imgName != nil && imgName.length > 0)
+//        {
+//
+//            __typeof (UIImageView*) __weak imagV = self.photoImage;
+//            __typeof (person*) __weak tmpPsn = self.psn;
+//            [self.photoImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
+//             {
+//                [imagV setImageToRound:image];
+//                 if ([tmpPsn isEqual:[person me]] || [tmpPsn.job_no isEqualToString:[person me].job_no])
+//                 {
+//                     [photoManager setPhoto:image ForPerson:tmpPsn];
+//                 }
+//             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+//                 
+//             }];
+//        }
+//        
+//    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -242,13 +241,16 @@
             {
                 cell.typeImage.image = [UIImage imageNamed:BUMENIMAGE];
                 cell.type.text = BUMEN;
-                if([self.psn isEqual:[person me]])
+                
+                NSString* dept = self.psn.department_name;
+                if (dept==nil || dept.length == 0)
                 {
-                    cell.value.text = self.psn.department_name;
+                    dept = self.psn.dept_name;
                 }
-                else
+                
+                if (dept != nil)
                 {
-                    cell.value.text = self.psn.department_name;
+                    cell.value.text = dept;
                 }
                 
                 [cell setEditAble:NO];
@@ -259,6 +261,10 @@
                 cell.typeImage.image = [UIImage imageNamed:ZHIWEIIMAGE];
                 cell.type.text = ZHIWEI;
                 cell.value.text = self.psn.technical_post_name;
+                if (cell.value.text==nil || cell.value.text.length == 0)
+                {
+                    cell.value.text = self.psn.job_name;
+                }
                 [cell setEditAble:NO];
             }
                 break;
@@ -362,7 +368,7 @@
     
     UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     
-    if ([self.psn isEqual:[person me]])
+    if ([self.psn isEqual:[person me]] || [self.psn.job_no isEqualToString:[person me].job_no])
     {
         if (self.editState)
         {
@@ -397,7 +403,7 @@
         UIBarButtonItem*imBtn = nil;
         
         IMSTATE imState = [self.psn imState];
-        BOOL boolMyIMOpened = [[person me] isImOpened];
+        [[person me] isImOpened];
         
         switch (imState)
         {
@@ -561,7 +567,7 @@
     
 
     
-    if (self.psn == [person me])
+    if (self.psn == [person me] || [self.psn.job_no isEqualToString:[person me].job_no])
     {
         UIActionSheet *sheet;
         

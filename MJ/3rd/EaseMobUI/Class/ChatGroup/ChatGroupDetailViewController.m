@@ -26,6 +26,7 @@
 #import "contactDataManager.h"
 #import "UtilFun.h"
 #import "NSString+isValidPhotoUrl.h"
+#import "UIImageView+LoadPortraitOfPerson.h"
 
 #pragma mark - ChatGroupDetailViewController
 
@@ -477,28 +478,12 @@
 
                 __weak typeof(contactView) weakObj = contactView;
                 [[EaseMobFriendsManger sharedInstance] getFriendByUserName:username Success:^(BOOL success, person *psn) {
-                    
-                    
-                    __strong typeof(contactView) strongObj = weakObj;
-                    
-                    if ([psn.photo isValidPhotoUrl])
+                    if (psn)
                     {
-                        
-                        NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
-
-                        [[strongObj getImageView]  setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:@"chatListCellHead.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                            
-                            if (image != nil)
-                            {
-                                [[weakObj getImageView] setImageToRound:image];
-                            }
-                            
-                            
-                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                            
-                        }];
+                        [[weakObj getImageView] loadPortraitOfPerson:psn];
+                        weakObj.remark = psn.name_full;
                     }
-                    weakObj.remark = psn.name_full;
+                    
                 }];
                 
                 

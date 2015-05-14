@@ -18,6 +18,7 @@
 #import "UtilFun.h"
 #import "contactDataManager.h"
 #import "NSString+isValidPhotoUrl.h"
+#import "UIImageView+LoadPortraitOfPerson.h"
 
 #define kColOfRow 5
 #define kContactSize 60
@@ -184,29 +185,33 @@
                 [contactView addGestureRecognizer:tapGesture];
                 
                 __weak typeof(contactView) weakObj = contactView;
-                [[EaseMobFriendsManger sharedInstance] getFriendByUserName:username Success:^(BOOL success, person *psn) {
-                    
-                    
-                    __strong typeof(contactView) strongObj = weakObj;
-                    
-                    if ([psn.photo isValidPhotoUrl])
-                    {
-                        
-                        NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
-                        
-                        [[strongObj getImageView]  setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:@"chatListCellHead.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                            
-                            if (image != nil)
-                            {
-                                [[weakObj getImageView] setImageToRound:image];
-                            }
-                            
-                            
-                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                            
-                        }];
-                    }
-                    weakObj.remark = psn.name_full;
+                [[EaseMobFriendsManger sharedInstance] getFriendByUserName:username Success:^(BOOL success, person *psn)
+                 {
+                     
+                     
+                     __strong typeof(contactView) strongObj = weakObj;
+                     if (psn)
+                     {
+                         [[strongObj getImageView] loadPortraitOfPerson:psn];
+                     }
+                     //                    if ([psn.photo isValidPhotoUrl])
+                     //                    {
+                     //                        
+//                        NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
+//                        
+//                        [[strongObj getImageView]  setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:@"chatListCellHead.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+//                            
+//                            if (image != nil)
+//                            {
+//                                [[weakObj getImageView] setImageToRound:image];
+//                            }
+//                            
+//                            
+//                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+//                            
+//                        }];
+//                    }
+                    strongObj.remark = psn.name_full;
                 }];
                 
                 

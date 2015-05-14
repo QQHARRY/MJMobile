@@ -42,7 +42,17 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     self.delegate = self;
     
     NSArray *buddyList = [[EaseMob sharedInstance].chatManager buddyList];
-    [[EaseMobFriendsManger sharedInstance] addEMFriends:buddyList isFriend:YES];
+    NSMutableArray*tmpArr = [[NSMutableArray alloc] init];
+    for (EMBuddy*buddy in buddyList)
+    {
+        if (buddy.followState != eEMBuddyFollowState_NotFollowed)
+        {
+            [tmpArr addObject:buddy];
+        }
+    }
+    [[EaseMobFriendsManger sharedInstance] initEMFriendsSuccess:^(BOOL bSuccess) {
+    
+    }];
     
     [self setupSubviews];
     ((AppDelegate*)[UIApplication sharedApplication].delegate).mainController = self;
@@ -72,11 +82,21 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
-    if ([viewController isEqual:self.selectedViewController])
-    {
-        return NO;
-    }
+
+
     return YES;
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    if ([viewController.title isEqualToString:@"消息"])
+    {
+        if ([viewController isKindOfClass:[UINavigationController class]])
+        {
+            [(UINavigationController*)viewController popToRootViewControllerAnimated:YES];
+        }
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,7 +113,8 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
-    }
+
+}
 
 #pragma mark - UIAlertViewDelegate
 

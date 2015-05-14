@@ -516,7 +516,7 @@
             [self reloadData];
         }];
         
-
+        editCtrl.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:editCtrl animated:YES];
         
         

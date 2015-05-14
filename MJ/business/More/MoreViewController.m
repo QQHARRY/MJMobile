@@ -70,6 +70,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if(indexPath.row == 0)
     {
         //[self performSegueWithIdentifier:@"showPersonDetails" sender:self];
@@ -108,6 +109,7 @@
     }
     else if(indexPath.row == 6)
     {
+       [self showHudInView:self.view hint:@"正在检测版本更新"];
         [[[CheckNewVersion alloc] init]  checkNewVersion:self];
     }
     else if(indexPath.row == 7)
@@ -125,6 +127,7 @@
 
 -(void)hasNewVersion:(BOOL)bHasNewVersion VersionName:(NSString *)vName VersionSize:(NSString *)size VersionAddress:(NSString *)address RequiredToUpdate:(BOOL)updateRequired
 {
+    [self hideHud];
     if (bHasNewVersion)
     {
         if (updateRequired)

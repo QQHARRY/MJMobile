@@ -8,6 +8,7 @@
 
 #import "PushNotificationViewController.h"
 #import "person.h"
+#import "BlackListViewController.h"
 
 @interface PushNotificationViewController ()
 {
@@ -83,12 +84,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if (section == 0) {
-        return 1;
-    }
-    else if (section == 1)
+    if (section == 0)
     {
         return 3;
+    }
+    else if(section == 1)
+    {
+        return 1;
     }
     
     return 0;
@@ -96,7 +98,7 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1) {
+    if (indexPath.section == 0) {
         return YES;
     }
     
@@ -105,7 +107,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section == 1) {
+    if (section == 0) {
         return NSLocalizedString(@"setting.notDisturb", @"No disturbing");
     }
     return nil;
@@ -120,15 +122,16 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            cell.textLabel.text = NSLocalizedString(@"setting.showDetail", @"notify the display messages");
-            
-            self.pushDisplaySwitch.frame = CGRectMake(self.tableView.frame.size.width - self.pushDisplaySwitch.frame.size.width - 10, (cell.contentView.frame.size.height - self.pushDisplaySwitch.frame.size.height) / 2, self.pushDisplaySwitch.frame.size.width, self.pushDisplaySwitch.frame.size.height);
-            [cell.contentView addSubview:self.pushDisplaySwitch];
-        }
-    }
-    else if (indexPath.section == 1)
+//    if (indexPath.section == 0) {
+//        if (indexPath.row == 0) {
+//            cell.textLabel.text = NSLocalizedString(@"setting.showDetail", @"notify the display messages");
+//            
+//            self.pushDisplaySwitch.frame = CGRectMake(self.tableView.frame.size.width - self.pushDisplaySwitch.frame.size.width - 10, (cell.contentView.frame.size.height - self.pushDisplaySwitch.frame.size.height) / 2, self.pushDisplaySwitch.frame.size.width, self.pushDisplaySwitch.frame.size.height);
+//            [cell.contentView addSubview:self.pushDisplaySwitch];
+//        }
+//    }
+//    else
+        if (indexPath.section == 0)
     {
         if (indexPath.row == 0) {
             cell.textLabel.text = NSLocalizedString(@"setting.open", @"Open");
@@ -145,6 +148,13 @@
             cell.accessoryType = _noDisturbingStatus == ePushNotificationNoDisturbStatusClose ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }
     }
+    else if(indexPath.section == 1)
+    {
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"黑名单";
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+    }
     
     return cell;
 }
@@ -158,7 +168,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 1)
+    if (section == 0 || section == 1)
     {
         return 30;
     }
@@ -172,7 +182,7 @@
     
     BOOL needReload = YES;
     
-    if (indexPath.section == 1) {
+    if (indexPath.section == 0) {
         switch (indexPath.row) {
             case 0:
             {
@@ -215,6 +225,11 @@
         if (needReload) {
             [tableView reloadData];
         }
+    }
+    else if(indexPath.section == 1)
+    {
+        BlackListViewController *blackController = [[BlackListViewController alloc] initWithNibName:nil bundle:nil];
+        [self.navigationController pushViewController:blackController animated:YES];
     }
 }
 

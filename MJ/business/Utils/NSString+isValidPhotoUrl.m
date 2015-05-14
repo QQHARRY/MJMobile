@@ -12,6 +12,10 @@
 
 -(BOOL)isValidPhotoUrl
 {
+    if (self.length == 0)
+    {
+        return NO;
+    }
     NSString*strLast = [[self pathExtension] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
     if ([[strLast lowercaseString] isEqualToString:@"jpg"]

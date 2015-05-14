@@ -102,6 +102,7 @@
 {
     CustomerFilterController *vc = [[CustomerFilterController alloc] initWithStyle:UITableViewStyleGrouped];
     vc.hvc = self;
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -200,7 +201,7 @@
 - (void)onAddCus:(id)sender
 {
     addCustomerTableViewController*vc = [[addCustomerTableViewController alloc] init];
-    
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

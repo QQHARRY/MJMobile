@@ -18,6 +18,7 @@
 #import "Macro.h"
 #import "UIImageView+RoundImage.h"
 #import "NSString+isValidPhotoUrl.h"
+#import "UIImageView+LoadPortraitOfPerson.h"
 
 NSString *const kResendButtonTapEventName = @"kResendButtonTapEventName";
 NSString *const kShouldResendCell = @"kShouldResendCell";
@@ -144,6 +145,9 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     [[EaseMobFriendsManger sharedInstance] getFriendByUserName:model.username Success:^(BOOL success, person *psn) {
         if (success)
         {
+            if (psn == nil) {
+                return;
+            }
             __strong typeof(self)strongSelf = weakSelf;
             
             if (model.isChatGroup) {
@@ -152,28 +156,30 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
                 strongSelf.nameLabel.hidden = model.isSender;
             }
             
-            if ([psn.photo isValidPhotoUrl])
-            {
-                
-                NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
-
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    
-                    UIImage *placeholderImage = [UIImage imageNamed:@"chatListCellHead"];
-                    [weakSelf.headImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:placeholderImage success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                        if (image != nil)
-                        {
-                            [weakSelf.headImageView setImageToRound:image];
-                        }
-                        
-                        
- 
-                    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                        
-                    }];
-                });
-            }
+            [strongSelf.headImageView loadPortraitOfPerson:psn];
+            
+//            if ([psn.photo isValidPhotoUrl])
+//            {
+//                
+//                NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
+//
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    
+//                    
+//                    UIImage *placeholderImage = [UIImage imageNamed:@"chatListCellHead"];
+//                    [weakSelf.headImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:placeholderImage success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+//                        if (image != nil)
+//                        {
+//                            [weakSelf.headImageView setImageToRound:image];
+//                        }
+//                        
+//                        
+// 
+//                    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+//                        
+//                    }];
+//                });
+//            }
         }
     }];
     //

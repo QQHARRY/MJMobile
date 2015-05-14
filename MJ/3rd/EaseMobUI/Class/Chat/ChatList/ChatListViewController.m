@@ -390,11 +390,6 @@
                 {
                     
                     NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
-                    
-                    
-                    
-                    //dispatch_async(dispatch_get_main_queue(), ^{
-                        
                         [strongChatcell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:@"chatListCellHead.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                             
                             if (image != nil)
@@ -407,7 +402,6 @@
                         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                             
                         }];
-                   // });
                 }
             }
             
