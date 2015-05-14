@@ -11,6 +11,8 @@
   */
 
 #import "PublicGroupDetailViewController.h"
+#import "EaseMobFriendsManger.h"
+#import "UIViewController+ViewPersonDetails.h"
 
 @interface PublicGroupDetailViewController ()<UIAlertViewDelegate>
 
@@ -144,6 +146,19 @@
     if (indexPath.row == 0) {
         cell.textLabel.text = NSLocalizedString(@"group.owner", @"Owner");
         cell.detailTextLabel.text = _group.owner;
+        if (_group.owner != nil)
+        {
+            [[EaseMobFriendsManger sharedInstance] addEMFriends:@[_group.owner] isFriend:NO];
+            
+            __weak typeof(cell) weakCell = cell;
+            [[EaseMobFriendsManger sharedInstance] getFriendByUserName:_group.owner Success:^(BOOL success, person *psn) {
+                if (psn)
+                {
+                    weakCell.detailTextLabel.text = psn.name_full;
+                }
+            }];
+        }
+        
     }
     else{
         cell.textLabel.text = NSLocalizedString(@"group.describe", @"Describe");
@@ -151,6 +166,15 @@
     }
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0)
+    {
+        [self ViewPersonDetails:_group.owner];
+    }
+    
 }
 
 #pragma mark - Table view delegate

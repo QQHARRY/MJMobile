@@ -45,16 +45,23 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
 
 -(void)addMeToList
 {
-    EMBuddy*buddy = [EMBuddy buddyWithUsername:[[person me].job_no lowercaseString]];
+    if ([person me] && [person me].job_no != nil && [person me].job_no.length != 0)
+    {
+        EMBuddy*buddy = [EMBuddy buddyWithUsername:[[person me].job_no lowercaseString]];
+        
+        EaseMobContacter*contact = [[EaseMobContacter alloc] init];
+        
+        contact.buddy = buddy;
+        contact.psn = [person me];
+        
+        if (_EaseMobFriend == nil)
+        {
+            _EaseMobFriend = [[NSMutableDictionary alloc] init];
+        }
+        
+        [_EaseMobFriend setObject:contact forKey:[[person me].job_no uppercaseString]];
+    }
     
-    EaseMobContacter*contact = [[EaseMobContacter alloc] init];
-    
-    contact.buddy = buddy;
-    contact.psn = [person me];
-    
-    (_EaseMobFriend == nil)?(_EaseMobFriend = [[NSMutableDictionary alloc] init]):nil;
-    
-     [_EaseMobFriend setObject:contact forKey:[[person me].job_no uppercaseString]];
 }
 
 -(void)getFriendByUserName:(NSString*)userName Success:(void (^)(BOOL success,person* psn))success
@@ -151,10 +158,10 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
             }
             else
             {
-                if ([friend isKindOfClass:[EaseMobContacter class]])
-                {
-                    ((EaseMobContacter*)friend).isFriend = isFriend;
-                }
+//                if ([friend isKindOfClass:[EaseMobContacter class]])
+//                {
+//                    ((EaseMobContacter*)friend).isFriend = isFriend;
+//                }
             }
         }
     }
@@ -338,7 +345,12 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
 
 -(void)clean
 {
-    [_EaseMobFriend removeAllObjects];
+    self.initedMe = NO;
+    if(_EaseMobFriend)
+    {
+        [_EaseMobFriend removeAllObjects];
+    }
+    
 
 }
 

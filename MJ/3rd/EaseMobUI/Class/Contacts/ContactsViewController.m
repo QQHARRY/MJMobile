@@ -31,6 +31,8 @@
 #import "EMBuddy+namefull.h"
 #import "NSString+isValidPhotoUrl.h"
 #import "UIImageView+LoadPortraitOfPerson.h"
+#import "UIViewController+ViewPersonDetails.h"
+
 
 @interface ContactsViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, UIActionSheetDelegate, BaseTableCellDelegate, SRRefreshDelegate>
 {
@@ -261,33 +263,14 @@
 
             __weak __typeof(cell) weakChatCell = cell;
             
+            
+            
+            
             [[EaseMobFriendsManger sharedInstance] getFriendByUserName:buddy.username Success:^(BOOL success, person *psn) {
                 if (weakChatCell!=nil && psn != nil)
                 {
                     weakChatCell.textLabel.text = psn.name_full;
                     [weakChatCell.imageView loadPortraitOfPerson:psn];
-//                    if ([psn.photo isValidPhotoUrl])
-//                    {
-//                        
-//                        NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
-//                        
-//                        
-//                        
-//                        //dispatch_async(dispatch_get_main_queue(), ^{
-//                        
-//                        [strongChatcell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:@"chatListCellHead.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-//                            
-//                            if (image != nil)
-//                            {
-//                                [weakChatCell.imageView setImageToRound:image];
-//                            }
-//                            
-//                            
-//                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-//                            
-//                        }];
-//                        // });
-//                    }
                 }
                 
                 
@@ -541,6 +524,23 @@
     _currentLongPressIndex = indexPath;
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel") destructiveButtonTitle:NSLocalizedString(@"friend.block", @"join the blacklist") otherButtonTitles:nil, nil];
     [actionSheet showInView:[[UIApplication sharedApplication] keyWindow]];
+}
+
+-(void)didTapImageOnCell:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0 && indexPath.row == 1) {
+        // 群组
+        return;
+    }
+    NSDictionary *loginInfo = [[[EaseMob sharedInstance] chatManager] loginInfo];
+    NSString *loginUsername = [loginInfo objectForKey:kSDKUsername];
+    EMBuddy *buddy = [[self.dataSource objectAtIndex:(indexPath.section - 1)] objectAtIndex:indexPath.row];
+    if ([buddy.username isEqualToString:loginUsername])
+    {
+        return;
+    }
+    
+    [self ViewPersonDetails:buddy.username];
 }
 
 #pragma mark - private

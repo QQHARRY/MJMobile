@@ -58,7 +58,7 @@
     _tableView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.backgroundColor = [UIColor whiteColor];
-    _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc] init];
@@ -173,20 +173,30 @@
     }
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    if ([[self.dataSource objectAtIndex:section] count] == 0)
+//    {
+//        return nil;
+//    }
+//    
+//    UIView *contentView = [[UIView alloc] init];
+//    [contentView setBackgroundColor:[UIColor colorWithRed:0.88 green:0.88 blue:0.88 alpha:1.0]];
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 22)];
+//    label.backgroundColor = [UIColor clearColor];
+//    [label setText:[self.sectionTitles objectAtIndex:section]];
+//    [contentView addSubview:label];
+//    return contentView;
+//}
+
+-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if ([[self.dataSource objectAtIndex:section] count] == 0)
     {
-        return nil;
+        return @"";
     }
     
-    UIView *contentView = [[UIView alloc] init];
-    [contentView setBackgroundColor:[UIColor colorWithRed:0.88 green:0.88 blue:0.88 alpha:1.0]];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 22)];
-    label.backgroundColor = [UIColor clearColor];
-    [label setText:[self.sectionTitles objectAtIndex:section]];
-    [contentView addSubview:label];
-    return contentView;
+    return [self.sectionTitles objectAtIndex:section];
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
@@ -259,7 +269,7 @@
             tmp = username;
         }
         
-        NSString *firstLetter = [ChineseToPinyin pinyinFromChineseString:username];
+        NSString *firstLetter = [ChineseToPinyin pinyinFromChineseString:tmp];
         NSInteger section = [indexCollation sectionForObject:[firstLetter substringToIndex:1] collationStringSelector:@selector(uppercaseString)];
         
         NSMutableArray *array = [sortedArray objectAtIndex:section];

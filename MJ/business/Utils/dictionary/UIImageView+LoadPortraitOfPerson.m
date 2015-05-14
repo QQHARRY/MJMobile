@@ -18,7 +18,7 @@
 
 -(void)loadPortraitOfPerson:(person*)psn
 {
-    [self loadPortraitOfPerson:psn withDefault:[UIImage imageNamed:@"chatListCellHead.png"]];
+    [self loadPortraitOfPerson:psn withDefault:[UIImage imageNamed:@"个人详情默认头像.png"]];
 }
 
 -(void)loadPortraitOfPerson:(person*)psn withDefault:(UIImage*)image

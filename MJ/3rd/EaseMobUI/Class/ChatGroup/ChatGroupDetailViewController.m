@@ -27,6 +27,7 @@
 #import "UtilFun.h"
 #import "NSString+isValidPhotoUrl.h"
 #import "UIImageView+LoadPortraitOfPerson.h"
+#import "UIViewController+ViewPersonDetails.h"
 
 #pragma mark - ChatGroupDetailViewController
 
@@ -560,36 +561,38 @@
     if (index < [self.dataSource count])
     {
         NSString *username = [self.dataSource objectAtIndex:index];
-        if (username != nil && username.length > 0)
-        {
-            UIStoryboard* curStory = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-            ContactPersonDetailsViewController*vc =[curStory instantiateViewControllerWithIdentifier:@"ContactPersonDetailsViewController"];
-            if (![vc  isKindOfClass:[ContactPersonDetailsViewController class]])
-            {
-                return;
-                
-            }
-            
-            if ([username.uppercaseString isEqualToString:[person me].job_no])
-            {
-                vc.psn = [person me];
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-            else
-            {
-                
-                SHOWHUD(self.view);
-                [contactDataManager getPsnByJobNo:[username uppercaseString] Success:^(id responseObject) {
-                    HIDEHUD(self.view);
-                    vc.psn = responseObject;
-                    [self.navigationController pushViewController:vc animated:YES];
-                } failure:^(NSError *error) {
-                    HIDEHUD(self.view);
-                }];
-                
-            }
-            
-        }
+        
+        [self ViewPersonDetails:username];
+//        if (username != nil && username.length > 0)
+//        {
+//            UIStoryboard* curStory = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+//            ContactPersonDetailsViewController*vc =[curStory instantiateViewControllerWithIdentifier:@"ContactPersonDetailsViewController"];
+//            if (![vc  isKindOfClass:[ContactPersonDetailsViewController class]])
+//            {
+//                return;
+//                
+//            }
+//            
+//            if ([username.uppercaseString isEqualToString:[person me].job_no])
+//            {
+//                vc.psn = [person me];
+//                [self.navigationController pushViewController:vc animated:YES];
+//            }
+//            else
+//            {
+//                
+//                SHOWHUD(self.view);
+//                [contactDataManager getPsnByJobNo:[username uppercaseString] Success:^(id responseObject) {
+//                    HIDEHUD(self.view);
+//                    vc.psn = responseObject;
+//                    [self.navigationController pushViewController:vc animated:YES];
+//                } failure:^(NSError *error) {
+//                    HIDEHUD(self.view);
+//                }];
+//                
+//            }
+//            
+//        }
         
     }
     

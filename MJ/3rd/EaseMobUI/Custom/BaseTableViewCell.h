@@ -27,5 +27,5 @@
 @protocol BaseTableCellDelegate <NSObject>
 
 - (void)cellImageViewLongPressAtIndexPath:(NSIndexPath *)indexPath;
-
+- (void)didTapImageOnCell:(NSIndexPath*)indexPath;
 @end

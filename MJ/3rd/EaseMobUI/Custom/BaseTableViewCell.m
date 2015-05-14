@@ -27,6 +27,7 @@
         
         _headerLongPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(headerLongPress:)];
         [self addGestureRecognizer:_headerLongPress];
+        [self setUpImageView];
     }
     return self;
 }
@@ -63,6 +64,22 @@
         {
             [_delegate cellImageViewLongPressAtIndexPath:self.indexPath];
         }
+    }
+}
+
+-(void)setUpImageView
+{
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapHeadImage:)];
+    self.imageView.userInteractionEnabled = YES;
+    [self.imageView addGestureRecognizer:recognizer];
+
+}
+
+-(void)onTapHeadImage:(UITapGestureRecognizer *)tap
+{
+    if(self.delegate && [self.delegate respondsToSelector:@selector(didTapImageOnCell:)])
+    {
+        [self.delegate didTapImageOnCell:self.indexPath];
     }
 }
 
