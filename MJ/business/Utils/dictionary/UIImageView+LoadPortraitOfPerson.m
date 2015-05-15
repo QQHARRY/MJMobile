@@ -26,6 +26,11 @@
     [self loadPortraitOfPerson:psn withDefault:[UIImage imageNamed:@"个人详情默认头像.png"] round:YES];
 }
 
+-(void)loadPortraitOfPerson:(person*)psn round:(BOOL)round
+{
+    [self loadPortraitOfPerson:psn withDefault:[UIImage imageNamed:@"个人详情默认头像.png"] round:round];
+}
+
 -(void)loadPortraitOfPerson:(person*)psn withDefault:(UIImage*)image
 {
     [self loadPortraitOfPerson:psn withDefault:image round:YES];

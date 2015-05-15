@@ -481,7 +481,7 @@
                 [[EaseMobFriendsManger sharedInstance] getFriendByUserName:username Success:^(BOOL success, person *psn) {
                     if (psn)
                     {
-                        [[weakObj getImageView] loadPortraitOfPerson:psn];
+                        [[weakObj getImageView] loadPortraitOfPerson:psn round:NO];
                         weakObj.remark = psn.name_full;
                     }
                     

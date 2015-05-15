@@ -48,6 +48,8 @@
     self.textLabel.frame = rect;
     
     _bottomLineView.frame = CGRectMake(0, self.contentView.frame.size.height - 1, self.contentView.frame.size.width, 1);
+    
+    self.imageView.layer.cornerRadius = self.imageView.frame.size.height/2;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
