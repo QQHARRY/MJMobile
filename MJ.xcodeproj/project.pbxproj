@@ -81,7 +81,6 @@
 		4A6971651AE9D01700EA8E3D /* ContactPersonDetailsVCTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6971631AE9D01700EA8E3D /* ContactPersonDetailsVCTableViewCell.xib */; };
 		4A6EF2AF1A5E7401008AB819 /* pushManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6EF2AE1A5E7401008AB819 /* pushManagement.m */; };
 		4A7486761B045909003ECB8C /* TestPrivateApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7486751B045909003ECB8C /* TestPrivateApi.m */; };
-		4A7486781B045ABA003ECB8C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A7486771B045ABA003ECB8C /* CoreTelephony.framework */; };
 		4A7486B21B0499D1003ECB8C /* UIViewController+ViewPersonDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7486B11B0499D1003ECB8C /* UIViewController+ViewPersonDetails.m */; };
 		4A8788481AE8D87300FB3F91 /* ContactPsnDtlVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8788461AE8D87300FB3F91 /* ContactPsnDtlVCCell.m */; };
 		4A8788491AE8D87300FB3F91 /* ContactPsnDtlVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A8788471AE8D87300FB3F91 /* ContactPsnDtlVCCell.xib */; };
@@ -772,7 +771,6 @@
 		4A6EF2AE1A5E7401008AB819 /* pushManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pushManagement.m; sourceTree = "<group>"; };
 		4A7486741B045909003ECB8C /* TestPrivateApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestPrivateApi.h; sourceTree = "<group>"; };
 		4A7486751B045909003ECB8C /* TestPrivateApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPrivateApi.m; sourceTree = "<group>"; };
-		4A7486771B045ABA003ECB8C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		4A7486B01B0499D1003ECB8C /* UIViewController+ViewPersonDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ViewPersonDetails.h"; sourceTree = "<group>"; };
 		4A7486B11B0499D1003ECB8C /* UIViewController+ViewPersonDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ViewPersonDetails.m"; sourceTree = "<group>"; };
 		4A8788451AE8D87300FB3F91 /* ContactPsnDtlVCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPsnDtlVCCell.h; sourceTree = "<group>"; };
@@ -1703,7 +1701,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A7486781B045ABA003ECB8C /* CoreTelephony.framework in Frameworks */,
 				4AA188401AEF41D700685603 /* SystemConfiguration.framework in Frameworks */,
 				4A9ED8B31AFDC53200227498 /* AVFoundation.framework in Frameworks */,
 				4A9ED8B11AFDC52B00227498 /* AudioToolbox.framework in Frameworks */,
@@ -3242,7 +3239,6 @@
 		4AD794501A208F4400DEC779 = {
 			isa = PBXGroup;
 			children = (
-				4A7486771B045ABA003ECB8C /* CoreTelephony.framework */,
 				4AD7945B1A208F4400DEC779 /* MJ */,
 				4AD794751A208F4500DEC779 /* MJTests */,
 				4AD7945A1A208F4400DEC779 /* Products */,
