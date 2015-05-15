@@ -38,15 +38,17 @@
     {
         NSString*newVersion = [response objectForKey:@"versionName"];
         NSString*versionAddress = [response objectForKey:@"downloadURL"];
+        NSString* releaseNote = [response objectForKey:@"releaseNote"];
+        
         NSString*nowVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
-
+        
         
         if ([newVersion compare:nowVersion options:NSNumericSearch] == NSOrderedDescending)
         {
             
             if (self.delegate)
             {
-                [self.delegate hasNewVersion:YES VersionName:newVersion VersionSize:@"" VersionAddress:versionAddress RequiredToUpdate:YES];
+                [self.delegate hasNewVersion:YES VersionName:newVersion ReleaseNote:releaseNote VersionSize:@"" VersionAddress:versionAddress RequiredToUpdate:YES];
                 return;
             }
         }
@@ -54,7 +56,7 @@
 
     if (self.delegate)
     {
-        [self.delegate hasNewVersion:NO VersionName:@"" VersionSize:@"" VersionAddress:@"" RequiredToUpdate:NO];
+        [self.delegate hasNewVersion:NO VersionName:@"" ReleaseNote:@"" VersionSize:@"" VersionAddress:@"" RequiredToUpdate:NO];
     }
 }
 
@@ -93,14 +95,14 @@
         
         if (self.delegate)
         {
-            [self.delegate hasNewVersion:YES VersionName:requiredVersion VersionSize:@"" VersionAddress:versionAddress RequiredToUpdate:updateRequired];
+            [self.delegate hasNewVersion:YES VersionName:requiredVersion  ReleaseNote:@"" VersionSize:@"" VersionAddress:versionAddress RequiredToUpdate:updateRequired];
         }
     }
     else
     {
         if (self.delegate)
         {
-            [self.delegate hasNewVersion:NO VersionName:@"" VersionSize:@"" VersionAddress:@"" RequiredToUpdate:NO];
+            [self.delegate hasNewVersion:NO VersionName:@"" ReleaseNote:@"" VersionSize:@"" VersionAddress:@"" RequiredToUpdate:NO];
         }
     }
 

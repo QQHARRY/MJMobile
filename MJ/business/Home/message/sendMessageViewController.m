@@ -309,14 +309,26 @@
 //    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
+-(BOOL)isWebViewFirstResponder
+{
+    if (![self.receiverNameList isFirstResponder] && ![self.ccNameList isFirstResponder]
+        &&![self.bccNameList isFirstResponder] && ![self.msgTitleCtrl isFirstResponder])
+    {
+        return YES;
+    }
+    return NO;
+}
 
 
 - (void)keyboardWillShow:(NSNotification *)notification
 {
-    if (![self.webView isFirstResponder])
+    
+
+    if (![self isWebViewFirstResponder])
     {
         return;
     }
+
 
     if (webViewExpand == NO)
     {
@@ -336,6 +348,8 @@
     }
     
 }
+
+
 
 - (void)keyboardWillHide
 {

@@ -11,5 +11,5 @@
 @interface UIViewController (logoutAndDownloadNewVersion)
 
 
--(void)quitAndDLNewVersion:(NSString*)vName Address:(NSString*)address;
+-(void)quitAndDLNewVersion:(NSString*)vName  ReleaseNote:(NSString *)releaseNote Address:(NSString*)address;
 @end

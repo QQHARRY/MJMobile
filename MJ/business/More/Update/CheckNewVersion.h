@@ -15,7 +15,7 @@
 @protocol updateDelegate <NSObject>
 
 @required
--(void)hasNewVersion:(BOOL)bHasNewVersion VersionName:(NSString*)vName VersionSize:(NSString*)size VersionAddress:(NSString*)address RequiredToUpdate:(BOOL)updateRequired;
+-(void)hasNewVersion:(BOOL)bHasNewVersion VersionName:(NSString*)vName ReleaseNote:(NSString*)releaseNote VersionSize:(NSString*)size VersionAddress:(NSString*)address RequiredToUpdate:(BOOL)updateRequired;
 @end
 
 @interface CheckNewVersion : NSObject

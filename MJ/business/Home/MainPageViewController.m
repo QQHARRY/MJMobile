@@ -148,13 +148,13 @@
     }
 }
 
--(void)hasNewVersion:(BOOL)bHasNewVersion VersionName:(NSString*)vName VersionSize:(NSString*)size VersionAddress:(NSString*)address RequiredToUpdate:(BOOL)updateRequired
+-(void)hasNewVersion:(BOOL)bHasNewVersion VersionName:(NSString*)vName ReleaseNote:(NSString *)releaseNote VersionSize:(NSString*)size VersionAddress:(NSString*)address RequiredToUpdate:(BOOL)updateRequired
 {
     if (bHasNewVersion)
     {
         if (updateRequired)
         {
-            [self quitAndDLNewVersion:vName Address:address];
+            [self quitAndDLNewVersion:vName ReleaseNote: releaseNote Address:address];
             
         }
        
