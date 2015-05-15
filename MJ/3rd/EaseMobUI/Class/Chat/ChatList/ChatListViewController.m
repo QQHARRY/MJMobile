@@ -385,24 +385,24 @@
             {
                 __strong typeof(weakChatCell) strongChatcell = weakChatCell;
                 strongChatcell.name = psn.name_full;
-                
-                if ([psn.photo isValidPhotoUrl])
-                {
-                    
-                    NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
-                        [strongChatcell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:@"chatListCellHead.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                            
-                            if (image != nil)
-                            {
-                                [weakChatCell.imageView setImageToRound:image];
-                                weakChatCell.placeholderImage = weakChatCell.imageView.image;
-                            }
-                            
-                            
-                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                            
-                        }];
-                }
+                strongChatcell.imageURL = [NSURL URLWithString:[SERVER_ADD stringByAppendingString:psn.photo]];
+//                if ([psn.photo isValidPhotoUrl])
+//                {
+//                    
+//                    NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
+//                        [strongChatcell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:@"chatListCellHead.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+//                            
+//                            if (image != nil)
+//                            {
+//                                [weakChatCell.imageView setImageToRound:image];
+//                                weakChatCell.placeholderImage = weakChatCell.imageView.image;
+//                            }
+//                            
+//                            
+//                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+//                            
+//                        }];
+//                }
             }
             
             

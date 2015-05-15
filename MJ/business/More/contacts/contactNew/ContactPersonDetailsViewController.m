@@ -73,7 +73,7 @@
     self.tableview.delegate = self;
     self.tableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.tableview setContentSize:self.view.frame.size];
-    
+
     
     self.editState = NO;
     self.nameAndNo.text = [NSString stringWithFormat:@"%@ %@",self.psn.name_full,self.psn.job_no];
@@ -86,46 +86,22 @@
 
 
 
+
 -(void)setUpPhotoAbout
 {
-    
-  
-    
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapScreen:)];
     self.photoImage.userInteractionEnabled = YES;
     [self.photoImage addGestureRecognizer:recognizer];
-
-
-    [self.photoImage loadPortraitOfPerson:psn withDefault:[UIImage imageNamed:DEFAULT_PERSON_IAMGE]];
-//    NSString*photoUrl = psn.photo;
-//    if ([photoManager getPhotoByPerson:psn] != nil)
-//    {
-//        UIImage*image = [photoManager getPhotoByPerson:psn];
-//        [self.photoImage setImageToRound:image];
-//    }
-//    else
-//    {
-//        NSString*strUrl = [SERVER_ADD stringByAppendingString:photoUrl];
-//
-//        NSString*imgName =  [strUrl pathExtension];
-//        if (imgName != nil && imgName.length > 0)
-//        {
-//
-//            __typeof (UIImageView*) __weak imagV = self.photoImage;
-//            __typeof (person*) __weak tmpPsn = self.psn;
-//            [self.photoImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
-//             {
-//                [imagV setImageToRound:image];
-//                 if ([tmpPsn isEqual:[person me]] || [tmpPsn.job_no isEqualToString:[person me].job_no])
-//                 {
-//                     [photoManager setPhoto:image ForPerson:tmpPsn];
-//                 }
-//             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-//                 
-//             }];
-//        }
-//        
-//    }
+    if ([photoManager getPhotoByPerson:psn])
+    {
+        self.photoImage.image = [photoManager getPhotoByPerson:psn];
+    }
+    else
+    {
+        [self.photoImage loadPortraitOfPerson:psn withDefault:[UIImage imageNamed:DEFAULT_PERSON_IAMGE] round:NO];
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -135,10 +111,19 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    
+
 }
 
-
+-(void)viewDidLayoutSubviews
+{
+    CGRect rct = self.photoImage.frame;
+    if (rct.size.width == rct.size.height)
+    {
+        [self.photoImage.layer setCornerRadius:self.photoImage.frame.size.height/2];
+        [self.photoImage.layer setMasksToBounds:YES];
+    }
+    
+}
 
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -322,6 +307,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide) name:UIKeyboardDidHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+
     
     [super viewWillAppear:animated];
 }
@@ -554,19 +541,6 @@
 
 - (void)onTapScreen:(UITapGestureRecognizer *)tap
 {
-//    CGPoint point = [tap locationInView:self.view];
-//    CGRect rect =  [self.view convertRect:self.photoImage.frame fromView:self.view];
-//    BOOL contain  = CGRectContainsPoint(rect, point);
-//    
-//    
-//    if (!contain)
-//    {
-//        return;
-//    }
-//    
-    
-
-    
     if (self.psn == [person me] || [self.psn.job_no isEqualToString:[person me].job_no])
     {
         UIActionSheet *sheet;
@@ -658,36 +632,7 @@
     
     NSData*data = UIImageJPEGRepresentation(image, 0.25);
     
-    
-#if 0
-    NSDictionary *parameters = @{@"job_no":psn.job_no,
-                                 @"acc_password": psn.password,
-                                 @"DeviceID" : [UtilFun getUDID],
-                                 };
-    
-    
-    SHOWHUD_WINDOW;
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:[NSString stringWithFormat:@"%@%@", SERVER_URL, EDIT_PERSON_PHOTO] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
-     {
-         [formData appendPartWithFormData:data name:@"photo"];
-         
-     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-         
-         
-         dispatch_async(dispatch_get_main_queue(), ^{
-             [photoManager setPhoto:image ForPerson:[person me]];
-             [self.myPhoto setBackgroundImage:image forState:UIControlStateNormal];
-         });
-         
-         HIDEHUD_WINDOW;
-         PRESENTALERT(@"修改成功", nil, nil, nil);
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         HIDEHUD_WINDOW;
-         PRESENTALERT(@"修改失败", nil, nil, nil);
-     }];
-#endif
-    
+
     NSMutableDictionary*params = [[NSMutableDictionary alloc] init];
     [params setValue:[person me].job_no forKey:@"job_no"];
     [params setValue:[person me].password forKey:@"acc_password"];
@@ -702,7 +647,8 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [photoManager setPhoto:image ForPerson:[person me]];
             
-            [self.photoImage setImageToRound:image];
+            self.photoImage.image = image;
+            //[self.photoImage setImageToRound:image];
             HIDEHUD_WINDOW;
             PRESENTALERT(@"修改成功", nil, nil, nil);
         });
@@ -729,20 +675,6 @@
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
-
-#pragma mark - save image to bundle
-- (NSString*) saveImage:(UIImage *)currentImage withName:(NSString *)imageName
-{
-    NSString*userID = psn.job_no;
-    
-    NSData *imageData = UIImagePNGRepresentation(currentImage);
-    
-    NSString *fullPath = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]  stringByAppendingPathComponent:userID] stringByAppendingString:@"_"]stringByAppendingString:imageName];
-    
-    [imageData writeToFile:fullPath atomically:NO];
-    
-    return fullPath;
-}
 
 /*
 #pragma mark - Navigation

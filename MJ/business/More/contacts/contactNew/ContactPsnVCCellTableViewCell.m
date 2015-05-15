@@ -27,7 +27,7 @@
     self.msgBtn.hidden = !((self.psn.obj_mobile!=nil) && (self.psn.obj_mobile.length >0));
     IMSTATE imState = [self.psn imState];
     
-    
+    //self.psnImage.layer.cornerRadius = self.frame.size.width/2;
     
     
     switch (imState)

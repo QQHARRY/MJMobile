@@ -23,6 +23,7 @@
 #import "SettingsViewController.h"
 #import "PushNotificationViewController.h"
 #import "UIViewController+logoutAndDownloadNewVersion.h"
+#import "UIImageView+LoadPortraitOfPerson.h"
 
 @interface MoreViewController ()
 
@@ -205,11 +206,10 @@
             }
             else
             {
-                NSString*strUrl = [SERVER_ADD stringByAppendingString:photoUrl];
-                
-                [cell.myPhoto setImageWithURL:[NSURL URLWithString:strUrl] placeholderImage:[UIImage imageNamed:@"个人详情默认头像"]];
+                [cell.myPhoto loadPortraitOfPerson:[person me] withDefault:[UIImage imageNamed:@"个人详情默认头像"] round:NO];
             }
         }
+        
         
         
         
