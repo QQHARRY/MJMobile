@@ -20,7 +20,8 @@
 
     [self.layer setCornerRadius:self.frame.size.width/2.0];
     self.layer.masksToBounds = YES;
-    self.image = image;
+    //self.image = image;
+    [self setNeedsLayout];
 }
 
 @end

@@ -29,7 +29,8 @@
 #import "UIImageView+RoundImage.h"
 #import "EMConversation+realName.h"
 #import "NSString+isValidPhotoUrl.h"
-
+#import "EaseMobFriendsManger.h"
+#import "UIImageView+LoadPortraitOfPerson.h"
 @interface ChatListViewController ()<UITableViewDelegate,UITableViewDataSource, UISearchDisplayDelegate,SRRefreshDelegate, UISearchBarDelegate, IChatManagerDelegate>
 
 @property (strong, nonatomic) NSMutableArray        *dataSource;
@@ -232,7 +233,17 @@
                 }
                 cell.placeholderImage = [UIImage imageNamed:imageName];
             }
-            cell.detailMsg = [weakSelf subTitleMessageByConversation:conversation];
+            
+            __weak typeof(cell)weakCell = cell;
+            [weakSelf syncGetSubTitleMessageByConversation:conversation Success:^(BOOL success, NSString *subTitle) {
+                if (success && subTitle)
+                {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        weakCell.detailMsg = subTitle;
+                        [weakCell setNeedsLayout];
+                    });
+                }
+            }];
             cell.time = [weakSelf lastMessageTimeByConversation:conversation];
             cell.unreadCount = [weakSelf unreadMessageCountByConversation:conversation];
             if (indexPath.row % 2 == 1) {
@@ -330,7 +341,8 @@
 {
     NSString *ret = @"";
     EMMessage *lastMessage = [conversation latestMessage];
-    if (lastMessage) {
+    if (lastMessage)
+    {
         id<IEMMessageBody> messageBody = lastMessage.messageBodies.lastObject;
         switch (messageBody.messageBodyType) {
             case eMessageBodyType_Image:{
@@ -359,6 +371,50 @@
     return ret;
 }
 
+
+-(void)syncGetSubTitleMessageByConversation:(EMConversation*)conversation Success:(void(^)(BOOL success,NSString*subTitle)) succeed
+{
+    NSString*subTitle = [self subTitleMessageByConversation:conversation];
+    EMMessage *lastMessage = [conversation latestMessage];
+    if (lastMessage && subTitle && subTitle.length != 0)
+    {
+        NSString*senderName = @"";
+        if (lastMessage.isGroup)
+        {
+            senderName = lastMessage.groupSenderName;
+        }
+        else
+        {
+            senderName = lastMessage.from;
+        }
+        
+        if (senderName && senderName.length != 0)
+        {
+           
+            
+            [[EaseMobFriendsManger sharedInstance] addEMFriends:@[[senderName uppercaseString]] isFriend:NO];
+            [[EaseMobFriendsManger sharedInstance] getFriendByUserName:[senderName uppercaseString] Success:^(BOOL success, person *psn) {
+                
+                NSString*subTitleWithFullName = [subTitle copy];
+                if (success && psn)
+                {
+                    subTitleWithFullName = [NSString stringWithFormat:@"%@: %@",psn.name_full,subTitle];
+                }
+                else
+                {
+                    subTitleWithFullName = [NSString stringWithFormat:@"%@: %@",lastMessage.from,subTitle];
+                }
+                
+                if (succeed)
+                {
+                    succeed(YES,subTitleWithFullName);
+                }
+            }];
+        }
+    }
+
+}
+
 #pragma mark - TableViewDelegate & TableViewDatasource
 
 
@@ -385,31 +441,13 @@
             {
                 __strong typeof(weakChatCell) strongChatcell = weakChatCell;
                 strongChatcell.name = psn.name_full;
+                //[strongChatcell.imageView  ]
                 strongChatcell.imageURL = [NSURL URLWithString:[SERVER_ADD stringByAppendingString:psn.photo]];
-//                if ([psn.photo isValidPhotoUrl])
-//                {
-//                    
-//                    NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
-//                        [strongChatcell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:[UIImage imageNamed:@"chatListCellHead.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-//                            
-//                            if (image != nil)
-//                            {
-//                                [weakChatCell.imageView setImageToRound:image];
-//                                weakChatCell.placeholderImage = weakChatCell.imageView.image;
-//                            }
-//                            
-//                            
-//                        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-//                            
-//                        }];
-//                }
             }
-            
-            
-            
         }];
     }
-    else{
+    else
+    {
         NSString *imageName = @"groupPublicHeader";
         NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
         for (EMGroup *group in groupArray) {
@@ -421,7 +459,17 @@
         }
         cell.placeholderImage = [UIImage imageNamed:imageName];
     }
-    cell.detailMsg = [self subTitleMessageByConversation:conversation];
+    
+
+    [self syncGetSubTitleMessageByConversation:conversation Success:^(BOOL success, NSString *subTitle) {
+        if (success && subTitle)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                weakChatCell.detailMsg = subTitle;
+                [weakChatCell setNeedsLayout];
+            });
+        }
+    }];
     cell.time = [self lastMessageTimeByConversation:conversation];
     cell.unreadCount = [self unreadMessageCountByConversation:conversation];
     if (indexPath.row % 2 == 1) {

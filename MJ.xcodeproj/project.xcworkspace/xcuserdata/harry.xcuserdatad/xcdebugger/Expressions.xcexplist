@@ -160,6 +160,14 @@
          contextName = "-[HouseParticularTableViewController prepareInfoSectionItems]:HouseParticularTableViewController.m">
       </ContextState>
       <ContextState
+         contextName = "-[ChatListViewController syncGetSubTitleMessageByConversation:Success:]:ChatListViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "subTitle">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "+[contactDataManager getSubDeptOfUnit:Success:failure:]:contactDataManager.m">
       </ContextState>
       <ContextState

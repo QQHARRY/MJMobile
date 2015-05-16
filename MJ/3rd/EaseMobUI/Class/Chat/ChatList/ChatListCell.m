@@ -85,8 +85,10 @@
     [super layoutSubviews];
     CGRect frame = self.imageView.frame;
     
-    [self.imageView sd_setImageWithURL:_imageURL placeholderImage:_placeholderImage];
+    [self.imageView sd_setImageWithURL:_imageURL  placeholderImage:_placeholderImage];
     self.imageView.frame = CGRectMake(10, 7, 45, 45);
+    [self.imageView.layer setCornerRadius:5];
+    [self.imageView.layer setMasksToBounds:YES];
     
     self.textLabel.text = _name;
     self.textLabel.frame = CGRectMake(65, 7, 175, 20);

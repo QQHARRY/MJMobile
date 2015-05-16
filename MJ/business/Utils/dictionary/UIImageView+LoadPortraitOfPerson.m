@@ -69,14 +69,18 @@
         [self sd_setImageWithURL:[NSURL URLWithString:strUrl] placeholderImage:image completed:^(UIImage *image, NSError *error, EMSDImageCacheType cacheType, NSURL *imageURL) {
             if (image != nil && error == nil)
             {
-                if (round)
-                {
-                    [weakSelf setImageToRound:image];
-                }
-                else
-                {
-                    weakSelf.image = image;
-                }
+                dispatch_main_sync_safe (^
+                                         {
+                                             if (round)
+                                             {
+                                                 [weakSelf setImageToRound:image];
+                                             }
+                                             else
+                                             {
+                                                 //weakSelf.image = image;
+                                             }
+                                         });
+               
                 
             }
         }];

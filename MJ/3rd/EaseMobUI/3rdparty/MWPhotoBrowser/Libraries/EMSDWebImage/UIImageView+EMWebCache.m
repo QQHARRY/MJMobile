@@ -43,7 +43,12 @@ static char imageURLKey;
     objc_setAssociatedObject(self, &imageURLKey, url, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
     if (!(options & EMSDWebImageDelayPlaceholder)) {
-        self.image = placeholder;
+        if (self.image == nil)
+        {
+            dispatch_main_async_safe(^{
+            self.image = placeholder;
+            });
+        }
     }
     
     if (url) {
