@@ -388,7 +388,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"cellForRowAtIndexPath");
+
     if (indexPath.row < [self.dataSource count])
     {
         id obj = [self.dataSource objectAtIndex:indexPath.row];
@@ -1133,50 +1133,58 @@
 
 - (void)loadMoreMessages
 {
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(_messageQueue, ^{
-        long long timestamp = [[NSDate date] timeIntervalSince1970] * 1000 + 1;
-        
-        NSArray *messages = [weakSelf.conversation loadNumbersOfMessages:([weakSelf.messages count] + KPageCount) before:timestamp];
-        if ([messages count] > 0)
-        {
-            NSInteger newMessagesCount = [messages count] - [weakSelf.messages count];
-            weakSelf.messages = [messages mutableCopy];
+    @try
+    {
+        __weak typeof(self) weakSelf = self;
+        dispatch_async(_messageQueue, ^{
+            long long timestamp = [[NSDate date] timeIntervalSince1970] * 1000 + 1;
             
-            NSInteger currentCount = [weakSelf.dataSource count];
-            weakSelf.dataSource = [[weakSelf formatMessages:messages] mutableCopy];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf.tableView reloadData];
+            NSArray *messages = [weakSelf.conversation loadNumbersOfMessages:([weakSelf.messages count] + KPageCount) before:timestamp];
+            if ([messages count] > 0)
+            {
+                NSInteger newMessagesCount = [messages count] - [weakSelf.messages count];
+                weakSelf.messages = [messages mutableCopy];
                 
-                [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[weakSelf.dataSource count] - currentCount - 1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-            });
-
-            //从数据库导入时重新下载没有下载成功的附件
-            for (NSInteger i = 0; i < [weakSelf.dataSource count]; i++)
-            {
-                id obj = weakSelf.dataSource[i];
-                if ([obj isKindOfClass:[MessageModel class]])
+                NSInteger currentCount = [weakSelf.dataSource count];
+                weakSelf.dataSource = [[weakSelf formatMessages:messages] mutableCopy];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf.tableView reloadData];
+                    
+                    [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[weakSelf.dataSource count] - currentCount - 1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+                });
+                
+                //从数据库导入时重新下载没有下载成功的附件
+                for (NSInteger i = 0; i < [weakSelf.dataSource count]; i++)
                 {
-                    [weakSelf downloadMessageAttachments:obj];
+                    id obj = weakSelf.dataSource[i];
+                    if ([obj isKindOfClass:[MessageModel class]])
+                    {
+                        [weakSelf downloadMessageAttachments:obj];
+                    }
+                }
+                
+                NSString *account = [[EaseMob sharedInstance].chatManager loginInfo][kSDKUsername];
+                NSMutableArray *unreadMessages = [NSMutableArray array];
+                for (NSInteger i = 0; i < newMessagesCount; i++)
+                {
+                    EMMessage *message = messages[i];
+                    if (!message.isReadAcked && ![account isEqualToString:message.from])
+                    {
+                        [unreadMessages addObject:message];
+                    }
+                }
+                if ([unreadMessages count])
+                {
+                    [self sendHasReadResponseForMessages:unreadMessages];
                 }
             }
-
-            NSString *account = [[EaseMob sharedInstance].chatManager loginInfo][kSDKUsername];
-            NSMutableArray *unreadMessages = [NSMutableArray array];
-            for (NSInteger i = 0; i < newMessagesCount; i++)
-            {
-                EMMessage *message = messages[i];
-                if (!message.isReadAcked && ![account isEqualToString:message.from])
-                {
-                    [unreadMessages addObject:message];
-                }
-            }
-            if ([unreadMessages count])
-            {
-                [self sendHasReadResponseForMessages:unreadMessages];
-            }
-        }
-    });
+        });
+    }
+    @catch(NSException*e)
+    {
+        NSLog(@"loadMoreMessages exception");
+        [self showHint:@"网络错误,加载失败，请下拉重新加载"];
+    }
 }
 
 - (void)downloadMessageAttachments:(MessageModel *)model

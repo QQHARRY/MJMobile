@@ -435,7 +435,7 @@
         {
             if ([[[areaDict objectForKey:@"dict"] objectForKey:@"areas_name"] isEqualToString:self.belongAreaItem.value])
             {
-                filter.housearea = [areaDict objectForKey:@"no"];
+                filter.houseurban = [areaDict objectForKey:@"no"];
                 break;
             }
         }
@@ -448,7 +448,7 @@
             {
                 if ([[sectionDict objectForKey:@"areas_name"] isEqualToString:self.belongSectionItem.value])
                 {
-                    filter.houseurban = [sectionDict objectForKey:@"areas_current_no"];
+                    filter.housearea = [sectionDict objectForKey:@"areas_current_no"];
                     bFind = true;
                     break;
                 }

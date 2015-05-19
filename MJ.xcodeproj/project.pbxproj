@@ -71,6 +71,7 @@
 		4A5D244E1A4AC17500546698 /* cartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D244D1A4AC17500546698 /* cartTableViewCell.m */; };
 		4A5D24511A4AF21000546698 /* orderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D24501A4AF21000546698 /* orderTableViewCell.m */; };
 		4A5D24541A4AF22900546698 /* orderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D24531A4AF22900546698 /* orderTableViewController.m */; };
+		4A6685991B07225900B0E999 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6685961B07225900B0E999 /* libMobClickLibrary.a */; };
 		4A6865A11A7374EF005394DD /* HouseSelectBuildingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6865A01A7374EF005394DD /* HouseSelectBuildingTableViewController.m */; };
 		4A6865A51A737573005394DD /* buildingItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6865A31A737573005394DD /* buildingItemTableViewCell.m */; };
 		4A6865A61A737573005394DD /* buildingItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6865A41A737573005394DD /* buildingItemTableViewCell.xib */; };
@@ -751,6 +752,9 @@
 		4A5D24501A4AF21000546698 /* orderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = orderTableViewCell.m; sourceTree = "<group>"; };
 		4A5D24521A4AF22900546698 /* orderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = orderTableViewController.h; sourceTree = "<group>"; };
 		4A5D24531A4AF22900546698 /* orderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = orderTableViewController.m; sourceTree = "<group>"; };
+		4A6685961B07225900B0E999 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		4A6685971B07225900B0E999 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		4A6685981B07225900B0E999 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
 		4A68659F1A7374EF005394DD /* HouseSelectBuildingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseSelectBuildingTableViewController.h; sourceTree = "<group>"; };
 		4A6865A01A7374EF005394DD /* HouseSelectBuildingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseSelectBuildingTableViewController.m; sourceTree = "<group>"; };
 		4A6865A21A737573005394DD /* buildingItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buildingItemTableViewCell.h; sourceTree = "<group>"; };
@@ -1720,6 +1724,7 @@
 				4AA1883E1AEF41C300685603 /* CoreLocation.framework in Frameworks */,
 				4A9ED8A91AFDC4ED00227498 /* PgySDK.framework in Frameworks */,
 				4AA1883C1AEF41B900685603 /* MapKit.framework in Frameworks */,
+				4A6685991B07225900B0E999 /* libMobClickLibrary.a in Frameworks */,
 				4AA1883A1AEF41B000685603 /* ImageIO.framework in Frameworks */,
 				4AA188381AEF41A500685603 /* CoreText.framework in Frameworks */,
 				4AA188431AEF506400685603 /* libUMessage_Sdk_1.1.0.a in Frameworks */,
@@ -1926,6 +1931,16 @@
 				4A5665521A4C127A00C3BA22 /* sendMessageViewController.xib */,
 			);
 			path = message;
+			sourceTree = "<group>";
+		};
+		4A6685951B07225900B0E999 /* UMAnalytics_Sdk_3.5.8 */ = {
+			isa = PBXGroup;
+			children = (
+				4A6685961B07225900B0E999 /* libMobClickLibrary.a */,
+				4A6685971B07225900B0E999 /* MobClick.h */,
+				4A6685981B07225900B0E999 /* MobClickSocialAnalytics.h */,
+			);
+			path = UMAnalytics_Sdk_3.5.8;
 			sourceTree = "<group>";
 		};
 		4A6EF2A81A5E6E8D008AB819 /* UMessage_Sdk_1.1.0 */ = {
@@ -3312,6 +3327,7 @@
 		4AD794A61A218C4A00DEC779 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				4A6685951B07225900B0E999 /* UMAnalytics_Sdk_3.5.8 */,
 				4A8F095D1AF87AD200C44B99 /* MBProgressHUD */,
 				4AAE1A4C1AF1C96000F01D95 /* UIBarButtonItem+Badge */,
 				4AA18B6C1AEF55ED00685603 /* EaseMobSDK */,
@@ -4690,6 +4706,7 @@
 					"$(PROJECT_DIR)/MJ/3rd/UMessage_Sdk_1.1.0",
 					"$(PROJECT_DIR)/MJ/3rd/EaseMobSDK/lib",
 					"$(PROJECT_DIR)/MJ/3rd/EaseMobUI/3rdparty/UMeng",
+					"$(PROJECT_DIR)/MJ/3rd/UMAnalytics_Sdk_3.5.8",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -4720,6 +4737,7 @@
 					"$(PROJECT_DIR)/MJ/3rd/UMessage_Sdk_1.1.0",
 					"$(PROJECT_DIR)/MJ/3rd/EaseMobSDK/lib",
 					"$(PROJECT_DIR)/MJ/3rd/EaseMobUI/3rdparty/UMeng",
+					"$(PROJECT_DIR)/MJ/3rd/UMAnalytics_Sdk_3.5.8",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
