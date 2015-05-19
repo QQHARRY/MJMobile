@@ -11,6 +11,7 @@
 #import "Macro.h"
 #import "HouseDataPuller.h"
 #import "UtilFun.h"
+#import <objc/runtime.h>
 
 @interface HouseFilterController ()
 
@@ -73,6 +74,35 @@
     self.keySearchSection = [self addKeySearchControls];
     self.exactQuerySection = [self addExactQueryControls];
     self.commitSection = [self addCommitButton];
+    
+    
+    UIBarButtonItem*resetBtn = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(clearBtnClicked)];
+    self.navigationItem.rightBarButtonItem = resetBtn;
+}
+
+-(void)clearBtnClicked
+{
+    [_keySearchItem setValue:@""];
+    [_buildItem setValue:@""];
+    [_unitItem setValue:@""];
+    [_floorItem setValue:@""];
+    [_tabletItem setValue:@""];
+    [_hallItem setValue:@""];
+    [_roomItem setValue:@""];
+    [_minAreaItem setValue:@""];
+    [_maxAreaItem setValue:@""];
+    [_minPriceItem setValue:@""];
+    [_maxPriceItem setValue:@""];
+    [_minFloorItem setValue:@""];
+    [_maxFloorItem setValue:@""];
+    [_belongAreaItem setValue:@""];
+    [_belongSectionItem setValue:@""];
+    [_driectItem setValue:@""];
+    [_statusItem setValue:@""];
+    [_fitmentItem setValue:@""];
+    [_consignmentItem setValue:@""];
+    [self.tableView reloadData];
+
 }
 
 - (RETableViewSection *)addKeySearchControls

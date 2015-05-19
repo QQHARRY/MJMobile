@@ -71,6 +71,7 @@ __strong static person* _sharedObject = nil;
     {
         object_setIvar(_sharedObject,*p,nil);
     }
+    free(ivars);
 }
 
 -(BOOL)isImOpened

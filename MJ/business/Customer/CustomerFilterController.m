@@ -57,6 +57,26 @@
     // add section
     self.exactQuerySection = [self addExactQueryControls];
     self.commitSection = [self addCommitButton];
+    
+    UIBarButtonItem*resetBtn = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(clearBtnClicked)];
+    self.navigationItem.rightBarButtonItem = resetBtn;
+}
+
+-(void)clearBtnClicked
+{
+
+    
+    [_belongAreaItem setValue:@""];
+    [_belongSectionItem setValue:@""];
+    [_salesNameItem setValue:@""];
+    [_customerNameItem setValue:@""];
+    [_customerPhoneItem setValue:@""];
+    [_statusItem setValue:@""];
+    [_startTimeItem setValue:nil];
+    [_endTimeItem setValue:nil];
+    
+    [self.tableView reloadData];
+    
 }
 
 - (RETableViewSection *)addExactQueryControls

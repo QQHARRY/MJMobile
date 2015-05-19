@@ -1133,7 +1133,7 @@
 
 - (void)loadMoreMessages
 {
-    @try
+//    @try
     {
         __weak typeof(self) weakSelf = self;
         dispatch_async(_messageQueue, ^{
@@ -1180,11 +1180,11 @@
             }
         });
     }
-    @catch(NSException*e)
-    {
-        NSLog(@"loadMoreMessages exception");
-        [self showHint:@"网络错误,加载失败，请下拉重新加载"];
-    }
+//    @catch(NSException*e)
+//    {
+//        NSLog(@"loadMoreMessages exception");
+//        [self showHint:@"网络错误,加载失败，请下拉重新加载"];
+//    }
 }
 
 - (void)downloadMessageAttachments:(MessageModel *)model

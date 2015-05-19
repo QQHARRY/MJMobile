@@ -32,6 +32,7 @@
        
     }
     
+    free(ivars);
     return TRUE;
 }
 

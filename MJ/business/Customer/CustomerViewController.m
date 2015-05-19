@@ -18,6 +18,7 @@
 
 @interface CustomerViewController ()
 
+@property(strong,nonatomic)CustomerFilterController*filter;
 @end
 
 @implementation CustomerViewController
@@ -100,10 +101,14 @@
 
 - (void)onFilterAction:(id)sender
 {
-    CustomerFilterController *vc = [[CustomerFilterController alloc] initWithStyle:UITableViewStyleGrouped];
-    vc.hvc = self;
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (_filter == nil)
+    {
+        _filter = [[CustomerFilterController alloc] initWithStyle:UITableViewStyleGrouped];
+        _filter.hvc = self;
+        _filter.hidesBottomBarWhenPushed = YES;
+    }
+    
+    [self.navigationController pushViewController:_filter animated:YES];
 }
 
 #pragma mark - ViewPagerDataSource
