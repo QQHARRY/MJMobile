@@ -309,7 +309,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wiL-HT-58g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="918" y="-661.5"/>
+            <point key="canvasLocation" x="809" y="-662"/>
         </scene>
         <!--主页-->
         <scene sceneID="xSz-gJ-xZC">
@@ -322,23 +322,10 @@
                     <view key="view" contentMode="scaleToFill" id="TA2-IZ-yPO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rkK-7q-kv2">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="rkK-7q-kv2" firstAttribute="leading" secondItem="TA2-IZ-yPO" secondAttribute="leading" id="CkV-QF-Cs5"/>
-                            <constraint firstAttribute="bottom" secondItem="rkK-7q-kv2" secondAttribute="bottom" id="EHN-qe-fj5"/>
-                            <constraint firstAttribute="trailing" secondItem="rkK-7q-kv2" secondAttribute="trailing" id="FpC-FN-4er"/>
-                            <constraint firstItem="rkK-7q-kv2" firstAttribute="top" secondItem="TA2-IZ-yPO" secondAttribute="top" id="sHM-rb-1cU"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="主页" id="2lu-W2-62Q"/>
                     <connections>
-                        <outlet property="tableView" destination="rkK-7q-kv2" id="6EJ-ng-mZA"/>
                         <segue destination="8oe-Gb-wga" kind="show" identifier="viewAnncDetails" id="DLs-As-7Sx"/>
                         <segue destination="0s0-nL-Nba" kind="show" identifier="toAnncList" id="z6n-UR-tcj"/>
                         <segue destination="8tN-i5-XJY" kind="show" identifier="toAlertList" id="Fiv-E2-lDU"/>
@@ -348,7 +335,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hwJ-E9-zCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1641.75" y="-661.5"/>
+            <point key="canvasLocation" x="1519" y="-678"/>
         </scene>
         <!--Contact Dept View Controller-->
         <scene sceneID="rcq-a2-Hc5">

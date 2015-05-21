@@ -13,4 +13,6 @@
 
 +(void)getListFrom:(NSString*)from To:(NSString*)to Count:(int)count Success:(void (^)(id responseObject))success
                         failure:(void (^)(NSError *error))failure;
++(void)getHomeIndicatorCountDataSuccess:(void (^)(id responseObject))success
+                                failure:(void (^)(NSError *error))failure;
 @end

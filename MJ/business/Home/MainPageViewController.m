@@ -41,16 +41,80 @@
 #import "AppDelegate.h"
 #import "UIBarButtonItem+Badge.h"
 #import "UIViewController+logoutAndDownloadNewVersion.h"
-
+#import "ImagePlayerView.h"
+#import "UIImageView+AFNetworking.h"
 #import "Macro.h"
+#import "MainPageLabeView.h"
+#import "MainPageButton.h"
+#import "WCAlertView.h"
+#import "HomeIndicator.h"
+#import "UIButton+Badge.h"
+#import "UIImageView+EMWebCache.h"
+#import "BannerData.h"
+#import "WebViewController.h"
 
 #define TABBARTITLECOLOR [UIColor colorWithRed:1/255.0f green:0xaf/255.0f blue:0xe8/255.0f alpha:1]
+#define ALERTBTN_COLOR [UIColor colorWithRed:0xf8/255.0f green:0x64/255.0f blue:0x58/255.0f alpha:1]
+#define PETITIONBTN_COLOR [UIColor colorWithRed:0x0e/255.0f green:0xb6/255.0f blue:0xd0/255.0f alpha:1]
+#define MSGBTN_COLOR [UIColor colorWithRed:0x45/255.0f green:0x8b/255.0f blue:0xff/255.0f alpha:1]
 
+//#if 0
+//UIWebView*webV = [[UIWebView alloc] initWithFrame:CGRectMake(0, 66, self.view.frame.size.width, self.view.frame.size.height-66-44)];
+//[self.view addSubview:webV];
+//
+//NSString*str = [NSString stringWithFormat:@"%@%@", SERVER_URL, API_PETITION_DETAIL];
+//
+//NSMutableDictionary*param = [[NSMutableDictionary alloc] init];
+//[param setObject:[person me].job_no forKey:@"job_no"];
+//[param setObject:[person me].password forKey:@"acc_password"];
+//
+//
+//petiotionBrief*brief = [self.mainPetitionArr objectAtIndex:indexPath.row];
+//[param setObject:brief.id forKey:@"id"];
+//[param setObject:brief.taskid forKey:@"taskid"];
+//
+//
+//
+//NSString *array = @"";
+//int i=0;
+//for(NSString *key in param)
+//{
+//    if(i>0)
+//    {
+//        array = [array stringByAppendingString:@"&"];
+//    }
+//    
+//    array = [array stringByAppendingString:[NSString stringWithFormat:@"%@=%@", key, [param objectForKey:key]]];
+//    i++;
+//}
+//
+//
+//NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL: [NSURL URLWithString:str]];
+//[request setHTTPMethod: @"POST"];
+//
+//[request setHTTPBody: [array dataUsingEncoding: NSUTF8StringEncoding]];
+//
+//[webV loadRequest:request];
+//#endif
 
-@interface MainPageViewController ()
+@interface MainPageViewController ()<ImagePlayerViewDelegate>
 {
     int waitForAsynPulls;
 }
+@property(strong,nonatomic)NSArray*mainAnncArr;
+@property(strong,nonatomic)NSArray*mainPetitionArr;
+
+@property(strong,nonatomic)UIScrollView*scrollView;
+@property(strong,nonatomic)ImagePlayerView*advertisementPlayer;
+@property(strong,nonatomic)MainPageLabeView*todaysFollow;
+@property(strong,nonatomic)MainPageLabeView*todaysAppointment;
+@property(strong,nonatomic)MainPageLabeView*monthPerformance;
+@property(strong,nonatomic)MainPageButton*alertBtn;
+@property(strong,nonatomic)MainPageButton*petitionBtn;
+@property(strong,nonatomic)MainPageButton*messageBtn;
+@property(strong,nonatomic)UITableView*publicAnncTb;
+
+@property(strong,nonatomic)HomeIndicator*indicator;
 
 @end
 
@@ -64,14 +128,13 @@
 {
     [super viewDidLoad];
     
-    [[[CheckNewVersion alloc] init] checkNewVersion:self];
+    
     
 
     
     self.navigationController.navigationBar.hidden = NO;
-
-    
     [self.tabBarController.tabBar setBackgroundColor:[UIColor whiteColor]];
+     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     // 修改tabbar图标为原图颜色
     {
         UITabBarItem *item = [self.tabBarController.tabBar.items objectAtIndex:0];
@@ -109,39 +172,48 @@
         [item setTitleTextAttributes:@{NSForegroundColorAttributeName:TABBARTITLECOLOR} forState:UIControlStateSelected];
         [item setTitleTextAttributes:@{NSForegroundColorAttributeName:TABBARTITLECOLOR} forState:UIControlStateNormal];
     }
+    [[[CheckNewVersion alloc] init] checkNewVersion:self];
+    [self initUI];
+    self.mainAnncArr = nil;
+    [self updateDic];
 
     
-    [self setNavBarTitleTextAttribute];
-    [self initBadgeNavBarWithUnReadAlertCount];
-    [self setBadgeWithUnReadAlertCount:0 andMsgCount:0];
-    [self initTable];
-    [self loadData];
     
-    [self.tableView addHeaderWithTarget:self action:@selector(refreshData)];
 }
 
--(void)refreshData
+
+
+-(void)reloadData
 {
-    
-    [self loadData];
+    waitForAsynPulls = 2;
+    [self getAnncData];
+    [self pullCountData];
 }
+
+
 
 -(void)endRefreshing:(BOOL)isFoot
 {
     if (isFoot)
     {
-        [self.tableView footerEndRefreshing];
+        [self.scrollView footerEndRefreshing];
     }
     else
     {
-        [self.tableView headerEndRefreshing];
+        [self.scrollView headerEndRefreshing];
     }
     
 }
 
+
 -(void)tryEndRefreshing:(BOOL)isFoot
 {
     waitForAsynPulls--;
+    if (waitForAsynPulls < 0)
+    {
+        waitForAsynPulls = 0;
+    }
+    
     if (waitForAsynPulls ==0)
     {
         [self endRefreshing:isFoot];
@@ -170,64 +242,8 @@
 -(void)setNavBarTitleTextAttribute
 {
     
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"ButtonBig"] forBarMetrics:UIBarMetricsDefault];
-//    NSDictionary* attrs = @{NSForegroundColorAttributeName: [UIColor whiteColor],
-//                            NSFontAttributeName: [UIFont systemFontOfSize:[UIFont systemFontSize]],
-//                            };
-//    [self.navigationController.navigationBar setTitleTextAttributes:attrs];
-    
 }
 
--(void)initBadgeNavBarWithUnReadAlertCount
-{
-
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
-    if ([[UIDevice currentDevice].systemVersion floatValue] > 7.0)
-    {
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
-    }
-#endif
-    
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    UIImage*alertImage =[UIImage imageNamed:@"ButtonUnreadAlert"];
-    UIImage*msgImage = [UIImage imageNamed:@"ButtonUnreadMessage"];
-    
-    [self setupLeftMenuButtonOfVC:self Image:msgImage action:@selector(leftMsgBtnSelected:)];
-    [self setupRightMenuButtonOfVC:self Image:alertImage action:@selector(rightAlertBtnSelected:)];
-
-    self.navigationItem.leftBarButtonItem.badgeBGColor = [UIColor redColor];
-    self.navigationItem.rightBarButtonItem.badgeBGColor = [UIColor redColor];
-}
-
--(void)setBadgeWithUnReadAlertCount:(int)alertCnt andMsgCount:(int)msgCnt
-{
-   NSString*unReadAlertStr = @"";
-    
-    
-    if (alertCnt > 0)
-    {
-         unReadAlertStr =(alertCnt<=0)?@"":[NSString stringWithFormat:@"%d",alertCnt];
-        
-    }
-    
-    NSString*unReadMsgStr =@"";
-    
-    if (msgCnt > 0)
-    {
-        
-        unReadMsgStr =(msgCnt<=0)?@"":[NSString stringWithFormat:@"%d",msgCnt];
-    }
-    
-    self.navigationItem.rightBarButtonItem.badgeValue = unReadAlertStr;
-    self.navigationItem.leftBarButtonItem.badgeValue = unReadMsgStr;
-}
-
-
--(void)initTable
-{
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-}
 
 
 #pragma mark -
@@ -235,97 +251,83 @@
 
 #pragma mark Retrieve data from server
 #pragma mark -
-
--(void)initData
-{
-    self.mainAnncArr = nil;
-    self.mainPetitionArr = nil;
-}
--(void)getUnReadAlertCnt
-{
-    SHOWHUD(self.view);
-   [unReadManager getUnReadAlertCntSuccess:^(id responseObject) {
-       HIDEHUD(self.view);
-       
-       [self setBadgeWithUnReadAlertCount:[unReadManager unReadAlertCnt] andMsgCount:[unReadManager unReadMessageCount]];
-       [self tryEndRefreshing:NO];
-   } failure:^(NSError *error) {
-       HIDEHUD(self.view);
-       [self tryEndRefreshing:NO];
-   }];
-}
-
-
--(void)getUnReadMsgCnt
-{
-    SHOWHUD(self.view);
-    [unReadManager getUnReadMessageCntSuccess:^(id responseObject) {
-        HIDEHUD(self.view);
-        [self setBadgeWithUnReadAlertCount:[unReadManager unReadAlertCnt] andMsgCount:[unReadManager unReadMessageCount]];
-        [self tryEndRefreshing:NO];
-    } failure:^(NSError *error) {
-        HIDEHUD(self.view);
-        [self tryEndRefreshing:NO];
-    }];
-}
-
--(void)getPetitionData
-{
-    SHOWHUD(self.view);
-    [petitionManager getListFrom:@"0" To:@"" Count:4 Success:^(id responseObject) {
-        HIDEHUD(self.view);
-        self.mainPetitionArr = responseObject;
-
-        [self.tableView reloadData];
-        [self tryEndRefreshing:NO];
-    } failure:^(NSError *error) {
-        HIDEHUD(self.view);
-        [self tryEndRefreshing:NO];
-    }];
-    
-}
-
 -(void)getAnncData
 {
-    SHOWHUD(self.view);
-    [annoucementManager getListFrom:@"0" To:@"" Count:4 Success:^(id responseObject) {
-        HIDEHUD(self.view);
+    //SHOWHUD(self.view);
+    [annoucementManager getListFrom:@"0" To:@"" Count:6 Success:^(id responseObject) {
+        //HIDEHUD(self.view);
         self.mainAnncArr = responseObject;
-        [self.tableView reloadData];
+        [self.publicAnncTb reloadData];
         [self tryEndRefreshing:NO];
     } failure:^(NSError *error) {
-        HIDEHUD(self.view);
+        //HIDEHUD(self.view);
         [self tryEndRefreshing:NO];
     }];
 
 }
 
 
--(void)getDicData
+-(void)pullCountData
 {
-    SHOWHUD(self.view);
-    [dictionaryManager updateDicSuccess:^(id responseObject) {
-        HIDEHUD(self.view);
+    //SHOWHUD(self.view);
+    [annoucementManager getHomeIndicatorCountDataSuccess:^(id responseObject) {
+        //HIDEHUD(self.view);
+        [self updateCountDataInfo:responseObject];
         [self tryEndRefreshing:NO];
     } failure:^(NSError *error) {
-        HIDEHUD(self.view);
+        //HIDEHUD(self.view);
         [self tryEndRefreshing:NO];
     }];
-        
+}
+
+-(void)updateCountDataInfo:(HomeIndicator*)indicator
+{
+    if (indicator == nil)
+    {
+        return;
+    }
     
+    self.indicator = indicator;
+   dispatch_async(dispatch_get_main_queue(), ^{
+      
+       
+       [self.todaysFollow setContentText:[NSString stringWithFormat:@"%d",(int)indicator.follow_count]];
+       [self.todaysAppointment setContentText:[NSString stringWithFormat:@"%d",(int)indicator.appoint_count]];
+       [self.monthPerformance setContentText:[NSString stringWithFormat:@"%.2f",(float)indicator.pert_sum]];
+       [self.alertBtn setBadge:indicator.alert_count];
+       [self.petitionBtn setBadge:indicator.petition_count];
+       [self.messageBtn setBadge:indicator.msg_count];
+       
+       
+       
+       if (self.indicator.bannerDataArr.count ==0)
+       {
+           BannerData*data = [[BannerData alloc] init];
+           data.imgUrl = @"banner";
+           data.webUrl = nil;
+           [self.indicator.bannerDataArr addObject:data];
+       }
+       [self.advertisementPlayer initWithCount:indicator.bannerDataArr.count delegate:self];
+   });
 }
 
-
-
-
--(void)loadData
+-(void)updateDic
 {
-    waitForAsynPulls = 5;
-    [self getDicData];
-    [self getUnReadAlertCnt];
-    [self getUnReadMsgCnt];
-    [self getPetitionData];
-    [self getAnncData];
+    //[self  showHint:@"正在更新字典表"];
+    SHOWHUD_WINDOW;
+    [dictionaryManager updateDicSuccess:^(id responseObject) {
+        HIDEHUD_WINDOW
+        [self reloadData];
+    } failure:^(NSError *error) {
+        HIDEHUD_WINDOW
+        
+        [WCAlertView showAlertWithTitle:@"更新字典表失败" message:@"请点击重新更新" customizationBlock:^(WCAlertView *alertView) {
+            
+        } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
+            [self updateDic];
+        } cancelButtonTitle:@"取消" otherButtonTitles:@"重新更新", nil];
+        
+    }];
 }
 
 
@@ -340,7 +342,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 0)
     {
@@ -350,70 +352,15 @@
         }
         else
         {
-            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+            [self.publicAnncTb deselectRowAtIndexPath:indexPath animated:YES];
         }
         
-    }
-    else if(indexPath.section == 1)
-    {
-        if (self.mainPetitionArr == nil || indexPath.row > self.mainPetitionArr.count)
-        {
-            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-            return;
-        }
-      
-        
-#if 0
-        UIWebView*webV = [[UIWebView alloc] initWithFrame:CGRectMake(0, 66, self.view.frame.size.width, self.view.frame.size.height-66-44)];
-        [self.view addSubview:webV];
-        
-        NSString*str = [NSString stringWithFormat:@"%@%@", SERVER_URL, API_PETITION_DETAIL];
-        
-        NSMutableDictionary*param = [[NSMutableDictionary alloc] init];
-           [param setObject:[person me].job_no forKey:@"job_no"];
-           [param setObject:[person me].password forKey:@"acc_password"];
-        
-        
-            petiotionBrief*brief = [self.mainPetitionArr objectAtIndex:indexPath.row];
-            [param setObject:brief.id forKey:@"id"];
-            [param setObject:brief.taskid forKey:@"taskid"];
-        
-
-        
-           NSString *array = @"";
-           int i=0;
-           for(NSString *key in param)
-           {
-               if(i>0)
-               {
-                   array = [array stringByAppendingString:@"&"];
-               }
-               
-               array = [array stringByAppendingString:[NSString stringWithFormat:@"%@=%@", key, [param objectForKey:key]]];
-               i++;
-           }
-        
-        
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL: [NSURL URLWithString:str]];
-        [request setHTTPMethod: @"POST"];
-        
-        [request setHTTPBody: [array dataUsingEncoding: NSUTF8StringEncoding]];
-        
-        [webV loadRequest:request];
-#endif
-        
-       
-        
-        if (self.mainPetitionArr && [self.mainPetitionArr count] > indexPath.row)
-        {
-            [self performSegueWithIdentifier:@"toPetionDetails" sender:self];
-        }
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 48;
+    return 44;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -421,9 +368,10 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    
     static NSString *CellIdentifier = @"MainPageTableViewHeaderCell";
     
-    MainPageTableViewHeaderCell *cell=(MainPageTableViewHeaderCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    MainPageTableViewHeaderCell *cell=(MainPageTableViewHeaderCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell==nil)
     {
         NSArray *nibs=[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
@@ -445,31 +393,14 @@
              [self toAnncListView:btn];
          }];
     }
-    else
-    {
-        [cell initWithTitle:@"签呈" andAction:^(UIButton *btn)
-         {
-             [self toPetitionListView:btn];
-         }];
-    }
-    cell.backgroundColor = [UIColor whiteColor];
-    
-    
     return cell;
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0)
-    {
-        return 6;
-    }
-    else if(section == 1)
-    {
-        return 4;
-    }
+    return 6;
     
-    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -478,12 +409,11 @@
     
     UITableViewCell*cell = nil;
     
-    
     if (indexPath.section == 0)
     {
         NSString *CellIdentifier = @"PublicAnncTableViewCell";
         
-        PublicAnncTableViewCell *cell=(PublicAnncTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        PublicAnncTableViewCell *cell=(PublicAnncTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if(cell==nil)
         {
             NSArray *nibs=[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
@@ -506,50 +436,22 @@
                 isNew = annc.isNew;
             }
             
-            [cell initWithTitle:title isNew:isNew];
-
-        }
-        return cell;
-    }
-    else if(indexPath.section == 1)
-    {
-        NSString *CellIdentifier = @"PetitionTableViewCell";
-        
-        PetitionTableViewCell *cell=(PetitionTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(cell==nil)
-        {
-            NSArray *nibs=[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-            for(id oneObject in nibs)
-            {
-                if([oneObject isKindOfClass:[PetitionTableViewCell class]])
-                {
-                    cell = (PetitionTableViewCell *)oneObject;
-                }
-            }
-        }
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        
-        if (self.mainPetitionArr && iRow < self.mainPetitionArr.count)
-        {
-            petiotionBrief*ptionBr = [self.mainPetitionArr objectAtIndex:iRow];
-            if (ptionBr)
-            {
-               [cell initWithType:ptionBr.flowtype reason:ptionBr.reason person:ptionBr.username];
-
-            }
-
+            [cell initWithTitle:title isNew:NO];
+            
         }
         return cell;
     }
     
-   
+    
+    
+    
     return cell;
 }
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
@@ -609,10 +511,13 @@
     // Pass the selected object to the new view controller.
     
     UIViewController *controller;
-    if ([segue.destinationViewController isKindOfClass:[UINavigationController class]]) {
+    if ([segue.destinationViewController isKindOfClass:[UINavigationController class]])
+    {
         UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
         controller = [navController.viewControllers objectAtIndex:0];
-    } else {
+    }
+    else
+    {
         controller = segue.destinationViewController;
     }
     
@@ -622,63 +527,15 @@
         if ([controller isKindOfClass:[AnncDetailsViewController class]])
         {
             AnncDetailsViewController *detailController = (AnncDetailsViewController *)controller;
-            NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
+            NSIndexPath *selectIndexPath = [self.publicAnncTb indexPathForSelectedRow];
             
             detailController.annc = [self.mainAnncArr objectAtIndex:selectIndexPath.row];
             
 
         }
-        else
-        {
-           
-        }
        
     }
-    else if([segue.identifier isEqual:@"toAnncList"])
-    {
-        if ([controller isKindOfClass:[AnncListViewController class]])
-        {
-//            anncListViewController *Controller = (anncListViewController *)controller;
-//            NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
 
-            
-            
-        }
-        else
-        {
-            
-        }
-    }
-    else if([segue.identifier isEqual:@"showContact"])
-    {
-        if ([controller isKindOfClass:[ContactListTableViewController class]])
-        {
-            ContactListTableViewController*contactLst = (ContactListTableViewController*)controller;
-            contactLst.selectMode = YES;
-            contactLst.selectResultDelegate = self;
-
-        }
-        else
-        {
-            
-        }
-    }
-    else if([segue.identifier isEqual:@"toPetionDetails"])
-    {
-        if ([controller isKindOfClass:[petionDetailsTableViewController class]])
-        {
-            petionDetailsTableViewController*contactLst = (petionDetailsTableViewController*)controller;
-            NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
-            contactLst.petitionID = ((petiotionBrief*)[self.mainPetitionArr objectAtIndex:selectIndexPath.row]).id;
-            contactLst.petitionTaskID = ((petiotionBrief*)[self.mainPetitionArr objectAtIndex:selectIndexPath.row]).taskid;
-            contactLst.petitionTypeString = ((petiotionBrief*)[self.mainPetitionArr objectAtIndex:selectIndexPath.row]).flowtype;
-            contactLst.task_state = [((petiotionBrief*)[self.mainPetitionArr objectAtIndex:selectIndexPath.row]).task_state intValue] != 0;
-        }
-        else
-        {
-            
-        }
-    }
     
     
 }
@@ -688,6 +545,157 @@
 -(void)returnSelection:(NSArray *)curSelection
 {
     
+}
+
+-(void)initUI
+{
+    CGRect navFrame = self.navigationController.navigationBar.frame;
+    //navFrame.origin.y+navFrame.size.height
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0 , self.view.frame.size.width, self.view.frame.size.height - (navFrame.origin.y+navFrame.size.height))];
+    self.scrollView.backgroundColor = [UIColor whiteColor];
+    self.scrollView.scrollEnabled = YES;
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.scrollView.frame.size.height+100);
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    [self.view addSubview:self.scrollView];
+    
+    [self.scrollView addHeaderWithTarget:self action:@selector(reloadData)];
+    
+    
+    self.advertisementPlayer = [[ImagePlayerView alloc] init];
+    self.advertisementPlayer.frame = CGRectMake(0,0, self.scrollView.frame.size.width, self.scrollView.frame.size.width/2.0);
+    self.advertisementPlayer.pageControlPosition = ICPageControlPosition_BottomCenter;
+    self.advertisementPlayer.scrollInterval = 5;
+    
+
+    [self.advertisementPlayer initWithCount:1 delegate:self edgeInsets:UIEdgeInsetsZero];
+    [self.scrollView addSubview:self.advertisementPlayer];
+    
+    CGFloat Y = CGRectGetMaxY(self.advertisementPlayer.frame);
+    self.todaysFollow = [[MainPageLabeView alloc] initWithOrig:CGPointMake(0, Y)];
+    [self.todaysFollow setLogo:[UIImage imageNamed:@"今日跟进"] Title:@"今日跟进" Content:@""];
+    [self.scrollView addSubview:self.todaysFollow];
+    
+    self.todaysAppointment = [[MainPageLabeView alloc] initWithOrig:CGPointMake(CGRectGetMaxX(self.todaysFollow.frame), Y)];
+    [self.todaysAppointment setLogo:[UIImage imageNamed:@"今日带看"] Title:@"今日带看" Content:@""];
+    [self.scrollView addSubview:self.todaysAppointment];
+
+    
+    self.monthPerformance = [[MainPageLabeView alloc] initWithOrig:CGPointMake(CGRectGetMaxX(self.todaysAppointment.frame), Y)];
+    [self.monthPerformance setLogo:[UIImage imageNamed:@"本月业绩"] Title:@"本月业绩" Content:@""];
+    [self.scrollView addSubview:self.monthPerformance];
+    
+    Y = CGRectGetMaxY(self.monthPerformance.frame)+YSPACE;
+    self.alertBtn = [[MainPageButton alloc] initWithOrig:CGPointMake(0, Y)];
+    self.petitionBtn = [[MainPageButton alloc] initWithOrig:CGPointMake(CGRectGetMaxX(self.alertBtn.frame), Y)];
+    self.messageBtn = [[MainPageButton alloc] initWithOrig:CGPointMake(CGRectGetMaxX(self.petitionBtn.frame), Y)];
+    [self.alertBtn setBackgroundColor:ALERTBTN_COLOR Logo:[UIImage imageNamed:@"业务提醒"] Title:@"业务提醒" Badge:0];
+    [self.petitionBtn setBackgroundColor:PETITIONBTN_COLOR Logo:[UIImage imageNamed:@"待办签呈"] Title:@"待办签呈" Badge:0];
+    [self.messageBtn setBackgroundColor:MSGBTN_COLOR Logo:[UIImage imageNamed:@"站内信"] Title:@"站内信" Badge:0];
+    [self.messageBtn.btn addTarget:self action:@selector(leftMsgBtnSelected:) forControlEvents:UIControlEventTouchUpInside];
+    [self.alertBtn.btn addTarget:self action:@selector(rightAlertBtnSelected:) forControlEvents:UIControlEventTouchUpInside];
+    [self.petitionBtn.btn addTarget:self action:@selector(toPetitionListView:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.scrollView addSubview:self.alertBtn];
+    [self.scrollView addSubview:self.petitionBtn];
+    [self.scrollView addSubview:self.messageBtn];
+    
+    Y = CGRectGetMaxY(self.messageBtn.frame)+YSPACE;
+    
+    CGRect tbBarframe =  self.tabBarController.tabBar.frame;
+    
+
+    self.publicAnncTb = [[UITableView alloc] initWithFrame:CGRectMake(0, Y, SCREEN_WIDTH, CGRectGetMinY(tbBarframe)-Y + 100) style:UITableViewStylePlain];
+    self.publicAnncTb.delegate = self;
+    self.publicAnncTb.dataSource = self;
+    self.publicAnncTb.scrollEnabled = NO;
+    [self.scrollView addSubview:self.publicAnncTb];
+}
+
+
+
+#pragma mark - ImagePlayerViewDelegate
+- (void)imagePlayerView:(ImagePlayerView *)imagePlayerView loadImageForImageView:(UIImageView *)imageView index:(NSInteger)index
+{
+//    NSArray* arr = @[[NSURL URLWithString:@"http://p3.wmpic.me/article/2015/05/18/1431919490_IskBffgp.jpg"],
+//                     [NSURL URLWithString:@"http://sudasuta.com/wp-content/uploads/2013/10/10143181686_375e063f2c_z.jpg"],
+//                     [NSURL URLWithString:@"http://www.yancheng.gov.cn/ztzl/zgycddhsdgy/xwdt/201109/W020110902584601289616.jpg"],
+//                     [NSURL URLWithString:@"http://fzone.oushinet.com/bbs/data/attachment/forum/201208/15/074140zsb6ko6hfhzrb40q.jpg"],];
+//    if (index < arr.count)
+//    {
+//        
+//        [imageView setImageWithURL:[arr objectAtIndex:index]];
+//    }
+//    else
+//    {
+//        NSLog(@"fuck");
+//    }
+    
+    if (self.indicator && self.indicator.bannerDataArr && self.indicator.bannerDataArr.count > index)
+    {
+        
+        NSString*str = ((BannerData*)self.indicator.bannerDataArr[index]).imgUrl;
+        
+        if (str && str.length > 0)
+        {
+            if ([str isEqualToString:@"banner"])
+            {
+                NSLog(@"1111-default");
+                [imageView setImage:[UIImage imageNamed:@"banner"]];
+            }
+            else
+            {
+                NSLog(@"1111-load");
+                [imageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"banner.png"] completed:^(UIImage *image, NSError *error, EMSDImageCacheType cacheType, NSURL *imageURL) {
+                    if (error)
+                    {
+                        NSLog(@"1111-banner_fail");
+                        imageView.image = [UIImage imageNamed:@"banner_fail"];
+                    }
+                    
+                }];
+            }
+            
+        }
+        
+        
+    }
+    else
+    {
+        if (self.indicator == nil)
+        {
+            NSLog(@"1111-banner");
+            imageView.image = [UIImage imageNamed:@"banner"];
+        }
+        else
+        {
+            NSLog(@"111-banner_no");
+            imageView.image = [UIImage imageNamed:@"banner_no"];
+        }
+        
+    }
+    
+    
+    
+}
+
+- (void)imagePlayerView:(ImagePlayerView *)imagePlayerView didTapAtIndex:(NSInteger)index
+{
+    
+    if (self.indicator && self.indicator.bannerDataArr && self.indicator.bannerDataArr.count > index)
+    {
+        NSString*str = ((BannerData*)self.indicator.bannerDataArr[index]).webUrl;
+        
+        if (str != nil)
+        {
+            WebViewController*vc = [[WebViewController alloc] init];
+            vc.url = str;
+            [self.navigationController pushViewController:vc animated:YES];
+            
+            
+        }
+        
+        
+    }
 }
 
 @end
