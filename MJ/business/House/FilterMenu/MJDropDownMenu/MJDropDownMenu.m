@@ -211,6 +211,7 @@
         {
             [cell.textLabel setTextColor:[UIColor blackColor]];
         }
+        
     }
     cell.textLabel.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
     cell.separatorInset = UIEdgeInsetsZero;

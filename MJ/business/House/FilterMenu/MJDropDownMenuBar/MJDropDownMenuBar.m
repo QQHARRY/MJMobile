@@ -230,7 +230,6 @@
             [self hideCurMenu];
             _currentSelectedMenudIndex = tapIndex;
             _show = NO;
-            [self informDelegate];
         }];
     }
     else
@@ -242,7 +241,6 @@
             [self animateAtIndex:tapIndex forward:YES complecte:^{
                 [self tapMenuOfIndex:tapIndex];
                  _currentSelectedMenudIndex = tapIndex;
-                [self informDelegate];
                 _show = YES;
             }];
         }
@@ -259,7 +257,6 @@
                 [self hideCurMenu];
                 [self tapMenuOfIndex:tapIndex];
                 _currentSelectedMenudIndex = tapIndex;
-                [self informDelegate];
                 _show = YES;
             }];
         }
@@ -410,7 +407,7 @@
     {
         [self hideCurMenu];
         [self animateAtIndex:_currentSelectedMenudIndex forward:NO complecte:^{
-            
+            [self informDelegate];
             _show = NO;
         }];
     }

@@ -231,7 +231,9 @@
 
 -(MJDropDownMenu*)createDropDownMenu
 {
-    MJDropDownMenu* menu = [[MJDropDownMenu alloc] initWithOrigin:CGPointMake(_sellMenuBar.frame.origin.x, _sellMenuBar.frame.origin.y+_sellMenuBar.frame.size.height) andHeight:self.view.frame.size.height - (_sellMenuBar.frame.origin.y+_sellMenuBar.frame.size.height) - 50  SingleMode:NO];
+    static BOOL single = YES;
+    MJDropDownMenu* menu = [[MJDropDownMenu alloc] initWithOrigin:CGPointMake(_sellMenuBar.frame.origin.x, _sellMenuBar.frame.origin.y+_sellMenuBar.frame.size.height) andHeight:self.view.frame.size.height - (_sellMenuBar.frame.origin.y+_sellMenuBar.frame.size.height) - 50  SingleMode:single];
+    single = !single;
     
     menu.dataSource = self;
     menu.delegate = self;
@@ -307,21 +309,8 @@
 
 - (void)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (menu == _sell_areaMenu)
-    {
-        if (_sellMenuBar)
-        {
-            [_sellMenuBar makeMenuClosed];
-        }
-    }
-    else if(menu == _rent_areaMenu)
-    {
-        if (_rentMenuBar)
-        {
-            [_rentMenuBar makeMenuClosed];
-        }
-    }
-    
+    [_sellMenuBar makeMenuClosed];
+    [_rentMenuBar makeMenuClosed];
     
 }
 - (void)didReceiveMemoryWarning
