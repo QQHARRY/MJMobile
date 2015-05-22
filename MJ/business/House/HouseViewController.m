@@ -14,10 +14,36 @@
 #import "HouseFilter.h"
 #import "HouseFilterController.h"
 #import "HouseAddNewViewController.h"
+#import "MJDropDownMenuBar.h"
+#import "MJDropDownMenu.h"
+#import "MJMenuItem.h"
+#import "MJMenuItemValue.h"
+#import "MJMenuModel.h"
 
-@interface HouseViewController ()
+
+#define MENUBAR_HEIGHT 32
+#define TABBAR_HEIGHT 44
+
+@interface HouseViewController ()<MJDropDownMenuBarDataSource,MJDropDownMenuBarDelegate,MJDropDownMenuDataSource,MJDropDownMenuDelegate>
 
 @property(nonatomic,strong)HouseFilterController *houseFilterVC;
+@property(strong,nonatomic)MJDropDownMenuBar*sellMenuBar;
+@property(strong,nonatomic)MJDropDownMenuBar*rentMenuBar;
+@property(strong,nonatomic)MJDropDownMenu*rent_areaMenu;
+@property(strong,nonatomic)MJDropDownMenu*rent_priceMenu;
+@property(strong,nonatomic)MJDropDownMenu*rent_houseModelMenu;
+@property(strong,nonatomic)MJDropDownMenu*rent_moreMenu;
+
+
+@property(strong,nonatomic)MJDropDownMenu*sell_areaMenu;
+@property(strong,nonatomic)MJDropDownMenu*sell_priceMenu;
+@property(strong,nonatomic)MJDropDownMenu*sell_houseModelMenu;
+@property(strong,nonatomic)MJDropDownMenu*sell_moreMenu;
+
+
+@property(strong,nonatomic)NSMutableArray*urbanArr;
+@property(strong,nonatomic)NSMutableArray*areaArr;
+@property(strong,nonatomic)NSMutableArray*priceArr;
 
 @end
 
@@ -70,11 +96,234 @@
     self.sellController.filter.FromID = @"0";
     self.sellController.filter.ToID = @"0";
     self.sellController.filter.Count = @"10";
+    
 
+    [self.sellController.tableView setContentInset:UIEdgeInsetsMake(MENUBAR_HEIGHT, 0, 0, 0)];
+    [self.rentController.tableView setContentInset:UIEdgeInsetsMake(MENUBAR_HEIGHT, 0, 0, 0)];
+    
+
+    _sellMenuBar = [[MJDropDownMenuBar alloc] initWithOrigin:CGPointMake(0, TABBAR_HEIGHT) andHeight:MENUBAR_HEIGHT];
+    _sellMenuBar.dataSource = self;
+    _sellMenuBar.delegate = self;
+    
+    _rentMenuBar = [[MJDropDownMenuBar alloc] initWithOrigin:CGPointMake(0, TABBAR_HEIGHT) andHeight:MENUBAR_HEIGHT];
+    _rentMenuBar.dataSource = self;
+    _rentMenuBar.delegate = self;
+    
+    [self.view addSubview:_sellMenuBar];
+    [self.view addSubview:_rentMenuBar];
+    
+    _rentMenuBar.hidden = YES;
+    
+    [self initMenuData];
     // super fun
     [super viewDidLoad];
 }
 
+-(void)initMenuData
+{
+    _urbanArr = [[NSMutableArray alloc] initWithArray:@[@"不限",@"城北",@"城东",@"城南"]];
+    _areaArr = [[NSMutableArray alloc] initWithArray: @[
+                                                        @[@"不限"],
+                                                        @[@"不限",@"北稍门",@"龙首村"],
+                                                        @[@"不限",@"长乐东路",@"长乐坊",@"韩森寨"],
+                                                        @[@"不限",@"南稍门",@"大雁塔",@"明德门",@"陕师大"]]];
+    _priceArr = [[NSMutableArray alloc] initWithArray:@[@"不限",@"10-30万",@"30-50万",@"50-100万",@"100万－200万",@"200万以上"]];
+}
+
+- (NSInteger)NumberOfColumns:(MJDropDownMenuBar*)menuBar
+{
+    return 4;
+}
+
+- (NSString *)MJDropDownMenuBar:(MJDropDownMenuBar *)menuBar TitleForColumn:(NSInteger)index
+{
+    switch (index)
+    {
+        case 0:return @"区域";break;
+        case 1:return @"价格";break;
+        case 2:return @"房型";break;
+        case 3:return @"更多";break;
+        default:return @"太多";break;
+    }
+}
+
+- (void)MJDropDownMenuBar:(MJDropDownMenuBar*)menuBar TapedAtIndex:(NSInteger)index
+{
+    
+    
+}
+
+- (MJDropDownMenu*)MJDropDownMenuBar:(MJDropDownMenuBar *)menuBar MenuForColumn:(NSInteger)index
+{
+    switch (index)
+    {
+        case 0:
+        {
+            if (menuBar == _sellMenuBar)
+            {
+                if(_sell_areaMenu == nil)
+                    _sell_areaMenu = [self createDropDownMenu];
+                return _sell_areaMenu;
+            }
+            else if (menuBar ==_rentMenuBar)
+            {
+                if(_rent_areaMenu == nil)
+                    _rent_areaMenu = [self createDropDownMenu];
+                return _rent_areaMenu;
+            }
+        }
+            break;
+        case 1:
+        {
+            if (menuBar == _sellMenuBar)
+            {
+                if(_sell_priceMenu == nil)
+                    _sell_priceMenu = [self createDropDownMenu];
+                return _sell_priceMenu;
+            }
+            else if (menuBar ==_rentMenuBar)
+            {
+                if(_rent_priceMenu == nil)
+                    _rent_priceMenu = [self createDropDownMenu];
+                return _rent_priceMenu;
+            }
+        }
+            break;
+        case 2:
+        {
+            if (menuBar == _sellMenuBar)
+            {
+                if(_sell_houseModelMenu == nil)
+                    _sell_houseModelMenu = [self createDropDownMenu];
+                return _sell_houseModelMenu;
+            }
+            else if (menuBar ==_rentMenuBar)
+            {
+                if(_rent_houseModelMenu == nil)
+                    _rent_houseModelMenu = [self createDropDownMenu];
+                return _rent_houseModelMenu;
+            }
+        }
+            break;
+        case 3:
+        {
+            if (menuBar == _sellMenuBar)
+            {
+                if(_sell_moreMenu == nil)
+                    _sell_moreMenu = [self createDropDownMenu];
+                return _sell_moreMenu;
+            }
+            else if (menuBar ==_rentMenuBar)
+            {
+                if(_rent_moreMenu == nil)
+                    _rent_moreMenu = [self createDropDownMenu];
+                return _rent_moreMenu;
+            }
+        }
+            break;
+            
+        default:
+            break;
+    }
+    return nil;
+}
+
+-(MJDropDownMenu*)createDropDownMenu
+{
+    MJDropDownMenu* menu = [[MJDropDownMenu alloc] initWithOrigin:CGPointMake(_sellMenuBar.frame.origin.x, _sellMenuBar.frame.origin.y+_sellMenuBar.frame.size.height) andHeight:self.view.frame.size.height - (_sellMenuBar.frame.origin.y+_sellMenuBar.frame.size.height) - 50  SingleMode:NO];
+    
+    menu.dataSource = self;
+    menu.delegate = self;
+    return menu;
+}
+
+
+
+
+#pragma mark - MJDropDownMenu datasource & delegate
+
+- (NSInteger)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
+{
+    //if (menu == _sell_areaMenu)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            return 20;
+            if (_urbanArr)
+            {
+                return _urbanArr.count;
+            }
+        }
+        else if(tableView == menu.rightTableV)
+        {
+            if (_areaArr)
+            {
+                if (section < [_areaArr count])
+                {
+                    return 50;
+                    NSArray*areaArrInRow = [_areaArr objectAtIndex:section];
+                    if (areaArrInRow)
+                    {
+                        return areaArrInRow.count;
+                    }
+                }
+                
+            }
+        }
+    }
+    
+    return 0;
+}
+
+
+- (NSString *)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView titleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (menu == _sell_areaMenu)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            if (_urbanArr && _urbanArr.count > indexPath.row)
+            {
+                return _urbanArr[indexPath.row];
+            }
+        }
+        else if(tableView == menu.rightTableV)
+        {
+            if (_areaArr && _areaArr.count > indexPath.section)
+            {
+                NSArray*areaArrInRow = [_areaArr objectAtIndex:indexPath.section];
+                if (areaArrInRow && areaArrInRow.count > indexPath.row)
+                {
+                    return areaArrInRow[indexPath.row];
+                }
+                
+            }
+        }
+    }
+    
+    return @"空";
+}
+
+- (void)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (menu == _sell_areaMenu)
+    {
+        if (_sellMenuBar)
+        {
+            [_sellMenuBar makeMenuClosed];
+        }
+    }
+    else if(menu == _rent_areaMenu)
+    {
+        if (_rentMenuBar)
+        {
+            [_rentMenuBar makeMenuClosed];
+        }
+    }
+    
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -176,6 +425,9 @@
         case ViewPagerOptionTabLocation:
             return 1;
             break;
+            case ViewPagerOptionTabHeight:
+            return TABBAR_HEIGHT;
+            break;
         case ViewPagerOptionTabWidth:
             return [UIScreen mainScreen].bounds.size.width / 2.0;
             break;
@@ -209,10 +461,26 @@
     if (index == 0)
     {
         self.nowControllerType = HCT_SELL;
+        
+        
+        _sellMenuBar.hidden = NO;
+        
+        if (_rentMenuBar) {
+            _rentMenuBar.hidden = YES;
+            [_rentMenuBar makeMenuClosed];
+        }
+        
     }
     else
     {
         self.nowControllerType = HCT_RENT;
+        if (_sellMenuBar) {
+            _sellMenuBar.hidden = YES;
+            [_sellMenuBar makeMenuClosed];
+        }
+        _rentMenuBar.hidden = NO;
+
+        
     }
 }
 

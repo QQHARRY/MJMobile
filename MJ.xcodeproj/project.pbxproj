@@ -111,6 +111,11 @@
 		4A96ECB41AE781A700577AA6 /* ContactPsnListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A96ECB31AE781A700577AA6 /* ContactPsnListViewController.m */; };
 		4A96ECB81AE7893300577AA6 /* ContactPsnVCCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A96ECB61AE7893300577AA6 /* ContactPsnVCCellTableViewCell.m */; };
 		4A96ECB91AE7893300577AA6 /* ContactPsnVCCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A96ECB71AE7893300577AA6 /* ContactPsnVCCellTableViewCell.xib */; };
+		4A98651D1B0EDCD300462388 /* MJDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9865131B0EDCD300462388 /* MJDropDownMenu.m */; };
+		4A98651E1B0EDCD300462388 /* MJDropDownMenuBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9865161B0EDCD300462388 /* MJDropDownMenuBar.m */; };
+		4A98651F1B0EDCD300462388 /* MJMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9865181B0EDCD300462388 /* MJMenuItem.m */; };
+		4A9865201B0EDCD300462388 /* MJMenuItemValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A98651A1B0EDCD300462388 /* MJMenuItemValue.m */; };
+		4A9865211B0EDCD300462388 /* MJMenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A98651C1B0EDCD300462388 /* MJMenuModel.m */; };
 		4A9AEEEB1A3B43D300FDA403 /* petiotionBrief.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9AEEEA1A3B43D300FDA403 /* petiotionBrief.m */; };
 		4A9C65201B0C611000A397A7 /* ImagePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9C651F1B0C611000A397A7 /* ImagePlayerView.m */; };
 		4A9C65231B0C798800A397A7 /* MainPageLabeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9C65221B0C798800A397A7 /* MainPageLabeView.m */; };
@@ -833,6 +838,16 @@
 		4A96ECB51AE7893300577AA6 /* ContactPsnVCCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPsnVCCellTableViewCell.h; sourceTree = "<group>"; };
 		4A96ECB61AE7893300577AA6 /* ContactPsnVCCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPsnVCCellTableViewCell.m; sourceTree = "<group>"; };
 		4A96ECB71AE7893300577AA6 /* ContactPsnVCCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPsnVCCellTableViewCell.xib; sourceTree = "<group>"; };
+		4A9865121B0EDCD300462388 /* MJDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJDropDownMenu.h; sourceTree = "<group>"; };
+		4A9865131B0EDCD300462388 /* MJDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJDropDownMenu.m; sourceTree = "<group>"; };
+		4A9865151B0EDCD300462388 /* MJDropDownMenuBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJDropDownMenuBar.h; sourceTree = "<group>"; };
+		4A9865161B0EDCD300462388 /* MJDropDownMenuBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJDropDownMenuBar.m; sourceTree = "<group>"; };
+		4A9865171B0EDCD300462388 /* MJMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJMenuItem.h; sourceTree = "<group>"; };
+		4A9865181B0EDCD300462388 /* MJMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJMenuItem.m; sourceTree = "<group>"; };
+		4A9865191B0EDCD300462388 /* MJMenuItemValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJMenuItemValue.h; sourceTree = "<group>"; };
+		4A98651A1B0EDCD300462388 /* MJMenuItemValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJMenuItemValue.m; sourceTree = "<group>"; };
+		4A98651B1B0EDCD300462388 /* MJMenuModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJMenuModel.h; sourceTree = "<group>"; };
+		4A98651C1B0EDCD300462388 /* MJMenuModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJMenuModel.m; sourceTree = "<group>"; };
 		4A9AEEE91A3B43D300FDA403 /* petiotionBrief.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = petiotionBrief.h; sourceTree = "<group>"; };
 		4A9AEEEA1A3B43D300FDA403 /* petiotionBrief.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petiotionBrief.m; sourceTree = "<group>"; };
 		4A9C651E1B0C611000A397A7 /* ImagePlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePlayerView.h; sourceTree = "<group>"; };
@@ -2017,6 +2032,39 @@
 				4A94F9181AF7563900B209FF /* EaseMobContacter.m */,
 			);
 			name = EaseMobAbout;
+			sourceTree = "<group>";
+		};
+		4A9865101B0EDCD300462388 /* FilterMenu */ = {
+			isa = PBXGroup;
+			children = (
+				4A9865111B0EDCD300462388 /* MJDropDownMenu */,
+				4A9865141B0EDCD300462388 /* MJDropDownMenuBar */,
+				4A9865171B0EDCD300462388 /* MJMenuItem.h */,
+				4A9865181B0EDCD300462388 /* MJMenuItem.m */,
+				4A9865191B0EDCD300462388 /* MJMenuItemValue.h */,
+				4A98651A1B0EDCD300462388 /* MJMenuItemValue.m */,
+				4A98651B1B0EDCD300462388 /* MJMenuModel.h */,
+				4A98651C1B0EDCD300462388 /* MJMenuModel.m */,
+			);
+			path = FilterMenu;
+			sourceTree = "<group>";
+		};
+		4A9865111B0EDCD300462388 /* MJDropDownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				4A9865121B0EDCD300462388 /* MJDropDownMenu.h */,
+				4A9865131B0EDCD300462388 /* MJDropDownMenu.m */,
+			);
+			path = MJDropDownMenu;
+			sourceTree = "<group>";
+		};
+		4A9865141B0EDCD300462388 /* MJDropDownMenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				4A9865151B0EDCD300462388 /* MJDropDownMenuBar.h */,
+				4A9865161B0EDCD300462388 /* MJDropDownMenuBar.m */,
+			);
+			path = MJDropDownMenuBar;
 			sourceTree = "<group>";
 		};
 		4A9C651D1B0C611000A397A7 /* homePageNewDesigning */ = {
@@ -3819,6 +3867,7 @@
 		B9FF4B341A245FB300FE413E /* House */ = {
 			isa = PBXGroup;
 			children = (
+				4A9865101B0EDCD300462388 /* FilterMenu */,
 				B98BD4AB1A60464F003A35BE /* HouseDataPuller.h */,
 				B98BD4AC1A60464F003A35BE /* HouseDataPuller.m */,
 				B98BD4A51A604045003A35BE /* HouseDetail.h */,
@@ -4263,6 +4312,7 @@
 				B93B142E1A61652000121133 /* CustomerFilterController.m in Sources */,
 				B98BD56D1A609185003A35BE /* RETableViewSegmentedCell.m in Sources */,
 				B98BD5651A609185003A35BE /* RETableViewDateTimeCell.m in Sources */,
+				4A9865201B0EDCD300462388 /* MJMenuItemValue.m in Sources */,
 				4A56654F1A4C06EE00C3BA22 /* messageObj.m in Sources */,
 				4ABC22301A3C88000017FD94 /* AlertDetailsTableViewCell.m in Sources */,
 				4A06BEC01AE6314C00809C52 /* PersonDetailsViewController.m in Sources */,
@@ -4371,6 +4421,7 @@
 				4A8788481AE8D87300FB3F91 /* ContactPsnDtlVCCell.m in Sources */,
 				B98BD58B1A609185003A35BE /* REValidator.m in Sources */,
 				4AA18A571AEF549A00685603 /* PSTCollectionViewFlowLayout.m in Sources */,
+				4A98651D1B0EDCD300462388 /* MJDropDownMenu.m in Sources */,
 				B98BD5631A609185003A35BE /* RETableViewBoolCell.m in Sources */,
 				4A40C2181A41745E00944AB2 /* petionDetailsTableViewController.m in Sources */,
 				B98BD5791A609185003A35BE /* RERadioItem.m in Sources */,
@@ -4433,6 +4484,7 @@
 				4A3990151AE8A2AD00CA5640 /* ContactPersonDetailsViewController.m in Sources */,
 				4AA18A3D1AEF549A00685603 /* MWPhotoBrowser.m in Sources */,
 				4A8F09621AF87AD200C44B99 /* MBProgressHUD+Add.m in Sources */,
+				4A98651F1B0EDCD300462388 /* MJMenuItem.m in Sources */,
 				4AA18A871AEF549A00685603 /* EMChatViewBaseCell.m in Sources */,
 				4A40C21B1A41748100944AB2 /* petionListTableViewController.m in Sources */,
 				4AA18AA71AEF549A00685603 /* EMTextView.m in Sources */,
@@ -4536,6 +4588,7 @@
 				4AA18A8C1AEF549A00685603 /* ChatGroupDetailViewController.m in Sources */,
 				4A7486761B045909003ECB8C /* TestPrivateApi.m in Sources */,
 				B9FF4B441A245FB300FE413E /* LoginViewController.m in Sources */,
+				4A98651E1B0EDCD300462388 /* MJDropDownMenuBar.m in Sources */,
 				4AA18A411AEF549A00685603 /* DACircularProgressView.m in Sources */,
 				4A5665391A4BF4E400C3BA22 /* MessageDetailsViewController.m in Sources */,
 				B93B14411A625A5A00121133 /* FollowDataPuller.m in Sources */,
@@ -4557,6 +4610,7 @@
 				4AD795221A218C4A00DEC779 /* AFNetworkReachabilityManager.m in Sources */,
 				4AA18A581AEF549A00685603 /* PSTCollectionViewItemKey.m in Sources */,
 				4AA18AA31AEF549A00685603 /* PushNotificationViewController.m in Sources */,
+				4A9865211B0EDCD300462388 /* MJMenuModel.m in Sources */,
 				B944458A1A62A6860033E998 /* SignAddController.m in Sources */,
 				4AA18A5D1AEF549A00685603 /* PSTGridLayoutRow.m in Sources */,
 				B98BD5701A609185003A35BE /* RECreditCardItem.m in Sources */,

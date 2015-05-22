@@ -175,6 +175,7 @@
     [[[CheckNewVersion alloc] init] checkNewVersion:self];
     [self initUI];
     self.mainAnncArr = nil;
+    
     [self updateDic];
 
     
@@ -213,11 +214,11 @@
     {
         waitForAsynPulls = 0;
     }
-    
-    if (waitForAsynPulls ==0)
+    else if(waitForAsynPulls == 0)
     {
         [self endRefreshing:isFoot];
     }
+    
 }
 
 -(void)hasNewVersion:(BOOL)bHasNewVersion VersionName:(NSString*)vName ReleaseNote:(NSString *)releaseNote VersionSize:(NSString*)size VersionAddress:(NSString*)address RequiredToUpdate:(BOOL)updateRequired
@@ -317,6 +318,7 @@
     SHOWHUD_WINDOW;
     [dictionaryManager updateDicSuccess:^(id responseObject) {
         HIDEHUD_WINDOW
+        [self.scrollView headerBeginRefreshing];
         [self reloadData];
     } failure:^(NSError *error) {
         HIDEHUD_WINDOW
@@ -584,7 +586,7 @@
     [self.monthPerformance setLogo:[UIImage imageNamed:@"本月业绩"] Title:@"本月业绩" Content:@""];
     [self.scrollView addSubview:self.monthPerformance];
     
-    Y = CGRectGetMaxY(self.monthPerformance.frame)+YSPACE;
+    Y = CGRectGetMaxY(self.monthPerformance.frame)+YSPACE*1.5;
     self.alertBtn = [[MainPageButton alloc] initWithOrig:CGPointMake(0, Y)];
     self.petitionBtn = [[MainPageButton alloc] initWithOrig:CGPointMake(CGRectGetMaxX(self.alertBtn.frame), Y)];
     self.messageBtn = [[MainPageButton alloc] initWithOrig:CGPointMake(CGRectGetMaxX(self.petitionBtn.frame), Y)];
@@ -599,7 +601,7 @@
     [self.scrollView addSubview:self.petitionBtn];
     [self.scrollView addSubview:self.messageBtn];
     
-    Y = CGRectGetMaxY(self.messageBtn.frame)+YSPACE;
+    Y = CGRectGetMaxY(self.messageBtn.frame)+YSPACE*1.5;
     
     CGRect tbBarframe =  self.tabBarController.tabBar.frame;
     
