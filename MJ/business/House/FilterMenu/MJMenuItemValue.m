@@ -7,6 +7,7 @@
 //
 
 #import "MJMenuItemValue.h"
+#import <objc/runtime.h>
 
 @implementation MJMenuItemValue
 @synthesize valueType;
@@ -33,7 +34,7 @@
     va_end(params);
         
     
-    MJMenuItemValue* obj = [[super alloc] init];
+    MJMenuItemValue* obj = [[MJMenuItemValue alloc] init];
     if (obj)
     {
         obj.valueType = type;
@@ -69,10 +70,10 @@
                 break;
         }
         
-        if (obj.valueArr == nil)
-        {
-            obj = nil;
-        }
+//        if (obj.valueArr == nil)
+//        {
+//            obj = nil;
+//        }
     }
     
     return obj;
@@ -102,6 +103,13 @@
         return [[NSArray alloc] initWithObjects:valueArr[0],valueArr[1],nil];
     }
     return nil;
+}
+
+
+-(NSDictionary*)convert2Dic
+{
+    NSDictionary*dic = @{@"valueType":[NSNumber numberWithInt:self.valueType],@"valueArr":self.valueArr};
+    return dic;
 }
 
 

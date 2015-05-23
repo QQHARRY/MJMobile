@@ -118,6 +118,17 @@
     [self initMenuData];
     // super fun
     [super viewDidLoad];
+    
+    
+    
+    
+    [MJMenuModel asyncGetUrbanAndAreaMenuItemList:^(BOOL success, NSArray *urbanArr) {
+        NSArray*arr = urbanArr;
+        NSLog(@"%@",urbanArr);
+    }];
+    
+    NSArray*arr = [MJMenuModel getOrientMenuItemList];
+    NSLog(@"%@",arr);
 }
 
 -(void)initMenuData
@@ -450,9 +461,12 @@
     if (index == 0)
     {
         self.nowControllerType = HCT_SELL;
+        if (_sellMenuBar)
+        {
+            _sellMenuBar.hidden = NO;
+        }
         
         
-        _sellMenuBar.hidden = NO;
         
         if (_rentMenuBar) {
             _rentMenuBar.hidden = YES;
@@ -463,11 +477,18 @@
     else
     {
         self.nowControllerType = HCT_RENT;
-        if (_sellMenuBar) {
+        
+        if (_sellMenuBar)
+        {
             _sellMenuBar.hidden = YES;
             [_sellMenuBar makeMenuClosed];
         }
-        _rentMenuBar.hidden = NO;
+        
+        if (_rentMenuBar)
+        {
+            _rentMenuBar.hidden = NO;
+        }
+        
 
         
     }

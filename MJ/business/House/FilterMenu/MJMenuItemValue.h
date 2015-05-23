@@ -13,6 +13,9 @@ typedef NS_ENUM(NSInteger, MJMenuItemValueType) {
     MJMenuItemValueTypeSingle     = 0,
     MJMenuItemValueTypeMulti      = 1,
     MJMenuItemValueTypeArea       = 2,
+    MJMenuItemValueTypeCustomizeSinge = 3,
+    MJMenuItemValueTypeCustomizeArea = 4,
+   
 };
 
 @interface MJMenuItemValue : NSObject
@@ -25,4 +28,6 @@ typedef NS_ENUM(NSInteger, MJMenuItemValueType) {
 -(id)getSingleValue;
 -(NSArray*)getMultiValue;
 -(NSArray*)getAreaValue;
+
+-(NSDictionary*)convert2Dic;
 @end

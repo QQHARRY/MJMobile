@@ -50,6 +50,9 @@
          contextName = "-[ContactDeptViewController tableView:cellForRowAtIndexPath:]:ContactDeptViewController.m">
       </ContextState>
       <ContextState
+         contextName = "+[MJMenuItemValue valueWithType:Values:]:MJMenuItemValue.m">
+      </ContextState>
+      <ContextState
          contextName = "__98+[postFileUtils postFileWithURL:data:Parameter:ServerParamName:FileName:MimeType:Success:failure:]_block_invoke48:postFileUtils.m">
          <PersistentStrings>
             <PersistentString
@@ -81,6 +84,14 @@
          contextName = "__51-[HouseAddNewViewController createInfoSectionItems]_block_invoke_2250:HouseAddNewViewController.m">
       </ContextState>
       <ContextState
+         contextName = "__44+[MJMenuModel initUrbanAndAreaMenuItemList:]_block_invoke49:MJMenuModel.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "urbanAreaList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "__58+[contactDataManager getSubPersonsOfUnit:Success:failure:]_block_invoke:contactDataManager.m">
          <PersistentStrings>
             <PersistentString
@@ -103,12 +114,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "__34-[HouseViewController viewDidLoad]_block_invoke:HouseViewController.m">
+      </ContextState>
+      <ContextState
          contextName = "__62+[shopBizManager getListByType:From:To:Count:Success:failure:]_block_invoke:shopBizManager.m">
          <PersistentStrings>
             <PersistentString
                value = "parameters">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[WebViewController viewWillAppear:]:WebViewController.m">
       </ContextState>
       <ContextState
          contextName = "-[ContactListTableViewController expandBtnClicked:]:ContactListTableViewController.m">
@@ -169,6 +186,14 @@
       </ContextState>
       <ContextState
          contextName = "+[contactDataManager getSubDeptOfUnit:Success:failure:]:contactDataManager.m">
+      </ContextState>
+      <ContextState
+         contextName = "__44+[MJMenuModel initUrbanAndAreaMenuItemList:]_block_invoke:MJMenuModel.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "urbanAreaModelArr">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "__51-[HouseAddNewViewController createInfoSectionItems]_block_invoke244:HouseAddNewViewController.m">

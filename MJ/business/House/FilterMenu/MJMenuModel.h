@@ -7,9 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MJMenuItem.h"
+
+
+#define MJ_MENU_ITEM_VALUE_SINGLE @"MJ_MENU_ITEM_VALUE_SINGLE"
+#define MJ_MENU_ITEM_VALUE_MULTI @"MJ_MENU_ITEM_VALUE_MULTI"
+#define MJ_MENU_ITEM_VALUE_SECTION @"MJ_MENU_ITEM_VALUE_SECTION"
 
 @interface MJMenuModel : NSObject
 
-+(void)initUrbanAndAreaList:(void(^)(BOOL success,NSArray*urbanArr))complete;
+@property(strong,nonatomic)MJMenuItem*menuItem;
+@property(strong,nonatomic)NSMutableArray*subMenuItems;
+
+-(NSDictionary*)convert2Dic;
++(NSString*)getDicValueByLabel:(NSString*)label FromDicArr:(NSArray*)dicArr;
+
++(void)asyncGetUrbanAndAreaMenuItemList:(void(^)(BOOL success,NSArray*urbanArr))complete;
++(NSArray*)getOrientMenuItemList;
+
 
 @end

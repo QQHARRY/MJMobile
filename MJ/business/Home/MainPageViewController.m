@@ -344,7 +344,6 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 0)
     {
@@ -641,16 +640,14 @@
         {
             if ([str isEqualToString:@"banner"])
             {
-                NSLog(@"1111-default");
                 [imageView setImage:[UIImage imageNamed:@"banner"]];
             }
             else
             {
-                NSLog(@"1111-load");
+
                 [imageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"banner.png"] completed:^(UIImage *image, NSError *error, EMSDImageCacheType cacheType, NSURL *imageURL) {
                     if (error)
                     {
-                        NSLog(@"1111-banner_fail");
                         imageView.image = [UIImage imageNamed:@"banner_fail"];
                     }
                     
@@ -665,12 +662,10 @@
     {
         if (self.indicator == nil)
         {
-            NSLog(@"1111-banner");
             imageView.image = [UIImage imageNamed:@"banner"];
         }
         else
         {
-            NSLog(@"111-banner_no");
             imageView.image = [UIImage imageNamed:@"banner_no"];
         }
         
