@@ -16,11 +16,7 @@
 
 @implementation MJMenuModel
 
--(NSDictionary*)convert2Dic
-{
-    NSDictionary*dic = @{@"menuItem":[self.menuItem convert2Dic],@"subMenuItem":self.subMenuItems};
-    return dic;
-}
+
 
 
 +(void)asyncGetUrbanAndAreaMenuItemList:(void(^)(BOOL success,NSArray*urbanArr))complete
@@ -69,7 +65,7 @@
                         [urbanAreaModel.subMenuItems addObject:areaItem];
                     }
                     
-                    [urbanAreaModelArr addObject:[urbanAreaModel convert2Dic]];
+                    [urbanAreaModelArr addObject:urbanAreaModel];
                 }
                 
                 complete(YES,urbanAreaModelArr);
@@ -319,6 +315,7 @@
     if (floorArr == nil)
     {
         const NSNumber* at = [NSNumber numberWithInt:MJMenuItemValueTypeArea];
+        const NSNumber* ct = [NSNumber numberWithInt:MJMenuItemValueTypeCustomizeArea];
         floorArr = @[
                     @{@"menuItem":
                           @{@"title":@"不限",@"value":@[@"0",@"0"],@"valueType":at},
@@ -332,7 +329,9 @@
                     @{@"menuItem":
                           @{@"title":@"高层(12层以上)",@"value":@[@"12",@"0"],@"valueType":at},
                       },
-                    
+                    @{@"menuItem":
+                          @{@"title":@"自定义",@"value":@[@"0",@"0"],@"valueType":ct},
+                      },
                     ];
         
         
@@ -343,49 +342,124 @@
 
 +(NSArray*)getOrientMenuItemList
 {
-    
-    NSArray*dicArr = [dictionaryManager getItemArrByType:DIC_HOUSE_DIRECT_TYPE];
+    return [self getDicTypeArrByName:DIC_HOUSE_DIRECT_TYPE];
+}
+
++(NSArray*)getFitTypeMenuItemList
+{
+    return [self getDicTypeArrByName:DIC_FITMENT_TYPE];
+}
++(NSArray*)getSellStausMenuItemList
+{
+    return [self getDicTypeArrByName:DIC_SALE_TRADE_STATE];
+}
++(NSArray*)getLeaseStausMenuItemList
+{
+    return [self getDicTypeArrByName:DIC_LEASE_TRADE_STATE];
+}
++(NSArray*)getConsignmentStausMenuItemList
+{
+    return [self getDicTypeArrByName:DIC_CONSIGNMENT_TYPE];
+}
+
++(NSArray*)getRoomTypeMenuItemList
+{
+    __strong static NSArray*arr = nil;
+    if (arr == nil)
+    {
+        const NSNumber* at = [NSNumber numberWithInt:MJMenuItemValueTypeArea];
+        arr = @[
+                     @{@"menuItem":
+                           @{@"title":@"不限",@"value":@[@"0",@"0"],@"valueType":at},
+                       },
+                     @{@"menuItem":
+                           @{@"title":@"1室",@"value":@[@"1"],@"valueType":at},
+                       },
+                     @{@"menuItem":
+                           @{@"title":@"2室",@"value":@[@"2"],@"valueType":at},
+                       },
+                    @{@"menuItem":
+                           @{@"title":@"3室",@"value":@[@"3"],@"valueType":at},
+                       },
+                     @{@"menuItem":
+                           @{@"title":@"4室",@"value":@[@"4"],@"valueType":at},
+                       },
+                     @{@"menuItem":
+                           @{@"title":@"5室",@"value":@[@"5"],@"valueType":at},
+                       },
+                     @{@"menuItem":
+                           @{@"title":@"5室以上",@"value":@[@"6"],@"valueType":at},
+                       }
+                     
+                     ];
+        
+        
+    }
+    return arr;
+}
++(NSArray*)getOtherTypeMenuItemList
+{
+    __strong static NSArray*arr = nil;
+    if (arr == nil)
+    {
+        const NSNumber* cst = [NSNumber numberWithInt:MJMenuItemValueTypeCustomizeSinge];
+        arr = @[
+                @{@"menuItem":
+                      @{@"title":@"栋座",@"value":@[@""],@"valueType":cst},
+                  },
+                @{@"menuItem":
+                      @{@"title":@"单元",@"value":@[@""],@"valueType":cst},
+                  },
+                @{@"menuItem":
+                      @{@"title":@"楼层",@"value":@[@""],@"valueType":cst},
+                  },
+                @{@"menuItem":
+                      @{@"title":@"门牌",@"value":@[@""],@"valueType":cst},
+                  },
+                
+                ];
+        
+        
+    }
+    return arr;
+}
+
+
+
+
++(NSArray*)getDicTypeArrByName:(NSString*)type
+{
+    NSArray*dicArr = [dictionaryManager getItemArrByType:type];
     const NSNumber* st = [NSNumber numberWithInt:MJMenuItemValueTypeSingle];
     
-    NSArray*areaArr = @[
-                        @{@"menuItem":
-                              @{@"title":@"不限",@"value":@[@""],@"valueType":st},
-                          },
-                        @{@"menuItem":
-                              @{@"title":@"南北",@"value":@[[self getDicValueByLabel:@"南北" FromDicArr:dicArr]],@"valueType":st},
-                          },
-                        @{@"menuItem":
-                              @{@"title":@"东西",@"value":@[[self getDicValueByLabel:@"东西" FromDicArr:dicArr]],@"valueType":st},
-                          },
-                        @{@"menuItem":
-                              @{@"title":@"南",@"value":@[[self getDicValueByLabel:@"南" FromDicArr:dicArr]],@"valueType":st},
-                          },
-                        @{@"menuItem":
-                              @{@"title":@"北",@"value":@[[self getDicValueByLabel:@"北" FromDicArr:dicArr]],@"valueType":st},
-                          },
-                        @{@"menuItem":
-                              @{@"title":@"东",@"value":@[[self getDicValueByLabel:@"东" FromDicArr:dicArr]],@"valueType":st},
-                          },
-                        @{@"menuItem":
-                              @{@"title":@"西",@"value":@[[self getDicValueByLabel:@"西" FromDicArr:dicArr]],@"valueType":st},
-                          },
-                        @{@"menuItem":
-                              @{@"title":@"东南",@"value":@[[self getDicValueByLabel:@"东南" FromDicArr:dicArr]],@"valueType":st},
-                          },
-                        @{@"menuItem":
-                              @{@"title":@"西南",@"value":@[[self getDicValueByLabel:@"西南" FromDicArr:dicArr]],@"valueType":st},
-                          },
-                        @{@"menuItem":
-                              @{@"title":@"东北",@"value":@[[self getDicValueByLabel:@"东北" FromDicArr:dicArr]],@"valueType":st},
-                          },
-                        @{@"menuItem":
-                              @{@"title":@"西北",@"value":@[[self getDicValueByLabel:@"西北" FromDicArr:dicArr]],@"valueType":st},
-                          },
-                        ];
+    NSMutableArray*arr = [[NSMutableArray alloc] initWithCapacity:dicArr.count+1];
+    
+    [arr addObject:@{@"menuItem":
+                         @{@"title":@"不限",@"value":@[@"0"],@"valueType":st}}
+     ];
+    
+    for (DicItem *di in dicArr)
+    {
+        NSDictionary*dic = @{@"menuItem":
+                                 @{@"title":di.dict_label,@"value":@[di.dict_value],@"valueType":st},
+                             };
+        
+        [arr addObject:dic];
+    }
     
     
-    return areaArr;
+    return arr;
 }
+
+
+
+
+//+(NSArray*)getRoomTypeStausMenuItemList;
+//+(NSArray*)getOtherTypeStausMenuItemList;
+
+
+
+
 
 
 +(NSString*)getDicValueByLabel:(NSString*)label FromDicArr:(NSArray*)dicArr

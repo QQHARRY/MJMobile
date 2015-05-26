@@ -120,7 +120,7 @@
     
     if (contentStr && [contentStr intValue] == 0)
     {
-        self.content.text = nil;
+        self.content.text = @"0";
     }
     else
     {

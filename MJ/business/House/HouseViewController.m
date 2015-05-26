@@ -31,12 +31,14 @@
 @property(strong,nonatomic)MJDropDownMenuBar*rentMenuBar;
 @property(strong,nonatomic)MJDropDownMenu*rent_areaMenu;
 @property(strong,nonatomic)MJDropDownMenu*rent_priceMenu;
+@property(strong,nonatomic)MJDropDownMenu*rent_DeptMenu;
 @property(strong,nonatomic)MJDropDownMenu*rent_houseModelMenu;
 @property(strong,nonatomic)MJDropDownMenu*rent_moreMenu;
 
 
 @property(strong,nonatomic)MJDropDownMenu*sell_areaMenu;
 @property(strong,nonatomic)MJDropDownMenu*sell_priceMenu;
+@property(strong,nonatomic)MJDropDownMenu*sell_DeptMenu;
 @property(strong,nonatomic)MJDropDownMenu*sell_houseModelMenu;
 @property(strong,nonatomic)MJDropDownMenu*sell_moreMenu;
 
@@ -45,7 +47,34 @@
 @property(strong,nonatomic)NSMutableArray*areaArr;
 @property(strong,nonatomic)NSMutableArray*priceArr;
 
+
+@property(strong,nonatomic)NSMutableArray*menu_urbanAreaArr;
+@property(strong,nonatomic)NSMutableArray*menu_sellPriceArr;
+@property(strong,nonatomic)NSMutableArray*menu_rentPriceArr;
+@property(strong,nonatomic)NSMutableArray*menu_deptArr;
+
+
+
+
+
+
+
+@property(strong,nonatomic)NSMutableArray*menu_areaArr;
+@property(strong,nonatomic)NSMutableArray*menu_hallArr;
+@property(strong,nonatomic)NSMutableArray*menu_floorArr;
+@property(strong,nonatomic)NSMutableArray*menu_orientArr;
+@property(strong,nonatomic)NSMutableArray*menu_FitTypeArr;
+@property(strong,nonatomic)NSMutableArray*menu_SellStausArr;
+@property(strong,nonatomic)NSMutableArray*menu_LeaseStausArr;
+@property(strong,nonatomic)NSMutableArray*menu_ConsignmentStausArr;
+@property(strong,nonatomic)NSMutableArray*menu_RoomTypeArr;
+@property(strong,nonatomic)NSMutableArray*menu_OtherArr;
+
+
 @end
+
+
+//#define TESTDATA
 
 @implementation HouseViewController
 
@@ -121,14 +150,6 @@
     
     
     
-    
-    [MJMenuModel asyncGetUrbanAndAreaMenuItemList:^(BOOL success, NSArray *urbanArr) {
-        NSArray*arr = urbanArr;
-        NSLog(@"%@",urbanArr);
-    }];
-    
-    NSArray*arr = [MJMenuModel getOrientMenuItemList];
-    NSLog(@"%@",arr);
 }
 
 -(void)initMenuData
@@ -140,6 +161,29 @@
                                                         @[@"不限",@"长乐东路",@"长乐坊",@"韩森寨"],
                                                         @[@"不限",@"南稍门",@"大雁塔",@"明德门",@"陕师大"]]];
     _priceArr = [[NSMutableArray alloc] initWithArray:@[@"不限",@"10-30万",@"30-50万",@"50-100万",@"100万－200万",@"200万以上"]];
+    
+    
+    
+    
+    SHOWHUD(self.view);
+    [MJMenuModel asyncGetUrbanAndAreaMenuItemList:^(BOOL success, NSArray *urbanArr) {
+        _menu_urbanAreaArr = [urbanArr mutableCopy];
+        HIDEHUD(self.view);
+    }];
+    _menu_sellPriceArr = [[MJMenuModel getSellPriceMenuItemList] mutableCopy];
+    _menu_rentPriceArr = [[MJMenuModel getRentPriceMenuItemList]  mutableCopy];
+    _menu_deptArr = [[MJMenuModel getDeptMenuItemList] mutableCopy];
+    _menu_areaArr = [[MJMenuModel getAreaMenuItemList] mutableCopy];
+    _menu_floorArr = [[MJMenuModel getFloorMenuItemList] mutableCopy];
+    _menu_hallArr = [[MJMenuModel getHallMenuItemList] mutableCopy];
+    _menu_orientArr = [[MJMenuModel getOrientMenuItemList] mutableCopy];
+    
+    _menu_FitTypeArr = [[MJMenuModel getFitTypeMenuItemList] mutableCopy];
+    _menu_SellStausArr = [[MJMenuModel getSellStausMenuItemList] mutableCopy];
+    _menu_LeaseStausArr = [[MJMenuModel getLeaseStausMenuItemList] mutableCopy];
+    _menu_ConsignmentStausArr = [[MJMenuModel getConsignmentStausMenuItemList] mutableCopy];
+    _menu_RoomTypeArr = [[MJMenuModel getRoomTypeMenuItemList] mutableCopy];
+    _menu_OtherArr = [[MJMenuModel getOtherTypeMenuItemList] mutableCopy];
 }
 
 - (NSInteger)NumberOfColumns:(MJDropDownMenuBar*)menuBar
@@ -153,9 +197,9 @@
     {
         case 0:return @"区域";break;
         case 1:return @"价格";break;
-        case 2:return @"房型";break;
+        case 2:return @"部门";break;
         case 3:return @"更多";break;
-        default:return @"太多";break;
+        default:return @"";break;
     }
 }
 
@@ -174,14 +218,14 @@
             if (menuBar == _sellMenuBar)
             {
                 if(_sell_areaMenu == nil)
-                    _sell_areaMenu = [self createDropDownMenu];
-                return _sell_areaMenu;
+                    _sell_areaMenu = [self createDropDownMenuWithMode:NO];
+                 return _sell_areaMenu;
             }
-            else if (menuBar ==_rentMenuBar)
+            else
             {
                 if(_rent_areaMenu == nil)
-                    _rent_areaMenu = [self createDropDownMenu];
-                return _rent_areaMenu;
+                    _rent_areaMenu = [self createDropDownMenuWithMode:NO];
+                 return _rent_areaMenu;
             }
         }
             break;
@@ -190,13 +234,13 @@
             if (menuBar == _sellMenuBar)
             {
                 if(_sell_priceMenu == nil)
-                    _sell_priceMenu = [self createDropDownMenu];
+                    _sell_priceMenu = [self createDropDownMenuWithMode:YES];
                 return _sell_priceMenu;
             }
             else if (menuBar ==_rentMenuBar)
             {
                 if(_rent_priceMenu == nil)
-                    _rent_priceMenu = [self createDropDownMenu];
+                    _rent_priceMenu = [self createDropDownMenuWithMode:YES];
                 return _rent_priceMenu;
             }
         }
@@ -205,15 +249,15 @@
         {
             if (menuBar == _sellMenuBar)
             {
-                if(_sell_houseModelMenu == nil)
-                    _sell_houseModelMenu = [self createDropDownMenu];
-                return _sell_houseModelMenu;
+                if(_sell_DeptMenu == nil)
+                    _sell_DeptMenu = [self createDropDownMenuWithMode:YES];
+                return _sell_DeptMenu;
             }
-            else if (menuBar ==_rentMenuBar)
+            else
             {
-                if(_rent_houseModelMenu == nil)
-                    _rent_houseModelMenu = [self createDropDownMenu];
-                return _rent_houseModelMenu;
+                if(_rent_DeptMenu == nil)
+                    _rent_DeptMenu = [self createDropDownMenuWithMode:YES];
+                return _rent_DeptMenu;
             }
         }
             break;
@@ -222,13 +266,13 @@
             if (menuBar == _sellMenuBar)
             {
                 if(_sell_moreMenu == nil)
-                    _sell_moreMenu = [self createDropDownMenu];
+                    _sell_moreMenu = [self createDropDownMenuWithMode:NO];
                 return _sell_moreMenu;
             }
             else if (menuBar ==_rentMenuBar)
             {
                 if(_rent_moreMenu == nil)
-                    _rent_moreMenu = [self createDropDownMenu];
+                    _rent_moreMenu = [self createDropDownMenuWithMode:NO];
                 return _rent_moreMenu;
             }
         }
@@ -240,11 +284,9 @@
     return nil;
 }
 
--(MJDropDownMenu*)createDropDownMenu
+-(MJDropDownMenu*)createDropDownMenuWithMode:(BOOL)isSingle
 {
-    static BOOL single = YES;
-    MJDropDownMenu* menu = [[MJDropDownMenu alloc] initWithOrigin:CGPointMake(_sellMenuBar.frame.origin.x, _sellMenuBar.frame.origin.y+_sellMenuBar.frame.size.height) andHeight:self.view.frame.size.height - (_sellMenuBar.frame.origin.y+_sellMenuBar.frame.size.height) - 50  SingleMode:single];
-    single = !single;
+    MJDropDownMenu* menu = [[MJDropDownMenu alloc] initWithOrigin:CGPointMake(_sellMenuBar.frame.origin.x, _sellMenuBar.frame.origin.y+_sellMenuBar.frame.size.height) andHeight:self.view.frame.size.height - (_sellMenuBar.frame.origin.y+_sellMenuBar.frame.size.height) - 50  SingleMode:isSingle];
     
     menu.dataSource = self;
     menu.delegate = self;
@@ -258,6 +300,8 @@
 
 - (NSInteger)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
+    
+#ifdef TESTDATA
     //if (menu == _sell_areaMenu)
     {
         if (tableView == menu.leftTableV)
@@ -286,12 +330,123 @@
         }
     }
     
+#else
+    if ((menu == _sell_areaMenu || menu == _rent_areaMenu)&& _menu_urbanAreaArr)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            return [_menu_urbanAreaArr count];
+        }
+        else if (tableView == menu.rightTableV)
+        {
+            
+            if(section < [_menu_urbanAreaArr count])
+            {
+                return ((MJMenuModel*)[_menu_urbanAreaArr objectAtIndex:section]).subMenuItems.count;
+            }
+            
+        }
+    }
+    else if(menu == _sell_priceMenu && _menu_sellPriceArr)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            return [_menu_sellPriceArr count];
+        }
+    }
+    else if (menu == _rent_priceMenu && _menu_rentPriceArr)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            return [_menu_rentPriceArr count];
+        }
+    }
+    else if ((menu == _sell_DeptMenu || menu == _rent_DeptMenu) && _menu_deptArr)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            return [_menu_deptArr count];
+        }
+    }
+    else if(menu ==_sell_moreMenu || menu == _rent_moreMenu)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            return 9;
+        }
+        else
+        {
+            switch (section)
+            {
+                case 0:
+                {
+                    return [_menu_areaArr count];
+                }
+                    break;
+                case 1:
+                {
+                    return [_menu_hallArr count];
+                }
+                    break;
+                case 2:
+                {
+                    return [_menu_floorArr count];
+                }
+                    break;
+                case 3:
+                {
+                    return [_menu_orientArr count];
+                }
+                    break;
+                case 4:
+                {
+                    return [_menu_FitTypeArr count];
+                }
+                    break;
+                case 5:
+                {
+                    if (menu == _sell_moreMenu)
+                    {
+                        return [_menu_SellStausArr count];
+                    }
+                    else
+                    {
+                        return [_menu_LeaseStausArr count];
+                    }
+                    
+                }
+                    break;
+                case 6:
+                {
+                    int count = [_menu_ConsignmentStausArr count];
+                    return [_menu_ConsignmentStausArr count];
+                }
+                    break;
+                case 7:
+                {
+                    return [_menu_RoomTypeArr count];
+                }
+                    break;
+                case 8:
+                {
+                    return [_menu_OtherArr count];
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+    }
+#endif
+    
     return 0;
 }
 
 
 - (NSString *)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView titleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+#ifdef TESTDATA
     if (menu == _sell_areaMenu)
     {
         if (tableView == menu.leftTableV)
@@ -315,7 +470,291 @@
         }
     }
     
+#else
+    if ((menu == _sell_areaMenu || menu == _rent_areaMenu)&& _menu_urbanAreaArr)
+    {
+        if (tableView == menu.leftTableV)
+        {
+
+            return ((MJMenuModel*)[_menu_urbanAreaArr objectAtIndex:indexPath.row]).menuItem.title;
+        }
+        else if (tableView == menu.rightTableV)
+        {
+            
+            if(indexPath.section < [_menu_urbanAreaArr count])
+            {
+//                return ((MJMenuItem*)[[[_menu_urbanAreaArr objectAtIndex:indexPath.section] objectForKey:@"subMenuItem"] objectAtIndex:indexPath.row]).title;
+//                
+//                
+                return ((MJMenuItem*)[((MJMenuModel*)[_menu_urbanAreaArr objectAtIndex:indexPath.section]).subMenuItems objectAtIndex:indexPath.row]).title;
+            }
+            
+        }
+    }
+    else if(menu == _sell_priceMenu && _menu_sellPriceArr)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            return [[[_menu_sellPriceArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"title"];
+        }
+    }
+    else if (menu == _rent_priceMenu && _menu_rentPriceArr)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            return [[[_menu_rentPriceArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"title"];
+        }
+    }
+    else if ((menu == _sell_DeptMenu || menu == _rent_DeptMenu) && _menu_deptArr)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            return [[[_menu_deptArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"title"];
+        }
+    }
+    else if(menu ==_sell_moreMenu || menu == _rent_moreMenu)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            switch (indexPath.row)
+            {
+                case 0:
+                {
+                    return @"面积";
+                }
+                    break;
+                case 1:
+                {
+                    return @"客厅";
+                }
+                    break;
+                case 2:
+                {
+                    return @"楼层";
+                }
+                    break;
+                case 3:
+                {
+                    return  @"朝向";
+                }
+                    break;
+                case 4:
+                {
+                    return  @"装修";
+                }
+                    break;
+                case 5:
+                {
+                    return  @"状态";
+                    
+                }
+                    break;
+                case 6:
+                {
+                    return  @"委托";
+                }
+                    break;
+                case 7:
+                {
+                    return  @"房型";
+                }
+                    break;
+                case 8:
+                {
+                    return @"其他";
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            switch (indexPath.section)
+            {
+                case 0:
+                {
+                    return [[[_menu_areaArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"title"];
+                }
+                    break;
+                case 1:
+                {
+                    return [[[_menu_hallArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"title"];
+                }
+                    break;
+                case 2:
+                {
+                    return [[[_menu_floorArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"title"];
+                }
+                    break;
+                case 3:
+                {
+                    return [[[_menu_orientArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"title"];
+                }
+                    break;
+                case 4:
+                {
+                    return [[[_menu_FitTypeArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"title"];
+                }
+                    break;
+                case 5:
+                {
+                    if (menu == _sell_moreMenu)
+                    {
+                        return [[[_menu_SellStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"title"];
+                    }
+                    else
+                    {
+                        return [[[_menu_LeaseStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"title"];
+                    }
+                    
+                }
+                    break;
+                case 6:
+                {
+                    return [[[_menu_ConsignmentStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"title"];
+                }
+                    break;
+                case 7:
+                {
+                    return [[[_menu_RoomTypeArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"title"];
+                }
+                    break;
+                case 8:
+                {
+                    return [[[_menu_OtherArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"title"];
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+    }
+    
+    
+#endif
+    
+    
     return @"空";
+}
+
+
+- (MJMenuItemValueType)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView valuetTypeForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ((menu == _sell_areaMenu || menu == _rent_areaMenu)&& _menu_urbanAreaArr)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            
+            return ((MJMenuModel*)[_menu_urbanAreaArr objectAtIndex:indexPath.row]).menuItem.value.valueType;
+        }
+        else if (tableView == menu.rightTableV)
+        {
+            
+            if(indexPath.section < [_menu_urbanAreaArr count])
+            {
+                //                return ((MJMenuItem*)[[[_menu_urbanAreaArr objectAtIndex:indexPath.section] objectForKey:@"subMenuItem"] objectAtIndex:indexPath.row]).title;
+                //
+                //
+                return ((MJMenuItem*)[((MJMenuModel*)[_menu_urbanAreaArr objectAtIndex:indexPath.section]).subMenuItems objectAtIndex:indexPath.row]).value.valueType;
+            }
+            
+        }
+    }
+    else if(menu == _sell_priceMenu && _menu_sellPriceArr)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            return [[[[_menu_sellPriceArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+        }
+    }
+    else if (menu == _rent_priceMenu && _menu_rentPriceArr)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            return [[[[_menu_rentPriceArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+        }
+    }
+    else if ((menu == _sell_DeptMenu || menu == _rent_DeptMenu) && _menu_deptArr)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            return [[[[_menu_deptArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+        }
+    }
+    else if(menu ==_sell_moreMenu || menu == _rent_moreMenu)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            return MJMenuItemValueTypeSingle;
+        }
+        else
+        {
+            switch (indexPath.section)
+            {
+                case 0:
+                {
+                    return [[[[_menu_areaArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                }
+                    break;
+                case 1:
+                {
+                    return [[[[_menu_hallArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                }
+                    break;
+                case 2:
+                {
+                    return [[[[_menu_floorArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                }
+                    break;
+                case 3:
+                {
+                    return [[[[_menu_orientArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                }
+                    break;
+                case 4:
+                {
+                    return [[[[_menu_FitTypeArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                }
+                    break;
+                case 5:
+                {
+                    if (menu == _sell_moreMenu)
+                    {
+                        return [[[[_menu_SellStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                    }
+                    else
+                    {
+                        return [[[[_menu_LeaseStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                    }
+                    
+                }
+                    break;
+                case 6:
+                {
+                    return [[[[_menu_ConsignmentStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                }
+                    break;
+                case 7:
+                {
+                    return [[[[_menu_RoomTypeArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                }
+                    break;
+                case 8:
+                {
+                    return [[[[_menu_OtherArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+    }
+    
+    return MJMenuItemValueTypeSingle;
 }
 
 - (void)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

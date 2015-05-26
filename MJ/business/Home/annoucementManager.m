@@ -100,8 +100,8 @@
              indicatorCnt.pert_sum = [[dic1 objectForKey:@"pert_sum"] floatValue];
              indicatorCnt.petition_count = [[dic1 objectForKey:@"petition_count"] intValue];
              
-             NSArray*urlArr = [[dic1 objectForKey:@"HomeImageInfo"] componentsSeparatedByString:@","];
-             NSArray*imageArr = [[dic1 objectForKey:@"HomeImageUrl"] componentsSeparatedByString:@","];
+             NSArray*urlArr = [dic1 objectForKey:@"HomeImageInfo"];
+             NSArray*imageArr = [dic1 objectForKey:@"HomeImageUrl"];
              int i = 0;
              indicatorCnt.bannerDataArr = [[NSMutableArray alloc] init];
              for (NSString* url in urlArr)

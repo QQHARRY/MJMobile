@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MJMenuItemValue.h"
 
 
 
@@ -21,7 +22,7 @@
 @required
 - (NSInteger)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section;
 - (NSString *)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView titleForRowAtIndexPath:(NSIndexPath *)indexPath;
-
+- (MJMenuItemValueType)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView valuetTypeForRowAtIndexPath:(NSIndexPath *)indexPath;
 @end
 
 #pragma mark - delegate

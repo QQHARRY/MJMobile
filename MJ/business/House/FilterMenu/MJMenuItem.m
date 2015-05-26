@@ -11,11 +11,7 @@
 
 @implementation MJMenuItem
 
--(NSDictionary*)convert2Dic
-{
-    NSDictionary*dic = @{@"titile":self.title,@"value":[self.value convert2Dic]};
-    return dic;
-}
+
 
 
 @end

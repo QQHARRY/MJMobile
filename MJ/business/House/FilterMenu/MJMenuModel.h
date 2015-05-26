@@ -19,11 +19,26 @@
 @property(strong,nonatomic)MJMenuItem*menuItem;
 @property(strong,nonatomic)NSMutableArray*subMenuItems;
 
--(NSDictionary*)convert2Dic;
-+(NSString*)getDicValueByLabel:(NSString*)label FromDicArr:(NSArray*)dicArr;
+
+
 
 +(void)asyncGetUrbanAndAreaMenuItemList:(void(^)(BOOL success,NSArray*urbanArr))complete;
++(NSArray*)getSellPriceMenuItemList;
++(NSArray*)getRentPriceMenuItemList;
++(NSArray*)getDeptMenuItemList;
++(NSArray*)getAreaMenuItemList;
++(NSArray*)getHallMenuItemList;
++(NSArray*)getFloorMenuItemList;
 +(NSArray*)getOrientMenuItemList;
++(NSArray*)getFitTypeMenuItemList;
++(NSArray*)getSellStausMenuItemList;
++(NSArray*)getLeaseStausMenuItemList;
++(NSArray*)getConsignmentStausMenuItemList;
++(NSArray*)getRoomTypeMenuItemList;
++(NSArray*)getOtherTypeMenuItemList;
 
 
++(NSArray*)getDicTypeArrByName:(NSString*)type;
+
++(NSString*)getDicValueByLabel:(NSString*)label FromDicArr:(NSArray*)dicArr;
 @end

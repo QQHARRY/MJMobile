@@ -15,5 +15,5 @@
 @property(strong,nonatomic)NSString*title;
 @property(strong,nonatomic)MJMenuItemValue*value;
 
--(NSDictionary*)convert2Dic;
+
 @end

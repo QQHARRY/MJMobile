@@ -106,12 +106,6 @@
 }
 
 
--(NSDictionary*)convert2Dic
-{
-    NSDictionary*dic = @{@"valueType":[NSNumber numberWithInt:self.valueType],@"valueArr":self.valueArr};
-    return dic;
-}
-
 
 
 

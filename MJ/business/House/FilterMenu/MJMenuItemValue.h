@@ -29,5 +29,5 @@ typedef NS_ENUM(NSInteger, MJMenuItemValueType) {
 -(NSArray*)getMultiValue;
 -(NSArray*)getAreaValue;
 
--(NSDictionary*)convert2Dic;
+
 @end

@@ -472,6 +472,14 @@
 		4AA543771A88B33F0089C0F2 /* RETableViewMultiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA543761A88B33F0089C0F2 /* RETableViewMultiCell.m */; };
 		4AAE1A511AF1C96000F01D95 /* UIBarButtonItem+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE1A4E1AF1C96000F01D95 /* UIBarButtonItem+Badge.m */; };
 		4AAE1A521AF1C96000F01D95 /* UIButton+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE1A501AF1C96000F01D95 /* UIButton+Badge.m */; };
+		4AAE5FE11B14100D0077AC98 /* SectionValueCustomizedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AAE5FE01B14100D0077AC98 /* SectionValueCustomizedCell.xib */; };
+		4AAE5FE81B142ADC0077AC98 /* DAKeyboardControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE5FE71B142ADC0077AC98 /* DAKeyboardControl.m */; };
+		4AAE5FEB1B145ADE0077AC98 /* UIView+FindFirstResponser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE5FEA1B145ADE0077AC98 /* UIView+FindFirstResponser.m */; };
+		4AAE5FEE1B145BBB0077AC98 /* UIView+addToolBar2Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE5FED1B145BBB0077AC98 /* UIView+addToolBar2Keyboard.m */; };
+		4AAE5FF81B145C160077AC98 /* DaiDodgeKeyboard+AccessObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE5FF11B145C160077AC98 /* DaiDodgeKeyboard+AccessObject.m */; };
+		4AAE5FF91B145C160077AC98 /* DaiDodgeKeyboard+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE5FF31B145C160077AC98 /* DaiDodgeKeyboard+Animation.m */; };
+		4AAE5FFA1B145C160077AC98 /* DaiDodgeKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE5FF51B145C160077AC98 /* DaiDodgeKeyboard.m */; };
+		4AAE5FFB1B145C160077AC98 /* UIView+FirstResponderNotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE5FF71B145C160077AC98 /* UIView+FirstResponderNotify.m */; };
 		4AAEFB4A1AFA0BB700501344 /* houseDescribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAEFB491AFA0BB700501344 /* houseDescribeViewController.m */; };
 		4AAFAC9D1AEB368D0029BAB3 /* UIImageView+RoundImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFAC9C1AEB368D0029BAB3 /* UIImageView+RoundImage.m */; };
 		4AAFACA01AEB49A60029BAB3 /* ImFriendListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFAC9F1AEB49A60029BAB3 /* ImFriendListManager.m */; };
@@ -517,6 +525,9 @@
 		4AD7955C1A218DF100DEC779 /* GTCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD795581A218DF100DEC779 /* GTCheckBox.m */; };
 		4AE5E3F31AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE5E3F21AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.m */; };
 		4AE645931AF24614000B82A6 /* EMConversation+realName.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE645921AF24614000B82A6 /* EMConversation+realName.m */; };
+		4AF44D851B132412006DE905 /* SingleValueCustomizedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF44D841B132412006DE905 /* SingleValueCustomizedCell.m */; };
+		4AF44D881B132429006DE905 /* SectionValueCustomizedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF44D871B132429006DE905 /* SectionValueCustomizedCell.m */; };
+		4AF44D8A1B132552006DE905 /* SingleValueCustomizedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AF44D891B132552006DE905 /* SingleValueCustomizedCell.xib */; };
 		4AFA9F631A775CB7008A852F /* editCustomerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFA9F621A775CB7008A852F /* editCustomerTableViewController.m */; };
 		4AFC39A81A47CA3A000FB6F3 /* bind.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC39A61A47CA3A000FB6F3 /* bind.storyboard */; };
 		B93A1C7F1A910109002D5C58 /* SignDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A1C7A1A910109002D5C58 /* SignDetailCell.m */; };
@@ -1432,6 +1443,22 @@
 		4AAE1A4E1AF1C96000F01D95 /* UIBarButtonItem+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Badge.m"; sourceTree = "<group>"; };
 		4AAE1A4F1AF1C96000F01D95 /* UIButton+Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Badge.h"; sourceTree = "<group>"; };
 		4AAE1A501AF1C96000F01D95 /* UIButton+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Badge.m"; sourceTree = "<group>"; };
+		4AAE5FE01B14100D0077AC98 /* SectionValueCustomizedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionValueCustomizedCell.xib; sourceTree = "<group>"; };
+		4AAE5FE41B141D700077AC98 /* myTextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myTextFieldDelegate.h; sourceTree = "<group>"; };
+		4AAE5FE61B142ADC0077AC98 /* DAKeyboardControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAKeyboardControl.h; sourceTree = "<group>"; };
+		4AAE5FE71B142ADC0077AC98 /* DAKeyboardControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAKeyboardControl.m; sourceTree = "<group>"; };
+		4AAE5FE91B145ADE0077AC98 /* UIView+FindFirstResponser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindFirstResponser.h"; sourceTree = "<group>"; };
+		4AAE5FEA1B145ADE0077AC98 /* UIView+FindFirstResponser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindFirstResponser.m"; sourceTree = "<group>"; };
+		4AAE5FEC1B145BBB0077AC98 /* UIView+addToolBar2Keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+addToolBar2Keyboard.h"; sourceTree = "<group>"; };
+		4AAE5FED1B145BBB0077AC98 /* UIView+addToolBar2Keyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+addToolBar2Keyboard.m"; sourceTree = "<group>"; };
+		4AAE5FF01B145C160077AC98 /* DaiDodgeKeyboard+AccessObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DaiDodgeKeyboard+AccessObject.h"; sourceTree = "<group>"; };
+		4AAE5FF11B145C160077AC98 /* DaiDodgeKeyboard+AccessObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DaiDodgeKeyboard+AccessObject.m"; sourceTree = "<group>"; };
+		4AAE5FF21B145C160077AC98 /* DaiDodgeKeyboard+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DaiDodgeKeyboard+Animation.h"; sourceTree = "<group>"; };
+		4AAE5FF31B145C160077AC98 /* DaiDodgeKeyboard+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DaiDodgeKeyboard+Animation.m"; sourceTree = "<group>"; };
+		4AAE5FF41B145C160077AC98 /* DaiDodgeKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiDodgeKeyboard.h; sourceTree = "<group>"; };
+		4AAE5FF51B145C160077AC98 /* DaiDodgeKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiDodgeKeyboard.m; sourceTree = "<group>"; };
+		4AAE5FF61B145C160077AC98 /* UIView+FirstResponderNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FirstResponderNotify.h"; sourceTree = "<group>"; };
+		4AAE5FF71B145C160077AC98 /* UIView+FirstResponderNotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FirstResponderNotify.m"; sourceTree = "<group>"; };
 		4AAEFB481AFA0BB700501344 /* houseDescribeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = houseDescribeViewController.h; sourceTree = "<group>"; };
 		4AAEFB491AFA0BB700501344 /* houseDescribeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = houseDescribeViewController.m; sourceTree = "<group>"; };
 		4AAFAC9B1AEB368D0029BAB3 /* UIImageView+RoundImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+RoundImage.h"; sourceTree = "<group>"; };
@@ -1522,6 +1549,11 @@
 		4AE5E3F21AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+AutoMoveCovered.m"; sourceTree = "<group>"; };
 		4AE645911AF24614000B82A6 /* EMConversation+realName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMConversation+realName.h"; sourceTree = "<group>"; };
 		4AE645921AF24614000B82A6 /* EMConversation+realName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMConversation+realName.m"; sourceTree = "<group>"; };
+		4AF44D831B132412006DE905 /* SingleValueCustomizedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleValueCustomizedCell.h; sourceTree = "<group>"; };
+		4AF44D841B132412006DE905 /* SingleValueCustomizedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleValueCustomizedCell.m; sourceTree = "<group>"; };
+		4AF44D861B132429006DE905 /* SectionValueCustomizedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionValueCustomizedCell.h; sourceTree = "<group>"; };
+		4AF44D871B132429006DE905 /* SectionValueCustomizedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionValueCustomizedCell.m; sourceTree = "<group>"; };
+		4AF44D891B132552006DE905 /* SingleValueCustomizedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleValueCustomizedCell.xib; sourceTree = "<group>"; };
 		4AFA9F611A775CB7008A852F /* editCustomerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editCustomerTableViewController.h; sourceTree = "<group>"; };
 		4AFA9F621A775CB7008A852F /* editCustomerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editCustomerTableViewController.m; sourceTree = "<group>"; };
 		4AFC39A71A47CA3A000FB6F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/bind.storyboard; sourceTree = "<group>"; };
@@ -2052,8 +2084,16 @@
 		4A9865111B0EDCD300462388 /* MJDropDownMenu */ = {
 			isa = PBXGroup;
 			children = (
+				4AAE5FE51B142ADC0077AC98 /* DAKeyboardControl */,
+				4AAE5FE41B141D700077AC98 /* myTextFieldDelegate.h */,
 				4A9865121B0EDCD300462388 /* MJDropDownMenu.h */,
 				4A9865131B0EDCD300462388 /* MJDropDownMenu.m */,
+				4AF44D831B132412006DE905 /* SingleValueCustomizedCell.h */,
+				4AF44D841B132412006DE905 /* SingleValueCustomizedCell.m */,
+				4AF44D891B132552006DE905 /* SingleValueCustomizedCell.xib */,
+				4AF44D861B132429006DE905 /* SectionValueCustomizedCell.h */,
+				4AF44D871B132429006DE905 /* SectionValueCustomizedCell.m */,
+				4AAE5FE01B14100D0077AC98 /* SectionValueCustomizedCell.xib */,
 			);
 			path = MJDropDownMenu;
 			sourceTree = "<group>";
@@ -3273,6 +3313,30 @@
 			path = "UIBarButtonItem+Badge";
 			sourceTree = "<group>";
 		};
+		4AAE5FE51B142ADC0077AC98 /* DAKeyboardControl */ = {
+			isa = PBXGroup;
+			children = (
+				4AAE5FE61B142ADC0077AC98 /* DAKeyboardControl.h */,
+				4AAE5FE71B142ADC0077AC98 /* DAKeyboardControl.m */,
+			);
+			path = DAKeyboardControl;
+			sourceTree = "<group>";
+		};
+		4AAE5FEF1B145C160077AC98 /* DaiDodgeKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				4AAE5FF01B145C160077AC98 /* DaiDodgeKeyboard+AccessObject.h */,
+				4AAE5FF11B145C160077AC98 /* DaiDodgeKeyboard+AccessObject.m */,
+				4AAE5FF21B145C160077AC98 /* DaiDodgeKeyboard+Animation.h */,
+				4AAE5FF31B145C160077AC98 /* DaiDodgeKeyboard+Animation.m */,
+				4AAE5FF41B145C160077AC98 /* DaiDodgeKeyboard.h */,
+				4AAE5FF51B145C160077AC98 /* DaiDodgeKeyboard.m */,
+				4AAE5FF61B145C160077AC98 /* UIView+FirstResponderNotify.h */,
+				4AAE5FF71B145C160077AC98 /* UIView+FirstResponderNotify.m */,
+			);
+			path = DaiDodgeKeyboard;
+			sourceTree = "<group>";
+		};
 		4AB0EFA31A30538D00C24A44 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -3311,6 +3375,10 @@
 				4A7486B11B0499D1003ECB8C /* UIViewController+ViewPersonDetails.m */,
 				4A9C652D1B0DF0B700A397A7 /* WebViewController.h */,
 				4A9C652E1B0DF0B700A397A7 /* WebViewController.m */,
+				4AAE5FE91B145ADE0077AC98 /* UIView+FindFirstResponser.h */,
+				4AAE5FEA1B145ADE0077AC98 /* UIView+FindFirstResponser.m */,
+				4AAE5FEC1B145BBB0077AC98 /* UIView+addToolBar2Keyboard.h */,
+				4AAE5FED1B145BBB0077AC98 /* UIView+addToolBar2Keyboard.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -3412,6 +3480,7 @@
 		4AD794A61A218C4A00DEC779 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				4AAE5FEF1B145C160077AC98 /* DaiDodgeKeyboard */,
 				4A6685951B07225900B0E999 /* UMAnalytics_Sdk_3.5.8 */,
 				4A8F095D1AF87AD200C44B99 /* MBProgressHUD */,
 				4AAE1A4C1AF1C96000F01D95 /* UIBarButtonItem+Badge */,
@@ -4103,6 +4172,7 @@
 				4AA18AB61AEF549A00685603 /* chatListCellHead.png in Resources */,
 				4AA18BD91AEF563400685603 /* EaseMob.bundle in Resources */,
 				4AA18AB31AEF549A00685603 /* 57.png in Resources */,
+				4AF44D8A1B132552006DE905 /* SingleValueCustomizedCell.xib in Resources */,
 				4AA18AB51AEF549A00685603 /* 80.png in Resources */,
 				4AA18B171AEF549A00685603 /* chatBar_recordBg@2x.png in Resources */,
 				4AA18AE61AEF549A00685603 /* VoiceSearchFeedback020.png in Resources */,
@@ -4256,6 +4326,7 @@
 				4AA18AFC1AEF549A00685603 /* chat_location_annotation_someone.png in Resources */,
 				4AA18AD01AEF549A00685603 /* VoiceSearchFeedback009.png in Resources */,
 				4AA18B0E1AEF549A00685603 /* chatBar_keyboardSelected.png in Resources */,
+				4AAE5FE11B14100D0077AC98 /* SectionValueCustomizedCell.xib in Resources */,
 				4AA18B011AEF549A00685603 /* chat_location_detail_disclosureHL@2x.png in Resources */,
 				B93B143E1A62539D00121133 /* FollowTableViewController.xib in Resources */,
 				4AA18B4F1AEF549A00685603 /* add.png in Resources */,
@@ -4292,6 +4363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AF44D851B132412006DE905 /* SingleValueCustomizedCell.m in Sources */,
 				4AA18A741AEF549A00685603 /* ChatListCell.m in Sources */,
 				4AA18A6A1AEF549A00685603 /* NSString+Valid.m in Sources */,
 				4AD795281A218C4A00DEC779 /* EGORefreshTableHeaderView.m in Sources */,
@@ -4328,6 +4400,7 @@
 				4AA18A551AEF549A00685603 /* PSTCollectionViewController.m in Sources */,
 				B93B144A1A62669600121133 /* MultilineTextCell.m in Sources */,
 				4AD795241A218C4A00DEC779 /* AFURLConnectionOperation.m in Sources */,
+				4AAE5FF81B145C160077AC98 /* DaiDodgeKeyboard+AccessObject.m in Sources */,
 				4AAFAC9D1AEB368D0029BAB3 /* UIImageView+RoundImage.m in Sources */,
 				B98BD5731A609185003A35BE /* REInlineDatePickerItem.m in Sources */,
 				4AD7954C1A218C4A00DEC779 /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -4357,6 +4430,7 @@
 				B98BD56E1A609185003A35BE /* RETableViewTextCell.m in Sources */,
 				4A6865A11A7374EF005394DD /* HouseSelectBuildingTableViewController.m in Sources */,
 				4A20DADD1A6A2B5A002E68EC /* BuildingsSelectTableViewController.m in Sources */,
+				4AAE5FFB1B145C160077AC98 /* UIView+FirstResponderNotify.m in Sources */,
 				4AA18A681AEF549A00685603 /* NSDate+Category.m in Sources */,
 				4AAE1A511AF1C96000F01D95 /* UIBarButtonItem+Badge.m in Sources */,
 				4AA18A3C1AEF549A00685603 /* MWPhoto.m in Sources */,
@@ -4384,6 +4458,7 @@
 				4AA18A641AEF549A00685603 /* THProgressView.m in Sources */,
 				B93B142D1A61652000121133 /* CustomerFilter.m in Sources */,
 				4AA18A841AEF549A00685603 /* EMChatTextBubbleView.m in Sources */,
+				4AAE5FEB1B145ADE0077AC98 /* UIView+FindFirstResponser.m in Sources */,
 				4A94F9191AF7563900B209FF /* EaseMobContacter.m in Sources */,
 				4AA18A671AEF549A00685603 /* WCAlertView.m in Sources */,
 				B94445721A6282510033E998 /* AppointTableViewController.m in Sources */,
@@ -4464,6 +4539,7 @@
 				4AA18A591AEF549A00685603 /* PSTCollectionViewLayout.m in Sources */,
 				4A9C65201B0C611000A397A7 /* ImagePlayerView.m in Sources */,
 				4AA18A5A1AEF549A00685603 /* PSTCollectionViewUpdateItem.m in Sources */,
+				4AAE5FE81B142ADC0077AC98 /* DAKeyboardControl.m in Sources */,
 				4AA18A8B1AEF549A00685603 /* MessageReadManager.m in Sources */,
 				4A9D02591A62738000600BA0 /* addHouseDistrictInfo.m in Sources */,
 				4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */,
@@ -4505,6 +4581,7 @@
 				B93B143D1A62539D00121133 /* FollowTableViewController.m in Sources */,
 				4A94F9161AF72A7900B209FF /* EaseMobFriendsManger.m in Sources */,
 				4A6865A51A737573005394DD /* buildingItemTableViewCell.m in Sources */,
+				4AAE5FEE1B145BBB0077AC98 /* UIView+addToolBar2Keyboard.m in Sources */,
 				4A8D01DE1A369DCE00EA59EA /* PublicAnncTableViewCell.m in Sources */,
 				B98BD57D1A609185003A35BE /* REActionBar.m in Sources */,
 				4ABC221D1A3C31910017FD94 /* AnncListViewController.m in Sources */,
@@ -4548,6 +4625,7 @@
 				B98BD4AA1A604408003A35BE /* HouseFilter.m in Sources */,
 				4A8D01F91A36FB8000EA59EA /* internalMessageManager.m in Sources */,
 				4AA18A481AEF549A00685603 /* EMSDWebImagePrefetcher.m in Sources */,
+				4AAE5FFA1B145C160077AC98 /* DaiDodgeKeyboard.m in Sources */,
 				4AA543711A8894630089C0F2 /* photoManager.m in Sources */,
 				4AA18A4E1AEF549A00685603 /* UIImage+EMWebP.m in Sources */,
 				4AA0385C1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m in Sources */,
@@ -4643,8 +4721,10 @@
 				4A9C652F1B0DF0B700A397A7 /* WebViewController.m in Sources */,
 				4AA18A6F1AEF549A00685603 /* AppDelegate+UMeng.m in Sources */,
 				4A3A2F311A45113200AA8A70 /* myBriefTableViewCell.m in Sources */,
+				4AAE5FF91B145C160077AC98 /* DaiDodgeKeyboard+Animation.m in Sources */,
 				4AA18AA51AEF549A00685603 /* BaseTableViewCell.m in Sources */,
 				4A9D024E1A611F7400600BA0 /* HouseParticularTableViewController.m in Sources */,
+				4AF44D881B132429006DE905 /* SectionValueCustomizedCell.m in Sources */,
 				4A5D23B51A48522100546698 /* shopRootTableViewController.m in Sources */,
 				4AA18A9D1AEF549A00685603 /* InvitationManager.m in Sources */,
 				4AD795261A218C4A00DEC779 /* AFURLResponseSerialization.m in Sources */,

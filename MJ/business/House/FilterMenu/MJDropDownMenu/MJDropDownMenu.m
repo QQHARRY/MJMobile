@@ -13,13 +13,19 @@
 
 
 #import "MJDropDownMenu.h"
+#import "SingleValueCustomizedCell.h"
+#import "SectionValueCustomizedCell.h"
+#import "myTextFieldDelegate.h"
+#import "DAKeyboardControl.h"
+#import "UIView+FindFirstResponser.h"
+#import "UIView+addToolBar2Keyboard.h"
 
 #define SCREEN_WIDTH      CGRectGetWidth([UIScreen mainScreen].applicationFrame)
 #define LEFT_TABLEV_COLOR [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1]
 #define RIGHT_TABLEV_COLOR [UIColor whiteColor]
 #define TEXT_HIGHLIGHT_COLOR [UIColor colorWithRed:0x01/255.0 green:0xAF/255.0 blue:0xE8/255.0 alpha:1]
 
-@interface MJDropDownMenu()
+@interface MJDropDownMenu()<myTextFieldDelegate>
 
 
 @property (nonatomic, assign) BOOL show;
@@ -75,6 +81,40 @@
         UIView *bottomShadow = [[UIView alloc] initWithFrame:CGRectMake(0,self.frame.size.height, SCREEN_WIDTH, 1)];
         bottomShadow.backgroundColor = [UIColor lightGrayColor];
         [self addSubview:bottomShadow];
+        
+#if 1
+        __weak typeof(self)weakSelf = self;
+        
+        [self addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
+            CGRect tableViewFrame = weakSelf.leftTableV.frame;
+            tableViewFrame.size.height = keyboardFrameInView.origin.y;
+            weakSelf.leftTableV.frame = tableViewFrame;
+            
+            tableViewFrame = weakSelf.rightTableV.frame;
+            tableViewFrame.size.height = keyboardFrameInView.origin.y;
+            weakSelf.rightTableV.frame = tableViewFrame;
+        }];
+        
+        [self addKeyboardCompletionHandler:^(BOOL finished, BOOL isShowing) {
+            if (!isShowing)
+            {
+                NSLog(@"finished=%d,isShowing=%d",finished,isShowing);
+                CGRect tableViewFrame = weakSelf.leftTableV.frame;
+                tableViewFrame.size.height = self.frame.size.height;
+                weakSelf.leftTableV.frame = tableViewFrame;
+                
+                
+                tableViewFrame = weakSelf.rightTableV.frame;
+                tableViewFrame.size.height = self.frame.size.height;
+                weakSelf.rightTableV.frame = tableViewFrame;
+                
+            }
+        }];
+        
+#endif
+        
+       
+        
     }
     return self;
 }
@@ -156,19 +196,69 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     static NSString *identifier = @"DropDownMenuCell";
+    
+    NSIndexPath*indexPathTmp = [NSIndexPath indexPathForRow:indexPath.row inSection:_clickedIndexOnLeft];
+    if (self.dataSource && [self.dataSource respondsToSelector:@selector(menu:tableView:valuetTypeForRowAtIndexPath:)])
+    {
+        MJMenuItemValueType type = [self.dataSource menu:self tableView:tableView valuetTypeForRowAtIndexPath:indexPathTmp];
+        if (type == MJMenuItemValueTypeCustomizeSinge)
+        {
+            identifier = @"SingleValueCustomizedCell";
+        }
+        else if(type == MJMenuItemValueTypeCustomizeArea)
+        {
+            identifier = @"SectionValueCustomizedCell";
+        }
+        else
+        {
+            identifier = @"DropDownMenuCell";
+        }
+    }
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        if ([identifier isEqualToString:@"SingleValueCustomizedCell"])
+        {
+            NSArray *nibs=[[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
+            for(id oneObject in nibs)
+            {
+                if([oneObject isKindOfClass:[SingleValueCustomizedCell class]])
+                {
+                    cell = (SingleValueCustomizedCell *)oneObject;
+                    ((SingleValueCustomizedCell *)cell).textFieldDelegate = self;
+                    
+                }
+            }
+        }
+        else if([identifier isEqualToString:@"SectionValueCustomizedCell"])
+        {
+            NSArray *nibs=[[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
+            for(id oneObject in nibs)
+            {
+                if([oneObject isKindOfClass:[SectionValueCustomizedCell class]])
+                {
+                    cell = (SectionValueCustomizedCell *)oneObject;
+                    ((SectionValueCustomizedCell *)cell).textFieldDelegate = self;
+                    
+                }
+            }
+        }
+        else
+        {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        }
+        
     }
 
     if (self.dataSource && [self.dataSource respondsToSelector:@selector(menu:tableView:titleForRowAtIndexPath:)])
     {
-        NSIndexPath*indexPathTmp = [NSIndexPath indexPathForRow:indexPath.row inSection:_clickedIndexOnLeft];
+        
         cell.textLabel.text = [self.dataSource menu:self tableView:tableView titleForRowAtIndexPath:indexPathTmp];
     }
-    
+
     if (!self.singleColumn)
     {
         if(tableView == _rightTableV)
@@ -213,9 +303,15 @@
         }
         
     }
+    
+    
     cell.textLabel.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
     cell.separatorInset = UIEdgeInsetsZero;
 
+    
+    
+    
+    
     return cell;
 }
 
@@ -262,6 +358,51 @@
 
     
 }
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    //[self hideKeyBoard];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+   
+}
+
+-(void)myTextFieldShouldReturn
+{
+
+}
+
+
+-(void)myTextFieldDidBeginEditing
+{
+
+
+}
+- (void)hideKeyBoard
+{
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+}
+-(BOOL) dismissAllKeyBoardInView:(UIView *)view
+{
+    if([view isFirstResponder])
+    {
+        [view resignFirstResponder];
+        return YES;
+    }
+    for(UIView *subView in view.subviews)
+    {
+        if([self dismissAllKeyBoardInView:subView])
+        {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+
+
 
 @end
 
