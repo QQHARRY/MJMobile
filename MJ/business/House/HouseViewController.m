@@ -126,7 +126,7 @@
     self.sellController.filter.ToID = @"0";
     self.sellController.filter.Count = @"10";
     
-
+#if 1
     [self.sellController.tableView setContentInset:UIEdgeInsetsMake(MENUBAR_HEIGHT, 0, 0, 0)];
     [self.rentController.tableView setContentInset:UIEdgeInsetsMake(MENUBAR_HEIGHT, 0, 0, 0)];
     
@@ -145,6 +145,8 @@
     _rentMenuBar.hidden = YES;
     
     [self initMenuData];
+    
+#endif
     // super fun
     [super viewDidLoad];
     
@@ -757,7 +759,168 @@
     return MJMenuItemValueTypeSingle;
 }
 
-- (void)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+
+- (MJMenuItemValue*)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView DefaultValueForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ((menu == _sell_areaMenu || menu == _rent_areaMenu)&& _menu_urbanAreaArr)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            
+            return ((MJMenuModel*)[_menu_urbanAreaArr objectAtIndex:indexPath.row]).menuItem.value;
+        }
+        else if (tableView == menu.rightTableV)
+        {
+            
+            if(indexPath.section < [_menu_urbanAreaArr count])
+            {
+                //                return ((MJMenuItem*)[[[_menu_urbanAreaArr objectAtIndex:indexPath.section] objectForKey:@"subMenuItem"] objectAtIndex:indexPath.row]).title;
+                //
+                //
+                return ((MJMenuItem*)[((MJMenuModel*)[_menu_urbanAreaArr objectAtIndex:indexPath.section]).subMenuItems objectAtIndex:indexPath.row]).value;
+            }
+            
+        }
+    }
+    else if(menu == _sell_priceMenu && _menu_sellPriceArr)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
+            value.valueType = [[[[_menu_sellPriceArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+            value.valueArr = [[[_menu_sellPriceArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+            return value;
+        }
+    }
+    else if (menu == _rent_priceMenu && _menu_rentPriceArr)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            
+            MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
+            value.valueType = [[[[_menu_rentPriceArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+            value.valueArr = [[[_menu_rentPriceArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+            return value;
+        }
+    }
+    else if ((menu == _sell_DeptMenu || menu == _rent_DeptMenu) && _menu_deptArr)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
+            value.valueType = [[[[_menu_deptArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+            value.valueArr = [[[_menu_deptArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+            return value;
+        }
+    }
+    else if(menu ==_sell_moreMenu || menu == _rent_moreMenu)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            return MJMenuItemValueTypeSingle;
+        }
+        else
+        {
+            switch (indexPath.section)
+            {
+                case 0:
+                {
+                    MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
+                    value.valueType = [[[[_menu_areaArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                    value.valueArr = [[[_menu_areaArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+                    return value;
+                }
+                    break;
+                case 1:
+                {
+                    MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
+                    value.valueType = [[[[_menu_hallArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                    value.valueArr = [[[_menu_hallArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+                    return value;
+
+                }
+                    break;
+                case 2:
+                {
+                    MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
+                    value.valueType = [[[[_menu_floorArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                    value.valueArr = [[[_menu_floorArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+                    return value;
+                }
+                    break;
+                case 3:
+                {
+                    MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
+                    value.valueType = [[[[_menu_orientArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                    value.valueArr = [[[_menu_orientArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+                    return value;
+                    
+                }
+                    break;
+                case 4:
+                {
+                    MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
+                    value.valueType = [[[[_menu_FitTypeArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                    value.valueArr = [[[_menu_FitTypeArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+                    return value;
+                }
+                    break;
+                case 5:
+                {
+                    if (menu == _sell_moreMenu)
+                    {
+                        MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
+                        value.valueType = [[[[_menu_SellStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                        value.valueArr = [[[_menu_SellStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+                        return value;
+                    }
+                    else
+                    {
+                        MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
+                        value.valueType = [[[[_menu_LeaseStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                        value.valueArr = [[[_menu_LeaseStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+                        return value;
+                    }
+                    
+                }
+                    break;
+                case 6:
+                {
+                    MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
+                    value.valueType = [[[[_menu_ConsignmentStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                    value.valueArr = [[[_menu_ConsignmentStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+                    return value;
+                }
+                    break;
+                case 7:
+                {
+                    MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
+                    value.valueType = [[[[_menu_RoomTypeArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                    value.valueArr = [[[_menu_RoomTypeArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+                    return value;
+
+                }
+                    break;
+                case 8:
+                {
+                    MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
+                    value.valueType = [[[[_menu_OtherArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                    value.valueArr = [[[_menu_OtherArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+                    return value;
+                    
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+    }
+    
+    return nil;
+}
+
+- (void)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath CustomizedValue:(MJMenuItemValue *)value
 {
     [_sellMenuBar makeMenuClosed];
     [_rentMenuBar makeMenuClosed];

@@ -7,6 +7,7 @@
 //
 
 #import "SectionValueCustomizedCell.h"
+#import "UITextField+AddDoneButtonToInputAccessoryView.h"
 
 @implementation SectionValueCustomizedCell
 
@@ -15,6 +16,9 @@
 {
     self.minValue.delegate = self;
     self.maxValue.delegate = self;
+    
+    [self.minValue addDoneBtn];
+    [self.maxValue addDoneBtn];
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField

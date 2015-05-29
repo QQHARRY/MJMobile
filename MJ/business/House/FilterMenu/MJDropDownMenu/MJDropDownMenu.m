@@ -19,6 +19,9 @@
 #import "DAKeyboardControl.h"
 #import "UIView+FindFirstResponser.h"
 #import "UIView+addToolBar2Keyboard.h"
+#import "DoneToolbarButton.h"
+#import "RFKeyboardToolbar.h"
+
 
 #define SCREEN_WIDTH      CGRectGetWidth([UIScreen mainScreen].applicationFrame)
 #define LEFT_TABLEV_COLOR [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1]
@@ -197,12 +200,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    static NSString *identifier = @"DropDownMenuCell";
+    NSString *identifier = @"DropDownMenuCell";
+    
+    MJMenuItemValueType type = MJMenuItemValueTypeSingle;
     
     NSIndexPath*indexPathTmp = [NSIndexPath indexPathForRow:indexPath.row inSection:_clickedIndexOnLeft];
     if (self.dataSource && [self.dataSource respondsToSelector:@selector(menu:tableView:valuetTypeForRowAtIndexPath:)])
     {
-        MJMenuItemValueType type = [self.dataSource menu:self tableView:tableView valuetTypeForRowAtIndexPath:indexPathTmp];
+        type = [self.dataSource menu:self tableView:tableView valuetTypeForRowAtIndexPath:indexPathTmp];
         if (type == MJMenuItemValueTypeCustomizeSinge)
         {
             identifier = @"SingleValueCustomizedCell";
@@ -242,13 +247,36 @@
                 {
                     cell = (SectionValueCustomizedCell *)oneObject;
                     ((SectionValueCustomizedCell *)cell).textFieldDelegate = self;
-                    
                 }
             }
         }
         else
         {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        }
+        
+        
+        if (self.dataSource && [self.dataSource respondsToSelector:@selector(menu:tableView:DefaultValueForRowAtIndexPath:)])
+        {
+            MJMenuItemValue*value = [self.dataSource menu:self tableView:tableView DefaultValueForRowAtIndexPath:indexPathTmp];
+            
+            if (value != nil && value.valueArr == nil && [value.valueArr  count] != 0)
+            {
+                
+                if (type == MJMenuItemValueTypeCustomizeSinge && [cell isKindOfClass:[SingleValueCustomizedCell class]] )
+                {
+                    ((SingleValueCustomizedCell*)cell).singleValueField.text = value.valueArr[0];
+                }
+                else if(type == MJMenuItemValueTypeCustomizeArea)
+                {
+                    ((SectionValueCustomizedCell*)cell).minValue.text = value.valueArr[0];
+                    ((SectionValueCustomizedCell*)cell).maxValue.text = value.valueArr[1];
+                }
+                else
+                {
+                    
+                }
+            }
         }
         
     }
@@ -312,17 +340,42 @@
     
     
     
+
     return cell;
 }
 
 #pragma mark - tableview delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    UITableViewCell*cell = [tableView cellForRowAtIndexPath:indexPath];
     if (self.singleColumn)
     {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(menu:tableView:didSelectRowAtIndexPath:)])
+        if (self.delegate && [self.delegate respondsToSelector:@selector(menu:tableView:didSelectRowAtIndexPath:CustomizedValue:)])
         {
-            [self.delegate menu:self tableView:tableView didSelectRowAtIndexPath:indexPath];
+            MJMenuItemValue*value = nil;
+            
+            if(self.dataSource && [self.dataSource respondsToSelector:@selector(menu:tableView:valuetTypeForRowAtIndexPath:)])
+            {
+                MJMenuItemValueType type = [self.dataSource menu:self tableView:tableView valuetTypeForRowAtIndexPath:indexPath];
+                
+                if (type == MJMenuItemValueTypeCustomizeSinge && [cell isKindOfClass:[SingleValueCustomizedCell class]])
+                {
+                    value = [[MJMenuItemValue alloc] init];
+                    value.valueType = type;
+                    value.valueArr = @[((SingleValueCustomizedCell*)cell).singleValueField.text];
+                    
+                }
+                else if (type == MJMenuItemValueTypeCustomizeArea && [cell isKindOfClass:[SectionValueCustomizedCell class]])
+                {
+                    value = [[MJMenuItemValue alloc] init];
+                    value.valueType = type;
+                    value.valueArr = @[((SectionValueCustomizedCell*)cell).minValue.text,((SectionValueCustomizedCell*)cell).maxValue.text];
+                }
+            }
+            
+            
+            [self.delegate menu:self tableView:tableView didSelectRowAtIndexPath:indexPath CustomizedValue:value];
         }
         
         [self animateOnView:nil show:NO complete:^{
@@ -342,10 +395,34 @@
         else
         {
             _selectedIndex = [NSIndexPath indexPathForRow:indexPath.row inSection:_clickedIndexOnLeft];
-            if (self.delegate && [self.delegate respondsToSelector:@selector(menu:tableView:didSelectRowAtIndexPath:)])
+            if (self.delegate && [self.delegate respondsToSelector:@selector(menu:tableView:didSelectRowAtIndexPath:CustomizedValue:)])
             {
+                
+                MJMenuItemValue*value = nil;
+                
+                if(self.dataSource && [self.dataSource respondsToSelector:@selector(menu:tableView:valuetTypeForRowAtIndexPath:)])
+                {
+                    MJMenuItemValueType type = [self.dataSource menu:self tableView:tableView valuetTypeForRowAtIndexPath:indexPath];
+                    
+                    if (type == MJMenuItemValueTypeCustomizeSinge && [cell isKindOfClass:[SingleValueCustomizedCell class]])
+                    {
+                        value = [[MJMenuItemValue alloc] init];
+                        value.valueType = type;
+                        value.valueArr = @[((SingleValueCustomizedCell*)cell).singleValueField.text];
+                        
+                    }
+                    else if (type == MJMenuItemValueTypeCustomizeArea && [cell isKindOfClass:[SectionValueCustomizedCell class]])
+                    {
+                        value = [[MJMenuItemValue alloc] init];
+                        value.valueType = type;
+                        value.valueArr = @[((SectionValueCustomizedCell*)cell).minValue.text,((SectionValueCustomizedCell*)cell).maxValue.text];
+                    }
+                }
+                
+
+                
                 NSIndexPath*indexTmp = [NSIndexPath indexPathForRow:indexPath.row inSection:_clickedIndexOnLeft];
-                [self.delegate menu:self tableView:tableView didSelectRowAtIndexPath:indexTmp];
+                [self.delegate menu:self tableView:tableView didSelectRowAtIndexPath:indexTmp CustomizedValue:value];
             }
             
             [self animateOnView:nil show:NO complete:^{

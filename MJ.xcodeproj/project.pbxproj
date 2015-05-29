@@ -476,10 +476,11 @@
 		4AAE5FE81B142ADC0077AC98 /* DAKeyboardControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE5FE71B142ADC0077AC98 /* DAKeyboardControl.m */; };
 		4AAE5FEB1B145ADE0077AC98 /* UIView+FindFirstResponser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE5FEA1B145ADE0077AC98 /* UIView+FindFirstResponser.m */; };
 		4AAE5FEE1B145BBB0077AC98 /* UIView+addToolBar2Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE5FED1B145BBB0077AC98 /* UIView+addToolBar2Keyboard.m */; };
-		4AAE5FF81B145C160077AC98 /* DaiDodgeKeyboard+AccessObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE5FF11B145C160077AC98 /* DaiDodgeKeyboard+AccessObject.m */; };
-		4AAE5FF91B145C160077AC98 /* DaiDodgeKeyboard+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE5FF31B145C160077AC98 /* DaiDodgeKeyboard+Animation.m */; };
-		4AAE5FFA1B145C160077AC98 /* DaiDodgeKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE5FF51B145C160077AC98 /* DaiDodgeKeyboard.m */; };
-		4AAE5FFB1B145C160077AC98 /* UIView+FirstResponderNotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE5FF71B145C160077AC98 /* UIView+FirstResponderNotify.m */; };
+		4AAE60011B146A3A0077AC98 /* RFKeyboardToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE5FFE1B146A3A0077AC98 /* RFKeyboardToolbar.m */; };
+		4AAE60021B146A3A0077AC98 /* RFToolbarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE60001B146A3A0077AC98 /* RFToolbarButton.m */; };
+		4AAE60051B146B2D0077AC98 /* RFExampleToolbarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE60041B146B2D0077AC98 /* RFExampleToolbarButton.m */; };
+		4AAE60081B146C090077AC98 /* DoneToolbarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE60071B146C090077AC98 /* DoneToolbarButton.m */; };
+		4AAE600B1B146D500077AC98 /* UITextField+AddDoneButtonToInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE600A1B146D500077AC98 /* UITextField+AddDoneButtonToInputAccessoryView.m */; };
 		4AAEFB4A1AFA0BB700501344 /* houseDescribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAEFB491AFA0BB700501344 /* houseDescribeViewController.m */; };
 		4AAFAC9D1AEB368D0029BAB3 /* UIImageView+RoundImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFAC9C1AEB368D0029BAB3 /* UIImageView+RoundImage.m */; };
 		4AAFACA01AEB49A60029BAB3 /* ImFriendListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAFAC9F1AEB49A60029BAB3 /* ImFriendListManager.m */; };
@@ -1451,14 +1452,16 @@
 		4AAE5FEA1B145ADE0077AC98 /* UIView+FindFirstResponser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindFirstResponser.m"; sourceTree = "<group>"; };
 		4AAE5FEC1B145BBB0077AC98 /* UIView+addToolBar2Keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+addToolBar2Keyboard.h"; sourceTree = "<group>"; };
 		4AAE5FED1B145BBB0077AC98 /* UIView+addToolBar2Keyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+addToolBar2Keyboard.m"; sourceTree = "<group>"; };
-		4AAE5FF01B145C160077AC98 /* DaiDodgeKeyboard+AccessObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DaiDodgeKeyboard+AccessObject.h"; sourceTree = "<group>"; };
-		4AAE5FF11B145C160077AC98 /* DaiDodgeKeyboard+AccessObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DaiDodgeKeyboard+AccessObject.m"; sourceTree = "<group>"; };
-		4AAE5FF21B145C160077AC98 /* DaiDodgeKeyboard+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DaiDodgeKeyboard+Animation.h"; sourceTree = "<group>"; };
-		4AAE5FF31B145C160077AC98 /* DaiDodgeKeyboard+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DaiDodgeKeyboard+Animation.m"; sourceTree = "<group>"; };
-		4AAE5FF41B145C160077AC98 /* DaiDodgeKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaiDodgeKeyboard.h; sourceTree = "<group>"; };
-		4AAE5FF51B145C160077AC98 /* DaiDodgeKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiDodgeKeyboard.m; sourceTree = "<group>"; };
-		4AAE5FF61B145C160077AC98 /* UIView+FirstResponderNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FirstResponderNotify.h"; sourceTree = "<group>"; };
-		4AAE5FF71B145C160077AC98 /* UIView+FirstResponderNotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FirstResponderNotify.m"; sourceTree = "<group>"; };
+		4AAE5FFD1B146A3A0077AC98 /* RFKeyboardToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFKeyboardToolbar.h; sourceTree = "<group>"; };
+		4AAE5FFE1B146A3A0077AC98 /* RFKeyboardToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFKeyboardToolbar.m; sourceTree = "<group>"; };
+		4AAE5FFF1B146A3A0077AC98 /* RFToolbarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFToolbarButton.h; sourceTree = "<group>"; };
+		4AAE60001B146A3A0077AC98 /* RFToolbarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFToolbarButton.m; sourceTree = "<group>"; };
+		4AAE60031B146B2D0077AC98 /* RFExampleToolbarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFExampleToolbarButton.h; sourceTree = "<group>"; };
+		4AAE60041B146B2D0077AC98 /* RFExampleToolbarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFExampleToolbarButton.m; sourceTree = "<group>"; };
+		4AAE60061B146C090077AC98 /* DoneToolbarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoneToolbarButton.h; sourceTree = "<group>"; };
+		4AAE60071B146C090077AC98 /* DoneToolbarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoneToolbarButton.m; sourceTree = "<group>"; };
+		4AAE60091B146D500077AC98 /* UITextField+AddDoneButtonToInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextField+AddDoneButtonToInputAccessoryView.h"; path = "DAKeyboardControl/UITextField+AddDoneButtonToInputAccessoryView.h"; sourceTree = "<group>"; };
+		4AAE600A1B146D500077AC98 /* UITextField+AddDoneButtonToInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextField+AddDoneButtonToInputAccessoryView.m"; path = "DAKeyboardControl/UITextField+AddDoneButtonToInputAccessoryView.m"; sourceTree = "<group>"; };
 		4AAEFB481AFA0BB700501344 /* houseDescribeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = houseDescribeViewController.h; sourceTree = "<group>"; };
 		4AAEFB491AFA0BB700501344 /* houseDescribeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = houseDescribeViewController.m; sourceTree = "<group>"; };
 		4AAFAC9B1AEB368D0029BAB3 /* UIImageView+RoundImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+RoundImage.h"; sourceTree = "<group>"; };
@@ -2084,6 +2087,8 @@
 		4A9865111B0EDCD300462388 /* MJDropDownMenu */ = {
 			isa = PBXGroup;
 			children = (
+				4AAE60091B146D500077AC98 /* UITextField+AddDoneButtonToInputAccessoryView.h */,
+				4AAE600A1B146D500077AC98 /* UITextField+AddDoneButtonToInputAccessoryView.m */,
 				4AAE5FE51B142ADC0077AC98 /* DAKeyboardControl */,
 				4AAE5FE41B141D700077AC98 /* myTextFieldDelegate.h */,
 				4A9865121B0EDCD300462388 /* MJDropDownMenu.h */,
@@ -3322,19 +3327,19 @@
 			path = DAKeyboardControl;
 			sourceTree = "<group>";
 		};
-		4AAE5FEF1B145C160077AC98 /* DaiDodgeKeyboard */ = {
+		4AAE5FFC1B146A3A0077AC98 /* RFKeyboardToolbar */ = {
 			isa = PBXGroup;
 			children = (
-				4AAE5FF01B145C160077AC98 /* DaiDodgeKeyboard+AccessObject.h */,
-				4AAE5FF11B145C160077AC98 /* DaiDodgeKeyboard+AccessObject.m */,
-				4AAE5FF21B145C160077AC98 /* DaiDodgeKeyboard+Animation.h */,
-				4AAE5FF31B145C160077AC98 /* DaiDodgeKeyboard+Animation.m */,
-				4AAE5FF41B145C160077AC98 /* DaiDodgeKeyboard.h */,
-				4AAE5FF51B145C160077AC98 /* DaiDodgeKeyboard.m */,
-				4AAE5FF61B145C160077AC98 /* UIView+FirstResponderNotify.h */,
-				4AAE5FF71B145C160077AC98 /* UIView+FirstResponderNotify.m */,
+				4AAE60031B146B2D0077AC98 /* RFExampleToolbarButton.h */,
+				4AAE60061B146C090077AC98 /* DoneToolbarButton.h */,
+				4AAE60071B146C090077AC98 /* DoneToolbarButton.m */,
+				4AAE60041B146B2D0077AC98 /* RFExampleToolbarButton.m */,
+				4AAE5FFD1B146A3A0077AC98 /* RFKeyboardToolbar.h */,
+				4AAE5FFE1B146A3A0077AC98 /* RFKeyboardToolbar.m */,
+				4AAE5FFF1B146A3A0077AC98 /* RFToolbarButton.h */,
+				4AAE60001B146A3A0077AC98 /* RFToolbarButton.m */,
 			);
-			path = DaiDodgeKeyboard;
+			path = RFKeyboardToolbar;
 			sourceTree = "<group>";
 		};
 		4AB0EFA31A30538D00C24A44 /* Utils */ = {
@@ -3480,7 +3485,7 @@
 		4AD794A61A218C4A00DEC779 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
-				4AAE5FEF1B145C160077AC98 /* DaiDodgeKeyboard */,
+				4AAE5FFC1B146A3A0077AC98 /* RFKeyboardToolbar */,
 				4A6685951B07225900B0E999 /* UMAnalytics_Sdk_3.5.8 */,
 				4A8F095D1AF87AD200C44B99 /* MBProgressHUD */,
 				4AAE1A4C1AF1C96000F01D95 /* UIBarButtonItem+Badge */,
@@ -4400,7 +4405,6 @@
 				4AA18A551AEF549A00685603 /* PSTCollectionViewController.m in Sources */,
 				B93B144A1A62669600121133 /* MultilineTextCell.m in Sources */,
 				4AD795241A218C4A00DEC779 /* AFURLConnectionOperation.m in Sources */,
-				4AAE5FF81B145C160077AC98 /* DaiDodgeKeyboard+AccessObject.m in Sources */,
 				4AAFAC9D1AEB368D0029BAB3 /* UIImageView+RoundImage.m in Sources */,
 				B98BD5731A609185003A35BE /* REInlineDatePickerItem.m in Sources */,
 				4AD7954C1A218C4A00DEC779 /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -4426,11 +4430,11 @@
 				4AA18A941AEF549A00685603 /* PublicGroupDetailViewController.m in Sources */,
 				4A87884C1AE8E94800FB3F91 /* ContacCustomizedBarBtnItemView.m in Sources */,
 				B98BD56B1A609185003A35BE /* RETableViewOptionCell.m in Sources */,
+				4AAE60011B146A3A0077AC98 /* RFKeyboardToolbar.m in Sources */,
 				4AA18A4C1AEF549A00685603 /* UIImage+EMGIF.m in Sources */,
 				B98BD56E1A609185003A35BE /* RETableViewTextCell.m in Sources */,
 				4A6865A11A7374EF005394DD /* HouseSelectBuildingTableViewController.m in Sources */,
 				4A20DADD1A6A2B5A002E68EC /* BuildingsSelectTableViewController.m in Sources */,
-				4AAE5FFB1B145C160077AC98 /* UIView+FirstResponderNotify.m in Sources */,
 				4AA18A681AEF549A00685603 /* NSDate+Category.m in Sources */,
 				4AAE1A511AF1C96000F01D95 /* UIBarButtonItem+Badge.m in Sources */,
 				4AA18A3C1AEF549A00685603 /* MWPhoto.m in Sources */,
@@ -4473,6 +4477,7 @@
 				4A5D24481A4AC14F00546698 /* order.m in Sources */,
 				4AA18A541AEF549A00685603 /* PSTCollectionViewCell.m in Sources */,
 				4AA18A981AEF549A00685603 /* AddFriendCell.m in Sources */,
+				4AAE60081B146C090077AC98 /* DoneToolbarButton.m in Sources */,
 				B98BD5861A609185003A35BE /* RETableViewSection.m in Sources */,
 				4AA18A511AEF549A00685603 /* UIView+EMWebCacheOperation.m in Sources */,
 				4AA18A5C1AEF549A00685603 /* PSTGridLayoutItem.m in Sources */,
@@ -4591,6 +4596,7 @@
 				4AA18A7C1AEF549A00685603 /* DXFaceView.m in Sources */,
 				B9B97CB41A75580E00942DC6 /* CustomerSecret.m in Sources */,
 				4A06BEC21AE6314C00809C52 /* unit.m in Sources */,
+				4AAE60021B146A3A0077AC98 /* RFToolbarButton.m in Sources */,
 				4AD788F41AFB5EFA008D6593 /* UIViewController+ContactsFunction.m in Sources */,
 				4AA18A891AEF549A00685603 /* MessageModel.m in Sources */,
 				4A20DAE51A6A2FAB002E68EC /* buildings.m in Sources */,
@@ -4625,7 +4631,6 @@
 				B98BD4AA1A604408003A35BE /* HouseFilter.m in Sources */,
 				4A8D01F91A36FB8000EA59EA /* internalMessageManager.m in Sources */,
 				4AA18A481AEF549A00685603 /* EMSDWebImagePrefetcher.m in Sources */,
-				4AAE5FFA1B145C160077AC98 /* DaiDodgeKeyboard.m in Sources */,
 				4AA543711A8894630089C0F2 /* photoManager.m in Sources */,
 				4AA18A4E1AEF549A00685603 /* UIImage+EMWebP.m in Sources */,
 				4AA0385C1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m in Sources */,
@@ -4681,10 +4686,12 @@
 				4AA18A811AEF549A00685603 /* EMChatBaseBubbleView.m in Sources */,
 				4A06BEB71AE6314C00809C52 /* ContactListTableViewController.m in Sources */,
 				4AA18A6D1AEF549A00685603 /* UIViewController+HUD.m in Sources */,
+				4AAE600B1B146D500077AC98 /* UITextField+AddDoneButtonToInputAccessoryView.m in Sources */,
 				4AA18AAD1AEF549A00685603 /* XHMessageTextView.m in Sources */,
 				4AA18A931AEF549A00685603 /* GroupSubjectChangingViewController.m in Sources */,
 				4AB0EFAF1A308CED00C24A44 /* UtilFun.m in Sources */,
 				4A96ECB41AE781A700577AA6 /* ContactPsnListViewController.m in Sources */,
+				4AAE60051B146B2D0077AC98 /* RFExampleToolbarButton.m in Sources */,
 				4AD795221A218C4A00DEC779 /* AFNetworkReachabilityManager.m in Sources */,
 				4AA18A581AEF549A00685603 /* PSTCollectionViewItemKey.m in Sources */,
 				4AA18AA31AEF549A00685603 /* PushNotificationViewController.m in Sources */,
@@ -4721,7 +4728,6 @@
 				4A9C652F1B0DF0B700A397A7 /* WebViewController.m in Sources */,
 				4AA18A6F1AEF549A00685603 /* AppDelegate+UMeng.m in Sources */,
 				4A3A2F311A45113200AA8A70 /* myBriefTableViewCell.m in Sources */,
-				4AAE5FF91B145C160077AC98 /* DaiDodgeKeyboard+Animation.m in Sources */,
 				4AA18AA51AEF549A00685603 /* BaseTableViewCell.m in Sources */,
 				4A9D024E1A611F7400600BA0 /* HouseParticularTableViewController.m in Sources */,
 				4AF44D881B132429006DE905 /* SectionValueCustomizedCell.m in Sources */,

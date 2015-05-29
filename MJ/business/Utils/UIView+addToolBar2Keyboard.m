@@ -7,7 +7,7 @@
 //
 
 #import "UIView+addToolBar2Keyboard.h"
-#import "DaiDodgeKeyboard.h"
+
 
 
 @implementation UIView (AddToolBar2Keyboard)
@@ -48,29 +48,7 @@
     }
     
     toolBar.items = actionArr;
-    
-    
-//    for (UIView *v in self.subviews)
-//    {
-//        if ([v respondsToSelector:@selector(setText:)])
-//        {
-//            [v performSelector:@selector(setDelegate:) withObject:self];
-//            [v performSelector:@selector(setInputAccessoryView:) withObject:toolBar];
-//        }
-//        else if([v isKindOfClass:[UITableViewCell class]])
-//        {
-//            for (UIView*v1 in v.subviews)
-//            {
-//                if ([v1 respondsToSelector:@selector(setText:)])
-//                {
-//                    [v1 performSelector:@selector(setDelegate:) withObject:self];
-//                    [v1 performSelector:@selector(setInputAccessoryView:) withObject:toolBar];
-//                }
-//            }
-//        }
-//    }
-    
-    [DaiDodgeKeyboard addRegisterTheViewNeedDodgeKeyboard:self];
+
     return toolBar;
 }
 
