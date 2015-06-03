@@ -7,12 +7,14 @@
 //
 
 #import "SingleValueCustomizedCell.h"
+#import "UITextField+AddDoneButtonToInputAccessoryView.h"
 
 @implementation SingleValueCustomizedCell
 
 -(void)awakeFromNib
 {
     self.singleValueField.delegate = self;
+    [self.singleValueField addDoneBtn];
 }
 
 

@@ -463,10 +463,32 @@
     int j = 0;
     BOOL isEditing = self.addButton.hidden ? YES : NO;
     BOOL isEnd = NO;
-    for (i = 0; i < row; i++) {
-        for (j = 0; j < kColOfRow; j++) {
+    
+    
+    NSMutableArray*arr = [[NSMutableArray alloc] initWithCapacity:self.dataSource.count];
+    for (i = 0; i < row; i++)
+    {
+        for (j = 0; j < kColOfRow; j++)
+        {
             NSInteger index = i * kColOfRow + j;
-            if (index < [self.dataSource count]) {
+            if (index < [self.dataSource count])
+            {
+                NSString *username = [self.dataSource objectAtIndex:index];
+                [arr addObject:username];
+            }
+        }
+    }
+    
+    [[EaseMobFriendsManger sharedInstance] addEMFriends:arr isFriend:NO];
+    
+    
+    for (i = 0; i < row; i++)
+    {
+        for (j = 0; j < kColOfRow; j++)
+        {
+            NSInteger index = i * kColOfRow + j;
+            if (index < [self.dataSource count])
+            {
                 NSString *username = [self.dataSource objectAtIndex:index];
                 ContactView *contactView = [[ContactView alloc] initWithFrame:CGRectMake(j * kContactSize, i * kContactSize, kContactSize, kContactSize)];
                 contactView.index = i * kColOfRow + j;

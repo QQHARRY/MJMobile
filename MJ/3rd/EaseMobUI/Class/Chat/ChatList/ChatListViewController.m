@@ -54,9 +54,6 @@
         _dataSource = [NSMutableArray array];
     }
 
-    
-   
-    
     return self;
 }
 
@@ -83,6 +80,7 @@
     [self networkStateView];
     
     [self.navigationController.tabBarController.tabBar setBackgroundColor:[UIColor whiteColor]];
+    self.navigationController.view.backgroundColor = [UIColor whiteColor];
     //[self.tabBarController.tabBar setBackgroundColor:[UIColor whiteColor]];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"好友" style:UIBarButtonItemStylePlain target:self action:@selector(rightButtonClicked)];
@@ -177,7 +175,7 @@
         _searchBar = [[EMSearchBar alloc] initWithFrame: CGRectMake(0, 0, self.view.frame.size.width, 44)];
         _searchBar.delegate = self;
         _searchBar.placeholder = NSLocalizedString(@"search", @"Search");
-        _searchBar.backgroundColor = [UIColor colorWithRed:0.747 green:0.756 blue:0.751 alpha:1.000];
+        _searchBar.backgroundColor = [UIColor lightGrayColor];
     }
     
     return _searchBar;

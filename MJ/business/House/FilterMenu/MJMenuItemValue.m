@@ -82,7 +82,7 @@
 
 -(id)getSingleValue
 {
-    if (valueArr != NULL && valueArr.count != 0)
+    if (valueArr != nil && valueArr.count != 0)
     {
         return valueArr[0];
     }
@@ -90,7 +90,7 @@
 }
 -(NSArray*)getMultiValue
 {
-    if (valueArr != NULL && valueArr.count != 0)
+    if (valueArr != nil && valueArr.count != 0)
     {
         return valueArr;
     }
@@ -98,7 +98,7 @@
 }
 -(NSArray*)getAreaValue
 {
-    if (valueArr != NULL && valueArr.count > 1)
+    if (valueArr != nil && valueArr.count > 1)
     {
         return [[NSArray alloc] initWithObjects:valueArr[0],valueArr[1],nil];
     }

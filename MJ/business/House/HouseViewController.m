@@ -19,12 +19,15 @@
 #import "MJMenuItem.h"
 #import "MJMenuItemValue.h"
 #import "MJMenuModel.h"
+#import "ContactListTableViewController.h"
+#import "AppDelegate.h"
+#import "department.h"
 
 
 #define MENUBAR_HEIGHT 32
 #define TABBAR_HEIGHT 44
 
-@interface HouseViewController ()<MJDropDownMenuBarDataSource,MJDropDownMenuBarDelegate,MJDropDownMenuDataSource,MJDropDownMenuDelegate>
+@interface HouseViewController ()<MJDropDownMenuBarDataSource,MJDropDownMenuBarDelegate,MJDropDownMenuDataSource,MJDropDownMenuDelegate,contacSelection>
 
 @property(nonatomic,strong)HouseFilterController *houseFilterVC;
 @property(strong,nonatomic)MJDropDownMenuBar*sellMenuBar;
@@ -43,20 +46,12 @@
 @property(strong,nonatomic)MJDropDownMenu*sell_moreMenu;
 
 
-@property(strong,nonatomic)NSMutableArray*urbanArr;
-@property(strong,nonatomic)NSMutableArray*areaArr;
-@property(strong,nonatomic)NSMutableArray*priceArr;
 
 
 @property(strong,nonatomic)NSMutableArray*menu_urbanAreaArr;
 @property(strong,nonatomic)NSMutableArray*menu_sellPriceArr;
 @property(strong,nonatomic)NSMutableArray*menu_rentPriceArr;
 @property(strong,nonatomic)NSMutableArray*menu_deptArr;
-
-
-
-
-
 
 
 @property(strong,nonatomic)NSMutableArray*menu_areaArr;
@@ -70,7 +65,9 @@
 @property(strong,nonatomic)NSMutableArray*menu_RoomTypeArr;
 @property(strong,nonatomic)NSMutableArray*menu_OtherArr;
 
-
+@property(strong,nonatomic)MJDropDownMenu*selectDeptMenu;
+@property(strong,nonatomic)HouseFilter*sellTmpFilter;
+@property(strong,nonatomic)HouseFilter*rentTmpFilter;
 @end
 
 
@@ -156,20 +153,13 @@
 
 -(void)initMenuData
 {
-    _urbanArr = [[NSMutableArray alloc] initWithArray:@[@"不限",@"城北",@"城东",@"城南"]];
-    _areaArr = [[NSMutableArray alloc] initWithArray: @[
-                                                        @[@"不限"],
-                                                        @[@"不限",@"北稍门",@"龙首村"],
-                                                        @[@"不限",@"长乐东路",@"长乐坊",@"韩森寨"],
-                                                        @[@"不限",@"南稍门",@"大雁塔",@"明德门",@"陕师大"]]];
-    _priceArr = [[NSMutableArray alloc] initWithArray:@[@"不限",@"10-30万",@"30-50万",@"50-100万",@"100万－200万",@"200万以上"]];
-    
+
     
     
     
     SHOWHUD(self.view);
     [MJMenuModel asyncGetUrbanAndAreaMenuItemList:^(BOOL success, NSArray *urbanArr) {
-        _menu_urbanAreaArr = [urbanArr mutableCopy];
+        _menu_urbanAreaArr = urbanArr;
         HIDEHUD(self.view);
     }];
     _menu_sellPriceArr = [[MJMenuModel getSellPriceMenuItemList] mutableCopy];
@@ -186,6 +176,10 @@
     _menu_ConsignmentStausArr = [[MJMenuModel getConsignmentStausMenuItemList] mutableCopy];
     _menu_RoomTypeArr = [[MJMenuModel getRoomTypeMenuItemList] mutableCopy];
     _menu_OtherArr = [[MJMenuModel getOtherTypeMenuItemList] mutableCopy];
+    
+    
+    _sellTmpFilter = [[HouseFilter alloc] init];
+    _rentTmpFilter = [[HouseFilter alloc] init];
 }
 
 - (NSInteger)NumberOfColumns:(MJDropDownMenuBar*)menuBar
@@ -220,13 +214,13 @@
             if (menuBar == _sellMenuBar)
             {
                 if(_sell_areaMenu == nil)
-                    _sell_areaMenu = [self createDropDownMenuWithMode:NO];
+                    _sell_areaMenu = [self createDropDownMenuWithMode:NO BatchSelect:NO];
                  return _sell_areaMenu;
             }
             else
             {
                 if(_rent_areaMenu == nil)
-                    _rent_areaMenu = [self createDropDownMenuWithMode:NO];
+                    _rent_areaMenu = [self createDropDownMenuWithMode:NO BatchSelect:NO];
                  return _rent_areaMenu;
             }
         }
@@ -236,13 +230,13 @@
             if (menuBar == _sellMenuBar)
             {
                 if(_sell_priceMenu == nil)
-                    _sell_priceMenu = [self createDropDownMenuWithMode:YES];
+                    _sell_priceMenu = [self createDropDownMenuWithMode:YES BatchSelect:NO];
                 return _sell_priceMenu;
             }
             else if (menuBar ==_rentMenuBar)
             {
                 if(_rent_priceMenu == nil)
-                    _rent_priceMenu = [self createDropDownMenuWithMode:YES];
+                    _rent_priceMenu = [self createDropDownMenuWithMode:YES BatchSelect:NO];
                 return _rent_priceMenu;
             }
         }
@@ -252,13 +246,13 @@
             if (menuBar == _sellMenuBar)
             {
                 if(_sell_DeptMenu == nil)
-                    _sell_DeptMenu = [self createDropDownMenuWithMode:YES];
+                    _sell_DeptMenu = [self createDropDownMenuWithMode:YES BatchSelect:NO];
                 return _sell_DeptMenu;
             }
             else
             {
                 if(_rent_DeptMenu == nil)
-                    _rent_DeptMenu = [self createDropDownMenuWithMode:YES];
+                    _rent_DeptMenu = [self createDropDownMenuWithMode:YES BatchSelect:NO];
                 return _rent_DeptMenu;
             }
         }
@@ -268,13 +262,13 @@
             if (menuBar == _sellMenuBar)
             {
                 if(_sell_moreMenu == nil)
-                    _sell_moreMenu = [self createDropDownMenuWithMode:NO];
+                    _sell_moreMenu = [self createDropDownMenuWithMode:NO BatchSelect:YES];
                 return _sell_moreMenu;
             }
             else if (menuBar ==_rentMenuBar)
             {
                 if(_rent_moreMenu == nil)
-                    _rent_moreMenu = [self createDropDownMenuWithMode:NO];
+                    _rent_moreMenu = [self createDropDownMenuWithMode:NO BatchSelect:YES];
                 return _rent_moreMenu;
             }
         }
@@ -286,9 +280,9 @@
     return nil;
 }
 
--(MJDropDownMenu*)createDropDownMenuWithMode:(BOOL)isSingle
+-(MJDropDownMenu*)createDropDownMenuWithMode:(BOOL)isSingle BatchSelect:(BOOL)batch
 {
-    MJDropDownMenu* menu = [[MJDropDownMenu alloc] initWithOrigin:CGPointMake(_sellMenuBar.frame.origin.x, _sellMenuBar.frame.origin.y+_sellMenuBar.frame.size.height) andHeight:self.view.frame.size.height - (_sellMenuBar.frame.origin.y+_sellMenuBar.frame.size.height) - 50  SingleMode:isSingle];
+    MJDropDownMenu* menu = [[MJDropDownMenu alloc] initWithOrigin:CGPointMake(_sellMenuBar.frame.origin.x, _sellMenuBar.frame.origin.y+_sellMenuBar.frame.size.height) andHeight:self.view.frame.size.height - (_sellMenuBar.frame.origin.y+_sellMenuBar.frame.size.height) - 50  SingleMode:isSingle BatchSelect:batch];
     
     menu.dataSource = self;
     menu.delegate = self;
@@ -302,37 +296,6 @@
 
 - (NSInteger)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-#ifdef TESTDATA
-    //if (menu == _sell_areaMenu)
-    {
-        if (tableView == menu.leftTableV)
-        {
-            return 20;
-            if (_urbanArr)
-            {
-                return _urbanArr.count;
-            }
-        }
-        else if(tableView == menu.rightTableV)
-        {
-            if (_areaArr)
-            {
-                if (section < [_areaArr count])
-                {
-                    return 50;
-                    NSArray*areaArrInRow = [_areaArr objectAtIndex:section];
-                    if (areaArrInRow)
-                    {
-                        return areaArrInRow.count;
-                    }
-                }
-                
-            }
-        }
-    }
-    
-#else
     if ((menu == _sell_areaMenu || menu == _rent_areaMenu)&& _menu_urbanAreaArr)
     {
         if (tableView == menu.leftTableV)
@@ -420,7 +383,6 @@
                     break;
                 case 6:
                 {
-                    int count = [_menu_ConsignmentStausArr count];
                     return [_menu_ConsignmentStausArr count];
                 }
                     break;
@@ -440,7 +402,6 @@
             }
         }
     }
-#endif
     
     return 0;
 }
@@ -448,31 +409,6 @@
 
 - (NSString *)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView titleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-#ifdef TESTDATA
-    if (menu == _sell_areaMenu)
-    {
-        if (tableView == menu.leftTableV)
-        {
-            if (_urbanArr && _urbanArr.count > indexPath.row)
-            {
-                return _urbanArr[indexPath.row];
-            }
-        }
-        else if(tableView == menu.rightTableV)
-        {
-            if (_areaArr && _areaArr.count > indexPath.section)
-            {
-                NSArray*areaArrInRow = [_areaArr objectAtIndex:indexPath.section];
-                if (areaArrInRow && areaArrInRow.count > indexPath.row)
-                {
-                    return areaArrInRow[indexPath.row];
-                }
-                
-            }
-        }
-    }
-    
-#else
     if ((menu == _sell_areaMenu || menu == _rent_areaMenu)&& _menu_urbanAreaArr)
     {
         if (tableView == menu.leftTableV)
@@ -485,10 +421,11 @@
             
             if(indexPath.section < [_menu_urbanAreaArr count])
             {
-//                return ((MJMenuItem*)[[[_menu_urbanAreaArr objectAtIndex:indexPath.section] objectForKey:@"subMenuItem"] objectAtIndex:indexPath.row]).title;
-//                
-//                
-                return ((MJMenuItem*)[((MJMenuModel*)[_menu_urbanAreaArr objectAtIndex:indexPath.section]).subMenuItems objectAtIndex:indexPath.row]).title;
+                MJMenuModel*model = [_menu_urbanAreaArr objectAtIndex:indexPath.section];
+                if (model && [model isKindOfClass:[MJMenuModel class]] && model.subMenuItems && model.subMenuItems.count > indexPath.row)
+                {
+                    return ((MJMenuItem*)[model.subMenuItems objectAtIndex:indexPath.row]).title;
+                }
             }
             
         }
@@ -636,10 +573,7 @@
     }
     
     
-#endif
-    
-    
-    return @"空";
+    return @"";
 }
 
 
@@ -657,10 +591,16 @@
             
             if(indexPath.section < [_menu_urbanAreaArr count])
             {
-                //                return ((MJMenuItem*)[[[_menu_urbanAreaArr objectAtIndex:indexPath.section] objectForKey:@"subMenuItem"] objectAtIndex:indexPath.row]).title;
-                //
-                //
-                return ((MJMenuItem*)[((MJMenuModel*)[_menu_urbanAreaArr objectAtIndex:indexPath.section]).subMenuItems objectAtIndex:indexPath.row]).value.valueType;
+                
+                MJMenuModel* model = [_menu_urbanAreaArr objectAtIndex:indexPath.section];
+                if (model && model.subMenuItems && model.subMenuItems.count > indexPath.row)
+                {
+                    return ((MJMenuItem*)model.subMenuItems[indexPath.row]).value.valueType;
+                }
+                else
+                {
+                    int a  = 0;
+                }
             }
             
         }
@@ -760,36 +700,35 @@
 }
 
 
-- (MJMenuItemValue*)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView DefaultValueForRowAtIndexPath:(NSIndexPath *)indexPath
+-(MJMenuItemValue*)getMenuItemDefaultValueForRowAtIndexPath:(NSIndexPath*)indexPath FromMenuDataArr:(NSArray*)arr
 {
-    if ((menu == _sell_areaMenu || menu == _rent_areaMenu)&& _menu_urbanAreaArr)
+    if (indexPath && arr && indexPath.row < arr.count)
     {
-        if (tableView == menu.leftTableV)
-        {
-            
-            return ((MJMenuModel*)[_menu_urbanAreaArr objectAtIndex:indexPath.row]).menuItem.value;
-        }
-        else if (tableView == menu.rightTableV)
-        {
-            
-            if(indexPath.section < [_menu_urbanAreaArr count])
-            {
-                //                return ((MJMenuItem*)[[[_menu_urbanAreaArr objectAtIndex:indexPath.section] objectForKey:@"subMenuItem"] objectAtIndex:indexPath.row]).title;
-                //
-                //
-                return ((MJMenuItem*)[((MJMenuModel*)[_menu_urbanAreaArr objectAtIndex:indexPath.section]).subMenuItems objectAtIndex:indexPath.row]).value;
-            }
-            
-        }
-    }
-    else if(menu == _sell_priceMenu && _menu_sellPriceArr)
-    {
-        if (tableView == menu.leftTableV)
+        MJMenuItemValueType type = [[[[arr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+        
+        if (type == MJMenuItemValueTypeCustomizeArea || type == MJMenuItemValueTypeCustomizeSinge)
         {
             MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
-            value.valueType = [[[[_menu_sellPriceArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
-            value.valueArr = [[[_menu_sellPriceArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+            value.valueType = type;
+            value.valueArr = [[[arr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
             return value;
+        }
+    }
+    
+    return nil;
+}
+
+
+
+
+- (MJMenuItemValue*)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView DefaultValueForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    if(menu == _sell_priceMenu && _menu_sellPriceArr)
+    {
+        if (tableView == menu.leftTableV)
+        {
+            return [self getMenuItemDefaultValueForRowAtIndexPath:indexPath FromMenuDataArr:_menu_sellPriceArr];
         }
     }
     else if (menu == _rent_priceMenu && _menu_rentPriceArr)
@@ -797,117 +736,39 @@
         if (tableView == menu.leftTableV)
         {
             
-            MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
-            value.valueType = [[[[_menu_rentPriceArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
-            value.valueArr = [[[_menu_rentPriceArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
-            return value;
+            return [self getMenuItemDefaultValueForRowAtIndexPath:indexPath FromMenuDataArr:_menu_rentPriceArr];
         }
     }
     else if ((menu == _sell_DeptMenu || menu == _rent_DeptMenu) && _menu_deptArr)
     {
         if (tableView == menu.leftTableV)
         {
-            MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
-            value.valueType = [[[[_menu_deptArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
-            value.valueArr = [[[_menu_deptArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
-            return value;
+            return [self getMenuItemDefaultValueForRowAtIndexPath:indexPath FromMenuDataArr:_menu_deptArr];
         }
     }
     else if(menu ==_sell_moreMenu || menu == _rent_moreMenu)
     {
-        if (tableView == menu.leftTableV)
-        {
-            return MJMenuItemValueTypeSingle;
-        }
-        else
+        if (tableView == menu.rightTableV)
         {
             switch (indexPath.section)
             {
                 case 0:
-                {
-                    MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
-                    value.valueType = [[[[_menu_areaArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
-                    value.valueArr = [[[_menu_areaArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
-                    return value;
-                }
-                    break;
                 case 1:
-                {
-                    MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
-                    value.valueType = [[[[_menu_hallArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
-                    value.valueArr = [[[_menu_hallArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
-                    return value;
-
-                }
                     break;
                 case 2:
                 {
-                    MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
-                    value.valueType = [[[[_menu_floorArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
-                    value.valueArr = [[[_menu_floorArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
-                    return value;
+                    return [self getMenuItemDefaultValueForRowAtIndexPath:indexPath FromMenuDataArr:_menu_floorArr];
                 }
                     break;
                 case 3:
-                {
-                    MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
-                    value.valueType = [[[[_menu_orientArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
-                    value.valueArr = [[[_menu_orientArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
-                    return value;
-                    
-                }
-                    break;
                 case 4:
-                {
-                    MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
-                    value.valueType = [[[[_menu_FitTypeArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
-                    value.valueArr = [[[_menu_FitTypeArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
-                    return value;
-                }
-                    break;
                 case 5:
-                {
-                    if (menu == _sell_moreMenu)
-                    {
-                        MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
-                        value.valueType = [[[[_menu_SellStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
-                        value.valueArr = [[[_menu_SellStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
-                        return value;
-                    }
-                    else
-                    {
-                        MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
-                        value.valueType = [[[[_menu_LeaseStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
-                        value.valueArr = [[[_menu_LeaseStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
-                        return value;
-                    }
-                    
-                }
-                    break;
                 case 6:
-                {
-                    MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
-                    value.valueType = [[[[_menu_ConsignmentStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
-                    value.valueArr = [[[_menu_ConsignmentStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
-                    return value;
-                }
-                    break;
                 case 7:
-                {
-                    MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
-                    value.valueType = [[[[_menu_RoomTypeArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
-                    value.valueArr = [[[_menu_RoomTypeArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
-                    return value;
-
-                }
                     break;
                 case 8:
                 {
-                    MJMenuItemValue*value = [[MJMenuItemValue alloc] init];
-                    value.valueType = [[[[_menu_OtherArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
-                    value.valueArr = [[[_menu_OtherArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
-                    return value;
-                    
+                    return [self getMenuItemDefaultValueForRowAtIndexPath:indexPath FromMenuDataArr:_menu_OtherArr];
                 }
                     break;
                     
@@ -922,10 +783,296 @@
 
 - (void)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath CustomizedValue:(MJMenuItemValue *)value
 {
-    [_sellMenuBar makeMenuClosed];
-    [_rentMenuBar makeMenuClosed];
+    if (menu.batchSelect == NO)
+    {
+        [self closeMenu];
+    }
+    
+    MJDropDownMenuBar*menubar = nil;
+    if (menu == _sell_areaMenu || menu == _rent_areaMenu)
+    {
+        HouseFilter*filter = (menu == _sell_areaMenu)?_sellController.filter:_rentController.filter;
+        menubar = (menu == _sell_areaMenu)?_sellMenuBar:_rentMenuBar;
+        if(filter && indexPath.section < [_menu_urbanAreaArr count])
+        {
+            MJMenuModel*model = [_menu_urbanAreaArr objectAtIndex:indexPath.section];
+            
+            filter.houseurban = [model.menuItem.value getSingleValue];
+            
+            
+            if (model && [model isKindOfClass:[MJMenuModel class]] && model.subMenuItems && model.subMenuItems.count > indexPath.row)
+            {
+                MJMenuItem*item = [model.subMenuItems objectAtIndex:indexPath.row];
+                filter.housearea = [item.value getSingleValue];
+                
+                //NSString*urbanTitle = model.menuItem.title;
+                NSString*areaTitle = item.title;
+                [menubar updateTitle:[NSString stringWithFormat:@"%@",areaTitle] ForIndex:0];
+            }
+        }
+    }
+    else if(menu == _sell_priceMenu || menu == _rent_priceMenu)
+    {
+        HouseFilter*filter = (menu == _sell_priceMenu)?_sellController.filter:_rentController.filter;
+        menubar = (menu == _sell_priceMenu)?_sellMenuBar:_rentMenuBar;
+        NSArray*priceArr = (menu == _sell_priceMenu)?_menu_sellPriceArr:_menu_rentPriceArr;
+        
+        if(filter && indexPath.row < [priceArr count])
+        {
+            NSDictionary*dic = [priceArr objectAtIndex:indexPath.row];
+            
+            NSArray*valueArr = [[dic objectForKey:@"menuItem"] objectForKey:@"value"];
+            if (valueArr && valueArr.count > 1)
+            {
+                NSString* minPrice = valueArr[0];
+                NSString* maxPrice = valueArr[1];
+                
+                filter.sale_value_from = minPrice;
+                filter.sale_value_to = maxPrice;
+            }
+            
+            NSString*title = [[dic objectForKey:@"menuItem"] objectForKey:@"title"];
+            [menubar updateTitle:[NSString stringWithFormat:@"%@",title] ForIndex:1];
+        }
+    }
+    else if (menu == _sell_DeptMenu || menu == _rent_DeptMenu)
+    {
+        HouseFilter*filter = (menu == _sell_DeptMenu)?_sellController.filter:_rentController.filter;
+        menubar = (menu == _sell_DeptMenu)?_sellMenuBar:_rentMenuBar;
+        
+        
+        if(filter)
+        {
+            switch (indexPath.row)
+            {
+                case 0:
+                {
+                    [menubar updateTitle:@"不限" ForIndex:2];
+                    filter.search_job_no = @"";
+                    filter.search_dept_no = @"";
+                }
+                    break;
+                case 1:
+                {
+                    [menubar updateTitle:@"我的部门" ForIndex:2];
+                    filter.search_job_no = [person me].job_no;
+                    filter.search_dept_no = [person me].department_no;
+                }
+                    break;
+                default:
+                {
+                    _selectDeptMenu = menu;
+                    [self showContactVC];
+                    return;
+                }
+                    break;
+            }
+        }
+    }
+    else if (menu == _sell_moreMenu || menu == _rent_moreMenu)
+    {
+        menubar = (menu == _sell_moreMenu)?_sellMenuBar:_rentMenuBar;
+        
+        [self setFilterByClickedMoreMenu:menu AtIndexPath:indexPath WithCustomizedValue:value];
+        
+        
+
+    }
+    
+    if (menubar == _sellMenuBar)
+    {
+        
+    }
+    else if(menubar == _rentMenuBar)
+    {
+        
+    }
+}
+
+
+-(void)setFilterByClickedMoreMenu:(MJDropDownMenu*)menu AtIndexPath:(NSIndexPath*)indexPath WithCustomizedValue:(MJMenuItemValue*)cusValue
+{
+        HouseFilter*filter = (menu == _sell_moreMenu)?_sellTmpFilter:_rentTmpFilter;
+    
+        NSArray*modelArr = nil;
+        
+        switch (indexPath.section)
+        {
+            case 0:
+            {
+                //return @"面积";
+                if (indexPath.row < _menu_areaArr.count )
+                {
+                    NSArray*valueArr =  [[[_menu_areaArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+                    filter.structure_area_from = valueArr[0];
+                    filter.structure_area_to = valueArr[1];
+                }
+            }
+                break;
+            case 1:
+            {
+                //return @"客厅";
+                NSArray*valueArr =  [[[_menu_hallArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+                filter.hall_num = valueArr[0];
+            }
+                break;
+            case 2:
+            {
+                //return @"楼层";
+                NSArray*valueArr =  [[[_menu_floorArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+                NSInteger valueType =  [[[[_menu_floorArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+                
+                filter.house_floor_from = valueArr[0];
+                filter.house_floor_to = valueArr[0];
+                if (valueType == MJMenuItemValueTypeCustomizeArea && cusValue && cusValue.valueArr && cusValue.valueArr.count > 1)
+                {
+                    filter.house_floor_from = cusValue.valueArr[0];
+                    filter.house_floor_to =  cusValue.valueArr[1];
+                }
+                
+            }
+                break;
+            case 3:
+            {
+                //return  @"朝向";
+                NSArray*valueArr =  [[[_menu_orientArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+                
+                filter.house_driect = valueArr[0];
+            }
+                break;
+            case 4:
+            {
+                //return  @"装修";
+                NSArray*valueArr =  [[[_menu_FitTypeArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+                
+                filter.fitment_type = valueArr[0];
+            }
+                break;
+            case 5:
+            {
+                //return  @"状态";
+                modelArr =  (menu==_sell_moreMenu)?_menu_SellStausArr:_menu_LeaseStausArr;
+                
+                if (menu == _sell_moreMenu)
+                {
+                    NSArray*valueArr =  [[[_menu_SellStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+                    
+                    filter.sale_trade_state = valueArr[0];
+                }
+                else if(menu == _rent_moreMenu)
+                {
+                    NSArray*valueArr =  [[[_menu_LeaseStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+                     filter.lease_trade_state = valueArr[0];
+                }
+            }
+                break;
+            case 6:
+            {
+                //return  @"委托";
+                NSArray*valueArr =  [[[_menu_ConsignmentStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+                
+                filter.consignment_type = valueArr[0];
+            }
+                break;
+            case 7:
+            {
+                //return  @"房型";
+                NSArray*valueArr =  [[[_menu_RoomTypeArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
+                filter.room_num = valueArr[0];
+            }
+                break;
+            case 8:
+            {
+                //return @"其他";
+            }
+                break;
+                
+            default:
+                break;
+        }
+    
+
+}
+
+
+-(void)showContactVC
+{
+    AppDelegate*app = [[UIApplication sharedApplication] delegate];
+    
+    ContactListTableViewController*ctrl =[app instantiateViewControllerWithIdentifier:@"ContactListTableViewController" AndClass:[ContactListTableViewController class]];
+    ctrl.selectMode = YES;
+    ctrl.singleSelect = YES;
+    ctrl.singleSelectCanSelectDepart = YES;
+    ctrl.selectResultDelegate = self;
+    [self.navigationController pushViewController:ctrl animated:YES];
+}
+
+
+-(void)returnSelection:(NSArray*)curSelection
+{
+    [self closeMenu];
+    if (curSelection && curSelection.count > 0)
+    {
+        id unt = [curSelection objectAtIndex:0];
+        NSString*deptNo = nil;
+        NSString*deptName = nil;
+        
+        if ([unt isKindOfClass:[person class]])
+        {
+            deptNo = ((person*)unt).department_no;
+            deptName = ((person*)unt).dept_name;
+        }
+        else if([unt isKindOfClass:[department class]])
+        {
+            deptNo = ((department*)unt).dept_current_no;
+            deptName = ((department*)unt).dept_name;
+        }
+        
+        if (deptNo && deptName)
+        {
+            if (_selectDeptMenu && (_selectDeptMenu == _sell_DeptMenu || _selectDeptMenu == _rent_DeptMenu))
+            {
+                HouseFilter*filter = (_selectDeptMenu == _sell_DeptMenu)?_sellController.filter:_rentController.filter;
+                MJDropDownMenuBar*menubar = (_selectDeptMenu == _sell_DeptMenu)?_sellMenuBar:_rentMenuBar;
+                
+                filter.search_dept_no = deptNo;
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [menubar updateTitle:deptName ForIndex:2];
+                });
+                
+            }
+        }
+        
+        
+        
+    }
     
 }
+
+-(void)closeMenu
+{
+    [_sellMenuBar makeMenuClosed];
+    [_rentMenuBar makeMenuClosed];
+}
+
+
+- (void)didTapBatchSelectBtnOnMenu:(MJDropDownMenu *)menu
+{
+    if (menu.batchSelect == YES)
+    {
+        [self closeMenu];
+        
+        //self.men
+        
+        
+        
+        
+        
+    }
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -361,7 +361,9 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
         return NO;
     }
     
-    return  [_EaseMobFriend objectForKey:[userName uppercaseString]] != nil;
+    EaseMobContacter*contacter = [_EaseMobFriend objectForKey:[userName uppercaseString]];
+    
+    return  contacter != nil && contacter.isFriend == YES;
 }
 
 

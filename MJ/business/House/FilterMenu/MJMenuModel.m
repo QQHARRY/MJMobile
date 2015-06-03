@@ -30,12 +30,29 @@
             if (urbanAreaModelArr == nil)
             {
                 urbanAreaModelArr = [[NSMutableArray alloc ] init];
+                MJMenuItem*urbanItem = [[MJMenuItem alloc ]init];
+                urbanItem.title = @"不限";
+                urbanItem.value = [MJMenuItemValue valueWithType:MJMenuItemValueTypeSingle Values:@"",nil];
+                
+                
+                MJMenuModel*urbanAreaModel = [[MJMenuModel alloc] init];
+                urbanAreaModel.subMenuItems = [[NSMutableArray alloc] init];
+                urbanAreaModel.menuItem = urbanItem;
+                
+                MJMenuItem*areaItem = [[MJMenuItem alloc ]init];
+                areaItem.title = @"不限";
+                areaItem.value = [MJMenuItemValue valueWithType:MJMenuItemValueTypeSingle Values:@"",nil];
+                [urbanAreaModel.subMenuItems addObject:areaItem];
+                
+                [urbanAreaModelArr addObject:urbanAreaModel];
+                
+                
                 
                 for (NSDictionary *urban in urbanAreaList)
                 {
                     NSString*urbanName = [[urban objectForKey:@"dict"] objectForKey:@"areas_name"];
                     NSString*urbanNo = [urban objectForKey:@"no"];
-                    NSLog(@"-%@ %@",urbanName,urbanNo);
+                    //NSLog(@"-%@ %@",urbanName,urbanNo);
                     
                     
                     MJMenuItem*urbanItem = [[MJMenuItem alloc ]init];
@@ -54,7 +71,7 @@
                     {
                         NSString*areaName = [area objectForKey:@"areas_name"];
                         NSString*areaNo = [area objectForKey:@"areas_current_no"];
-                        NSLog(@"    +%@%@",areaName,areaNo);
+                        //NSLog(@"    +%@%@",areaName,areaNo);
                         
                         
                         MJMenuItem*areaItem = [[MJMenuItem alloc ]init];
@@ -85,7 +102,8 @@
     
     if (urbanAreaList == nil)
     {
-       [HouseDataPuller pullAreaListDataSuccess:^(NSArray *areaList) {
+       [HouseDataPuller pullAreaListDataSuccess:^(NSArray *areaList)
+        {
            urbanAreaList = [areaList mutableCopy];
            blk();
        } failure:^(NSError *error) {
@@ -117,7 +135,7 @@
         const NSNumber* ct = [NSNumber numberWithInt:MJMenuItemValueTypeCustomizeArea];
         sellPriceArr = @[
                          @{@"menuItem":
-                                @{@"title":@"不限",@"value":@[@"0",@"0"],@"valueType":at},
+                                @{@"title":@"不限",@"value":@[@"",@""],@"valueType":at},
                          },
                          @{@"menuItem":
                                @{@"title":@"30万以下",@"value":@[@"0",@"30"],@"valueType":at},
@@ -235,7 +253,7 @@
         const NSNumber* at = [NSNumber numberWithInt:MJMenuItemValueTypeArea];
         areaArr = @[
                          @{@"menuItem":
-                               @{@"title":@"不限",@"value":@[@"0",@"0"],@"valueType":at},
+                               @{@"title":@"不限",@"value":@[@"",@""],@"valueType":at},
                            },
                          @{@"menuItem":
                                @{@"title":@"50平米以下",@"value":@[@"0",@"50"],@"valueType":at},
@@ -318,7 +336,7 @@
         const NSNumber* ct = [NSNumber numberWithInt:MJMenuItemValueTypeCustomizeArea];
         floorArr = @[
                     @{@"menuItem":
-                          @{@"title":@"不限",@"value":@[@"0",@"0"],@"valueType":at},
+                          @{@"title":@"不限",@"value":@[@"",@""],@"valueType":at},
                       },
                     @{@"menuItem":
                           @{@"title":@"底层(1~6层)",@"value":@[@"1",@"6"],@"valueType":at},
@@ -330,7 +348,7 @@
                           @{@"title":@"高层(12层以上)",@"value":@[@"12",@"0"],@"valueType":at},
                       },
                     @{@"menuItem":
-                          @{@"title":@"自定义",@"value":@[@"0",@"0"],@"valueType":ct},
+                          @{@"title":@"自定义",@"value":@[@"",@""],@"valueType":ct},
                       },
                     ];
         
@@ -370,7 +388,7 @@
         const NSNumber* at = [NSNumber numberWithInt:MJMenuItemValueTypeArea];
         arr = @[
                      @{@"menuItem":
-                           @{@"title":@"不限",@"value":@[@"0",@"0"],@"valueType":at},
+                           @{@"title":@"不限",@"value":@[@""],@"valueType":at},
                        },
                      @{@"menuItem":
                            @{@"title":@"1室",@"value":@[@"1"],@"valueType":at},
@@ -402,19 +420,16 @@
     __strong static NSArray*arr = nil;
     if (arr == nil)
     {
-        const NSNumber* cst = [NSNumber numberWithInt:MJMenuItemValueTypeCustomizeSinge];
+        const NSNumber* mcs = [NSNumber numberWithInt:MJMenuItemValueTypeMultiCustomizeSingle];
         arr = @[
                 @{@"menuItem":
-                      @{@"title":@"栋座",@"value":@[@""],@"valueType":cst},
+                      @{@"title":@"栋座",@"value":@[@""],@"valueType":mcs},
                   },
                 @{@"menuItem":
-                      @{@"title":@"单元",@"value":@[@""],@"valueType":cst},
+                      @{@"title":@"单元",@"value":@[@"1"],@"valueType":mcs},
                   },
                 @{@"menuItem":
-                      @{@"title":@"楼层",@"value":@[@""],@"valueType":cst},
-                  },
-                @{@"menuItem":
-                      @{@"title":@"门牌",@"value":@[@""],@"valueType":cst},
+                      @{@"title":@"门牌",@"value":@[@"3"],@"valueType":mcs},
                   },
                 
                 ];
@@ -435,7 +450,7 @@
     NSMutableArray*arr = [[NSMutableArray alloc] initWithCapacity:dicArr.count+1];
     
     [arr addObject:@{@"menuItem":
-                         @{@"title":@"不限",@"value":@[@"0"],@"valueType":st}}
+                         @{@"title":@"不限",@"value":@[@""],@"valueType":st}}
      ];
     
     for (DicItem *di in dicArr)

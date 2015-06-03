@@ -1466,12 +1466,31 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="p3e-LL-FCL" kind="relationship" relationship="rootViewController" id="yhe-XE-S7G"/>
+                        <segue destination="p3e-LL-FCL" kind="relationship" relationship="rootViewController" id="cZ1-u4-TCr"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="owc-rM-bB3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-697.5" y="1036.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="zR8-bY-d4Q">
+            <objects>
+                <viewController id="ag6-54-tUT" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xEG-AI-MZW"/>
+                        <viewControllerLayoutGuide type="bottom" id="8u4-6T-lPC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tnT-HV-zHw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="UUi-aC-iKF"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Ln-n3-nT6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-563" y="1722"/>
         </scene>
         <!--消息列表-->
         <scene sceneID="ceL-fr-iO5">

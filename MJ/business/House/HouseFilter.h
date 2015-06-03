@@ -70,6 +70,10 @@
 @property (nonatomic, strong) NSString *lease_value_from;
 //lease_value_to	Float	最高价格,单位元/月
 @property (nonatomic, strong) NSString *lease_value_to;
+// search_job_no String 指定查询员工编号
+@property (nonatomic, strong) NSString *search_job_no;
+//search_dept_no String 指定查询部门编号
+@property (nonatomic, strong) NSString *search_dept_no;
 //keyword	String	搜索关键字（请输入楼盘名或交易编号）
 @property (nonatomic, strong) NSString *keyword;
 //FromID	String	若指定此参数，则返回ID比FromID小的记录（即比FromID时间早的公告），默认为0 Database: house_trade_no *

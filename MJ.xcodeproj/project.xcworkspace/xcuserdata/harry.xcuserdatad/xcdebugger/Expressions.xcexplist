@@ -6,6 +6,9 @@
          contextName = "__41-[MainPageViewController getPetitionData]_block_invoke:MainPageViewController.m">
       </ContextState>
       <ContextState
+         contextName = "__58-[EaseMobFriendsManger pullFriendsDataFromServer:Success:]_block_invoke:EaseMobFriendsManger.m">
+      </ContextState>
+      <ContextState
          contextName = "+[Sqlite3DataPersistence insertObj:ToTable:]:Sqlite3DataPersistence.m">
          <PersistentStrings>
             <PersistentString
@@ -23,6 +26,14 @@
       </ContextState>
       <ContextState
          contextName = "__63-[HouseParticularTableViewController createAddInfoSectionItems]_block_invoke_6:HouseParticularTableViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[EaseMobFriendsManger pullFriendsDataFromServer:Success:]:EaseMobFriendsManger.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "friendsArr">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "-[ShopCollectionViewController collectionView:cellForItemAtIndexPath:]:ShopCollectionViewController.m">
@@ -192,6 +203,14 @@
          <PersistentStrings>
             <PersistentString
                value = "urbanAreaModelArr">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[HouseViewController menu:tableView:valuetTypeForRowAtIndexPath:]:HouseViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

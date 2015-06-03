@@ -203,6 +203,7 @@
                  {
                      objUnt.superUnit = unt;
                      objUnt.level = unt.level+1;
+                     objUnt.department_no = ((department*)unt).dept_current_no;
                      [tmpArr addObject:objUnt];
                  }
              }

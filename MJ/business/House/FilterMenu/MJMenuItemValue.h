@@ -15,13 +15,14 @@ typedef NS_ENUM(NSInteger, MJMenuItemValueType) {
     MJMenuItemValueTypeArea       = 2,
     MJMenuItemValueTypeCustomizeSinge = 3,
     MJMenuItemValueTypeCustomizeArea = 4,
-   
+    MJMenuItemValueTypeMultiCustomizeSingle = 5,
+     MJMenuItemValueTypeMultiCustomizeArea = 6,
 };
 
 @interface MJMenuItemValue : NSObject
 
 @property(nonatomic,assign)MJMenuItemValueType valueType;
-@property(nonatomic,assign)NSArray* valueArr;
+@property(nonatomic,strong)NSArray* valueArr;
 
 +(id)valueWithType:(MJMenuItemValueType)type Values:(id)val1, ...;
 

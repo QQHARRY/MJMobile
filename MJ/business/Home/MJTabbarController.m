@@ -160,10 +160,16 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
         _chatListVC = [[nav viewControllers] objectAtIndex:0];
     }
     
-    [_chatListVC networkChanged:_connectionState];
-    _contactsVC = [[ContactsViewController alloc] initWithNibName:nil bundle:nil];
+    if (_chatListVC && [_chatListVC isKindOfClass:[ChatListViewController class]])
+    {
+        _contactsVC = [[ContactsViewController alloc] initWithNibName:nil bundle:nil];
+        [_chatListVC networkChanged:_connectionState];
+        _chatListVC.contactsVC = _contactsVC;
+    }
+    
+    
 
-    _chatListVC.contactsVC = _contactsVC;
+    
 }
 
 //-(void)unSelectedTapTabBarItems:(UITabBarItem *)tabBarItem

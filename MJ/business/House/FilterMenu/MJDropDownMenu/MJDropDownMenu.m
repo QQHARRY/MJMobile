@@ -6,12 +6,6 @@
 //  Copyright (c) 2015年 Simtoon. All rights reserved.
 //
 
-
-
-
-
-
-
 #import "MJDropDownMenu.h"
 #import "SingleValueCustomizedCell.h"
 #import "SectionValueCustomizedCell.h"
@@ -21,12 +15,16 @@
 #import "UIView+addToolBar2Keyboard.h"
 #import "DoneToolbarButton.h"
 #import "RFKeyboardToolbar.h"
+#import "MJMenuModel.h"
 
 
 #define SCREEN_WIDTH      CGRectGetWidth([UIScreen mainScreen].applicationFrame)
 #define LEFT_TABLEV_COLOR [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1]
 #define RIGHT_TABLEV_COLOR [UIColor whiteColor]
 #define TEXT_HIGHLIGHT_COLOR [UIColor colorWithRed:0x01/255.0 green:0xAF/255.0 blue:0xE8/255.0 alpha:1]
+
+#define BATCHSELECT_SPACE_HEIGHT 35
+#define BATCHSELECT_BTN_HEIGHT 25
 
 @interface MJDropDownMenu()<myTextFieldDelegate>
 
@@ -35,9 +33,14 @@
 @property (nonatomic, assign) CGPoint origin;
 @property (nonatomic, assign) CGFloat height;
 @property (nonatomic, strong) UIView *backGroundView;
-@property (nonatomic, assign) NSInteger clickedIndexOnLeft;
-@property (nonatomic, assign) NSIndexPath* selectedIndex;
+@property (nonatomic, assign) NSInteger selectedOnLeft;
+@property (nonatomic, assign) NSIndexPath* selectedOnRight;
+@property (nonatomic, strong) NSMutableArray*selectedIndexsOnRight;
 
+
+@property (nonatomic, assign)NSArray*model;
+@property (nonatomic, assign)NSString*title;
+@property (nonatomic, assign)NSDictionary*titleLevel;
 @end
 
 
@@ -45,7 +48,7 @@
 @implementation MJDropDownMenu
 
 #pragma mark - init method
-- (instancetype)initWithOrigin:(CGPoint)origin andHeight:(CGFloat)height SingleMode:(BOOL)isSingleColumn
+- (instancetype)initWithOrigin:(CGPoint)origin andHeight:(CGFloat)height SingleMode:(BOOL)isSingleColumn BatchSelect:(BOOL)batch
 {
     self = [self initWithFrame:CGRectMake(origin.x, origin.y, SCREEN_WIDTH, height)];
     if (self)
@@ -54,14 +57,22 @@
         _show = NO;
         _height = height;
         _singleColumn = isSingleColumn;
-        _clickedIndexOnLeft = 0;
+        _selectedOnLeft = 0;
+        _batchSelect = batch&&(!_singleColumn);
+        
+        _selectedIndexsOnRight = [[NSMutableArray alloc] init];
         
         //tableView init
         CGFloat leftTVWidth,rightTVWidth;
         leftTVWidth = self.singleColumn?SCREEN_WIDTH:SCREEN_WIDTH/2.0;
         rightTVWidth = self.singleColumn?0:SCREEN_WIDTH-leftTVWidth;
+        
+        
+        CGFloat tabH = batch?(self.frame.size.height-BATCHSELECT_SPACE_HEIGHT):self.frame.size.height;
+        
+        
 
-        _leftTableV = [[UITableView alloc] initWithFrame:CGRectMake(0, 0 , leftTVWidth, self.frame.size.height) style:UITableViewStylePlain];
+        _leftTableV = [[UITableView alloc] initWithFrame:CGRectMake(0, 0 , leftTVWidth, tabH) style:UITableViewStylePlain];
         _leftTableV.rowHeight = 38;
         _leftTableV.dataSource = self;
         _leftTableV.delegate = self;
@@ -71,12 +82,25 @@
         
         if (!self.singleColumn)
         {
-            _rightTableV = [[UITableView alloc] initWithFrame:CGRectMake(_leftTableV.frame.origin.x+_leftTableV.frame.size.width, 0, rightTVWidth, self.frame.size.height) style:UITableViewStylePlain];
+            _rightTableV = [[UITableView alloc] initWithFrame:CGRectMake(_leftTableV.frame.origin.x+_leftTableV.frame.size.width, 0, rightTVWidth, tabH) style:UITableViewStylePlain];
             _rightTableV.rowHeight = 38;
             _rightTableV.dataSource = self;
             _rightTableV.delegate = self;
             _rightTableV.backgroundColor = RIGHT_TABLEV_COLOR;
             [self addSubview:_rightTableV];
+        }
+        
+        if (_batchSelect)
+        {
+            UIButton*btn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.size.height - BATCHSELECT_SPACE_HEIGHT/* + (BATCHSELECT_SPACE_HEIGHT - BATCHSELECT_BTN_HEIGHT)/2.0f*/, self.frame.size.width, BATCHSELECT_SPACE_HEIGHT)];
+            [btn setTitle:@"确定" forState:UIControlStateNormal];
+            [btn setTitleColor:TEXT_HIGHLIGHT_COLOR forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+            btn.backgroundColor = [UIColor whiteColor];
+            [btn addTarget:self action:@selector(batchSelectBtnTaped:) forControlEvents:UIControlEventTouchUpInside];
+            
+            
+            [self addSubview:btn];
         }
 
 
@@ -85,64 +109,103 @@
         bottomShadow.backgroundColor = [UIColor lightGrayColor];
         [self addSubview:bottomShadow];
         
-#if 1
-        __weak typeof(self)weakSelf = self;
         
-        [self addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
-            CGRect tableViewFrame = weakSelf.leftTableV.frame;
-            tableViewFrame.size.height = keyboardFrameInView.origin.y;
-            weakSelf.leftTableV.frame = tableViewFrame;
-            
-            tableViewFrame = weakSelf.rightTableV.frame;
-            tableViewFrame.size.height = keyboardFrameInView.origin.y;
-            weakSelf.rightTableV.frame = tableViewFrame;
-        }];
-        
-        [self addKeyboardCompletionHandler:^(BOOL finished, BOOL isShowing) {
-            if (!isShowing)
-            {
-                NSLog(@"finished=%d,isShowing=%d",finished,isShowing);
-                CGRect tableViewFrame = weakSelf.leftTableV.frame;
-                tableViewFrame.size.height = self.frame.size.height;
-                weakSelf.leftTableV.frame = tableViewFrame;
-                
-                
-                tableViewFrame = weakSelf.rightTableV.frame;
-                tableViewFrame.size.height = self.frame.size.height;
-                weakSelf.rightTableV.frame = tableViewFrame;
-                
-            }
-        }];
-        
-#endif
-        
-       
-        
+        [self setUpKeyBoardHander];
     }
     return self;
 }
 
+-(void)batchSelectBtnTaped:(id)sender
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didTapBatchSelectBtnOnMenu:)])
+    {
+        [self.delegate didTapBatchSelectBtnOnMenu:self];
+    }
+}
+
+-(void)initTitle:(NSString *)title Model:(NSArray *)model TitleLevel:(NSDictionary *)dic
+{
+    self.title = title;
+    self.model = model;
+    self.titleLevel = dic;
+}
+
+
+-(void)setUpKeyBoardHander
+{
+    __weak typeof(self)weakSelf = self;
+    
+    [self addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
+        
+        CGRect tableViewFrame = weakSelf.leftTableV.frame;
+        tableViewFrame.size.height = keyboardFrameInView.origin.y;
+        weakSelf.leftTableV.frame = tableViewFrame;
+        
+        tableViewFrame = weakSelf.rightTableV.frame;
+        tableViewFrame.size.height = keyboardFrameInView.origin.y;
+        weakSelf.rightTableV.frame = tableViewFrame;
+    }];
+    
+    [self addKeyboardCompletionHandler:^(BOOL finished, BOOL isShowing) {
+        if (!isShowing)
+        {
+            NSInteger batchBtnH = BATCHSELECT_BTN_HEIGHT;
+            if (!weakSelf.batchSelect)
+            {
+                batchBtnH = 0;
+            }
+            CGRect tableViewFrame = weakSelf.leftTableV.frame;
+            tableViewFrame.size.height = self.frame.size.height-batchBtnH;
+            weakSelf.leftTableV.frame = tableViewFrame;
+            
+            
+            tableViewFrame = weakSelf.rightTableV.frame;
+            tableViewFrame.size.height = self.frame.size.height-batchBtnH;
+            weakSelf.rightTableV.frame = tableViewFrame;
+            
+        }
+    }];
+
+}
 
 
 #pragma mark - gesture handle
 
 -(void)menuTappedOnView:(UIView*)view
 {
-    NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:_selectedIndex.section inSection:0];
+    
 
     [self animateOnView:view show:!_show complete:^{
         _show = !_show;
         
-        _clickedIndexOnLeft = _selectedIndex.section;
+        if (!self.batchSelect)
+        {
+            if (_selectedIndexsOnRight.count > 0)
+            {
+                if (self.singleColumn)
+                {
+                    _selectedOnLeft =  ((NSIndexPath*)_selectedIndexsOnRight[0]).row;
+                }
+                else
+                {
+                    _selectedOnLeft =  ((NSIndexPath*)_selectedIndexsOnRight[0]).section;
+                }
+                
+            }
+            
+        }
+        
+        NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:_selectedOnLeft inSection:0];
+        
         [self.leftTableV reloadData];
-        if (_show)
+        if (_show && !self.batchSelect)
         {
             [self.leftTableV selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         }
         
         if (!self.singleColumn)
         {
-            if (_show)
+            if (_show && !self.batchSelect)
             {
                 [self tableView:self.leftTableV didSelectRowAtIndexPath:selectedIndexPath];
             }
@@ -184,18 +247,106 @@
 
 
 #pragma mark - table datasource
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 35;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.dataSource && [self.dataSource respondsToSelector:@selector(menu:tableView:numberOfRowsInSection:)])
+    return [self numberOfItemsInTableview:tableView];
+}
+
+-(NSInteger)numberOfItemsInTableview:(UITableView*)tableView
+{
+    if (self.model)
     {
+        if (tableView == self.leftTableV)
+        {
+            return self.model.count;
+        }
+        else if(tableView == self.rightTableV && self.singleColumn == NO)
+        {
+            if (_selectedOnLeft < self.model.count)
+            {
+                MJMenuModel*model = self.model[_selectedOnLeft];
+                if ([model isKindOfClass:[MJMenuModel class]])
+                {
+                    if (model.subMenuItems)
+                    {
+                        return model.subMenuItems.count;
+                    }
+                }
+                
+            }
+        }
         
-        return [self.dataSource menu:self tableView:tableView numberOfRowsInSection:_clickedIndexOnLeft];
+        return 0;
     }
     else
     {
-        return 0;
+        if (self.dataSource && [self.dataSource respondsToSelector:@selector(menu:tableView:numberOfRowsInSection:)])
+        {
+            return [self.dataSource menu:self tableView:tableView numberOfRowsInSection:_selectedOnLeft];
+        }
+        else
+        {
+            return 0;
+        }
     }
 }
+
+
+-(MJMenuItemValueType)valueTypeOfTableView:(UITableView*)tableView AtIndexPath:(NSIndexPath*)indexPath
+{
+    MJMenuItemValueType type = MJMenuItemValueTypeSingle;
+    NSIndexPath*indexPathTmp = [NSIndexPath indexPathForRow:indexPath.row inSection:_selectedOnLeft];
+    if (self.model)
+    {
+        if (tableView == self.leftTableV)
+        {
+            
+        }
+        else if(tableView == self.rightTableV)
+        {
+            
+        }
+    }
+    else
+    {
+        if (self.dataSource && [self.dataSource respondsToSelector:@selector(menu:tableView:valuetTypeForRowAtIndexPath:)])
+        {
+            type = [self.dataSource menu:self tableView:tableView valuetTypeForRowAtIndexPath:indexPathTmp];
+        }
+    }
+    return type;
+}
+
+//
+//-(NSString*)identifierOfCellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    NSString *identifier = @"DropDownMenuCell";
+//    MJMenuItemValueType type = MJMenuItemValueTypeSingle;
+//    
+//    NSIndexPath*indexPathTmp = [NSIndexPath indexPathForRow:indexPath.row inSection:_clickedIndexOnLeft];
+//    if (self.dataSource && [self.dataSource respondsToSelector:@selector(menu:tableView:valuetTypeForRowAtIndexPath:)])
+//    {
+//        type = [self.dataSource menu:self tableView:tableView valuetTypeForRowAtIndexPath:indexPathTmp];
+//        if (type == MJMenuItemValueTypeCustomizeSinge)
+//        {
+//            identifier = @"SingleValueCustomizedCell";
+//        }
+//        else if(type == MJMenuItemValueTypeCustomizeArea)
+//        {
+//            identifier = @"SectionValueCustomizedCell";
+//        }
+//        else
+//        {
+//            identifier = @"DropDownMenuCell";
+//        }
+//    }
+//}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -204,15 +355,15 @@
     
     MJMenuItemValueType type = MJMenuItemValueTypeSingle;
     
-    NSIndexPath*indexPathTmp = [NSIndexPath indexPathForRow:indexPath.row inSection:_clickedIndexOnLeft];
+    NSIndexPath*indexPathTmp = [NSIndexPath indexPathForRow:indexPath.row inSection:_selectedOnLeft];
     if (self.dataSource && [self.dataSource respondsToSelector:@selector(menu:tableView:valuetTypeForRowAtIndexPath:)])
     {
         type = [self.dataSource menu:self tableView:tableView valuetTypeForRowAtIndexPath:indexPathTmp];
-        if (type == MJMenuItemValueTypeCustomizeSinge)
+        if (type == MJMenuItemValueTypeCustomizeSinge || type == MJMenuItemValueTypeMultiCustomizeSingle)
         {
             identifier = @"SingleValueCustomizedCell";
         }
-        else if(type == MJMenuItemValueTypeCustomizeArea)
+        else if(type == MJMenuItemValueTypeCustomizeArea || type == MJMenuItemValueTypeMultiCustomizeArea)
         {
             identifier = @"SectionValueCustomizedCell";
         }
@@ -280,37 +431,55 @@
         }
         
     }
-
+    
     if (self.dataSource && [self.dataSource respondsToSelector:@selector(menu:tableView:titleForRowAtIndexPath:)])
     {
         
         cell.textLabel.text = [self.dataSource menu:self tableView:tableView titleForRowAtIndexPath:indexPathTmp];
     }
+    
+    if ([self needHighlightCellOnTableView:tableView AtIndexPath:indexPath])
+    {
+        [cell.textLabel setTextColor:TEXT_HIGHLIGHT_COLOR];
+    }
+    else
+    {
+        [cell.textLabel setTextColor:[UIColor blackColor]];
+    }
 
+    if (tableView == _leftTableV)
+    {
+        
+    }
+    
     if (!self.singleColumn)
     {
+        
+        
+        
         if(tableView == _rightTableV)
         {
-            if (indexPath.row == _selectedIndex.row && _clickedIndexOnLeft == _selectedIndex.section)
-            {
-                [cell.textLabel setTextColor:TEXT_HIGHLIGHT_COLOR];
-            }
-            else
-            {
-                [cell.textLabel setTextColor:[UIColor blackColor]];
-            }
+            //if (indexPath.row == _selectedOnRight.row && _selectedOnLeft == _selectedOnRight.section && !self.batchSelect)
+//            if ([self needHighlightCellOnTableView:tableView AtIndexPath:indexPath])
+//            {
+//                [cell.textLabel setTextColor:TEXT_HIGHLIGHT_COLOR];
+//            }
+//            else
+//            {
+//                [cell.textLabel setTextColor:[UIColor blackColor]];
+//            }
             cell.backgroundColor = [UIColor whiteColor];
         }
         else
         {
-            if (indexPath.row == _selectedIndex.section)
-            {
-                [cell.textLabel setTextColor:TEXT_HIGHLIGHT_COLOR];
-            }
-            else
-            {
-                [cell.textLabel setTextColor:[UIColor blackColor]];
-            }
+//            if (indexPath.row == _selectedOnRight.section )
+//            {
+//                [cell.textLabel setTextColor:TEXT_HIGHLIGHT_COLOR];
+//            }
+//            else
+//            {
+//                [cell.textLabel setTextColor:[UIColor blackColor]];
+//            }
             UIView *sView = [[UIView alloc] init];
             sView.backgroundColor = [UIColor whiteColor];
             cell.selectedBackgroundView = sView;
@@ -321,14 +490,6 @@
     }
     else
     {
-        if (indexPath.row == _selectedIndex.section)
-        {
-            [cell.textLabel setTextColor:TEXT_HIGHLIGHT_COLOR];
-        }
-        else
-        {
-            [cell.textLabel setTextColor:[UIColor blackColor]];
-        }
         
     }
     
@@ -343,6 +504,173 @@
 
     return cell;
 }
+
+
+
+-(void)markSelectionOnTableView:(UITableView*)tableView AtIndexPath:(NSIndexPath*)indexPath
+{
+    NSIndexPath*tmpIndex = [NSIndexPath indexPathForRow:indexPath.row inSection:_selectedOnLeft];
+    
+    
+    MJMenuItemValueType valueType = MJMenuItemValueTypeSingle;
+    
+    if (_dataSource && [_dataSource respondsToSelector:@selector(menu:tableView:valuetTypeForRowAtIndexPath:)])
+    {
+        valueType = [_dataSource menu:self tableView:tableView valuetTypeForRowAtIndexPath:tmpIndex];
+    }
+    
+    if (_batchSelect)
+    {
+        
+        if (_singleColumn)
+        {//因为在初始化代码中:_batchSelect = batch&&(!_singleColumn) 所以如果batchSelect等于NO,singleColumn不可能是YES
+         //故不考虑这种情况
+        }
+        else
+        {
+            if (tableView == _leftTableV)
+            {
+                _selectedOnLeft = indexPath.row;
+            }
+            else
+            {
+                
+                                                                        //MJMenuItemValueTypeMultiCustomizeSingle
+                if (valueType == MJMenuItemValueTypeMulti || valueType == MJMenuItemValueTypeMultiCustomizeSingle
+                    || valueType == MJMenuItemValueTypeMultiCustomizeArea)
+                {
+                    BOOL bFound = NO;
+                    for (NSIndexPath*index in _selectedIndexsOnRight)
+                    {
+                        //每个section同时选中一个，故删掉以前的。
+                        if (index && index.section == tmpIndex.section && index.row == tmpIndex.row)
+                        {
+                            [_selectedIndexsOnRight removeObject:index];
+                            bFound = YES;
+                            break;
+                        }
+                    }
+                    
+                    if (!bFound)
+                    {
+                        [_selectedIndexsOnRight addObject:tmpIndex];
+                    }
+                }
+                else
+                {
+                    for (NSIndexPath*index in _selectedIndexsOnRight)
+                    {
+                        //每个section同时选中一个，故删掉以前的。
+                        if (index && index.section == tmpIndex.section)
+                        {
+                            [_selectedIndexsOnRight removeObject:index];
+                        }
+                    }
+                    
+                    [_selectedIndexsOnRight addObject:tmpIndex];
+                }
+            }
+        }
+        
+       
+    }
+    else
+    {
+        if (self.singleColumn)
+        {
+            if (tableView == _leftTableV)
+            {
+                _selectedOnLeft = indexPath.row;
+            }
+            else
+            {//singleColumn等于YES时，右tableview不显示
+            }
+        }
+        else
+        {
+            if (tableView == _leftTableV)
+            {
+                _selectedOnLeft = indexPath.row;
+            }
+            else
+            {
+                
+                [_selectedIndexsOnRight removeAllObjects];
+                [_selectedIndexsOnRight addObject:tmpIndex];
+            }
+        }
+        
+    }
+}
+
+
+
+
+-(BOOL)needHighlightCellOnTableView:(UITableView*)tableView AtIndexPath:(NSIndexPath*)indexPath
+{
+    if (self.batchSelect)
+    {
+        if (_singleColumn)
+        {//因为在初始化代码中:_batchSelect = batch&&(!_singleColumn) 所以如果batchSelect等于NO,singleColumn不可能是YES
+            //故不考虑这种情况
+            
+        }
+        else
+        {
+            if (tableView == self.rightTableV)
+            {
+                for (NSIndexPath*index in _selectedIndexsOnRight)
+                {
+                    if (index && index.row == indexPath.row && _selectedOnLeft ==index.section)
+                    {
+                        return YES;
+                    }
+                }
+            }
+        }
+        
+    }
+    else
+    {
+        if (_singleColumn)
+        {
+            if (tableView == _leftTableV)
+            {
+                if (_selectedOnLeft == indexPath.row)
+                {
+                    return YES;
+                }
+            }
+            else
+            {//singleColumn等于YES时，右tableview不显示
+                
+            }
+        }
+        else
+        {
+            if (tableView == _leftTableV)
+            {
+                if (_selectedOnLeft == indexPath.row)
+                {
+                    return YES;
+                }
+            }
+            else
+            {
+                for (NSIndexPath*index in _selectedIndexsOnRight)
+                {
+                    if (index && index.row == indexPath.row && _selectedOnLeft ==index.section)
+                    {
+                        return YES;
+                    }
+                }
+            }
+        }
+    }
+    
+    return NO;
+}
+
 
 #pragma mark - tableview delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -383,26 +711,33 @@
             
         }];
 
-        _selectedIndex = [NSIndexPath indexPathForRow:0 inSection:indexPath.row];
+       // _selectedOnRight = [NSIndexPath indexPathForRow:0 inSection:indexPath.row];
+        [self markSelectionOnTableView:tableView AtIndexPath:indexPath];
     }
     else
     {
         if (tableView == self.leftTableV)
         {
-            _clickedIndexOnLeft = indexPath.row;
+            //_selectedOnLeft = indexPath.row;
+            [self markSelectionOnTableView:tableView AtIndexPath:indexPath];
             [self.rightTableV reloadData];
         }
         else
         {
-            _selectedIndex = [NSIndexPath indexPathForRow:indexPath.row inSection:_clickedIndexOnLeft];
+            
+            //_selectedOnRight = [NSIndexPath indexPathForRow:indexPath.row inSection:_selectedOnLeft];
+            [self markSelectionOnTableView:tableView AtIndexPath:indexPath];
+            
             if (self.delegate && [self.delegate respondsToSelector:@selector(menu:tableView:didSelectRowAtIndexPath:CustomizedValue:)])
             {
                 
                 MJMenuItemValue*value = nil;
                 
+                NSIndexPath*indexTmp = [NSIndexPath indexPathForRow:indexPath.row inSection:_selectedOnLeft];
+                
                 if(self.dataSource && [self.dataSource respondsToSelector:@selector(menu:tableView:valuetTypeForRowAtIndexPath:)])
                 {
-                    MJMenuItemValueType type = [self.dataSource menu:self tableView:tableView valuetTypeForRowAtIndexPath:indexPath];
+                    MJMenuItemValueType type = [self.dataSource menu:self tableView:tableView valuetTypeForRowAtIndexPath:indexTmp];
                     
                     if (type == MJMenuItemValueTypeCustomizeSinge && [cell isKindOfClass:[SingleValueCustomizedCell class]])
                     {
@@ -421,63 +756,29 @@
                 
 
                 
-                NSIndexPath*indexTmp = [NSIndexPath indexPathForRow:indexPath.row inSection:_clickedIndexOnLeft];
+                
                 [self.delegate menu:self tableView:tableView didSelectRowAtIndexPath:indexTmp CustomizedValue:value];
             }
             
-            [self animateOnView:nil show:NO complete:^{
-                _show = NO;
+            if (self.batchSelect == NO)
+            {
                 
-            }];
+                [self animateOnView:nil show:NO complete:^{
+                    _show = NO;
+                    
+                }];
+            }
+            else
+            {
+                [tableView reloadData];
+            }
+            
         }
     }
     
 
-    
-}
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    //[self hideKeyBoard];
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
    
 }
-
--(void)myTextFieldShouldReturn
-{
-
-}
-
-
--(void)myTextFieldDidBeginEditing
-{
-
-
-}
-- (void)hideKeyBoard
-{
-    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-}
--(BOOL) dismissAllKeyBoardInView:(UIView *)view
-{
-    if([view isFirstResponder])
-    {
-        [view resignFirstResponder];
-        return YES;
-    }
-    for(UIView *subView in view.subviews)
-    {
-        if([self dismissAllKeyBoardInView:subView])
-        {
-            return YES;
-        }
-    }
-    return NO;
-}
-
 
 
 

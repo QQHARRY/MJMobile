@@ -23,14 +23,17 @@
 - (NSInteger)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section;
 - (NSString *)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView titleForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (MJMenuItemValueType)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView valuetTypeForRowAtIndexPath:(NSIndexPath *)indexPath;
-
 - (MJMenuItemValue*)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView DefaultValueForRowAtIndexPath:(NSIndexPath *)indexPath;
+
+
 @end
 
 #pragma mark - delegate
 @protocol MJDropDownMenuDelegate <NSObject>
 @optional
 - (void)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath CustomizedValue:(MJMenuItemValue*)value;
+
+- (void)didTapBatchSelectBtnOnMenu:(MJDropDownMenu *)menu;
 @end
 
 
@@ -44,8 +47,12 @@
 @property (nonatomic, weak) id <MJDropDownMenuDataSource> dataSource;
 @property (nonatomic, weak) id <MJDropDownMenuDelegate> delegate;
 @property (nonatomic, assign) BOOL singleColumn;
+@property (nonatomic, assign) BOOL batchSelect;
 
-- (instancetype)initWithOrigin:(CGPoint)origin andHeight:(CGFloat)height  SingleMode:(BOOL)isSingleColumn;
+- (instancetype)initWithOrigin:(CGPoint)origin andHeight:(CGFloat)height  SingleMode:(BOOL)isSingleColumn BatchSelect:(BOOL)batch;
+
+-(void)initTitle:(NSString*)title Model:(NSArray*)model TitleLevel:(NSDictionary*)dic;
+
 
 -(void)menuTappedOnView:(UIView*)view;
 

@@ -35,16 +35,16 @@
         else
         {
             __weak typeof(self)weakSelf = self;
-            SHOWHUD(self.view);
-            [[EaseMobFriendsManger sharedInstance] getFriendByUserName:username Success:^(BOOL success, person *psn) {
+//            SHOWHUD(self.view);
+//            [[EaseMobFriendsManger sharedInstance] getFriendByUserName:username Success:^(BOOL success, person *psn) {
+            
+                //HIDEHUD(self.view);
+//                dispatch_async(dispatch_get_main_queue(), ^{
                 
-                HIDEHUD(self.view);
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    if (psn)
+//                    if (psn)
                     {
                         SHOWHUD(self.view);
-                        [contactDataManager getPsnByJobNo:psn.job_no Success:^(id responseObject) {
+                        [contactDataManager getPsnByJobNo:[username uppercaseString] Success:^(id responseObject) {
                             HIDEHUD(self.view);
                             vc.psn = responseObject;
                             [weakSelf.navigationController pushViewController:vc animated:YES];
@@ -54,9 +54,9 @@
                         
                         
                     }
-                });
-                
-            }];
+//                });
+             
+//            }];
         }
         
     }

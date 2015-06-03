@@ -337,6 +337,7 @@
     _tabsView.backgroundColor = self.tabsViewBackgroundColor;
     _tabsView.showsHorizontalScrollIndicator = NO;
     _tabsView.showsVerticalScrollIndicator = NO;
+    _tabsView.delaysContentTouches = YES;
     
     [self.view insertSubview:_tabsView atIndex:0];
     

@@ -130,7 +130,14 @@
     {
         [param setValue:filter.Count forKey:@"Count"];
     }
-    
+    if (filter.search_job_no && filter.search_job_no.length > 0)
+    {
+        [param setValue:filter.search_job_no forKey:@"search_job_no"];
+    }
+    if (filter.search_dept_no && filter.search_dept_no.length > 0)
+    {
+        [param setValue:filter.search_dept_no forKey:@"search_dept_no"];
+    }
     [NetWorkManager PostWithApiName:API_HOUSE_LIST parameters:param success:^(id responseObject)
      {
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
