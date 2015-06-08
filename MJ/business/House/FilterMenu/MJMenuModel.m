@@ -12,6 +12,7 @@
 #import "person.h"
 #import "dictionaryManager.h"
 #import "Macro.h"
+#import "NSDate+convertToString.h"
 
 
 @implementation MJMenuModel
@@ -188,7 +189,7 @@
         const NSNumber* ct = [NSNumber numberWithInt:MJMenuItemValueTypeCustomizeArea];
         rentPriceArr = @[
                          @{@"menuItem":
-                               @{@"title":@"不限",@"value":@[@"0",@"0"],@"valueType":at},
+                               @{@"title":@"不限",@"value":@[@"",@""],@"valueType":at},
                            },
                          @{@"menuItem":
                                @{@"title":@"500元以下",@"value":@[@"0",@"500"],@"valueType":at},
@@ -229,10 +230,32 @@
     const NSNumber* at = [NSNumber numberWithInt:MJMenuItemValueTypeArea];
     NSArray* deptArr = @[
                          @{@"menuItem":
-                               @{@"title":@"不限",@"value":@[@"0",@"0"],@"valueType":at},
+                               @{@"title":@"不限",@"value":@[@"",@""],@"valueType":at},
                            },
                          @{@"menuItem":
                                @{@"title":@"我的房源",@"value":@[myDept,myJobNo],@"valueType":at},
+                           },
+                         @{@"menuItem":
+                               @{@"title":@"选择部门",@"value":@[@"0",@"0"],@"valueType":at},
+                           },
+                         ];
+    
+    
+    return deptArr;
+}
+
++(NSArray*)getCusDeptMenuItemList
+{
+    
+    NSString*myDept = [person me].department_no;
+    NSString*myJobNo = [person me].job_no;
+    const NSNumber* at = [NSNumber numberWithInt:MJMenuItemValueTypeArea];
+    NSArray* deptArr = @[
+                         @{@"menuItem":
+                               @{@"title":@"不限",@"value":@[@"",@""],@"valueType":at},
+                           },
+                         @{@"menuItem":
+                               @{@"title":@"我的客源",@"value":@[myDept,myJobNo],@"valueType":at},
                            },
                          @{@"menuItem":
                                @{@"title":@"选择部门",@"value":@[@"0",@"0"],@"valueType":at},
@@ -299,7 +322,7 @@
         const NSNumber* st = [NSNumber numberWithInt:MJMenuItemValueTypeSingle];
         areaArr = @[
                     @{@"menuItem":
-                          @{@"title":@"不限",@"value":@[@"0"],@"valueType":st},
+                          @{@"title":@"不限",@"value":@[@""],@"valueType":st},
                       },
                     @{@"menuItem":
                           @{@"title":@"1厅",@"value":@[@"1"],@"valueType":st},
@@ -466,17 +489,6 @@
     return arr;
 }
 
-
-
-
-//+(NSArray*)getRoomTypeStausMenuItemList;
-//+(NSArray*)getOtherTypeStausMenuItemList;
-
-
-
-
-
-
 +(NSString*)getDicValueByLabel:(NSString*)label FromDicArr:(NSArray*)dicArr
 {
     if (label != nil && label.length != 0 && dicArr != nil && dicArr.count > 0)
@@ -493,6 +505,99 @@
     
     
     return @"";
+}
+
+
++(NSArray*)getDateSectionMenuItemList
+{
+    const NSNumber* as = [NSNumber numberWithInt:MJMenuItemValueTypeArea];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    NSDate*curDate = [NSDate date];
+    
+    NSDate*_3DaysB4  = [self theDateBeforeDate:curDate YearCount:0 MonthCount:0 DayCount:3];
+    NSDate*_1WeekB4 = [self theDateBeforeDate:curDate YearCount:0 MonthCount:0 DayCount:7];
+    NSDate*_1MonthB4 = [self theDateBeforeDate:curDate YearCount:0 MonthCount:1 DayCount:0];
+    NSDate*_3MonthB4 = [self theDateBeforeDate:curDate YearCount:0 MonthCount:3 DayCount:0];
+    NSDate*_6MonthB4 = [self theDateBeforeDate:curDate YearCount:0 MonthCount:6 DayCount:0];
+    
+    NSString*curDateStr = [curDate toStringYear2Second];
+    
+    NSArray*arr = @[
+            @{@"menuItem":
+                  @{@"title":@"不限",@"value":@[@"",@""],@"valueType":as},
+              },
+            @{@"menuItem":
+                  @{@"title":@"三天内",@"value":@[[_3DaysB4 toStringYear2Second],curDateStr],@"valueType":as},
+              },
+            @{@"menuItem":
+                  @{@"title":@"一周内",@"value":@[[_1WeekB4 toStringYear2Second],curDateStr],@"valueType":as},
+              },
+            @{@"menuItem":
+                  @{@"title":@"一月内",@"value":@[[_1MonthB4 toStringYear2Second],curDateStr],@"valueType":as},
+              },
+            @{@"menuItem":
+                  @{@"title":@"三月内",@"value":@[[_3MonthB4 toStringYear2Second],curDateStr],@"valueType":as},
+              },
+            @{@"menuItem":
+                  @{@"title":@"半年内",@"value":@[[_6MonthB4 toStringYear2Second],curDateStr],@"valueType":as},
+              },
+            
+            ];
+    
+    
+    return arr;
+}
+
++(NSArray*)getCustomerPropertyMenuItemList
+{
+    __strong static NSArray*arr = nil;
+    if (arr == nil)
+    {
+        const NSNumber* mcs = [NSNumber numberWithInt:MJMenuItemValueTypeMultiCustomizeSingle];
+        arr = @[
+                @{@"menuItem":
+                      @{@"title":@"姓名",@"value":@[@""],@"valueType":mcs},
+                  },
+                @{@"menuItem":
+                      @{@"title":@"电话",@"value":@[@"1"],@"valueType":mcs},
+                  }
+                
+                ];
+        
+        
+    }
+    return arr;
+}
+
++(NSArray*)getCustomerStatusMenuItemList
+{
+   return [self getDicTypeArrByName:DIC_REQUIREMENT_STATE];
+}
+
+
+
++(NSDate*)theDateBeforeDate:(NSDate*)date YearCount:(NSInteger)yearCount MonthCount:(NSInteger)monthCount DayCount:(NSInteger)dayCount
+{
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *components = [cal components:( NSCalendarUnitYear  |
+                                                    NSCalendarUnitMonth  |
+                                                    NSCalendarUnitDay    |
+                                                    NSCalendarUnitHour   |
+                                                    NSCalendarUnitMinute |
+                                                    NSCalendarUnitSecond
+                                                    )
+                                          fromDate:date];
+    [components setYear:[components year] - yearCount];
+    [components setMonth:([components month] - monthCount)];
+    [components setDay:[components day] - dayCount];
+    
+    
+    
+    NSDate *newDate = [cal dateFromComponents:components];
+    return newDate;
 }
 
 

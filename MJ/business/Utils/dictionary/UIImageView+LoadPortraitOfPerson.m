@@ -38,52 +38,44 @@
 
 -(void)loadPortraitOfPerson:(person*)psn withDefault:(UIImage*)image round:(BOOL)round
 {
-    
     if (psn != nil && psn.photo != nil && [psn.photo isValidPhotoUrl])
     {
-        
         NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
-        
         
         __weak typeof(self) weakSelf = self;
         
-//        [self setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:image success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-//            
-//            if (image.size.height > STORED_IMAGE_H && image.size.width > STORED_IMAGE_W)
-//            {
-//                
-//            }
-//            
-//            if (image != nil)
-//            {
-//                [weakSelf setImageToRound:image];
-//                
-//            }
-//            
-//            
-//        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-//            
-//        }];
         
-        
-        [self sd_setImageWithURL:[NSURL URLWithString:strUrl] placeholderImage:image completed:^(UIImage *image, NSError *error, EMSDImageCacheType cacheType, NSURL *imageURL) {
-            if (image != nil && error == nil)
+        [self setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:image success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+            if (image != nil)
             {
-                dispatch_main_sync_safe (^
-                                         {
-                                             if (round)
-                                             {
-                                                 [weakSelf setImageToRound:image];
-                                             }
-                                             else
-                                             {
-                                                 //weakSelf.image = image;
-                                             }
-                                         });
-               
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (round)
+                    {
+                         weakSelf.image = image;
+                        [weakSelf setImageToRound:image];
+                    }
+                    else
+                    {
+                        weakSelf.image = image;
+                    }
+                });
                 
             }
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+            
         }];
+        
+//        [self sd_setImageWithURL:[NSURL URLWithString:strUrl] placeholderImage:image completed:^(UIImage *image, NSError *error, EMSDImageCacheType cacheType, NSURL *imageURL) {
+//            if (image != nil && error == nil)
+//            {
+//                dispatch_main_sync_safe (^{
+//                                             if (round)
+//                                             {
+//                                                 [weakSelf setImageToRound:image];
+//                                             }
+//                                         });
+//            }
+//        }];
         
     }
     else

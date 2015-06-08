@@ -12,7 +12,8 @@
 
 
 #import "ChatListCell.h"
-#import "UIImageView+EMWebCache.h"
+
+#import "UIImageView+AFNetworking.h"
 
 @interface ChatListCell (){
     UILabel *_timeLabel;
@@ -85,7 +86,9 @@
     [super layoutSubviews];
     CGRect frame = self.imageView.frame;
     
-    [self.imageView sd_setImageWithURL:_imageURL  placeholderImage:_placeholderImage];
+    //[self.imageView sd_setImageWithURL:_imageURL  placeholderImage:_placeholderImage];
+    
+    [self.imageView setImageWithURL:_imageURL placeholderImage:_placeholderImage];
     self.imageView.frame = CGRectMake(10, 7, 45, 45);
     [self.imageView.layer setCornerRadius:5];
     [self.imageView.layer setMasksToBounds:YES];

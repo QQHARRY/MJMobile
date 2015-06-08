@@ -43,6 +43,7 @@
 		4A40C2181A41745E00944AB2 /* petionDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A40C2171A41745E00944AB2 /* petionDetailsTableViewController.m */; };
 		4A40C21B1A41748100944AB2 /* petionListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A40C21A1A41748100944AB2 /* petionListTableViewController.m */; };
 		4A40C2211A4175BC00944AB2 /* petionDetailsItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A40C2201A4175BC00944AB2 /* petionDetailsItemTableViewCell.m */; };
+		4A51242C1B25917300B13DE6 /* NSDate+convertToString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A51242B1B25917300B13DE6 /* NSDate+convertToString.m */; };
 		4A5137481A3B18C1007B504B /* bizManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5137471A3B18C1007B504B /* bizManager.m */; };
 		4A51374B1A3B2AAA007B504B /* dic2Object.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A51374A1A3B2AAA007B504B /* dic2Object.m */; };
 		4A5500C91A3BF32F00E5307D /* AnncDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5500C71A3BF32F00E5307D /* AnncDetailsViewController.m */; };
@@ -83,6 +84,8 @@
 		4A6EF2AF1A5E7401008AB819 /* pushManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6EF2AE1A5E7401008AB819 /* pushManagement.m */; };
 		4A7486761B045909003ECB8C /* TestPrivateApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7486751B045909003ECB8C /* TestPrivateApi.m */; };
 		4A7486B21B0499D1003ECB8C /* UIViewController+ViewPersonDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7486B11B0499D1003ECB8C /* UIViewController+ViewPersonDetails.m */; };
+		4A78FFA71B2004D100250F1D /* GroupPersonListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A78FFA61B2004D100250F1D /* GroupPersonListViewController.m */; };
+		4A78FFAA1B20532400250F1D /* NSString+GetNamefull.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A78FFA91B20532400250F1D /* NSString+GetNamefull.m */; };
 		4A8788481AE8D87300FB3F91 /* ContactPsnDtlVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8788461AE8D87300FB3F91 /* ContactPsnDtlVCCell.m */; };
 		4A8788491AE8D87300FB3F91 /* ContactPsnDtlVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A8788471AE8D87300FB3F91 /* ContactPsnDtlVCCell.xib */; };
 		4A87884C1AE8E94800FB3F91 /* ContacCustomizedBarBtnItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A87884B1AE8E94800FB3F91 /* ContacCustomizedBarBtnItemView.m */; };
@@ -723,6 +726,8 @@
 		4A40C21A1A41748100944AB2 /* petionListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petionListTableViewController.m; sourceTree = "<group>"; };
 		4A40C21F1A4175BC00944AB2 /* petionDetailsItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = petionDetailsItemTableViewCell.h; sourceTree = "<group>"; };
 		4A40C2201A4175BC00944AB2 /* petionDetailsItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = petionDetailsItemTableViewCell.m; sourceTree = "<group>"; };
+		4A51242A1B25917300B13DE6 /* NSDate+convertToString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+convertToString.h"; sourceTree = "<group>"; };
+		4A51242B1B25917300B13DE6 /* NSDate+convertToString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+convertToString.m"; sourceTree = "<group>"; };
 		4A5137461A3B18C1007B504B /* bizManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bizManager.h; sourceTree = "<group>"; };
 		4A5137471A3B18C1007B504B /* bizManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bizManager.m; sourceTree = "<group>"; };
 		4A5137491A3B2AAA007B504B /* dic2Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dic2Object.h; sourceTree = "<group>"; };
@@ -800,6 +805,10 @@
 		4A7486751B045909003ECB8C /* TestPrivateApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPrivateApi.m; sourceTree = "<group>"; };
 		4A7486B01B0499D1003ECB8C /* UIViewController+ViewPersonDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ViewPersonDetails.h"; sourceTree = "<group>"; };
 		4A7486B11B0499D1003ECB8C /* UIViewController+ViewPersonDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ViewPersonDetails.m"; sourceTree = "<group>"; };
+		4A78FFA51B2004D100250F1D /* GroupPersonListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupPersonListViewController.h; sourceTree = "<group>"; };
+		4A78FFA61B2004D100250F1D /* GroupPersonListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupPersonListViewController.m; sourceTree = "<group>"; };
+		4A78FFA81B20532400250F1D /* NSString+GetNamefull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+GetNamefull.h"; sourceTree = "<group>"; };
+		4A78FFA91B20532400250F1D /* NSString+GetNamefull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+GetNamefull.m"; sourceTree = "<group>"; };
 		4A8788451AE8D87300FB3F91 /* ContactPsnDtlVCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPsnDtlVCCell.h; sourceTree = "<group>"; };
 		4A8788461AE8D87300FB3F91 /* ContactPsnDtlVCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPsnDtlVCCell.m; sourceTree = "<group>"; };
 		4A8788471AE8D87300FB3F91 /* ContactPsnDtlVCCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPsnDtlVCCell.xib; sourceTree = "<group>"; };
@@ -2080,6 +2089,8 @@
 				4A98651A1B0EDCD300462388 /* MJMenuItemValue.m */,
 				4A98651B1B0EDCD300462388 /* MJMenuModel.h */,
 				4A98651C1B0EDCD300462388 /* MJMenuModel.m */,
+				4A51242A1B25917300B13DE6 /* NSDate+convertToString.h */,
+				4A51242B1B25917300B13DE6 /* NSDate+convertToString.m */,
 			);
 			path = FilterMenu;
 			sourceTree = "<group>";
@@ -2617,6 +2628,8 @@
 				4AA189271AEF549900685603 /* PublicGroupDetailViewController.m */,
 				4AA189281AEF549900685603 /* PublicGroupListViewController.h */,
 				4AA189291AEF549900685603 /* PublicGroupListViewController.m */,
+				4A78FFA51B2004D100250F1D /* GroupPersonListViewController.h */,
+				4A78FFA61B2004D100250F1D /* GroupPersonListViewController.m */,
 			);
 			path = ChatGroup;
 			sourceTree = "<group>";
@@ -3349,6 +3362,8 @@
 				4A9D02001A6051E500600BA0 /* sqlite3 */,
 				4A9D01FB1A60341D00600BA0 /* dictionary */,
 				4AB0EFA41A30540C00C24A44 /* AFNMJInstance.h */,
+				4A78FFA81B20532400250F1D /* NSString+GetNamefull.h */,
+				4A78FFA91B20532400250F1D /* NSString+GetNamefull.m */,
 				4AD788F21AFB5EFA008D6593 /* UIViewController+ContactsFunction.h */,
 				4AD788F31AFB5EFA008D6593 /* UIViewController+ContactsFunction.m */,
 				4A9ED8A51AFC970800227498 /* UIImageView+LoadPortraitOfPerson.h */,
@@ -4496,6 +4511,7 @@
 				B98BD58A1A609185003A35BE /* REValidation.m in Sources */,
 				B98BD5681A609185003A35BE /* RETableViewInlinePickerCell.m in Sources */,
 				B93B14471A62668E00121133 /* MultilineTextItem.m in Sources */,
+				4A51242C1B25917300B13DE6 /* NSDate+convertToString.m in Sources */,
 				4A5665301A4BF43700C3BA22 /* MessagePageViewController.m in Sources */,
 				4A8F09631AF87AD200C44B99 /* MBProgressHUD.m in Sources */,
 				4A8788481AE8D87300FB3F91 /* ContactPsnDtlVCCell.m in Sources */,
@@ -4535,12 +4551,14 @@
 				B95BEC4F1A73B59C00C2FB90 /* ClientFilter.m in Sources */,
 				B98BD56F1A609185003A35BE /* REBoolItem.m in Sources */,
 				4AA18A9B1AEF549A00685603 /* ApplyViewController.m in Sources */,
+				4A78FFAA1B20532400250F1D /* NSString+GetNamefull.m in Sources */,
 				4AA18A801AEF549A00685603 /* EMChatAudioBubbleView.m in Sources */,
 				4A9D02061A60544900600BA0 /* Sqlite3DataPersistence.m in Sources */,
 				B98BD5711A609185003A35BE /* REDateTimeItem.m in Sources */,
 				4AA18A7B1AEF549A00685603 /* DXMessageToolBar.m in Sources */,
 				4AD795291A218C4A00DEC779 /* FXImageView.m in Sources */,
 				4AA18AA91AEF549A00685603 /* BaseViewController.m in Sources */,
+				4A78FFA71B2004D100250F1D /* GroupPersonListViewController.m in Sources */,
 				4AA18A591AEF549A00685603 /* PSTCollectionViewLayout.m in Sources */,
 				4A9C65201B0C611000A397A7 /* ImagePlayerView.m in Sources */,
 				4AA18A5A1AEF549A00685603 /* PSTCollectionViewUpdateItem.m in Sources */,
@@ -4874,7 +4892,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Like He (YY8UK46XU4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Like He (YY8UK46XU4)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4905,7 +4923,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Xi An Simtoon Technology Co., Ltd";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Xi An Simtoon Technology Co., Ltd";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

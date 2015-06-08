@@ -29,6 +29,8 @@
     return self;
 }
 
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -40,6 +42,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
+    NSLog(@"numberOfRowsInSection=%u",[self.resultsSource count]);
     return [self.resultsSource count];
 }
 
@@ -66,7 +69,9 @@
 {
     // Return NO if you do not want the specified item to be editable.
     if (_canEditRowAtIndexPath) {
-        return _canEditRowAtIndexPath(tableView, indexPath);
+        
+        BOOL canEdit = _canEditRowAtIndexPath(tableView,indexPath);
+        return canEdit;
     }
     else{
         return NO;
@@ -83,6 +88,7 @@
     
     return 50;
 }
+
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -102,6 +108,8 @@
         _didDeselectRowAtIndexPathCompletion(tableView, indexPath);
     }
 }
+
+
 
 #pragma mark - UISearchDisplayDelegate
 

@@ -226,10 +226,12 @@
     if (tapIndex == _currentSelectedMenudIndex && _show)
     {
         //关闭背景,移除当前菜单
+        [self WillDismissView:nil AtIndex:tapIndex];
         [self animateAtIndex:_currentSelectedMenudIndex forward:NO complecte:^{
             [self hideCurMenu];
             _currentSelectedMenudIndex = tapIndex;
             _show = NO;
+            
         }];
     }
     else
@@ -238,6 +240,8 @@
         if (!_show)
         {
             //打开背景,展开第一个菜单
+            
+            [self willPresentView:nil AtIndex:tapIndex];
             [self animateAtIndex:tapIndex forward:YES complecte:^{
                 [self tapMenuOfIndex:tapIndex];
                  _currentSelectedMenudIndex = tapIndex;
@@ -254,7 +258,9 @@
 //            _show = YES;
             
             [self animateAtIndex:tapIndex forward:YES complecte:^{
+                [self WillDismissView:nil AtIndex:_currentSelectedMenudIndex];
                 [self hideCurMenu];
+                [self willPresentView:nil AtIndex:tapIndex];
                 [self tapMenuOfIndex:tapIndex];
                 _currentSelectedMenudIndex = tapIndex;
                 _show = YES;
@@ -278,7 +284,7 @@
 - (void)backgroundTapped:(UITapGestureRecognizer *)paramSender
 {
     
-    [self makeMenuClosed];
+    [self closeCurrentMenu];
     
 }
 
@@ -370,17 +376,24 @@
     }
 }
 
--(void)hideCurMenu
+
+
+
+-(void)WillDismissView:(id)view AtIndex:(NSInteger)index
 {
-    [self tapMenuOfIndex:_currentSelectedMenudIndex];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(MJDropDownMenuBar:WillDismissView:atIndex:)])
+    {
+        [self.delegate MJDropDownMenuBar:self WillDismissView:nil atIndex:index];
+    }
+    
+    
 }
 
-
--(void)informDelegate
+-(void)willPresentView:(id)view AtIndex:(NSInteger)index
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(MJDropDownMenuBar:TapedAtIndex:)])
+    if (self.delegate && [self.delegate respondsToSelector:@selector(MJDropDownMenuBar:WillPresentView:atIndex:)])
     {
-        [self.delegate MJDropDownMenuBar:self TapedAtIndex:_currentSelectedMenudIndex];
+        [self.delegate MJDropDownMenuBar:self WillPresentView:nil atIndex:index];
     }
 }
 
@@ -401,13 +414,20 @@
     }
 }
 
--(void)makeMenuClosed
+
+-(void)hideCurMenu
+{
+    [self tapMenuOfIndex:_currentSelectedMenudIndex];
+}
+
+
+-(void)closeCurrentMenu
 {
     if (_show)
     {
         [self hideCurMenu];
         [self animateAtIndex:_currentSelectedMenudIndex forward:NO complecte:^{
-            [self informDelegate];
+            [self WillDismissView:nil AtIndex:_currentSelectedMenudIndex];
             _show = NO;
         }];
     }

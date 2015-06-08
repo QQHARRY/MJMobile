@@ -13,6 +13,7 @@
 #import "PetitionTableViewCell.h"
 #import "LoadMoreTableViewCell.h"
 #import "petionDetailsTableViewController.h"
+#import "MJRefresh.h"
 
 @interface petionListTableViewController ()
 
@@ -26,15 +27,45 @@
     [super viewDidLoad];
     
     petitionArr = [[NSMutableArray alloc ] init];
-    //[self getData];
+    
+    __weak typeof(self) weakSelf = self;
+    [self.tableView addHeaderWithCallback:^{
+        [weakSelf refreshData];
+    }];
+    
+    [self.tableView addFooterWithCallback:^{
+        [weakSelf getData:YES];
+    }];
+}
+
+-(void)endRefreshing:(BOOL)isFoot
+{
+    if (isFoot)
+    {
+        [self.tableView footerEndRefreshing];
+    }
+    else
+    {
+        [self.tableView headerEndRefreshing];
+    }
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self getData];
+    [self refreshData];
 }
 
--(void)getData
+-(void)refreshData
+{
+    if (self.petitionArr)
+    {
+        [self.petitionArr removeAllObjects];
+        [self getData:NO];
+    }
+}
+
+-(void)getData:(BOOL)isFoot
 {
     SHOWHUD(self.view);
     NSString*from = @"0";
@@ -47,8 +78,10 @@
         HIDEHUD(self.view);
         [self.petitionArr addObjectsFromArray:responseObject];
         [self.tableView reloadData];
+        [self endRefreshing:isFoot];
         
     } failure:^(NSError *error) {
+        [self endRefreshing:isFoot];
         HIDEHUD(self.view);
     }];
     
@@ -70,7 +103,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     // Return the number of rows in the section.
-    return [self.petitionArr count]+1;
+    return [self.petitionArr count];
 }
 
 
@@ -84,10 +117,6 @@
         if (count > row)
         {
             [self performSegueWithIdentifier:@"list2ViewPetitionDetails" sender:self];
-        }
-        else if(count ==  row)
-        {
-            [self getData];
         }
     }
 }
@@ -127,24 +156,24 @@
         
         return cell;
     }
-    else
-    {
-        NSString *CellIdentifier = @"LoadMoreTableViewCell";
-        
-        LoadMoreTableViewCell *cell=(LoadMoreTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(cell==nil)
-        {
-            NSArray *nibs=[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-            for(id oneObject in nibs)
-            {
-                if([oneObject isKindOfClass:[LoadMoreTableViewCell class]])
-                {
-                    cell = (LoadMoreTableViewCell *)oneObject;
-                }
-            }
-        }
-        return cell;
-    }
+//    else
+//    {
+//        NSString *CellIdentifier = @"LoadMoreTableViewCell";
+//        
+//        LoadMoreTableViewCell *cell=(LoadMoreTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//        if(cell==nil)
+//        {
+//            NSArray *nibs=[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+//            for(id oneObject in nibs)
+//            {
+//                if([oneObject isKindOfClass:[LoadMoreTableViewCell class]])
+//                {
+//                    cell = (LoadMoreTableViewCell *)oneObject;
+//                }
+//            }
+//        }
+//        return cell;
+//    }
     
     return nil;
 }

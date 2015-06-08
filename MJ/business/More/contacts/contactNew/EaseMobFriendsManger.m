@@ -100,7 +100,15 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
     {
         if (((EaseMobContacter*)friend).psn)
         {
-            return ((EaseMobContacter*)friend).psn;
+            person*psn =((EaseMobContacter*)friend).psn;
+            if ([psn isKindOfClass:[person class]])
+            {
+                return psn;
+            }
+            else
+            {
+                return nil;
+            }
         }
         else
         {
@@ -118,7 +126,10 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
 
 }
 
-
+-(void)addEMFriends:(NSArray*)friendsArr isFriend:(BOOL)isFriend WaitForSuccess:(void(^)(BOOL bSuccess))success
+{
+    [self pullFriendsDataFromServer:[self addEMFriendsToList:friendsArr isFriend:isFriend] Success:success];
+}
 
 
 -(NSArray*)addEMFriendsToList:(NSArray*)friendsArr isFriend:(BOOL)isFriend
@@ -287,7 +298,7 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          if ([bizManager checkReturnStatus:resultDic Success:nil failure:nil ShouldReturnWhenSuccess:NO ])
          {
-             [self addMJFriends:[self getPsnList:resultDic]];
+             [self setPsnToMJFriends:[self getPsnList:resultDic]];
              if (success)
              {
                  success(YES);
@@ -303,7 +314,7 @@ typedef void (^REQUEST_BLOCK)(BOOL success,person* psn);
      }];
 }
 
--(void)addMJFriends:(NSArray*)PsnList
+-(void)setPsnToMJFriends:(NSArray*)PsnList
 {
     for (person*psn in PsnList)
     {

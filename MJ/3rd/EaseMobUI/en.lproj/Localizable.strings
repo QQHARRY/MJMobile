@@ -46,7 +46,7 @@
 "loginUserRemoveFromServer" = "your account has been removed from the server side";
 
 //app
-"AppName" = "EaseMobDemo";
+"AppName" = "MeiJia Online";
 
 //error des
 "error.connectServerFail" = "Connect to the server failed!";

@@ -56,6 +56,8 @@
 
 -(void)menuTappedOnView:(UIView*)view;
 
+-(void)clearSelection;
+
 @end
 
 

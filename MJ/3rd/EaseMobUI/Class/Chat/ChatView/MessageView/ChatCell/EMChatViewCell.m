@@ -143,48 +143,26 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     
     __weak typeof(self) weakSelf = self;
     [[EaseMobFriendsManger sharedInstance] getFriendByUserName:model.username Success:^(BOOL success, person *psn) {
-        if (success)
+        __strong typeof(self)strongSelf = weakSelf;
+        
+        
+        if (model.isChatGroup)
         {
-            if (psn == nil) {
-                return;
+            if (psn == nil)
+            {
+                strongSelf.nameLabel.text = model.username;
             }
-            __strong typeof(self)strongSelf = weakSelf;
-            
-            if (model.isChatGroup) {
-                
+            else
+            {
                 strongSelf.nameLabel.text = psn.name_full;
-                strongSelf.nameLabel.hidden = model.isSender;
+                
             }
-            
-            [strongSelf.headImageView loadPortraitOfPerson:psn];
-            
-//            if ([psn.photo isValidPhotoUrl])
-//            {
-//                
-//                NSString*strUrl = [SERVER_ADD stringByAppendingString:psn.photo];
-//
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    
-//                    
-//                    UIImage *placeholderImage = [UIImage imageNamed:@"chatListCellHead"];
-//                    [weakSelf.headImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]] placeholderImage:placeholderImage success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-//                        if (image != nil)
-//                        {
-//                            [weakSelf.headImageView setImageToRound:image];
-//                        }
-//                        
-//                        
-// 
-//                    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-//                        
-//                    }];
-//                });
-//            }
+            strongSelf.nameLabel.hidden = model.isSender;
         }
+        
+        [strongSelf.headImageView loadPortraitOfPerson:psn];
+        
     }];
-    //
-    
-    
     
     _bubbleView.model = self.messageModel;
     [_bubbleView sizeToFit];

@@ -28,6 +28,7 @@
 #import "NSString+isValidPhotoUrl.h"
 #import "UIImageView+LoadPortraitOfPerson.h"
 #import "UIViewController+ViewPersonDetails.h"
+#import "GroupPersonListViewController.h"
 
 #pragma mark - ChatGroupDetailViewController
 
@@ -156,6 +157,7 @@
 
 - (UIScrollView *)scrollView
 {
+    return nil;
     if (_scrollView == nil) {
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width - 20, kContactSize)];
         _scrollView.tag = 0;
@@ -241,11 +243,11 @@
     // Return the number of rows in the section.
     if (self.occupantType == GroupOccupantTypeOwner)
     {
-        return 6;
+        return 5;
     }
     else
     {
-        return 5;
+        return 4;
     }
 }
 
@@ -258,33 +260,33 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     
-    if (indexPath.row == 0) {
+    /*if (indexPath.row == 0) {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell.contentView addSubview:self.scrollView];
     }
-    else if (indexPath.row == 1)
+    else */if (indexPath.row == 0)
     {
         cell.textLabel.text = NSLocalizedString(@"group.id", @"group ID");
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.detailTextLabel.text = _chatGroup.groupId;
     }
-    else if (indexPath.row == 2)
+    else if (indexPath.row == 1)
     {
         cell.textLabel.text = NSLocalizedString(@"group.occupantCount", @"members count");
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%i / %i", (int)[_chatGroup.occupants count], (int)_chatGroup.groupSetting.groupMaxUsersCount];
     }
-    else if (indexPath.row == 3)
+    else if (indexPath.row == 2)
     {
         cell.textLabel.text = NSLocalizedString(@"title.groupSetting", @"Group Setting");
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    else if (indexPath.row == 4)
+    else if (indexPath.row == 3)
     {
         cell.textLabel.text = NSLocalizedString(@"title.groupSubjectChanging", @"Change group name");
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    else if (indexPath.row == 5)
+    else if (indexPath.row == 4)
     {
         cell.textLabel.text = NSLocalizedString(@"title.groupBlackList", @"Group black list");
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -310,16 +312,22 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.row == 3) {
+    if (indexPath.row == 1)
+    {
+        GroupPersonListViewController*psnVc = [[GroupPersonListViewController alloc] initWithNibName:nil bundle:nil];
+        psnVc.group = self.chatGroup;
+        [self.navigationController pushViewController:psnVc animated:YES];
+    }
+    else if (indexPath.row == 2) {
         GroupSettingViewController *settingController = [[GroupSettingViewController alloc] initWithGroup:_chatGroup];
         [self.navigationController pushViewController:settingController animated:YES];
     }
-    else if (indexPath.row == 4)
+    else if (indexPath.row == 3)
     {
         GroupSubjectChangingViewController *changingController = [[GroupSubjectChangingViewController alloc] initWithGroup:_chatGroup];
         [self.navigationController pushViewController:changingController animated:YES];
     }
-    else if (indexPath.row == 5) {
+    else if (indexPath.row == 4) {
         GroupBansViewController *bansController = [[GroupBansViewController alloc] initWithGroup:_chatGroup];
         [self.navigationController pushViewController:bansController animated:YES];
     }
@@ -434,6 +442,7 @@
 
 - (void)refreshScrollView
 {
+    return;
     [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.scrollView removeGestureRecognizer:_longPress];
     [self.addButton removeFromSuperview];
@@ -503,7 +512,7 @@
                 [[EaseMobFriendsManger sharedInstance] getFriendByUserName:username Success:^(BOOL success, person *psn) {
                     if (psn)
                     {
-                        [[weakObj getImageView] loadPortraitOfPerson:psn round:NO];
+//                        [[weakObj getImageView] loadPortraitOfPerson:psn round:NO];
                         weakObj.remark = psn.name_full;
                     }
                     

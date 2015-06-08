@@ -46,7 +46,7 @@
 "loginUserRemoveFromServer" = "你的账号已被从服务器端移除";
 
 //app
-"AppName" = "环信Demo";
+"AppName" = "美嘉Online";
 
 //error des
 "error.connectServerFail" = "连接服务器失败!";

@@ -36,7 +36,10 @@
 +(NSArray*)getConsignmentStausMenuItemList;
 +(NSArray*)getRoomTypeMenuItemList;
 +(NSArray*)getOtherTypeMenuItemList;
-
++(NSArray*)getDateSectionMenuItemList;
++(NSArray*)getCustomerPropertyMenuItemList;
++(NSArray*)getCustomerStatusMenuItemList;
++(NSArray*)getCusDeptMenuItemList;
 
 +(NSArray*)getDicTypeArrByName:(NSString*)type;
 

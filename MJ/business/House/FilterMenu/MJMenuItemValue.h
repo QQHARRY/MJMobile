@@ -10,13 +10,13 @@
 
 typedef NS_ENUM(NSInteger, MJMenuItemValueType) {
 
-    MJMenuItemValueTypeSingle     = 0,
-    MJMenuItemValueTypeMulti      = 1,
-    MJMenuItemValueTypeArea       = 2,
-    MJMenuItemValueTypeCustomizeSinge = 3,
-    MJMenuItemValueTypeCustomizeArea = 4,
-    MJMenuItemValueTypeMultiCustomizeSingle = 5,
-     MJMenuItemValueTypeMultiCustomizeArea = 6,
+    MJMenuItemValueTypeSingle     = 0, //单选值
+    MJMenuItemValueTypeMulti      = 1, //多选值
+    MJMenuItemValueTypeArea       = 2, //单选值区间
+    MJMenuItemValueTypeCustomizeSinge = 3, //单选、自定义单值
+    MJMenuItemValueTypeCustomizeArea = 4,  //单选、自定义区间
+    MJMenuItemValueTypeMultiCustomizeSingle = 5,//多选,自定义单值
+     MJMenuItemValueTypeMultiCustomizeArea = 6,//多选，自定义区间
 };
 
 @interface MJMenuItemValue : NSObject

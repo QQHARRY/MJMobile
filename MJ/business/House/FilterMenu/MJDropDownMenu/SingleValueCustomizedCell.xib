@@ -20,22 +20,22 @@
                             <constraint firstAttribute="width" constant="42" id="xai-Y3-w33"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9fT-Yq-Syr">
-                        <rect key="frame" x="72" y="7" width="233" height="30"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9fT-Yq-Syr">
+                        <rect key="frame" x="72" y="10" width="233" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="PSU-fA-hus"/>
+                            <constraint firstAttribute="height" constant="25" id="PSU-fA-hus"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
+                        <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                     </textField>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="centerY" secondItem="IEJ-UU-NlZ" secondAttribute="centerY" id="6so-wB-OqQ"/>
-                    <constraint firstItem="9fT-Yq-Syr" firstAttribute="leading" secondItem="IEJ-UU-NlZ" secondAttribute="trailing" constant="15" id="F65-fI-pGq"/>
-                    <constraint firstAttribute="trailing" secondItem="9fT-Yq-Syr" secondAttribute="trailing" constant="15" id="KSm-kn-RNX"/>
+                    <constraint firstItem="9fT-Yq-Syr" firstAttribute="leading" secondItem="IEJ-UU-NlZ" secondAttribute="trailing" constant="5" id="F65-fI-pGq"/>
+                    <constraint firstAttribute="trailing" secondItem="9fT-Yq-Syr" secondAttribute="trailing" constant="5" id="KSm-kn-RNX"/>
                     <constraint firstAttribute="centerY" secondItem="9fT-Yq-Syr" secondAttribute="centerY" id="YoA-xE-iKT"/>
                     <constraint firstItem="IEJ-UU-NlZ" firstAttribute="leading" secondItem="Eyp-V4-OCg" secondAttribute="leading" constant="15" id="pdL-2S-x3D"/>
                 </constraints>

@@ -419,8 +419,8 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 
     //发送通知
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-    //    UIApplication *application = [UIApplication sharedApplication];
-    //    application.applicationIconBadgeNumber += 1;
+        UIApplication *application = [UIApplication sharedApplication];
+        application.applicationIconBadgeNumber += 1;
 }
 
 #pragma mark - IChatManagerDelegate 登陆回调（主要用于监听自动登录是否成功）

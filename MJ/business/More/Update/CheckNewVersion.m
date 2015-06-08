@@ -10,6 +10,7 @@
 #import "updateDataPuller.h"
 #import "UtilFun.h"
 #import <PgySDK/PgyManager.h>
+#import "Macro.h"
 
 #define NEWVERSION_CODE_PRE @"newversion_code"
 #define NEWVERSION_REQUIRED_PRE @"newversion_required"
@@ -29,7 +30,9 @@
 
 -(void)checkUpdateUsingPgy
 {
+#ifdef USEPGY
     [[PgyManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateMethod:)];
+#endif
 }
 
 - (void)updateMethod:(NSDictionary *)response

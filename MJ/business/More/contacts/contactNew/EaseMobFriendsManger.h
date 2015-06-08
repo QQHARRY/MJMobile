@@ -16,6 +16,7 @@
 +(id)sharedInstance;
 
 -(void)addEMFriends:(NSArray*)friendsArr isFriend:(BOOL)isFriend;
+-(void)addEMFriends:(NSArray*)friendsArr isFriend:(BOOL)isFriend WaitForSuccess:(void(^)(BOOL bSuccess))success;
 -(void)addMeToList;
 
 -(void)deleteEMFriends:(NSArray*)friendsArr;

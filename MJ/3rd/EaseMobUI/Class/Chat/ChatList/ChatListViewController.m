@@ -77,6 +77,7 @@
     [self.view addSubview:self.searchBar];
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.slimeView];
+    
     [self networkStateView];
     
     [self.navigationController.tabBarController.tabBar setBackgroundColor:[UIColor whiteColor]];
@@ -420,6 +421,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    
     static NSString *identify = @"chatListCell";
     ChatListCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
     
@@ -429,6 +431,11 @@
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
     cell.name = conversation.chatter;
     
+    
+    if (indexPath.row == 0)
+    {
+        NSLog(@"index=%d",(int)indexPath.row);
+    }
 
    __weak __typeof(cell) weakChatCell = cell;
     if (!conversation.isGroup) {
@@ -456,7 +463,11 @@
             }
         }
         cell.placeholderImage = [UIImage imageNamed:imageName];
+        cell.imageURL = nil;
+//        cell.imageView.image = [UIImage imageNamed:imageName];
     }
+    
+    
     
 
     [self syncGetSubTitleMessageByConversation:conversation Success:^(BOOL success, NSString *subTitle) {

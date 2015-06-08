@@ -24,8 +24,8 @@
 
 @protocol MJDropDownMenuBarDelegate <NSObject>
 
-- (void)MJDropDownMenuBar:(MJDropDownMenuBar*)menuBar TapedAtIndex:(NSInteger)index;
-
+- (void)MJDropDownMenuBar:(MJDropDownMenuBar*)menuBar WillPresentView:(id)view atIndex:(NSInteger)index;
+- (void)MJDropDownMenuBar:(MJDropDownMenuBar*)menuBar WillDismissView:(id)view atIndex:(NSInteger)index;
 @end
 
 
@@ -40,6 +40,6 @@
 @property (nonatomic, strong) UIColor *bgColor;
 -(instancetype)initWithOrigin:(CGPoint)origin andHeight:(CGFloat)height;
 -(void)updateTitle:(NSString*)title ForIndex:(NSInteger)index;
--(void)makeMenuClosed;
+-(void)closeCurrentMenu;
 @end
 

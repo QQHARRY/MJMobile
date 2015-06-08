@@ -22,6 +22,7 @@
 #import "ContactListTableViewController.h"
 #import "AppDelegate.h"
 #import "department.h"
+#import <objc/runtime.h>
 
 
 #define MENUBAR_HEIGHT 32
@@ -32,17 +33,16 @@
 @property(nonatomic,strong)HouseFilterController *houseFilterVC;
 @property(strong,nonatomic)MJDropDownMenuBar*sellMenuBar;
 @property(strong,nonatomic)MJDropDownMenuBar*rentMenuBar;
-@property(strong,nonatomic)MJDropDownMenu*rent_areaMenu;
+
+@property(strong,nonatomic)MJDropDownMenu*rent_urbanAreaMenu;
 @property(strong,nonatomic)MJDropDownMenu*rent_priceMenu;
 @property(strong,nonatomic)MJDropDownMenu*rent_DeptMenu;
-@property(strong,nonatomic)MJDropDownMenu*rent_houseModelMenu;
 @property(strong,nonatomic)MJDropDownMenu*rent_moreMenu;
 
 
-@property(strong,nonatomic)MJDropDownMenu*sell_areaMenu;
+@property(strong,nonatomic)MJDropDownMenu*sell_urbanAreaMenu;
 @property(strong,nonatomic)MJDropDownMenu*sell_priceMenu;
 @property(strong,nonatomic)MJDropDownMenu*sell_DeptMenu;
-@property(strong,nonatomic)MJDropDownMenu*sell_houseModelMenu;
 @property(strong,nonatomic)MJDropDownMenu*sell_moreMenu;
 
 
@@ -52,8 +52,6 @@
 @property(strong,nonatomic)NSMutableArray*menu_sellPriceArr;
 @property(strong,nonatomic)NSMutableArray*menu_rentPriceArr;
 @property(strong,nonatomic)NSMutableArray*menu_deptArr;
-
-
 @property(strong,nonatomic)NSMutableArray*menu_areaArr;
 @property(strong,nonatomic)NSMutableArray*menu_hallArr;
 @property(strong,nonatomic)NSMutableArray*menu_floorArr;
@@ -65,7 +63,7 @@
 @property(strong,nonatomic)NSMutableArray*menu_RoomTypeArr;
 @property(strong,nonatomic)NSMutableArray*menu_OtherArr;
 
-@property(strong,nonatomic)MJDropDownMenu*selectDeptMenu;
+@property(strong,nonatomic)MJDropDownMenu*selectedDeptAtMenu;
 @property(strong,nonatomic)HouseFilter*sellTmpFilter;
 @property(strong,nonatomic)HouseFilter*rentTmpFilter;
 @end
@@ -96,7 +94,7 @@
 #endif
 
     // add title button
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"筛选" style:UIBarButtonItemStylePlain target:self action:@selector(onFilterAction:)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"筛选" style:UIBarButtonItemStylePlain target:self action:@selector(onFilterAction:)];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(onAddEstate:)];
     
     // add table view controller
@@ -151,12 +149,56 @@
     
 }
 
+
+-(void)setUpRightNavigationItemWithIsNormalType:(BOOL)normalType
+{
+    if (normalType)
+    {
+         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"搜索" style:UIBarButtonItemStylePlain target:self action:@selector(OnSearchBtnClicked:)];
+    }
+    else
+    {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"重置" style:UIBarButtonItemStylePlain target:self action:@selector(OnResetBtnClicked:)];
+    }
+}
+
+
+-(void)OnSearchBtnClicked:(id)sender
+{
+    
+}
+-(void)OnResetBtnClicked:(id)sender
+{
+    if (_nowControllerType == HCT_SELL)
+    {
+        if (_sell_moreMenu)
+        {
+            [_sell_moreMenu clearSelection];
+        }
+        
+        if (_sellTmpFilter)
+        {
+            [self cleanFilter:_sellTmpFilter];
+        }
+
+    }
+    else
+    {
+        if (_rent_moreMenu)
+        {
+            [_rent_moreMenu clearSelection];
+        }
+        
+        if (_rentTmpFilter)
+        {
+            [self cleanFilter:_rentTmpFilter];
+        }
+    }
+}
+
 -(void)initMenuData
 {
 
-    
-    
-    
     SHOWHUD(self.view);
     [MJMenuModel asyncGetUrbanAndAreaMenuItemList:^(BOOL success, NSArray *urbanArr) {
         _menu_urbanAreaArr = urbanArr;
@@ -199,10 +241,17 @@
     }
 }
 
-- (void)MJDropDownMenuBar:(MJDropDownMenuBar*)menuBar TapedAtIndex:(NSInteger)index
+- (void)MJDropDownMenuBar:(MJDropDownMenuBar*)menuBar WillDismissView:(id)view atIndex:(NSInteger)index
 {
-    
-    
+    [self setUpRightNavigationItemWithIsNormalType:YES];
+}
+
+- (void)MJDropDownMenuBar:(MJDropDownMenuBar*)menuBar WillPresentView:(id)view atIndex:(NSInteger)index
+{
+    if (index == 3)
+    {
+        [self setUpRightNavigationItemWithIsNormalType:NO];
+    }
 }
 
 - (MJDropDownMenu*)MJDropDownMenuBar:(MJDropDownMenuBar *)menuBar MenuForColumn:(NSInteger)index
@@ -213,15 +262,15 @@
         {
             if (menuBar == _sellMenuBar)
             {
-                if(_sell_areaMenu == nil)
-                    _sell_areaMenu = [self createDropDownMenuWithMode:NO BatchSelect:NO];
-                 return _sell_areaMenu;
+                if(_sell_urbanAreaMenu == nil)
+                    _sell_urbanAreaMenu = [self createDropDownMenuWithMode:NO BatchSelect:NO];
+                 return _sell_urbanAreaMenu;
             }
             else
             {
-                if(_rent_areaMenu == nil)
-                    _rent_areaMenu = [self createDropDownMenuWithMode:NO BatchSelect:NO];
-                 return _rent_areaMenu;
+                if(_rent_urbanAreaMenu == nil)
+                    _rent_urbanAreaMenu = [self createDropDownMenuWithMode:NO BatchSelect:NO];
+                 return _rent_urbanAreaMenu;
             }
         }
             break;
@@ -296,7 +345,7 @@
 
 - (NSInteger)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ((menu == _sell_areaMenu || menu == _rent_areaMenu)&& _menu_urbanAreaArr)
+    if ((menu == _sell_urbanAreaMenu || menu == _rent_urbanAreaMenu)&& _menu_urbanAreaArr)
     {
         if (tableView == menu.leftTableV)
         {
@@ -409,7 +458,7 @@
 
 - (NSString *)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView titleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ((menu == _sell_areaMenu || menu == _rent_areaMenu)&& _menu_urbanAreaArr)
+    if ((menu == _sell_urbanAreaMenu || menu == _rent_urbanAreaMenu)&& _menu_urbanAreaArr)
     {
         if (tableView == menu.leftTableV)
         {
@@ -579,7 +628,7 @@
 
 - (MJMenuItemValueType)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView valuetTypeForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ((menu == _sell_areaMenu || menu == _rent_areaMenu)&& _menu_urbanAreaArr)
+    if ((menu == _sell_urbanAreaMenu || menu == _rent_urbanAreaMenu)&& _menu_urbanAreaArr)
     {
         if (tableView == menu.leftTableV)
         {
@@ -789,10 +838,10 @@
     }
     
     MJDropDownMenuBar*menubar = nil;
-    if (menu == _sell_areaMenu || menu == _rent_areaMenu)
+    if (menu == _sell_urbanAreaMenu || menu == _rent_urbanAreaMenu)
     {
-        HouseFilter*filter = (menu == _sell_areaMenu)?_sellController.filter:_rentController.filter;
-        menubar = (menu == _sell_areaMenu)?_sellMenuBar:_rentMenuBar;
+        HouseFilter*filter = (menu == _sell_urbanAreaMenu)?_sellController.filter:_rentController.filter;
+        menubar = (menu == _sell_urbanAreaMenu)?_sellMenuBar:_rentMenuBar;
         if(filter && indexPath.section < [_menu_urbanAreaArr count])
         {
             MJMenuModel*model = [_menu_urbanAreaArr objectAtIndex:indexPath.section];
@@ -810,6 +859,7 @@
                 [menubar updateTitle:[NSString stringWithFormat:@"%@",areaTitle] ForIndex:0];
             }
         }
+        [self wannaRefresh];
     }
     else if(menu == _sell_priceMenu || menu == _rent_priceMenu)
     {
@@ -817,7 +867,7 @@
         menubar = (menu == _sell_priceMenu)?_sellMenuBar:_rentMenuBar;
         NSArray*priceArr = (menu == _sell_priceMenu)?_menu_sellPriceArr:_menu_rentPriceArr;
         
-        if(filter && indexPath.row < [priceArr count])
+        if(filter && indexPath.row < [priceArr count]-1)
         {
             NSDictionary*dic = [priceArr objectAtIndex:indexPath.row];
             
@@ -834,6 +884,20 @@
             NSString*title = [[dic objectForKey:@"menuItem"] objectForKey:@"title"];
             [menubar updateTitle:[NSString stringWithFormat:@"%@",title] ForIndex:1];
         }
+        else if (filter && indexPath.row == [priceArr count]-1)
+        {
+            if (value && value.valueArr && value.valueArr.count > 1)
+            {
+                
+                NSString* minPrice = value.valueArr[0];
+                NSString* maxPrice = value.valueArr[1];
+                
+                filter.sale_value_from = minPrice;
+                filter.sale_value_to = maxPrice;
+            }
+            [menubar updateTitle:@"自定义" ForIndex:1];
+        }
+        [self wannaRefresh];
     }
     else if (menu == _sell_DeptMenu || menu == _rent_DeptMenu)
     {
@@ -850,6 +914,7 @@
                     [menubar updateTitle:@"不限" ForIndex:2];
                     filter.search_job_no = @"";
                     filter.search_dept_no = @"";
+                    [self wannaRefresh];
                 }
                     break;
                 case 1:
@@ -857,11 +922,12 @@
                     [menubar updateTitle:@"我的部门" ForIndex:2];
                     filter.search_job_no = [person me].job_no;
                     filter.search_dept_no = [person me].department_no;
+                    [self wannaRefresh];
                 }
                     break;
                 default:
                 {
-                    _selectDeptMenu = menu;
+                    _selectedDeptAtMenu = menu;
                     [self showContactVC];
                     return;
                 }
@@ -874,19 +940,8 @@
         menubar = (menu == _sell_moreMenu)?_sellMenuBar:_rentMenuBar;
         
         [self setFilterByClickedMoreMenu:menu AtIndexPath:indexPath WithCustomizedValue:value];
-        
-        
+    }
 
-    }
-    
-    if (menubar == _sellMenuBar)
-    {
-        
-    }
-    else if(menubar == _rentMenuBar)
-    {
-        
-    }
 }
 
 
@@ -926,9 +981,19 @@
                 filter.house_floor_to = valueArr[0];
                 if (valueType == MJMenuItemValueTypeCustomizeArea && cusValue && cusValue.valueArr && cusValue.valueArr.count > 1)
                 {
-                    filter.house_floor_from = cusValue.valueArr[0];
-                    filter.house_floor_to =  cusValue.valueArr[1];
+                    if (cusValue == nil || cusValue.valueArr == nil || cusValue.valueArr.count < 2)
+                    {
+                        filter.house_floor_from = @"";
+                        filter.house_floor_to =  @"";
+                    }
+                    else
+                    {
+                        filter.house_floor_from = cusValue.valueArr[0];
+                        filter.house_floor_to =  cusValue.valueArr[1];
+                    }
+                    
                 }
+
                 
             }
                 break;
@@ -963,6 +1028,10 @@
                 {
                     NSArray*valueArr =  [[[_menu_LeaseStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
                      filter.lease_trade_state = valueArr[0];
+                    if ([filter.lease_trade_state isEqualToString:@""])
+                    {
+                        filter.lease_trade_state = @"0";
+                    }
                 }
             }
                 break;
@@ -983,7 +1052,53 @@
                 break;
             case 8:
             {
+                
                 //return @"其他";
+                switch (indexPath.row)
+                {
+                    case 0:
+                    {
+                        if (cusValue != nil)
+                        {
+                            if (cusValue.valueArr && cusValue.valueArr.count > 0)
+                            filter.buildname = cusValue.valueArr[0];
+                        }
+                        else
+                        {
+                            filter.buildname = @"";
+                        }
+                    }
+                        break;
+                    case 1:
+                    {
+                        if (cusValue != nil)
+                        {
+                            if (cusValue.valueArr && cusValue.valueArr.count > 0)
+                            filter.house_unit = cusValue.valueArr[0];
+                        }
+                        else
+                        {
+                            filter.house_unit = @"";
+                        }
+                    }
+                        break;
+                    case 2:
+                    {
+                        if (cusValue != nil)
+                        {
+                            if (cusValue.valueArr && cusValue.valueArr.count > 0)
+                            filter.house_tablet = cusValue.valueArr[0];
+                        }
+                        else
+                        {
+                            filter.house_tablet = @"";
+                        }
+                    }
+                        break;
+                        
+                    default:
+                        break;
+                }
             }
                 break;
                 
@@ -1030,15 +1145,16 @@
         
         if (deptNo && deptName)
         {
-            if (_selectDeptMenu && (_selectDeptMenu == _sell_DeptMenu || _selectDeptMenu == _rent_DeptMenu))
+            if (_selectedDeptAtMenu && (_selectedDeptAtMenu == _sell_DeptMenu || _selectedDeptAtMenu == _rent_DeptMenu))
             {
-                HouseFilter*filter = (_selectDeptMenu == _sell_DeptMenu)?_sellController.filter:_rentController.filter;
-                MJDropDownMenuBar*menubar = (_selectDeptMenu == _sell_DeptMenu)?_sellMenuBar:_rentMenuBar;
+                HouseFilter*filter = (_selectedDeptAtMenu == _sell_DeptMenu)?_sellController.filter:_rentController.filter;
+                MJDropDownMenuBar*menubar = (_selectedDeptAtMenu == _sell_DeptMenu)?_sellMenuBar:_rentMenuBar;
                 
                 filter.search_dept_no = deptNo;
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [menubar updateTitle:deptName ForIndex:2];
+                    [self wannaRefresh];
                 });
                 
             }
@@ -1052,8 +1168,8 @@
 
 -(void)closeMenu
 {
-    [_sellMenuBar makeMenuClosed];
-    [_rentMenuBar makeMenuClosed];
+    [_sellMenuBar closeCurrentMenu];
+    [_rentMenuBar closeCurrentMenu];
 }
 
 
@@ -1063,13 +1179,105 @@
     {
         [self closeMenu];
         
+        if (self.nowControllerType == HCT_SELL)
+        {
+            [self mergeFilterFrom:_sellTmpFilter ToFilter:_sellController.filter];
+        }
+        else
+        {
+            [self mergeFilterFrom:_rentTmpFilter ToFilter:_rentController.filter];
+        }
         //self.men
+        [self wannaRefresh];
+    }
+}
+
+
+-(id)cleanFilter:(id)filter
+{
+    if (filter != nil)
+    {
+        unsigned int fromIvarsCnt = 0;
         
-        
-        
-        
+        Class clsFrom = [filter class];
+        Ivar *fromIvars = class_copyIvarList(clsFrom, &fromIvarsCnt);
+        for (const Ivar *fromP = fromIvars; fromP < fromIvars + fromIvarsCnt; ++fromP)
+        {
+            id value = object_getIvar(filter, *fromP);
+            if (value != nil && [value isKindOfClass:[NSString class]])
+            {
+                object_setIvar(filter, *fromP, @"");
+            }
+            
+        }
         
     }
+    
+    return filter;
+}
+
+-(id)mergeFilterFrom:(id)fromFilter ToFilter:(id)toFilter
+{
+    if (fromFilter == nil && toFilter == nil)
+    {
+        return nil;
+    }
+    else if(toFilter  == nil)
+    {
+        return toFilter;
+    }
+    else if(fromFilter == nil && toFilter != nil)
+    {
+        return toFilter;
+    }
+    
+    Class clsTo = [toFilter class];
+    Class clsFrom = [fromFilter class];
+    
+    if (clsTo != clsFrom)
+    {
+        return toFilter;
+    }
+   
+    unsigned int fromIvarsCnt = 0;
+    unsigned int toIvarsCnt = 0;
+    Ivar *fromIvars = class_copyIvarList(clsFrom, &fromIvarsCnt);
+    Ivar *toIvars = class_copyIvarList(clsTo, &toIvarsCnt);
+    
+    if (fromIvars > 0 && fromIvarsCnt == toIvarsCnt && fromIvars != NULL && toIvars != NULL)
+    {
+        for (const Ivar *fromP = fromIvars; fromP < fromIvars + fromIvarsCnt; ++fromP)
+        {
+            //Ivar const ivar = ;
+            NSString *keyFrom = [NSString stringWithUTF8String:ivar_getName(*fromP)];
+            id value = object_getIvar(fromFilter, *fromP);
+            if (value != nil && [value isKindOfClass:[NSString class]])
+            {
+                for (const Ivar* toP = toIvars; toP < toIvars + toIvarsCnt; ++toP)
+                {
+                    NSString *keyTo = [NSString stringWithUTF8String:ivar_getName(*toP)];
+                    if ([keyFrom isEqualToString:keyTo])
+                    {
+                        object_setIvar(toFilter, *toP, value);
+                        break;
+                    }
+                }
+            }
+            
+        }
+    }
+    
+    
+    if(fromIvars)
+    {
+        free(fromIvars);
+    }
+
+    if (toIvars) {
+        free(toIvars);
+    }
+
+    return toFilter;
 }
 
 
@@ -1079,10 +1287,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidAppear:(BOOL)animated
+-(void)wannaRefresh
 {
-    
-    
+    self.applyForRefresh = YES;
+    [self refreshData];
+}
+
+-(void)refreshData
+{
     if (self.nowControllerType == HCT_SELL)
     {
         if (self.applyForRefresh)
@@ -1097,9 +1309,16 @@
         {
             [self.rentController refreshData];
         }
-       
+        
     }
     self.applyForRefresh = NO;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    
+    
+    [self refreshData];
     [super viewDidAppear:animated];
 }
 
@@ -1219,7 +1438,7 @@
         
         if (_rentMenuBar) {
             _rentMenuBar.hidden = YES;
-            [_rentMenuBar makeMenuClosed];
+            [_rentMenuBar closeCurrentMenu];
         }
         
     }
@@ -1230,7 +1449,7 @@
         if (_sellMenuBar)
         {
             _sellMenuBar.hidden = YES;
-            [_sellMenuBar makeMenuClosed];
+            [_sellMenuBar closeCurrentMenu];
         }
         
         if (_rentMenuBar)

@@ -15,6 +15,7 @@
 
 #import "BFNavigationBarDrawer.h"
 #import "LoadMoreTableViewCell.h"
+#import "MJRefresh.h"
 
 
 @interface AlertListTableViewController ()
@@ -43,10 +44,48 @@
     self.objArr = [[NSMutableArray alloc] init];
     //self.selectArr = [[NSMutableArray alloc] init];
     [self initNavigationBar];
-    [self getDataList];
+    
+    
+    __weak typeof(self)weakSelf= self;
+    [self.tableView addHeaderWithCallback:^{
+        [weakSelf refreshData];
+    }];
+    
+    [self.tableView addFooterWithCallback:^{
+        [weakSelf getDataList:YES];
+    }];
 }
 
--(void)getDataList
+
+
+-(void)endRefreshing:(BOOL)isFoot
+{
+    if (isFoot)
+    {
+        [self.tableView footerEndRefreshing];
+    }
+    else
+    {
+        [self.tableView headerEndRefreshing];
+    }
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self refreshData];
+}
+
+-(void)refreshData
+{
+    if (self.objArr)
+    {
+        [self.objArr removeAllObjects];
+        [self getDataList:NO];
+    }
+}
+
+-(void)getDataList:(BOOL)isFoot
 {
     SHOWHUD(self.view);
     NSString*from = @"0";
@@ -60,9 +99,11 @@
         [self.objArr addObjectsFromArray:responseObject];
         //self.mainAnncArr = responseObject;
         [self.tableView reloadData];
+        [self endRefreshing:isFoot];
         
     } failure:^(NSError *error) {
         HIDEHUD(self.view);
+        [self endRefreshing:isFoot];
     }];
     
 }
@@ -129,6 +170,7 @@
     __block long processedCnt = 0;
     if (selectedArr == nil || count <=0 )
     {
+        [self hideDrawer];
         return;
     }
     [self hideDrawer];
@@ -144,7 +186,7 @@
             HIDEHUD(self.view);
             
             [self.objArr removeAllObjects];
-            [self getDataList];
+            [self refreshData];
         }
     } failure:^(NSError *error)
      {
@@ -153,7 +195,7 @@
          {
              HIDEHUD(self.view);
              [self.objArr removeAllObjects];
-             [self getDataList];
+             [self refreshData];
          }
     }];
     
@@ -225,16 +267,16 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!self.isEditing)
-    {
-        long count = [self.objArr count];
-        long row = indexPath.row;
-        
-        if(count ==  row)
-        {
-            [self getDataList];
-        }
-    }
+//    if (!self.isEditing)
+//    {
+//        long count = [self.objArr count];
+//        long row = indexPath.row;
+//        
+//        if(count ==  row)
+//        {
+//            [self getDataList];
+//        }
+//    }
 }
 
 
@@ -254,7 +296,7 @@
     {
         return objArr.count;
     }
-    return objArr.count + 1;
+    return objArr.count;
 }
 
 
@@ -285,24 +327,24 @@
         [cell setAlert:[objArr objectAtIndex:row]];
         return cell;
     }
-    else
-    {
-        NSString *CellIdentifier = @"LoadMoreTableViewCell";
-        
-        LoadMoreTableViewCell *cell=(LoadMoreTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if(cell==nil)
-        {
-            NSArray *nibs=[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-            for(id oneObject in nibs)
-            {
-                if([oneObject isKindOfClass:[LoadMoreTableViewCell class]])
-                {
-                    cell = (LoadMoreTableViewCell *)oneObject;
-                }
-            }
-        }
-        return cell;
-    }
+//    else
+//    {
+//        NSString *CellIdentifier = @"LoadMoreTableViewCell";
+//        
+//        LoadMoreTableViewCell *cell=(LoadMoreTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//        if(cell==nil)
+//        {
+//            NSArray *nibs=[[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+//            for(id oneObject in nibs)
+//            {
+//                if([oneObject isKindOfClass:[LoadMoreTableViewCell class]])
+//                {
+//                    cell = (LoadMoreTableViewCell *)oneObject;
+//                }
+//            }
+//        }
+//        return cell;
+//    }
     
     return nil;
 

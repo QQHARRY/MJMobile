@@ -506,6 +506,34 @@
 }
 
 
+-(BOOL)isSelectedOnTableView:(UITableView*)tableView AtIndexPath:(NSIndexPath*)indexPath
+{
+    NSIndexPath*tmpIndex = [NSIndexPath indexPathForRow:indexPath.row inSection:_selectedOnLeft];
+    
+    
+    for (NSIndexPath*index in _selectedIndexsOnRight)
+    {
+        if (index && index.section == tmpIndex.section && index.row == tmpIndex.row)
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+-(void)clearSelection
+{
+    if (self.batchSelect)
+    {
+        if (_selectedIndexsOnRight)
+        {
+            [_selectedIndexsOnRight removeAllObjects];
+        }
+    }
+    
+    [self.rightTableV reloadData];
+}
 
 -(void)markSelectionOnTableView:(UITableView*)tableView AtIndexPath:(NSIndexPath*)indexPath
 {
@@ -558,15 +586,20 @@
                 }
                 else
                 {
+                    NSMutableArray*tmpArr = [[NSMutableArray alloc] init];
+                    
+                    
                     for (NSIndexPath*index in _selectedIndexsOnRight)
                     {
-                        //每个section同时选中一个，故删掉以前的。
-                        if (index && index.section == tmpIndex.section)
+                        //每个section同时选中一个，故删掉以前的。将不删除的加到临时容器中
+                        if (index && index.section != tmpIndex.section)
                         {
-                            [_selectedIndexsOnRight removeObject:index];
+                            [tmpArr addObject:index];
                         }
                     }
                     
+                    [_selectedIndexsOnRight removeAllObjects];
+                    [_selectedIndexsOnRight addObjectsFromArray:tmpArr];
                     [_selectedIndexsOnRight addObject:tmpIndex];
                 }
             }
@@ -726,39 +759,48 @@
         {
             
             //_selectedOnRight = [NSIndexPath indexPathForRow:indexPath.row inSection:_selectedOnLeft];
-            [self markSelectionOnTableView:tableView AtIndexPath:indexPath];
+            
             
             if (self.delegate && [self.delegate respondsToSelector:@selector(menu:tableView:didSelectRowAtIndexPath:CustomizedValue:)])
             {
                 
                 MJMenuItemValue*value = nil;
                 
+                BOOL isSelectedAlready = [self isSelectedOnTableView:tableView AtIndexPath:indexPath];
+                
                 NSIndexPath*indexTmp = [NSIndexPath indexPathForRow:indexPath.row inSection:_selectedOnLeft];
                 
-                if(self.dataSource && [self.dataSource respondsToSelector:@selector(menu:tableView:valuetTypeForRowAtIndexPath:)])
+                
+                if (!isSelectedAlready)
                 {
-                    MJMenuItemValueType type = [self.dataSource menu:self tableView:tableView valuetTypeForRowAtIndexPath:indexTmp];
-                    
-                    if (type == MJMenuItemValueTypeCustomizeSinge && [cell isKindOfClass:[SingleValueCustomizedCell class]])
+                    if(self.dataSource && [self.dataSource respondsToSelector:@selector(menu:tableView:valuetTypeForRowAtIndexPath:)])
                     {
-                        value = [[MJMenuItemValue alloc] init];
-                        value.valueType = type;
-                        value.valueArr = @[((SingleValueCustomizedCell*)cell).singleValueField.text];
+                        MJMenuItemValueType type = [self.dataSource menu:self tableView:tableView valuetTypeForRowAtIndexPath:indexTmp];
                         
-                    }
-                    else if (type == MJMenuItemValueTypeCustomizeArea && [cell isKindOfClass:[SectionValueCustomizedCell class]])
-                    {
-                        value = [[MJMenuItemValue alloc] init];
-                        value.valueType = type;
-                        value.valueArr = @[((SectionValueCustomizedCell*)cell).minValue.text,((SectionValueCustomizedCell*)cell).maxValue.text];
+                        if (( (type == MJMenuItemValueTypeMultiCustomizeSingle) || (type == MJMenuItemValueTypeCustomizeSinge)) && [cell isKindOfClass:[SingleValueCustomizedCell class]])
+                        {
+                            value = [[MJMenuItemValue alloc] init];
+                            value.valueType = type;
+                            value.valueArr = @[((SingleValueCustomizedCell*)cell).singleValueField.text];
+                            
+                        }
+                        else if (((type == MJMenuItemValueTypeMultiCustomizeArea) || (type == MJMenuItemValueTypeCustomizeArea)) && [cell isKindOfClass:[SectionValueCustomizedCell class]])
+                        {
+                            value = [[MJMenuItemValue alloc] init];
+                            value.valueType = type;
+                            value.valueArr = @[((SectionValueCustomizedCell*)cell).minValue.text,((SectionValueCustomizedCell*)cell).maxValue.text];
+                        }
                     }
                 }
+                
                 
 
                 
                 
                 [self.delegate menu:self tableView:tableView didSelectRowAtIndexPath:indexTmp CustomizedValue:value];
             }
+            
+            [self markSelectionOnTableView:tableView AtIndexPath:indexPath];
             
             if (self.batchSelect == NO)
             {
