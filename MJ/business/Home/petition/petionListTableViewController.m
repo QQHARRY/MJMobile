@@ -25,9 +25,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
+    {
+        [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    }
+
     petitionArr = [[NSMutableArray alloc ] init];
-    
     __weak typeof(self) weakSelf = self;
     [self.tableView addHeaderWithCallback:^{
         [weakSelf refreshData];
@@ -77,6 +81,36 @@
     [petitionManager getListFrom:from To:@"" Count:6 Success:^(id responseObject) {
         HIDEHUD(self.view);
         [self.petitionArr addObjectsFromArray:responseObject];
+        
+#if 0
+        petiotionBrief*brf  =[[petiotionBrief alloc] init];
+        brf.reason = @"11111";
+        brf.username = @"22222";
+        brf.applytime = @"3333";
+        brf.id = @"4444";
+        
+        petiotionBrief*brf1  =[[petiotionBrief alloc] init];
+        brf1.reason = @"11111";
+        brf1.username = @"22222";
+        brf1.applytime = @"3333";
+        brf1.id = @"4444";
+        
+        
+        petiotionBrief*brf2  =[[petiotionBrief alloc] init];
+        brf2.reason = @"11111";
+        brf2.username = @"22222";
+        brf2.applytime = @"3333";
+        brf2.id = @"4444";
+        
+        
+        [self.petitionArr addObject:brf];
+        [self.petitionArr addObject:brf1];
+        [self.petitionArr addObject:brf2];
+#endif
+        
+        
+        
+        
         [self.tableView reloadData];
         [self endRefreshing:isFoot];
         

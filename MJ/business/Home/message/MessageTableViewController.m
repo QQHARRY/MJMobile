@@ -30,6 +30,13 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    
+    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
+    {
+        [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    }
+    
     msgArr = [[NSMutableArray alloc ] init];
     [self.tableView addHeaderWithTarget:self action:@selector(refreshData)];
     [self.tableView addFooterWithTarget:self action:@selector(loadMore)];
