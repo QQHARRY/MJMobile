@@ -25,6 +25,8 @@
 - (MJMenuItemValueType)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView valuetTypeForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (MJMenuItemValue*)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView DefaultValueForRowAtIndexPath:(NSIndexPath *)indexPath;
 
+@optional
+- (UIKeyboardType)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView keyboardTyeAtIndexpath:(NSIndexPath *)indexPath;
 
 @end
 

@@ -386,6 +386,12 @@
                     cell = (SingleValueCustomizedCell *)oneObject;
                     ((SingleValueCustomizedCell *)cell).textFieldDelegate = self;
                     
+                    if ([self.dataSource respondsToSelector:@selector(menu:tableView:keyboardTyeAtIndexpath:)])
+                    {
+                        UIKeyboardType type = [self.dataSource menu:self tableView:tableView keyboardTyeAtIndexpath:indexPathTmp];
+                        ((SingleValueCustomizedCell *)cell).singleValueField.keyboardType = type;
+                    }
+                    
                 }
             }
         }
@@ -398,6 +404,13 @@
                 {
                     cell = (SectionValueCustomizedCell *)oneObject;
                     ((SectionValueCustomizedCell *)cell).textFieldDelegate = self;
+                    
+                    if ([self.dataSource respondsToSelector:@selector(menu:tableView:keyboardTyeAtIndexpath:)])
+                    {
+                        UIKeyboardType type = [self.dataSource menu:self tableView:tableView keyboardTyeAtIndexpath:indexPathTmp];
+                        ((SectionValueCustomizedCell *)cell).minValue.keyboardType = type;
+                        ((SectionValueCustomizedCell *)cell).maxValue.keyboardType = type;
+                    }
                 }
             }
         }

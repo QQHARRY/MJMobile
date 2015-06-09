@@ -19,7 +19,7 @@
                             <constraint firstAttribute="height" constant="25" id="TPL-LP-NvY"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        <textInputTraits key="textInputTraits"/>
                     </textField>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNv-80-3n3">
                         <rect key="frame" x="12" y="11" width="42" height="21"/>
@@ -37,7 +37,7 @@
                             <constraint firstAttribute="height" constant="25" id="bg5-x0-ah3"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        <textInputTraits key="textInputTraits"/>
                     </textField>
                 </subviews>
                 <constraints>

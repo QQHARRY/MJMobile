@@ -29,7 +29,7 @@
                             <constraint firstAttribute="height" constant="25" id="PSU-fA-hus"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                        <textInputTraits key="textInputTraits"/>
                     </textField>
                 </subviews>
                 <constraints>

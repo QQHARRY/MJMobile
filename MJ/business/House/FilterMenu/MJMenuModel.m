@@ -559,10 +559,10 @@
         const NSNumber* mcs = [NSNumber numberWithInt:MJMenuItemValueTypeMultiCustomizeSingle];
         arr = @[
                 @{@"menuItem":
-                      @{@"title":@"姓名",@"value":@[@""],@"valueType":mcs},
+                      @{@"title":@"姓名",@"value":@[@""],@"valueType":mcs,@"keyboardType":[NSNumber numberWithInt:UIKeyboardTypeDefault]},
                   },
                 @{@"menuItem":
-                      @{@"title":@"电话",@"value":@[@"1"],@"valueType":mcs},
+                      @{@"title":@"电话",@"value":@[@"1"],@"valueType":mcs,@"keyboardType":[NSNumber numberWithInt:UIKeyboardTypePhonePad]},
                   }
                 
                 ];

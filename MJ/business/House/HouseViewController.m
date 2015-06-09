@@ -343,6 +343,12 @@
 
 #pragma mark - MJDropDownMenu datasource & delegate
 
+- (UIKeyboardType)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView keyboardTyeAtIndexpath:(NSIndexPath *)indexPath;
+{
+   
+    
+    return UIKeyboardTypeNumberPad;
+}
 - (NSInteger)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ((menu == _sell_urbanAreaMenu || menu == _rent_urbanAreaMenu)&& _menu_urbanAreaArr)
@@ -892,8 +898,20 @@
                 NSString* minPrice = value.valueArr[0];
                 NSString* maxPrice = value.valueArr[1];
                 
+                CGFloat floatMin = [minPrice floatValue];
+                CGFloat floatMax = [maxPrice floatValue];
+                
                 filter.sale_value_from = minPrice;
                 filter.sale_value_to = maxPrice;
+                
+                if(floatMin == 0)
+                {
+                    filter.sale_value_from = @"";
+                }
+                if (floatMax == 0)
+                {
+                    filter.sale_value_to = @"";
+                }
             }
             [menubar updateTitle:@"自定义" ForIndex:1];
         }
@@ -988,8 +1006,23 @@
                     }
                     else
                     {
-                        filter.house_floor_from = cusValue.valueArr[0];
-                        filter.house_floor_to =  cusValue.valueArr[1];
+                        NSString* min = cusValue.valueArr[0];
+                        NSString* max = cusValue.valueArr[1];
+                        
+                        int iMin = [min intValue];
+                        int iMax = [max intValue];
+                        
+                        filter.house_floor_from = min;
+                        filter.house_floor_to = max;
+                        
+                        if(iMin == 0)
+                        {
+                            filter.house_floor_from = @"";
+                        }
+                        if (iMax == 0)
+                        {
+                            filter.house_floor_to = @"";
+                        }
                     }
                     
                 }

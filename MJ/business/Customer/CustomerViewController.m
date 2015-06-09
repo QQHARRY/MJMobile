@@ -63,6 +63,7 @@
 
 @implementation CustomerViewController
 @synthesize applyForRefresh;
+@synthesize menu_DateArr;
 
 - (void)viewDidLoad
 {
@@ -145,13 +146,20 @@
         _menu_urbanAreaArr = urbanArr;
         HIDEHUD(self.view);
     }];
-    _menu_DateArr = [[MJMenuModel getDateSectionMenuItemList] mutableCopy];
+//    _menu_DateArr = [[MJMenuModel getDateSectionMenuItemList] mutableCopy];
+    [self.menu_DateArr count];
     _menu_deptArr = [[MJMenuModel getCusDeptMenuItemList] mutableCopy];
     
     _menu_customerProArr = [[MJMenuModel getCustomerPropertyMenuItemList] mutableCopy];
     _menu_customerStatusArr = [[MJMenuModel getCustomerStatusMenuItemList] mutableCopy];
     _sellTmpFilter = [[CustomerFilter alloc] init];
     _rentTmpFilter = [[CustomerFilter alloc] init];
+}
+
+-(NSMutableArray*)menu_DateArr
+{
+    menu_DateArr = [[MJMenuModel getDateSectionMenuItemList] mutableCopy];
+    return menu_DateArr;
 }
 
 - (NSInteger)NumberOfColumns:(MJDropDownMenuBar*)menuBar
@@ -271,6 +279,23 @@
 
 #pragma mark - MJDropDownMenu datasource & delegate
 
+- (UIKeyboardType)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView keyboardTyeAtIndexpath:(NSIndexPath *)indexPath;
+{
+    if (menu == _sell_moreMenu || menu == _rent_moreMenu)
+    {
+        if (indexPath.section == 0)
+        {
+            NSNumber*number = [[[_menu_customerProArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"keyboardType"];
+            if (number)
+            {
+                return [number intValue];
+            }
+        }
+    }
+    
+    return UIKeyboardTypeNumberPad;
+}
+
 - (NSInteger)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ((menu == _sell_areaMenu || menu == _rent_areaMenu)&& _menu_urbanAreaArr)
@@ -289,18 +314,18 @@
             
         }
     }
-    else if(menu == _sell_DateMenu && _menu_DateArr)
+    else if(menu == _sell_DateMenu && [self menu_DateArr])
     {
         if (tableView == menu.leftTableV)
         {
-            return [_menu_DateArr count];
+            return [self.menu_DateArr count];
         }
     }
-    else if (menu == _rent_DateMenu && _menu_DateArr)
+    else if (menu == _rent_DateMenu && self.menu_DateArr)
     {
         if (tableView == menu.leftTableV)
         {
-            return [_menu_DateArr count];
+            return [self.menu_DateArr count];
         }
     }
     else if ((menu == _sell_DeptMenu || menu == _rent_DeptMenu) && _menu_deptArr)
@@ -365,18 +390,18 @@
             
         }
     }
-    else if(menu == _sell_DateMenu && _menu_DateArr)
+    else if(menu == _sell_DateMenu && self.menu_DateArr)
     {
         if (tableView == menu.leftTableV)
         {
-            return [[[_menu_DateArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"title"];
+            return [[[self.menu_DateArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"title"];
         }
     }
-    else if (menu == _rent_DateMenu && _menu_DateArr)
+    else if (menu == _rent_DateMenu && self.menu_DateArr)
     {
         if (tableView == menu.leftTableV)
         {
-            return [[[_menu_DateArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"title"];
+            return [[[self.menu_DateArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"title"];
         }
     }
     else if ((menu == _sell_DeptMenu || menu == _rent_DeptMenu) && _menu_deptArr)
@@ -462,18 +487,18 @@
             
         }
     }
-    else if(menu == _sell_DateMenu && _menu_DateArr)
+    else if(menu == _sell_DateMenu && self.menu_DateArr)
     {
         if (tableView == menu.leftTableV)
         {
-            return [[[[_menu_DateArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+            return [[[[self.menu_DateArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
         }
     }
-    else if (menu == _rent_DateMenu && _menu_DateArr)
+    else if (menu == _rent_DateMenu && self.menu_DateArr)
     {
         if (tableView == menu.leftTableV)
         {
-            return [[[[_menu_DateArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
+            return [[[[self.menu_DateArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"valueType"] intValue];
         }
     }
     else if ((menu == _sell_DeptMenu || menu == _rent_DeptMenu) && _menu_deptArr)
@@ -596,7 +621,7 @@
     {
         CustomerFilter*filter = (menu == _sell_DateMenu)?_sellController.filter:_rentController.filter;
         menubar = (menu == _sell_DateMenu)?_sellMenuBar:_rentMenuBar;
-        NSArray*priceArr = _menu_DateArr;
+        NSArray*priceArr = self.menu_DateArr;
         
         if(filter && indexPath.row < [priceArr count])
         {
@@ -1058,10 +1083,31 @@
     if (index == 0)
     {
         self.nowControllerType = CCT_SELL;
+        if (_sellMenuBar)
+        {
+            _sellMenuBar.hidden = NO;
+        }
+        
+        
+        
+        if (_rentMenuBar) {
+            _rentMenuBar.hidden = YES;
+            [_rentMenuBar closeCurrentMenu];
+        }
     }
     else
     {
         self.nowControllerType = CCT_RENT;
+        if (_sellMenuBar)
+        {
+            _sellMenuBar.hidden = YES;
+            [_sellMenuBar closeCurrentMenu];
+        }
+        
+        if (_rentMenuBar)
+        {
+            _rentMenuBar.hidden = NO;
+        }
     }
 }
 
