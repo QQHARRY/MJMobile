@@ -16,6 +16,7 @@
 #import "Macro.h"
 #import "dictionaryManager.h"
 #import "HouseParticularTableViewController.h"
+#import "NewHousePtlViewController.h"
 
 @interface HouseTableViewController ()
 
@@ -197,11 +198,27 @@
         return;
     }
     HouseDetail *hd = [self.houseList objectAtIndex:indexPath.row];
-    HouseParticularTableViewController*ptcl = [[HouseParticularTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    ptcl.hidesBottomBarWhenPushed = YES;
-    ptcl.houseDtl = hd;
-    ptcl.mode = PAICULARMODE_READ;
-    [self pushControllerToController:ptcl];
+    
+    static BOOL b = YES;
+    
+    if (b)
+    {
+        HouseParticularTableViewController*ptcl = [[HouseParticularTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        ptcl.hidesBottomBarWhenPushed = YES;
+        ptcl.houseDtl = hd;
+        ptcl.mode = PAICULARMODE_READ;
+        [self pushControllerToController:ptcl];
+        b = !b;
+    }
+    else
+    {
+        NewHousePtlViewController*ptcl = [[NewHousePtlViewController alloc] init];
+        ptcl.houseDtl = hd;
+        [self pushControllerToController:ptcl];
+        b = !b;
+    }
+
+    
 }
 
 -(void)pushControllerToController:(UIViewController*)vc

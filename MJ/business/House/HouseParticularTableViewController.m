@@ -52,6 +52,8 @@
 }
 
 
+
+
 -(void)viewDidAppear:(BOOL)animated
 {
     if (self.refreshAfterEdit)
@@ -111,7 +113,8 @@
 #pragma mark
 -(NSArray*)getEditAbleFields
 {
-
+    if (self.editFieldsArr == nil || self.editFieldsArr.count == 0)
+    {
         self.editFieldsArr = @[
                                @"hall_num",
                                @"room_num",
@@ -139,6 +142,8 @@
                                @"floor_count",
                                @"efficiency_rate"
                                ];
+    }
+    
     
     return self.editFieldsArr;
 }

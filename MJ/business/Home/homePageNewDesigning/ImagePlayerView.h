@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, ICPageControlPosition) {
 @property (nonatomic, assign) NSUInteger scrollInterval;    // scroll interval, unit: second, default is 2 seconds
 @property (nonatomic, assign) ICPageControlPosition pageControlPosition;    // pageControl position, defautl is bottomright
 @property (nonatomic, assign) BOOL hidePageControl; // hide pageControl, default is NO
-
+- (void)setPageIndicatorLabelHidden:(BOOL)bHidden;
 /**
  *  Init image player
  *

@@ -192,9 +192,7 @@
         _searchController.delegate = self;
         _searchController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _searchController.editingStyle = UITableViewCellEditingStyleDelete;
-        
-        
-        
+
         __weak GroupPersonListViewController *weakSelf = self;
         
         

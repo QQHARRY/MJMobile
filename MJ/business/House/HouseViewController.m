@@ -23,14 +23,20 @@
 #import "AppDelegate.h"
 #import "department.h"
 #import <objc/runtime.h>
-
+#import "EMSearchBar.h"
+#import "EMSearchDisplayController.h"
+#import "MJKeywordFectchViewController.h"
+#import "MJKeywordManager.h"
 
 #define MENUBAR_HEIGHT 32
 #define TABBAR_HEIGHT 44
 
-@interface HouseViewController ()<MJDropDownMenuBarDataSource,MJDropDownMenuBarDelegate,MJDropDownMenuDataSource,MJDropDownMenuDelegate,contacSelection>
+@interface HouseViewController ()<MJDropDownMenuBarDataSource,MJDropDownMenuBarDelegate,MJDropDownMenuDataSource,MJDropDownMenuDelegate,contacSelection,UISearchBarDelegate,UISearchDisplayDelegate,keywordSelectDelegate>
 
-@property(nonatomic,strong)HouseFilterController *houseFilterVC;
+
+@property(strong,nonatomic)UISearchBar*searchBar;
+@property(strong,nonatomic)EMSearchDisplayController*searchController;
+@property(strong,nonatomic)HouseFilterController *houseFilterVC;
 @property(strong,nonatomic)MJDropDownMenuBar*sellMenuBar;
 @property(strong,nonatomic)MJDropDownMenuBar*rentMenuBar;
 
@@ -120,7 +126,7 @@
     self.sellController.filter.FromID = @"0";
     self.sellController.filter.ToID = @"0";
     self.sellController.filter.Count = @"10";
-    
+ 
 #if 1
     [self.sellController.tableView setContentInset:UIEdgeInsetsMake(MENUBAR_HEIGHT, 0, 0, 0)];
     [self.rentController.tableView setContentInset:UIEdgeInsetsMake(MENUBAR_HEIGHT, 0, 0, 0)];
@@ -142,12 +148,17 @@
     [self initMenuData];
     
 #endif
+    
+    [self setUpRightNavigationItemWithIsNormalType:YES];
     // super fun
     [super viewDidLoad];
     
     
-    
+
 }
+
+
+
 
 
 -(void)setUpRightNavigationItemWithIsNormalType:(BOOL)normalType
@@ -165,8 +176,27 @@
 
 -(void)OnSearchBtnClicked:(id)sender
 {
+    MJKeywordFectchViewController*kw = [[MJKeywordFectchViewController alloc]  init];
+    kw.keywordType = HOUSE_SEARCH_KW;
+    kw.placeHolderString = @"请输入小区名称或房源编号";
+    kw.delegate = self;
+    [self.navigationController pushViewController:kw animated:YES];
+}
+
+-(void)didSelectKeyword:(NSString*)keyWord
+{
+    HouseFilter*filter = (_nowControllerType == HCT_SELL)?_sellController.filter:_rentController.filter;
+    
+    filter.keyword = keyWord;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self wannaRefresh];
+    });
     
 }
+
+
+
 -(void)OnResetBtnClicked:(id)sender
 {
     if (_nowControllerType == HCT_SELL)

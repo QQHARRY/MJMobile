@@ -107,6 +107,21 @@ static MessageReadManager *detailInstance = nil;
     return nil;
 }
 
+-(MWCaptionView*)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index
+{
+    
+    
+    
+    if (index < self.photos.count)
+    {
+        MWPhoto*photo = [self.photos objectAtIndex:index];
+        return [[MWCaptionView alloc] initWithPhoto:photo];
+    }
+    
+    return nil;
+    
+}
+
 
 #pragma mark - private
 
@@ -117,8 +132,9 @@ static MessageReadManager *detailInstance = nil;
 {
     if (imageArray && [imageArray count] > 0) {
         NSMutableArray *photoArray = [NSMutableArray array];
-        for (id object in imageArray) {
-            MWPhoto *photo;
+        for (id object in imageArray)
+        {
+            MWPhoto *photo = nil;
             if ([object isKindOfClass:[UIImage class]]) {
                 photo = [MWPhoto photoWithImage:object];
             }
@@ -126,11 +142,16 @@ static MessageReadManager *detailInstance = nil;
             {
                 photo = [MWPhoto photoWithURL:object];
             }
-            else if ([object isKindOfClass:[NSString class]])
+
+            else if ([object isKindOfClass:[MWPhoto class]])
             {
-                
+                photo = object;
             }
-            [photoArray addObject:photo];
+            if (photo != nil)
+            {
+                [photoArray addObject:photo];
+            }
+            
         }
         
         self.photos = photoArray;

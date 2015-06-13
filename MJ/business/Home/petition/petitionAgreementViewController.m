@@ -13,6 +13,7 @@
 #import "petionListTableViewController.h"
 #import "MainPageViewController.h"
 #import "person.h"
+#import "Macro.h"
 
 @interface petitionAgreementViewController ()
 
@@ -312,7 +313,9 @@
         
         //[arr addObject:@"DPT000041"];
         SHOWHUD_WINDOW;
-        [petitionManager approveID:[self.petition getID] TaskID:self.petitionTaskID ActionType:0 Reason:opinionForAgreement.text AssistDepts:arr Success:^(id responseObject) {
+        [petitionManager approveID:[self.petition getID] TaskID:self.petitionTaskID ActionType:0 Reason:opinionForAgreement.text AssistDepts:arr Success:^(id responseObject)
+         {
+            [[NSNotificationCenter defaultCenter] postNotificationName:MAINPAGE_INDICATOR_NUMBER_CHANGED object:nil];
             HIDEHUD_WINDOW
             [UtilFun presentPopViewControllerWithTitle:@"审批成功" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
              {
@@ -343,7 +346,9 @@
             NSString*value = [[dic allValues] objectAtIndex:0];
             [arr addObject:value];
         }
-        [petitionManager approveID:[self.petition getID] TaskID:self.petitionTaskID ActionType:1 Reason:opinionForAgreement.text AssistDepts:arr Success:^(id responseObject) {
+        [petitionManager approveID:[self.petition getID] TaskID:self.petitionTaskID ActionType:1 Reason:opinionForAgreement.text AssistDepts:arr Success:^(id responseObject)
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:MAINPAGE_INDICATOR_NUMBER_CHANGED object:nil];
             [UtilFun presentPopViewControllerWithTitle:@"审批成功" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
              {
                  [self quit];
@@ -384,7 +389,9 @@
             NSString*value = [[dic allValues] objectAtIndex:0];
             [arr addObject:value];
         }
-        [petitionManager approveID:[self.petition getID] TaskID:self.petitionTaskID ActionType:2 Reason:opinionForAgreement.text AssistDepts:arr Success:^(id responseObject) {
+        [petitionManager approveID:[self.petition getID] TaskID:self.petitionTaskID ActionType:2 Reason:opinionForAgreement.text AssistDepts:arr Success:^(id responseObject)
+         {
+             [[NSNotificationCenter defaultCenter] postNotificationName:MAINPAGE_INDICATOR_NUMBER_CHANGED object:nil];
             [UtilFun presentPopViewControllerWithTitle:@"取消成功" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
              {
                 

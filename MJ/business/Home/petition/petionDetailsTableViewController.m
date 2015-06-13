@@ -46,7 +46,9 @@
 -(void)assignBtnClicked:(id)sender
 {
     SHOWHUD_WINDOW;
-    [petitionManager approveID:self.petitionID TaskID:self.petitionTaskID ActionType:3 Reason:@"" AssistDepts:[[NSArray alloc]init] Success:^(id responseObject) {
+    [petitionManager approveID:self.petitionID TaskID:self.petitionTaskID ActionType:3 Reason:@"" AssistDepts:[[NSArray alloc]init] Success:^(id responseObject)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:MAINPAGE_INDICATOR_NUMBER_CHANGED object:nil];
         HIDEHUD_WINDOW;
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc ] initWithTitle:@"审批" style:UIBarButtonItemStylePlain target:self action:@selector(agreenBtnClicked:)  ];
         [UtilFun presentPopViewControllerWithTitle:@"签收成功" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)

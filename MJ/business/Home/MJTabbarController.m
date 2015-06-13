@@ -13,6 +13,7 @@
 #import "ContactsViewController.h"
 
 #import "EaseMobFriendsManger.h"
+#import "Macro.h"
 
 
 //两次提示的默认间隔
@@ -67,9 +68,9 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
     //[self didUnreadMessagesCountChanged];
 
     [self registerNotifications];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupUntreatedApplyCount) name:@"setupUntreatedApplyCount" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callOutWithChatter:) name:@"callOutWithChatter" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callControllerClose:) name:@"callControllerClose" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupUntreatedApplyCount) name:EASEMOB_SET_UP_UNREAD_APPLY_COUNT object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callOutWithChatter:) name:EASEMOB_CALL_OUT_WITH_CHATTER object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callControllerClose:) name:EASEMOB_CALL_CONTROLLER_CLOSE object:nil];
     
     
     self.selectedIndex = 0;
@@ -107,6 +108,10 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 - (void)dealloc
 {
     [self unregisterNotifications];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EASEMOB_SET_UP_UNREAD_APPLY_COUNT  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EASEMOB_CALL_OUT_WITH_CHATTER  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:EASEMOB_CALL_CONTROLLER_CLOSE  object:nil];
 }
 
 #pragma mark - UITabBarDelegate

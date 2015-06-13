@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSTimer *autoScrollTimer;
 @property (nonatomic, strong) UIPageControl *pageControl;
 @property (nonatomic, strong) NSMutableArray *pageControlConstraints;
+@property (nonatomic, strong) UILabel*pageIndicatorLabel;
 @end
 
 @implementation ImagePlayerView
@@ -71,7 +72,23 @@
     self.pageControl.translatesAutoresizingMaskIntoConstraints = NO;
     self.pageControl.numberOfPages = self.count;
     self.pageControl.currentPage = 0;
+    
     [self addSubview:self.pageControl];
+    
+    
+    self.pageIndicatorLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    self.pageIndicatorLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.pageIndicatorLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    self.pageIndicatorLabel.font = [UIFont systemFontOfSize:14];
+    self.pageIndicatorLabel.textColor = [UIColor whiteColor];
+    [self.pageIndicatorLabel setTextAlignment:NSTextAlignmentCenter];
+    self.pageIndicatorLabel.hidden = YES;
+    
+    [self.pageIndicatorLabel addConstraint:[NSLayoutConstraint constraintWithItem:self.pageIndicatorLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:44]];
+    [self.pageIndicatorLabel addConstraint:[NSLayoutConstraint constraintWithItem:self.pageIndicatorLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:20]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.pageIndicatorLabel attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:10]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.pageIndicatorLabel attribute:NSLayoutAttributeBottom multiplier:1.0 constant:10]];
+    [self addSubview:self.pageIndicatorLabel];
     
     NSArray *pageControlVConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[pageControl]-0-|"
                                                                                options:kNilOptions
@@ -113,6 +130,7 @@
     self.imagePlayerViewDelegate = delegate;
     NSArray*subViews = [self.scrollView subviews];
     
+    
     for (UIView*view in subViews)
     {
         if ([view isKindOfClass:[UIImageView class]])
@@ -133,6 +151,8 @@
     if (count == 0) {
         return;
     }
+    
+    self.pageIndicatorLabel.text = [NSString stringWithFormat:@"1/%d",(int)count];
     
     self.pageControl.numberOfPages = count;
     self.pageControl.currentPage = 0;
@@ -252,6 +272,14 @@
     [self.scrollView scrollRectToVisible:imageView.frame animated:animated];
     
     self.pageControl.currentPage = nextPage;
+    
+    NSString*strPositon = [NSString stringWithFormat:@"%d/%d",(int)nextPage+1,(int)self.pageControl.numberOfPages];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.pageIndicatorLabel.text = strPositon;
+    });
+    
+    
 }
 
 #pragma mark - scroll delegate
@@ -265,10 +293,14 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     // when user scrolls manually, stop timer and start timer again to avoid next scroll immediatelly
-    if (self.autoScrollTimer && self.autoScrollTimer.isValid) {
-        [self.autoScrollTimer invalidate];
+    if (self.autoScroll)
+    {
+        if (self.autoScrollTimer && self.autoScrollTimer.isValid) {
+            [self.autoScrollTimer invalidate];
+        }
+        self.autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:self.scrollInterval target:self selector:@selector(handleScrollTimer:) userInfo:nil repeats:YES];
     }
-    self.autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:self.scrollInterval target:self selector:@selector(handleScrollTimer:) userInfo:nil repeats:YES];
+    
     
     // update UIPageControl
     CGRect visiableRect = CGRectMake(scrollView.contentOffset.x, scrollView.contentOffset.y, scrollView.bounds.size.width, scrollView.bounds.size.height);
@@ -277,6 +309,8 @@
         if ([imageView isKindOfClass:[UIImageView class]]) {
             if (CGRectContainsRect(visiableRect, imageView.frame)) {
                 currentIndex = imageView.tag - kStartTag;
+                NSString*strPositon = [NSString stringWithFormat:@"%d/%d",(int)currentIndex+1,(int)self.pageControl.numberOfPages];
+                self.pageIndicatorLabel.text = strPositon;
                 break;
             }
         }
@@ -355,5 +389,11 @@
 {
     self.pageControl.hidden = hidePageControl;
 }
+
+- (void)setPageIndicatorLabelHidden:(BOOL)bHidden
+{
+    self.pageIndicatorLabel.hidden = bHidden;
+}
+
 @end
 

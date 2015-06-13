@@ -115,6 +115,7 @@
 @property(strong,nonatomic)UITableView*publicAnncTb;
 
 @property(strong,nonatomic)HomeIndicator*indicator;
+@property(assign,nonatomic)BOOL indicatorChanged;
 
 @end
 
@@ -178,10 +179,16 @@
     
     [self updateDic];
 
-    
-    
+    //注册通知
+    _indicatorChanged = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(indicatorCountChanged) name:MAINPAGE_INDICATOR_NUMBER_CHANGED object:nil];
 }
 
+-(void)indicatorCountChanged
+{
+    _indicatorChanged = YES;
+
+}
 
 
 -(void)reloadData
@@ -191,7 +198,11 @@
     [self pullCountData];
 }
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MAINPAGE_INDICATOR_NUMBER_CHANGED object:nil];
 
+}
 
 -(void)endRefreshing:(BOOL)isFoot
 {
@@ -238,7 +249,11 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    
+    if (_indicatorChanged)
+    {
+        _indicatorChanged = NO;
+        [self reloadData];
+    }
 }
 -(void)setNavBarTitleTextAttribute
 {

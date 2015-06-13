@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A00DA501B2C1D30007FA76B /* MJKeywordFectchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A00DA4F1B2C1D30007FA76B /* MJKeywordFectchViewController.m */; };
+		4A00DA531B2C2CC2007FA76B /* MJKeywordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A00DA521B2C2CC2007FA76B /* MJKeywordManager.m */; };
+		4A00DA561B2C34D0007FA76B /* MJKeywordPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A00DA551B2C34D0007FA76B /* MJKeywordPersistence.m */; };
 		4A06BEB61AE6314C00809C52 /* contactDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06BE9E1AE6314C00809C52 /* contactDataManager.m */; };
 		4A06BEB71AE6314C00809C52 /* ContactListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06BEA01AE6314C00809C52 /* ContactListTableViewController.m */; };
 		4A06BEB91AE6314C00809C52 /* ContactDeptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06BEA51AE6314C00809C52 /* ContactDeptViewController.m */; };
@@ -527,6 +530,11 @@
 		4AD795521A218C4A00DEC779 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7951C1A218C4A00DEC779 /* UIRefreshControl+AFNetworking.m */; };
 		4AD795531A218C4A00DEC779 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7951E1A218C4A00DEC779 /* UIWebView+AFNetworking.m */; };
 		4AD7955C1A218DF100DEC779 /* GTCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD795581A218DF100DEC779 /* GTCheckBox.m */; };
+		4AE0F5AC1B292A8F000B4512 /* NewHousePtlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE0F5AA1B292A8F000B4512 /* NewHousePtlViewController.m */; };
+		4AE0F5B11B293C9A000B4512 /* houseSingleFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE0F5AF1B293C9A000B4512 /* houseSingleFieldCell.m */; };
+		4AE0F5B21B293C9A000B4512 /* houseSingleFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE0F5B01B293C9A000B4512 /* houseSingleFieldCell.xib */; };
+		4AE0F5B61B29401F000B4512 /* houseDoubleFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE0F5B41B29401F000B4512 /* houseDoubleFieldCell.m */; };
+		4AE0F5B71B29401F000B4512 /* houseDoubleFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE0F5B51B29401F000B4512 /* houseDoubleFieldCell.xib */; };
 		4AE5E3F31AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE5E3F21AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.m */; };
 		4AE645931AF24614000B82A6 /* EMConversation+realName.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE645921AF24614000B82A6 /* EMConversation+realName.m */; };
 		4AF44D851B132412006DE905 /* SingleValueCustomizedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF44D841B132412006DE905 /* SingleValueCustomizedCell.m */; };
@@ -659,6 +667,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A00DA4E1B2C1D30007FA76B /* MJKeywordFectchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJKeywordFectchViewController.h; sourceTree = "<group>"; };
+		4A00DA4F1B2C1D30007FA76B /* MJKeywordFectchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJKeywordFectchViewController.m; sourceTree = "<group>"; };
+		4A00DA511B2C2CC2007FA76B /* MJKeywordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJKeywordManager.h; sourceTree = "<group>"; };
+		4A00DA521B2C2CC2007FA76B /* MJKeywordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJKeywordManager.m; sourceTree = "<group>"; };
+		4A00DA541B2C334B007FA76B /* MJKeywordPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJKeywordPersistence.h; sourceTree = "<group>"; };
+		4A00DA551B2C34D0007FA76B /* MJKeywordPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJKeywordPersistence.m; sourceTree = "<group>"; };
 		4A06BE9D1AE6314C00809C52 /* contactDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contactDataManager.h; sourceTree = "<group>"; };
 		4A06BE9E1AE6314C00809C52 /* contactDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactDataManager.m; sourceTree = "<group>"; };
 		4A06BE9F1AE6314C00809C52 /* ContactListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListTableViewController.h; sourceTree = "<group>"; };
@@ -1557,6 +1571,14 @@
 		4AD7951E1A218C4A00DEC779 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		4AD795571A218DF100DEC779 /* GTCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTCheckBox.h; sourceTree = "<group>"; };
 		4AD795581A218DF100DEC779 /* GTCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTCheckBox.m; sourceTree = "<group>"; };
+		4AE0F5A91B292A8F000B4512 /* NewHousePtlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewHousePtlViewController.h; sourceTree = "<group>"; };
+		4AE0F5AA1B292A8F000B4512 /* NewHousePtlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewHousePtlViewController.m; sourceTree = "<group>"; };
+		4AE0F5AE1B293C9A000B4512 /* houseSingleFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = houseSingleFieldCell.h; sourceTree = "<group>"; };
+		4AE0F5AF1B293C9A000B4512 /* houseSingleFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = houseSingleFieldCell.m; sourceTree = "<group>"; };
+		4AE0F5B01B293C9A000B4512 /* houseSingleFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = houseSingleFieldCell.xib; sourceTree = "<group>"; };
+		4AE0F5B31B29401F000B4512 /* houseDoubleFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = houseDoubleFieldCell.h; sourceTree = "<group>"; };
+		4AE0F5B41B29401F000B4512 /* houseDoubleFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = houseDoubleFieldCell.m; sourceTree = "<group>"; };
+		4AE0F5B51B29401F000B4512 /* houseDoubleFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = houseDoubleFieldCell.xib; sourceTree = "<group>"; };
 		4AE5E3F11AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+AutoMoveCovered.h"; sourceTree = "<group>"; };
 		4AE5E3F21AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+AutoMoveCovered.m"; sourceTree = "<group>"; };
 		4AE645911AF24614000B82A6 /* EMConversation+realName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMConversation+realName.h"; sourceTree = "<group>"; };
@@ -2121,6 +2143,21 @@
 				4A9865161B0EDCD300462388 /* MJDropDownMenuBar.m */,
 			);
 			path = MJDropDownMenuBar;
+			sourceTree = "<group>";
+		};
+		4A9C06E61B280F3A00BE5AA1 /* HouseParticularNewDesigning */ = {
+			isa = PBXGroup;
+			children = (
+				4AE0F5A91B292A8F000B4512 /* NewHousePtlViewController.h */,
+				4AE0F5AA1B292A8F000B4512 /* NewHousePtlViewController.m */,
+				4AE0F5B31B29401F000B4512 /* houseDoubleFieldCell.h */,
+				4AE0F5B41B29401F000B4512 /* houseDoubleFieldCell.m */,
+				4AE0F5B51B29401F000B4512 /* houseDoubleFieldCell.xib */,
+				4AE0F5AE1B293C9A000B4512 /* houseSingleFieldCell.h */,
+				4AE0F5AF1B293C9A000B4512 /* houseSingleFieldCell.m */,
+				4AE0F5B01B293C9A000B4512 /* houseSingleFieldCell.xib */,
+			);
+			name = HouseParticularNewDesigning;
 			sourceTree = "<group>";
 		};
 		4A9C651D1B0C611000A397A7 /* homePageNewDesigning */ = {
@@ -3956,6 +3993,7 @@
 		B9FF4B341A245FB300FE413E /* House */ = {
 			isa = PBXGroup;
 			children = (
+				4A9C06E61B280F3A00BE5AA1 /* HouseParticularNewDesigning */,
 				4A9865101B0EDCD300462388 /* FilterMenu */,
 				B98BD4AB1A60464F003A35BE /* HouseDataPuller.h */,
 				B98BD4AC1A60464F003A35BE /* HouseDataPuller.m */,
@@ -4007,6 +4045,12 @@
 				4A6865A81A7375EF005394DD /* building.m */,
 				4AAEFB481AFA0BB700501344 /* houseDescribeViewController.h */,
 				4AAEFB491AFA0BB700501344 /* houseDescribeViewController.m */,
+				4A00DA4E1B2C1D30007FA76B /* MJKeywordFectchViewController.h */,
+				4A00DA4F1B2C1D30007FA76B /* MJKeywordFectchViewController.m */,
+				4A00DA511B2C2CC2007FA76B /* MJKeywordManager.h */,
+				4A00DA521B2C2CC2007FA76B /* MJKeywordManager.m */,
+				4A00DA541B2C334B007FA76B /* MJKeywordPersistence.h */,
+				4A00DA551B2C34D0007FA76B /* MJKeywordPersistence.m */,
 			);
 			path = House;
 			sourceTree = "<group>";
@@ -4220,6 +4264,7 @@
 				4AA18AED1AEF549A00685603 /* call_silence@2x.png in Resources */,
 				4AA18B3C1AEF549A00685603 /* chat_receiver_audio_playing_full@2x.png in Resources */,
 				4AA18AEF1AEF549A00685603 /* call_silence_h@2x.png in Resources */,
+				4AE0F5B71B29401F000B4512 /* houseDoubleFieldCell.xib in Resources */,
 				4AA18AF61AEF549A00685603 /* chatBar_more_face.png in Resources */,
 				4AA18A5F1AEF549A00685603 /* MWPhotoBrowser.bundle in Resources */,
 				4AA18AEE1AEF549A00685603 /* call_silence_h.png in Resources */,
@@ -4365,6 +4410,7 @@
 				4AA18B071AEF549A00685603 /* messageSendFail@2x.png in Resources */,
 				4AA18B551AEF549A00685603 /* group_invitee_delete@2x.png in Resources */,
 				4AA18B3E1AEF549A00685603 /* chat_receiver_bg@2x.png in Resources */,
+				4AE0F5B21B293C9A000B4512 /* houseSingleFieldCell.xib in Resources */,
 				4AA18B231AEF549A00685603 /* chatBar_colorMore_photoSelected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4407,6 +4453,7 @@
 				4A9865201B0EDCD300462388 /* MJMenuItemValue.m in Sources */,
 				4A56654F1A4C06EE00C3BA22 /* messageObj.m in Sources */,
 				4ABC22301A3C88000017FD94 /* AlertDetailsTableViewCell.m in Sources */,
+				4AE0F5AC1B292A8F000B4512 /* NewHousePtlViewController.m in Sources */,
 				4A06BEC01AE6314C00809C52 /* PersonDetailsViewController.m in Sources */,
 				4A6865AF1A753BFA005394DD /* addCustomerTableViewController.m in Sources */,
 				4A5D244E1A4AC17500546698 /* cartTableViewCell.m in Sources */,
@@ -4436,6 +4483,7 @@
 				4A3A2EF81A42F26000AA8A70 /* chooseAssistDeptTableViewController.m in Sources */,
 				4AA18A6E1AEF549A00685603 /* AppDelegate+EaseMob.m in Sources */,
 				B98BD5641A609185003A35BE /* RETableViewCreditCardCell.m in Sources */,
+				4A00DA561B2C34D0007FA76B /* MJKeywordPersistence.m in Sources */,
 				4A8D01D91A33381200EA59EA /* MainPageTableViewHeaderCell.m in Sources */,
 				4A2EE1231A428F1000899976 /* petitionAgreementViewController.m in Sources */,
 				B98BD5821A609185003A35BE /* RETableViewItem.m in Sources */,
@@ -4443,6 +4491,7 @@
 				4AC5E9351B03092A00AB56CD /* EMBuddy+namefull.m in Sources */,
 				4A56C7101A8CAFC800AF8CB6 /* versionInfo.m in Sources */,
 				4AA18A941AEF549A00685603 /* PublicGroupDetailViewController.m in Sources */,
+				4A00DA531B2C2CC2007FA76B /* MJKeywordManager.m in Sources */,
 				4A87884C1AE8E94800FB3F91 /* ContacCustomizedBarBtnItemView.m in Sources */,
 				B98BD56B1A609185003A35BE /* RETableViewOptionCell.m in Sources */,
 				4AAE60011B146A3A0077AC98 /* RFKeyboardToolbar.m in Sources */,
@@ -4470,6 +4519,7 @@
 				4AA18A451AEF549A00685603 /* EMSDWebImageDownloader.m in Sources */,
 				4A20DAE81A6A3205002E68EC /* buildingsFilterViewController.m in Sources */,
 				4AA18A3E1AEF549A00685603 /* MWTapDetectingImageView.m in Sources */,
+				4A00DA501B2C1D30007FA76B /* MJKeywordFectchViewController.m in Sources */,
 				B98BD5721A609185003A35BE /* REFloatItem.m in Sources */,
 				B98BD57F1A609185003A35BE /* REPlaceholderTextView.m in Sources */,
 				4A5500C91A3BF32F00E5307D /* AnncDetailsViewController.m in Sources */,
@@ -4580,6 +4630,7 @@
 				4AA18A901AEF549A00685603 /* GroupBansViewController.m in Sources */,
 				4A2AD1911A457F6C0074DCA0 /* SuggestionViewController.m in Sources */,
 				4A6971641AE9D01700EA8E3D /* ContactPersonDetailsVCTableViewCell.m in Sources */,
+				4AE0F5B61B29401F000B4512 /* houseDoubleFieldCell.m in Sources */,
 				4A3990151AE8A2AD00CA5640 /* ContactPersonDetailsViewController.m in Sources */,
 				4AA18A3D1AEF549A00685603 /* MWPhotoBrowser.m in Sources */,
 				4A8F09621AF87AD200C44B99 /* MBProgressHUD+Add.m in Sources */,
@@ -4713,6 +4764,7 @@
 				4AD795221A218C4A00DEC779 /* AFNetworkReachabilityManager.m in Sources */,
 				4AA18A581AEF549A00685603 /* PSTCollectionViewItemKey.m in Sources */,
 				4AA18AA31AEF549A00685603 /* PushNotificationViewController.m in Sources */,
+				4AE0F5B11B293C9A000B4512 /* houseSingleFieldCell.m in Sources */,
 				4A9865211B0EDCD300462388 /* MJMenuModel.m in Sources */,
 				B944458A1A62A6860033E998 /* SignAddController.m in Sources */,
 				4AA18A5D1AEF549A00685603 /* PSTGridLayoutRow.m in Sources */,

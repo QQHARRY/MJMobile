@@ -16,6 +16,7 @@
 #import "BFNavigationBarDrawer.h"
 #import "LoadMoreTableViewCell.h"
 #import "MJRefresh.h"
+#import "Macro.h"
 
 
 @interface AlertListTableViewController ()
@@ -180,6 +181,7 @@
     
     [alertManager setAlertSatus:!self.ctrForReaded Alerts:selectedArr Success:^(id responseObject)
     {
+        [[NSNotificationCenter defaultCenter] postNotificationName:MAINPAGE_INDICATOR_NUMBER_CHANGED object:nil];
         processedCnt++;
         if (processedCnt >= count)
         {

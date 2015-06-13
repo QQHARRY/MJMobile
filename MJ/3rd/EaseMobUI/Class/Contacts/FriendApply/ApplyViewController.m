@@ -16,6 +16,7 @@
 #import "InvitationManager.h"
 #import "EaseMobFriendsManger.h"
 #import "UtilFun.h"
+#import "Macro.h"
 
 static ApplyViewController *controller = nil;
 
@@ -230,7 +231,7 @@ static ApplyViewController *controller = nil;
             [self showHint:NSLocalizedString(@"acceptFail", @"accept failure")];
         }
         
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"setupUntreatedApplyCount" object:nil];
+         [[NSNotificationCenter defaultCenter] postNotificationName:EASEMOB_SET_UP_UNREAD_APPLY_COUNT object:nil];
     }
     
    
@@ -269,7 +270,7 @@ static ApplyViewController *controller = nil;
             [self showHint:NSLocalizedString(@"rejectFail", @"reject failure")];
         }
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"setupUntreatedApplyCount" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:EASEMOB_SET_UP_UNREAD_APPLY_COUNT object:nil];
     }
     
     
@@ -352,7 +353,7 @@ static ApplyViewController *controller = nil;
 
 - (void)back
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"setupUntreatedApplyCount" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:EASEMOB_SET_UP_UNREAD_APPLY_COUNT object:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -13,6 +13,7 @@
 #import "person.h"
 #import "EaseMobFriendsManger.h"
 #import "UIImageView+LoadPortraitOfPerson.h"
+#import "Macro.h"
 
 #define kAlertViewTag_Close 1000
 
@@ -277,7 +278,7 @@
 - (void)_close
 {
     [self hideHud];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"callControllerClose" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:EASEMOB_CALL_CONTROLLER_CLOSE object:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

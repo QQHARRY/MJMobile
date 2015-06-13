@@ -21,13 +21,15 @@
 #import "department.h"
 #import "person.h"
 #import <objc/runtime.h>
+#import "MJKeywordFectchViewController.h"
+#import "MJKeywordManager.h"
 
 
 #define MENUBAR_HEIGHT 32
 #define TABBAR_HEIGHT 44
 
 
-@interface CustomerViewController ()<MJDropDownMenuBarDataSource,MJDropDownMenuBarDelegate,MJDropDownMenuDataSource,MJDropDownMenuDelegate,contacSelection>
+@interface CustomerViewController ()<MJDropDownMenuBarDataSource,MJDropDownMenuBarDelegate,MJDropDownMenuDataSource,MJDropDownMenuDelegate,contacSelection,keywordSelectDelegate>
 
 @property(strong,nonatomic)CustomerFilterController*filter;
 
@@ -133,6 +135,7 @@
     [self initMenuData];
     
 #endif
+    [self setUpRightNavigationItemWithIsNormalType:YES];
     // super fun
     [super viewDidLoad];
 }
@@ -1124,11 +1127,64 @@
 {
     if (normalType)
     {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"搜索" style:UIBarButtonItemStylePlain target:self action:@selector(OnSearchBtnClicked:)];
+        self.navigationItem.rightBarButtonItem = nil;
+        
+//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"搜索" style:UIBarButtonItemStylePlain target:self action:@selector(OnSearchBtnClicked:)];
     }
     else
     {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"重置" style:UIBarButtonItemStylePlain target:self action:@selector(OnResetBtnClicked:)];
+    }
+}
+
+
+-(void)OnSearchBtnClicked:(id)sender
+{
+    MJKeywordFectchViewController*kw = [[MJKeywordFectchViewController alloc]  init];
+    kw.keywordType = HOUSE_SEARCH_KW;
+    kw.placeHolderString = @"请输入小区名称或房源编号";
+    kw.delegate = self;
+    [self.navigationController pushViewController:kw animated:YES];
+}
+
+-(void)didSelectKeyword:(NSString*)keyWord
+{
+    CustomerFilter*filter = (_nowControllerType == CCT_SELL)?_sellController.filter:_rentController.filter;
+    
+    //filter.keyword = keyWord;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self wannaRefresh];
+    });
+    
+}
+
+-(void)OnResetBtnClicked:(id)sender
+{
+    if (_nowControllerType == CCT_SELL)
+    {
+        if (_sell_moreMenu)
+        {
+            [_sell_moreMenu clearSelection];
+        }
+        
+        if (_sellTmpFilter)
+        {
+            [self cleanFilter:_sellTmpFilter];
+        }
+        
+    }
+    else
+    {
+        if (_rent_moreMenu)
+        {
+            [_rent_moreMenu clearSelection];
+        }
+        
+        if (_rentTmpFilter)
+        {
+            [self cleanFilter:_rentTmpFilter];
+        }
     }
 }
 

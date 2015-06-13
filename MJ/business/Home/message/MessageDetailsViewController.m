@@ -10,6 +10,7 @@
 #import "sendMessageViewController.h"
 #import "UtilFun.h"
 #import "messageManager.h"
+#import "Macro.h"
 
 @interface MessageDetailsViewController ()
 
@@ -62,6 +63,8 @@
     {
         SHOWHUD(self.view);
         [messageManager setMessage:msgObj ReadStatus:MJMESSAGETYPE_UNREAD Success:^(id responseObject) {
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:MAINPAGE_INDICATOR_NUMBER_CHANGED object:nil];
             HIDEHUD(self.view);
         } failure:^(NSError *error) {
             HIDEHUD(self.view);

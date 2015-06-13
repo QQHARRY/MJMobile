@@ -38,6 +38,7 @@
 #import "EaseMobFriendsManger.h"
 #import "UIViewController+ViewPersonDetails.h"
 #import "UtilFun.h"
+#import "Macro.h"
 
 #define KPageCount 20
 
@@ -930,7 +931,7 @@
 
 - (void)moreViewAudioCallAction:(DXChatBarMoreView *)moreView
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:self.chatter];
+    [[NSNotificationCenter defaultCenter] postNotificationName:EASEMOB_CALL_OUT_WITH_CHATTER object:self.chatter];
 }
 
 #pragma mark - LocationViewDelegate

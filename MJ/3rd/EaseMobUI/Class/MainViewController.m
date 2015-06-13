@@ -18,6 +18,7 @@
 #import "SettingsViewController.h"
 #import "ApplyViewController.h"
 #import "CallSessionViewController.h"
+#import "Macro.h"
 
 //两次提示的默认间隔
 static const CGFloat kDefaultPlaySoundInterval = 3.0;
@@ -60,9 +61,9 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 //    [self didUnreadMessagesCountChanged];
 #warning 把self注册为SDK的delegate
     [self registerNotifications];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupUntreatedApplyCount) name:@"setupUntreatedApplyCount" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callOutWithChatter:) name:@"callOutWithChatter" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callControllerClose:) name:@"callControllerClose" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupUntreatedApplyCount) name:EASEMOB_SET_UP_UNREAD_APPLY_COUNT object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callOutWithChatter:) name:EASEMOB_CALL_OUT_WITH_CHATTER object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callControllerClose:) name:EASEMOB_CALL_CONTROLLER_CLOSE object:nil];
     
     [self setupSubviews];
     self.selectedIndex = 0;
