@@ -25,6 +25,8 @@
 #import "ChatViewController.h"
 #import "UIViewController+ContactsFunction.h"
 #import "UIImageView+LoadPortraitOfPerson.h"
+#import "CLImageEditor.h"
+#import "CLClippingTool.h"
 
 #define BEIJINGIMAGE @"背景图片"
 #define WEIKAITONGIMAGE @"未开通new"
@@ -53,7 +55,7 @@
 #define QIANMING @"签名:"
 #define JIANJIE @"简介:"
 
-@interface ContactPersonDetailsViewController ()
+@interface ContactPersonDetailsViewController ()<CLImageEditorDelegate>
 
 
 @property(strong,nonatomic)ContactPersonDetailsVCTableViewCell*cellPhoneNum;
@@ -606,9 +608,12 @@
         
         imagePickerController.delegate = self;
         
-        imagePickerController.allowsEditing = YES;
+        imagePickerController.allowsEditing = NO;
         
         imagePickerController.sourceType = sourceType;
+        imagePickerController.navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
+        imagePickerController.navigationBar.tintColor = self.navigationController.navigationBar.tintColor;
+        imagePickerController.navigationBar.titleTextAttributes = self.navigationController.navigationBar.titleTextAttributes;
         
         [self presentViewController:imagePickerController animated:YES completion:^{}];
         
@@ -620,19 +625,32 @@
 #pragma mark - image picker delegte
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    [picker dismissViewControllerAnimated:YES completion:^{}];
     
-    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
 
-    if (image ==nil)
+    if (image == nil)
     {
         return;
     }
     
+    [picker dismissViewControllerAnimated:YES completion:nil];
     
+    CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:image SingleEditting:YES SingleEdittingClass:[CLClippingTool class]];
+    editor.delegate = self;
+    
+    
+    //[picker presentViewController:editor animated:YES completion:nil];
+    
+    [self.navigationController pushViewController:editor animated:YES];
+}
+
+
+-(void)imageEditor:(CLImageEditor *)editor didFinishEdittingWithImage:(UIImage *)image
+{
     NSData*data = UIImageJPEGRepresentation(image, 0.25);
     
-
+    
     NSMutableDictionary*params = [[NSMutableDictionary alloc] init];
     [params setValue:[person me].job_no forKey:@"job_no"];
     [params setValue:[person me].password forKey:@"acc_password"];
@@ -668,11 +686,15 @@
         
         
     }];
+}
+
+-(void)imageEditorDidCancel:(CLImageEditor *)editor
+{
     
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    [self dismissViewControllerAnimated:YES completion:^{}];
+    [picker dismissViewControllerAnimated:YES completion:^{}];
 }
 
 

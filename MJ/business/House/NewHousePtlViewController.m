@@ -13,6 +13,7 @@
 #import "MessageReadManager.h"
 
 #define ITEMBARHEIGHT 44
+#define NAVGATIONBAR_H 64
 
 
 @interface NewHousePtlViewController ()<ImagePlayerViewDelegate,UITableViewDataSource,UITableViewDelegate>
@@ -53,12 +54,10 @@
 
 -(ImagePlayerView*)houseImagePlayer
 {
-    UITableView*tableView = [self tableView];
-    
-    CGFloat h = self.view.frame.size.width*3.0f/4.0f;
-    [tableView setContentInset:UIEdgeInsetsMake(h, 0, 0, 0)];
     if (_houseImagePlayer == nil)
     {
+        CGFloat h = self.view.frame.size.width*3.0f/4.0f;
+        [self.tableView setContentInset:UIEdgeInsetsMake(h, 0, 0, 0)];
         _houseImagePlayer = [[ImagePlayerView alloc] initWithFrame:CGRectMake(0, -h, self.view.frame.size.width, h)];
 
         _houseImagePlayer.pageControlPosition = ICPageControlPosition_BottomCenter;
@@ -68,8 +67,7 @@
         _houseImagePlayer.autoScroll = NO;
         _houseImagePlayer.hidePageControl = YES;
         [_houseImagePlayer setPageIndicatorLabelHidden:NO];
-        [tableView insertSubview:_houseImagePlayer atIndex:0];
-        [tableView setContentOffset:CGPointMake(0, 0-h)];
+        [self.tableView insertSubview:_houseImagePlayer atIndex:0];
         [_houseImagePlayer initWithCount:15 delegate:self];
     }
     return _houseImagePlayer;
@@ -89,7 +87,7 @@
 {
     if (_tableView == nil)
     {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/* - self.view.frame.size.width*3.0f/4.0f - ITEMBARHEIGHT*/) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - ITEMBARHEIGHT - NAVGATIONBAR_H) style:UITableViewStylePlain];
         [_tableView setShowsVerticalScrollIndicator:NO];
         [_tableView setShowsHorizontalScrollIndicator:NO];
         
@@ -106,7 +104,9 @@
 {
     if (_toolBar == nil)
     {
-        _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-ITEMBARHEIGHT, self.view.frame.size.width, ITEMBARHEIGHT)];
+        _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-ITEMBARHEIGHT-NAVGATIONBAR_H, self.view.frame.size.width, ITEMBARHEIGHT)];
+        
+        //_toolBar.backgroundColor = [UIColor redColor];
         
         NSMutableArray *items = [[NSMutableArray alloc] init];
         
@@ -168,7 +168,9 @@
     NSMutableArray*arr = [[NSMutableArray alloc] initWithCapacity:15];
     for (int i =0; i < 15; i++)
     {
-        [arr addObject:@"http://sudasuta.com/wp-content/uploads/2013/10/10143181686_375e063f2c_z.jpg"];
+        MWPhoto*photo = [[MWPhoto alloc] initWithURL:[NSURL URLWithString:@"http://sudasuta.com/wp-content/uploads/2013/10/10143181686_375e063f2c_z.jpg"]];
+        photo.caption = @"户型图";
+        [arr addObject:photo];
     }
     
     [self.messageReadManager showBrowserWithImages:arr];
@@ -201,7 +203,7 @@
     {
         case 0:
         {
-            [cell setT1:@"房源的详情:" V1:@"房源详情好房子" T2:@"美丽的房源:" V2:@"好房子"];
+            [cell setT1:@"11房源的详情:" V1:@"房源详情好房子" T2:@"美丽的房源:" V2:@"好房子"];
         }
             break;
         case 1:

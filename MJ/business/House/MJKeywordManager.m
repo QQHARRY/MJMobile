@@ -38,7 +38,6 @@ __strong static id _sharedObject = nil;
         }
 
     }
-    
     return arr;
 }
 -(void)synHistoryKeyWordArr:(NSMutableArray*)arr ByKey:(NSString*)key

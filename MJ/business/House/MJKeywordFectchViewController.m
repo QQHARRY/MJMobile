@@ -25,20 +25,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self searchBar];
-
     _curSearchKW = @"";
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
+    [self searchBar];
     [self refreshKeyword];
+    
 }
 
 -(NSMutableArray*)historyArr
 {
+    
     if (_historyArr == nil)
     {
         _historyArr = [[NSMutableArray alloc] init];
@@ -60,6 +55,7 @@
 
 -(void)refreshKeyword
 {
+    
     [self.historyArr removeAllObjects];
     [self.historyArr addObjectsFromArray:[[MJKeywordPersistenceFactory getPersistenceImp] getHistoryKeyWordByKey:_keywordType]];
     
@@ -71,47 +67,62 @@
          {
              [self.resultArr addObjectsFromArray:results];
          }
+         [self.tableView reloadData];
+         
      }];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     
-    self.searchBar.bounds = CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width-70 , 40);
-    self.searchBar.center = CGPointMake(CGRectGetWidth(self.navigationController.navigationBar.frame)/2.0f+35, CGRectGetHeight(self.navigationController.navigationBar.frame)/2.0f);
     [self.navigationController.navigationBar addSubview:self.searchBar];
-    [self.searchBar becomeFirstResponder];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+    
     [self.searchBar removeFromSuperview];
 }
 
 
 - (UISearchBar *)searchBar
 {
+    
     if (_searchBar == nil)
     {
-        _searchBar = [[UISearchBar alloc] init];
-        _searchBar.delegate = self;
-        _searchBar.placeholder =self.placeHolderString;
-        _searchBar.backgroundColor = [UIColor clearColor];
-        _searchBar.barTintColor = [UIColor clearColor];
-        self.searchBar.showsCancelButton = YES;
         
-        [self customizeSearchBar];
+        _searchBar = [[UISearchBar alloc] init];
+        [self customizeSearchBar:_searchBar];
+        [_searchBar becomeFirstResponder];
+        
         
     }
     
     return _searchBar;
 }
 
--(void)customizeSearchBar
+-(void)customizeSearchBar:(UISearchBar*)schBar
 {
+    
+    schBar.delegate = self;
+    schBar.placeholder =self.placeHolderString;
+    schBar.backgroundColor = [UIColor clearColor];
+    schBar.barTintColor = [UIColor clearColor];
+    schBar.showsCancelButton = YES;
+    
+    schBar.bounds = CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width-70 , 40);
+    schBar.center = CGPointMake(CGRectGetWidth(self.navigationController.navigationBar.frame)/2.0f+35, CGRectGetHeight(self.navigationController.navigationBar.frame)/2.0f);
+    
+    
     UIButton *cancelButton;
     UITextField*textFiled;
-    UIView *topView = self.searchBar.subviews[0];
+    UIView *topView = schBar.subviews[0];
     for (UIView *subView in topView.subviews)
     {
         if ([subView isKindOfClass:NSClassFromString(@"UINavigationButton")])
@@ -141,11 +152,13 @@
         textFiled.returnKeyType = UIReturnKeyDone;
         textFiled.enablesReturnKeyAutomatically = NO;
     }
+    
 }
 
 
 
 - (void)didReceiveMemoryWarning {
+    
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -156,6 +169,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
+    
     NSInteger count = self.resultArr.count;
     if (count != 0)
     {
@@ -167,6 +181,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     static NSString*reUseIndefier = @"reuseIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reUseIndefier];
     if (cell == nil)
@@ -182,6 +197,7 @@
         if (indexPath.row < self.resultArr.count)
         {
             cell.textLabel.text = self.resultArr[indexPath.row];
+            cell.textLabel.textAlignment = NSTextAlignmentLeft;
         }
         else if(indexPath.row == self.resultArr.count)
         {
@@ -228,11 +244,13 @@
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
+    
     return YES;
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
+    
     _curSearchKW = searchText;
     [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:_historyArr searchText:(NSString *)searchText collationStringSelector:@selector(lowercaseString) resultBlock:^(NSArray *results)
      {
@@ -253,20 +271,19 @@
 
 - (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
 {
+    
     return YES;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    
     [searchBar resignFirstResponder];
-//    [[RealtimeSearchUtil currentUtil] realtimeSearchStop];
-//    
-//    [self notifyDelegate];
-//    [self synAndPullSelf];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
+    
     [[RealtimeSearchUtil currentUtil] realtimeSearchStop];
     [searchBar resignFirstResponder];
     [self notifyDelegate];
@@ -275,6 +292,7 @@
 
 -(void)synAndPullSelf
 {
+    
     NSString*tmp = [_curSearchKW stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (tmp.length > 0)
     {
@@ -301,6 +319,7 @@
 
 -(void)notifyDelegate
 {
+    
     if (self.delegate)
     {
         if ([self.delegate respondsToSelector:@selector(didSelectKeyword:)])
@@ -308,6 +327,7 @@
             [self.delegate performSelector:@selector(didSelectKeyword:) withObject:_curSearchKW];
         }
     }
+    
 }
 
 @end

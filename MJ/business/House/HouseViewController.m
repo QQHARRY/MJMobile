@@ -180,7 +180,7 @@
     kw.keywordType = HOUSE_SEARCH_KW;
     kw.placeHolderString = @"请输入小区名称或房源编号";
     kw.delegate = self;
-    [self.navigationController pushViewController:kw animated:YES];
+    [self.navigationController pushViewController:kw animated:NO];
 }
 
 -(void)didSelectKeyword:(NSString*)keyWord

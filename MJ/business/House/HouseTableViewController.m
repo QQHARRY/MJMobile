@@ -199,7 +199,7 @@
     }
     HouseDetail *hd = [self.houseList objectAtIndex:indexPath.row];
     
-    static BOOL b = YES;
+    BOOL b = YES;
     
     if (b)
     {
@@ -210,13 +210,14 @@
         [self pushControllerToController:ptcl];
         b = !b;
     }
-    else
-    {
-        NewHousePtlViewController*ptcl = [[NewHousePtlViewController alloc] init];
-        ptcl.houseDtl = hd;
-        [self pushControllerToController:ptcl];
-        b = !b;
-    }
+//    else
+//    {
+//        NewHousePtlViewController*ptcl = [[NewHousePtlViewController alloc] init];
+//        ptcl.houseDtl = hd;
+//        ptcl.hidesBottomBarWhenPushed = YES;
+//        [self pushControllerToController:ptcl];
+//        b = !b;
+//    }
 
     
 }

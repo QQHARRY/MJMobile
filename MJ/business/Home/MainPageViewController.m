@@ -632,20 +632,6 @@
 #pragma mark - ImagePlayerViewDelegate
 - (void)imagePlayerView:(ImagePlayerView *)imagePlayerView loadImageForImageView:(UIImageView *)imageView index:(NSInteger)index
 {
-//    NSArray* arr = @[[NSURL URLWithString:@"http://p3.wmpic.me/article/2015/05/18/1431919490_IskBffgp.jpg"],
-//                     [NSURL URLWithString:@"http://sudasuta.com/wp-content/uploads/2013/10/10143181686_375e063f2c_z.jpg"],
-//                     [NSURL URLWithString:@"http://www.yancheng.gov.cn/ztzl/zgycddhsdgy/xwdt/201109/W020110902584601289616.jpg"],
-//                     [NSURL URLWithString:@"http://fzone.oushinet.com/bbs/data/attachment/forum/201208/15/074140zsb6ko6hfhzrb40q.jpg"],];
-//    if (index < arr.count)
-//    {
-//        
-//        [imageView setImageWithURL:[arr objectAtIndex:index]];
-//    }
-//    else
-//    {
-//        NSLog(@"fuck");
-//    }
-    
     if (self.indicator && self.indicator.bannerDataArr && self.indicator.bannerDataArr.count > index)
     {
         
@@ -663,7 +649,7 @@
                 [imageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"banner.png"] completed:^(UIImage *image, NSError *error, EMSDImageCacheType cacheType, NSURL *imageURL) {
                     if (error)
                     {
-                        imageView.image = [UIImage imageNamed:@"banner_fail"];
+                        imageView.image = [UIImage imageNamed:@"banner_fail.jpg"];
                     }
                     
                 }];
@@ -681,7 +667,7 @@
         }
         else
         {
-            imageView.image = [UIImage imageNamed:@"banner_no"];
+            imageView.image = [UIImage imageNamed:@"banner_no.jpg"];
         }
         
     }

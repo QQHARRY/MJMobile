@@ -65,7 +65,7 @@ static MessageReadManager *detailInstance = nil;
 {
     if (_photoBrowser == nil) {
         _photoBrowser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-        _photoBrowser.displayActionButton = YES;
+        _photoBrowser.displayActionButton = NO;
         _photoBrowser.displayNavArrows = YES;
         _photoBrowser.displaySelectionButtons = NO;
         _photoBrowser.alwaysShowControls = NO;
@@ -156,6 +156,8 @@ static MessageReadManager *detailInstance = nil;
         
         self.photos = photoArray;
     }
+    
+    
     
     
     //UIViewController *rootController = [self.keyWindow rootViewController];

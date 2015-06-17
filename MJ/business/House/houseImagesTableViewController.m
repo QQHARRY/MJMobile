@@ -64,7 +64,7 @@
     {
         if (self.housePtcl.xqt)
         {
-            NSLog(@"小区图=%@",self.housePtcl.xqt);
+            //NSLog(@"小区图=%@",self.housePtcl.xqt);
             NSArray*arr = [self.housePtcl.xqt componentsSeparatedByString:@", "];
             for (NSString*imgName in arr)
             {

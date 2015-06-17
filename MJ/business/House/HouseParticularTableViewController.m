@@ -20,10 +20,21 @@
 #import "HouseEditParticularsViewController.h"
 #import "BuildingsSelectTableViewController.h"
 #import "houseDescribeViewController.h"
+#import "ImagePlayerView.h"
+#import "MessageReadManager.h"
+#import "UIImageView+AFNetworking.h"
 
-@interface HouseParticularTableViewController ()
 
 
+
+#define ITEMBARHEIGHT 44
+#define NAVGATIONBAR_H 64
+@interface HouseParticularTableViewController ()<ImagePlayerViewDelegate>
+
+@property(strong,nonatomic)ImagePlayerView*houseImagePlayer;
+@property(strong,nonatomic)UIToolbar*toolBar;
+@property(strong,nonatomic)MessageReadManager*messageReadManager;
+@property(strong,nonatomic)NSMutableArray*housePhotoArr;
 
 @end
 
@@ -42,6 +53,8 @@
 {
     [super viewDidLoad];
     
+    
+
     self.refreshAfterEdit = NO;
     //self.houseImageCtrl = [[houseImagesTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     self.manager = [[RETableViewManager alloc] initWithTableView:self.tableView delegate:self];
@@ -49,6 +62,8 @@
     [self initDic];
     
     [self getData];
+    
+
 }
 
 
@@ -66,8 +81,168 @@
         //[self prepareItems];
     }
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.toolbarHidden = NO;
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    self.navigationController.toolbarHidden = YES;
+}
+
 #pragma mark ---------------viewDidLoad----------------
 #pragma mark
+
+
+
+-(ImagePlayerView*)houseImagePlayer
+{
+    if (_houseImagePlayer == nil)
+    {
+        CGFloat h = self.view.frame.size.width*3.0f/4.0f;
+        [self.tableView setContentInset:UIEdgeInsetsMake(h, 0, 0, 0)];
+        _houseImagePlayer = [[ImagePlayerView alloc] initWithFrame:CGRectMake(0, -h, self.view.frame.size.width, h)];
+        
+        _houseImagePlayer.pageControlPosition = ICPageControlPosition_BottomCenter;
+        
+        _houseImagePlayer.imagePlayerViewDelegate = self;
+        
+        _houseImagePlayer.autoScroll = NO;
+        _houseImagePlayer.hidePageControl = YES;
+        [_houseImagePlayer setPageIndicatorLabelHidden:NO];
+        [self.tableView insertSubview:_houseImagePlayer atIndex:0];
+        
+    }
+    return _houseImagePlayer;
+}
+
+- (MessageReadManager *)messageReadManager
+{
+    if (_messageReadManager == nil) {
+        _messageReadManager = [MessageReadManager defaultManager];
+        _messageReadManager.vc = self;
+    }
+    
+    return _messageReadManager;
+}
+
+-(void)setUpTableView
+{
+    [self.tableView setShowsVerticalScrollIndicator:NO];
+    [self.tableView setShowsHorizontalScrollIndicator:NO];
+}
+
+-(UIToolbar*)toolBar
+{
+    if (_toolBar == nil)
+    {
+        _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-ITEMBARHEIGHT-NAVGATIONBAR_H, self.view.frame.size.width, ITEMBARHEIGHT)];
+        
+        _toolBar.backgroundColor = [UIColor redColor];
+        
+        NSMutableArray *items = [[NSMutableArray alloc] init];
+        
+        UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+        UIBarButtonItem* genJinBtn =  [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"跟进"] style:UIBarButtonItemStylePlain target:self action:@selector(onBtnClicked:)];
+        genJinBtn.tag = 10001;
+        
+        UIBarButtonItem* weiTuoBtn =  [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"委托"] style:UIBarButtonItemStylePlain target:self action:@selector(onBtnClicked:)];
+        weiTuoBtn.tag = genJinBtn.tag+1;
+        UIBarButtonItem* qianYueBtn =  [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"签约"] style:UIBarButtonItemStylePlain target:self action:@selector(onBtnClicked:)];
+        qianYueBtn.tag = weiTuoBtn.tag+1;
+        [items addObjectsFromArray:[NSArray arrayWithObjects:flexSpace,genJinBtn,flexSpace,weiTuoBtn,flexSpace,qianYueBtn,flexSpace,nil]];
+        [self setToolbarItems:items];
+    }
+    
+    return _toolBar;
+}
+
+-(void)onBtnClicked:(UIBarButtonItem*)sender
+{
+    switch (sender.tag)
+    {
+        case 10001:
+        {
+            [self genJinAction];
+        }
+            break;
+        case 10002:
+        {
+            [self weiTuoAction];
+        }
+            break;
+        case 10003:
+        {
+            [self qianYueAction];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
+#pragma mark - ImagePlayerViewDelegate
+- (void)imagePlayerView:(ImagePlayerView *)imagePlayerView loadImageForImageView:(UIImageView *)imageView index:(NSInteger)index
+{
+    
+    if (self.housePhotoArr.count == 0)
+    {
+        imageView.image = [UIImage imageNamed:@"banner_no.jpg"];
+    }
+    else
+    {
+        if (index < self.housePhotoArr.count)
+        {
+            __weak typeof(imageView) weakImgV = imageView;
+            [imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.housePhotoArr[index]]] placeholderImage:[UIImage imageNamed:@"banner_no.jpg"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                if (image)
+                {
+                    weakImgV.image = image;
+                }
+                else
+                {
+                    weakImgV.image = [UIImage imageNamed:@"banner_fail.jpg"];
+                }
+            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                weakImgV.image = [UIImage imageNamed:@"banner_fail.jpg"];
+            }];
+        }
+        
+    }
+}
+
+- (void)imagePlayerView:(ImagePlayerView *)imagePlayerView didTapAtIndex:(NSInteger)index
+{
+    if (self.housePhotoArr.count > 0)
+    {
+        NSMutableArray*arr = [[NSMutableArray alloc] initWithCapacity:self.housePhotoArr.count];
+        for (NSString*strUrl in self.housePhotoArr)
+        {
+            MWPhoto*photo = [[MWPhoto alloc] initWithURL:[NSURL URLWithString:strUrl]];
+            if ([strUrl rangeOfString:@"/zt/"].location != NSNotFound)
+            {
+                photo.caption = @"主图";
+            }
+            else if ([strUrl rangeOfString:@"/hxt/"].location != NSNotFound)
+            {
+                photo.caption = @"户型图";
+            }
+            else if([strUrl rangeOfString:@"/snt/"].location != NSNotFound)
+            {
+                photo.caption = @"室内图";
+            }
+            [arr addObject:photo];
+        }
+        
+        [self.messageReadManager showBrowserWithImages:arr];
+    }
+    
+}
+
+
 
 #pragma mark ---------------initDic----------------
 #pragma mark
@@ -162,10 +337,61 @@
     {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editBtnClicked:)];
     }
+    
+    [self setUpTableView];
+    
+    [self toolBar];
     [self prepareSections];
     [self prepareItems];
+    [self resetImagePlayerAbout];
     [self.tableView reloadData];
 }
+
+-(void)resetImagePlayerAbout
+{
+    [self resetHousePhotoArr];
+
+    NSInteger count = self.housePhotoArr.count;
+    if (count == 0)
+    {
+        count = 1;
+    }
+
+    [self.houseImagePlayer initWithCount:count delegate:self];
+}
+
+-(NSMutableArray*)housePhotoArr
+{
+    if (_housePhotoArr == nil)
+    {
+        _housePhotoArr = [[NSMutableArray alloc] init];
+    }
+    return _housePhotoArr;
+}
+
+
+
+-(NSMutableArray*)resetHousePhotoArr
+{
+    [self.housePhotoArr removeAllObjects];
+    if (self.housePtcl)
+    {
+        NSMutableArray*arrPhotoTmp = [[NSMutableArray alloc] init];
+        [arrPhotoTmp addObjectsFromArray:[self.housePtcl.xqt componentsSeparatedByString:@", "]];
+        [arrPhotoTmp addObjectsFromArray:[self.housePtcl.hxt componentsSeparatedByString:@", "]];
+        [arrPhotoTmp addObjectsFromArray:[self.housePtcl.snt componentsSeparatedByString:@", "]];
+
+        for (NSString*imgName in arrPhotoTmp)
+        {
+            NSString *imgStr = [SERVER_ADD stringByAppendingString:imgName];
+            [[self housePhotoArr] addObject:imgStr];
+        }
+        
+    }
+    
+    return [self housePhotoArr];
+}
+
 
 
 -(void)adjustForMode
@@ -221,14 +447,9 @@
     NSArray* arr = [self.infoSection items];
     for (RETableViewItem*item in arr)
     {
-        if ([item isKindOfClass:[RETextItem class]])
+        if ([item isKindOfClass:[RETextItem class]] || [item isKindOfClass:[ReMultiTextItem class]] || [item isKindOfClass:[RERadioItem class]])
         {
             ((RETextItem*)item).enabled = NO;
-        }
-        
-        if ([item isKindOfClass:[RERadioItem class]])
-        {
-            ((RERadioItem*)item).enabled = NO;
         }
     }
     self.b_staff_describ_to_view_html.enabled = YES;
@@ -335,7 +556,7 @@
 {
     [self.manager removeAllSections];
     [self.manager addSection:self.infoSection];
-    [self.manager addSection:self.actionSection];
+    //[self.manager addSection:self.actionSection];
 }
 
 -(void)prepareItems
@@ -344,7 +565,7 @@
     [self createAddInfoSectionItems];
     [self prepareInfoSectionItems];
     [self prepareAddInfoSectionItems];
-    [self prepareActionSectionsItems];
+    //[self prepareActionSectionsItems];
     [self enableOrDisableItems];
     [self adjustByTeneApplication];
 }
@@ -353,7 +574,7 @@
 {
     [self.infoSection removeAllItems];
     
-    [self.infoSection addItem:self.watchHouseImages];
+    //[self.infoSection addItem:self.watchHouseImages];
     
     //    @property (strong, readwrite, nonatomic) RERadioItem * buildings_name;
     //    //String
@@ -646,8 +867,8 @@
     CGFloat sectH = 22;
     self.addInfoSection = [RETableViewSection sectionWithHeaderTitle:@"地区和位置信息"];
     self.addInfoSection.headerHeight = sectH;
-    self.infoSection = [RETableViewSection sectionWithHeaderTitle:@"基本信息"];
-    self.infoSection.headerHeight = sectH;
+    self.infoSection = [RETableViewSection sectionWithHeaderTitle:@""];
+    self.infoSection.headerHeight = 0.5;
     self.secretSection = [RETableViewSection sectionWithHeaderTitle:@"保密信息"];
     self.secretSection.headerHeight =sectH;
     self.actionSection = [RETableViewSection sectionWithHeaderTitle:@"相关操作"];
@@ -1849,10 +2070,13 @@
 
 -(void)createActionSectionItems
 {
-    [self createDaiKanBtn];
-    [self createGenjinBtn];
-    [self createWeiTuoBtn];
-    [self createQianYueBtn];
+    //[self createDaiKanBtn];
+    //[self createGenjinBtn];
+    //[self createWeiTuoBtn];
+    //[self createQianYueBtn];
+    
+    
+
 }
 
 
@@ -1881,7 +2105,7 @@
                                 ([self.housePtcl.edit_permit isEqualToString:@"1"] ||
                                 [self.housePtcl.secret_permit isEqualToString:@"1"]))
                             {
-                                if ([[self.manager sections] objectAtIndex:1] == self.secretSection)
+                                if ([self.manager sections].count == 2)
                                 {
                                     [self reloadUIForSecret:NO];
                                 }
@@ -1897,7 +2121,27 @@
 
                             
                         }];
+    
+    
     self.lookSecretItem.textAlignment = NSTextAlignmentCenter;
+}
+
+-(void)genJinAction
+{
+    FollowTableViewController *vc = [[FollowTableViewController alloc] initWithNibName:@"FollowTableViewController" bundle:[NSBundle mainBundle]];
+    if ([self.housePtcl.edit_permit isEqualToString:@"1"] || [self.housePtcl.secret_permit isEqualToString:@"1"])
+    {
+        vc.hasAddPermit = YES;
+    }
+    else
+    {
+        vc.hasAddPermit = NO;
+    }
+    
+    
+    vc.sid = self.houseDtl.house_trade_no;
+    vc.type = self.housePtcl.trade_type;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)createGenjinBtn
 {
@@ -1906,46 +2150,59 @@
                         {
                             [item deselectRowAnimated:YES];
                             
+                            [weakSelf genJinAction];
                             
-                            FollowTableViewController *vc = [[FollowTableViewController alloc] initWithNibName:@"FollowTableViewController" bundle:[NSBundle mainBundle]];
-                            if ([self.housePtcl.edit_permit isEqualToString:@"1"] || [self.housePtcl.secret_permit isEqualToString:@"1"])
-                            {
-                                vc.hasAddPermit = YES;
-                            }
-                            else
-                            {
-                                vc.hasAddPermit = NO;
-                            }
-                            
-                            
-                            vc.sid = self.houseDtl.house_trade_no;
-                            vc.type = self.housePtcl.trade_type;
-                            [weakSelf.navigationController pushViewController:vc animated:YES];
                         }];
     self.addGenJinActions.textAlignment = NSTextAlignmentCenter;
+}
+
+-(void)daiKanAction
+{
+    AppointTableViewController *vc = [[AppointTableViewController alloc] initWithNibName:@"AppointTableViewController" bundle:[NSBundle mainBundle]];
+    vc.sid = self.houseDtl.house_trade_no;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)createDaiKanBtn
 {
     __typeof (&*self) __weak weakSelf = self;
     self.addDaiKanActions = [RETableViewItem itemWithTitle:@"带看" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                         {
-                            AppointTableViewController *vc = [[AppointTableViewController alloc] initWithNibName:@"AppointTableViewController" bundle:[NSBundle mainBundle]];
-                            vc.sid = self.houseDtl.house_trade_no;
-                            [weakSelf.navigationController pushViewController:vc animated:YES];
+                            [item deselectRowAnimated:YES];
+                            [weakSelf daiKanAction];
                         }];
     self.addDaiKanActions.textAlignment = NSTextAlignmentCenter;
+}
+
+-(void)weiTuoAction
+{
+    ContractTableViewController *vc = [[ContractTableViewController alloc] initWithNibName:@"ContractTableViewController" bundle:[NSBundle mainBundle]];
+    vc.sid = self.houseDtl.house_trade_no;
+    vc.type = self.housePtcl.trade_type;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)createWeiTuoBtn
 {
     __typeof (&*self) __weak weakSelf = self;
     self.addWeiTuoActions = [RETableViewItem itemWithTitle:@"委托" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                         {
-                            ContractTableViewController *vc = [[ContractTableViewController alloc] initWithNibName:@"ContractTableViewController" bundle:[NSBundle mainBundle]];
-                            vc.sid = self.houseDtl.house_trade_no;
-                            vc.type = self.housePtcl.trade_type;
-                            [weakSelf.navigationController pushViewController:vc animated:YES];
+                            [item deselectRowAnimated:YES];
+                            [weakSelf weiTuoAction];
                         }];
     self.addWeiTuoActions.textAlignment = NSTextAlignmentCenter;
+}
+
+
+-(void)qianYueAction
+{
+    if (![self.housePtcl.edit_permit isEqualToString:@"1"] && ![self.housePtcl.secret_permit isEqualToString:@"1"])
+    {
+        PRESENTALERT(@"添加失败", @"对不起您没有权限对该房源新增签约", @"OK", self);
+        return;
+    }
+    
+    SignAddController *vc = [[SignAddController alloc] initWithStyle:UITableViewStyleGrouped];
+    vc.sid = self.houseDtl.house_trade_no;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)createQianYueBtn
@@ -1954,15 +2211,7 @@
     self.addQianYueActions = [RETableViewItem itemWithTitle:@"签约" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                         {
                             [item deselectRowAnimated:YES];
-                            if (![self.housePtcl.edit_permit isEqualToString:@"1"] && ![self.housePtcl.secret_permit isEqualToString:@"1"])
-                            {
-                                PRESENTALERT(@"添加失败", @"对不起您没有权限对该房源新增签约", @"OK", self);
-                                return;
-                            }
-                            
-                            SignAddController *vc = [[SignAddController alloc] initWithStyle:UITableViewStyleGrouped];
-                            vc.sid = self.houseDtl.house_trade_no;
-                            [weakSelf.navigationController pushViewController:vc animated:YES];
+                            [weakSelf qianYueAction];
                         }];
     self.addQianYueActions.textAlignment = NSTextAlignmentCenter;
 }
@@ -2038,13 +2287,15 @@
         
         [self.manager addSection:self.infoSection];
         [self.manager addSection:self.secretSection];
-        [self.manager addSection:self.actionSection];
+        //[self.manager addSection:self.actionSection];
         [self prepareSecretSectionItems];
+        self.lookSecretItem.title = @"隐藏保密信息";
     }
     else
     {
         [self.manager addSection:self.infoSection];
-        [self.manager addSection:self.actionSection];
+        self.lookSecretItem.title = @"查看保密信息";
+        //[self.manager addSection:self.actionSection];
     }
     
     [self.tableView reloadData];
