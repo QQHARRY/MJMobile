@@ -7,6 +7,12 @@
 
 #import "CLImageToolBase.h"
 
+@interface CLRatio : NSObject
+@property (nonatomic, assign) BOOL isLandscape;
+@property (nonatomic, readonly) CGFloat ratio;
+- (id)initWithValue1:(NSInteger)value1 value2:(NSInteger)value2;
+- (NSString*)description;
+@end
 
 
 

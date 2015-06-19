@@ -197,6 +197,7 @@
         if (index < self.housePhotoArr.count)
         {
             __weak typeof(imageView) weakImgV = imageView;
+            
             [imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.housePhotoArr[index]]] placeholderImage:[UIImage imageNamed:@"banner_no.jpg"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                 if (image)
                 {

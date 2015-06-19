@@ -17,5 +17,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *floor;
 @property (strong, nonatomic) IBOutlet UILabel *fitment;
 @property (strong, nonatomic) IBOutlet UILabel *status;
+@property (strong, nonatomic) IBOutlet UILabel *lookPermit;
+@property (strong, nonatomic) IBOutlet UILabel *consignmentType;
 
 @end

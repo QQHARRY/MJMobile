@@ -63,6 +63,11 @@ static IMP storedSetUp = NULL;
 
 id getRatioObjWith2Value(NSInteger v1,NSInteger v2)
 {
+    
+    CLRatio*ratio = [[CLRatio alloc] initWithValue1:v1 value2:v2];
+    return ratio;
+    
+#if 0
     id ratio = nil;
     Class CLRatioClass =  objc_getClass("CLRatio");
     if (CLRatioClass != NULL)
@@ -86,6 +91,7 @@ id getRatioObjWith2Value(NSInteger v1,NSInteger v2)
     }
     
     return ratio;
+#endif
 }
 
 void setCropMenuCustomized(id SELF, SEL _cmd)
@@ -124,9 +130,7 @@ void setCropMenuCustomized(id SELF, SEL _cmd)
                 [GridViewObj performSelector:setClippingRatio withObject:ratio];
             }
             
-            
-            SEL ratioChange = @selector(clippingRatioDidChange);
-            [GridViewObj performSelector:ratioChange];
+
    
 #pragma clang diagnostic pop
         }

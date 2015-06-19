@@ -37,7 +37,7 @@
 @synthesize fitment_type; // 装修类型
 @synthesize ThumbnailUrl; // 缩略图url(也就 是一张主图的 图片路径)
 @synthesize consignment_type; // 委托类型 ID
-
+@synthesize look_permit;
 @end
 
 

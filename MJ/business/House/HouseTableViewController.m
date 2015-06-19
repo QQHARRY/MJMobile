@@ -24,6 +24,8 @@
 @property (nonatomic, strong) NSArray *fitmentDictList;
 @property (nonatomic, strong) NSArray *leaseDictList;
 @property (nonatomic, strong) NSArray *saleDictList;
+@property (nonatomic, strong) NSArray *lookPermitDictList;
+@property (nonatomic, strong) NSArray *consignmentTypeDictList;
 
 @end
 
@@ -41,7 +43,8 @@
     self.fitmentDictList = [dictionaryManager getItemArrByType:DIC_FITMENT_TYPE];
     self.leaseDictList = [dictionaryManager getItemArrByType:DIC_LEASE_TRADE_STATE];
     self.saleDictList = [dictionaryManager getItemArrByType:DIC_SALE_TRADE_STATE];
-
+    self.lookPermitDictList = [dictionaryManager getItemArrByType:DIC_LOOK_PERMIT_TYPE];
+    self.consignmentTypeDictList = [dictionaryManager getItemArrByType:DIC_CONSIGNMENT_TYPE];
     // header & footer refresh
     [self.tableView addHeaderWithTarget:self action:@selector(refreshData)];
     [self.tableView addFooterWithTarget:self action:@selector(loadMore)];
@@ -165,6 +168,35 @@
             }
         }
     }
+    {
+        cell.lookPermit.hidden = [hd.look_permit stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length == 0;
+
+            for (DicItem *di in self.lookPermitDictList)
+            {
+                if ([di.dict_value isEqualToString:hd.look_permit])
+                {
+                    cell.lookPermit.text = di.dict_label;
+                    
+                    break;
+                }
+            }
+    
+    }
+    {
+        cell.consignmentType.hidden = [hd.consignment_type stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length == 0;
+        for (DicItem *di in self.consignmentTypeDictList)
+        {
+            if ([di.dict_value isEqualToString:hd.consignment_type])
+            {
+                cell.consignmentType.text = di.dict_label;
+                cell.consignmentType.hidden = [hd.look_permit stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length == 0;
+                break;
+            }
+        }
+    }
+    
+    
+    
     if (self.controllerType == HCT_RENT)
     {
         for (DicItem *di in self.leaseDictList)
