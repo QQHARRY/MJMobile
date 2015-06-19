@@ -14,6 +14,10 @@
 {
     // Initialization code
      //self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    self.fitment.layer.borderColor = self.fitment.textColor.CGColor;
+    self.fitment.layer.borderWidth = 0.5;
+    self.status.layer.borderColor = self.status.textColor.CGColor;
+    self.status.layer.borderWidth = 0.5;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

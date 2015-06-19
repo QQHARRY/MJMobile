@@ -309,7 +309,15 @@
        
        [self.todaysFollow setContentText:[NSString stringWithFormat:@"%d",(int)indicator.follow_count]];
        [self.todaysAppointment setContentText:[NSString stringWithFormat:@"%d",(int)indicator.appoint_count]];
-       [self.monthPerformance setContentText:[NSString stringWithFormat:@"%.2f",(float)indicator.pert_sum]];
+       
+       
+       NSString*strPerfromStr = [NSString stringWithFormat:@"%.2f",(float)indicator.pert_sum];
+       if (indicator.pert_sum >= 10000)
+       {
+           strPerfromStr = [NSString stringWithFormat:@"%.2f万",(float)indicator.pert_sum/10000.0f];
+       }
+       
+       [self.monthPerformance setContentText:strPerfromStr];
        [self.alertBtn setBadge:indicator.alert_count];
        [self.petitionBtn setBadge:indicator.petition_count];
        [self.messageBtn setBadge:indicator.msg_count];

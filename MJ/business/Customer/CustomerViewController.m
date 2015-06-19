@@ -891,7 +891,7 @@
             }
             
         }
-        
+        free(fromIvars);
     }
     
     return filter;

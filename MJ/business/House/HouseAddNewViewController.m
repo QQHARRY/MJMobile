@@ -35,6 +35,11 @@
     [self reloadUI];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.toolbarHidden = YES;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

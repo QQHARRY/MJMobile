@@ -494,6 +494,7 @@
 		4AB0EFA61A30540C00C24A44 /* AFNMJInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA51A30540C00C24A44 /* AFNMJInstance.m */; };
 		4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA81A30558000C24A44 /* NetWorkManager.m */; };
 		4AB0EFAF1A308CED00C24A44 /* UtilFun.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFAE1A308CED00C24A44 /* UtilFun.m */; };
+		4AB298C81B329B420097D377 /* CliplingRatio.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB298C71B329B420097D377 /* CliplingRatio.m */; };
 		4ABC221D1A3C31910017FD94 /* AnncListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABC221C1A3C31910017FD94 /* AnncListViewController.m */; };
 		4ABC22211A3C3F940017FD94 /* LoadMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABC221F1A3C3F940017FD94 /* LoadMoreTableViewCell.m */; };
 		4ABC22221A3C3F940017FD94 /* LoadMoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ABC22201A3C3F940017FD94 /* LoadMoreTableViewCell.xib */; };
@@ -530,6 +531,7 @@
 		4AD2DF991B312FA500632166 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD2DF7C1B312FA500632166 /* UIView+Frame.m */; };
 		4AD2DF9A1B312FA500632166 /* _CLImageEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD2DF7F1B312FA500632166 /* _CLImageEditorViewController.m */; };
 		4AD2DF9B1B312FA500632166 /* _CLImageEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD2DF801B312FA500632166 /* _CLImageEditorViewController.xib */; };
+		4AD2DF9E1B31705B00632166 /* SwizzleClassMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD2DF9D1B31705B00632166 /* SwizzleClassMethod.m */; };
 		4AD788F41AFB5EFA008D6593 /* UIViewController+ContactsFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD788F31AFB5EFA008D6593 /* UIViewController+ContactsFunction.m */; };
 		4AD7945F1A208F4400DEC779 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7945E1A208F4400DEC779 /* main.m */; };
 		4AD794621A208F4400DEC779 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD794611A208F4400DEC779 /* AppDelegate.m */; };
@@ -1526,6 +1528,8 @@
 		4AB0EFA81A30558000C24A44 /* NetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkManager.m; sourceTree = "<group>"; };
 		4AB0EFAD1A308CED00C24A44 /* UtilFun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilFun.h; sourceTree = "<group>"; };
 		4AB0EFAE1A308CED00C24A44 /* UtilFun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilFun.m; sourceTree = "<group>"; };
+		4AB298C61B329B420097D377 /* CliplingRatio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CliplingRatio.h; sourceTree = "<group>"; };
+		4AB298C71B329B420097D377 /* CliplingRatio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CliplingRatio.m; sourceTree = "<group>"; };
 		4ABC221B1A3C31910017FD94 /* AnncListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnncListViewController.h; sourceTree = "<group>"; };
 		4ABC221C1A3C31910017FD94 /* AnncListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnncListViewController.m; sourceTree = "<group>"; };
 		4ABC221E1A3C3F940017FD94 /* LoadMoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableViewCell.h; sourceTree = "<group>"; };
@@ -1594,6 +1598,8 @@
 		4AD2DF7E1B312FA500632166 /* _CLImageEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CLImageEditorViewController.h; sourceTree = "<group>"; };
 		4AD2DF7F1B312FA500632166 /* _CLImageEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _CLImageEditorViewController.m; sourceTree = "<group>"; };
 		4AD2DF801B312FA500632166 /* _CLImageEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = _CLImageEditorViewController.xib; sourceTree = "<group>"; };
+		4AD2DF9C1B31705B00632166 /* SwizzleClassMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwizzleClassMethod.h; sourceTree = "<group>"; };
+		4AD2DF9D1B31705B00632166 /* SwizzleClassMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwizzleClassMethod.m; sourceTree = "<group>"; };
 		4AD788F21AFB5EFA008D6593 /* UIViewController+ContactsFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ContactsFunction.h"; sourceTree = "<group>"; };
 		4AD788F31AFB5EFA008D6593 /* UIViewController+ContactsFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ContactsFunction.m"; sourceTree = "<group>"; };
 		4AD794591A208F4400DEC779 /* MJ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MJ.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3596,6 +3602,10 @@
 				4AD2DF4E1B312FA500632166 /* CLClippingTool+CustomizeItems.m */,
 				4AD2DF4F1B312FA500632166 /* CLClippingTool.h */,
 				4AD2DF501B312FA500632166 /* CLClippingTool.m */,
+				4AD2DF9C1B31705B00632166 /* SwizzleClassMethod.h */,
+				4AD2DF9D1B31705B00632166 /* SwizzleClassMethod.m */,
+				4AB298C61B329B420097D377 /* CliplingRatio.h */,
+				4AB298C71B329B420097D377 /* CliplingRatio.m */,
 			);
 			path = CLClippingTool;
 			sourceTree = "<group>";
@@ -4786,6 +4796,7 @@
 				B98BD5861A609185003A35BE /* RETableViewSection.m in Sources */,
 				4AA18A511AEF549A00685603 /* UIView+EMWebCacheOperation.m in Sources */,
 				4AA18A5C1AEF549A00685603 /* PSTGridLayoutItem.m in Sources */,
+				4AD2DF9E1B31705B00632166 /* SwizzleClassMethod.m in Sources */,
 				4A9D02031A60521700600BA0 /* DataPersistence.m in Sources */,
 				4A9ED8A71AFC970800227498 /* UIImageView+LoadPortraitOfPerson.m in Sources */,
 				4A56C70D1A8CAF6700AF8CB6 /* updateDataPuller.m in Sources */,
@@ -4989,6 +5000,7 @@
 				4A5D244B1A4AC16200546698 /* cartTableViewController.m in Sources */,
 				B93B14441A625D1600121133 /* FollowAddController.m in Sources */,
 				4AA18A8C1AEF549A00685603 /* ChatGroupDetailViewController.m in Sources */,
+				4AB298C81B329B420097D377 /* CliplingRatio.m in Sources */,
 				4A7486761B045909003ECB8C /* TestPrivateApi.m in Sources */,
 				B9FF4B441A245FB300FE413E /* LoginViewController.m in Sources */,
 				4A98651E1B0EDCD300462388 /* MJDropDownMenuBar.m in Sources */,

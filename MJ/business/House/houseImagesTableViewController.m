@@ -16,10 +16,12 @@
 #import "person.h"
 #import "postFileUtils.h"
 #import "Macro.h"
+#import "CLClippingTool.h"
+#import "CLClippingTool+CustomizeItems.h"
 
 #define SECTION_HEIGHT 22
 
-@interface houseImagesTableViewController ()
+@interface houseImagesTableViewController ()<CLImageEditorDelegate,CLClippingToolItemsDataSource>
 @property (strong, readwrite, nonatomic) RETableViewManager *manager;
 @property (strong, readwrite, nonatomic) RETableViewSection *xqtSection;
 @property (strong, readwrite, nonatomic) RETableViewSection *hxtSection;
@@ -27,6 +29,8 @@
 
 @property (strong, readwrite, nonatomic) RETableViewSection *curSection;
 
+
+@property (strong, readwrite, nonatomic) NSString*lastestMimeType;
 
 @end
 
@@ -226,7 +230,7 @@
 {
     if(self.curSection)
     {
-        NSString*str = [self.curSection headerTitle];
+        //NSString*str = [self.curSection headerTitle];
     }
     if (actionSheet.tag == 1)
     {
@@ -263,24 +267,69 @@
         
         imagePickerController.delegate = self;
         
-        imagePickerController.allowsEditing = YES;
+        imagePickerController.allowsEditing = NO;
         
         imagePickerController.sourceType = sourceType;
-        
+        imagePickerController.navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
+        imagePickerController.navigationBar.tintColor = self.navigationController.navigationBar.tintColor;
+        imagePickerController.navigationBar.titleTextAttributes = self.navigationController.navigationBar.titleTextAttributes;
         [self presentViewController:imagePickerController animated:YES completion:^{}];
         
     }
 }
 
 
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if ([navigationController isKindOfClass:[UIImagePickerController class]])
+    {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    }
+}
+
 #pragma mark - image picker delegte
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:^{}];
+}
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [picker dismissViewControllerAnimated:YES completion:^{}];
     
-    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    _lastestMimeType = [info objectForKeyedSubscript:UIImagePickerControllerMediaType];
+    
+    if (picker.sourceType == UIImagePickerControllerSourceTypeCamera)
+    {
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+    }
+    
+    [CLClippingTool setupWithDataSource:self];
+    CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:image SingleEditting:YES SingleEdittingClass:[CLClippingTool class]];
+    editor.delegate = self;
+    //[picker presentViewController:editor animated:YES completion:nil];
+    [self.navigationController pushViewController:editor animated:YES];
+    
+    
+    
+    
+    
+
+}
+
+
+-(CliplingRatio*)CLClippingRatio;
+{
+    return [CliplingRatio RatioWithWidthSide:4 andHeightSide:3];
+}
+
+-(void)imageEditor:(CLImageEditor *)editor didFinishEdittingWithImage:(UIImage *)image
+{
+
     NSData*data = UIImageJPEGRepresentation(image, 0.5);
-    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+    NSString *type = _lastestMimeType;
     if (image && [type isEqualToString:(NSString *)kUTTypeImage])
     {
         if (self.watchMode == EDITMODE)
@@ -357,13 +406,13 @@
                     });
                 }
             }];
-
+            
         }
         else if (self.watchMode == ADDMODE)
         {
             RETableViewItem*item = [[RETableViewItem alloc] init];
             CGFloat scale =  (self.view.frame.size.width-30)/image.size.width;
-
+            
             UIImage*covertedImg = [UtilFun scaleImage:image toScale:scale];
             item.cellHeight = image.size.height * scale;
             item.image = covertedImg;
@@ -469,22 +518,19 @@
             }
             [self.tableView reloadData];
         }
-        
-        if (picker.sourceType == UIImagePickerControllerSourceTypeCamera)
-        {
-            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-        }
-        
     }
-
 }
 
-
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+-(void)imageEditorDidCancel:(CLImageEditor *)editor
 {
-    [self dismissViewControllerAnimated:YES completion:^{}];
+    
 }
+
+
+
+
+
+
 
 
 

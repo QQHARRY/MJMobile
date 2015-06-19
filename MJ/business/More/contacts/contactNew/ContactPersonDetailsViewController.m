@@ -27,6 +27,8 @@
 #import "UIImageView+LoadPortraitOfPerson.h"
 #import "CLImageEditor.h"
 #import "CLClippingTool.h"
+#import "CLClippingTool+CustomizeItems.h"
+#import "CLFilterTool.h"
 
 #define BEIJINGIMAGE @"背景图片"
 #define WEIKAITONGIMAGE @"未开通new"
@@ -55,7 +57,7 @@
 #define QIANMING @"签名:"
 #define JIANJIE @"简介:"
 
-@interface ContactPersonDetailsViewController ()<CLImageEditorDelegate>
+@interface ContactPersonDetailsViewController ()<CLImageEditorDelegate,CLClippingToolItemsDataSource>
 
 
 @property(strong,nonatomic)ContactPersonDetailsVCTableViewCell*cellPhoneNum;
@@ -596,7 +598,6 @@
         {
             if (buttonIndex == 0)
             {
-                
                 return;
             }
             else
@@ -619,10 +620,21 @@
         
     }
 }
-
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if ([navigationController isKindOfClass:[UIImagePickerController class]])
+    {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    }
+}
 
 
 #pragma mark - image picker delegte
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:^{}];
+}
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     
@@ -636,15 +648,18 @@
     
     [picker dismissViewControllerAnimated:YES completion:nil];
     
+    [CLClippingTool setupWithDataSource:self];
     CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:image SingleEditting:YES SingleEdittingClass:[CLClippingTool class]];
     editor.delegate = self;
-    
-    
     //[picker presentViewController:editor animated:YES completion:nil];
-    
     [self.navigationController pushViewController:editor animated:YES];
 }
 
+
+-(CliplingRatio*)CLClippingRatio;
+{
+    return [CliplingRatio RatioWithWidthSide:3 andHeightSide:4];
+}
 
 -(void)imageEditor:(CLImageEditor *)editor didFinishEdittingWithImage:(UIImage *)image
 {
@@ -692,10 +707,7 @@
 {
     
 }
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [picker dismissViewControllerAnimated:YES completion:^{}];
-}
+
 
 
 /*

@@ -13,6 +13,7 @@
 #import "UIImage+Utility.h"
 #import "CLClippingTool.h"
 #import <objc/runtime.h>
+#import "CLClippingTool+CustomizeItems.h"
 
 @interface CLMenuPanel : UIView
 {
@@ -267,6 +268,7 @@
         [_currentTool cleanup];
         _currentTool = currentTool;
         [_currentTool setup];
+        //[_currentTool setupReplace];
         
         [self swapToolBarWithEditting:(_currentTool!=nil)];
     }
@@ -357,10 +359,14 @@
 
 - (IBAction)pushedCancelBtn:(id)sender
 {
+    self.currentTool = nil;
+    self.view.userInteractionEnabled = YES;
     if (_singleEditting)
     {
+        
         if (self.navigationController)
         {
+            
             [self.navigationController popViewControllerAnimated:YES];
         }
         else
@@ -438,8 +444,12 @@
     if([self.delegate respondsToSelector:@selector(imageEditorDidCancel:)]){
         [self.delegate imageEditorDidCancel:self];
     }
+    
+    self.currentTool = nil;
+    self.view.userInteractionEnabled = YES;
     if (self.navigationController)
     {
+        
         [self.navigationController popViewControllerAnimated:YES];
     }
     else
@@ -453,6 +463,19 @@
     if([self.delegate respondsToSelector:@selector(imageEditor:didFinishEdittingWithImage:)]){
         [self.delegate imageEditor:self didFinishEdittingWithImage:_originalImage];
     }
+    
+    self.currentTool = nil;
+    self.view.userInteractionEnabled = YES;
+    if (self.navigationController)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    
+    
 }
 
 #pragma mark- ScrollView delegate

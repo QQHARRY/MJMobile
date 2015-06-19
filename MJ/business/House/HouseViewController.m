@@ -1274,6 +1274,8 @@
             
         }
         
+        free(fromIvars);
+        
     }
     
     return filter;

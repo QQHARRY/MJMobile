@@ -7,8 +7,25 @@
 //
 
 #import "CLClippingTool.h"
+#import "CLImageToolBase.h"
+#import "CliplingRatio.h"
+
+
+@interface CLImageToolBase (CustomizeItems)
+
+@end
+
+
+@protocol CLClippingToolItemsDataSource <NSObject>
+
+-(CliplingRatio*)CLClippingRatio;
+
+@end
+
+
 
 @interface CLClippingTool (CustomizeItems)
 
--(void)setupWith;
++(void)setupWithDataSource:(id<CLClippingToolItemsDataSource>)dataSource;
++(void)restore;
 @end

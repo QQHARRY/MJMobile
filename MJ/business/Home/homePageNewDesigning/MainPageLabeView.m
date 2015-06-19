@@ -110,6 +110,10 @@
 
 -(void)setContentText:(NSString*)contentStr
 {
+    if(contentStr == nil)
+    {
+        return;
+    }
     CGSize sz = [self calculateTitleSizeWithString:contentStr];
     if (sz.width > self.content.frame.size.width)
     {

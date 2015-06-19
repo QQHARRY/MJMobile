@@ -63,6 +63,7 @@
 
 - (void)setup
 {
+    
     CGFloat minZoomScale = self.editor.scrollView.minimumZoomScale;
     
     self.editor.scrollView.maximumZoomScale = 0.95*minZoomScale;
@@ -90,9 +91,9 @@
     [btn addTarget:self action:@selector(pushedRotateBtn:) forControlEvents:UIControlEventTouchUpInside];
     [btn setImage:[UIImage imageNamed:@"CLImageEditor.bundle/CLClippingTool/rotate_btn.png"] forState:UIControlStateNormal];
     btn.adjustsImageWhenHighlighted = YES;
-    [btnPanel addSubview:btn];
+    //revised by Harry as no where need a rotate button
+    //[btnPanel addSubview:btn];
     
-    [self setCropMenu];
     
     _gridView = [[CLClippingPanel alloc] initWithSuperview:self.editor.scrollView frame:self.editor.imageView.frame];
     _gridView.backgroundColor = [UIColor clearColor];
@@ -105,6 +106,10 @@
                      animations:^{
                          _menuContainer.transform = CGAffineTransformIdentity;
                      }];
+    //revised by Harry as no where need a rotate button
+    //move from line 97
+    [self setCropMenu];
+
 }
 
 - (void)cleanup
@@ -409,7 +414,8 @@
         _clippingRect = clippingRect;
         [self setNeedsDisplay];
     }
-    else{
+    else
+    {
         self.clippingRect = clippingRect;
     }
 }
@@ -615,6 +621,8 @@
 {
     self = [super init];
     if(self){
+        
+        _isLandscape = value1 > value2;
         _longSide  = MAX(labs(value1), labs(value2));
         _shortSide = MIN(labs(value1), labs(value2));
     }
