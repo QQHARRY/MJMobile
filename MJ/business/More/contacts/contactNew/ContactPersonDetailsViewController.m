@@ -30,32 +30,7 @@
 #import "CLClippingTool+CustomizeItems.h"
 #import "CLFilterTool.h"
 
-#define BEIJINGIMAGE @"背景图片"
-#define WEIKAITONGIMAGE @"未开通new"
-#define DADIANHUAIMAGE @"打电话new"
-#define FADUANXINIMAGE @"发信息new"
-#define XIUGAIZILIAOIMAGE @"修改资料new"
-#define XIUGAIWANCHENGIMAGE @"修改完成new"
-#define XIUGAIMIMAIMAGE @"修改密码new"
-#define FAXIAOXIIMAGE @"发消息new"
-#define JIAHAOYOUIMAGE @"加好友new"
 
-#define GONGSIIMAGE @"公司icon"
-#define BUMENIMAGE @"个人详情部门icon"
-#define ZHIWEIIMAGE @"职位icon"
-#define DIANHUAIMAGE @"电话号码前icon"
-#define QIANMINGIMAGE @"签名icon"
-#define JIANJIEIMAGE @"简介icon"
-
-
-
-
-#define GONGSI @"公司:"
-#define BUMEN  @"部门:"
-#define ZHIWEI @"职位:"
-#define DIANHUA @"电话:"
-#define QIANMING @"签名:"
-#define JIANJIE @"简介:"
 
 @interface ContactPersonDetailsViewController ()<CLImageEditorDelegate,CLClippingToolItemsDataSource>
 

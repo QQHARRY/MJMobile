@@ -11,6 +11,7 @@
 #import "houseDoubleFieldCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "MessageReadManager.h"
+#import "UIViewController+ContactsFunction.h"
 
 #define ITEMBARHEIGHT 44
 #define NAVGATIONBAR_H 64
@@ -125,30 +126,30 @@
     return _toolBar;
 }
 
--(void)onBtnClicked:(UIBarButtonItem*)sender
-{
-    switch (sender.tag)
-    {
-        case 10001:
-        {
-            
-        }
-            break;
-        case 10002:
-        {
-            
-        }
-            break;
-        case 10003:
-        {
-            
-        }
-            break;
-            
-        default:
-            break;
-    }
-}
+//-(void)onBtnClicked:(UIBarButtonItem*)sender
+//{
+//    switch (sender.tag)
+//    {
+//        case 10001:
+//        {
+//           
+//        }
+//            break;
+//        case 10002:
+//        {
+//            
+//        }
+//            break;
+//        case 10003:
+//        {
+//            
+//        }
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//}
 
 
 -(void)editButtonByRights

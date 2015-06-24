@@ -245,5 +245,7 @@
 // 房源图片ID
 
 @property(nonatomic,strong)NSString*house_dict_no;
+@property(nonatomic,strong)NSString*owner_job_no;
+
 
 @end

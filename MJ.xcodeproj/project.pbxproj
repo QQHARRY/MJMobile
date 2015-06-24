@@ -564,6 +564,10 @@
 		4AE0F5B21B293C9A000B4512 /* houseSingleFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE0F5B01B293C9A000B4512 /* houseSingleFieldCell.xib */; };
 		4AE0F5B61B29401F000B4512 /* houseDoubleFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE0F5B41B29401F000B4512 /* houseDoubleFieldCell.m */; };
 		4AE0F5B71B29401F000B4512 /* houseDoubleFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE0F5B51B29401F000B4512 /* houseDoubleFieldCell.xib */; };
+		4AE559231B38FB0F00AF6B03 /* ContextMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE5591B1B38FB0F00AF6B03 /* ContextMenuCell.m */; };
+		4AE559241B38FB0F00AF6B03 /* ContextMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE5591C1B38FB0F00AF6B03 /* ContextMenuCell.xib */; };
+		4AE559251B38FB0F00AF6B03 /* UIView+YALConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE5591F1B38FB0F00AF6B03 /* UIView+YALConstraints.m */; };
+		4AE559261B38FB0F00AF6B03 /* YALContextMenuTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE559221B38FB0F00AF6B03 /* YALContextMenuTableView.m */; };
 		4AE5E3F31AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE5E3F21AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.m */; };
 		4AE645931AF24614000B82A6 /* EMConversation+realName.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE645921AF24614000B82A6 /* EMConversation+realName.m */; };
 		4AF44D851B132412006DE905 /* SingleValueCustomizedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF44D841B132412006DE905 /* SingleValueCustomizedCell.m */; };
@@ -1664,6 +1668,14 @@
 		4AE0F5B31B29401F000B4512 /* houseDoubleFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = houseDoubleFieldCell.h; sourceTree = "<group>"; };
 		4AE0F5B41B29401F000B4512 /* houseDoubleFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = houseDoubleFieldCell.m; sourceTree = "<group>"; };
 		4AE0F5B51B29401F000B4512 /* houseDoubleFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = houseDoubleFieldCell.xib; sourceTree = "<group>"; };
+		4AE5591A1B38FB0F00AF6B03 /* ContextMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextMenuCell.h; sourceTree = "<group>"; };
+		4AE5591B1B38FB0F00AF6B03 /* ContextMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextMenuCell.m; sourceTree = "<group>"; };
+		4AE5591C1B38FB0F00AF6B03 /* ContextMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContextMenuCell.xib; sourceTree = "<group>"; };
+		4AE5591E1B38FB0F00AF6B03 /* UIView+YALConstraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YALConstraints.h"; sourceTree = "<group>"; };
+		4AE5591F1B38FB0F00AF6B03 /* UIView+YALConstraints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YALConstraints.m"; sourceTree = "<group>"; };
+		4AE559201B38FB0F00AF6B03 /* YALContextMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YALContextMenuCell.h; sourceTree = "<group>"; };
+		4AE559211B38FB0F00AF6B03 /* YALContextMenuTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YALContextMenuTableView.h; sourceTree = "<group>"; };
+		4AE559221B38FB0F00AF6B03 /* YALContextMenuTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YALContextMenuTableView.m; sourceTree = "<group>"; };
 		4AE5E3F11AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+AutoMoveCovered.h"; sourceTree = "<group>"; };
 		4AE5E3F21AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+AutoMoveCovered.m"; sourceTree = "<group>"; };
 		4AE645911AF24614000B82A6 /* EMConversation+realName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMConversation+realName.h"; sourceTree = "<group>"; };
@@ -3773,6 +3785,7 @@
 		4AD794A61A218C4A00DEC779 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				4AE559181B38FB0F00AF6B03 /* YALContextMenu */,
 				4AD2DF411B312FA500632166 /* CLImageEditor */,
 				4AAE5FFC1B146A3A0077AC98 /* RFKeyboardToolbar */,
 				4A6685951B07225900B0E999 /* UMAnalytics_Sdk_3.5.8 */,
@@ -3880,6 +3893,37 @@
 			children = (
 			);
 			path = HUD;
+			sourceTree = "<group>";
+		};
+		4AE559181B38FB0F00AF6B03 /* YALContextMenu */ = {
+			isa = PBXGroup;
+			children = (
+				4AE559191B38FB0F00AF6B03 /* ContextMenuCell */,
+				4AE5591D1B38FB0F00AF6B03 /* YALContextMenu */,
+			);
+			path = YALContextMenu;
+			sourceTree = "<group>";
+		};
+		4AE559191B38FB0F00AF6B03 /* ContextMenuCell */ = {
+			isa = PBXGroup;
+			children = (
+				4AE5591A1B38FB0F00AF6B03 /* ContextMenuCell.h */,
+				4AE5591B1B38FB0F00AF6B03 /* ContextMenuCell.m */,
+				4AE5591C1B38FB0F00AF6B03 /* ContextMenuCell.xib */,
+			);
+			path = ContextMenuCell;
+			sourceTree = "<group>";
+		};
+		4AE5591D1B38FB0F00AF6B03 /* YALContextMenu */ = {
+			isa = PBXGroup;
+			children = (
+				4AE5591E1B38FB0F00AF6B03 /* UIView+YALConstraints.h */,
+				4AE5591F1B38FB0F00AF6B03 /* UIView+YALConstraints.m */,
+				4AE559201B38FB0F00AF6B03 /* YALContextMenuCell.h */,
+				4AE559211B38FB0F00AF6B03 /* YALContextMenuTableView.h */,
+				4AE559221B38FB0F00AF6B03 /* YALContextMenuTableView.m */,
+			);
+			path = YALContextMenu;
 			sourceTree = "<group>";
 		};
 		B93B14391A62539D00121133 /* Follow */ = {
@@ -4638,6 +4682,7 @@
 				4AD2DF9B1B312FA500632166 /* _CLImageEditorViewController.xib in Resources */,
 				4AD2DF811B312FA500632166 /* CLImageEditor.bundle in Resources */,
 				4AA18B271AEF549A00685603 /* chatBar_more_camera@2x.png in Resources */,
+				4AE559241B38FB0F00AF6B03 /* ContextMenuCell.xib in Resources */,
 				4A56653A1A4BF4E400C3BA22 /* MessageDetailsViewController.xib in Resources */,
 				4AA18ACA1AEF549A00685603 /* VoiceSearchFeedback006.png in Resources */,
 				4AA18B4D1AEF549A00685603 /* password.png in Resources */,
@@ -4690,6 +4735,7 @@
 				4A6865AC1A73765E005394DD /* buildingDetails.m in Sources */,
 				B98BD5771A609185003A35BE /* RENumberItem.m in Sources */,
 				B93B142E1A61652000121133 /* CustomerFilterController.m in Sources */,
+				4AE559231B38FB0F00AF6B03 /* ContextMenuCell.m in Sources */,
 				B98BD56D1A609185003A35BE /* RETableViewSegmentedCell.m in Sources */,
 				B98BD5651A609185003A35BE /* RETableViewDateTimeCell.m in Sources */,
 				4A9865201B0EDCD300462388 /* MJMenuItemValue.m in Sources */,
@@ -5040,7 +5086,9 @@
 				4AA18A4F1AEF549A00685603 /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				B94445801A62986B0033E998 /* ContractDataPuller.m in Sources */,
 				B98BD58D1A609185003A35BE /* RELengthValidator.m in Sources */,
+				4AE559251B38FB0F00AF6B03 /* UIView+YALConstraints.m in Sources */,
 				B93B142B1A61652000121133 /* CustomerDetailCell.m in Sources */,
+				4AE559261B38FB0F00AF6B03 /* YALContextMenuTableView.m in Sources */,
 				4AA18A861AEF549A00685603 /* EMChatTimeCell.m in Sources */,
 				4AA18A921AEF549A00685603 /* GroupSettingViewController.m in Sources */,
 				4AA18A7D1AEF549A00685603 /* FacialView.m in Sources */,

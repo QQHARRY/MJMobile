@@ -64,6 +64,7 @@
 @synthesize  efficiency_rate;
 @synthesize  buildings_picture;
 @synthesize  house_dict_no;
+@synthesize  owner_job_no;
 
 
 

@@ -23,19 +23,30 @@
 #import "ImagePlayerView.h"
 #import "MessageReadManager.h"
 #import "UIImageView+AFNetworking.h"
+#import "YALContextMenuTableView.h"
+#import "YALContextMenuCell.h"
+#import "ContextMenuCell.h"
+#import "UIViewController+ContactsFunction.h"
+#import "contactDataManager.h"
 
 
 
 
 #define ITEMBARHEIGHT 44
 #define NAVGATIONBAR_H 64
-@interface HouseParticularTableViewController ()<ImagePlayerViewDelegate>
+static NSString *const menuCellIdentifier = @"ContextMenuCell";
+
+@interface HouseParticularTableViewController ()<ImagePlayerViewDelegate,YALContextMenuTableViewDelegate,ContextMenuCellImageViewTapDelegate>
 
 @property(strong,nonatomic)ImagePlayerView*houseImagePlayer;
 @property(strong,nonatomic)UIToolbar*toolBar;
 @property(strong,nonatomic)MessageReadManager*messageReadManager;
 @property(strong,nonatomic)NSMutableArray*housePhotoArr;
 
+@property (nonatomic, strong) NSArray *menuTitles;
+@property (nonatomic, strong) NSArray *menuIcons;
+@property (nonatomic, strong) YALContextMenuTableView*contextMenuTableView;
+@property (nonatomic, strong)person*owner;
 @end
 
 @implementation HouseParticularTableViewController
@@ -60,6 +71,7 @@
     self.manager = [[RETableViewManager alloc] initWithTableView:self.tableView delegate:self];
     [self createSections];
     [self initDic];
+    [self initiateMenuOptions];
     
     [self getData];
     
@@ -144,19 +156,85 @@
         NSMutableArray *items = [[NSMutableArray alloc] init];
         
         UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-        UIBarButtonItem* genJinBtn =  [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"跟进"] style:UIBarButtonItemStylePlain target:self action:@selector(onBtnClicked:)];
-        genJinBtn.tag = 10001;
+        UIBarButtonItem* callBtn =  [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"打电话new"] style:UIBarButtonItemStylePlain target:self action:@selector(onBtnClicked:)];
+
+        callBtn.enabled = [self.housePtcl.owner_mobile length] > 0;
+
+        callBtn.tag = 10001;
         
-        UIBarButtonItem* weiTuoBtn =  [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"委托"] style:UIBarButtonItemStylePlain target:self action:@selector(onBtnClicked:)];
-        weiTuoBtn.tag = genJinBtn.tag+1;
-        UIBarButtonItem* qianYueBtn =  [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"签约"] style:UIBarButtonItemStylePlain target:self action:@selector(onBtnClicked:)];
-        qianYueBtn.tag = weiTuoBtn.tag+1;
-        [items addObjectsFromArray:[NSArray arrayWithObjects:flexSpace,genJinBtn,flexSpace,weiTuoBtn,flexSpace,qianYueBtn,flexSpace,nil]];
+        UIBarButtonItem* imbtn =  [self imBtn];
+        imbtn.tag = callBtn.tag+1;
+        UIBarButtonItem* moreBtn =  [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"签约"] style:UIBarButtonItemStylePlain target:self action:@selector(onBtnClicked:)];
+        moreBtn.tag = imbtn.tag+1;
+        [items addObjectsFromArray:[NSArray arrayWithObjects:flexSpace,callBtn,flexSpace,imbtn,flexSpace,moreBtn,flexSpace,nil]];
         [self setToolbarItems:items];
     }
     
     return _toolBar;
 }
+
+
+-(UIBarButtonItem*)imBtn
+{
+    UIBarButtonItem*imBtn = nil;
+    
+    if (self.owner == nil)
+    {
+        UIBarButtonItem* imNotOpenBtn = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+        [imNotOpenBtn setImage:[UIImage imageNamed:WEIKAITONGIMAGE]];
+        imNotOpenBtn.enabled = NO;
+        return imNotOpenBtn;
+    }
+    IMSTATE imState = [self.owner imState];
+    [[person me] isImOpened];
+    
+    switch (imState)
+    {
+        case IM_NOT_OPEN:
+        {
+            UIBarButtonItem* imNotOpenBtn = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+            [imNotOpenBtn setImage:[UIImage imageNamed:WEIKAITONGIMAGE]];
+            imNotOpenBtn.enabled = NO;
+            imBtn = imNotOpenBtn;
+        }
+            break;
+        case IM_OPENED_NOT_FRIEND:
+        {
+            UIBarButtonItem* imNotFriendBtn = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(onAddFriend)];
+            [imNotFriendBtn setImage:[UIImage imageNamed:JIAHAOYOUIMAGE]];
+            imBtn = imNotFriendBtn;
+        }
+            break;
+        case IM_FRIEND:
+        {
+            UIBarButtonItem* imFriend = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(onImMessage)];
+            [imFriend setImage:[UIImage imageNamed:FAXIAOXIIMAGE]];
+            imBtn = imFriend;
+        }
+            break;
+        default:
+        {
+            UIBarButtonItem* imNotOpenBtn = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(onImMessage)];
+            [imNotOpenBtn setImage:[UIImage imageNamed:WEIKAITONGIMAGE]];
+            imNotOpenBtn.enabled = NO;
+            imBtn = imNotOpenBtn;
+        }
+            break;
+    }
+    return imBtn;
+}
+
+-(void)onImMessage
+{
+    [self ct_onImMessage:self.owner];
+}
+
+-(void)onAddFriend
+{
+    [self ct_onAddFriend:self.owner];
+    
+}
+
 
 -(void)onBtnClicked:(UIBarButtonItem*)sender
 {
@@ -164,23 +242,52 @@
     {
         case 10001:
         {
-            [self genJinAction];
+//            UIWebView*callWebview =[[UIWebView alloc] initWithFrame:CGRectZero];
+//            NSURL *telURL =[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",self.housePtcl.owner_mobile]];
+//            [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
+//            [self.navigationController.view addSubview:callWebview];
+
+            
+            [self ct_onCallWithPhoneNumber:self.housePtcl.owner_mobile];
         }
             break;
         case 10002:
         {
+            [self.contextMenuTableView dismisWithIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             [self weiTuoAction];
         }
             break;
         case 10003:
         {
-            [self qianYueAction];
+            if ([self isView:self.contextMenuTableView ShowingInSuperView:self.navigationController.view])
+            {
+                [self.contextMenuTableView dismisWithIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            }
+            else
+            {
+                UIEdgeInsets insect = UIEdgeInsetsMake(0, 0, -44-1, 0);
+                [self.contextMenuTableView showInView:self.navigationController.view withEdgeInsets:insect animated:YES];
+                
+            }
+            
+            //[self qianYueAction];
         }
             break;
             
         default:
             break;
     }
+}
+
+-(BOOL)isView:(UIView*)view ShowingInSuperView:(UIView*)superView
+{
+    for (UIView* subView in superView.subviews) {
+        if (subView == view)
+        {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 
@@ -2230,7 +2337,16 @@
      {
          self.housePtcl = ptcl;
          
-         [self reloadUI];
+         [contactDataManager getPsnByJobNo:self.housePtcl.owner_job_no Success:^(id responseObject) {
+             if (responseObject)
+             {
+                 self.owner = responseObject;
+             }
+             [self reloadUI];
+         } failure:^(NSError *error) {
+             
+         }];
+         
          
          HIDEHUD_WINDOW;
      }failure:^(NSError* error)
@@ -2460,6 +2576,150 @@
 -(void)setNeedRefresh
 {
     self.refreshAfterEdit = YES;
+}
+
+
+
+- (void)initiateMenuOptions {
+    self.menuTitles = @[@"关闭",
+                        @"新增跟进",
+                        @"新增委托",
+                        @"房源实勘",
+                        @"添加钥匙"
+                        ];
+    
+    self.menuIcons = @[[UIImage imageNamed:@"MenuClose"],
+                       [UIImage imageNamed:@"跟进"],
+                       [UIImage imageNamed:@"委托"],
+                       [UIImage imageNamed:@"MenuAddRP"],
+                       [UIImage imageNamed:@"MenuAddKey"]];
+}
+
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    //should be called after rotation animation completed
+    [self.contextMenuTableView reloadData];
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    
+    [self.contextMenuTableView updateAlongsideRotation];
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size
+       withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    
+    
+    [coordinator animateAlongsideTransition:nil completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        //should be called after rotation animation completed
+        [self.contextMenuTableView reloadData];
+    }];
+    [self.contextMenuTableView updateAlongsideRotation];
+    
+}
+
+
+-(YALContextMenuTableView*)contextMenuTableView
+{
+    if (!_contextMenuTableView)
+    {
+        _contextMenuTableView = [[YALContextMenuTableView alloc]initWithTableViewDelegateDataSource:self];
+        _contextMenuTableView.animationDuration = 0.03;
+        _contextMenuTableView.yalDelegate = self;
+        _contextMenuTableView.transform = CGAffineTransformMakeScale (1,-1);
+        UINib *cellNib = [UINib nibWithNibName:menuCellIdentifier bundle:nil];
+        [_contextMenuTableView registerNib:cellNib forCellReuseIdentifier:menuCellIdentifier];
+    }
+    return _contextMenuTableView;
+}
+
+
+#pragma mark - YALContextMenuTableViewDelegate
+
+- (void)contextMenuTableView:(YALContextMenuTableView *)contextMenuTableView didDismissWithIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"Menu dismissed with indexpath = %@", indexPath);
+}
+
+#pragma mark - UITableViewDataSource, UITableViewDelegate
+
+- (void)tableView:(YALContextMenuTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //NSIndexPath*path = [NSIndexPath indexPathForRow:0 inSection:0];
+    //[tableView dismisWithIndexPath:path];
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView == _contextMenuTableView)
+    {
+        return 65;
+    }
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.menuTitles.count;
+}
+
+- (UITableViewCell *)tableView:(YALContextMenuTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    ContextMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:menuCellIdentifier forIndexPath:indexPath];
+    
+    if (cell) {
+        NSInteger index = self.menuTitles.count - 1 - indexPath.row;
+        cell.menuTitleLabel.text = [self.menuTitles objectAtIndex:index];
+        cell.menuImageView.image = [self.menuIcons objectAtIndex:index];
+        cell.tag = index;
+        cell.delegate = self;
+        
+
+//        UIImage*image = [UIImage imageNamed:@"AddToFriendsIcn"];
+//        CGFloat top = 25; // 顶端盖高度
+//        CGFloat bottom = 25 ; // 底端盖高度
+//        CGFloat left = 25; // 左端盖宽度
+//        CGFloat right = 25; // 右端盖宽度
+//        UIEdgeInsets insets = UIEdgeInsetsMake(top, left, bottom, right);
+//        image = [image resizableImageWithCapInsets:insets resizingMode:UIImageResizingModeTile];
+//        [cell.menuImageView setImage:image];
+
+        
+    }
+    
+    return cell;
+}
+
+
+-(void)didTapedOnImageView:(id)sender
+{
+    UIView*view = sender;
+    switch (view.tag)
+    {
+        case 0:
+        {
+        }
+            break;
+        case 1:
+        {
+            [self genJinAction];
+        }
+            break;
+        case 2:
+        {
+            [self weiTuoAction];
+        }
+        case 3:
+        {
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    [_contextMenuTableView dismisWithIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 }
 
 @end

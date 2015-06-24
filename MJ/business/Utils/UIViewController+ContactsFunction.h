@@ -17,5 +17,6 @@
 
 -(void)ct_onCall:(person*)psn;
 -(void)ct_onShortMessage:(person*)psn;
+-(void)ct_onCallWithPhoneNumber:(NSString*)phoneNum;
 
 @end

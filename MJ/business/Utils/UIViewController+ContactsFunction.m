@@ -75,6 +75,14 @@
     [self.view addSubview:callWebview];
 }
 
+-(void)ct_onCallWithPhoneNumber:(NSString*)phoneNum
+{
+    UIWebView*callWebview =[[UIWebView alloc] initWithFrame:CGRectZero];
+    NSURL *telURL =[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phoneNum]];
+    [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
+    [self.view addSubview:callWebview];
+}
+
 -(void)ct_onShortMessage:(person*)psn
 {
     
