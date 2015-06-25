@@ -12,7 +12,7 @@
 @interface Sqlite3DataPersistence : NSObject<DATAPERISTENCEPROTOCOL>
 
 
-
++(NSString*)getDatabasePath;
 +(void)insertObj:(id<SQLPROTOCOL>)obj ToTable:(NSString*)tableName;
 +(NSArray*)seachRecordWithCondition:(NSString*)cond;
 +(void)deleteTable:(NSString*)tabName;

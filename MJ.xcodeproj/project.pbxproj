@@ -75,6 +75,8 @@
 		4A5D244E1A4AC17500546698 /* cartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D244D1A4AC17500546698 /* cartTableViewCell.m */; };
 		4A5D24511A4AF21000546698 /* orderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D24501A4AF21000546698 /* orderTableViewCell.m */; };
 		4A5D24541A4AF22900546698 /* orderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5D24531A4AF22900546698 /* orderTableViewController.m */; };
+		4A61F30F1B3AA71F000845AB /* HouseSurvey.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A61F30E1B3AA71F000845AB /* HouseSurvey.m */; };
+		4A61F3121B3AAD0F000845AB /* imageStorageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A61F3111B3AAD0F000845AB /* imageStorageInfo.m */; };
 		4A6685991B07225900B0E999 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6685961B07225900B0E999 /* libMobClickLibrary.a */; };
 		4A6865A11A7374EF005394DD /* HouseSelectBuildingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6865A01A7374EF005394DD /* HouseSelectBuildingTableViewController.m */; };
 		4A6865A51A737573005394DD /* buildingItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6865A31A737573005394DD /* buildingItemTableViewCell.m */; };
@@ -827,6 +829,10 @@
 		4A5D24501A4AF21000546698 /* orderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = orderTableViewCell.m; sourceTree = "<group>"; };
 		4A5D24521A4AF22900546698 /* orderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = orderTableViewController.h; sourceTree = "<group>"; };
 		4A5D24531A4AF22900546698 /* orderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = orderTableViewController.m; sourceTree = "<group>"; };
+		4A61F30D1B3AA71F000845AB /* HouseSurvey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HouseSurvey.h; path = HouseSurvey/HouseSurvey.h; sourceTree = "<group>"; };
+		4A61F30E1B3AA71F000845AB /* HouseSurvey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HouseSurvey.m; path = HouseSurvey/HouseSurvey.m; sourceTree = "<group>"; };
+		4A61F3101B3AAD0F000845AB /* imageStorageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = imageStorageInfo.h; path = HouseSurvey/imageStorageInfo.h; sourceTree = "<group>"; };
+		4A61F3111B3AAD0F000845AB /* imageStorageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = imageStorageInfo.m; path = HouseSurvey/imageStorageInfo.m; sourceTree = "<group>"; };
 		4A6685961B07225900B0E999 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		4A6685971B07225900B0E999 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		4A6685981B07225900B0E999 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
@@ -2127,6 +2133,17 @@
 				4A5665521A4C127A00C3BA22 /* sendMessageViewController.xib */,
 			);
 			path = message;
+			sourceTree = "<group>";
+		};
+		4A61F30C1B3AA6E5000845AB /* HouseSurvey */ = {
+			isa = PBXGroup;
+			children = (
+				4A61F30D1B3AA71F000845AB /* HouseSurvey.h */,
+				4A61F30E1B3AA71F000845AB /* HouseSurvey.m */,
+				4A61F3101B3AAD0F000845AB /* imageStorageInfo.h */,
+				4A61F3111B3AAD0F000845AB /* imageStorageInfo.m */,
+			);
+			name = HouseSurvey;
 			sourceTree = "<group>";
 		};
 		4A6685951B07225900B0E999 /* UMAnalytics_Sdk_3.5.8 */ = {
@@ -4274,6 +4291,7 @@
 		B9FF4B341A245FB300FE413E /* House */ = {
 			isa = PBXGroup;
 			children = (
+				4A61F30C1B3AA6E5000845AB /* HouseSurvey */,
 				4A9C06E61B280F3A00BE5AA1 /* HouseParticularNewDesigning */,
 				4A9865101B0EDCD300462388 /* FilterMenu */,
 				B98BD4AB1A60464F003A35BE /* HouseDataPuller.h */,
@@ -4846,6 +4864,7 @@
 				4A9D02031A60521700600BA0 /* DataPersistence.m in Sources */,
 				4A9ED8A71AFC970800227498 /* UIImageView+LoadPortraitOfPerson.m in Sources */,
 				4A56C70D1A8CAF6700AF8CB6 /* updateDataPuller.m in Sources */,
+				4A61F30F1B3AA71F000845AB /* HouseSurvey.m in Sources */,
 				4AAE1A521AF1C96000F01D95 /* UIButton+Badge.m in Sources */,
 				4AA18AA01AEF549A00685603 /* MainViewController.m in Sources */,
 				4A5D24541A4AF22900546698 /* orderTableViewController.m in Sources */,
@@ -5077,6 +5096,7 @@
 				4AA18AA31AEF549A00685603 /* PushNotificationViewController.m in Sources */,
 				4AE0F5B11B293C9A000B4512 /* houseSingleFieldCell.m in Sources */,
 				4A9865211B0EDCD300462388 /* MJMenuModel.m in Sources */,
+				4A61F3121B3AAD0F000845AB /* imageStorageInfo.m in Sources */,
 				B944458A1A62A6860033E998 /* SignAddController.m in Sources */,
 				4AA18A5D1AEF549A00685603 /* PSTGridLayoutRow.m in Sources */,
 				B98BD5701A609185003A35BE /* RECreditCardItem.m in Sources */,

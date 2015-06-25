@@ -64,22 +64,13 @@
 
 -(void)initData
 {
-//    task_performer_no	人资部	DEPT_NO000041	100
-//    task_performer_no	财务部	DEPT_NO000066	101
-//    task_performer_no	培训部	DEPT_NO000040	102
-//    task_performer_no	行政部	DEPT_NO000031	104
-//    task_performer_no	网络部	DEPT_NO000039	105
-//    task_performer_no	物流部	DEPT_NO0000000119	106
-//    task_performer_no	权证部	DEPT_NO000068	107
-//    task_performer_no	企划部	DEPT_NO000064	108
-//    task_performer_no	签约部	DEPT_NO000067	109
-//    task_performer_no	客服部	DEPT_NO000069	110
+    //task_performer_no
     deptArr = @[
                 @{@"人资部":@"DEPT_NO000041"},
-                @{@"财务部":@"DEPT_NO000066"},
+                @{@"集团财务中心":@"DEPT_NO000066"},
                 @{@"培训部":@"DEPT_NO000040"},
                 @{@"行政部":@"DEPT_NO000031"},
-                @{@"网络部":@"DEPT_NO000039"},
+                @{@"营销部":@"DEPT_NO000039"},
                 @{@"物流部":@"DEPT_NO0000000119"},
                 @{@"权证部":@"DEPT_NO000068"},
                 @{@"企划部":@"DEPT_NO000064"},

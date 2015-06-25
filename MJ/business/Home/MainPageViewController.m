@@ -30,7 +30,6 @@
 #import "AnncListViewController.h"
 #import "MJRefresh.h"
 
-
 #import "petionDetailsTableViewController.h"
 
 #import "MessagePageViewController.h"
@@ -52,6 +51,7 @@
 #import "UIImageView+EMWebCache.h"
 #import "BannerData.h"
 #import "WebViewController.h"
+#import "Sqlite3DataPersistence.h"
 
 #define TABBARTITLECOLOR [UIColor colorWithRed:1/255.0f green:0xaf/255.0f blue:0xe8/255.0f alpha:1]
 #define ALERTBTN_COLOR [UIColor colorWithRed:0xf8/255.0f green:0x64/255.0f blue:0x58/255.0f alpha:1]
@@ -129,8 +129,6 @@
 {
     [super viewDidLoad];
     
-    
-    
 
     
     self.navigationController.navigationBar.hidden = NO;
@@ -182,6 +180,13 @@
     //注册通知
     _indicatorChanged = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(indicatorCountChanged) name:MAINPAGE_INDICATOR_NUMBER_CHANGED object:nil];
+    
+    
+    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+    UIVisualEffectView *effectview = [[UIVisualEffectView alloc] initWithEffect:blur];
+    effectview.frame = self.view.frame;
+    
+    [self.view addSubview:effectview];
 }
 
 -(void)indicatorCountChanged
