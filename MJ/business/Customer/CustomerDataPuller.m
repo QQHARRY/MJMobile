@@ -174,6 +174,14 @@
      }];
 }
 
+
+/**
+ *  编辑客户信息
+ *
+ *  @param dic     新的客户信息
+ *  @param success 成功
+ *  @param failure 失败
+ */
 +(void)pullEditCustomer:(NSDictionary *)dic Success:(void(^)(id obj))success failure:(void (^)(NSError *error))failure
 {
     
@@ -186,6 +194,7 @@
     [NetWorkManager PostWithApiName:API_EDIT_CUSTOM parameters:dic1 success:
      ^(id responseObject)
      {
+         NSString *jsonString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {

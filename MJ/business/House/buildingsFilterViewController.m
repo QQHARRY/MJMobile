@@ -46,7 +46,7 @@
                              
                              [self.queryCondition removeAllObjects];
                              
-                             [self.queryCondition setValue:self.buildingsName.value forKey:@"buildings_name"];
+                             [self.queryCondition setValue:self.buildingsName.value forKey:@"domain_name"];
                              self.buildingsSel.needRefresh = YES;
                              [self.navigationController popViewControllerAnimated:YES];
                              

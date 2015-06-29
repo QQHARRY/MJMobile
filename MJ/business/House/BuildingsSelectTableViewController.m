@@ -115,7 +115,7 @@
     NSString*FromID = @"0";
     if (self.buildingArr.count > 0)
     {
-        FromID = ((buildings*)[self.buildingArr objectAtIndex:[self.buildingArr count]-1]).buildings_dict_no;
+        FromID = ((buildings*)[self.buildingArr objectAtIndex:[self.buildingArr count]-1]).domain_no;
     }
     [filterDic setValue:FromID forKey:@"FromID"];
     [filterDic setValue:@"" forKey:@"ToID"];
@@ -181,10 +181,10 @@
     
     if (bld && cell)
     {
-        cell.buildings_name.text = bld.buildings_name;
+        cell.buildings_name.text = bld.domain_name;
         cell.urbanname.text = bld.urbanname;
         cell.areaname.text = bld.areaname;
-        cell.Buildings_address.text = bld.Buildings_address;
+        cell.Buildings_address.text = bld.domain_address;
     }
     
     return cell;

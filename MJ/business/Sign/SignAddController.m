@@ -186,7 +186,7 @@
         [param setValue:[person me].job_no forKey:@"job_no"];
         [param setValue:[person me].password forKey:@"acc_password"];
         [param setValue:[UtilFun getUDID] forKey:@"DeviceID"];
-        [param setValue:self.sid forKey:@"house_trade_no"];
+        [param setValue:self.sid forKey:@"trade_no"];
         if (!self.customerItem.value || self.customerItem.value.length <= 0)
         {
             PRESENTALERT(@"错 误", @"请选择客户", @"O K", self);

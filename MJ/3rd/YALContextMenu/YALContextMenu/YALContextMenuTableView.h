@@ -23,6 +23,7 @@
  @param indexPath - indexPath of cell selected
 */
 - (void)contextMenuTableView:(YALContextMenuTableView *)contextMenuTableView didDismissWithIndexPath:(NSIndexPath *)indexPath;
+-(void)contextMenuTableViewDidDismissingOnBlank;
 
 @end
 

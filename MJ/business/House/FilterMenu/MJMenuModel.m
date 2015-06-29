@@ -51,7 +51,7 @@
                 
                 for (NSDictionary *urban in urbanAreaList)
                 {
-                    NSString*urbanName = [[urban objectForKey:@"dict"] objectForKey:@"areas_name"];
+                    NSString*urbanName = [[urban objectForKey:@"dict"] objectForKey:@"area_name"];
                     NSString*urbanNo = [urban objectForKey:@"no"];
                     //NSLog(@"-%@ %@",urbanName,urbanNo);
                     
@@ -70,8 +70,8 @@
                     NSArray*areaArr = [urban objectForKey:@"sections"];
                     for (id area in areaArr)
                     {
-                        NSString*areaName = [area objectForKey:@"areas_name"];
-                        NSString*areaNo = [area objectForKey:@"areas_current_no"];
+                        NSString*areaName = [area objectForKey:@"area_name"];
+                        NSString*areaNo = [area objectForKey:@"area_cno"];
                         //NSLog(@"    +%@%@",areaName,areaNo);
                         
                         

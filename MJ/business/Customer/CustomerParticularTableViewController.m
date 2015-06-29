@@ -221,7 +221,7 @@
             NSString *hno = [areaDict objectForKey:@"no"];
             if ([hno isEqualToString:self.particulars.requirement_house_urban])
             {
-                l = [[areaDict objectForKey:@"dict"] objectForKey:@"areas_name"];
+                l = [[areaDict objectForKey:@"dict"] objectForKey:@"area_name"];
                 break;
             }
         }
@@ -237,9 +237,9 @@
             BOOL bFind = false;
             for (NSDictionary *sectionDict in sectionList)
             {
-                if ([[sectionDict objectForKey:@"areas_current_no"] isEqualToString:self.particulars.requirement_house_area])
+                if ([[sectionDict objectForKey:@"area_cno"] isEqualToString:self.particulars.requirement_house_area])
                 {
-                    l = [sectionDict objectForKey:@"areas_name"];
+                    l = [sectionDict objectForKey:@"area_name"];
                     bFind = true;
                     break;
                 }

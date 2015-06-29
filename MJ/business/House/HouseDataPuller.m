@@ -17,8 +17,36 @@
 #import "buildings.h"
 #import "building.h"
 #import "postFileUtils.h"
+#import <objc/runtime.h>
+#import "dictionaryManager.h"
+#import "houseUnit.h"
 
 @implementation HouseDataPuller
+
+
+
++(NSDictionary*)paramDictionaryFromFilter:(HouseFilter*)filter
+{
+    NSMutableDictionary*dic = [[NSMutableDictionary alloc] init];
+    Class cls = [filter class];
+    unsigned int ivarsCnt = 0;
+    Ivar *ivars = class_copyIvarList(cls, &ivarsCnt);
+    
+    for (const Ivar *p = ivars; p < ivars + ivarsCnt; ++p)
+    {
+        NSString *key = [NSString stringWithUTF8String:ivar_getName(*p)];
+        id value = object_getIvar(filter, *p);
+        if (value && [value isKindOfClass:[NSString class]] &&
+            ((NSString*)value).length > 0)
+        {
+            [dic setValue:value forKey:key];
+        }
+    }
+    
+    free(ivars);
+    
+    return dic;
+}
 
 +(void)pullDataWithFilter:(HouseFilter *)filter Success:(void (^)(NSArray *houseDetailList))success failure:(void (^)(NSError *error))failure;
 {
@@ -26,118 +54,128 @@
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setValue:[person me].job_no forKey:@"job_no"];
     [param setValue:[person me].password forKey:@"acc_password"];
-    if (filter.consignment_type && filter.consignment_type.length > 0)
-    {
-        [param setValue:filter.consignment_type forKey:@"consignment_type"];
-    }
-    if (filter.trade_type && filter.trade_type.length > 0)
-    {
-        [param setValue:filter.trade_type forKey:@"trade_type"];
-    }
-    if (filter.sale_trade_state && filter.sale_trade_state.length > 0)
-    {
-        [param setValue:filter.sale_trade_state forKey:@"sale_trade_state"];
-    }
-    if (filter.lease_trade_state && filter.lease_trade_state.length > 0)
-    {
-        [param setValue:filter.lease_trade_state forKey:@"lease_trade_state"];
-    }
-    if (filter.hall_num && filter.hall_num.length > 0)
-    {
-        [param setValue:filter.hall_num forKey:@"hall_num"];
-    }
-    if (filter.room_num && filter.room_num.length > 0)
-    {
-        [param setValue:filter.room_num forKey:@"room_num"];
-    }
-    if (filter.buildname && filter.buildname.length > 0)
-    {
-        [param setValue:filter.buildname forKey:@"buildname"];
-    }
-    if (filter.house_unit && filter.house_unit.length > 0)
-    {
-        [param setValue:filter.house_unit forKey:@"house_unit"];
-    }
-    if (filter.house_fluor && filter.house_fluor.length > 0)
-    {
-        [param setValue:filter.house_fluor forKey:@"house_fluor"];
-    }
-    if (filter.house_tablet && filter.house_tablet.length > 0)
-    {
-        [param setValue:filter.house_tablet forKey:@"house_tablet"];
-    }
-    if (filter.house_driect && filter.house_driect.length > 0)
-    {
-        [param setValue:filter.house_driect forKey:@"house_driect"];
-    }
-    if (filter.structure_area_from && filter.structure_area_from.length > 0)
-    {
-        [param setValue:filter.structure_area_from forKey:@"structure_area_from"];
-    }
-    if (filter.structure_area_to && filter.structure_area_to.length > 0)
-    {
-        [param setValue:filter.structure_area_to forKey:@"structure_area_to"];
-    }
-    if (filter.housearea && filter.housearea.length > 0)
-    {
-        [param setValue:filter.housearea forKey:@"housearea"];
-    }
-    if (filter.houseurban && filter.houseurban.length > 0)
-    {
-        [param setValue:filter.houseurban forKey:@"houseurban"];
-    }
-    if (filter.fitment_type && filter.fitment_type.length > 0)
-    {
-        [param setValue:filter.fitment_type forKey:@"fitment_type"];
-    }
-    if (filter.house_floor_from && filter.house_floor_from.length > 0)
-    {
-        [param setValue:filter.house_floor_from forKey:@"house_floor_from"];
-    }
-    if (filter.house_floor_to && filter.house_floor_to.length > 0)
-    {
-        [param setValue:filter.house_floor_to forKey:@"house_floor_to"];
-    }
-    if (filter.sale_value_from && filter.sale_value_from.length > 0)
-    {
-        [param setValue:filter.sale_value_from forKey:@"sale_value_from"];
-    }
-    if (filter.sale_value_to && filter.sale_value_to.length > 0)
-    {
-        [param setValue:filter.sale_value_to forKey:@"sale_value_to"];
-    }
-    if (filter.lease_value_from && filter.lease_value_from.length > 0)
-    {
-        [param setValue:filter.lease_value_from forKey:@"lease_value_from"];
-    }
-    if (filter.lease_value_to && filter.lease_value_to.length > 0)
-    {
-        [param setValue:filter.lease_value_to forKey:@"lease_value_to"];
-    }
-    if (filter.keyword && filter.keyword.length > 0)
-    {
-        [param setValue:filter.keyword forKey:@"Keyword"];
-    }
-    if (filter.FromID && filter.FromID.length > 0)
-    {
-        [param setValue:filter.FromID forKey:@"FromID"];
-    }
-    if (filter.ToID && filter.ToID.length > 0)
-    {
-        [param setValue:filter.ToID forKey:@"ToID"];
-    }
-    if (filter.Count && filter.Count.length > 0)
-    {
-        [param setValue:filter.Count forKey:@"Count"];
-    }
-    if (filter.search_job_no && filter.search_job_no.length > 0)
-    {
-        [param setValue:filter.search_job_no forKey:@"search_job_no"];
-    }
-    if (filter.search_dept_no && filter.search_dept_no.length > 0)
-    {
-        [param setValue:filter.search_dept_no forKey:@"search_dept_no"];
-    }
+    
+    
+    NSDictionary*dic = [filter convert2Dic];
+    [param addEntriesFromDictionary:dic];
+    
+    
+#if 0
+    
+    
+//    if (filter.consignment_type && filter.consignment_type.length > 0)
+//    {
+//        [param setValue:filter.consignment_type forKey:@"consignment_type"];
+//    }
+//    if (filter.trade_type && filter.trade_type.length > 0)
+//    {
+//        [param setValue:filter.trade_type forKey:@"trade_type"];
+//    }
+//    if (filter.sale_state && filter.sale_state.length > 0)
+//    {
+//        [param setValue:filter.sale_state forKey:@"sale_state"];
+//    }
+//    if (filter.lease_state && filter.lease_state.length > 0)
+//    {
+//        [param setValue:filter.lease_state forKey:@"lease_state"];
+//    }
+//    if (filter.hall_num && filter.hall_num.length > 0)
+//    {
+//        [param setValue:filter.hall_num forKey:@"hall_num"];
+//    }
+//    if (filter.room_num && filter.room_num.length > 0)
+//    {
+//        [param setValue:filter.room_num forKey:@"room_num"];
+//    }
+//    if (filter.buildname && filter.buildname.length > 0)
+//    {
+//        [param setValue:filter.buildname forKey:@"buildname"];
+//    }
+//    if (filter.unit_name && filter.unit_name.length > 0)
+//    {
+//        [param setValue:filter.unit_name forKey:@"house_unit"];
+//    }
+//    if (filter.house_floor && filter.house_floor.length > 0)
+//    {
+//        [param setValue:filter.house_floor forKey:@"house_fluor"];
+//    }
+//    if (filter.house_tablet && filter.house_tablet.length > 0)
+//    {
+//        [param setValue:filter.house_tablet forKey:@"house_tablet"];
+//    }
+//    if (filter.house_driect && filter.house_driect.length > 0)
+//    {
+//        [param setValue:filter.house_driect forKey:@"house_driect"];
+//    }
+//    if (filter.structure_area_from && filter.structure_area_from.length > 0)
+//    {
+//        [param setValue:filter.structure_area_from forKey:@"structure_area_from"];
+//    }
+//    if (filter.structure_area_to && filter.structure_area_to.length > 0)
+//    {
+//        [param setValue:filter.structure_area_to forKey:@"structure_area_to"];
+//    }
+//    if (filter.house_area && filter.house_area.length > 0)
+//    {
+//        [param setValue:filter.house_area forKey:@"housearea"];
+//    }
+//    if (filter.house_urban && filter.house_urban.length > 0)
+//    {
+//        [param setValue:filter.house_urban forKey:@"houseurban"];
+//    }
+//    if (filter.fitment_type && filter.fitment_type.length > 0)
+//    {
+//        [param setValue:filter.fitment_type forKey:@"fitment_type"];
+//    }
+//    if (filter.house_floor_from && filter.house_floor_from.length > 0)
+//    {
+//        [param setValue:filter.house_floor_from forKey:@"house_floor_from"];
+//    }
+//    if (filter.house_floor_to && filter.house_floor_to.length > 0)
+//    {
+//        [param setValue:filter.house_floor_to forKey:@"house_floor_to"];
+//    }
+//    if (filter.sale_value_from && filter.sale_value_from.length > 0)
+//    {
+//        [param setValue:filter.sale_value_from forKey:@"sale_value_from"];
+//    }
+//    if (filter.sale_value_to && filter.sale_value_to.length > 0)
+//    {
+//        [param setValue:filter.sale_value_to forKey:@"sale_value_to"];
+//    }
+//    if (filter.lease_value_from && filter.lease_value_from.length > 0)
+//    {
+//        [param setValue:filter.lease_value_from forKey:@"lease_value_from"];
+//    }
+//    if (filter.lease_value_to && filter.lease_value_to.length > 0)
+//    {
+//        [param setValue:filter.lease_value_to forKey:@"lease_value_to"];
+//    }
+//    if (filter.Keyword && filter.Keyword.length > 0)
+//    {
+//        [param setValue:filter.Keyword forKey:@"Keyword"];
+//    }
+//    if (filter.FromID && filter.FromID.length > 0)
+//    {
+//        [param setValue:filter.FromID forKey:@"FromID"];
+//    }
+//    if (filter.ToID && filter.ToID.length > 0)
+//    {
+//        [param setValue:filter.ToID forKey:@"ToID"];
+//    }
+//    if (filter.Count && filter.Count.length > 0)
+//    {
+//        [param setValue:filter.Count forKey:@"Count"];
+//    }
+//    if (filter.search_job_no && filter.search_job_no.length > 0)
+//    {
+//        [param setValue:filter.search_job_no forKey:@"search_job_no"];
+//    }
+//    if (filter.search_dept_no && filter.search_dept_no.length > 0)
+//    {
+//        [param setValue:filter.search_dept_no forKey:@"search_dept_no"];
+//    }
+#endif
     [NetWorkManager PostWithApiName:API_HOUSE_LIST parameters:param success:^(id responseObject)
      {
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
@@ -176,9 +214,10 @@
             // search area
              for (NSDictionary *dict in src)
              {
-                 if ([[dict valueForKey:@"areas_parent_no"] isEqualToString:@"AREAS_NO000008"])
+                 //只取西安市的.西安市的编号为8
+                 if ([[dict valueForKey:@"area_pno"] isEqualToString:@"8"])
                  {
-                     NSDictionary *areaDict = @{@"no" : [dict valueForKey:@"areas_current_no"],
+                     NSDictionary *areaDict = @{@"no" : [dict valueForKey:@"area_cno"],
                                                 @"dict" : dict,
                                                 @"sections" : [NSMutableArray array]};
                      [dst addObject:areaDict];
@@ -189,7 +228,7 @@
              {
                  for (NSDictionary *areaDict in dst)
                  {
-                     if ([[dict valueForKey:@"areas_parent_no"] isEqualToString:[areaDict objectForKey:@"no"]])
+                     if ([[dict valueForKey:@"area_pno"] isEqualToString:[areaDict objectForKey:@"no"]])
                      {
                          [[areaDict objectForKey:@"sections"] addObject:dict];
                          break;
@@ -211,7 +250,7 @@
 {
     NSDictionary *parameters = @{@"job_no":[person me].job_no,
                                  @"acc_password":[person me].password,
-                                 @"house_trade_no":dtl.house_trade_no,
+                                 @"trade_no":dtl.trade_no,
                                  };
     
     
@@ -224,6 +263,21 @@
              HouseParticulars*housePtcl = [[HouseParticulars alloc] init];
              [housePtcl initWithDictionary:[[resultDic  objectForKey:@"EstateDetailsNode"] objectAtIndex:0]];
              
+             
+             
+             
+             NSArray*tradeTypeDicArr = [dictionaryManager getItemArrByType:DIC_TRADE_TYPE];
+             
+             
+             for (DicItem *di in tradeTypeDicArr)
+             {
+                 if ([di.dict_value isEqualToString:housePtcl.trade_type])
+                 {
+                     housePtcl.trade_type = di.dict_label;
+                     break;
+                 }
+             }
+            
              
              success(housePtcl);
          }
@@ -239,7 +293,7 @@
 {
     NSDictionary *parameters = @{@"job_no":[person me].job_no,
                                  @"acc_password":[person me].password,
-                                 @"house_trade_no":dtl.house_trade_no,
+                                 @"trade_no":dtl.trade_no,
                                  };
     
     
@@ -327,7 +381,7 @@
 {
     NSDictionary *parameters = @{@"job_no":[person me].job_no,
                                  @"acc_password":[person me].password,
-                                 @"buildings_dict_no":buildingNO,
+                                 @"domain_no":buildingNO,
                                  };
     
     
@@ -369,23 +423,35 @@
      ^(id responseObject)
      {
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-         NSString*status = [resultDic objectForKey:@"Status"];
-         NSInteger iStatus = [status intValue];
-         HouseParticulars*housePtl = [[HouseParticulars alloc] init];
-         if (iStatus == 1 || iStatus == 2 || iStatus == 3)
+         ([self checkReturnStatus:resultDic Success:^(id responseObject)
          {
-             NSDictionary* houseInfoNode = [[resultDic objectForKey:@"HouseInfoNode"] objectAtIndex:0];
-             if (houseInfoNode)
+             
+             NSString*status = [resultDic objectForKey:@"TradeStatus"];
+             NSInteger iStatus = [status intValue];
+             HouseParticulars*housePtl = [[HouseParticulars alloc] init];
+             if (iStatus == 1 || iStatus == 2 || iStatus == 3)
              {
-                 [housePtl initWithDictionary:houseInfoNode];
+                 NSDictionary* houseInfoNode = [[resultDic objectForKey:@"HouseInfoNode"] objectAtIndex:0];
+                 if (houseInfoNode)
+                 {
+                     [housePtl initWithDictionary:houseInfoNode];
+                 }
+                 else
+                 {
+                     
+                 }
              }
-             else
-             {
-                 
-             }
+             
+             //注意这里为了方便,将status值保存到了trade_type变量中
+             //stauts值的含义见文档接口29
+             housePtl.trade_type = status;
+             success(housePtl);
          }
-         housePtl.trade_type = status;
-         success(housePtl);
+                          failure:^(NSError *error)
+         {
+             failure(error);
+         } ShouldReturnWhenSuccess:YES]);
+         
          
      }
                             failure:^(NSError *error)
@@ -453,7 +519,7 @@
 }
 
 
-+(void)pushAddHouse:(NSDictionary *)partlDic Success:(void (^)(NSString *house_trade_no,NSString *buildings_picture))success failure:(void (^)(NSError *error))failure
++(void)pushAddHouse:(NSDictionary *)partlDic Success:(void (^)(NSString *trade_no,NSString *buildings_picture))success failure:(void (^)(NSError *error))failure
 {
     NSMutableDictionary*mutDic = [[NSMutableDictionary alloc] initWithDictionary:partlDic];
     [mutDic setValue:[person me].job_no forKey:@"job_no"];
@@ -467,7 +533,7 @@
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          if ([bizManager checkReturnStatus:resultDic Success:nil failure:failure ShouldReturnWhenSuccess:NO])
          {
-             success([resultDic objectForKey:@"house_trade_no"],[resultDic objectForKey:@"buildings_picture"]);
+             success([resultDic objectForKey:@"trade_no"],[resultDic objectForKey:@"buildings_picture"]);
          }
          
          
@@ -502,6 +568,42 @@
             failure(error);
         }
     }];
+}
+
+
++(void)pullHouseUnitDetailsByBuilding:(NSString *)buildingNo Success:(void (^)(NSArray*unitsArr))success failure:(void (^)(NSError *error))failure
+{
+    NSMutableDictionary*mutDic = [[NSMutableDictionary alloc] init];
+    [mutDic setValue:[person me].job_no forKey:@"job_no"];
+    [mutDic setValue:[person me].password forKey:@"acc_password"];
+    [mutDic setValue:buildingNo forKey:@"building_no"];
+    
+    
+    [NetWorkManager PostWithApiName:API_HOUSE_GET_HOUSEUNIT_DETAILS parameters:mutDic success:
+     ^(id responseObject)
+     {
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         {
+             NSMutableArray*houseUnitsArr = [[NSMutableArray alloc] init];
+             NSArray*arr = [resultDic objectForKey:@"EstateUnitsDetailsNode"];
+             if (arr)
+             {
+                 for (NSDictionary*houseUnitDic in arr)
+                 {
+                     houseUnit*unt = [[houseUnit alloc] init];
+                     [unt initWithDictionary:houseUnitDic];
+                     [houseUnitsArr addObject:unt];
+                 }
+             }
+             success(houseUnitsArr);
+         }
+         
+     }
+                            failure:^(NSError *error)
+     {
+         failure(error);
+     }];
 }
 
 

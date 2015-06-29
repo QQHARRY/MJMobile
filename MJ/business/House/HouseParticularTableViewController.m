@@ -28,8 +28,8 @@
 #import "ContextMenuCell.h"
 #import "UIViewController+ContactsFunction.h"
 #import "contactDataManager.h"
-
-
+#import "UIViewController+addGaussianBlurView.h"
+#import "HouseSurvey.h"
 
 
 #define ITEMBARHEIGHT 44
@@ -47,6 +47,9 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
 @property (nonatomic, strong) NSArray *menuIcons;
 @property (nonatomic, strong) YALContextMenuTableView*contextMenuTableView;
 @property (nonatomic, strong)person*owner;
+@property (nonatomic, strong)UIBarButtonItem*moreBtn;
+@property (nonatomic, strong)UIVisualEffectView* effectview;
+@property (nonatomic, strong)UIImageView* bluringView;
 @end
 
 @implementation HouseParticularTableViewController
@@ -147,30 +150,46 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
 
 -(UIToolbar*)toolBar
 {
-    if (_toolBar == nil)
+    //if (_toolBar == nil)
     {
-        _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-ITEMBARHEIGHT-NAVGATIONBAR_H, self.view.frame.size.width, ITEMBARHEIGHT)];
-        
-        _toolBar.backgroundColor = [UIColor redColor];
+//        _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.navigationController.view.frame.size.height-ITEMBARHEIGHT, self.view.frame.size.width, ITEMBARHEIGHT)];
+//        
+//        
+//        
+//        
+//        [self.navigationController.view addSubview:_toolBar];
         
         NSMutableArray *items = [[NSMutableArray alloc] init];
         
         UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-        UIBarButtonItem* callBtn =  [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"打电话new"] style:UIBarButtonItemStylePlain target:self action:@selector(onBtnClicked:)];
-
+        
+        
+        
+        UIBarButtonItem* callBtn =  [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(onBtnClicked:)];
+        [callBtn setBackgroundImage:[UIImage imageNamed:@"房源详情_打电话"] forState:UIControlStateNormal style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
+        [callBtn setBackgroundImage:[UIImage imageNamed:@"房源详情_打电话"] forState:UIControlStateHighlighted style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
         callBtn.enabled = [self.housePtcl.owner_mobile length] > 0;
-
         callBtn.tag = 10001;
+        
         
         UIBarButtonItem* imbtn =  [self imBtn];
         imbtn.tag = callBtn.tag+1;
-        UIBarButtonItem* moreBtn =  [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"签约"] style:UIBarButtonItemStylePlain target:self action:@selector(onBtnClicked:)];
+        
+        
+        UIBarButtonItem* moreBtn =  [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(onBtnClicked:)];
+        [moreBtn setBackgroundImage:[UIImage imageNamed:@"房源详情_更多"] forState:UIControlStateNormal style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
+        [moreBtn setBackgroundImage:[UIImage imageNamed:@"房源详情_更多"] forState:UIControlStateHighlighted style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
         moreBtn.tag = imbtn.tag+1;
+        
+        _moreBtn = moreBtn;
+        
         [items addObjectsFromArray:[NSArray arrayWithObjects:flexSpace,callBtn,flexSpace,imbtn,flexSpace,moreBtn,flexSpace,nil]];
+        
+        
         [self setToolbarItems:items];
     }
     
-    return _toolBar;
+    return nil;
 }
 
 
@@ -181,7 +200,9 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     if (self.owner == nil)
     {
         UIBarButtonItem* imNotOpenBtn = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
-        [imNotOpenBtn setImage:[UIImage imageNamed:WEIKAITONGIMAGE]];
+        //[imNotOpenBtn setImage:[UIImage imageNamed:@"房源详情_未开通"]];
+        [imNotOpenBtn setBackgroundImage:[UIImage imageNamed:@"房源详情_未开通"] forState:UIControlStateNormal style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
+        [imNotOpenBtn setBackgroundImage:[UIImage imageNamed:@"房源详情_未开通"] forState:UIControlStateHighlighted style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
         imNotOpenBtn.enabled = NO;
         return imNotOpenBtn;
     }
@@ -193,7 +214,9 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
         case IM_NOT_OPEN:
         {
             UIBarButtonItem* imNotOpenBtn = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
-            [imNotOpenBtn setImage:[UIImage imageNamed:WEIKAITONGIMAGE]];
+            //[imNotOpenBtn setImage:[UIImage imageNamed:@"房源详情_未开通"]];
+            [imNotOpenBtn setBackgroundImage:[UIImage imageNamed:@"房源详情_未开通"] forState:UIControlStateNormal style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
+            [imNotOpenBtn setBackgroundImage:[UIImage imageNamed:@"房源详情_未开通"] forState:UIControlStateHighlighted style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
             imNotOpenBtn.enabled = NO;
             imBtn = imNotOpenBtn;
         }
@@ -201,21 +224,27 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
         case IM_OPENED_NOT_FRIEND:
         {
             UIBarButtonItem* imNotFriendBtn = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(onAddFriend)];
-            [imNotFriendBtn setImage:[UIImage imageNamed:JIAHAOYOUIMAGE]];
+            //[imNotFriendBtn setImage:[UIImage imageNamed:@"房源详情_加好友"]];
+            [imNotFriendBtn setBackgroundImage:[UIImage imageNamed:@"房源详情_加好友"] forState:UIControlStateNormal style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
+            [imNotFriendBtn setBackgroundImage:[UIImage imageNamed:@"房源详情_加好友"] forState:UIControlStateHighlighted style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
             imBtn = imNotFriendBtn;
         }
             break;
         case IM_FRIEND:
         {
             UIBarButtonItem* imFriend = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(onImMessage)];
-            [imFriend setImage:[UIImage imageNamed:FAXIAOXIIMAGE]];
+            //[imFriend setImage:[UIImage imageNamed:@"房源详情_发消息"]];
+            [imFriend setBackgroundImage:[UIImage imageNamed:@"房源详情_发消息"] forState:UIControlStateNormal style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
+            [imFriend setBackgroundImage:[UIImage imageNamed:@"房源详情_发消息"] forState:UIControlStateHighlighted style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
             imBtn = imFriend;
         }
             break;
         default:
         {
             UIBarButtonItem* imNotOpenBtn = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(onImMessage)];
-            [imNotOpenBtn setImage:[UIImage imageNamed:WEIKAITONGIMAGE]];
+            //[imNotOpenBtn setImage:[UIImage imageNamed:@"房源详情_未开通"]];
+            [imNotOpenBtn setBackgroundImage:[UIImage imageNamed:@"房源详情_未开通"] forState:UIControlStateNormal style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
+            [imNotOpenBtn setBackgroundImage:[UIImage imageNamed:@"房源详情_未开通"] forState:UIControlStateHighlighted style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
             imNotOpenBtn.enabled = NO;
             imBtn = imNotOpenBtn;
         }
@@ -226,11 +255,19 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
 
 -(void)onImMessage
 {
+    if ([self isView:self.contextMenuTableView ShowingInSuperView:self.navigationController.view])
+    {
+        [self dismissContextMenuTableView];
+    }
     [self ct_onImMessage:self.owner];
 }
 
 -(void)onAddFriend
 {
+    if ([self isView:self.contextMenuTableView ShowingInSuperView:self.navigationController.view])
+    {
+        [self dismissContextMenuTableView];
+    }
     [self ct_onAddFriend:self.owner];
     
 }
@@ -242,40 +279,80 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     {
         case 10001:
         {
-//            UIWebView*callWebview =[[UIWebView alloc] initWithFrame:CGRectZero];
-//            NSURL *telURL =[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",self.housePtcl.owner_mobile]];
-//            [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
-//            [self.navigationController.view addSubview:callWebview];
-
-            
+            if ([self isView:self.contextMenuTableView ShowingInSuperView:self.navigationController.view])
+            {
+                [self dismissContextMenuTableView];
+            }
             [self ct_onCallWithPhoneNumber:self.housePtcl.owner_mobile];
         }
             break;
-        case 10002:
-        {
-            [self.contextMenuTableView dismisWithIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-            [self weiTuoAction];
-        }
+//        case 10002:
+//        {
+//            if ([self isView:self.contextMenuTableView ShowingInSuperView:self.navigationController.view])
+//            {
+//                [self dismissContextMenuTableView];
+//            }
+//            [self weiTuoAction];
+//
+//        }
             break;
         case 10003:
         {
-            if ([self isView:self.contextMenuTableView ShowingInSuperView:self.navigationController.view])
-            {
-                [self.contextMenuTableView dismisWithIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-            }
-            else
-            {
-                UIEdgeInsets insect = UIEdgeInsetsMake(0, 0, -44-1, 0);
-                [self.contextMenuTableView showInView:self.navigationController.view withEdgeInsets:insect animated:YES];
-                
-            }
             
-            //[self qianYueAction];
+            [self dismissContextMenuTableView];
         }
             break;
             
         default:
+        {
+            //[self dismissContextMenuTableView];
+        }
             break;
+    }
+}
+
+-(void)dismissContextMenuTableView
+{
+    if ([self isView:self.contextMenuTableView ShowingInSuperView:self.navigationController.view])
+    {
+        
+        [self removeBlurView];
+        [_bluringView removeFromSuperview];
+        [_moreBtn setBackgroundImage:[UIImage imageNamed:@"房源详情_更多"] forState:UIControlStateNormal style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
+        [_moreBtn setBackgroundImage:[UIImage imageNamed:@"房源详情_更多"] forState:UIControlStateHighlighted style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
+        [self.contextMenuTableView dismisWithIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    }
+    else
+    {
+        
+        
+        [self addBlurViewWithCompletion:nil];
+        if (!_bluringView)
+        {
+            CIContext *context = [CIContext contextWithOptions:nil];
+            CIImage *inputImage = [[CIImage alloc] initWithImage:[UIImage imageNamed:@"待办签呈"]];
+            // create gaussian blur filter
+            CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+            [filter setValue:inputImage forKey:kCIInputImageKey];
+            [filter setValue:[NSNumber numberWithFloat:1.0] forKey:@"inputRadius"];
+            // blur image
+            CIImage *result = [filter valueForKey:kCIOutputImageKey];
+            CGImageRef cgImage = [context createCGImage:result fromRect:[result extent]];
+            UIImage *image = [UIImage imageWithCGImage:cgImage];
+            CGImageRelease(cgImage);
+            
+            _bluringView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height)];
+            _bluringView.contentMode = UIViewContentModeScaleToFill;
+            _bluringView.image = image;
+        }
+        
+        
+        
+        [_moreBtn setBackgroundImage:[UIImage imageNamed:@"房源详情_取消"] forState:UIControlStateNormal style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
+        [_moreBtn setBackgroundImage:[UIImage imageNamed:@"房源详情_取消"] forState:UIControlStateHighlighted style:UIBarButtonItemStylePlain barMetrics:UIBarMetricsDefault];
+        UIEdgeInsets insect = UIEdgeInsetsMake(0, 0, -44-1, 0);
+        [self.contextMenuTableView showInView:self.navigationController.view withEdgeInsets:insect animated:YES];
+        
     }
 }
 
@@ -312,10 +389,12 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
                 }
                 else
                 {
+                    
                     weakImgV.image = [UIImage imageNamed:@"banner_fail.jpg"];
                 }
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                weakImgV.image = [UIImage imageNamed:@"banner_fail.jpg"];
+                weakImgV.image = [UIImage imageNamed:@"banner"];
+                //weakImgV.image = [UIImage imageNamed:@"banner_fail.jpg"];
             }];
         }
         
@@ -407,9 +486,9 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
                                @"house_driect",
                                @"fitment_type",
                                @"build_year",
-                               @"build_property",
+                               @"property_term",
                                @"use_situation",
-                               @"build_structure_area",
+                               @"structure_area",
                                @"client_name",
                                @"obj_mobile",
                                @"client_gender",
@@ -422,7 +501,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
                                @"client_source",
                                @"house_depth",
                                @"floor_height",
-                               @"floor_count",
+                               @"floor_num",
                                @"efficiency_rate"
                                ];
     }
@@ -512,7 +591,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
         [self.infoSection removeItem:self.toilet_num];
         [self.infoSection removeItem:self.balcony_num];
         [self.infoSection removeItem:self.house_floor];
-        [self.infoSection removeItem:self.build_floor_count];
+        [self.infoSection removeItem:self.floor_count];
     }
 }
 
@@ -532,16 +611,16 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     {
         if ([self.housePtcl.trade_type isEqualToString:@"出售"])
         {
-            [self.infoSection removeItem:self.lease_trade_state];
-            [self.infoSection removeItem:self.lease_value_total];
-            [self.infoSection removeItem:self.lease_value_single];
+            [self.infoSection removeItem:self.lease_state];
+            [self.infoSection removeItem:self.rent_listing];
+            [self.infoSection removeItem:self.rent_single];
         }
         else if ([self.housePtcl.trade_type isEqualToString:@"出租"])
         {
-            [self.infoSection removeItem:self.sale_trade_state];
-            [self.infoSection removeItem:self.sale_value_total];
-            [self.infoSection removeItem:self.sale_value_single];
-            [self.infoSection removeItem:self.value_bottom];
+            [self.infoSection removeItem:self.sale_state];
+            [self.infoSection removeItem:self.sale_listing];
+            [self.infoSection removeItem:self.sale_single];
+            [self.infoSection removeItem:self.sale_bottom];
         }
         else if ([self.housePtcl.trade_type isEqualToString:@"租售"])
         {
@@ -560,13 +639,14 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
             ((RETextItem*)item).enabled = NO;
         }
     }
+    self.domain_address.enabled = NO;
     self.b_staff_describ_to_view_html.enabled = YES;
 }
 
 
 -(void)adjustByTeneApplication
 {
-    NSString*teneApplycation = self.tene_application.value;
+    NSString*teneApplycation = self.house_application.value;
    
     if (teneApplycation && teneApplycation.length > 0)
     {
@@ -622,7 +702,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
         else if([teneApplycation  isEqualToString:@"车位"])
         {
             [self.floor_height setTitle:@"宽度"];
-            [self.infoSection removeItem:self.floor_count];
+            [self.infoSection removeItem:self.floor_num];
             [self.infoSection removeItem:self.efficiency_rate];
             [self.infoSection removeItem:self.room_num];
             [self.infoSection removeItem:self.hall_num];
@@ -647,7 +727,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
             [self.infoSection removeItem:self.house_rank];
             [self.infoSection removeItem:self.house_depth];
             [self.infoSection removeItem:self.floor_height];
-            [self.infoSection removeItem:self.floor_count];
+            [self.infoSection removeItem:self.floor_num];
             [self.infoSection removeItem:self.efficiency_rate];
         }
     }
@@ -684,32 +764,33 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     
     //[self.infoSection addItem:self.watchHouseImages];
     
-    //    @property (strong, readwrite, nonatomic) RERadioItem * buildings_name;
+    //    @property (strong, readwrite, nonatomic) RERadioItem * domain_name;
     //    //String
     //    //楼盘名称
-    [self.infoSection addItem:self.buildings_name];
+    [self.infoSection addItem:self.domain_name];
     //    @property (strong, readwrite, nonatomic) RETextItem * urbanname;
     //    //String
     //    //区域
-    [self.infoSection addItem:self.urbanname];
+    [self.infoSection addItem:self.house_urban];
     
     //
     //    @property (strong, readwrite, nonatomic) RETextItem * areaname;
     //    //String
     //    //片区
-    [self.infoSection addItem:self.areaname];
+    [self.infoSection addItem:self.house_area];
     
     //
-    //    @property (strong, readwrite, nonatomic) RETextItem *buildings_address;
+    //    @property (strong, readwrite, nonatomic) RETextItem *domain_address;
     //    //String
     //    //地址
-    [self.infoSection addItem:self.buildings_address];
+    [self.infoSection addItem:self.domain_address];
+    
     
     //
-    //    @property (strong, readwrite, nonatomic) RENumberItem * build_structure_area;
+    //    @property (strong, readwrite, nonatomic) RENumberItem * structure_area;
     //    //float
     //    //面积
-    [self.infoSection addItem:self.build_structure_area];
+    [self.infoSection addItem:self.structure_area];
     
     //
     //    @property (strong, readwrite, nonatomic) RETextItem * house_model_type;
@@ -719,24 +800,24 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     
     
     //
-    //    @property (strong, readwrite, nonatomic) RETextItem * tene_application;
+    //    @property (strong, readwrite, nonatomic) RETextItem * house_application;
     //    //Int
     //    //物业用途（用来区分是住宅还是车位等）
     //    //不同的物业用途有不同的属性字段，详见其他说明
-    [self.infoSection addItem:self.tene_application];
+    [self.infoSection addItem:self.house_application];
     
     
     [self.infoSection addItem:self.house_rank];
     [self.infoSection addItem:self.house_depth];
     [self.infoSection addItem:self.floor_height];
-    [self.infoSection addItem:self.floor_count];
+    [self.infoSection addItem:self.floor_num];
     [self.infoSection addItem:self.efficiency_rate];
     
     //
-    //    @property (strong, readwrite, nonatomic) RETextItem * tene_type;
+    //    @property (strong, readwrite, nonatomic) RETextItem * house_tene_type;
     //    //Int
     //    //物业类型
-    [self.infoSection addItem:self.tene_type];
+    [self.infoSection addItem:self.house_tene_type];
     
     //
     //    @property (strong, readwrite, nonatomic) RERadioItem * fitment_type;
@@ -775,16 +856,18 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     [self.infoSection addItem:self.build_year];
     
     //
-    //    @property (strong, readwrite, nonatomic) RERadioItem * build_property;
+    //    @property (strong, readwrite, nonatomic) RERadioItem * property_term;
     //    //Int
     //    //产权年限
-    [self.infoSection addItem:self.build_property];
+    [self.infoSection addItem:self.property_term];
     
     //
     //    @property (strong, readwrite, nonatomic) RERadioItem * use_situation;
     //    //Int
     //    //现状
     [self.infoSection addItem:self.use_situation];
+    
+    [self.infoSection addItem:self.building_name];
     
     //
     //    @property (strong, readwrite, nonatomic) RETextItem * house_and_build_floor;
@@ -794,38 +877,38 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     
     
     //
-    //    @property (strong, readwrite, nonatomic) RENumberItem * sale_value_total;
+    //    @property (strong, readwrite, nonatomic) RENumberItem * sale_listing;
     //    //Float
     //    //总价(出售 万)
-    [self.infoSection addItem:self.sale_value_total];
+    [self.infoSection addItem:self.sale_listing];
     
     //
-    //    @property (strong, readwrite, nonatomic) RENumberItem * sale_value_single;
+    //    @property (strong, readwrite, nonatomic) RENumberItem * sale_single;
     //    //Float
     //    //单价(出售 元/平米)
     //todo 处理出租还是出售
-    [self.infoSection addItem:self.sale_value_single];
+    [self.infoSection addItem:self.sale_single];
     
     //
-    //    @property (strong, readwrite, nonatomic) RENumberItem * value_bottom;
+    //    @property (strong, readwrite, nonatomic) RENumberItem * sale_bottom;
     //    //Float
     //    //底价（出售 万）
     //todo 处理出租还是出售
-    [self.infoSection addItem:self.value_bottom];
+    [self.infoSection addItem:self.sale_bottom];
     
     //
-    //    @property (strong, readwrite, nonatomic) RENumberItem * lease_value_total;
+    //    @property (strong, readwrite, nonatomic) RENumberItem * rent_listing;
     //    //Float
     //    //总价(出租 元/月)
     //todo 处理出租还是出售
-    [self.infoSection addItem:self.lease_value_total];
+    [self.infoSection addItem:self.rent_listing];
     
     //
     //    @property (strong, readwrite, nonatomic) RENumberItem * lease_value_single;
     //    //Float
     //    //单价(出租 元/月/平米)
     //todo 处理出租还是出售
-    [self.infoSection addItem:self.lease_value_single];
+    [self.infoSection addItem:self.rent_single];
 
     //
     //    @property (strong, readwrite, nonatomic) RETextItem * client_remark;
@@ -890,19 +973,19 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     //直接
     [self.infoSection addItem:self.look_permit];
 
-    //@property (strong, readwrite, nonatomic) RERadioItem * sale_trade_state;
+    //@property (strong, readwrite, nonatomic) RERadioItem * sale_state;
     //
     //
     // String
     // 状态（出售）
-   [self.infoSection addItem:self.sale_trade_state];
+   [self.infoSection addItem:self.sale_state];
     
     
-    //@property (strong, readwrite, nonatomic) RERadioItem * lease_trade_state;
+    //@property (strong, readwrite, nonatomic) RERadioItem * lease_state;
     //
     // String
     // 状态（出租）
-    [self.infoSection addItem:self.lease_trade_state];
+    [self.infoSection addItem:self.lease_state];
     
     [self.infoSection addItem:self.lookSecretItem];
     
@@ -922,10 +1005,8 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
         [self.secretSection addItem:self.obj_fixtel];
         [self.secretSection addItem:self.client_identity];
         [self.secretSection addItem:self.obj_address];
-        [self.secretSection addItem:self.buildname];
-        [self.secretSection addItem:self.house_serect_unit];
+        [self.secretSection addItem:self.house_unit];
         [self.secretSection addItem:self.house_secrect_tablet];
-        [self.secretSection addItem:self.client_secret_remark];
     }
     
     
@@ -948,7 +1029,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     int i = 0;
     for (id item in arr)
     {
-        if ([item isEqual:self.sale_value_total])
+        if ([item isEqual:self.sale_listing])
         {
             [self.infoSection insertItem:self.trade_type atIndex:i];
             break;
@@ -998,22 +1079,12 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     
     //@property(strong,nonatomic)RERadioItem* house_dict_no;
     //栋座编号
-    self.house_dict_no = [[RERadioItem alloc] initWithTitle:@"栋座编号:" value:value selectionHandler:^(RERadioItem *item)
-                           {
-                               //todo
-                           }];
+//    self.house_dict_no = [[RERadioItem alloc] initWithTitle:@"栋座编号:" value:value selectionHandler:^(RERadioItem *item)
+//                           {
+//                               //todo
+//                           }];
     
-    //@property(strong,nonatomic)RERadioItem* house_unit;
-    //单元号
-    value = @"";
-    if (houseSecretPtcl)
-    {
-        value = houseSecretPtcl.house_unit;
-    }
-    self.house_unit = [[RERadioItem alloc] initWithTitle:@"单元号:" value:value selectionHandler:^(RERadioItem *item)
-                          {
-                              //todo
-                          }];
+    
     
     //@property(strong,nonatomic)RERadioItem* house_floor;
     //楼层
@@ -1131,15 +1202,15 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     //图片
     [self createWatchImageBtn];
     
-//    @property (strong, readwrite, nonatomic) RERadioItem * buildings_name;
+//    @property (strong, readwrite, nonatomic) RERadioItem * domain_name;
 //    //String
 //    //楼盘名称
     value = @"";
-    if (self.housePtcl && self.housePtcl.buildings_name)
+    if (self.housePtcl && self.housePtcl.domain_name)
     {
-        value = self.housePtcl.buildings_name;
+        value = self.housePtcl.domain_name;
     }
-    self.buildings_name = [[RERadioItem alloc] initWithTitle:@"楼盘名称:" value:value selectionHandler:^(RERadioItem *item) {
+    self.domain_name = [[RERadioItem alloc] initWithTitle:@"楼盘名称:" value:value selectionHandler:^(RERadioItem *item) {
 
     }];
 //    @property (strong, readwrite, nonatomic) RETextItem * urbanname;
@@ -1150,7 +1221,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     {
         value = self.housePtcl.urbanname;
     }
-    self.urbanname = [[RETextItem alloc] initWithTitle:@"区域:" value:value];
+    self.house_urban = [[RETextItem alloc] initWithTitle:@"区域:" value:value];
     
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * areaname;
@@ -1161,33 +1232,33 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     {
         value = self.housePtcl.areaname;
     }
-    self.areaname = [[RETextItem alloc] initWithTitle:@"片区:" value:value];
+    self.house_area = [[RETextItem alloc] initWithTitle:@"片区:" value:value];
     
 //    
-//    @property (strong, readwrite, nonatomic) RETextItem *buildings_address;
+//    @property (strong, readwrite, nonatomic) RETextItem *domain_address;
 //    //String
 //    //地址
     value = @"";
-    if (self.housePtcl && self.housePtcl.buildings_address)
+    if (self.housePtcl && self.housePtcl.domain_address)
     {
-        value = self.housePtcl.buildings_address;
+        value = self.housePtcl.domain_address;
     }
-    self.buildings_address = [[ReMultiTextItem alloc] initWithTitle:@"地址:" value:value];
+    self.domain_address = [[ReMultiTextItem alloc] initWithTitle:@"地址:" value:value];
     
 //    
-//    @property (strong, readwrite, nonatomic) RENumberItem * build_structure_area;
+//    @property (strong, readwrite, nonatomic) RENumberItem * structure_area;
 //    //float
 //    //面积
     value = @"";
     if (self.housePtcl)
     {
-        if(self.housePtcl.build_structure_area)
+        if(self.housePtcl.structure_area)
         {
-            value = [NSString stringWithFormat:@"%@m²",self.housePtcl.build_structure_area];
+            value = [NSString stringWithFormat:@"%@m²",self.housePtcl.structure_area];
         }
         
     }
-    self.build_structure_area = [[RENumberItem alloc] initWithTitle:@"面积:" value:value];
+    self.structure_area = [[RENumberItem alloc] initWithTitle:@"面积:" value:value];
 
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * house_model_type;
@@ -1259,7 +1330,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     self.balcony_num = [[RENumberItem alloc] initWithTitle:@"阳台:" value:value];
 
 //    
-//    @property (strong, readwrite, nonatomic) RETextItem * tene_application;
+//    @property (strong, readwrite, nonatomic) RETextItem * house_application;
 //    //Int
 //    //物业用途（用来区分是住宅还是车位等）
 //    //不同的物业用途有不同的属性字段，详见其他说明
@@ -1268,14 +1339,14 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     {
         for (DicItem *di in self.tene_application_dic_arr)
         {
-            if ([di.dict_value isEqualToString:self.housePtcl.tene_application])
+            if ([di.dict_value isEqualToString:self.housePtcl.house_application])
             {
                 value = di.dict_label;
                 break;
             }
         }
     }
-    self.tene_application = [[RERadioItem alloc] initWithTitle:@"物业用途:" value:value selectionHandler:^(RERadioItem *item) {
+    self.house_application = [[RERadioItem alloc] initWithTitle:@"物业用途:" value:value selectionHandler:^(RERadioItem *item) {
         //todo
     }];
     
@@ -1288,11 +1359,11 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
 
     if (self.housePtcl)
     {
-        if ([self.tene_application.value isEqualToString:@"商铺"] ||
-            [self.tene_application.value isEqualToString:@"商住"] ||
-            [self.tene_application.value isEqualToString:@"厂房"] ||
-            [self.tene_application.value isEqualToString:@"仓库"] ||
-            [self.tene_application.value isEqualToString:@"地皮"]
+        if ([self.house_application.value isEqualToString:@"商铺"] ||
+            [self.house_application.value isEqualToString:@"商住"] ||
+            [self.house_application.value isEqualToString:@"厂房"] ||
+            [self.house_application.value isEqualToString:@"仓库"] ||
+            [self.house_application.value isEqualToString:@"地皮"]
             )
         {
             title = @"位置";
@@ -1306,7 +1377,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
                 }
             }
         }
-        else if ([self.tene_application.value isEqualToString:@"车位"])
+        else if ([self.house_application.value isEqualToString:@"车位"])
         {
             title = @"车位类型";
             for (DicItem *di in self.carport_rank_dic_arr)
@@ -1318,7 +1389,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
                 }
             }
         }
-        else if ([self.tene_application.value isEqualToString:@"写字楼"])
+        else if ([self.house_application.value isEqualToString:@"写字楼"])
         {
             title = @"级别";
             for (DicItem *di in self.office_rank_dic_arr)
@@ -1340,20 +1411,20 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
 
                       {
                           NSArray*arr = nil;
-                          if ([self.tene_application.value isEqualToString:@"商铺"] ||
-                              [self.tene_application.value isEqualToString:@"商住"] ||
-                              [self.tene_application.value isEqualToString:@"厂房"] ||
-                              [self.tene_application.value isEqualToString:@"仓库"] ||
-                              [self.tene_application.value isEqualToString:@"地皮"]
+                          if ([self.house_application.value isEqualToString:@"商铺"] ||
+                              [self.house_application.value isEqualToString:@"商住"] ||
+                              [self.house_application.value isEqualToString:@"厂房"] ||
+                              [self.house_application.value isEqualToString:@"仓库"] ||
+                              [self.house_application.value isEqualToString:@"地皮"]
                               )
                           {
                              arr = self.shop_rank_dic_arr;
                           }
-                          else if ([self.tene_application.value isEqualToString:@"车位"])
+                          else if ([self.house_application.value isEqualToString:@"车位"])
                           {
                               arr = self.carport_rank_dic_arr;
                           }
-                          else if ([self.tene_application.value isEqualToString:@"写字楼"])
+                          else if ([self.house_application.value isEqualToString:@"写字楼"])
                           {
                               arr = self.office_rank_dic_arr;
                           }
@@ -1414,16 +1485,16 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     self.floor_height = [[RENumberItem alloc] initWithTitle:@"层高:" value:value];
     self.floor_height.keyboardType = UIKeyboardTypeDecimalPad;
     
-    //@property (strong, readwrite, nonatomic) RERadioItem * floor_count;
+    //@property (strong, readwrite, nonatomic) RERadioItem * floor_num;
     // int
     // 层数(里面有几层)
     value = @"";
-    if (self.housePtcl && self.housePtcl.floor_count)
+    if (self.housePtcl && self.housePtcl.floor_num)
     {
-        value = self.housePtcl.floor_count;
+        value = self.housePtcl.floor_num;
     }
-    self.floor_count = [[RENumberItem alloc] initWithTitle:@"层数:" value:value];
-    self.floor_count.keyboardType = UIKeyboardTypeDecimalPad;
+    self.floor_num = [[RENumberItem alloc] initWithTitle:@"层数:" value:value];
+    self.floor_num.keyboardType = UIKeyboardTypeDecimalPad;
     
     //@property (strong, readwrite, nonatomic) RERadioItem * efficiency_rate;
     // float
@@ -1433,11 +1504,11 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     {
         value = self.housePtcl.efficiency_rate;
     }
-    self.floor_count = [[RENumberItem alloc] initWithTitle:@"层数:" value:value];
+    self.floor_num = [[RENumberItem alloc] initWithTitle:@"层数:" value:value];
     self.efficiency_rate = [[RENumberItem alloc] initWithTitle:@"实用率:" value:value];
     self.efficiency_rate.keyboardType = UIKeyboardTypeDecimalPad;
 //    
-//    @property (strong, readwrite, nonatomic) RETextItem * tene_type;
+//    @property (strong, readwrite, nonatomic) RETextItem * house_tene_type;
 //    //Int
 //    //物业类型
     value = @"";
@@ -1445,14 +1516,14 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     {
         for (DicItem *di in self.tene_type_dic_arr)
         {
-            if ([di.dict_value isEqualToString:self.housePtcl.tene_type])
+            if ([di.dict_value isEqualToString:self.housePtcl.house_tene_type])
             {
                 value = di.dict_label;
                 break;
             }
         }
     }
-    self.tene_type = [[RERadioItem alloc] initWithTitle:@"物业类型:" value:value selectionHandler:^(RERadioItem *item) {
+    self.house_tene_type = [[RERadioItem alloc] initWithTitle:@"物业类型:" value:value selectionHandler:^(RERadioItem *item) {
         //todo
     }];
 //    
@@ -1625,22 +1696,22 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     }];;
 
 //    
-//    @property (strong, readwrite, nonatomic) RERadioItem * build_property;
+//    @property (strong, readwrite, nonatomic) RERadioItem * property_term;
 //    //Int
 //    //产权年限
     value = @"";
-    if (self.housePtcl&& self.housePtcl.build_property)
+    if (self.housePtcl&& self.housePtcl.property_term)
     {
         for (DicItem *di in self.build_property_dic_arr)
         {
-            if ([di.dict_value isEqualToString:self.housePtcl.build_property])
+            if ([di.dict_value isEqualToString:self.housePtcl.property_term])
             {
                 value = di.dict_label;
                 break;
             }
         }
     }
-    self.build_property = [[RERadioItem alloc] initWithTitle:@"产权年限:" value:value selectionHandler:^(RERadioItem *item) {
+    self.property_term = [[RERadioItem alloc] initWithTitle:@"产权年限:" value:value selectionHandler:^(RERadioItem *item) {
         [item deselectRowAnimated:YES];
         NSMutableArray *options = [[NSMutableArray alloc] init];
         for (NSInteger i = 0; i < self.build_property_dic_arr.count; i++)
@@ -1707,13 +1778,25 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
         [weakSelf.navigationController pushViewController:optionsController animated:YES];
     }];
 
+    //@property(nonatomic,strong)RERadioItem* buildname;
+    //栋座（房源的）
+    //Int
+    value = @"";
+    if (self.housePtcl)
+    {
+        value = self.housePtcl.building_name;
+    }
+    self.building_name = [[RERadioItem alloc] initWithTitle:@"栋座:" value:value selectionHandler:^(RERadioItem *item) {
+        
+    }];
+    
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * house_and_build_floor;
 //    //在第几层，共几层
     value = @"";
     if (self.housePtcl)
     {
-        value = [NSString stringWithFormat:@"%@层 共%@层",self.housePtcl.house_floor,self.housePtcl.build_floor_count];
+        value = [NSString stringWithFormat:@"%@层 共%@层",self.housePtcl.house_floor,self.housePtcl.floor_count];
     }
     self.house_and_build_floor = [[RETextItem alloc] initWithTitle:@"所在楼层:" value:value];
 
@@ -1724,76 +1807,78 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     //self.house_floor = [[RENumberItem alloc] initWithTitle:@"所在楼层:" value:self.housePtcl.house_floor];
 
 //    
-//    @property (strong, readwrite, nonatomic) RENumberItem * build_floor_count;
+//    @property (strong, readwrite, nonatomic) RENumberItem * floor_count;
 //    //Int
 //    //总楼层
     value = @"";
-    if (self.housePtcl && self.housePtcl.build_floor_count)
+    if (self.housePtcl && self.housePtcl.floor_count)
     {
-        value = self.housePtcl.build_floor_count;
+        value = self.housePtcl.floor_count;
     }
-    self.build_floor_count = [[RENumberItem alloc] initWithTitle:@"总楼层:" value:value];
+    self.floor_count = [[RENumberItem alloc] initWithTitle:@"总楼层:" value:value];
 
 //    
-//    @property (strong, readwrite, nonatomic) RENumberItem * sale_value_total;
+//    @property (strong, readwrite, nonatomic) RENumberItem * sale_listing;
 //    //Float
 //    //总价(出售 万)
     //todo 处理出租还是出售
     value = @"";
     if (self.housePtcl)
     {
-        if (self.housePtcl.sale_value_total)
+        if (self.housePtcl.sale_listing)
         {
-            value = [NSString stringWithFormat:@"%@万元",self.housePtcl.sale_value_total];
+            CGFloat price = [self.housePtcl.sale_listing floatValue]/10000.0f;
+            value = [NSString stringWithFormat:@"%.2f万元",price];
         }
     }
-    self.sale_value_total = [[RENumberItem alloc] initWithTitle:@"出售总价:" value:value  placeholder:@"万"];
+    self.sale_listing = [[RENumberItem alloc] initWithTitle:@"出售总价:" value:value  placeholder:@"万"];
 
 //    
-//    @property (strong, readwrite, nonatomic) RENumberItem * sale_value_single;
+//    @property (strong, readwrite, nonatomic) RENumberItem * sale_single;
 //    //Float
 //    //单价(出售 元/平米)
     //todo 处理出租还是出售
     value = @"";
     if (self.housePtcl)
     {
-        if (self.housePtcl.sale_value_single)
+        if (self.housePtcl.sale_single)
         {
-            value = [NSString stringWithFormat:@"%@元",self.housePtcl.sale_value_single];
+            value = [NSString stringWithFormat:@"%@元",self.housePtcl.sale_single];
         }
     }
-    self.sale_value_single = [[RENumberItem alloc] initWithTitle:@"出售单价:" value:value  placeholder:@"元/平米"];
+    self.sale_single = [[RENumberItem alloc] initWithTitle:@"出售单价:" value:value  placeholder:@"元/平米"];
 
 //    
-//    @property (strong, readwrite, nonatomic) RENumberItem * value_bottom;
+//    @property (strong, readwrite, nonatomic) RENumberItem * sale_bottom;
 //    //Float
 //    //底价（出售 万）
     //todo 处理出租还是出售
     value = @"";
     if (self.housePtcl)
     {
-        if (self.housePtcl.value_bottom)
+        if (self.housePtcl.sale_bottom)
         {
-            value = [NSString stringWithFormat:@"%@万元",self.housePtcl.value_bottom];
+            CGFloat price = [self.housePtcl.sale_bottom floatValue]/10000.0f;
+            value = [NSString stringWithFormat:@"%.2f万元",price];
         }
     }
-    self.value_bottom = [[RENumberItem alloc] initWithTitle:@"出售底价:" value:value  placeholder:@"万"];
+    self.sale_bottom = [[RENumberItem alloc] initWithTitle:@"出售底价:" value:value  placeholder:@"万"];
 
 //    
-//    @property (strong, readwrite, nonatomic) RENumberItem * lease_value_total;
+//    @property (strong, readwrite, nonatomic) RENumberItem * rent_listing;
 //    //Float
 //    //总价(出租 元/月)
     //todo 处理出租还是出售
     value = @"";
     if (self.housePtcl)
     {
-        if (self.housePtcl.lease_value_total)
+        if (self.housePtcl.rent_listing)
         {
-            value = [NSString stringWithFormat:@"%@元",self.housePtcl.lease_value_total];
+            value = [NSString stringWithFormat:@"%@元",self.housePtcl.rent_listing];
         }
         
     }
-    self.lease_value_total = [[RENumberItem alloc] initWithTitle:@"出租总价:" value:value  placeholder:@"元/月"];
+    self.rent_listing = [[RENumberItem alloc] initWithTitle:@"出租总价:" value:value  placeholder:@"元/月"];
 
 //    
 //    @property (strong, readwrite, nonatomic) RENumberItem * lease_value_single;
@@ -1803,12 +1888,12 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     value = @"";
     if (self.housePtcl)
     {
-        if (self.housePtcl.lease_value_single)
+        if (self.housePtcl.rent_single)
         {
-            value = [NSString stringWithFormat:@"%@元/月/平米",self.housePtcl.lease_value_single];
+            value = [NSString stringWithFormat:@"%@元/月/平米",self.housePtcl.rent_single];
         }
     }
-    self.lease_value_single = [[RENumberItem alloc] initWithTitle:@"出租单价:" value:value placeholder:@"元/月/平米"];
+    self.rent_single = [[RENumberItem alloc] initWithTitle:@"出租单价:" value:value placeholder:@"元/月/平米"];
 
 //    
 //    @property (strong, readwrite, nonatomic) RETextItem * client_remark;
@@ -1829,20 +1914,20 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
 //    //String
 //    //房源描述
     value = @"";
-    if (self.housePtcl && self.housePtcl.b_staff_describ)
+    if (self.housePtcl && self.housePtcl.describ)
     {
-        value = self.housePtcl.b_staff_describ;
+        value = self.housePtcl.describ;
     }
-    self.b_staff_describ = [[RETextItem alloc] initWithTitle:@"房源描述:" value:value];
+    self.describ = [[RETextItem alloc] initWithTitle:@"房源描述:" value:value];
     
     
     //@property (strong, readwrite, nonatomic) RERadioItem * b_staff_describ_to_view_html;
     //String
     //房源描述,点击后进入html页面查看html格式的房源描述
     value = @"";
-    if (self.housePtcl && self.housePtcl.b_staff_describ)
+    if (self.housePtcl && self.housePtcl.describ)
     {
-        value = self.housePtcl.b_staff_describ;
+        value = self.housePtcl.describ;
     }
     self.b_staff_describ_to_view_html = [[RERadioItem alloc] initWithTitle:@"房源描述" value:@"点击查看" selectionHandler:^(RERadioItem *item) {
         houseDescribeViewController*vc = [[houseDescribeViewController alloc] init];
@@ -1996,31 +2081,32 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
         [weakSelf.navigationController pushViewController:optionsController animated:YES];
     }];
 
-    //@property (strong, readwrite, nonatomic) RERadioItem * sale_trade_state;
+    //@property (strong, readwrite, nonatomic) RERadioItem * sale_state;
     //
     //
     // String
     // 状态（出售）
     value = @"";
-    if (self.housePtcl && self.housePtcl.sale_trade_state)
+    
+    if (self.housePtcl && self.housePtcl.sale_state)
     {
-        value = self.housePtcl.sale_trade_state;
+        value = self.housePtcl.sale_state; 
     }
-    self.sale_trade_state = [[RERadioItem alloc] initWithTitle:@"出售状态:" value:value selectionHandler:^(RERadioItem *item) {
+    self.sale_state = [[RERadioItem alloc] initWithTitle:@"出售状态:" value:value selectionHandler:^(RERadioItem *item) {
         //todo
     }];
     
     
-    //@property (strong, readwrite, nonatomic) RERadioItem * lease_trade_state;
+    //@property (strong, readwrite, nonatomic) RERadioItem * lease_state;
     //
     // String
     // 状态（出租）
     value = @"";
-    if (self.housePtcl && self.housePtcl.lease_trade_state)
+    if (self.housePtcl && self.housePtcl.rent_state)
     {
-        value = self.housePtcl.lease_trade_state;
+        value = self.housePtcl.rent_state;
     }
-    self.lease_trade_state = [[RERadioItem alloc] initWithTitle:@"出租状态:" value:value selectionHandler:^(RERadioItem *item) {
+    self.lease_state = [[RERadioItem alloc] initWithTitle:@"出租状态:" value:value selectionHandler:^(RERadioItem *item) {
         //todo
     }];
     
@@ -2128,17 +2214,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     }
     self.obj_address = [[RETextItem alloc] initWithTitle:@"联系地址:" value:value];
     
-    //@property(nonatomic,strong)RERadioItem* buildname;
-    //栋座（房源的）
-    //Int
-    value = @"";
-    if (self.houseSecretPtcl)
-    {
-        value = self.houseSecretPtcl.buildname;
-    }
-    self.buildname = [[RERadioItem alloc] initWithTitle:@"栋座:" value:value selectionHandler:^(RERadioItem *item) {
-
-    }];
+    
 
     
     //@property(nonatomic,strong)RERadioItem* house_serect_unit;
@@ -2149,7 +2225,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     {
         value = self.houseSecretPtcl.house_unit;
     }
-    self.house_serect_unit = [[RERadioItem alloc] initWithTitle:@"单元:" value:value selectionHandler:^(RERadioItem *item) {
+    self.house_unit = [[RERadioItem alloc] initWithTitle:@"单元:" value:value selectionHandler:^(RERadioItem *item) {
         //todo
     }];
     //@property(nonatomic,strong)RENumberItem* house_secrect_tablet;
@@ -2163,15 +2239,8 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     }
     self.house_secrect_tablet = [[RENumberItem alloc] initWithTitle:@"门牌号:" value:value ];
     
-    //@property(nonatomic,strong)RETableViewItem* client_secret_remark;
-    //备注
-    //String
-    value = @"";
-    if (self.houseSecretPtcl)
-    {
-        value = self.houseSecretPtcl.client_remark;
-    }
-    self.client_secret_remark = [[RETextItem alloc] initWithTitle:@"备注:" value:value ];
+    
+    
     
     
 }
@@ -2211,6 +2280,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
                         {
                             if (self.housePtcl &&
                                 ([self.housePtcl.edit_permit isEqualToString:@"1"] ||
+                                 [self.housePtcl.edit_permit isEqualToString:@"0"] ||
                                 [self.housePtcl.secret_permit isEqualToString:@"1"]))
                             {
                                 if ([self.manager sections].count == 2)
@@ -2247,7 +2317,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     }
     
     
-    vc.sid = self.houseDtl.house_trade_no;
+    vc.sid = self.houseDtl.trade_no;
     vc.type = self.housePtcl.trade_type;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -2267,7 +2337,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
 -(void)daiKanAction
 {
     AppointTableViewController *vc = [[AppointTableViewController alloc] initWithNibName:@"AppointTableViewController" bundle:[NSBundle mainBundle]];
-    vc.sid = self.houseDtl.house_trade_no;
+    vc.sid = self.houseDtl.trade_no;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)createDaiKanBtn
@@ -2284,7 +2354,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
 -(void)weiTuoAction
 {
     ContractTableViewController *vc = [[ContractTableViewController alloc] initWithNibName:@"ContractTableViewController" bundle:[NSBundle mainBundle]];
-    vc.sid = self.houseDtl.house_trade_no;
+    vc.sid = self.houseDtl.trade_no;
     vc.type = self.housePtcl.trade_type;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -2309,7 +2379,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     }
     
     SignAddController *vc = [[SignAddController alloc] initWithStyle:UITableViewStyleGrouped];
-    vc.sid = self.houseDtl.house_trade_no;
+    vc.sid = self.houseDtl.trade_no;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -2336,6 +2406,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     [HouseDataPuller pullHouseParticulars:self.houseDtl Success:^(HouseParticulars*ptcl)
      {
          self.housePtcl = ptcl;
+
          
          [contactDataManager getPsnByJobNo:self.housePtcl.owner_job_no Success:^(id responseObject) {
              if (responseObject)
@@ -2527,6 +2598,10 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
         {
             arr =  self.client_source_dic_arr;
         }
+        else if ([itemName isEqualToString:@"property_term"])
+        {
+            arr =  self.build_property_dic_arr;
+        }
     }
     
     
@@ -2581,18 +2656,18 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
 
 
 - (void)initiateMenuOptions {
-    self.menuTitles = @[@"关闭",
+    self.menuTitles = @[
                         @"新增跟进",
                         @"新增委托",
                         @"房源实勘",
                         @"添加钥匙"
                         ];
     
-    self.menuIcons = @[[UIImage imageNamed:@"MenuClose"],
-                       [UIImage imageNamed:@"跟进"],
-                       [UIImage imageNamed:@"委托"],
-                       [UIImage imageNamed:@"MenuAddRP"],
-                       [UIImage imageNamed:@"MenuAddKey"]];
+    self.menuIcons = @[
+                       [UIImage imageNamed:@"房源详情_跟进"],
+                       [UIImage imageNamed:@"房源详情_委托"],
+                       [UIImage imageNamed:@"房源详情_实勘"],
+                       [UIImage imageNamed:@"房源详情_钥匙"]];
 }
 
 
@@ -2629,7 +2704,8 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
         _contextMenuTableView = [[YALContextMenuTableView alloc]initWithTableViewDelegateDataSource:self];
         _contextMenuTableView.animationDuration = 0.03;
         _contextMenuTableView.yalDelegate = self;
-        _contextMenuTableView.transform = CGAffineTransformMakeScale (1,-1);
+        
+        
         UINib *cellNib = [UINib nibWithNibName:menuCellIdentifier bundle:nil];
         [_contextMenuTableView registerNib:cellNib forCellReuseIdentifier:menuCellIdentifier];
     }
@@ -2648,13 +2724,16 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
 - (void)tableView:(YALContextMenuTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //NSIndexPath*path = [NSIndexPath indexPathForRow:0 inSection:0];
     //[tableView dismisWithIndexPath:path];
+    if (tableView == _contextMenuTableView) {
+        [self dismissContextMenuTableView];
+    }
     
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == _contextMenuTableView)
     {
-        return 65;
+        return 55;
     }
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
@@ -2673,18 +2752,6 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
         cell.menuImageView.image = [self.menuIcons objectAtIndex:index];
         cell.tag = index;
         cell.delegate = self;
-        
-
-//        UIImage*image = [UIImage imageNamed:@"AddToFriendsIcn"];
-//        CGFloat top = 25; // 顶端盖高度
-//        CGFloat bottom = 25 ; // 底端盖高度
-//        CGFloat left = 25; // 左端盖宽度
-//        CGFloat right = 25; // 右端盖宽度
-//        UIEdgeInsets insets = UIEdgeInsetsMake(top, left, bottom, right);
-//        image = [image resizableImageWithCapInsets:insets resizingMode:UIImageResizingModeTile];
-//        [cell.menuImageView setImage:image];
-
-        
     }
     
     return cell;
@@ -2693,21 +2760,26 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
 
 -(void)didTapedOnImageView:(id)sender
 {
+    [self dismissContextMenuTableView];
     UIView*view = sender;
     switch (view.tag)
     {
         case 0:
-        {
+        {[self genJinAction];
         }
             break;
         case 1:
-        {
-            [self genJinAction];
+        {[self weiTuoAction];
+            
         }
             break;
         case 2:
         {
-            [self weiTuoAction];
+            [HouseSurvey addHouseSurvery:nil Remark:@"" Success:^(id obj) {
+                
+            } failure:^(NSError *error) {
+                
+            }];
         }
         case 3:
         {
@@ -2719,7 +2791,12 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
             break;
     }
     
-    [_contextMenuTableView dismisWithIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    
 }
 
+
+-(void)contextMenuTableViewDidDismissingOnBlank
+{
+    [self dismissContextMenuTableView];
+}
 @end

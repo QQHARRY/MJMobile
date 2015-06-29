@@ -19,10 +19,10 @@
     self.status.layer.borderColor = self.status.textColor.CGColor;
     self.status.layer.borderWidth = 0.5;
     
-    self.lookPermit.layer.borderColor = self.status.textColor.CGColor;
+    self.lookPermit.layer.borderColor = self.lookPermit.textColor.CGColor;
     self.lookPermit.layer.borderWidth = 0.5;
     
-    self.consignmentType.layer.borderColor = self.status.textColor.CGColor;
+    self.consignmentType.layer.borderColor = self.consignmentType.textColor.CGColor;
     self.consignmentType.layer.borderWidth = 0.5;
 }
 
@@ -31,5 +31,7 @@
     [super setSelected:selected animated:animated];
     // Configure the view for the selected state
 }
+
+
 
 @end

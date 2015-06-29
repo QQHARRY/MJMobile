@@ -12,9 +12,10 @@
 #import "HouseParticulars.h"
 #import "houseSecretParticulars.h"
 #import "buildingDetails.h"
+#import "bizManager.h"
 
 
-@interface HouseDataPuller : NSObject
+@interface HouseDataPuller : bizManager
 
 +(void)pullDataWithFilter:(HouseFilter *)filter Success:(void (^)(NSArray *houseDetailList))success failure:(void (^)(NSError *error))failure;
 +(void)pullAreaListDataSuccess:(void (^)(NSArray *areaList))success failure:(void (^)(NSError *error))failure;
@@ -33,7 +34,9 @@
 
 +(void)pullIsHouseExisting:(NSDictionary *)dic Success:(void (^)(HouseParticulars*hosuePtl))success failure:(void (^)(NSError *error))failure;
 
-+(void)pushAddHouse:(NSDictionary *)partlDic Success:(void (^)(NSString *house_trade_no,NSString *buildings_picture))success failure:(void (^)(NSError *error))failure;
++(void)pushAddHouse:(NSDictionary *)partlDic Success:(void (^)(NSString *trade_no,NSString *buildings_picture))success failure:(void (^)(NSError *error))failure;
 
 +(void)pushImage:(UIImage*)image TradeNo:(NSString *)tradeNO PictureNO:(NSString*)picNO Type:(NSString*)type Success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
+
++(void)pullHouseUnitDetailsByBuilding:(NSString *)buildingNo Success:(void (^)(NSArray*unitsArr))success failure:(void (^)(NSError *error))failure;
 @end

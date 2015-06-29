@@ -11,11 +11,13 @@
 #import "building.h"
 #import "buildingDetails.h"
 #import "houseParticulars.h"
+#import "houseUnit.h"
 
 @interface HouseAddNewViewController : HouseParticularTableViewController<UIAlertViewDelegate>
 
-@property(nonatomic,strong)buildings*curBuildings;//楼盘
-@property(nonatomic,strong)building*curBuilding;//栋座
+@property(nonatomic,strong)buildings*curBuildings;//当前选择的楼盘
+@property(nonatomic,strong)building*curBuilding;//当前选择的栋座
+@property(nonatomic,strong)houseUnit*curHouseUnit;//当前选择的单元
 @property(weak,nonatomic)id delegate;
 @property(nonatomic,strong)NSMutableArray*curBuilidngsOfCurBuildings;//楼盘中的所有栋座
 @property(nonatomic,strong)buildingDetails*curBuildingsDetails;

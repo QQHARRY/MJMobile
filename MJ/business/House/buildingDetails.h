@@ -10,7 +10,7 @@
 
 @interface buildingDetails : dic2Object
 
-@property(strong,nonatomic)NSString* buildings_name;
+@property(strong,nonatomic)NSString* domain_name;
 //String
 //楼盘名称
 
@@ -22,7 +22,7 @@
 //String
 //片区
 
-@property(strong,nonatomic)NSString* buildings_address;
+@property(strong,nonatomic)NSString* domain_address;
 //String
 //地址
 

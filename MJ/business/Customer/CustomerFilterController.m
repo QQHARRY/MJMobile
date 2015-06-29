@@ -98,7 +98,7 @@
                                         NSMutableArray *options = [[NSMutableArray alloc] init];
                                         for (NSInteger i = 0; i < self.areaDictList.count; i++)
                                         {
-                                            [options addObject:[[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"areas_name"]];
+                                            [options addObject:[[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"area_name"]];
                                         }
                                         RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
                                                                                            {
@@ -129,7 +129,7 @@
                                    NSMutableArray *options = [[NSMutableArray alloc] init];
                                    for (NSInteger i = 0; i < self.areaDictList.count; i++)
                                    {
-                                       [options addObject:[[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"areas_name"]];
+                                       [options addObject:[[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"area_name"]];
                                    }
                                    RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
                                                                                       {
@@ -158,7 +158,7 @@
                                   NSDictionary *dstDict = nil;
                                   for (NSDictionary *areaDict in self.areaDictList)
                                   {
-                                      if ([[[areaDict objectForKey:@"dict"] objectForKey:@"areas_name"] isEqualToString:self.belongAreaItem.value])
+                                      if ([[[areaDict objectForKey:@"dict"] objectForKey:@"area_name"] isEqualToString:self.belongAreaItem.value])
                                       {
                                           dstDict = areaDict;
                                           break;
@@ -169,7 +169,7 @@
                                       NSArray*sectionArr = [dstDict objectForKey:@"sections"];
                                       for (NSInteger i = 0; i < sectionArr.count; i++)
                                       {
-                                          [options addObject:[[sectionArr objectAtIndex:i] objectForKey:@"areas_name"]];
+                                          [options addObject:[[sectionArr objectAtIndex:i] objectForKey:@"area_name"]];
                                       }
                                   }
                                   RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
@@ -252,7 +252,7 @@
         filter.house_urban = @"";
         for (NSDictionary *areaDict in self.areaDictList)
         {
-            if ([[[areaDict objectForKey:@"dict"] objectForKey:@"areas_name"] isEqualToString:self.belongAreaItem.value])
+            if ([[[areaDict objectForKey:@"dict"] objectForKey:@"area_name"] isEqualToString:self.belongAreaItem.value])
             {
                 filter.house_urban = [areaDict objectForKey:@"no"];
                 break;
@@ -265,9 +265,9 @@
             BOOL bFind = false;
             for (NSDictionary *sectionDict in sectionList)
             {
-                if ([[sectionDict objectForKey:@"areas_name"] isEqualToString:self.belongSectionItem.value])
+                if ([[sectionDict objectForKey:@"area_name"] isEqualToString:self.belongSectionItem.value])
                 {
-                    filter.house_area = [sectionDict objectForKey:@"areas_current_no"];
+                    filter.house_area = [sectionDict objectForKey:@"area_cno"];
                     bFind = true;
                     break;
                 }

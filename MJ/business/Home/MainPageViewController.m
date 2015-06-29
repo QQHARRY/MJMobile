@@ -53,6 +53,7 @@
 #import "WebViewController.h"
 #import "Sqlite3DataPersistence.h"
 
+
 #define TABBARTITLECOLOR [UIColor colorWithRed:1/255.0f green:0xaf/255.0f blue:0xe8/255.0f alpha:1]
 #define ALERTBTN_COLOR [UIColor colorWithRed:0xf8/255.0f green:0x64/255.0f blue:0x58/255.0f alpha:1]
 #define PETITIONBTN_COLOR [UIColor colorWithRed:0x0e/255.0f green:0xb6/255.0f blue:0xd0/255.0f alpha:1]
@@ -129,8 +130,6 @@
 {
     [super viewDidLoad];
     
-
-    
     self.navigationController.navigationBar.hidden = NO;
     [self.tabBarController.tabBar setBackgroundColor:[UIColor whiteColor]];
      self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
@@ -182,11 +181,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(indicatorCountChanged) name:MAINPAGE_INDICATOR_NUMBER_CHANGED object:nil];
     
     
-    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-    UIVisualEffectView *effectview = [[UIVisualEffectView alloc] initWithEffect:blur];
-    effectview.frame = self.view.frame;
-    
-    [self.view addSubview:effectview];
+
 }
 
 -(void)indicatorCountChanged

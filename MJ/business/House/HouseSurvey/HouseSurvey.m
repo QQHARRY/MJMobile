@@ -11,6 +11,7 @@
 #import "NetWorkManager.h"
 #import "Macro.h"
 #import "imageStorageInfo.h"
+#import "UtilFun.h"
 
 @implementation HouseSurvey
 
@@ -52,13 +53,22 @@
    
     NSDictionary *parameters = @{@"job_no":[person me].job_no,
                                  @"acc_password":[person me].password,
+                                  @"DeviceID":[UtilFun getUDID],
                                  };
+
     
+
     
+  
     [NetWorkManager PostWithApiName:API_GET_HOUSE_IMAGE_FILE_STORAGE_NO parameters:parameters success:
      ^(id responseObject)
      {
-         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         //NSString *jsonString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+//         jsonString =  @"{\"Status\":\"0\",\"ErrorInfo\":\"\",\"fileStorageNO\":0x03}";
+//         responseObject = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+         NSError*err = nil;
+         
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:&err];
          if ([self checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {
              success([resultDic objectForKey:@"fileStorageNO"]);

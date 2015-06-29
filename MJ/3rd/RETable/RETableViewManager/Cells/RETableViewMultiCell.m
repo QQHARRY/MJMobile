@@ -99,7 +99,7 @@
         self.actionBar.barStyle = self.item.keyboardAppearance == UIKeyboardAppearanceAlert ? UIBarStyleBlack : UIBarStyleDefault;
     }
     
-    //self.enabled = self.item.enabled;
+    self.enabled = self.item.enabled;
 }
 
 - (UIResponder *)responder

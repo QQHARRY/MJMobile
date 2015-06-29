@@ -110,8 +110,7 @@
     self.rentController.filter = [[HouseFilter alloc] init];
 //    self.rentController.filter.consignment_type = @"1"; // 委托类型：A-独家 是”0”、B-一般 是”1”、C-未签 是”2” * TODO
     self.rentController.filter.trade_type = @"101";
-//    self.rentController.filter.sale_trade_state = @"0";
-    self.rentController.filter.lease_trade_state = @"0";
+    self.rentController.filter.lease_state = @"0";
     self.rentController.filter.FromID = @"0";
     self.rentController.filter.ToID = @"0";
     self.rentController.filter.Count = @"10";
@@ -121,8 +120,7 @@
     self.sellController.filter = [[HouseFilter alloc] init];
 //    self.sellController.filter.consignment_type = @"1"; // 委托类型：A-独家 是”0”、B-一般 是”1”、C-未签 是”2” * TODO
     self.sellController.filter.trade_type = @"100";
-    self.sellController.filter.sale_trade_state = @"0";
-//    self.sellController.filter.lease_trade_state = @"0";
+    self.sellController.filter.sale_state = @"0";
     self.sellController.filter.FromID = @"0";
     self.sellController.filter.ToID = @"0";
     self.sellController.filter.Count = @"10";
@@ -187,7 +185,7 @@
 {
     HouseFilter*filter = (_nowControllerType == HCT_SELL)?_sellController.filter:_rentController.filter;
     
-    filter.keyword = keyWord;
+    filter.Keyword = keyWord;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self wannaRefresh];
@@ -882,13 +880,13 @@
         {
             MJMenuModel*model = [_menu_urbanAreaArr objectAtIndex:indexPath.section];
             
-            filter.houseurban = [model.menuItem.value getSingleValue];
+            filter.house_urban = [model.menuItem.value getSingleValue];
             
             
             if (model && [model isKindOfClass:[MJMenuModel class]] && model.subMenuItems && model.subMenuItems.count > indexPath.row)
             {
                 MJMenuItem*item = [model.subMenuItems objectAtIndex:indexPath.row];
-                filter.housearea = [item.value getSingleValue];
+                filter.house_area = [item.value getSingleValue];
                 
                 //NSString*urbanTitle = model.menuItem.title;
                 NSString*areaTitle = item.title;
@@ -967,7 +965,7 @@
                     break;
                 case 1:
                 {
-                    [menubar updateTitle:@"我的部门" ForIndex:2];
+                    [menubar updateTitle:@"我的房源" ForIndex:2];
                     filter.search_job_no = [person me].job_no;
                     filter.search_dept_no = [person me].department_no;
                     [self wannaRefresh];
@@ -1085,15 +1083,15 @@
                 {
                     NSArray*valueArr =  [[[_menu_SellStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
                     
-                    filter.sale_trade_state = valueArr[0];
+                    filter.sale_state = valueArr[0];
                 }
                 else if(menu == _rent_moreMenu)
                 {
                     NSArray*valueArr =  [[[_menu_LeaseStausArr objectAtIndex:indexPath.row] objectForKey:@"menuItem"] objectForKey:@"value"];
-                     filter.lease_trade_state = valueArr[0];
-                    if ([filter.lease_trade_state isEqualToString:@""])
+                     filter.lease_state = valueArr[0];
+                    if ([filter.lease_state isEqualToString:@""])
                     {
-                        filter.lease_trade_state = @"0";
+                        filter.lease_state = @"0";
                     }
                 }
             }
@@ -1137,11 +1135,11 @@
                         if (cusValue != nil)
                         {
                             if (cusValue.valueArr && cusValue.valueArr.count > 0)
-                            filter.house_unit = cusValue.valueArr[0];
+                            filter.unit_name = cusValue.valueArr[0];
                         }
                         else
                         {
-                            filter.house_unit = @"";
+                            filter.unit_name = @"";
                         }
                     }
                         break;
@@ -1193,35 +1191,47 @@
     {
         id unt = [curSelection objectAtIndex:0];
         NSString*deptNo = nil;
-        NSString*deptName = nil;
+        NSString*displayName = nil;
+        NSString*jobNo = nil;
         
         if ([unt isKindOfClass:[person class]])
         {
-            deptNo = ((person*)unt).department_no;
-            deptName = ((person*)unt).dept_name;
+            jobNo = ((person*)unt).job_no;
+            displayName = ((person*)unt).name_full;
         }
         else if([unt isKindOfClass:[department class]])
         {
             deptNo = ((department*)unt).dept_current_no;
-            deptName = ((department*)unt).dept_name;
+            displayName = ((department*)unt).dept_name;
         }
         
-        if (deptNo && deptName)
+        
+        
+        if (_selectedDeptAtMenu && (_selectedDeptAtMenu == _sell_DeptMenu || _selectedDeptAtMenu == _rent_DeptMenu))
         {
-            if (_selectedDeptAtMenu && (_selectedDeptAtMenu == _sell_DeptMenu || _selectedDeptAtMenu == _rent_DeptMenu))
+            HouseFilter*filter = (_selectedDeptAtMenu == _sell_DeptMenu)?_sellController.filter:_rentController.filter;
+            MJDropDownMenuBar*menubar = (_selectedDeptAtMenu == _sell_DeptMenu)?_sellMenuBar:_rentMenuBar;
+            
+            if (deptNo)
             {
-                HouseFilter*filter = (_selectedDeptAtMenu == _sell_DeptMenu)?_sellController.filter:_rentController.filter;
-                MJDropDownMenuBar*menubar = (_selectedDeptAtMenu == _sell_DeptMenu)?_sellMenuBar:_rentMenuBar;
-                
                 filter.search_dept_no = deptNo;
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [menubar updateTitle:deptName ForIndex:2];
-                    [self wannaRefresh];
-                });
-                
+                filter.search_job_no = @"";
             }
+            else if(jobNo)
+            {
+                filter.search_job_no = jobNo;
+                filter.search_dept_no = @"";
+            }
+        
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [menubar updateTitle:displayName ForIndex:2];
+                [self wannaRefresh];
+            });
+            
         }
+        
+        
+        
         
         
         

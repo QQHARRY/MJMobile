@@ -168,7 +168,7 @@
                                         NSMutableArray *options = [[NSMutableArray alloc] init];
                                         for (NSInteger i = 0; i < self.areaDictList.count; i++)
                                         {
-                                            [options addObject:[[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"areas_name"]];
+                                            [options addObject:[[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"area_name"]];
                                         }
                                         RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
                                                                                            {
@@ -199,7 +199,7 @@
                                    NSMutableArray *options = [[NSMutableArray alloc] init];
                                    for (NSInteger i = 0; i < self.areaDictList.count; i++)
                                    {
-                                       [options addObject:[[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"areas_name"]];
+                                       [options addObject:[[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"area_name"]];
                                    }
                                    RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
                                                                                       {
@@ -228,7 +228,7 @@
                                   NSDictionary *dstDict = nil;
                                   for (NSDictionary *areaDict in self.areaDictList)
                                   {
-                                      if ([[[areaDict objectForKey:@"dict"] objectForKey:@"areas_name"] isEqualToString:self.belongAreaItem.value])
+                                      if ([[[areaDict objectForKey:@"dict"] objectForKey:@"area_name"] isEqualToString:self.belongAreaItem.value])
                                       {
                                           dstDict = areaDict;
                                           break;
@@ -238,7 +238,7 @@
 //                                  {
 //                                      for (NSInteger i = 0; i < dstDict.count; i++)
 //                                      {
-//                                          [options addObject:[[[dstDict objectForKey:@"sections"] objectAtIndex:i] objectForKey:@"areas_name"]];
+//                                          [options addObject:[[[dstDict objectForKey:@"sections"] objectAtIndex:i] objectForKey:@"area_name"]];
 //                                      }
 //                                  }
                                   if (dstDict && dstDict.count > 0)
@@ -246,7 +246,7 @@
                                       NSArray*sectionArr = [dstDict objectForKey:@"sections"];
                                       for (NSInteger i = 0; i < sectionArr.count; i++)
                                       {
-                                          [options addObject:[[sectionArr objectAtIndex:i] objectForKey:@"areas_name"]];
+                                          [options addObject:[[sectionArr objectAtIndex:i] objectForKey:@"area_name"]];
                                       }
                                   }
                                   
@@ -388,10 +388,10 @@
         HouseFilter *filter = (self.hvc.nowControllerType == HCT_SELL) ? self.hvc.sellController.filter : self.hvc.rentController.filter;
         filter.FromID = @"0";
         filter.ToID = @"0";
-        filter.keyword = self.keySearchItem.value;
+        filter.Keyword = self.keySearchItem.value;
         filter.buildname = self.buildItem.value;
-        filter.house_unit = self.unitItem.value;
-        filter.house_fluor = self.floorItem.value;
+        filter.unit_name = self.unitItem.value;
+        filter.house_floor = self.floorItem.value;
         filter.house_tablet = self.tabletItem.value;
         filter.hall_num = self.hallItem.value;
         filter.room_num = self.roomItem.value;
@@ -403,15 +403,15 @@
         {
             filter.lease_value_from = @"";
             filter.lease_value_to = @"";
-            filter.lease_trade_state = @"";
+            filter.lease_state = @"";
             filter.sale_value_from = self.minPriceItem.value;
             filter.sale_value_to = self.maxPriceItem.value;
-            filter.sale_trade_state = @"";
+            filter.sale_state = @"";
             for (DicItem *di in self.saleDictList)
             {
                 if ([di.dict_label isEqualToString:self.statusItem.value])
                 {
-                    filter.sale_trade_state = di.dict_value;
+                    filter.sale_state = di.dict_value;
                     break;
                 }
             }
@@ -420,15 +420,15 @@
         {
             filter.sale_value_from = @"";
             filter.sale_value_to = @"";
-            filter.sale_trade_state = @"";
+            filter.sale_state = @"";
             filter.lease_value_from = self.minPriceItem.value;
             filter.lease_value_to = self.maxPriceItem.value;
-            filter.lease_trade_state = @"";
+            filter.lease_state = @"";
             for (DicItem *di in self.leaseDictList)
             {
                 if ([di.dict_label isEqualToString:self.statusItem.value])
                 {
-                    filter.lease_trade_state = di.dict_value;
+                    filter.lease_state = di.dict_value;
                     break;
                 }
             }
@@ -460,25 +460,25 @@
                 break;
             }
         }
-        filter.housearea = @"";
+        filter.house_area = @"";
         for (NSDictionary *areaDict in self.areaDictList)
         {
-            if ([[[areaDict objectForKey:@"dict"] objectForKey:@"areas_name"] isEqualToString:self.belongAreaItem.value])
+            if ([[[areaDict objectForKey:@"dict"] objectForKey:@"area_name"] isEqualToString:self.belongAreaItem.value])
             {
-                filter.houseurban = [areaDict objectForKey:@"no"];
+                filter.house_urban = [areaDict objectForKey:@"no"];
                 break;
             }
         }
-        filter.houseurban = @"";
+        filter.house_urban = @"";
         for (NSDictionary *areaDict in self.areaDictList)
         {
             NSArray *sectionList = [areaDict objectForKey:@"sections"];
             BOOL bFind = false;
             for (NSDictionary *sectionDict in sectionList)
             {
-                if ([[sectionDict objectForKey:@"areas_name"] isEqualToString:self.belongSectionItem.value])
+                if ([[sectionDict objectForKey:@"area_name"] isEqualToString:self.belongSectionItem.value])
                 {
-                    filter.housearea = [sectionDict objectForKey:@"areas_current_no"];
+                    filter.house_area = [sectionDict objectForKey:@"area_cno"];
                     bFind = true;
                     break;
                 }

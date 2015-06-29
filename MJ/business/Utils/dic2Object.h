@@ -10,4 +10,5 @@
 
 @interface dic2Object : NSObject
 -(BOOL)initWithDictionary:(NSDictionary*)dic;
+-(NSDictionary*)convert2Dic;
 @end

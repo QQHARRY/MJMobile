@@ -82,6 +82,7 @@
                                 failure:^(NSError *e)
     {
         HIDEHUD(self.view);
+        [self.tableView reloadData];
         [self.tableView headerEndRefreshing];
     }];
 }
@@ -91,7 +92,7 @@
     // reset
     HouseDetail *hd = [self.houseList lastObject];
     self.filter.ToID = @"0";
-    self.filter.FromID = hd.house_trade_no;
+    self.filter.FromID = hd.trade_no;
     // get
     SHOWHUD(self.view);
     [HouseDataPuller pullDataWithFilter:self.filter Success:^(NSArray *houseDetailList)
@@ -154,11 +155,16 @@
     NSString *thunmbnailStr = [SERVER_ADD stringByAppendingString:hd.ThumbnailUrl];
 //    NSLog(@"%@", thunmbnailStr);
     [cell.thunmbnail setImageWithURL:[NSURL URLWithString:thunmbnailStr] placeholderImage:[UIImage imageNamed:@"LoadPlaceHolder"]];
-    cell.title.text = hd.buildings_name;
-    cell.house.text = [NSString stringWithFormat:@"%@室%@厅%@厨%@卫 %@m²", hd.room_num, hd.hall_num, hd.kitchen_num, hd.toilet_num, hd.build_structure_area];
-    cell.price.text = (self.controllerType == HCT_RENT) ? ([NSString stringWithFormat:@"%@元/月", hd.lease_value_total]) : ([NSString stringWithFormat:@"%.1f万", [hd.sale_value_total floatValue] / 10000.0f]);
+    cell.title.text = hd.domain_name;
+    cell.house.text = [NSString stringWithFormat:@"%@室%@厅%@卫", hd.room_num, hd.hall_num,hd.toilet_num];
+    
+    cell.area.text = [NSString stringWithFormat:@"%@m²",hd.structure_area];
+    cell.price.text = (self.controllerType == HCT_RENT) ? ([NSString stringWithFormat:@"%@元/月", hd.rent_listing]) : ([NSString stringWithFormat:@"%.1f万", [hd.sale_listing floatValue] / 10000.0f]);
     cell.floor.text = [NSString stringWithFormat:@"%@/%@楼", hd.house_floor, hd.floor_count];
+    
+    
     {
+        cell.fitment.hidden = [hd.fitment_type stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length == 0;
         for (DicItem *di in self.fitmentDictList)
         {
             if ([di.dict_value isEqualToString:hd.fitment_type])
@@ -168,6 +174,8 @@
             }
         }
     }
+    
+    
     {
         cell.lookPermit.hidden = [hd.look_permit stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length == 0;
 
@@ -199,9 +207,10 @@
     
     if (self.controllerType == HCT_RENT)
     {
+        cell.status.hidden = [hd.lease_state stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length == 0;
         for (DicItem *di in self.leaseDictList)
         {
-            if ([di.dict_value isEqualToString:hd.lease_trade_state])
+            if ([di.dict_value isEqualToString:hd.lease_state])
             {
                 cell.status.text = di.dict_label;
                 break;
@@ -210,9 +219,10 @@
     }
     else
     {
+        cell.status.hidden = [hd.sale_state stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length == 0;
         for (DicItem *di in self.saleDictList)
         {
-            if ([di.dict_value isEqualToString:hd.sale_trade_state])
+            if ([di.dict_value isEqualToString:hd.sale_state])
             {
                 cell.status.text = di.dict_label;
                 break;

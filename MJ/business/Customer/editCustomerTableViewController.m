@@ -48,7 +48,7 @@
         
         if (self.curBuildings)
         {
-            [dicm setValue:self.curBuildings.buildings_dict_no forKey:@"requirement_buildings_no"];
+            [dicm setValue:self.curBuildings.domain_no forKey:@"requirement_buildings_no"];
         }
         else
         {
@@ -149,7 +149,7 @@
             NSString *hno = [areaDict objectForKey:@"no"];
             if ([hno isEqualToString:self.cusPtrl.requirement_house_urban])
             {
-                l = [[areaDict objectForKey:@"dict"] objectForKey:@"areas_name"];
+                l = [[areaDict objectForKey:@"dict"] objectForKey:@"area_name"];
                 break;
             }
         }
@@ -163,9 +163,9 @@
             BOOL bFind = false;
             for (NSDictionary *sectionDict in sectionList)
             {
-                if ([[sectionDict objectForKey:@"areas_current_no"] isEqualToString:self.cusPtrl.requirement_house_area])
+                if ([[sectionDict objectForKey:@"area_cno"] isEqualToString:self.cusPtrl.requirement_house_area])
                 {
-                    l = [sectionDict objectForKey:@"areas_name"];
+                    l = [sectionDict objectForKey:@"area_name"];
                     bFind = true;
                     break;
                 }

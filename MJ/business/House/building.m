@@ -11,24 +11,23 @@
 @implementation building
 
 
-@synthesize build_full_name;
-@synthesize builds_dict_no;
-@synthesize unit_serial;
-@synthesize floor_count;
-@synthesize elevator_house;
+@synthesize building_name;
+@synthesize building_no;
+@synthesize unit_count;
+//@synthesize floor_count;
+//@synthesize elevator_house;
 
 
 
 -(NSArray*)getSerialArr
 {
     NSMutableArray*arr = [[NSMutableArray alloc] init];
-    
-    NSArray* subStrArr = [self.unit_serial componentsSeparatedByString:@"-"];
-    if (subStrArr)
+    return arr;
+    if (self.unit_count)
     {
-        NSString*minFloor = [subStrArr objectAtIndex:0];
+        NSString*minFloor =@"1";
         NSInteger iMinFloor = [minFloor intValue];
-        NSString*maxFloor = [subStrArr objectAtIndex:1];
+        NSString*maxFloor = self.unit_count;
         NSInteger iMaxFloor = [maxFloor intValue];
         
         for (NSInteger i = iMinFloor; i <= iMaxFloor; i++)

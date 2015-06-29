@@ -96,10 +96,9 @@
     
     if (bld && cell)
     {
-        cell.build_full_name.text = bld.build_full_name;
-        cell.unit_serial.text = bld.unit_serial;
-        cell.floor_count.text = bld.floor_count;
-        cell.elevator_house.text = bld.elevator_house;
+        cell.build_full_name.text = bld.building_name;
+        cell.unit_serial.text = bld.unit_count;
+        
     }
     
     return cell;
@@ -121,7 +120,7 @@
 {
     SHOWHUD_WINDOW;
     
-    [HouseDataPuller pullBuildingDetailsByBuildingNO:self.blds.buildings_dict_no Success:^(buildingDetails *dtl,NSArray*arr)
+    [HouseDataPuller pullBuildingDetailsByBuildingNO:self.blds.domain_no Success:^(buildingDetails *dtl,NSArray*arr)
      {
          [self.buildingsArr removeAllObjects];
          if (self.buildingsArr && [arr count] > 0)

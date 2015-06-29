@@ -9,6 +9,8 @@
 #import "YALContextMenuTableView.h"
 #import "UIView+YALConstraints.h"
 #import "YALContextMenuCell.h"
+#import "DKLiveBlurView.h"
+#import <UIKit/UIGraphics.h>
 
 #define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
 
@@ -39,6 +41,9 @@ typedef NS_ENUM(NSUInteger, AnimatingState) {
 @property (nonatomic, strong) NSIndexPath *dismissalIndexpath;
 @property (nonatomic) AnimatingState animatingState;
 
+
+
+
 @end
 
 @implementation YALContextMenuTableView
@@ -60,17 +65,38 @@ typedef NS_ENUM(NSUInteger, AnimatingState) {
         self.animatingState = Stable;
         self.animationDuration = defaultDuration;
         self.animatingIndex = 0;
-        
-        self.backgroundColor = [UIColor clearColor];//[[UIColor clearColor] colorWithAlphaComponent:0.7f];
+        self.transform = CGAffineTransformMakeScale (1,-1);
+        self.backgroundColor =[[UIColor clearColor] colorWithAlphaComponent:0.3f];
         self.separatorColor = [UIColor clearColor];
         self.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero]; //Zero rect footer to clear empty rows UITableView draws
+        
+        UIGestureRecognizer*tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapedOnBackView:)];
+        [self addGestureRecognizer:tap];
+        
         self.scrollEnabled= NO;
     }
     return self;
 }
 
+-(void)tapedOnBackView:(UIGestureRecognizer*)gesture
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(contextMenuTableViewDidDismissingOnBlank)])
+    {
+        [self.delegate  performSelector:@selector(contextMenuTableViewDidDismissingOnBlank) withObject:nil];
+    }
+}
+
+//-(void)layoutSubviews
+//{
+//    
+//}
+
 #pragma mark - Show / Dismiss
 - (void)showInView:(UIView *)superview withEdgeInsets:(UIEdgeInsets)edgeInsets animated:(BOOL)animated {
+    
+
+    
+    
     
     if (self.animatingState!=Stable) {
         return;
@@ -100,6 +126,7 @@ typedef NS_ENUM(NSUInteger, AnimatingState) {
     } else {
         [self show:YES visibleCellsAnimated:NO];
     }
+
 }
 
 - (void)dismisWithIndexPath:(NSIndexPath *)indexPath {

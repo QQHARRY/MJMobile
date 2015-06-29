@@ -82,6 +82,7 @@
     [self.infoSection removeAllItems];
     
     NSArray*arr = [super getEditAbleFields];
+    
 
     
     for (NSString* name in arr)
@@ -89,12 +90,23 @@
         id item = [self instanceOfName:name];
         if (item != nil && [item isKindOfClass:[RETableViewItem class]])
         {
-            NSLog(@"add item =%@",name);
-            [self.infoSection addItem:item];
+            if ([name isEqualToString:@"obj_mobile"])
+            {
+                //只有特殊编辑权限(edit_permit 等于"1")才可以修改手机号码
+                if ([self.housePtcl.edit_permit isEqualToString:@"1"])
+                {
+                    [self.infoSection addItem:item];
+                }
+            }
+            else
+            {
+                [self.infoSection addItem:item];
+            }
+            
         }
     }
     
-    self.build_structure_area.value = self.housePtcl.build_structure_area;
+    self.structure_area.value = self.housePtcl.structure_area;
 
     [self adjustByTeneApplication];
     
@@ -155,7 +167,8 @@
             
         }
         
-        [dic setValue:self.houseDtl.house_trade_no forKey:@"house_trade_no"];
+        [dic setValue:self.houseDtl.trade_no forKey:@"trade_no"];
+        [dic setValue:self.housePtcl.edit_permit forKey:@"edit_permit"];
         SHOWHUD_WINDOW;
         [HouseDataPuller pushHouseEditedParticulars:dic Success:^(houseSecretParticulars *housePtl) {
             HIDEHUD_WINDOW;

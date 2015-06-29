@@ -127,12 +127,14 @@ void setCropMenuCustomized(id SELF, SEL _cmd)
             SEL setClippingRatio = @selector(setClippingRatio:);
             if ([GridViewObj respondsToSelector:setClippingRatio])
             {
+
                 [GridViewObj performSelector:setClippingRatio withObject:ratio];
+#pragma clang diagnostic pop
             }
             
 
    
-#pragma clang diagnostic pop
+
         }
         
         

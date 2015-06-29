@@ -10,10 +10,10 @@
 
 @implementation buildings
 
-@synthesize buildings_dict_no;
-@synthesize buildings_name;
+@synthesize domain_no;
+@synthesize domain_name;
 @synthesize urbanname;
 @synthesize areaname;
-@synthesize Buildings_address;
+@synthesize domain_address;
 
 @end

@@ -11,11 +11,11 @@
 @interface building : dic2Object
 
 
-@property(strong,nonatomic)NSString*build_full_name;
-@property(strong,nonatomic)NSString*builds_dict_no;
-@property(strong,nonatomic)NSString*unit_serial;
-@property(strong,nonatomic)NSString*floor_count;
-@property(strong,nonatomic)NSString*elevator_house;
+@property(strong,nonatomic)NSString*building_name;
+@property(strong,nonatomic)NSString*building_no;
+@property(strong,nonatomic)NSString*unit_count;
+//@property(strong,nonatomic)NSString*floor_count;
+//@property(strong,nonatomic)NSString*elevator_house;
 
 -(NSArray*)getSerialArr;
 @end

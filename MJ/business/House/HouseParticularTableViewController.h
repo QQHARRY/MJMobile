@@ -67,11 +67,9 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 @property(strong,nonatomic)RERadioItem* builds_dict_no;
 //楼盘编号
 
-@property(strong,nonatomic)RERadioItem* house_dict_no;
-//栋座编号
 
-@property(strong,nonatomic)RERadioItem* house_unit;
-//单元号
+
+
 
 @property(strong,nonatomic)RERadioItem* house_floor;
 //楼层
@@ -102,23 +100,23 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 @property (strong, readwrite, nonatomic) RETableViewItem * watchHouseImages;
 //点击进入查看:小区图,户型图,室内图
 
-@property (strong, readwrite, nonatomic) RERadioItem * buildings_name;
+@property (strong, readwrite, nonatomic) RERadioItem * domain_name;
 //String
 //楼盘名称
 
-@property (strong, readwrite, nonatomic) RETextItem * urbanname;
+@property (strong, readwrite, nonatomic) RETextItem * house_urban;
 //String
 //区域
 
-@property (strong, readwrite, nonatomic) RETextItem * areaname;
+@property (strong, readwrite, nonatomic) RETextItem * house_area;
 //String
 //片区
 
-@property (strong, readwrite, nonatomic) ReMultiTextItem *buildings_address;
+@property (strong, readwrite, nonatomic) ReMultiTextItem *domain_address;
 //String
 //地址
 
-@property (strong, readwrite, nonatomic) RENumberItem * build_structure_area;
+@property (strong, readwrite, nonatomic) RENumberItem * structure_area;
 //float
 //面积
 
@@ -150,7 +148,7 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 //
 //阳台
 
-@property (strong, readwrite, nonatomic) RERadioItem * tene_application;
+@property (strong, readwrite, nonatomic) RERadioItem * house_application;
 //Int
 //物业用途（用来区分是住宅还是车位等）
 //不同的物业用途有不同的属性字段，详见其他说明
@@ -180,7 +178,7 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 // Float
 // 层高
 
-@property (strong, readwrite, nonatomic) RENumberItem * floor_count;
+@property (strong, readwrite, nonatomic) RENumberItem * floor_num;
 // int
 // 层数(里面有几层)
 
@@ -188,7 +186,7 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 // float
 // 实用率(百分比)
 
-@property (strong, readwrite, nonatomic) RERadioItem * tene_type;
+@property (strong, readwrite, nonatomic) RERadioItem * house_tene_type;
 //Int
 //物业类型
 
@@ -216,7 +214,7 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 //Int
 //建房年代
 
-@property (strong, readwrite, nonatomic) RERadioItem * build_property;
+@property (strong, readwrite, nonatomic) RERadioItem * property_term;
 //Int
 //产权年限
 
@@ -227,27 +225,27 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 @property (strong, readwrite, nonatomic) RETextItem * house_and_build_floor;
 //在第几层，共几层
 
-@property (strong, readwrite, nonatomic) RENumberItem * build_floor_count;
+@property (strong, readwrite, nonatomic) RENumberItem * floor_count;
 //Int
 //总楼层
 
-@property (strong, readwrite, nonatomic) RENumberItem * sale_value_total;
+@property (strong, readwrite, nonatomic) RENumberItem * sale_listing;
 //Float
 //总价(出售 万)
 
-@property (strong, readwrite, nonatomic) RENumberItem * sale_value_single;
+@property (strong, readwrite, nonatomic) RENumberItem * sale_single;
 //Float
 //单价(出售 元/平米)
 
-@property (strong, readwrite, nonatomic) RENumberItem * value_bottom;
+@property (strong, readwrite, nonatomic) RENumberItem * sale_bottom;
 //Float
 //底价（出售 万）
 
-@property (strong, readwrite, nonatomic) RENumberItem * lease_value_total;
+@property (strong, readwrite, nonatomic) RENumberItem * rent_listing;
 //Float
 //总价(出租 元/月)
 
-@property (strong, readwrite, nonatomic) RENumberItem * lease_value_single;
+@property (strong, readwrite, nonatomic) RENumberItem * rent_single;
 //Float
 //单价(出租 元/月/平米)
 
@@ -258,7 +256,7 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 
 
 
-@property (strong, readwrite, nonatomic) RETextItem * b_staff_describ;
+@property (strong, readwrite, nonatomic) RETextItem * describ;
 //String
 //房源描述
 
@@ -302,14 +300,14 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 
 
 
-@property (strong, readwrite, nonatomic) RERadioItem * sale_trade_state;
-//出租状态）
+@property (strong, readwrite, nonatomic) RERadioItem * sale_state;
+//出售状态
 //
 // String
 // 状态（出售）
 
-@property (strong, readwrite, nonatomic) RERadioItem * lease_trade_state;
-//
+@property (strong, readwrite, nonatomic) RERadioItem * lease_state;
+//出租状态
 // String
 // 状态（出租）
 
@@ -350,11 +348,11 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 //联系地址（业主）
 //String
 
-@property(nonatomic,strong)RERadioItem* buildname;
+@property(nonatomic,strong)RERadioItem* building_name;
 //栋座（房源的）
 //Int
 
-@property(nonatomic,strong)RERadioItem* house_serect_unit;
+@property(nonatomic,strong)RERadioItem* house_unit;
 //house_unit
 //单元（房源的）
 //Int
@@ -365,9 +363,7 @@ typedef NS_ENUM(NSInteger, PAICULARMODE) {
 //的）
 //Int
 
-@property(nonatomic,strong)RETextItem* client_secret_remark;
-//备注
-//String
+
 #pragma mark ---------------secretSection items----------------
 #pragma mark
 

@@ -17,11 +17,11 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.layer.masksToBounds = YES;
-    self.layer.shadowOffset = CGSizeMake(0, 2);
-    self.layer.shadowColor =[UIColor darkGrayColor].CGColor;//[[UIColor colorWithRed:181.0/255.0 green:181.0/255.0 blue:181.0/255.0 alpha:1] CGColor];
+    //self.layer.masksToBounds = YES;
+    //self.layer.shadowOffset = CGSizeMake(0, 2);
+    //self.layer.shadowColor =[UIColor darkGrayColor].CGColor;//[[UIColor colorWithRed:181.0/255.0 green:181.0/255.0 blue:181.0/255.0 alpha:1] CGColor];
     //self.layer.shadowRadius = 5;
-    self.layer.shadowOpacity = 1;
+    //self.layer.shadowOpacity = 1;
     //self.menuImageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     //self.menuImageView.layer.borderWidth = 0.3;
     //self.menuImageView.layer.masksToBounds = YES;
@@ -46,7 +46,7 @@
                                                      relatedBy:NSLayoutRelationEqual
                                                         toItem:self
                                                      attribute:NSLayoutAttributeWidth
-                                                    multiplier:0.3
+                                                    multiplier:1/3.0
                                                       constant:0]];
 }
 

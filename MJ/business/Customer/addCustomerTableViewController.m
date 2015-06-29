@@ -164,10 +164,10 @@
     value = self.requirement_house_urban.value;
     for (NSInteger i = 0; i < self.areaDictList.count; i++)
     {
-        NSString*areaName = [[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"areas_name"];
+        NSString*areaName = [[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"area_name"];
         if ([areaName isEqualToString:value])
         {
-            value = [[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"areas_current_no"];
+            value = [[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"area_cno"];
         }
     }
     [dic setValue:value forKey:@"requirement_house_urban"];
@@ -179,7 +179,7 @@
     NSDictionary*dstDict = nil;
     for (NSDictionary *areaDict in self.areaDictList)
     {
-        if ([[[areaDict objectForKey:@"dict"] objectForKey:@"areas_name"] isEqualToString:self.requirement_house_urban.value])
+        if ([[[areaDict objectForKey:@"dict"] objectForKey:@"area_name"] isEqualToString:self.requirement_house_urban.value])
         {
             dstDict = areaDict;
             break;
@@ -189,9 +189,9 @@
     {
         for (NSInteger i = 0; i < [[dstDict objectForKey:@"sections"] count]; i++)
         {
-            if ([[[[dstDict objectForKey:@"sections"] objectAtIndex:i] objectForKey:@"areas_name"] isEqualToString:value])
+            if ([[[[dstDict objectForKey:@"sections"] objectAtIndex:i] objectForKey:@"area_name"] isEqualToString:value])
             {
-                value = [[[dstDict objectForKey:@"sections"] objectAtIndex:i] objectForKey:@"areas_current_no"];
+                value = [[[dstDict objectForKey:@"sections"] objectAtIndex:i] objectForKey:@"area_cno"];
             }
         }
     }
@@ -203,7 +203,7 @@
     value = @"";
     if (self.curBuildings)
     {
-        value = self.curBuildings.buildings_dict_no;
+        value = self.curBuildings.domain_no;
     }
     [dic setValue:value forKey:@"requirement_buildings_no"];
     
@@ -628,7 +628,7 @@
                  NSMutableArray *options = [[NSMutableArray alloc] init];
                  for (NSInteger i = 0; i < self.areaDictList.count; i++)
                  {
-                     [options addObject:[[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"areas_name"]];
+                     [options addObject:[[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"area_name"]];
                  }
                  RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
                                                                     {
@@ -659,7 +659,7 @@
             NSMutableArray *options = [[NSMutableArray alloc] init];
             for (NSInteger i = 0; i < self.areaDictList.count; i++)
             {
-                [options addObject:[[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"areas_name"]];
+                [options addObject:[[[self.areaDictList objectAtIndex:i] objectForKey:@"dict"] objectForKey:@"area_name"]];
             }
             RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
                                                                {
@@ -693,7 +693,7 @@
         NSDictionary *dstDict = nil;
         for (NSDictionary *areaDict in self.areaDictList)
         {
-            if ([[[areaDict objectForKey:@"dict"] objectForKey:@"areas_name"] isEqualToString:self.requirement_house_urban.value])
+            if ([[[areaDict objectForKey:@"dict"] objectForKey:@"area_name"] isEqualToString:self.requirement_house_urban.value])
             {
                 dstDict = areaDict;
                 break;
@@ -703,7 +703,7 @@
         {
             for (NSInteger i = 0; i < [[dstDict objectForKey:@"sections"] count]; i++)
             {
-                [options addObject:[[[dstDict objectForKey:@"sections"] objectAtIndex:i] objectForKey:@"areas_name"]];
+                [options addObject:[[[dstDict objectForKey:@"sections"] objectAtIndex:i] objectForKey:@"area_name"]];
             }
         }
         RETableViewOptionsController *optionsController = [[RETableViewOptionsController alloc] initWithItem:item options:options multipleChoice:NO completionHandler:^(RETableViewItem *selectedItem)
@@ -733,7 +733,7 @@
             if (bld)
             {
                 self.curBuildings = bld;
-                self.buildings_name.value = bld.buildings_name;
+                self.buildings_name.value = bld.domain_name;
                 [self.tableView reloadData];
                 [item reloadRowWithAnimation:UITableViewRowAnimationLeft];
             }

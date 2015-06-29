@@ -14,8 +14,7 @@
 
 @property(strong,nonatomic)IBOutlet UILabel*build_full_name;
 @property(strong,nonatomic)IBOutlet UILabel*unit_serial;
-@property(strong,nonatomic)IBOutlet UILabel*floor_count;
-@property(strong,nonatomic)IBOutlet UILabel*elevator_house;
+
 
 
 

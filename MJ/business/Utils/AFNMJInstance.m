@@ -8,6 +8,8 @@
 
 #import "AFNMJInstance.h"
 #import "Macro.h"
+#import "person.h"
+#import "UtilFun.h"
 
 @implementation AFNMJInstance
 
@@ -17,15 +19,46 @@
 }
 
 
+-(NSMutableDictionary*)addBasicRequiredItemsToParamDic:(NSDictionary*)dic
+{
+    if (dic)
+    {
+        NSMutableDictionary*dicAdded = [[NSMutableDictionary alloc] initWithDictionary:dic];
+        if ([dicAdded objectForKey:@"job_no"] == nil)
+        {
+            [dicAdded setValue:[person me].job_no forKey:@"job_no"];
+        }
+        
+        if ([dicAdded objectForKey:@"acc_password"] == nil)
+        {
+            [dicAdded setValue:[person me].password forKey:@"acc_password"];
+        }
+        
+        if ([dicAdded objectForKey:@"DeviceID"] == nil)
+        {
+            [dicAdded setValue:[UtilFun getUDID] forKey:@"DeviceID"];
+        }
+        
+        
+        return dicAdded;
+    }
+    
+    return nil;
+}
+
 -(void)PostWithApiName:(NSString*)apiName parameters:(NSDictionary *)parameters
                success:(void (^)(id responseObject))success
                failure:(void (^)(NSError *error))failure
 {
     
+    NSDictionary*dicParam = [self addBasicRequiredItemsToParamDic:parameters];
+    
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer =[AFHTTPResponseSerializer serializer];
     
-    [manager POST:[NSString stringWithFormat:@"%@%@", SERVER_URL, apiName] parameters:parameters success:
+    NSString*strUrl = [NSString stringWithFormat:@"%@%@", SERVER_URL, apiName];
+    [manager POST:strUrl parameters:dicParam success:
      ^(AFHTTPRequestOperation *operation, id responseObject)
      {
          if (success)

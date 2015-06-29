@@ -11,9 +11,12 @@
 
 @interface HouseParticulars : dic2Object
 
-@property(nonatomic,strong)NSString* buildings_name;
+@property(nonatomic,strong)NSString* domain_name;
 //String
 //楼盘名称
+
+//栋座号,现在从保密信息中移出来了
+@property(nonatomic,strong)NSString*building_name;
 
 @property(nonatomic,strong)NSString* urbanname;
 //String
@@ -23,11 +26,11 @@
 //String
 //片区
 
-@property(nonatomic,strong)NSString* buildings_address;
+@property(nonatomic,strong)NSString* domain_address;
 //String
 //地址
 
-@property(nonatomic,strong)NSString* build_structure_area;
+@property(nonatomic,strong)NSString* structure_area;
 //float
 //面积
 
@@ -54,12 +57,12 @@
 //
 //阳台
 
-@property(nonatomic,strong)NSString* tene_application;
+@property(nonatomic,strong)NSString* house_application;
 //Int
 //物业用途（用来区分是住宅还是车位等）
 //不同的物业用途有不同的属性字段，详见其他说明
 
-@property(nonatomic,strong)NSString* tene_type;
+@property(nonatomic,strong)NSString* house_tene_type;
 //Int
 //物业类型
 
@@ -87,7 +90,7 @@
 //Int
 //建房年代
 
-@property(nonatomic,strong)NSString* build_property;
+@property(nonatomic,strong)NSString* property_term;
 //Int
 //产权年限
 
@@ -99,27 +102,27 @@
 //Int
 //所在楼层
 
-@property(nonatomic,strong)NSString* build_floor_count;
+@property(nonatomic,strong)NSString* floor_count;
 //Int
 //总楼层
 
-@property(nonatomic,strong)NSString* sale_value_total;
+@property(nonatomic,strong)NSString* sale_listing;
 //Float
 //总价(出售 万)
 
-@property(nonatomic,strong)NSString* sale_value_single;
+@property(nonatomic,strong)NSString* sale_single;
 //Float
 //单价(出售 元/平米)
 
-@property(nonatomic,strong)NSString* value_bottom;
+@property(nonatomic,strong)NSString* sale_bottom;
 //Float
 //底价（出售 万）
 
-@property(nonatomic,strong)NSString* lease_value_total;
+@property(nonatomic,strong)NSString* rent_listing;
 //Float
 //总价(出租 元/月)
 
-@property(nonatomic,strong)NSString* lease_value_single;
+@property(nonatomic,strong)NSString* rent_single;
 //Float
 //单价(出租 元/月/平米)
 
@@ -128,7 +131,7 @@
 //备注
 
 
-@property(nonatomic,strong)NSString* b_staff_describ;
+@property(nonatomic,strong)NSString* describ;
 //String
 //房源描述
 
@@ -197,13 +200,13 @@
 // 出租：出租状态
 // 租售：出售状态
 
-@property(nonatomic,strong)NSString* sale_trade_state;
+@property(nonatomic,strong)NSString* sale_state;
 //出租状态）
 // 
 // String
 // 状态（出售）
 
-@property(nonatomic,strong)NSString* lease_trade_state;
+@property(nonatomic,strong)NSString* rent_state;
 //
 // String
 // 状态（出租）
@@ -232,7 +235,7 @@
 // Float
 // 层高
 
-@property(nonatomic,strong)NSString* floor_count;
+@property(nonatomic,strong)NSString* floor_num;
 // int
 // 层数(里面有几层)
 
@@ -244,7 +247,7 @@
 // String
 // 房源图片ID
 
-@property(nonatomic,strong)NSString*house_dict_no;
+@property(nonatomic,strong)NSString*house_no;
 @property(nonatomic,strong)NSString*owner_job_no;
 
 

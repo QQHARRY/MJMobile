@@ -19,5 +19,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *status;
 @property (strong, nonatomic) IBOutlet UILabel *lookPermit;
 @property (strong, nonatomic) IBOutlet UILabel *consignmentType;
+@property (strong, nonatomic) IBOutlet UILabel *area;
 
 @end

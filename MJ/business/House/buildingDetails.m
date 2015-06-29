@@ -11,7 +11,7 @@
 @implementation buildingDetails
 
 
-@synthesize buildings_name;
+@synthesize domain_name;
 //String
 //楼盘名称
 
@@ -23,7 +23,7 @@
 //String
 //片区
 
-@synthesize buildings_address;
+@synthesize domain_address;
 //String
 //地址
 
