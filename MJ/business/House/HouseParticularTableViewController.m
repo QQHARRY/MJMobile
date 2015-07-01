@@ -50,6 +50,8 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
 @property (nonatomic, strong)UIBarButtonItem*moreBtn;
 @property (nonatomic, strong)UIVisualEffectView* effectview;
 @property (nonatomic, strong)UIImageView* bluringView;
+@property (nonatomic, strong)NSArray*roleListOfHouse;
+@property (nonatomic, strong)HouseSurvey*survey;
 @end
 
 @implementation HouseParticularTableViewController
@@ -1200,7 +1202,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     __typeof (&*self) __weak weakSelf = self;
     
     //图片
-    [self createWatchImageBtn];
+    //[self createWatchImageBtn];
     
 //    @property (strong, readwrite, nonatomic) RERadioItem * domain_name;
 //    //String
@@ -2294,7 +2296,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
                             }
                             else
                             {
-                                PRESENTALERT(@"",@"对不起,您没有查看该房源的保密信息的权限",@"OK",self);
+                                PRESENTALERT(@"",@"对不起,您没有查看该房源的保密信息的权限",@"OK",nil,self);
                             }
 
                             
@@ -2374,7 +2376,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
 {
     if (![self.housePtcl.edit_permit isEqualToString:@"1"] && ![self.housePtcl.secret_permit isEqualToString:@"1"])
     {
-        PRESENTALERT(@"添加失败", @"对不起您没有权限对该房源新增签约", @"OK", self);
+        PRESENTALERT(@"添加失败", @"对不起您没有权限对该房源新增签约", @"OK", nil,self);
         return;
     }
     
@@ -2403,10 +2405,10 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
 -(void)getData
 {
     SHOWHUD_WINDOW;
-    [HouseDataPuller pullHouseParticulars:self.houseDtl Success:^(HouseParticulars*ptcl)
+    [HouseDataPuller pullHouseParticulars:self.houseDtl Success:^(HouseParticulars*ptcl,NSArray*roleList)
      {
          self.housePtcl = ptcl;
-
+         self.roleListOfHouse = roleList;
          
          [contactDataManager getPsnByJobNo:self.housePtcl.owner_job_no Success:^(id responseObject) {
              if (responseObject)
@@ -2765,21 +2767,24 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     switch (view.tag)
     {
         case 0:
-        {[self genJinAction];
+        {
+            [self genJinAction];
         }
             break;
         case 1:
-        {[self weiTuoAction];
+        {
+            [self weiTuoAction];
             
         }
             break;
         case 2:
         {
-            [HouseSurvey addHouseSurvery:nil Remark:@"" Success:^(id obj) {
-                
-            } failure:^(NSError *error) {
-                
-            }];
+            if (self.survey == nil)
+            {
+                self.survey = [[HouseSurvey alloc] init];
+            }
+            
+            [self.survey startSurveyWithHouse:self.houseDtl RoleList:self.roleListOfHouse InVc:self];
         }
         case 3:
         {

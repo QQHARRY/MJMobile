@@ -289,7 +289,7 @@
         [param setValue:self.sid forKey:@"contract_target_object"];
         if (!self.typeItem.value || self.typeItem.value.length <= 0)
         {
-            PRESENTALERT(@"错 误", @"请选择交易类型", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择交易类型", @"O K", nil,self);
             return;
         }
         for (DicItem *di in self.typeDictList)
@@ -302,7 +302,7 @@
         }
         if (!self.consignItem.value || self.consignItem.value.length <= 0)
         {
-            PRESENTALERT(@"错 误", @"请选择委托类型", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择委托类型", @"O K",nil, self);
             return;
         }
         for (DicItem *di in self.consignDictList)
@@ -315,7 +315,7 @@
         }
         if (!self.payItem.value || self.payItem.value.length <= 0)
         {
-            PRESENTALERT(@"错 误", @"请选择付佣类型", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择付佣类型", @"O K", nil,self);
             return;
         }
         for (DicItem *di in self.payDictList)
@@ -328,7 +328,7 @@
         }
         if (!self.startItem.value)
         {
-            PRESENTALERT(@"错 误", @"请选择委托开始日期", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择委托开始日期", @"O K",nil, self);
             return;
         }
         {
@@ -340,7 +340,7 @@
         }
         if (!self.endItem.value)
         {
-            PRESENTALERT(@"错 误", @"请选择委托结束日期", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择委托结束日期", @"O K",nil, self);
             return;
         }
         {
@@ -362,23 +362,23 @@
             }
             else
             {
-                PRESENTALERT(@"错 误", @"委托结束时间应大于开始时间且不能超过三个月", @"O K", self);
+                PRESENTALERT(@"错 误", @"委托结束时间应大于开始时间且不能超过三个月", @"O K", nil,self);
                 return;
             }
         }
         if (self.wtImageList.count <= 0)
         {
-            PRESENTALERT(@"错 误", @"请立刻上传委托协议图片", @"O K", self);
+            PRESENTALERT(@"错 误", @"请立刻上传委托协议图片", @"O K",nil, self);
             return;
         }
         if (self.qcImageList.count <= 0)
         {
-            PRESENTALERT(@"错 误", @"请立刻上传产权证明图片", @"O K", self);
+            PRESENTALERT(@"错 误", @"请立刻上传产权证明图片", @"O K",nil, self);
             return;
         }
         if (self.sfImageList.count <= 0)
         {
-            PRESENTALERT(@"错 误", @"请立刻上传身份证明图片", @"O K", self);
+            PRESENTALERT(@"错 误", @"请立刻上传身份证明图片", @"O K", nil,self);
             return;
         }
         SHOWWINDOWHUD(@"正在尝试创建委托，请稍候...");
@@ -392,10 +392,10 @@
                                          failure:^(NSError *error)
         {
             HIDEALLWINDOWHUD;
-            PRESENTALERTWITHHANDER(@"失败", @"创建委托失败，请稍后再试！",@"OK", self, ^(UIAlertAction *action)
+            PRESENTALERT(@"失败", @"创建委托失败，请稍后再试！",@"OK",  ^()
                                    {
                                        [self.navigationController popViewControllerAnimated:YES];
-                                   });
+                                   },self);
             return;
         }];
     }];
@@ -435,10 +435,10 @@
     }
     else
     {
-        PRESENTALERTWITHHANDER(@"成功", @"添加委托成功！",@"OK", self, ^(UIAlertAction *action)
+        PRESENTALERT(@"成功", @"添加委托成功！",@"OK", ^()
                                {
                                    [self.navigationController popViewControllerAnimated:YES];
-                               });
+                               }, self);
         return;
     }
     SHOWWINDOWHUD(tip);
@@ -451,25 +451,16 @@
                           failure:^(NSError *error)
     {
         HIDEALLWINDOWHUD;
-        PRESENTALERTWITHHANDER(@"失败", @"上传图片时失败，请稍后再试！",@"OK", self, ^(UIAlertAction *action)
+        PRESENTALERT(@"失败", @"上传图片时失败，请稍后再试！",@"OK", ^()
                                {
                                    [self.navigationController popViewControllerAnimated:YES];
-                               });
+                               }
+                     ,self);
         return;
     }];
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if ([alertView.title isEqualToString:@"成功"] && buttonIndex == 0)
-    {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    else if ([alertView.title isEqualToString:@"失败"] && buttonIndex == 0)
-    {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
+
 
 - (void)addPhoto
 {

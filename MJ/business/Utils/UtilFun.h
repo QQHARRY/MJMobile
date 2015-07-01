@@ -5,6 +5,7 @@
 //  Created by harry on 14/12/4.
 //  Copyright (c) 2014年 Simtoon. All rights reserved.
 //
+/*[UtilFun presentPopViewControllerWithTitle:title Message:msg SimpleAction:action Sender:tmpSender];*/
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -18,60 +19,27 @@
 #define SHOWHUD(v) ([UtilFun showHUD:v]);
 #define HIDEHUD(v) ([UtilFun hideHUD:v]);
 
-//#define SHOWHUD(v) ([self showHudInView:v hint:@""]);
-//#define HIDEHUD(v) ([self hideHud]);
 
-#define PRESENTALERT(title,msg,action,sender)\
-if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)\
+#define PRESENTALERT(title,msg,action,hander,sender)\
 {\
     id tmpSender = sender;\
     if(sender == nil) tmpSender = self;\
-    [UtilFun presentPopViewControllerWithTitle:title Message:msg SimpleAction:action Sender:tmpSender];\
-}\
-else\
-{\
-    NSString*okBtn = @"好的";\
-    if(action != nil) okBtn = action;\
-    UIAlertView*alertView = [[UIAlertView alloc] initWithTitle:title message:msg delegate:sender cancelButtonTitle:okBtn otherButtonTitles:nil, nil];\
-    id tmpSender = sender;\
-    if(sender == nil) tmpSender = self;\
-    alertView.delegate = tmpSender;\
-    [alertView show];\
+    [UtilFun presentPopViewControllerWithTitle:title Message:msg SimpleAction:action Handler:hander CancelAction:nil  CancelHandler:nil Sender:tmpSender];\
 }\
 
 
-#define PRESENTALERTWITHHANDER(title,msg,action,sender,hander)\
-if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)\
+#define PRESENTALERTWITHHANDER_WITHDEFAULTCANCEL(title,msg,action,hander,cancel,cancelHander,sender)\
 {\
-[UtilFun presentPopViewControllerWithTitle:title Message:msg SimpleAction:action Handler:hander Sender:sender];\
-}\
-else\
-{\
-UIAlertView*alertView = [[UIAlertView alloc] initWithTitle:title message:msg delegate:sender cancelButtonTitle:action otherButtonTitles:nil, nil];\
-alertView.delegate = self;\
-[alertView show];\
+id tmpSender = sender;\
+if(sender == nil) tmpSender = self;\
+[UtilFun presentPopViewControllerWithTitle:title Message:msg SimpleAction:action Handler:hander CancelAction:cancel  CancelHandler:cancelHander Sender:tmpSender];\
 }\
 
-
-#define PRESENTALERTWITHHANDER_WITHDEFAULTCANCEL(title,msg,action,sender,hander)\
-if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)\
-{\
-[UtilFun presentPopViewControllerWithTitle1:title Message:msg SimpleAction:action Handler:hander Sender:sender];\
-}\
-else\
-{\
-UIAlertView*alertView = [[UIAlertView alloc] initWithTitle:title message:msg delegate:sender cancelButtonTitle:action otherButtonTitles:@"取消", nil];\
-alertView.delegate = self;\
-[alertView show];\
-}\
 
 
 @interface UtilFun : NSObject
 
-+(void)presentPopViewControllerWithTitle:(NSString*)title Message:(NSString*)msg SimpleAction:(NSString*)action Sender:(UIViewController*)sender;
-+(void)presentPopViewControllerWithTitle:(NSString*)title Message:(NSString*)msg SimpleAction:(NSString*)action Handler:(void (^)(UIAlertAction *action))handle Sender:(UIViewController*)sender;
-+(void)presentPopViewControllerWithTitle1:(NSString*)title Message:(NSString*)msg SimpleAction:(NSString*)action Handler:(void (^)(UIAlertAction *action))handle Sender:(UIViewController*)sender;
-+(void)presentPopViewControllerWithTitle:(NSString*)title Message:(NSString*)msg Actions:(NSArray*)actArr Sender:(UIViewController*)sender;
++(void)presentPopViewControllerWithTitle:(NSString*)title Message:(NSString*)msg SimpleAction:(NSString*)action Handler:(void (^)())handle CancelAction:(NSString*)cancelTitle CancelHandler:(void (^)())cancelHandle Sender:(UIViewController*)sender;
 
 
 +(void)setFirstBinded;

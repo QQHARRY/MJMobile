@@ -75,7 +75,7 @@
         }
     } failure:^(NSError *error) {
         HIDEHUD_WINDOW;
-        PRESENTALERT(@"编辑失败", error.localizedDescription, nil, nil);
+        PRESENTALERT(@"编辑失败", error.localizedDescription, nil, nil,nil);
     }];
     
 }

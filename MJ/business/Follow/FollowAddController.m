@@ -282,7 +282,7 @@
         }
         if (!self.typeItem.value || self.typeItem.value.length <= 0)
         {
-            PRESENTALERT(@"错 误", @"请选择跟进方式", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择跟进方式", @"O K", nil,self);
             return;
         }
         for (DicItem *di in self.followDictList)
@@ -297,7 +297,7 @@
         {
             if (!self.saleStatusItem.value || self.saleStatusItem.value.length <= 0)
             {
-                PRESENTALERT(@"错 误", @"请选择出售状态", @"O K", self);
+                PRESENTALERT(@"错 误", @"请选择出售状态", @"O K",nil, self);
                 return;
             }
             for (DicItem *di in self.saleDictList)
@@ -313,7 +313,7 @@
         {
             if (!self.rentStatusItem.value || self.rentStatusItem.value.length <= 0)
             {
-                PRESENTALERT(@"错 误", @"请选择出租状态", @"O K", self);
+                PRESENTALERT(@"错 误", @"请选择出租状态", @"O K",nil, self);
                 return;
             }
             for (DicItem *di in self.leaseDictList)
@@ -329,7 +329,7 @@
         {
             if (!self.requireStatusItem.value || self.requireStatusItem.value.length <= 0)
             {
-                PRESENTALERT(@"错 误", @"请选择客源状态", @"O K", self);
+                PRESENTALERT(@"错 误", @"请选择客源状态", @"O K",nil, self);
                 return;
             }
             for (DicItem *di in self.requireDictList)
@@ -343,7 +343,7 @@
         }
         if (!self.contentItem.value || self.contentItem.value.length <= 0)
         {
-            PRESENTALERT(@"错 误", @"请输入跟进内容", @"O K", self);
+            PRESENTALERT(@"错 误", @"请输入跟进内容", @"O K",nil, self);
             return;
         }
         [param setValue:self.contentItem.value forKey:@"task_follow_content"];
@@ -352,20 +352,20 @@
             [param setValue:@"1" forKey:@"task_reminder_flag"];
             if (!self.rcontentItem.value || self.rcontentItem.value.length <= 0)
             {
-                PRESENTALERT(@"错 误", @"请输入提醒内容", @"O K", self);
+                PRESENTALERT(@"错 误", @"请输入提醒内容", @"O K",nil, self);
                 return;
             }
             [param setValue:self.rcontentItem.value forKey:@"task_reminder_content"];
             
             if (!self.timeItem.value)
             {
-                PRESENTALERT(@"错 误", @"请选择提醒日期", @"O K", self);
+                PRESENTALERT(@"错 误", @"请选择提醒日期", @"O K",nil, self);
                 return;
             }
             [param setValue:self.timeItem.value forKey:@"task_reminder_date"];
             if (!self.rangeItem.value || self.rangeItem.value.length <= 0)
             {
-                PRESENTALERT(@"错 误", @"请选择提醒范围", @"O K", self);
+                PRESENTALERT(@"错 误", @"请选择提醒范围", @"O K",nil, self);
                 return;
             }
             [param setValue:([self.rangeItem.value isEqualToString:@"本人"] ? @"0" : @"1") forKey:@"task_reminder_range"];
@@ -380,7 +380,7 @@
             HIDEHUD_WINDOW;
             if ([followNo isEqualToString:@"E-1003"])
             {
-                PRESENTALERT(@"提交错误", @"您没有新增该房源跟进的权限", @"O K", self);
+                PRESENTALERT(@"提交错误", @"您没有新增该房源跟进的权限", @"O K", nil,self);
                 return;
             }
             else
@@ -392,7 +392,7 @@
                                          failure:^(NSError *error)
         {
             HIDEHUD_WINDOW;
-            PRESENTALERT(@"提交错误", @"可能是网络问题，请稍候再试", @"O K", self);
+            PRESENTALERT(@"提交错误", @"可能是网络问题，请稍候再试", @"O K", nil,self);
             return;
         }];
     }];

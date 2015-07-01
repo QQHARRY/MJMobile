@@ -391,17 +391,17 @@
         HIDEHUD_WINDOW;
         self.succeedHouseTradeNo = trade_no;
         self.succeedHouseImageNo = buildings_picture;
-        [self getImageArr];
-        self.uploadProgress = 0;
-        [self uploadImage];
+        //[self getImageArr];
+        //self.uploadProgress = 0;
+        //[self uploadImage];
     } failure:^(NSError *error) {
         HIDEHUD_WINDOW;
         NSString*errorStr = [NSString stringWithFormat:@"%@",error];
-        PRESENTALERTWITHHANDER(@"添加失败,请稍候重试",errorStr,@"OK",self,^(UIAlertAction *action)
+        PRESENTALERT(@"添加失败,请稍候重试",errorStr,@"OK",^()
                                {
                                    
                                }
-                               );
+                               ,self);
     }];
 }
 
@@ -512,12 +512,12 @@
     {
         NSLog(@"push image all finished");
         dispatch_async(dispatch_get_main_queue(), ^{
-            PRESENTALERTWITHHANDER(@"成功", @"添加房源成功!",@"OK", self, ^(UIAlertAction *action)
+            PRESENTALERT(@"成功", @"添加房源成功!",@"OK", ^()
                                    {
                                        NSLog(@"push image all finished ok btn clicked");
                                        [self.navigationController popViewControllerAnimated:YES];
                                        
-                                   });
+                                   }, self);
         });
         
         
@@ -538,7 +538,7 @@
      {
          HIDEALLWINDOWHUD;
          NSLog(@"push image one failed,exit");
-         PRESENTALERTWITHHANDER(@"失败", @"上传图片时失败，请稍后再试！",@"OK", nil, ^(UIAlertAction *action)
+         PRESENTALERT(@"失败", @"上传图片时失败，请稍后再试！",@"OK", nil, ^()
                                 {
                                     [self.navigationController popViewControllerAnimated:YES];
                                 });
@@ -940,7 +940,7 @@
          }
          else
          {
-             PRESENTALERT(@"楼盘未录入栋座",@"请先联系主管添加栋座信息",@"OK",self);
+             PRESENTALERT(@"楼盘未录入栋座",@"请先联系主管添加栋座信息",@"OK",nil,self);
              self.building_name.enabled = NO;
              self.house_unit.enabled = NO;
              self.judgementBtn.enabled = NO;
@@ -958,6 +958,7 @@
 {
     __typeof (&*self) __weak weakSelf = self;
     [super createInfoSectionItems];
+    
     self.domain_name = [[RERadioItem alloc] initWithTitle:@"楼盘名称:" value:@"" selectionHandler:^(RERadioItem *item) {
         [item deselectRowAnimated:YES];
         BuildingsSelectTableViewController*selCtrl = [BuildingsSelectTableViewController initWithDelegate:weakSelf AndCompleteHandler:^(buildings *bld) {
@@ -1072,7 +1073,7 @@
             {
                 [weakSelf.structure_area selectRowAnimated:YES scrollPosition:UITableViewScrollPositionMiddle];
                 [weakSelf.tableView reloadData];
-                PRESENTALERT(@"请先填写有效的房源建筑面积!", nil, nil, weakSelf);
+                PRESENTALERT(@"请先填写有效的房源建筑面积!", nil, nil,nil, weakSelf);
                 return;
             }
         }
@@ -1423,7 +1424,7 @@
                              
                              if([bldName isEqualToString:@""] || [unt isEqualToString:@""] || [tab length] < 3 || self.curBuildings == nil || self.curBuilding ==nil)
                              {
-                                 PRESENTALERT(@"请先填写完整房屋信息", nil, nil, self);
+                                 PRESENTALERT(@"请先填写完整房屋信息", nil, nil, nil,self);
                              }
                              else
                              {
@@ -1434,7 +1435,7 @@
                                  
                                  if (iFloor < 0 || iFloor > iMaxFloor)
                                  {
-                                     PRESENTALERT(@"请填写正确的楼层", nil, nil, self);
+                                     PRESENTALERT(@"请填写正确的楼层", nil, nil, nil,self);
                                  }
                                  else
                                  {
@@ -1497,7 +1498,7 @@
             
             //[self.lease_value_single addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
             
-            PRESENTALERT(@"请先填写有效的房源建筑面积!", nil, nil, nil);
+            PRESENTALERT(@"请先填写有效的房源建筑面积!", nil, nil, nil,nil);
             return;
         }
         
@@ -1521,7 +1522,7 @@
     {
         if ([self.structure_area.value isEqualToString:@""] || [self.structure_area.value isEqualToString:@"0"])
         {
-            PRESENTALERT(@"请先填写有效的房源建筑面积!", nil, nil, nil);
+            PRESENTALERT(@"请先填写有效的房源建筑面积!", nil, nil,nil, nil);
             return;
         }
         
@@ -1532,7 +1533,7 @@
     {
         if ([self.structure_area.value isEqualToString:@""] || [self.structure_area.value isEqualToString:@"0"])
         {
-            PRESENTALERT(@"请先填写有效的房源建筑面积!", nil, nil, nil);
+            PRESENTALERT(@"请先填写有效的房源建筑面积!", nil, nil,nil, nil);
             return;
         }
     }
@@ -1540,7 +1541,7 @@
     {
         if ([self.structure_area.value isEqualToString:@""] || [self.structure_area.value isEqualToString:@"0"])
         {
-            PRESENTALERT(@"请先填写有效的房源建筑面积!", nil, nil, nil);
+            PRESENTALERT(@"请先填写有效的房源建筑面积!", nil, nil, nil,nil);
             return;
         }
     }
@@ -1570,27 +1571,27 @@
          {
              case 0:
              {
-                 PRESENTALERT(@"该房源尚未添加", @"可以添加房源,并添加:出售,出租,租售三种交易信息", nil, self);
+                 PRESENTALERT(@"该房源尚未添加", @"可以添加房源,并添加:出售,出租,租售三种交易信息", nil,nil, self);
              }
                  break;
              case 1:
              {
-                 PRESENTALERT(@"该房源已添加", @"可以添加:出售,出租,租售三种交易信息", nil, self);
+                 PRESENTALERT(@"该房源已添加", @"可以添加:出售,出租,租售三种交易信息", nil,nil, self);
              }
                  break;
              case 2:
              {
-                 PRESENTALERT(@"该房源存在出售交易信息", @"只能添加:出租交易信息", nil, self);
+                 PRESENTALERT(@"该房源存在出售交易信息", @"只能添加:出租交易信息", nil,nil, self);
              }
                  break;
              case 3:
              {
-                 PRESENTALERT(@"该房源存在出租交易信息", @"只能添加:出售交易信息", nil, self);
+                 PRESENTALERT(@"该房源存在出租交易信息", @"只能添加:出售交易信息", nil,nil, self);
              }
                  break;
              case 4:
              {
-                 PRESENTALERT(@"该房源存在租售交易信息", @"不能再添加交易信息", nil, self);
+                 PRESENTALERT(@"该房源存在租售交易信息", @"不能再添加交易信息", nil,nil, self);
                  
              }
                  break;
@@ -1607,7 +1608,7 @@
      }
                                              failure:^(NSError* error)
      {
-         PRESENTALERT(@"服务器判重失败,请重判", nil, nil, nil);
+         PRESENTALERT(@"服务器判重失败,请重判", nil, nil,nil, nil);
          HIDEHUD_WINDOW;
      }];
 }
@@ -1730,18 +1731,12 @@
         
         
         all = [all stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        PRESENTALERT(promptTitle, all, nil, nil);
+        PRESENTALERT(promptTitle, all, nil,nil, nil);
     }
     
     return allOK;
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if ([alertView.title isEqualToString:@"添加成功"])
-    {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
+
 
 @end

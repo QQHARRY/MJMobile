@@ -10,5 +10,5 @@
 
 @interface postFileUtils : NSObject
 
-+(void)postFileWithURL:(NSURL *)url data:(NSData *)data Parameter:(NSDictionary*)params ServerParamName:(NSString*)paramName FileName:(NSString*)fileName  MimeType:(NSString*)mmType Success:(void (^)())success failure:(void (^)(NSError *error))failure;
++(void)postFileWithURL:(NSURL *)url data:(NSData *)imageData Parameter:(NSDictionary*)params ServerParamName:(NSString*)paramName FileName:(NSString*)fileName  MimeType:(NSString*)mmType Success:(void (^)(id responseObj))success failure:(void (^)(NSError *error))failure;
 @end

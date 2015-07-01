@@ -52,6 +52,7 @@
 @synthesize  xqt;
 @synthesize  hxt;
 @synthesize  snt;
+@synthesize  zpt;
 @synthesize  trade_type;
 @synthesize  sale_state;
 @synthesize  rent_state;

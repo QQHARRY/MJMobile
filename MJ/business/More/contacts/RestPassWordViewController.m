@@ -45,12 +45,12 @@
     NSString*newPwd2 = self.pwd2.text;
     if (oPwd.length == 0 || newPwd1.length == 0 || newPwd2.length == 0)
     {
-        [UtilFun presentPopViewControllerWithTitle:@"信息填写不全" Message:@"请填写完成" SimpleAction:@"OK" Sender:self];
+        PRESENTALERT(@"信息填写不全", @"请填写完成", @"OK", nil, self);
         return;
     }
     else if([newPwd1 isEqualToString:newPwd2] == NO)
     {
-        [UtilFun presentPopViewControllerWithTitle:@"新密码两次输入不一致" Message:@"请填重新填写" SimpleAction:@"OK" Sender:self];
+        PRESENTALERT(@"新密码两次输入不一致", @"请填重新填写", @"OK", nil, self);
         return;
     }
     
@@ -70,13 +70,14 @@
          self.oldPwd.text = @"";
          self.pwd1.text = @"";
          self.pwd2.text = @"";
-          [UtilFun presentPopViewControllerWithTitle:@"修改成功" Message:@"" SimpleAction:@"OK" Sender:self];
+         
+         PRESENTALERT(@"修改成功", @"", @"OK", nil, self);
          
      }
                             failure:^(NSError *error)
      {
          HIDEHUD_WINDOW;
-         [UtilFun presentPopViewControllerWithTitle:@"修改失败" Message:@"" SimpleAction:@"OK" Sender:self];
+         PRESENTALERT(@"修改失败", @"", @"OK", nil, self);
          
      }];
     

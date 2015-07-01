@@ -77,7 +77,7 @@
     }
     else
     {
-        [self.photoImage loadPortraitOfPerson:psn withDefault:[UIImage imageNamed:DEFAULT_PERSON_IAMGE] round:NO];
+        [self.photoImage loadPortraitOfPerson:psn withDefault:[UIImage imageNamed:@"个人详情默认头像"] round:NO];
     }
     
     
@@ -463,14 +463,14 @@
          
          HIDEHUD_WINDOW
          
-         PRESENTALERT(@"修改成功",nil, nil, nil);
+         PRESENTALERT(@"修改成功",nil, nil,nil, nil);
          
      }
                             failure:^(NSError *error)
      {
          HIDEHUD_WINDOW
          
-         PRESENTALERT(@"修改失败", error.localizedDescription, nil, nil);
+         PRESENTALERT(@"修改失败", error.localizedDescription, nil, nil,nil);
      }];
     
 }
@@ -650,7 +650,7 @@
     NSString*strUrl = [NSString stringWithFormat:@"%@%@", SERVER_URL, EDIT_PERSON_PHOTO];
     
     SHOWHUD_WINDOW;
-    [postFileUtils postFileWithURL:[NSURL URLWithString:strUrl] data:data Parameter:params ServerParamName:@"photo" FileName:@"myPhoto" MimeType:@"image/jpeg" Success:^{
+    [postFileUtils postFileWithURL:[NSURL URLWithString:strUrl] data:data Parameter:params ServerParamName:@"photo" FileName:@"myPhoto" MimeType:@"image/jpeg" Success:^(id responseObj){
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [photoManager setPhoto:image ForPerson:[person me]];
@@ -658,7 +658,7 @@
             self.photoImage.image = image;
             //[self.photoImage setImageToRound:image];
             HIDEHUD_WINDOW;
-            PRESENTALERT(@"修改成功", nil, nil, nil);
+            PRESENTALERT(@"修改成功", nil, nil,nil, nil);
         });
         
         
@@ -670,7 +670,7 @@
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             HIDEHUD_WINDOW;
-            PRESENTALERT(@"修改失败", errMsg, nil, nil);
+            PRESENTALERT(@"修改失败", errMsg, nil,nil, nil);
         });
         
         

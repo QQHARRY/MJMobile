@@ -44,7 +44,7 @@
 {
     if (!hasAddPermit)
     {
-        PRESENTALERT(@"添加失败", @"对不起,您没有权限新增跟进!", @"OK", self);
+        PRESENTALERT(@"添加失败", @"对不起,您没有权限新增跟进!", @"OK",nil, self);
         return;
     }
     FollowAddController *vc = [[FollowAddController alloc] initWithStyle:UITableViewStyleGrouped];

@@ -51,18 +51,18 @@
         [self hideHud];
         if (error)
         {
-            PRESENTALERT(@"",NSLocalizedString(@"friend.sendApplyFail", @"send application fails, please operate again"), nil, nil);
+            PRESENTALERT(@"",NSLocalizedString(@"friend.sendApplyFail", @"send application fails, please operate again"), nil,nil, nil);
         }
         else
         {
-            PRESENTALERT(@"", NSLocalizedString(@"friend.sendApplySuccess", @"send successfully"), nil, nil);
+            PRESENTALERT(@"", NSLocalizedString(@"friend.sendApplySuccess", @"send successfully"), nil,nil, nil);
             
         }
         
     }
     else
     {
-        PRESENTALERT(@"添加好友失败", @"您尚未开通IM,请先联系管理员开通", nil, nil);
+        PRESENTALERT(@"添加好友失败", @"您尚未开通IM,请先联系管理员开通", nil, nil,nil);
     }
     
 }

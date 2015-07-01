@@ -218,7 +218,7 @@
     NSString* strTmpReceiver = self.receiverNameList.text;
     if ([[strTmpReceiver stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""])
     {
-        PRESENTALERT(@"收件人不能为空",@"请选择收件人",@"OK",self);
+        PRESENTALERT(@"收件人不能为空",@"请选择收件人",@"OK",nil,self);
         return;
 
     }
@@ -266,17 +266,17 @@
     [messageManager sendMessage:newMsg Success:^(id responseObject)
      {
          HIDEHUD(self.view);
-         PRESENTALERTWITHHANDER(@"发送成功",@"",@"OK",self,^(UIAlertAction *action)
+         PRESENTALERT(@"发送成功",@"",@"OK",^()
                                {
                                    [self.navigationController popViewControllerAnimated:YES];
                                }
-                               );
+                               ,self);
          
          
     } failure:^(NSError *error) {
         btn.enabled = YES;
         HIDEHUD(self.view);
-        PRESENTALERT(@"发送失败",@"请重复",@"OK",self);
+        PRESENTALERT(@"发送失败",@"请重复",@"OK",nil,self);
     }];
 }
 

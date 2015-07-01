@@ -250,7 +250,7 @@
         else
         {
             [tableView deselectRowAtIndexPath:indexPath animated:NO];
-            PRESENTALERT(@"对不起您不能添加汇办部门", @"只有承办部门才能添加汇办部门", nil, nil);
+            PRESENTALERT(@"对不起您不能添加汇办部门", @"只有承办部门才能添加汇办部门", nil,nil, nil);
         }
     }
 }
@@ -294,7 +294,7 @@
     NSString*str = opinionForAgreement.text;
     if ([str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length == 0)
     {
-        [UtilFun presentPopViewControllerWithTitle:@"审批意见不能为空" Message:@"请填写审批意见" SimpleAction:@"OK" Sender:self];
+        PRESENTALERT(@"审批意见不能为空", @"请填写审批意见", @"OK", nil, self);
         return NO;
     }
     return YES;
@@ -317,22 +317,22 @@
          {
             [[NSNotificationCenter defaultCenter] postNotificationName:MAINPAGE_INDICATOR_NUMBER_CHANGED object:nil];
             HIDEHUD_WINDOW
-            [UtilFun presentPopViewControllerWithTitle:@"审批成功" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
-             {
-                 [self quit];
-             }
-                                                Sender:self];
+             
+             
+             PRESENTALERT(@"审批成功", nil, @"OK", ^()
+                          {
+                              [self quit];
+                          }, self);
+
             
         } failure:^(NSError *error) {
             HIDEHUD_WINDOW
-            [UtilFun presentPopViewControllerWithTitle:@"审批失败" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
-             {
-                 [self quit];
-             }
-                                                Sender:self];
+            PRESENTALERT(@"审批失败", nil, @"OK", ^()
+                         {
+                             [self quit];
+                         }, self);
         }];
     }
-    
     
 }
 
@@ -349,18 +349,15 @@
         [petitionManager approveID:[self.petition getID] TaskID:self.petitionTaskID ActionType:1 Reason:opinionForAgreement.text AssistDepts:arr Success:^(id responseObject)
         {
             [[NSNotificationCenter defaultCenter] postNotificationName:MAINPAGE_INDICATOR_NUMBER_CHANGED object:nil];
-            [UtilFun presentPopViewControllerWithTitle:@"审批成功" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
-             {
-                 [self quit];
-             }
-                                                Sender:self];
-            
+            PRESENTALERT(@"审批成功", nil, @"OK", ^()
+                         {
+                             [self quit];
+                         }, self);
         } failure:^(NSError *error) {
-            [UtilFun presentPopViewControllerWithTitle:@"审批失败" Message:nil SimpleAction:@"OK"Handler:^(UIAlertAction *action)
-             {
-                 [self quit];
-             }
-                                                Sender:self];
+            PRESENTALERT(@"审批失败", nil, @"OK", ^()
+                         {
+                             [self quit];
+                         }, self);
         }];
     }
 }
@@ -392,19 +389,18 @@
         [petitionManager approveID:[self.petition getID] TaskID:self.petitionTaskID ActionType:2 Reason:opinionForAgreement.text AssistDepts:arr Success:^(id responseObject)
          {
              [[NSNotificationCenter defaultCenter] postNotificationName:MAINPAGE_INDICATOR_NUMBER_CHANGED object:nil];
-            [UtilFun presentPopViewControllerWithTitle:@"取消成功" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
-             {
-                
-                 [self quit];
-             }
-                                                Sender:self];
+
+             PRESENTALERT(@"取消成功", nil, @"OK", ^()
+                          {
+                              [self quit];
+                          }, self);
+             
             
         } failure:^(NSError *error) {
-            [UtilFun presentPopViewControllerWithTitle:@"取消失败" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
-             {
-                 [self quit];
-             }
-                                                Sender:self];
+            PRESENTALERT(@"取消失败", nil, @"OK", ^()
+                         {
+                             [self quit];
+                         }, self);
         }];
     }
 }

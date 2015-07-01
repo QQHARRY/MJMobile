@@ -1391,10 +1391,14 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    
-    
     [self refreshData];
     [super viewDidAppear:animated];
+    
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    
 }
 
 - (void)onFilterAction:(id)sender

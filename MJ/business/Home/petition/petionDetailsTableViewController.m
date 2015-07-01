@@ -51,19 +51,19 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:MAINPAGE_INDICATOR_NUMBER_CHANGED object:nil];
         HIDEHUD_WINDOW;
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc ] initWithTitle:@"审批" style:UIBarButtonItemStylePlain target:self action:@selector(agreenBtnClicked:)  ];
-        [UtilFun presentPopViewControllerWithTitle:@"签收成功" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
-         {
-             
-         }
-                                            Sender:self];
+        
+        
+        PRESENTALERT(@"签收成功", nil, @"OK", ^()
+                     {
+
+                     }, self);
         
     } failure:^(NSError *error) {
         HIDEHUD_WINDOW;
-        [UtilFun presentPopViewControllerWithTitle:@"签收失败" Message:nil SimpleAction:@"OK" Handler:^(UIAlertAction *action)
-         {
-             
-         }
-                                            Sender:self];
+        PRESENTALERT(@"签收失败", nil, @"OK", ^()
+                     {
+                         
+                     }, self);
     }];
 }
 

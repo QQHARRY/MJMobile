@@ -191,6 +191,10 @@
 //String
 //室内图
 
+@property(nonatomic,strong)NSString* zpt;
+//String
+//室内图
+
 @property(nonatomic,strong)NSString* trade_type;
 //String
 //房源类型:比如出售 是”100”，出租 是”101”

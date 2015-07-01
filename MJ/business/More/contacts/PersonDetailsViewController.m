@@ -306,13 +306,13 @@
     NSString*strUrl = [NSString stringWithFormat:@"%@%@", SERVER_URL, EDIT_PERSON_PHOTO];
     
     SHOWHUD_WINDOW;
-    [postFileUtils postFileWithURL:[NSURL URLWithString:strUrl] data:data Parameter:params ServerParamName:@"photo" FileName:@"myPhoto" MimeType:@"image/jpeg" Success:^{
+    [postFileUtils postFileWithURL:[NSURL URLWithString:strUrl] data:data Parameter:params ServerParamName:@"photo" FileName:@"myPhoto" MimeType:@"image/jpeg" Success:^(id responseObj){
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [photoManager setPhoto:image ForPerson:[person me]];
             [self.myPhoto setBackgroundImage:image forState:UIControlStateNormal];
             HIDEHUD_WINDOW;
-            PRESENTALERT(@"修改成功", nil, nil, nil);
+            PRESENTALERT(@"修改成功", nil, nil,nil,nil);
         });
         
         
@@ -324,7 +324,7 @@
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             HIDEHUD_WINDOW;
-            PRESENTALERT(@"修改失败", errMsg, nil, nil);
+            PRESENTALERT(@"修改失败", errMsg, nil, nil,nil);
         });
         
         
@@ -411,7 +411,7 @@
     
     if (accName.length ==0 || phoneNumMobile.length == 0 || chSign.length == 0 || chInfo.length == 0)
     {
-        PRESENTALERT(@"信息填写不全",@"请填写完成",@"OK",self);
+        PRESENTALERT(@"信息填写不全",@"请填写完成",@"OK",nil,self);
         return;
     }
     
@@ -435,14 +435,14 @@
          
          HIDEHUD(self.view);
          
-         PRESENTALERT(@"修改成功",nil, nil, nil);
+         PRESENTALERT(@"修改成功",nil, nil, nil,nil);
          
      }
                             failure:^(NSError *error)
      {
          HIDEHUD(self.view);
          
-         PRESENTALERT(@"修改失败", error.localizedDescription, nil, nil);
+         PRESENTALERT(@"修改失败", error.localizedDescription, nil,nil,nil);
      }];
     
     

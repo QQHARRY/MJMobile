@@ -137,13 +137,13 @@
                                          failure:^(NSError *error)
          {
              HIDEHUD_WINDOW;
-             PRESENTALERT(@"获取失败", @"可能是网络问题，请稍候再试", @"O K", self);
+             PRESENTALERT(@"获取失败", @"可能是网络问题，请稍候再试", @"O K", nil,self);
          }];
     }
                                         failure:^(NSError *error)
     {
         HIDEHUD_WINDOW;
-        PRESENTALERT(@"获取失败", @"可能是网络问题，请稍候再试", @"O K", self);
+        PRESENTALERT(@"获取失败", @"可能是网络问题，请稍候再试", @"O K", nil,self);
     }];
 }
 
@@ -499,7 +499,7 @@
                                         failure:^(NSError *error)
      {
          HIDEHUD_WINDOW;
-         PRESENTALERT(@"获取失败", @"可能是网络问题，请稍候再试", @"OK", self);
+         PRESENTALERT(@"获取失败", @"可能是网络问题，请稍候再试", @"OK", nil,self);
      }];
 }
 
@@ -512,7 +512,7 @@
         editCustomerTableViewController*editCtrl = [editCustomerTableViewController editCtrlWithCusParticulars:self.particulars AndSecrect:self.secret AreaDic:self.areaDictList Hander:^{
             [weakSelf.navigationController popViewControllerAnimated:YES];
             
-            PRESENTALERT(@"编辑成功", nil, nil, nil);
+            PRESENTALERT(@"编辑成功", nil, nil, nil,nil);
             [self reloadData];
         }];
         

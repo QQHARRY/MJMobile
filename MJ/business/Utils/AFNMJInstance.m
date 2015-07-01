@@ -21,7 +21,7 @@
 
 -(NSMutableDictionary*)addBasicRequiredItemsToParamDic:(NSDictionary*)dic
 {
-    if (dic)
+    //if (dic)
     {
         NSMutableDictionary*dicAdded = [[NSMutableDictionary alloc] initWithDictionary:dic];
         if ([dicAdded objectForKey:@"job_no"] == nil)

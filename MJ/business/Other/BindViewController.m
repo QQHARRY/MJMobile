@@ -85,7 +85,7 @@
 
     if ([strID length] <= 0 || [strPwd length] <= 0)
     {
-        PRESENTALERT(@"输入错误",@"请输入正确的用户名和密码",@"OK",self);
+        PRESENTALERT(@"输入错误",@"请输入正确的用户名和密码",@"OK",nil,self);
         return;
     }
     
@@ -106,7 +106,7 @@
         
          if (Status == nil || [Status  length] <= 0)
          {
-             PRESENTALERT(SERVER_NONCOMPLIANCE,SERVER_NONCOMPLIANCE_INFO,@"OK",self);
+             PRESENTALERT(SERVER_NONCOMPLIANCE,SERVER_NONCOMPLIANCE_INFO,@"OK",nil,self);
          }
          else
          {
@@ -117,11 +117,11 @@
                  {
                      [UtilFun setFirstBinded];
       
-                     PRESENTALERTWITHHANDER(@"绑定成功",@"请等待审核通过或联系管理员",@"OK",self,^(UIAlertAction *action)
+                     PRESENTALERT(@"绑定成功",@"请等待审核通过或联系管理员",@"OK",^()
                      {
                          [self toLoginPage];
                      }
-                                           );
+                                           ,self);
                      
                      
                      return;
@@ -129,7 +129,7 @@
                      break;
                  case 1:
                  {
-                     PRESENTALERT(@"绑定失败",@"用户名或密码错误,请重新输入",@"OK",self);
+                     PRESENTALERT(@"绑定失败",@"用户名或密码错误,请重新输入",@"OK",nil,self);
                      return;
                  }
                      break;
@@ -138,11 +138,11 @@
                      
                      [UtilFun setFirstBinded];
 
-                     PRESENTALERTWITHHANDER(@"绑定成功",@"管理员已审核通过,可登陆进入系统",@"OK",self,^(UIAlertAction *action)
+                     PRESENTALERT(@"绑定成功",@"管理员已审核通过,可登陆进入系统",@"OK",^()
                                            {
                                                [self toLoginPage];
                                            }
-                                           );
+                                           ,self);
                  }
                      break;
                  default:
@@ -156,7 +156,7 @@
          HIDEHUD(self.view);
          NSString*errorStr = [NSString stringWithFormat:@"%@",error];
          
-         PRESENTALERT(SERVER_NONCOMPLIANCE,errorStr,@"OK",self);
+         PRESENTALERT(SERVER_NONCOMPLIANCE,errorStr,@"OK",nil,self);
          
      }];
     
@@ -175,12 +175,6 @@
     [self toLoginPage];
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if ([alertView.title isEqualToString:@"绑定成功"] && buttonIndex == 0)
-    {
-        [self toLoginPage];
-    }
-}
+
 
 @end

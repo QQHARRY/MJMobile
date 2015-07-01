@@ -110,7 +110,7 @@
 
     [self adjustByTeneApplication];
     
-    [self createWatchImageBtn];
+    //[self createWatchImageBtn];
 }
 
 - (void)createWatchImageBtn
@@ -178,34 +178,26 @@
                 [self.delegate performSelector:sel];
             }
             
-            PRESENTALERTWITHHANDER(@"编辑成功",@"",@"OK",self,^(UIAlertAction *action)
+            PRESENTALERT(@"编辑成功",@"",@"OK",^()
                                   {
                                       [self.navigationController popViewControllerAnimated:YES];
                                   }
-                                  );
+                         ,self);
 
             
         } failure:^(NSError *error) {
             HIDEHUD_WINDOW;
             NSString*errorStr = [NSString stringWithFormat:@"%@",error];
-            PRESENTALERTWITHHANDER(@"编辑失败",errorStr,@"OK",self,^(UIAlertAction *action)
+            PRESENTALERT(@"编辑失败",errorStr,@"OK",^()
                                   {
                                       [self.navigationController popViewControllerAnimated:YES];
                                   }
-                                  );  
+                                  ,self);  
         }];
     }
 }
 
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if ([alertView.title isEqualToString:@"编辑成功"]
-        ||[alertView.title isEqualToString:@"编辑失败"] )
-    {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
 
 
 /*

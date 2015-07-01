@@ -28,14 +28,14 @@
     }
     NSString*versionPromot = [[NSString alloc] initWithFormat:@"发现新版本:%@\r\n当前版本不再可用",vName];
     NSString*releaseNoteStr = [NSString stringWithFormat:@"更新说明:\r\n%@",releaseNote];
-    PRESENTALERTWITHHANDER(versionPromot, releaseNoteStr, @"现在更新",self,^(UIAlertAction *action)
+    PRESENTALERT(versionPromot, releaseNoteStr, @"现在更新",^()
                            {
                                AppDelegate*app = [[UIApplication sharedApplication] delegate];
                                
                                [app appLogout];
                                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:address]];
                            }
-                           );
+                           ,self);
     
 //    UIAlertView*alert =[[UIAlertView alloc] initWithTitle:versionPromot message:releaseNoteStr delegate:self cancelButtonTitle:@"现在更新" otherButtonTitles:nil, nil];
 //    

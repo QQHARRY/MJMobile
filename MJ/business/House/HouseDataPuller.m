@@ -20,6 +20,7 @@
 #import <objc/runtime.h>
 #import "dictionaryManager.h"
 #import "houseUnit.h"
+#import "RoleListNode.h"
 
 @implementation HouseDataPuller
 
@@ -246,7 +247,7 @@
 
 
 
-+(void)pullHouseParticulars:(HouseDetail *)dtl Success:(void (^)(HouseParticulars *housePtl))success failure:(void (^)(NSError *error))failure
++(void)pullHouseParticulars:(HouseDetail *)dtl Success:(void (^)(HouseParticulars *housePtl,NSArray*roleList))success failure:(void (^)(NSError *error))failure
 {
     NSDictionary *parameters = @{@"job_no":[person me].job_no,
                                  @"acc_password":[person me].password,
@@ -258,11 +259,19 @@
      ^(id responseObject)
      {
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-         if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         if ([bizManager checkReturnStatus:resultDic Success:nil failure:nil ShouldReturnWhenSuccess:NO])
          {
              HouseParticulars*housePtcl = [[HouseParticulars alloc] init];
              [housePtcl initWithDictionary:[[resultDic  objectForKey:@"EstateDetailsNode"] objectAtIndex:0]];
              
+             NSMutableArray*roleList = [[NSMutableArray alloc] init];
+             NSArray*roleListNode = [resultDic objectForKey:@"RoleListNode"];
+             for (NSDictionary*dicTmp in roleListNode)
+             {
+                 RoleListNode*node = [[RoleListNode alloc] init];
+                 [node initWithDictionary:dicTmp];
+                 [roleList addObject:node];
+             }
              
              
              
@@ -279,7 +288,11 @@
              }
             
              
-             success(housePtcl);
+             success(housePtcl,roleList);
+         }
+         else
+         {
+             failure(nil);
          }
          
      }
@@ -304,7 +317,7 @@
          if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {
              houseSecretParticulars*housePtcl = [[houseSecretParticulars alloc] init];
-             [housePtcl initWithDictionary:[[resultDic  objectForKey:@"EstateSecretNode"] objectAtIndex:0]];
+             [housePtcl initWithDictionary:[resultDic  objectForKey:@"EstateSecretNode"]];
              
              
              success(housePtcl);
@@ -556,7 +569,7 @@
     
     NSData*data = UIImageJPEGRepresentation(image, 0.5);
     
-    [postFileUtils postFileWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", SERVER_URL, ADD_IMAGE] ] data:data Parameter:parameters ServerParamName:@"imagedata" FileName:@"" MimeType:@"image/jpeg" Success:^{
+    [postFileUtils postFileWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", SERVER_URL, ADD_IMAGE] ] data:data Parameter:parameters ServerParamName:@"imagedata" FileName:@"" MimeType:@"image/jpeg" Success:^(id responseObj){
         {
             
             success(nil);

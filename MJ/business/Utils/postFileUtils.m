@@ -17,7 +17,7 @@
 
 @implementation postFileUtils
 
-+(void)postFileWithURL:(NSURL *)url data:(NSData *)data Parameter:(NSDictionary*)params ServerParamName:(NSString*)paramName FileName:(NSString*)fileName MimeType:(NSString*)mmType Success:(void (^)())success failure:(void (^)(NSError *error))failure;
++(void)postFileWithURL:(NSURL *)url data:(NSData *)imageData Parameter:(NSDictionary*)params ServerParamName:(NSString*)paramName FileName:(NSString*)fileName MimeType:(NSString*)mmType Success:(void (^)(id responseObj))success failure:(void (^)(NSError *error))failure;
 {
 
     NSString *HTTP_FORM_BOUNDARY = @"AaB03x";
@@ -53,7 +53,7 @@
 
     [body appendFormat:@"%@\r\n",MJboundary];
 
-    [body appendFormat:@"Content-Disposition: form-data; name=\"imagedata\"; filename=\"1.jpg\"\r\n"];
+    [body appendFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n",paramName,fileName];
 
     [body appendFormat:@"Content-Type: image/jpeg\r\n\r\n"];
     
@@ -64,7 +64,7 @@
 
     [myRequestData appendData:[body dataUsingEncoding:NSUTF8StringEncoding]];
 
-    [myRequestData appendData:data];
+    [myRequestData appendData:imageData];
 
     [myRequestData appendData:[end dataUsingEncoding:NSUTF8StringEncoding]];
     
@@ -94,13 +94,20 @@
         {
             NSError*error;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+#ifdef DEBUG
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-variable"
+             NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+#pragma clang diagnostic pop
+#endif
             
-            if (json && [[json objectForKey:@"Status"] intValue] == 0)
+            if (json && ([[json objectForKey:@"Status"] intValue] == 0 ||
+                         [[json objectForKey:@"status"] intValue] == 0))
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (success)
                     {
-                        success();
+                        success(json);
                     }
                 });
                 

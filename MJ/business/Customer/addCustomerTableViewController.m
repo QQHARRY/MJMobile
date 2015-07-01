@@ -77,7 +77,7 @@
         
         
         all = [all stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        PRESENTALERT(promptTitle, all, nil, nil);
+        PRESENTALERT(promptTitle, all, nil,nil, nil);
     }
     
     return allOK;
@@ -375,21 +375,21 @@
     if ([self.requirement_floor_to.value intValue] == 0 ||
         [self.requirement_floor_from.value intValue] == 0)
     {
-        PRESENTALERT(@"需求楼层不能为0", nil, nil, nil);
+        PRESENTALERT(@"需求楼层不能为0", nil, nil,nil, nil);
         return FALSE;
     }
     
     if ([self.requirement_room_to.value intValue] == 0 ||
         [self.requirement_room_from.value intValue] == 0)
     {
-        PRESENTALERT(@"需求户型不能填0室", nil, nil, nil);
+        PRESENTALERT(@"需求户型不能填0室", nil, nil, nil,nil);
         return FALSE;
     }
     
     if ([self.requirement_area_to.value floatValue] < 3 ||
         [self.requirement_area_from.value floatValue] < 3)
     {
-        PRESENTALERT(@"需求面积不能小于3", nil, nil, nil);
+        PRESENTALERT(@"需求面积不能小于3", nil, nil,nil, nil);
         return FALSE;
     }
     
@@ -416,10 +416,10 @@
     [CustomerDataPuller pullAddCustomer:dic Success:^(id obj) {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"继续添加" style:UIBarButtonItemStylePlain target:self action:@selector(addAgain:)];
         HIDEHUD_WINDOW;
-        PRESENTALERT(@"添加成功", nil, nil, nil);
+        PRESENTALERT(@"添加成功", nil, nil,nil, nil);
     } failure:^(NSError *error) {
         HIDEHUD_WINDOW;
-        PRESENTALERT(@"添加失败", error.localizedDescription, nil, nil);
+        PRESENTALERT(@"添加失败", error.localizedDescription, nil,nil, nil);
     }];
     
 }

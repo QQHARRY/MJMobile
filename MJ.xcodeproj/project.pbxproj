@@ -477,6 +477,10 @@
 		4AA18BE31AEF5C9700685603 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA18BE21AEF5C9700685603 /* Security.framework */; };
 		4AA18BEB1AEF62DB00685603 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA18BEA1AEF62DB00685603 /* CoreData.framework */; };
 		4AA18BED1AEF7CC100685603 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA18BEC1AEF7CC100685603 /* libstdc++.6.dylib */; };
+		4AA36E8B1B4390D6005D070B /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA36E8A1B4390D6005D070B /* UIViewController+BackButtonHandler.m */; };
+		4AA36E931B43B436005D070B /* RIButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA36E8E1B43B436005D070B /* RIButtonItem.m */; };
+		4AA36E941B43B436005D070B /* UIActionSheet+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA36E901B43B436005D070B /* UIActionSheet+Blocks.m */; };
+		4AA36E951B43B436005D070B /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA36E921B43B436005D070B /* UIAlertView+Blocks.m */; };
 		4AA3AA931B4136CE007BF193 /* houseUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3AA921B4136CE007BF193 /* houseUnit.m */; };
 		4AA3AA961B4138D1007BF193 /* HouseSelectUnitTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3AA951B4138D1007BF193 /* HouseSelectUnitTableViewController.m */; };
 		4AA3AA991B413C27007BF193 /* HouseUnitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3AA981B413C27007BF193 /* HouseUnitCell.m */; };
@@ -484,6 +488,8 @@
 		4AA543711A8894630089C0F2 /* photoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA543701A8894630089C0F2 /* photoManager.m */; };
 		4AA543741A88B2480089C0F2 /* ReMultiTextItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA543731A88B2480089C0F2 /* ReMultiTextItem.m */; };
 		4AA543771A88B33F0089C0F2 /* RETableViewMultiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA543761A88B33F0089C0F2 /* RETableViewMultiCell.m */; };
+		4AA9F5FB1B423DA000A7CE45 /* RoleListNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9F5FA1B423DA000A7CE45 /* RoleListNode.m */; };
+		4AA9F5FF1B424D6900A7CE45 /* houseSurveyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9F5FE1B424D6900A7CE45 /* houseSurveyTableViewController.m */; };
 		4AAE1A511AF1C96000F01D95 /* UIBarButtonItem+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE1A4E1AF1C96000F01D95 /* UIBarButtonItem+Badge.m */; };
 		4AAE1A521AF1C96000F01D95 /* UIButton+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE1A501AF1C96000F01D95 /* UIButton+Badge.m */; };
 		4AAE5FE11B14100D0077AC98 /* SectionValueCustomizedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AAE5FE01B14100D0077AC98 /* SectionValueCustomizedCell.xib */; };
@@ -1505,6 +1511,14 @@
 		4AA18BE21AEF5C9700685603 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4AA18BEA1AEF62DB00685603 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4AA18BEC1AEF7CC100685603 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
+		4AA36E891B4390D6005D070B /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
+		4AA36E8A1B4390D6005D070B /* UIViewController+BackButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonHandler.m"; sourceTree = "<group>"; };
+		4AA36E8D1B43B436005D070B /* RIButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIButtonItem.h; sourceTree = "<group>"; };
+		4AA36E8E1B43B436005D070B /* RIButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIButtonItem.m; sourceTree = "<group>"; };
+		4AA36E8F1B43B436005D070B /* UIActionSheet+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+Blocks.h"; sourceTree = "<group>"; };
+		4AA36E901B43B436005D070B /* UIActionSheet+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+Blocks.m"; sourceTree = "<group>"; };
+		4AA36E911B43B436005D070B /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
+		4AA36E921B43B436005D070B /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		4AA3AA911B4136CE007BF193 /* houseUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = houseUnit.h; sourceTree = "<group>"; };
 		4AA3AA921B4136CE007BF193 /* houseUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = houseUnit.m; sourceTree = "<group>"; };
 		4AA3AA941B4138D1007BF193 /* HouseSelectUnitTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseSelectUnitTableViewController.h; sourceTree = "<group>"; };
@@ -1518,6 +1532,11 @@
 		4AA543731A88B2480089C0F2 /* ReMultiTextItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReMultiTextItem.m; sourceTree = "<group>"; };
 		4AA543751A88B33F0089C0F2 /* RETableViewMultiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RETableViewMultiCell.h; sourceTree = "<group>"; };
 		4AA543761A88B33F0089C0F2 /* RETableViewMultiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RETableViewMultiCell.m; sourceTree = "<group>"; };
+		4AA9F5F91B423DA000A7CE45 /* RoleListNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoleListNode.h; sourceTree = "<group>"; };
+		4AA9F5FA1B423DA000A7CE45 /* RoleListNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoleListNode.m; sourceTree = "<group>"; };
+		4AA9F5FC1B42492E00A7CE45 /* roleType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = roleType.h; sourceTree = "<group>"; };
+		4AA9F5FD1B424D6900A7CE45 /* houseSurveyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = houseSurveyTableViewController.h; path = HouseSurvey/houseSurveyTableViewController.h; sourceTree = "<group>"; };
+		4AA9F5FE1B424D6900A7CE45 /* houseSurveyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = houseSurveyTableViewController.m; path = HouseSurvey/houseSurveyTableViewController.m; sourceTree = "<group>"; };
 		4AAE1A4D1AF1C96000F01D95 /* UIBarButtonItem+Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Badge.h"; sourceTree = "<group>"; };
 		4AAE1A4E1AF1C96000F01D95 /* UIBarButtonItem+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Badge.m"; sourceTree = "<group>"; };
 		4AAE1A4F1AF1C96000F01D95 /* UIButton+Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Badge.h"; sourceTree = "<group>"; };
@@ -2159,6 +2178,9 @@
 				4A61F30E1B3AA71F000845AB /* HouseSurvey.m */,
 				4A61F3101B3AAD0F000845AB /* imageStorageInfo.h */,
 				4A61F3111B3AAD0F000845AB /* imageStorageInfo.m */,
+				4AA9F5FC1B42492E00A7CE45 /* roleType.h */,
+				4AA9F5FD1B424D6900A7CE45 /* houseSurveyTableViewController.h */,
+				4AA9F5FE1B424D6900A7CE45 /* houseSurveyTableViewController.m */,
 			);
 			name = HouseSurvey;
 			sourceTree = "<group>";
@@ -3489,6 +3511,28 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
+		4AA36E881B4390D6005D070B /* UIViewController-BackButtonHandler */ = {
+			isa = PBXGroup;
+			children = (
+				4AA36E891B4390D6005D070B /* UIViewController+BackButtonHandler.h */,
+				4AA36E8A1B4390D6005D070B /* UIViewController+BackButtonHandler.m */,
+			);
+			path = "UIViewController-BackButtonHandler";
+			sourceTree = "<group>";
+		};
+		4AA36E8C1B43B436005D070B /* UIAlertView+Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				4AA36E8D1B43B436005D070B /* RIButtonItem.h */,
+				4AA36E8E1B43B436005D070B /* RIButtonItem.m */,
+				4AA36E8F1B43B436005D070B /* UIActionSheet+Blocks.h */,
+				4AA36E901B43B436005D070B /* UIActionSheet+Blocks.m */,
+				4AA36E911B43B436005D070B /* UIAlertView+Blocks.h */,
+				4AA36E921B43B436005D070B /* UIAlertView+Blocks.m */,
+			);
+			path = "UIAlertView+Blocks";
+			sourceTree = "<group>";
+		};
 		4AAE1A4C1AF1C96000F01D95 /* UIBarButtonItem+Badge */ = {
 			isa = PBXGroup;
 			children = (
@@ -3822,6 +3866,8 @@
 		4AD794A61A218C4A00DEC779 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				4AA36E8C1B43B436005D070B /* UIAlertView+Blocks */,
+				4AA36E881B4390D6005D070B /* UIViewController-BackButtonHandler */,
 				4AE559181B38FB0F00AF6B03 /* YALContextMenu */,
 				4AD2DF411B312FA500632166 /* CLImageEditor */,
 				4AAE5FFC1B146A3A0077AC98 /* RFKeyboardToolbar */,
@@ -4340,6 +4386,8 @@
 				4A20860B1A63B49A00F3CB5A /* HouseEditParticularsViewController.m */,
 				4A9D024C1A611F7400600BA0 /* HouseParticularTableViewController.h */,
 				4A9D024D1A611F7400600BA0 /* HouseParticularTableViewController.m */,
+				4AA9F5F91B423DA000A7CE45 /* RoleListNode.h */,
+				4AA9F5FA1B423DA000A7CE45 /* RoleListNode.m */,
 				4A9D024F1A61337700600BA0 /* houseSecretParticulars.h */,
 				4A9D02501A61337700600BA0 /* houseSecretParticulars.m */,
 				4A9D02521A616E1300600BA0 /* houseImagesTableViewController.h */,
@@ -4796,6 +4844,7 @@
 				4AA18A631AEF549A00685603 /* SRSlimeView.m in Sources */,
 				4AA18A961AEF549A00685603 /* ChineseToPinyin.m in Sources */,
 				4AA18A491AEF549A00685603 /* MKAnnotationView+EMWebCache.m in Sources */,
+				4AA36E941B43B436005D070B /* UIActionSheet+Blocks.m in Sources */,
 				B98BD4C71A60747A003A35BE /* MJRefreshFooterView.m in Sources */,
 				4A9D01FE1A60341D00600BA0 /* dictionaryManager.m in Sources */,
 				4AD795271A218C4A00DEC779 /* AFURLSessionManager.m in Sources */,
@@ -4930,6 +4979,7 @@
 				B98BD5751A609185003A35BE /* RELongTextItem.m in Sources */,
 				4AA18A621AEF549A00685603 /* SRRefreshView.m in Sources */,
 				4ABC22211A3C3F940017FD94 /* LoadMoreTableViewCell.m in Sources */,
+				4AA36E931B43B436005D070B /* RIButtonItem.m in Sources */,
 				4A5D24451A4A79A600546698 /* shopBizManager.m in Sources */,
 				4A2AD1881A457F1B0074DCA0 /* AboutViewController.m in Sources */,
 				4AA18A521AEF549A00685603 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
@@ -5042,12 +5092,14 @@
 				4A9C65261B0DAF4900A397A7 /* MainPageButton.m in Sources */,
 				4A77FB4E1B3D427700313D4E /* DKLiveBlurView.m in Sources */,
 				4A5665571A4C1C4100C3BA22 /* ViewPagerController.m in Sources */,
+				4AA9F5FB1B423DA000A7CE45 /* RoleListNode.m in Sources */,
 				4AD795251A218C4A00DEC779 /* AFURLRequestSerialization.m in Sources */,
 				4AA18A691AEF549A00685603 /* NSDateFormatter+Category.m in Sources */,
 				4AA18A3A1AEF549A00685603 /* MWGridCell.m in Sources */,
 				4AA18A561AEF549A00685603 /* PSTCollectionViewData.m in Sources */,
 				4AA18A6C1AEF549A00685603 /* UIViewController+DismissKeyboard.m in Sources */,
 				4AA18A3B1AEF549A00685603 /* MWGridViewController.m in Sources */,
+				4AA9F5FF1B424D6900A7CE45 /* houseSurveyTableViewController.m in Sources */,
 				4A96ECB81AE7893300577AA6 /* ContactPsnVCCellTableViewCell.m in Sources */,
 				4A32CD711A89A9B700B768CC /* postFileUtils.m in Sources */,
 				4A5665291A4BDFF800C3BA22 /* editOrderViewController.m in Sources */,
@@ -5112,6 +5164,7 @@
 				4A96ECA01AE73AD200577AA6 /* ContactPathTableViewCell.m in Sources */,
 				4AA18A911AEF549A00685603 /* GroupListViewController.m in Sources */,
 				4AA18A811AEF549A00685603 /* EMChatBaseBubbleView.m in Sources */,
+				4AA36E951B43B436005D070B /* UIAlertView+Blocks.m in Sources */,
 				4AD2DF8E1B312FA500632166 /* CLEffectBase.m in Sources */,
 				4A06BEB71AE6314C00809C52 /* ContactListTableViewController.m in Sources */,
 				4AA18A6D1AEF549A00685603 /* UIViewController+HUD.m in Sources */,
@@ -5135,6 +5188,7 @@
 				4AA543771A88B33F0089C0F2 /* RETableViewMultiCell.m in Sources */,
 				B98BD57A1A609185003A35BE /* RESegmentedItem.m in Sources */,
 				4AA18A4F1AEF549A00685603 /* UIImageView+EMHighlightedWebCache.m in Sources */,
+				4AA36E8B1B4390D6005D070B /* UIViewController+BackButtonHandler.m in Sources */,
 				B94445801A62986B0033E998 /* ContractDataPuller.m in Sources */,
 				B98BD58D1A609185003A35BE /* RELengthValidator.m in Sources */,
 				4AE559251B38FB0F00AF6B03 /* UIView+YALConstraints.m in Sources */,
@@ -5317,7 +5371,7 @@
 					"$(PROJECT_DIR)/MJ",
 				);
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/MJ/MJPrefixHeader.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				INFOPLIST_FILE = MJ/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

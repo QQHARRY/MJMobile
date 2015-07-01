@@ -370,7 +370,7 @@
             
             if ([self.group.owner isEqualToString:buddy])
             {
-                PRESENTALERT(@"", @"不能删除群主", nil, nil);
+                PRESENTALERT(@"", @"不能删除群主", nil, nil,nil);
             }
             else
             {

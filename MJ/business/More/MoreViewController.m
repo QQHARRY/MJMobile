@@ -120,8 +120,10 @@
     }
     else if(indexPath.row == 8)
     {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"确定退出登录" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        [alert show];
+
+        PRESENTALERTWITHHANDER_WITHDEFAULTCANCEL(@"确定退出登录?", @"", @"确定", ^(){
+            [self toLoginPage];
+        }, @"取消", nil, self);
     }
     
 }
@@ -140,17 +142,11 @@
     }
     else
     {
-        PRESENTALERT(@"当前版本已是最新版", nil, nil, nil);
+        PRESENTALERT(@"当前版本已是最新版", nil, nil,nil, nil);
     }
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1)
-    {
-        [self toLoginPage];
-    }
-}
+
 
 -(void)toLoginPage
 {

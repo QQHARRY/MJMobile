@@ -16,4 +16,7 @@
 @property(strong,nonatomic)NSString*status;
 @property(strong,nonatomic)NSString*topic;
 @property(strong,nonatomic)NSString*storageNo;
+
+-(NSDictionary*)convert2Dic;
+-(NSString*)convert2JSON;
 @end

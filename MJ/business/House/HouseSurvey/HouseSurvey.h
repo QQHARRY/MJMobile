@@ -7,9 +7,11 @@
 //
 
 #import "bizManager.h"
+#import "HouseDetail.h"
+#import "RoleListNode.h"
 
 @interface HouseSurvey : bizManager
 
-+(void)addHouseSurvery:(NSDictionary*)imageDic Remark:(NSString*)remark Success:(void(^)(id obj))success failure:(void (^)(NSError *error))failure;
 
+-(void)startSurveyWithHouse:(HouseDetail*)house RoleList:(NSArray*)roleList InVc:(UIViewController*)viewController;
 @end

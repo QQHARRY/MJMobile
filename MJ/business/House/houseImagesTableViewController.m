@@ -15,22 +15,13 @@
 #import "UtilFun.h"
 #import "person.h"
 #import "postFileUtils.h"
-#import "Macro.h"
-#import "CLClippingTool.h"
-#import "CLClippingTool+CustomizeItems.h"
+
+
 
 #define SECTION_HEIGHT 22
 
-@interface houseImagesTableViewController ()<CLImageEditorDelegate,CLClippingToolItemsDataSource>
-@property (strong, readwrite, nonatomic) RETableViewManager *manager;
-@property (strong, readwrite, nonatomic) RETableViewSection *xqtSection;
-@property (strong, readwrite, nonatomic) RETableViewSection *hxtSection;
-@property (strong, readwrite, nonatomic) RETableViewSection *sntSection;
+@interface houseImagesTableViewController ()
 
-@property (strong, readwrite, nonatomic) RETableViewSection *curSection;
-
-
-@property (strong, readwrite, nonatomic) NSString*lastestMimeType;
 
 @end
 
@@ -49,6 +40,17 @@
     [self createxqtSection];
     [self createhxtSection];
     [self createsntSection];
+    [self createZptSection];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,9 +66,9 @@
     
 
     
-    if (self.housePtcl)
+    if (self.housePtcl && self.watchMode == EDITMODE)
     {
-        if (self.housePtcl.xqt)
+        if (self.housePtcl.xqt && self.housePtcl.xqt.length > 0)
         {
             //NSLog(@"小区图=%@",self.housePtcl.xqt);
             NSArray*arr = [self.housePtcl.xqt componentsSeparatedByString:@", "];
@@ -104,9 +106,9 @@
     self.hxtSection = [RETableViewSection sectionWithHeaderTitle:@"户型图"];
     self.hxtSection.headerHeight = SECTION_HEIGHT;
     [self.manager addSection:self.hxtSection];
-    if (self.housePtcl)
+    if (self.housePtcl && self.watchMode == EDITMODE)
     {
-        if (self.housePtcl.hxt)
+        if (self.housePtcl.hxt && self.housePtcl.hxt.length == 0)
         {
             NSLog(@"户型图=%@",self.housePtcl.hxt);
             NSArray*arr = [self.housePtcl.hxt componentsSeparatedByString:@", "];
@@ -143,9 +145,9 @@
     self.sntSection = [RETableViewSection sectionWithHeaderTitle:@"室内图"];
     self.sntSection.headerHeight = SECTION_HEIGHT;
     [self.manager addSection:self.sntSection];
-    if (self.housePtcl)
+    if (self.housePtcl && self.watchMode == EDITMODE)
     {
-        if (self.housePtcl.snt)
+        if (self.housePtcl.snt && self.housePtcl.snt.length == 0)
         {
             NSLog(@"室内图=%@",self.housePtcl.snt);
             NSArray*arr = [self.housePtcl.snt componentsSeparatedByString:@", "];
@@ -178,7 +180,47 @@
     
     [self createAddImageButton:self.sntSection];
 }
-
+-(void)createZptSection
+{
+    self.zptSection = [RETableViewSection sectionWithHeaderTitle:@"自拍图"];
+    self.zptSection.headerHeight = 22;
+    [self.manager addSection:self.zptSection];
+    
+    
+    
+    if (self.housePtcl && self.watchMode == EDITMODE)
+    {
+        if (self.housePtcl.zpt && self.housePtcl.zpt.length > 0)
+        {
+            NSArray*arr = [self.housePtcl.zpt componentsSeparatedByString:@", "];
+            for (NSString*imgName in arr)
+            {
+                
+                
+                NSString *imgStr = [SERVER_ADD stringByAppendingString:imgName];
+                NSLog(@"%@",imgStr);
+                UIImageView* imageV = [[UIImageView alloc] init];
+                [imageV getImageWithURL:[NSURL URLWithString:imgStr] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
+                 {
+                     RETableViewItem*item = [[RETableViewItem alloc] init];
+                     CGFloat scale =  (self.view.frame.size.width-30)/image.size.width;
+                     UIImage*covertedImg = [UtilFun scaleImage:image toScale:scale];
+                     item.cellHeight = image.size.height * scale;
+                     item.image = covertedImg;
+                     [self.zptSection addItem:item];
+                     [self.tableView reloadData];
+                     
+                 } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                     
+                     
+                 }];
+            }
+        }
+        
+    }
+    
+    [self createAddImageButton:self.zptSection];
+}
 
 - (IBAction)addPhoto
 {
@@ -345,6 +387,10 @@
                 {
                     strImageFor = @"snt";
                 }
+                else if (self.curSection == self.zptSection)
+                {
+                    strImageFor = @"zpt";
+                }
             }
             
             NSDictionary *parameters = @{@"job_no":[person me].job_no,
@@ -355,7 +401,7 @@
                                          @"imageType":strImageFor,
                                          };
             SHOWHUD_WINDOW;
-            [postFileUtils postFileWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", SERVER_URL, ADD_IMAGE] ] data:data Parameter:parameters ServerParamName:@"imagedata" FileName:strImageFor MimeType:type Success:^{
+            [postFileUtils postFileWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", SERVER_URL, ADD_IMAGE] ] data:data Parameter:parameters ServerParamName:@"imagedata" FileName:strImageFor MimeType:type Success:^(id responseObj){
                 {
                     
                     RETableViewItem*item = [[RETableViewItem alloc] init];
@@ -385,7 +431,12 @@
                         [self.xqtSection addItem:item];
                         [self createAddImageButton:self.xqtSection];
                     }
-                    
+                    else if(self.curSection == self.zptSection)
+                    {
+                        [self.zptSection removeLastItem];
+                        [self.zptSection addItem:item];
+                        [self createAddImageButton:self.zptSection];
+                    }
                     
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -400,7 +451,7 @@
                     __block NSString*err = [error description
                                             ];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        PRESENTALERT(@"编辑失败",err, nil, nil);
+                        PRESENTALERT(@"编辑失败",err, nil,nil, nil);
                         HIDEHUD_WINDOW;
                         
                     });
@@ -466,6 +517,21 @@
                     //[self.xqtSection removeItem:item];
                     
                 }
+                else if (self.curSection == self.zptSection)
+                {
+                    if (self.zqtArr !=nil)
+                    {
+                        for (NSDictionary*dic in self.zqtArr)
+                        {
+                            id key = [[dic allKeys] objectAtIndex:0];
+                            if ([key isEqualToString:[NSString stringWithFormat:@"%@",item]])
+                            {
+                                [self.zqtArr removeObject:dic];
+                                break;
+                            }
+                        }
+                    }
+                }
                 [self.tableView reloadData];
                 
                 
@@ -499,6 +565,20 @@
                 [self.sntSection addItem:item];
                 [self createAddImageButton:self.sntSection];
             }
+            else if (self.curSection == self.zptSection)
+            {
+                if (self.zqtArr ==nil)
+                {
+                    self.zqtArr = [[NSMutableArray alloc] init];
+                }
+                
+                NSString*key = [NSString stringWithFormat:@"%@",item];
+                [self.zqtArr addObject:[NSDictionary dictionaryWithObject:image forKey:key]];
+                
+                [self.zptSection removeLastItem];
+                [self.zptSection addItem:item];
+                [self createAddImageButton:self.zptSection];
+            }
             else
             {
                 if (self.xqtArr ==nil)
@@ -526,6 +606,20 @@
     
 }
 
+
+-(BOOL)navigationShouldPopOnBackButton
+{
+    if (self.watchMode == ADDMODE)
+    {
+        PRESENTALERTWITHHANDER_WITHDEFAULTCANCEL(@"确定退出?", @"退出将放弃已经保存的内容", @"确定", ^()
+                                                 {
+                                                     [self.navigationController  popViewControllerAnimated:YES];
+                                                     
+                                                 },@"取消",nil, self);
+        return NO;
+    }
+    return YES;
+}
 
 
 

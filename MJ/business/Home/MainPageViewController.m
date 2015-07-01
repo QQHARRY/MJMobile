@@ -130,6 +130,7 @@
 {
     [super viewDidLoad];
     
+
     self.navigationController.navigationBar.hidden = NO;
     [self.tabBarController.tabBar setBackgroundColor:[UIColor whiteColor]];
      self.navigationController.navigationBar.tintColor = [UIColor whiteColor];

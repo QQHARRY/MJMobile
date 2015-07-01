@@ -85,7 +85,7 @@
         [self.tableView reloadData];
         HIDEHUD_WINDOW;
     } failure:^(NSError *error) {
-        PRESENTALERT(@"加载栋座单元详细信息失败,请重重试",nil, nil, nil);
+        PRESENTALERT(@"加载栋座单元详细信息失败,请重重试",nil, nil,nil, nil);
         HIDEHUD_WINDOW;
     }
      ];

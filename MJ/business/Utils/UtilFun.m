@@ -9,68 +9,44 @@
 #import "UtilFun.h"
 #import "MBProgressHUD.h"
 #import "sys/utsname.h"
+#import "WCAlertView.h"
 
 static NSString*UDIDSTRING=nil;
 
 @implementation UtilFun
 
 
-+(void)presentPopViewControllerWithTitle:(NSString*)title Message:(NSString*)msg SimpleAction:(NSString*)action Sender:(UIViewController*)sender
++(void)presentPopViewControllerWithTitle:(NSString*)title Message:(NSString*)msg SimpleAction:(NSString*)actionTitle Handler:(void (^)())handle CancelAction:(NSString*)cancelTitle CancelHandler:(void (^)())cancelHandle Sender:(UIViewController*)sender
 {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
-    NSString*noTitle = @"No Named Title";
-    NSString*noMsg = @"";
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title==nil?noTitle:title
-                                                                   message:msg==nil?noMsg:msg
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    
-    [alert addAction:[UIAlertAction actionWithTitle:action==nil?@"OK":action
-                                              style:UIAlertActionStyleDefault
-                                            handler:nil]];
-    
+    if (actionTitle == nil || actionTitle.length == 0) {
+        actionTitle = @"OK";
+    }
+    [WCAlertView showAlertWithTitle:title message:msg customizationBlock:nil completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
+        switch (buttonIndex)
+        {
+            case 0:
+            {
+                if (handle)
+                {
+                    handle();
+                }
+            }
+                break;
+            case 1:
+            default:
+            {
+                if (cancelHandle)
+                {
+                    cancelHandle();
+                }
+            }
+                break;
+        }
+    } cancelButtonTitle:actionTitle otherButtonTitles:cancelTitle, nil];
 
-    
-    [sender presentViewController:alert animated:YES completion:nil];
-#endif
 }
 
-+(void)presentPopViewControllerWithTitle:(NSString*)title Message:(NSString*)msg SimpleAction:(NSString*)actionTitle Handler:(void (^)(UIAlertAction *action))handle Sender:(UIViewController*)sender
-{
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
-                                                                   message:msg
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    [alert addAction:[UIAlertAction actionWithTitle:actionTitle
-                                              style:UIAlertActionStyleDefault
-                                            handler:handle]];
-    
-    [sender presentViewController:alert animated:YES completion:nil];
-#endif
-}
 
-+(void)presentPopViewControllerWithTitle1:(NSString*)title Message:(NSString*)msg SimpleAction:(NSString*)actionTitle Handler:(void (^)(UIAlertAction *action))handle Sender:(UIViewController*)sender
-{
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
-                                                                   message:msg
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    [alert addAction:[UIAlertAction actionWithTitle:actionTitle
-                                              style:UIAlertActionStyleDefault
-                                            handler:handle]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"取消"
-                                              style:UIAlertActionStyleDefault
-                                            handler:nil]];
-    [sender presentViewController:alert animated:YES completion:nil];
-#endif
-}
-
-+(void)presentPopViewControllerWithTitle:(NSString*)title Message:(NSString*)msg Actions:(NSArray*)actArr Sender:(UIViewController*)sender
-{
-    
-}
 
 +(void)setFirstBinded;
 {

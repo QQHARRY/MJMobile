@@ -21,7 +21,11 @@
     if (Status == nil || [Status  length] <= 0)
     {
         NSError*error = [[NSError alloc] initWithDomain:SERVER_NONCOMPLIANCE code:0 userInfo:@{SERVER_NONCOMPLIANCE:SERVER_NONCOMPLIANCE_INFO}];
-        failure(error);
+        if(failure)
+        {
+            failure(error);
+        }
+        
         return NO;
     }
     else
@@ -40,7 +44,10 @@
         {
             NSString*strError = [resultDic objectForKey:@"ErrorInfo"];
             NSError*error = [[NSError alloc] initWithDomain:SERVER_NONCOMPLIANCE code:0 userInfo:@{SERVER_NONCOMPLIANCE:strError}];
-            failure(error);
+            if(failure)
+            {
+                failure(error);
+            }
             return NO;
         }
         

@@ -189,13 +189,13 @@
         [param setValue:self.sid forKey:@"trade_no"];
         if (!self.customerItem.value || self.customerItem.value.length <= 0)
         {
-            PRESENTALERT(@"错 误", @"请选择客户", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择客户", @"O K",nil, self);
             return;
         }
         [param setValue:self.customerItem.value forKey:@"client_base_no"];
         if (!self.personItem.value || self.personItem.value.length <= 0)
         {
-            PRESENTALERT(@"错 误", @"请选择签约人", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择签约人", @"O K", nil,self);
             return;
         }
         for (NSDictionary *d in self.personList)
@@ -208,7 +208,7 @@
         }
         if (!self.roomItem.value || self.roomItem.value.length <= 0)
         {
-            PRESENTALERT(@"错 误", @"请选择签约室", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择签约室", @"O K", nil,self);
             return;
         }
         for (NSDictionary *d in self.roomList)
@@ -221,7 +221,7 @@
         }
         if (!self.timeItem.value)
         {
-            PRESENTALERT(@"错 误", @"请选择签约日期", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择签约日期", @"O K",nil, self);
             return;
         }
         {
@@ -231,7 +231,7 @@
         }
         if (!self.secItem.value || self.secItem.value.length <= 0)
         {
-            PRESENTALERT(@"错 误", @"请选择签约时段", @"O K", self);
+            PRESENTALERT(@"错 误", @"请选择签约时段", @"O K",nil, self);
             return;
         }
         [param setValue:self.secItem.value forKey:@"apply_time"];
@@ -241,27 +241,27 @@
             HIDEHUD_WINDOW;
             if ([att isEqualToString:@"E-1003"])
             {
-                PRESENTALERT(@"提交错误", @"您没有新增该房源跟进的权限", @"O K", self);
+                PRESENTALERT(@"提交错误", @"您没有新增该房源跟进的权限", @"O K", nil,self);
                 return;
             }
             else if ([att isEqualToString:@"E-1001"])
             {
-                PRESENTALERT(@"提交错误", @"新增预约有重复，添加失败", @"O K", self);
+                PRESENTALERT(@"提交错误", @"新增预约有重复，添加失败", @"O K", nil,self);
                 return;
             }
             else
             {
-                PRESENTALERTWITHHANDER(@"成功", @"预约签约成功！",@"OK", self, ^(UIAlertAction *action)
+                PRESENTALERT(@"成功", @"预约签约成功！",@"OK", ^()
                                        {
                                            [self.navigationController popViewControllerAnimated:YES];
-                                       });
+                                       }, self);
                 return;
             }
         }
                                          failure:^(NSError *error)
         {
             HIDEHUD_WINDOW;
-            PRESENTALERT(@"提交错误", @"可能是网络问题，请稍候再试", @"O K", self);
+            PRESENTALERT(@"提交错误", @"可能是网络问题,请稍候再试",@"O K",nil,self);
             return;
         }];
     }];
@@ -277,13 +277,7 @@
     [self.tableView reloadData];
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if ([alertView.title isEqualToString:@"成功"] && buttonIndex == 0)
-    {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
+
 
 @end
 

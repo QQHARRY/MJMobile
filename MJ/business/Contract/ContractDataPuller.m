@@ -71,7 +71,7 @@
                                  @"imageType":type,
                                  };
     
-    [postFileUtils postFileWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"%@%@", SERVER_URL, ADD_IMAGE]] data:data Parameter:parameters ServerParamName:@"imagedata" FileName:@"" MimeType:@"image/jpeg" Success:^{
+    [postFileUtils postFileWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"%@%@", SERVER_URL, ADD_IMAGE]] data:data Parameter:parameters ServerParamName:@"imagedata" FileName:@"" MimeType:@"image/jpeg" Success:^(id responseObj){
         success(nil);
     } failure:^(NSError *error) {
         failure(nil);
