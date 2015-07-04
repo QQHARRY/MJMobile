@@ -18,6 +18,7 @@
 #import "houseSurveyTableViewController.h"
 #import "postFileUtils.h"
 #import "HouseDetail.h"
+#import "houseProtectionDataPuller.h"
 
 
 @interface HouseSurvey()<HouseAddSurveryDelegate>
@@ -41,7 +42,7 @@
         return NO;
     }
     
-    if (roleList.count > 0)
+    if (roleList && roleList.count > 0)
     {
         for (RoleListNode* roleNode in roleList)
         {
@@ -57,6 +58,44 @@
     return YES;
 }
 
+-(BOOL)isMeTheOwner:(NSArray*)roleList
+{
+    if (roleList && roleList.count > 0)
+    {
+        for (RoleListNode* roleNode in roleList)
+        {
+            if ([roleNode isKindOfClass:[RoleListNode class]])
+            {
+                if ([roleNode.role_type intValue] == MjHouseRoleTypeRecord && [roleNode.job_no isEqualToString:[person me].job_no])
+                {
+                    return YES;
+                }
+            }
+        }
+    }
+    return NO;
+}
+
+-(void)checkHouseProtection:(NSString*)tradeNo Success:(void(^)( HouseProtectionInfo* info))success failure:(void (^)(NSError *error))failure
+{
+    
+    [houseProtectionDataPuller pullProtection:tradeNo Success:^(HouseProtectionInfo * info)
+    {
+        if (success)
+        {
+            success(info);
+        }
+    } failure:^(NSError *error) {
+        if (failure)
+        {
+            failure(error);
+        }
+    }];
+    
+
+}
+
+
 -(void)startSurveyWithHouse:(HouseDetail*)house RoleList:(NSArray*)roleList InVc:(UIViewController*)viewController
 {
     self.houseDtl = house;
@@ -64,37 +103,64 @@
     
     if ([self canAddSurveryToHouse:house WithExistingRoleList:roleList])
     {
-        //新增房源，现在新增房源已经不包含图片信息了。图片通过房源实勘添加
-        //#define API_ADD_ESTATE @"business/addEstate"
-        //房源实勘三部曲
-        //第一步:39. 图册父编号
-        //#define API_GET_HOUSE_IMAGE_FILE_STORAGE_NO @"business/getfileStorageNO"
-        //第二步:将图片,父编号，房源编号上传到图片服务器，获取图片路径，缩略图路径,这里需要使用图片服务器提供的接口
-        //#define IMAGE_SERVE_API_SAVE_IMAGE    IMAGE_SERVER_URL
-        //第三步:40. 保存实勘等在图片服务器存贮路径等信息
-        //#define API_ADD_APP_SURVERY_INFO @"business/sav
-        
-        //第一步获取图册父编号
+        //检查房子是否在保护期内
         SHOWHUD_WINDOW
-        [self getFileStorageNoSuccess:^( NSString* no) {
+        [self checkHouseProtection:house.trade_no Success:^(HouseProtectionInfo *info) {
             HIDEHUD_WINDOW
-            //第二步选择图片
-            self.no = no;
-            houseSurveyTableViewController*vc = [[houseSurveyTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-            ;
-            vc.watchMode = ADDMODE;
-            vc.houseDtl = house;
-            vc.delegate = self;
-            vc.parentPictureID = self.no;
-            if (viewController)
+            
+            if (info)
             {
-                [viewController.navigationController pushViewController:vc animated:YES];
+                if ([info isInProtection] && ![self isMeTheOwner:roleList])
+                {
+                    NSString*protectionInfo = [info getProtectionInfo];
+                    PRESENTALERT(@"对不起,该房源正在保护期内,目前只允许房源的录入人上传业绩.", protectionInfo, nil, nil, self);
+                }
+                else
+                {
+                    //新增房源，现在新增房源已经不包含图片信息了。图片通过房源实勘添加
+                    //#define API_ADD_ESTATE @"business/addEstate"
+                    //房源实勘三部曲
+                    //第一步:39. 图册父编号
+                    //#define API_GET_HOUSE_IMAGE_FILE_STORAGE_NO @"business/getfileStorageNO"
+                    //第二步:将图片,父编号，房源编号上传到图片服务器，获取图片路径，缩略图路径,这里需要使用图片服务器提供的接口
+                    //#define IMAGE_SERVE_API_SAVE_IMAGE    IMAGE_SERVER_URL
+                    //第三步:40. 保存实勘等在图片服务器存贮路径等信息
+                    //#define API_ADD_APP_SURVERY_INFO @"business/sav
+                    
+                    //第一步获取图册父编号
+                    SHOWHUD_WINDOW
+                    [self getFileStorageNoSuccess:^( NSString* no) {
+                        HIDEHUD_WINDOW
+                        //第二步选择图片
+                        self.no = no;
+                        houseSurveyTableViewController*vc = [[houseSurveyTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                        ;
+                        vc.watchMode = ADDMODE;
+                        vc.houseDtl = house;
+                        vc.delegate = self;
+                        vc.parentPictureID = self.no;
+                        if (viewController)
+                        {
+                            [viewController.navigationController pushViewController:vc animated:YES];
+                        }
+                    } failure:^(NSError *error) {
+                        HIDEHUD_WINDOW
+                        self.no = nil;
+                    }];
+                }
+                
             }
+            else
+            {
+                PRESENTALERT(@"获取房源保护期信息失败,请重试", nil, nil, nil, self);
+            }
+            
+
         } failure:^(NSError *error) {
             HIDEHUD_WINDOW
-            self.no = nil;
+            PRESENTALERT(@"获取房源保护期信息失败,请重试", nil, nil, nil, self);
         }];
-
+        
     }
     else
     {

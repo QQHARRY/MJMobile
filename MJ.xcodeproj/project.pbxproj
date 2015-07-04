@@ -154,6 +154,9 @@
 		4A9ED8B31AFDC53200227498 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9ED8B21AFDC53200227498 /* AVFoundation.framework */; };
 		4A9ED8B61AFDD7B400227498 /* UIViewController+logoutAndDownloadNewVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9ED8B51AFDD7B400227498 /* UIViewController+logoutAndDownloadNewVersion.m */; };
 		4AA0385C1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA0385B1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m */; };
+		4AA056141B47B6660019541C /* HouseAddKeyTalbeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA056131B47B6660019541C /* HouseAddKeyTalbeViewController.m */; };
+		4AA056171B47BDDD0019541C /* HouseProtectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA056161B47BDDD0019541C /* HouseProtectionInfo.m */; };
+		4AA0561D1B47BE590019541C /* houseProtectionDataPuller.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA0561C1B47BE590019541C /* houseProtectionDataPuller.m */; };
 		4AA185051AEF2A2500685603 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA185041AEF2A2500685603 /* libxml2.dylib */; };
 		4AA185071AEF2A3000685603 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA185061AEF2A3000685603 /* libiconv.dylib */; };
 		4AA185091AEF2A3700685603 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA185081AEF2A3700685603 /* libz.dylib */; };
@@ -985,6 +988,12 @@
 		4A9ED8B51AFDD7B400227498 /* UIViewController+logoutAndDownloadNewVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+logoutAndDownloadNewVersion.m"; sourceTree = "<group>"; };
 		4AA0385A1A3D30F0003E9CA6 /* BFNavigationBarDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFNavigationBarDrawer.h; sourceTree = "<group>"; };
 		4AA0385B1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFNavigationBarDrawer.m; sourceTree = "<group>"; };
+		4AA056121B47B6660019541C /* HouseAddKeyTalbeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseAddKeyTalbeViewController.h; sourceTree = "<group>"; };
+		4AA056131B47B6660019541C /* HouseAddKeyTalbeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseAddKeyTalbeViewController.m; sourceTree = "<group>"; };
+		4AA056151B47BDDD0019541C /* HouseProtectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HouseProtectionInfo.h; path = HouseSurvey/HouseProtectionInfo.h; sourceTree = "<group>"; };
+		4AA056161B47BDDD0019541C /* HouseProtectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HouseProtectionInfo.m; path = HouseSurvey/HouseProtectionInfo.m; sourceTree = "<group>"; };
+		4AA0561B1B47BE590019541C /* houseProtectionDataPuller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = houseProtectionDataPuller.h; path = HouseSurvey/houseProtectionDataPuller.h; sourceTree = "<group>"; };
+		4AA0561C1B47BE590019541C /* houseProtectionDataPuller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = houseProtectionDataPuller.m; path = HouseSurvey/houseProtectionDataPuller.m; sourceTree = "<group>"; };
 		4AA185041AEF2A2500685603 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		4AA185061AEF2A3000685603 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		4AA185081AEF2A3700685603 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -2181,6 +2190,10 @@
 				4AA9F5FC1B42492E00A7CE45 /* roleType.h */,
 				4AA9F5FD1B424D6900A7CE45 /* houseSurveyTableViewController.h */,
 				4AA9F5FE1B424D6900A7CE45 /* houseSurveyTableViewController.m */,
+				4AA056151B47BDDD0019541C /* HouseProtectionInfo.h */,
+				4AA056161B47BDDD0019541C /* HouseProtectionInfo.m */,
+				4AA0561B1B47BE590019541C /* houseProtectionDataPuller.h */,
+				4AA0561C1B47BE590019541C /* houseProtectionDataPuller.m */,
 			);
 			name = HouseSurvey;
 			sourceTree = "<group>";
@@ -2389,6 +2402,15 @@
 				4AA0385B1A3D30F0003E9CA6 /* BFNavigationBarDrawer.m */,
 			);
 			path = BFNavigationBarDrawer;
+			sourceTree = "<group>";
+		};
+		4AA056111B47B6250019541C /* HouseKey */ = {
+			isa = PBXGroup;
+			children = (
+				4AA056121B47B6660019541C /* HouseAddKeyTalbeViewController.h */,
+				4AA056131B47B6660019541C /* HouseAddKeyTalbeViewController.m */,
+			);
+			path = HouseKey;
 			sourceTree = "<group>";
 		};
 		4AA188451AEF549800685603 /* EaseMobUI */ = {
@@ -4359,6 +4381,7 @@
 		B9FF4B341A245FB300FE413E /* House */ = {
 			isa = PBXGroup;
 			children = (
+				4AA056111B47B6250019541C /* HouseKey */,
 				4A61F30C1B3AA6E5000845AB /* HouseSurvey */,
 				4A9C06E61B280F3A00BE5AA1 /* HouseParticularNewDesigning */,
 				4A9865101B0EDCD300462388 /* FilterMenu */,
@@ -5118,6 +5141,7 @@
 				4A9AEEEB1A3B43D300FDA403 /* petiotionBrief.m in Sources */,
 				B93B142F1A61652000121133 /* CustomerTableViewController.m in Sources */,
 				B93B14291A61652000121133 /* CustomerDataPuller.m in Sources */,
+				4AA056171B47BDDD0019541C /* HouseProtectionInfo.m in Sources */,
 				B98BD4CB1A60747A003A35BE /* UIView+MJExtension.m in Sources */,
 				4A5D24421A4A783100546698 /* shopItem.m in Sources */,
 				4AA18A771AEF549A00685603 /* ChatViewController+Category.m in Sources */,
@@ -5168,6 +5192,7 @@
 				4AD2DF8E1B312FA500632166 /* CLEffectBase.m in Sources */,
 				4A06BEB71AE6314C00809C52 /* ContactListTableViewController.m in Sources */,
 				4AA18A6D1AEF549A00685603 /* UIViewController+HUD.m in Sources */,
+				4AA0561D1B47BE590019541C /* houseProtectionDataPuller.m in Sources */,
 				4AAE600B1B146D500077AC98 /* UITextField+AddDoneButtonToInputAccessoryView.m in Sources */,
 				4AA18AAD1AEF549A00685603 /* XHMessageTextView.m in Sources */,
 				4AA18A931AEF549A00685603 /* GroupSubjectChangingViewController.m in Sources */,
@@ -5200,6 +5225,7 @@
 				4AA18A951AEF549A00685603 /* PublicGroupListViewController.m in Sources */,
 				B98BD57C1A609185003A35BE /* NSString+RETableViewManagerAdditions.m in Sources */,
 				4AA18A531AEF549A00685603 /* PSTCollectionView.m in Sources */,
+				4AA056141B47B6660019541C /* HouseAddKeyTalbeViewController.m in Sources */,
 				4AA18A791AEF549A00685603 /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				4A40C2211A4175BC00944AB2 /* petionDetailsItemTableViewCell.m in Sources */,
 				4AA18A751AEF549A00685603 /* ChatListViewController.m in Sources */,

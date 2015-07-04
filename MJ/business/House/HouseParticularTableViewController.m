@@ -30,6 +30,8 @@
 #import "contactDataManager.h"
 #import "UIViewController+addGaussianBlurView.h"
 #import "HouseSurvey.h"
+#import "HouseAddKeyTalbeViewController.h"
+#import "roleType.h"
 
 
 #define ITEMBARHEIGHT 44
@@ -2820,9 +2822,13 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
             
             [self.survey startSurveyWithHouse:self.houseDtl RoleList:self.roleListOfHouse InVc:self];
         }
+            break;
         case 5:
         {
-            
+            HouseAddKeyTalbeViewController*vc = [[HouseAddKeyTalbeViewController alloc] init];
+            vc.trade_no = self.houseDtl.trade_no;
+            [self.navigationController pushViewController:vc
+                                                 animated:YES];
         }
             break;
             
@@ -2831,6 +2837,24 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     }
     
     
+}
+
+-(BOOL)canAddKeyWithExistingRoleList:(NSArray*)roleList
+{
+    if (roleList && roleList.count > 0)
+    {
+        for (RoleListNode* roleNode in roleList)
+        {
+            if ([roleNode isKindOfClass:[RoleListNode class]])
+            {
+                if ([roleNode.role_type intValue] == MjHouseRoleTypeKey)
+                {
+                    return NO;
+                }
+            }
+        }
+    }
+    return YES;
 }
 
 

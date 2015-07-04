@@ -28,4 +28,7 @@ typedef NS_ENUM(NSInteger, MjHouseRoleType) {
     MjHouseRoleTypeSoleConsignation
 } ;
 
+
+
+
 #endif
