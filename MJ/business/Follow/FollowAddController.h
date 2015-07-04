@@ -10,11 +10,22 @@
 #import "RETableViewManager.h"
 #import "RETableViewOptionsController.h"
 #import "HouseViewController.h"
+#import "FollowTableViewController.h"
+#import "houseSecretParticulars.h"
+#import "HouseDetail.h"
+#import "HouseParticulars.h"
+
+
+
 
 @interface FollowAddController : UITableViewController
     <RETableViewManagerDelegate>
 
 @property (nonatomic, strong) NSString *sid;
 @property (nonatomic, strong) NSString *type;
+@property (nonatomic, assign) FollowType followType;
+@property (nonatomic, strong) HouseDetail*houseDtl;
+@property (nonatomic, strong) HouseParticulars*housePtcl;
+@property (nonatomic, strong) houseSecretParticulars*houseSecretPtcl;
 
 @end

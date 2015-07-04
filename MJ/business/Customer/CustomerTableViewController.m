@@ -151,6 +151,7 @@
 {
     CustomerDetail *cd = [self.CustomerList objectAtIndex:indexPath.row];
     CustomerParticularTableViewController*ptcl = [[CustomerParticularTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    ptcl.hidesBottomBarWhenPushed = YES;
     ptcl.detail = cd;
     [self pushControllerToController:ptcl];
 }

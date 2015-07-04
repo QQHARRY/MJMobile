@@ -13,10 +13,14 @@
 #import "FollowAddController.h"
 #import "FollowDetailCell.h"
 #import "UtilFun.h"
+#import "houseSecretParticulars.h"
+#import "HouseDataPuller.h"
+#import "HouseDetail.h"
 
 @interface FollowTableViewController ()
 
 @property (nonatomic, strong) NSMutableArray *followList;
+@property (nonatomic, strong) houseSecretParticulars*houseSecretPtcl;
 
 @end
 
@@ -47,9 +51,51 @@
         PRESENTALERT(@"添加失败", @"对不起,您没有权限新增跟进!", @"OK",nil, self);
         return;
     }
+    
+    
+    if (self.followType == K_FOLLOW_TYPE_HOUSE)
+    {
+        if (self.houseDtl)
+        {
+            if (self.houseSecretPtcl)
+            {
+                [self pushAddVC];
+            }
+            else
+            {
+                SHOWHUD_WINDOW;
+                
+                [HouseDataPuller pullHouseSecrectParticulars:self.houseDtl Success:^(houseSecretParticulars*ptcl)
+                 {
+                     self.houseSecretPtcl = ptcl;
+                     [self pushAddVC];
+                     HIDEHUD_WINDOW;
+                 }failure:^(NSError* error)
+                 {
+                     HIDEHUD_WINDOW;
+                     PRESENTALERT(@"获取保密信息失败,不能添加跟进", nil, nil, nil, nil);
+                 }];
+            }
+        }
+        
+    }
+    else if (self.followType == K_FOLLOW_TYPE_CUSTOMER)
+    {
+        [self pushAddVC];
+    }
+    
+    
+}
+
+-(void)pushAddVC
+{
     FollowAddController *vc = [[FollowAddController alloc] initWithStyle:UITableViewStyleGrouped];
     vc.sid = self.sid;
     vc.type = self.type;
+    vc.houseSecretPtcl = self.houseSecretPtcl;
+    vc.houseDtl = self.houseDtl;
+    vc.housePtcl = self.housePtcl;
+    vc.followType = self.followType;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

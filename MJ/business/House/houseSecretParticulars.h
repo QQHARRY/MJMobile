@@ -39,7 +39,7 @@
 //栋座（房源的）
 //Int
 
-@property(nonatomic,strong)NSString* house_unit;
+@property(nonatomic,strong)NSString* unit_name;
 //单元（房源的）
 //Int
 
@@ -51,5 +51,9 @@
 @property(nonatomic,strong)NSString* client_remark;
 //备注
 //String
+
+
+@property(nonatomic,strong)NSString*client_salutation;
+//业主称呼
 
 @end

@@ -17,4 +17,6 @@
 +(void)pullDataWithFilter:(NSString *)sid Success:(void (^)(NSArray *followList))success failure:(void (^)(NSError *error))failure;
 +(void)pushNewFollowWithParam:(NSDictionary *)param Success:(void (^)(NSString *followNo))success failure:(void (^)(NSError *error))failure;
 
++(void)pullPrivLog:(NSString*)trade_no Success:(void (^)(NSString*privNo))success failure:(void (^)(NSError *error))failure;
+
 @end

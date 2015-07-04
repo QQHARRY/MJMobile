@@ -641,6 +641,14 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
             ((RETextItem*)item).enabled = NO;
         }
     }
+    arr = [self.secretSection items];
+    for (RETableViewItem*item in arr)
+    {
+        if ([item isKindOfClass:[RETextItem class]] || [item isKindOfClass:[ReMultiTextItem class]] || [item isKindOfClass:[RERadioItem class]])
+        {
+            ((RETextItem*)item).enabled = NO;
+        }
+    }
     self.domain_address.enabled = NO;
     self.b_staff_describ_to_view_html.enabled = YES;
 }
@@ -989,7 +997,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     // 状态（出租）
     [self.infoSection addItem:self.lease_state];
     
-    [self.infoSection addItem:self.lookSecretItem];
+    //[self.infoSection addItem:self.lookSecretItem];
     
     
     [self adjustUI];
@@ -2225,7 +2233,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     value = @"";
     if (self.houseSecretPtcl)
     {
-        value = self.houseSecretPtcl.house_unit;
+        value = self.houseSecretPtcl.unit_name;
     }
     self.house_unit = [[RERadioItem alloc] initWithTitle:@"单元:" value:value selectionHandler:^(RERadioItem *item) {
         //todo
@@ -2308,6 +2316,12 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
 
 -(void)genJinAction
 {
+    
+    [self genJinActionAction];
+}
+
+-(void)genJinActionAction
+{
     FollowTableViewController *vc = [[FollowTableViewController alloc] initWithNibName:@"FollowTableViewController" bundle:[NSBundle mainBundle]];
     if ([self.housePtcl.edit_permit isEqualToString:@"1"] || [self.housePtcl.secret_permit isEqualToString:@"1"])
     {
@@ -2321,6 +2335,9 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     
     vc.sid = self.houseDtl.trade_no;
     vc.type = self.housePtcl.trade_type;
+    vc.houseDtl = self.houseDtl;
+    vc.housePtcl = self.housePtcl;
+    vc.followType = K_FOLLOW_TYPE_HOUSE;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)createGenjinBtn
@@ -2479,6 +2496,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
         [self.manager addSection:self.secretSection];
         //[self.manager addSection:self.actionSection];
         [self prepareSecretSectionItems];
+        [self enableOrDisableItems];
         self.lookSecretItem.title = @"隐藏保密信息";
     }
     else
@@ -2659,8 +2677,10 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
 
 - (void)initiateMenuOptions {
     self.menuTitles = @[
-                        @"新增跟进",
+                        @"新增跟进",　
                         @"新增委托",
+                        @"新增带看",
+                        @"新增签约",
                         @"房源实勘",
                         @"添加钥匙"
                         ];
@@ -2668,8 +2688,11 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     self.menuIcons = @[
                        [UIImage imageNamed:@"房源详情_跟进"],
                        [UIImage imageNamed:@"房源详情_委托"],
+                       [UIImage imageNamed:@"房源详情_带看"],
+                       [UIImage imageNamed:@"房源详情_签约"],
                        [UIImage imageNamed:@"房源详情_实勘"],
-                       [UIImage imageNamed:@"房源详情_钥匙"]];
+                       [UIImage imageNamed:@"房源详情_钥匙"],
+                       ];
 }
 
 
@@ -2779,6 +2802,17 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
             break;
         case 2:
         {
+            [self daiKanAction];
+        }
+            break;
+        case 3:
+        {
+            [self qianYueAction];
+            
+        }
+            break;
+        case 4:
+        {
             if (self.survey == nil)
             {
                 self.survey = [[HouseSurvey alloc] init];
@@ -2786,7 +2820,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
             
             [self.survey startSurveyWithHouse:self.houseDtl RoleList:self.roleListOfHouse InVc:self];
         }
-        case 3:
+        case 5:
         {
             
         }

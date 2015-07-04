@@ -40,6 +40,11 @@
         }
         
         
+        if ([dicAdded objectForKey:@"DeviceType"] == nil)
+        {
+            [dicAdded setValue:DEVICE_IOS forKey:@"DeviceType"];
+        }
+        
         return dicAdded;
     }
     

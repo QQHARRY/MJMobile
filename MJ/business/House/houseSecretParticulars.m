@@ -17,8 +17,8 @@
 @synthesize client_identity;
 @synthesize obj_address;
 @synthesize buildname;
-@synthesize house_unit;
+@synthesize unit_name;
 @synthesize house_tablet;
 @synthesize client_remark;
-
+@synthesize client_salutation;
 @end

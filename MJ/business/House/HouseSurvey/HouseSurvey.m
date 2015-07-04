@@ -246,7 +246,7 @@
                            
                            };
 
-    
+    SHOWWINDOWHUD(@"正在添加实勘");
     [NetWorkManager PostWithApiName:API_ADD_APP_SURVERY_INFO parameters:param success:
      ^(id responseObject)
      {
@@ -254,17 +254,32 @@
          
          NSString *jsonString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
 #endif
+         HIDEHUD_WINDOW;
          NSError*err = nil;
          
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:&err];
          if ([HouseSurvey checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {
-             success(nil);
+             if (success)
+             {
+                success(nil);
+             }
+             
+//             if (failure)
+//             {
+//                 NSError*error = [NSError errorWithDomain:@"test domain" code:10000 userInfo:nil];
+//                 failure(error);
+//             }
          }
      }
                             failure:^(NSError *error)
      {
-         failure(error);
+         HIDEHUD_WINDOW;
+         if (failure)
+         {
+            failure(error);
+         }
+         
      }];
     
 }
@@ -290,12 +305,27 @@
                                                          error:nil];
     NSString *jsonString = [[NSString alloc] initWithData:jsonData
                                                  encoding:NSUTF8StringEncoding];
+    
+    
+    void(^successblock)(id result) = ^(id result){
+        PRESENTALERT(@"添加实勘成功", nil, nil, nil, nil);
+    };
+    void(^failureblock)(NSError *error) = ^(NSError *error){
+        NSString*descrip = [error description];
+//        PRESENTALERT(@"添加实勘失败,请点击点击重试按钮重试", descrip, @"重试", ^(){
+//            [self hasSelectZt:ztArr Snt:sntArr Hxt:hxtArr Zpt:zptArr Remark:remark ForHouse:house];
+//            
+//            
+//            
+//        }, nil);
+        
+        PRESENTALERTWITHHANDER_WITHDEFAULTCANCEL(@"添加实勘失败,请点击点击重试按钮重试", descrip,  @"重试",  ^(){
+            [self hasSelectZt:ztArr Snt:sntArr Hxt:hxtArr Zpt:zptArr Remark:remark ForHouse:house];
+        }, @"取消", nil, nil);
+    };
+    
     //保存到MOS
-    [self saveImageWithInfoArr:arrArr Remark:remark Success:^(id result) {
-        
-    } failure:^(NSError *error) {
-        
-    }];
+    [self saveImageWithInfoArr:arrArr Remark:remark Success:successblock failure:failureblock];
     
 }
 

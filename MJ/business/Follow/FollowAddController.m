@@ -12,10 +12,23 @@
 #import "FollowDataPuller.h"
 #import "UtilFun.h"
 #import "person.h"
+#import "dictionaryManager.h"
+
 
 @interface FollowAddController ()
 
 @property (strong, readwrite, nonatomic) RETableViewManager *manager;
+
+
+@property (strong, readwrite, nonatomic)RETableViewSection*houseSecretInfoSection;
+@property (strong, readwrite, nonatomic) ReMultiTextItem *addressDetails;
+@property (strong, readwrite, nonatomic) RETableViewItem *mobileNo;
+@property (strong, readwrite, nonatomic) RETextItem *client_nameAndClient_identity;
+@property (strong, readwrite, nonatomic) RETextItem *client_gender;
+@property (strong,nonatomic)NSArray*genderDicList;
+
+
+
 
 @property (strong, readwrite, nonatomic) RETableViewSection *followSection;
 @property (strong, readwrite, nonatomic) RERadioItem *typeItem;
@@ -37,6 +50,8 @@
 @property (nonatomic, strong) NSArray *saleDictList;
 @property (nonatomic, strong) NSArray *requireDictList;
 
+@property (nonatomic, strong) NSString*privLogNo;
+
 @end
 
 @implementation FollowAddController
@@ -55,11 +70,51 @@
     
     // Create manager
     self.manager = [[RETableViewManager alloc] initWithTableView:self.tableView delegate:self];
+    
+    if (self.followType == K_FOLLOW_TYPE_HOUSE)
+    {
+        [self getFollowCount];
+    }
+    else
+    {
+        [self addSections];
+    }
 
+    
+}
+
+-(void)addSections
+{
     // add section
+    [self addSecretInfoSection];
     self.followSection = [self addFollowControls];
     self.remindSection = [self addRemindControls];
     self.commitSection = [self addCommitButton];
+}
+
+-(void)getFollowCount
+{
+    SHOWWINDOWHUD(@"正在获取跟进号");
+    [FollowDataPuller pullPrivLog:self.sid Success:^(NSString *privNo) {
+        HIDEHUD_WINDOW
+        if (privNo)
+        {
+            self.privLogNo = privNo;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self addSections];
+                [self.tableView reloadData];
+            });
+            
+        }
+        else
+        {
+            PRESENTALERT(@"获取跟进号失败,请重试.", @"", nil, nil, nil);
+        }
+        
+    } failure:^(NSError *error) {
+        HIDEHUD_WINDOW
+        PRESENTALERT(@"获取跟进号失败,请重试.", @"", nil, nil, nil);
+    }];
 }
 
 - (RETableViewSection *)addFollowControls
@@ -349,7 +404,7 @@
         [param setValue:self.contentItem.value forKey:@"task_follow_content"];
         if (self.remindItem.value)
         {
-            [param setValue:@"1" forKey:@"task_reminder_flag"];
+            [param setValue:@"1" forKey:@"task_reminder_flg"];
             if (!self.rcontentItem.value || self.rcontentItem.value.length <= 0)
             {
                 PRESENTALERT(@"错 误", @"请输入提醒内容", @"O K",nil, self);
@@ -362,7 +417,12 @@
                 PRESENTALERT(@"错 误", @"请选择提醒日期", @"O K",nil, self);
                 return;
             }
-            [param setValue:self.timeItem.value forKey:@"task_reminder_date"];
+            NSDateFormatter* fmt = [[NSDateFormatter alloc] init];
+            fmt.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+            NSString* dateString = [fmt stringFromDate:self.timeItem.value];
+            [param setValue:dateString forKey:@"task_reminder_date"];
+            
+            
             if (!self.rangeItem.value || self.rangeItem.value.length <= 0)
             {
                 PRESENTALERT(@"错 误", @"请选择提醒范围", @"O K",nil, self);
@@ -372,7 +432,14 @@
         }
         else
         {
-            [param setValue:@"0" forKey:@"task_reminder_flag"];
+            [param setValue:@"0" forKey:@"task_reminder_flg"];
+        }
+        
+        
+        
+        if (self.followType == K_FOLLOW_TYPE_HOUSE)
+        {
+            [param setValue:self.privLogNo forKey:@"priv_log_id"];
         }
         SHOWHUD_WINDOW;
         [FollowDataPuller pushNewFollowWithParam:param Success:^(NSString *followNo)
@@ -399,6 +466,98 @@
     buttonItem.textAlignment = NSTextAlignmentCenter;
     [section addItem:buttonItem];
     return section;
+}
+
+
+-(void)addSecretInfoSection
+{
+
+    if (self.followType == K_FOLLOW_TYPE_HOUSE)
+    {
+        if(self.houseSecretPtcl && self.houseDtl && self.housePtcl)
+        [self addHouseSecretInfoSection];
+    }
+    else
+    {
+        
+    }
+    
+//    
+//    @property (strong, readwrite, nonatomic)RETableViewSection*customerSecretInfoSection;
+//    @property (strong, readwrite, nonatomic) RETextItem *customerMobileNo;
+//    @property (strong, readwrite, nonatomic) RETextItem *customerFixNo;
+//    @property (strong, readwrite, nonatomic) RETextItem *customerIDCardNo;
+//    @property (strong, readwrite, nonatomic) ReMultiTextItem *customerAddress;
+}
+
+-(RETableViewSection*)addHouseSecretInfoSection
+{
+    //    @property (strong, readwrite, nonatomic)RETableViewSection*houseSecretInfoSection;
+    //    @property (strong, readwrite, nonatomic) ReMultiTextItem *addressDetails;
+    //    @property (strong, readwrite, nonatomic) RETextItem *mobileNo;
+    //    @property (strong, readwrite, nonatomic) RETextItem *client_nameAndClient_identity;
+    //    @property (strong, readwrite, nonatomic) RETextItem *client_gender;
+    //
+    self.houseSecretInfoSection = [[RETableViewSection alloc] initWithHeaderTitle:@"房源信息"];
+    [self.manager addSection:self.houseSecretInfoSection];
+    
+    NSString*houseDetailAddr = @"";
+    NSString*clientName = @"";
+    NSString*clientMobile = @"";
+    NSString*clientGender = @"";
+    if (self.houseSecretPtcl && self.houseDtl && self.housePtcl)
+    {
+        houseDetailAddr = [NSString stringWithFormat:@"%@ %@%@单元%@号",self.houseDtl.domain_name,self.housePtcl.building_name,self.houseSecretPtcl.unit_name,self.houseSecretPtcl.house_tablet];
+        
+        clientName = [NSString stringWithFormat:@"%@",self.houseSecretPtcl.client_name];
+        if (self.houseSecretPtcl.client_salutation != nil && self.houseSecretPtcl.client_salutation.length > 0)
+        {
+            clientName = [clientName stringByAppendingFormat:@"(%@)",self.houseSecretPtcl.client_salutation];
+        }
+        
+        clientMobile = self.houseSecretPtcl.obj_mobile;
+        
+
+
+        if(self.genderDicList == nil)
+        {
+            self.genderDicList = [dictionaryManager getItemArrByType:DIC_SEX_TYPE];
+        }
+        for (DicItem *di in self.genderDicList)
+        {
+            if ([di.dict_value isEqualToString:self.houseSecretPtcl.client_gender])
+            {
+                clientGender = di.dict_label;
+                break;
+            }
+        }
+    }
+    self.addressDetails = [[ReMultiTextItem alloc] initWithTitle:@"详细地址" value:houseDetailAddr];
+    self.addressDetails.enabled = NO;
+    [self.houseSecretInfoSection addItem:self.addressDetails];
+    
+    
+    
+    self.client_nameAndClient_identity = [[RETextItem alloc] initWithTitle:@"业主姓名(称呼)" value:clientName];
+    self.client_nameAndClient_identity.enabled = NO;
+    [self.houseSecretInfoSection addItem:self.client_nameAndClient_identity];
+
+   
+    self.client_gender = [[RETextItem alloc] initWithTitle:@"业主性别" value:clientGender];
+    self.client_gender.enabled = NO;
+    [self.houseSecretInfoSection addItem:self.client_gender];
+    
+    self.mobileNo = [RETableViewItem itemWithTitle:@"查看业主手机号" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
+                           {
+                               [item deselectRowAnimated:YES];
+                               PRESENTALERT(@"", clientMobile, nil, nil,self);
+                           }];
+    
+    
+    self.mobileNo.textAlignment = NSTextAlignmentCenter;
+    [self.houseSecretInfoSection addItem:self.mobileNo];
+    
+    return self.houseSecretInfoSection;
 }
 
 @end

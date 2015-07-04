@@ -64,22 +64,22 @@
     {
         PRESENTALERT(@"必须有一张主图", nil, nil,nil, nil);
     }
-//    else  if (self.hxtArr == nil || self.hxtArr.count < 1)
-//    {
-//        PRESENTALERT(@"必须至少有一张户型图", nil, nil, nil);
-//    }
-//    else if (self.sntArr == nil || self.sntArr.count < 1)
-//    {
-//        PRESENTALERT(@"必须至少有一张室内图", nil, nil, nil);
-//    }
-//    else  if (self.zqtArr == nil || self.zqtArr.count < 1)
-//    {
-//        PRESENTALERT(@"必须至少有一张自拍图", nil, nil, nil);
-//    }
-//    else  if (self.remark.value == nil || [self.remark.value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length < 1)
-//    {
-//        PRESENTALERT(@"备注不能为空", nil, nil, nil);
-//    }
+    else  if (self.hxtArr == nil || self.hxtArr.count < 1)
+    {
+        PRESENTALERT(@"必须至少有一张户型图", nil, nil,nil, nil);
+    }
+    else if (self.sntArr == nil || self.sntArr.count < 1)
+    {
+        PRESENTALERT(@"必须至少有一张室内图", nil, nil,nil, nil);
+    }
+    else  if (self.zqtArr == nil || self.zqtArr.count < 1)
+    {
+        PRESENTALERT(@"必须至少有一张自拍图", nil, nil,nil, nil);
+    }
+    else  if (self.remark.value == nil || [self.remark.value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length < 1)
+    {
+        PRESENTALERT(@"备注不能为空", nil, nil,nil, nil);
+    }
     else
     {
         if(self.delegate && [self.delegate respondsToSelector:@selector(hasSelectZt:Snt:Hxt:Zpt:Remark:ForHouse:)])

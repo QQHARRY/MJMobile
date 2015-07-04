@@ -434,6 +434,8 @@
                                  
                                  FollowTableViewController *vc = [[FollowTableViewController alloc] initWithNibName:@"FollowTableViewController" bundle:[NSBundle mainBundle]];
                                  vc.sid = self.detail.business_requirement_no;
+                                 vc.houseDtl = nil;
+                                 vc.followType = K_FOLLOW_TYPE_CUSTOMER;
                                  
                                  if ([self.particulars.edit_permit isEqualToString:@"1"] || [self.particulars.secret_permit isEqualToString:@"1"])
                                  {
@@ -468,7 +470,7 @@
     self.appointActionItem = [RETableViewItem itemWithTitle:@"带看" accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
                               {
                                   AppointTableViewController *vc = [[AppointTableViewController alloc] initWithNibName:@"AppointTableViewController" bundle:[NSBundle mainBundle]];
-                                  vc.sid = self.detail.business_requirement_no;
+                                  vc.sid = self.particulars.client_base_no;
                                   [weakSelf.navigationController pushViewController:vc animated:YES];
                               }];
     self.appointActionItem.textAlignment = NSTextAlignmentCenter;

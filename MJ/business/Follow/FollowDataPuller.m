@@ -69,4 +69,26 @@
      }];
 }
 
++(void)pullPrivLog:(NSString*)trade_no Success:(void (^)(NSString*privNo))success failure:(void (^)(NSError *error))failure
+{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setValue:[person me].job_no forKey:@"job_no"];
+    [param setValue:[person me].password forKey:@"acc_password"];
+    [param setValue:trade_no forKey:@"trade_no"];
+
+    [NetWorkManager PostWithApiName:API_CREATE_PRIV_LOG parameters:param success:^(id responseObject)
+     {
+         NSString*josnString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+         NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+         if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
+         {
+             success([resultDic objectForKey:@"priv_log_id"]);
+         }
+     }
+                            failure:^(NSError *error)
+     {
+         failure(error);
+     }];
+}
+
 @end
