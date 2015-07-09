@@ -496,9 +496,7 @@
 		4AAE1A511AF1C96000F01D95 /* UIBarButtonItem+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE1A4E1AF1C96000F01D95 /* UIBarButtonItem+Badge.m */; };
 		4AAE1A521AF1C96000F01D95 /* UIButton+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE1A501AF1C96000F01D95 /* UIButton+Badge.m */; };
 		4AAE5FE11B14100D0077AC98 /* SectionValueCustomizedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AAE5FE01B14100D0077AC98 /* SectionValueCustomizedCell.xib */; };
-		4AAE5FE81B142ADC0077AC98 /* DAKeyboardControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE5FE71B142ADC0077AC98 /* DAKeyboardControl.m */; };
 		4AAE5FEB1B145ADE0077AC98 /* UIView+FindFirstResponser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE5FEA1B145ADE0077AC98 /* UIView+FindFirstResponser.m */; };
-		4AAE5FEE1B145BBB0077AC98 /* UIView+addToolBar2Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE5FED1B145BBB0077AC98 /* UIView+addToolBar2Keyboard.m */; };
 		4AAE60011B146A3A0077AC98 /* RFKeyboardToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE5FFE1B146A3A0077AC98 /* RFKeyboardToolbar.m */; };
 		4AAE60021B146A3A0077AC98 /* RFToolbarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE60001B146A3A0077AC98 /* RFToolbarButton.m */; };
 		4AAE60051B146B2D0077AC98 /* RFExampleToolbarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AAE60041B146B2D0077AC98 /* RFExampleToolbarButton.m */; };
@@ -512,6 +510,8 @@
 		4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFA81A30558000C24A44 /* NetWorkManager.m */; };
 		4AB0EFAF1A308CED00C24A44 /* UtilFun.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB0EFAE1A308CED00C24A44 /* UtilFun.m */; };
 		4AB298C81B329B420097D377 /* CliplingRatio.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB298C71B329B420097D377 /* CliplingRatio.m */; };
+		4ABAEB091B4E712E002E14E1 /* testReTableViewBug.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABAEB081B4E712E002E14E1 /* testReTableViewBug.m */; };
+		4ABAEB0C1B4E79C1002E14E1 /* DAKeyboardControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABAEB0B1B4E79C1002E14E1 /* DAKeyboardControl.m */; };
 		4ABC221D1A3C31910017FD94 /* AnncListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABC221C1A3C31910017FD94 /* AnncListViewController.m */; };
 		4ABC22211A3C3F940017FD94 /* LoadMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABC221F1A3C3F940017FD94 /* LoadMoreTableViewCell.m */; };
 		4ABC22221A3C3F940017FD94 /* LoadMoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ABC22201A3C3F940017FD94 /* LoadMoreTableViewCell.xib */; };
@@ -1552,12 +1552,8 @@
 		4AAE1A501AF1C96000F01D95 /* UIButton+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Badge.m"; sourceTree = "<group>"; };
 		4AAE5FE01B14100D0077AC98 /* SectionValueCustomizedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionValueCustomizedCell.xib; sourceTree = "<group>"; };
 		4AAE5FE41B141D700077AC98 /* myTextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myTextFieldDelegate.h; sourceTree = "<group>"; };
-		4AAE5FE61B142ADC0077AC98 /* DAKeyboardControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAKeyboardControl.h; sourceTree = "<group>"; };
-		4AAE5FE71B142ADC0077AC98 /* DAKeyboardControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAKeyboardControl.m; sourceTree = "<group>"; };
 		4AAE5FE91B145ADE0077AC98 /* UIView+FindFirstResponser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindFirstResponser.h"; sourceTree = "<group>"; };
 		4AAE5FEA1B145ADE0077AC98 /* UIView+FindFirstResponser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindFirstResponser.m"; sourceTree = "<group>"; };
-		4AAE5FEC1B145BBB0077AC98 /* UIView+addToolBar2Keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+addToolBar2Keyboard.h"; sourceTree = "<group>"; };
-		4AAE5FED1B145BBB0077AC98 /* UIView+addToolBar2Keyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+addToolBar2Keyboard.m"; sourceTree = "<group>"; };
 		4AAE5FFD1B146A3A0077AC98 /* RFKeyboardToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFKeyboardToolbar.h; sourceTree = "<group>"; };
 		4AAE5FFE1B146A3A0077AC98 /* RFKeyboardToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFKeyboardToolbar.m; sourceTree = "<group>"; };
 		4AAE5FFF1B146A3A0077AC98 /* RFToolbarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFToolbarButton.h; sourceTree = "<group>"; };
@@ -1584,6 +1580,10 @@
 		4AB0EFAE1A308CED00C24A44 /* UtilFun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilFun.m; sourceTree = "<group>"; };
 		4AB298C61B329B420097D377 /* CliplingRatio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CliplingRatio.h; sourceTree = "<group>"; };
 		4AB298C71B329B420097D377 /* CliplingRatio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CliplingRatio.m; sourceTree = "<group>"; };
+		4ABAEB071B4E712E002E14E1 /* testReTableViewBug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testReTableViewBug.h; path = MJ/business/Home/testReTableViewBug.h; sourceTree = SOURCE_ROOT; };
+		4ABAEB081B4E712E002E14E1 /* testReTableViewBug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = testReTableViewBug.m; path = MJ/business/Home/testReTableViewBug.m; sourceTree = SOURCE_ROOT; };
+		4ABAEB0A1B4E79C1002E14E1 /* DAKeyboardControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAKeyboardControl.h; sourceTree = "<group>"; };
+		4ABAEB0B1B4E79C1002E14E1 /* DAKeyboardControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAKeyboardControl.m; sourceTree = "<group>"; };
 		4ABC221B1A3C31910017FD94 /* AnncListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnncListViewController.h; sourceTree = "<group>"; };
 		4ABC221C1A3C31910017FD94 /* AnncListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnncListViewController.m; sourceTree = "<group>"; };
 		4ABC221E1A3C3F940017FD94 /* LoadMoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableViewCell.h; sourceTree = "<group>"; };
@@ -2148,6 +2148,8 @@
 				4ABC221E1A3C3F940017FD94 /* LoadMoreTableViewCell.h */,
 				4ABC221F1A3C3F940017FD94 /* LoadMoreTableViewCell.m */,
 				4ABC22201A3C3F940017FD94 /* LoadMoreTableViewCell.xib */,
+				4ABAEB071B4E712E002E14E1 /* testReTableViewBug.h */,
+				4ABAEB081B4E712E002E14E1 /* testReTableViewBug.m */,
 			);
 			path = annc;
 			sourceTree = "<group>";
@@ -3569,8 +3571,8 @@
 		4AAE5FE51B142ADC0077AC98 /* DAKeyboardControl */ = {
 			isa = PBXGroup;
 			children = (
-				4AAE5FE61B142ADC0077AC98 /* DAKeyboardControl.h */,
-				4AAE5FE71B142ADC0077AC98 /* DAKeyboardControl.m */,
+				4ABAEB0A1B4E79C1002E14E1 /* DAKeyboardControl.h */,
+				4ABAEB0B1B4E79C1002E14E1 /* DAKeyboardControl.m */,
 			);
 			path = DAKeyboardControl;
 			sourceTree = "<group>";
@@ -3632,8 +3634,6 @@
 				4A9C652E1B0DF0B700A397A7 /* WebViewController.m */,
 				4AAE5FE91B145ADE0077AC98 /* UIView+FindFirstResponser.h */,
 				4AAE5FEA1B145ADE0077AC98 /* UIView+FindFirstResponser.m */,
-				4AAE5FEC1B145BBB0077AC98 /* UIView+addToolBar2Keyboard.h */,
-				4AAE5FED1B145BBB0077AC98 /* UIView+addToolBar2Keyboard.m */,
 				4A77FB4F1B3D50D700313D4E /* UIViewController+addGaussianBlurView.h */,
 				4A77FB501B3D50D700313D4E /* UIViewController+addGaussianBlurView.m */,
 			);
@@ -4912,6 +4912,7 @@
 				4A6865A11A7374EF005394DD /* HouseSelectBuildingTableViewController.m in Sources */,
 				4A20DADD1A6A2B5A002E68EC /* BuildingsSelectTableViewController.m in Sources */,
 				4AA18A681AEF549A00685603 /* NSDate+Category.m in Sources */,
+				4ABAEB0C1B4E79C1002E14E1 /* DAKeyboardControl.m in Sources */,
 				4AAE1A511AF1C96000F01D95 /* UIBarButtonItem+Badge.m in Sources */,
 				4AA18A3C1AEF549A00685603 /* MWPhoto.m in Sources */,
 				4AD7954E1A218C4A00DEC779 /* UIAlertView+AFNetworking.m in Sources */,
@@ -5033,10 +5034,10 @@
 				4AA18A591AEF549A00685603 /* PSTCollectionViewLayout.m in Sources */,
 				4A9C65201B0C611000A397A7 /* ImagePlayerView.m in Sources */,
 				4AA18A5A1AEF549A00685603 /* PSTCollectionViewUpdateItem.m in Sources */,
-				4AAE5FE81B142ADC0077AC98 /* DAKeyboardControl.m in Sources */,
 				4AA18A8B1AEF549A00685603 /* MessageReadManager.m in Sources */,
 				4AB0EFA91A30558000C24A44 /* NetWorkManager.m in Sources */,
 				4AD7954F1A218C4A00DEC779 /* UIButton+AFNetworking.m in Sources */,
+				4ABAEB091B4E712E002E14E1 /* testReTableViewBug.m in Sources */,
 				B93B141A1A61646600121133 /* CustomerViewController.m in Sources */,
 				B98BD5741A609185003A35BE /* REInlinePickerItem.m in Sources */,
 				4A51374B1A3B2AAA007B504B /* dic2Object.m in Sources */,
@@ -5078,7 +5079,6 @@
 				B93B143D1A62539D00121133 /* FollowTableViewController.m in Sources */,
 				4A94F9161AF72A7900B209FF /* EaseMobFriendsManger.m in Sources */,
 				4A6865A51A737573005394DD /* buildingItemTableViewCell.m in Sources */,
-				4AAE5FEE1B145BBB0077AC98 /* UIView+addToolBar2Keyboard.m in Sources */,
 				4A8D01DE1A369DCE00EA59EA /* PublicAnncTableViewCell.m in Sources */,
 				B98BD57D1A609185003A35BE /* REActionBar.m in Sources */,
 				4ABC221D1A3C31910017FD94 /* AnncListViewController.m in Sources */,

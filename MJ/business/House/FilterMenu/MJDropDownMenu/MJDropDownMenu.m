@@ -12,7 +12,6 @@
 #import "myTextFieldDelegate.h"
 #import "DAKeyboardControl.h"
 #import "UIView+FindFirstResponser.h"
-#import "UIView+addToolBar2Keyboard.h"
 #import "DoneToolbarButton.h"
 #import "RFKeyboardToolbar.h"
 #import "MJMenuModel.h"
@@ -110,7 +109,7 @@
         [self addSubview:bottomShadow];
         
         
-        [self setUpKeyBoardHander];
+        
     }
     return self;
 }
@@ -228,6 +227,8 @@
                 [view addSubview:self];
             }];
         }
+        
+        [self setUpKeyBoardHander];
     }
     else
     {
@@ -239,6 +240,7 @@
             }];
             
         }
+        [self removeKeyboardControl];
     }
     complete();
 }

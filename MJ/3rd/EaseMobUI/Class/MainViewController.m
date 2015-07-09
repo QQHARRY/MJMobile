@@ -19,6 +19,7 @@
 #import "ApplyViewController.h"
 #import "CallSessionViewController.h"
 #import "Macro.h"
+#import "AppDelegate.h"
 
 //两次提示的默认间隔
 static const CGFloat kDefaultPlaySoundInterval = 3.0;
@@ -528,6 +529,9 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 - (void)didLoginFromOtherDevice
 {
     [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:NO completion:^(NSDictionary *info, EMError *error) {
+        AppDelegate*app = [[UIApplication sharedApplication] delegate];
+        
+        [app appLogout];
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:NSLocalizedString(@"loginAtOtherDevice", @"your login account has been in other places") delegate:self cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
         alertView.tag = 100;
         [alertView show];

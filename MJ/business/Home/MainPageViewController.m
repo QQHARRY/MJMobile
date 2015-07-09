@@ -52,6 +52,7 @@
 #import "BannerData.h"
 #import "WebViewController.h"
 #import "Sqlite3DataPersistence.h"
+#import "testReTableViewBug.h"
 
 
 #define TABBARTITLECOLOR [UIColor colorWithRed:1/255.0f green:0xaf/255.0f blue:0xe8/255.0f alpha:1]
@@ -503,8 +504,12 @@
     [self performSegueWithIdentifier:@"toAlertList" sender:self];
 }
 
+
 -(void)toAnncListView:(UIButton*)sender
 {
+//    testReTableViewBug*tst = [[testReTableViewBug alloc] initWithStyle:UITableViewStylePlain];
+//    [self.navigationController pushViewController:tst animated:YES];
+    
     [self performSegueWithIdentifier:@"toAnncList" sender:self];
 }
 

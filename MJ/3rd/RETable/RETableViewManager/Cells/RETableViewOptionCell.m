@@ -66,6 +66,7 @@
 {
     //[super cellWillAppear];
     self.accessoryType = self.item.accessoryType;
+    
     self.textLabel.backgroundColor = [UIColor clearColor];
     self.textLabel.text = self.item.title.length == 0 ? @" " : self.item.title;
     self.detailTextLabel.text = @"";
@@ -73,6 +74,21 @@
     
     if (!self.item.title) {
         self.valueLabel.textAlignment = NSTextAlignmentLeft;
+    }
+    else
+    {
+        self.valueLabel.textAlignment = NSTextAlignmentRight;
+    }
+    
+    if(!self.item.enabled)
+    {
+        self.accessoryType = UITableViewCellAccessoryNone;
+        self.valueLabel.textAlignment = NSTextAlignmentLeft;
+    }
+    else
+    {
+        self.accessoryType = self.item.accessoryType;
+        self.valueLabel.textAlignment = NSTextAlignmentRight;
     }
     
     self.enabled = self.item.enabled;
@@ -112,7 +128,9 @@
     self.userInteractionEnabled = _enabled;
     
     self.textLabel.enabled = _enabled;
-    self.valueLabel.enabled = _enabled;
+    self.valueLabel.enabled = YES;
+    [self.valueLabel setTextColor:[UIColor blackColor]];
+
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

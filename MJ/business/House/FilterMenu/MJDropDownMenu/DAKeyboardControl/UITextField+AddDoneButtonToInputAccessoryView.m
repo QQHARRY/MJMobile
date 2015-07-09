@@ -15,10 +15,7 @@
 
 -(void)addDoneBtn
 {
-    
     DoneToolbarButton *doneBtn = [DoneToolbarButton new];
-    
-    
     [RFKeyboardToolbar addToTextField:self withButtons:@[doneBtn]];
 }
 @end

@@ -1553,7 +1553,7 @@
 
 -(void)judgeHouseByBuildings:(buildings*)bldings Building:(building*)blding Unit:(NSString*)unit Table:(NSString*)table
 {
-    SHOWHUD_WINDOW;
+    SHOWWINDOWHUD(@"正在判重...");
     
     NSMutableDictionary*dic = [[NSMutableDictionary alloc] init];
     [dic setValue:bldings.domain_no forKey:@"domain_no"];
@@ -1565,6 +1565,7 @@
     self.navigationItem.rightBarButtonItem.enabled = NO;
     [HouseDataPuller pullIsHouseExisting:dic Success:^(HouseParticulars*hosuePtl)
      {
+         HIDEHUD_WINDOW;
          self.housePtcl = hosuePtl;
          int tradeState = [hosuePtl.trade_type intValue];
          switch (tradeState)
@@ -1604,7 +1605,7 @@
              [self prepareTeneApplicationSectionItemsStep1];
          }
          
-         HIDEHUD_WINDOW;
+         
      }
                                              failure:^(NSError* error)
      {

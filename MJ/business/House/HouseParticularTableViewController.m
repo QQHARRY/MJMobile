@@ -378,7 +378,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     
     if (self.housePhotoArr.count == 0)
     {
-        imageView.image = [UIImage imageNamed:@"banner_no.jpg"];
+        imageView.image = [UIImage imageNamed:@"添加实勘.jpg"];
     }
     else
     {
@@ -429,6 +429,11 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
         }
         
         [self.messageReadManager showBrowserWithImages:arr];
+    }
+    else
+    {
+        self.survey = [[HouseSurvey alloc] init];
+        [self.survey startSurveyWithHouse:self.houseDtl RoleList:self.roleListOfHouse InVc:self];
     }
     
 }
@@ -541,6 +546,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
 -(void)resetImagePlayerAbout
 {
     [self resetHousePhotoArr];
+    
 
     NSInteger count = self.housePhotoArr.count;
     if (count == 0)
@@ -1942,6 +1948,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
         value = self.housePtcl.describ;
     }
     self.b_staff_describ_to_view_html = [[RERadioItem alloc] initWithTitle:@"房源描述" value:@"点击查看" selectionHandler:^(RERadioItem *item) {
+        [item deselectRowAnimated:NO];
         houseDescribeViewController*vc = [[houseDescribeViewController alloc] init];
         vc.client_remark = value;
         [self.navigationController pushViewController:vc animated:YES];
@@ -2815,11 +2822,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
             break;
         case 4:
         {
-            if (self.survey == nil)
-            {
-                self.survey = [[HouseSurvey alloc] init];
-            }
-            
+            self.survey = [[HouseSurvey alloc] init];
             [self.survey startSurveyWithHouse:self.houseDtl RoleList:self.roleListOfHouse InVc:self];
         }
             break;

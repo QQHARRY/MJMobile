@@ -359,7 +359,7 @@
     if (ztArr)[imageArr addObjectsFromArray:ztArr];
     if (sntArr)[imageArr addObjectsFromArray:sntArr];
     if (hxtArr)[imageArr addObjectsFromArray:hxtArr];
-    if (zptArr)[imageArr addObjectsFromArray:zptArr];
+    //if (zptArr)[imageArr addObjectsFromArray:zptArr];
     
     for (imageStorageInfo*info in imageArr)
     {

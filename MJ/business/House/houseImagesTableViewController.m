@@ -40,7 +40,7 @@
     [self createxqtSection];
     [self createhxtSection];
     [self createsntSection];
-    [self createZptSection];
+    //[self createZptSection];
 }
 
 -(void)viewDidAppear:(BOOL)animated

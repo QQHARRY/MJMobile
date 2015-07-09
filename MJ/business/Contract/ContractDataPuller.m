@@ -50,7 +50,7 @@
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
          {
-             NSString *att = [resultDic objectForKey:@"contract_attachment"];
+             NSString *att = [resultDic objectForKey:@"entrust_attachment"];
              success(att);
          }
      }

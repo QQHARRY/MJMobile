@@ -19,9 +19,13 @@
 @property (strong, readwrite, nonatomic) RETableViewManager *manager;
 
 @property (strong, readwrite, nonatomic) RETableViewSection *contractSection;
+
 @property (strong, readwrite, nonatomic) RERadioItem *typeItem;
 @property (strong, readwrite, nonatomic) RERadioItem *consignItem;
 @property (strong, readwrite, nonatomic) RERadioItem *payItem;
+@property (strong, readwrite, nonatomic) RETextItem *regNo;
+@property (strong, readwrite, nonatomic) RETextItem *valueTotal;
+
 @property (strong, readwrite, nonatomic) REDateTimeItem *startItem;
 @property (strong, readwrite, nonatomic) REDateTimeItem *endItem;
 
@@ -267,6 +271,15 @@
                             [weakSelf.navigationController pushViewController:optionsController animated:YES];
                         }];
     [section addItem:self.payItem];
+    
+    self.regNo = [RETextItem itemWithTitle:@"委托注册编号" value:@"" placeholder:@""];
+    self.valueTotal = [RETextItem itemWithTitle:@"委托价格" value:@"" placeholder:@"单位:元"];
+    self.valueTotal.keyboardType = UIKeyboardTypeDecimalPad;
+    
+    [section addItem:self.regNo];
+    [section addItem:self.valueTotal];
+    
+    
     self.startItem = [REDateTimeItem itemWithTitle:@"委托开始日期" value:nil placeholder:nil format:@"yyyy-MM-dd" datePickerMode:UIDatePickerModeDate];
     [section addItem:self.startItem];
     self.endItem = [REDateTimeItem itemWithTitle:@"委托结束日期" value:nil placeholder:nil format:@"yyyy-MM-dd" datePickerMode:UIDatePickerModeDate];
@@ -286,7 +299,7 @@
         [param setValue:[person me].job_no forKey:@"job_no"];
         [param setValue:[person me].password forKey:@"acc_password"];
         [param setValue:[UtilFun getUDID] forKey:@"DeviceID"];
-        [param setValue:self.sid forKey:@"contract_target_object"];
+        [param setValue:self.sid forKey:@"trade_no"];
         if (!self.typeItem.value || self.typeItem.value.length <= 0)
         {
             PRESENTALERT(@"错 误", @"请选择交易类型", @"O K", nil,self);
@@ -309,7 +322,7 @@
         {
             if ([di.dict_label isEqualToString:self.consignItem.value])
             {
-                [param setValue:di.dict_value forKey:@"contract_type"];
+                [param setValue:di.dict_value forKey:@"entrust_type"];
                 break;
             }
         }
@@ -318,14 +331,27 @@
             PRESENTALERT(@"错 误", @"请选择付佣类型", @"O K", nil,self);
             return;
         }
+
         for (DicItem *di in self.payDictList)
         {
             if ([di.dict_label isEqualToString:self.payItem.value])
             {
-                [param setValue:di.dict_value forKey:@"contract_pay_sort"];
+                [param setValue:di.dict_value forKey:@"brokerage_sort"];
                 break;
             }
         }
+        
+        if (!self.regNo.value || self.regNo.value.length ==0
+            ||!self.valueTotal.value || self.valueTotal.value.length == 0)
+        {
+            PRESENTALERT(@"错 误", @"注册编号和委托价格不能为空", @"O K", nil,self);
+            return;
+        }
+        {
+            [param setValue:self.regNo.value forKey:@"entrust_reg_no"];
+            [param setValue:self.valueTotal.value forKey:@"value_total"];
+        }
+        
         if (!self.startItem.value)
         {
             PRESENTALERT(@"错 误", @"请选择委托开始日期", @"O K",nil, self);
@@ -336,7 +362,7 @@
             fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
             fmt.dateFormat = @"yyyy-MM-dd";
             NSString* dateString = [fmt stringFromDate:self.startItem.value];
-            [param setValue:dateString forKey:@"contract_start_date"];
+            [param setValue:dateString forKey:@"start_date"];
         }
         if (!self.endItem.value)
         {
@@ -358,7 +384,7 @@
                 fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
                 fmt.dateFormat = @"yyyy-MM-dd";
                 NSString* dateString = [fmt stringFromDate:self.endItem.value];
-                [param setValue:dateString forKey:@"contract_end_date"];
+                [param setValue:dateString forKey:@"end_date"];
             }
             else
             {
@@ -394,7 +420,7 @@
             HIDEALLWINDOWHUD;
             PRESENTALERT(@"失败", @"创建委托失败，请稍后再试！",@"OK",  ^()
                                    {
-                                       [self.navigationController popViewControllerAnimated:YES];
+//                                       [self.navigationController popViewControllerAnimated:YES];
                                    },self);
             return;
         }];
