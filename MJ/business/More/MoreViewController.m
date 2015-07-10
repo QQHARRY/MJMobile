@@ -168,7 +168,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 9;
+    return 8;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -233,27 +233,27 @@
         {
             cell.textLabel.text = @"后勤管理";
         }
+//        else if(indexPath.row == 3)
+//        {
+//            cell.textLabel.text = @"预约签约";
+//        }
         else if(indexPath.row == 3)
-        {
-            cell.textLabel.text = @"预约签约";
-        }
-        else if(indexPath.row == 4)
         {
             cell.textLabel.text = @"消息推送设置";
         }
-        else if(indexPath.row == 5)
+        else if(indexPath.row == 4)
         {
             cell.textLabel.text = @"关于";
         }
-        else if(indexPath.row == 6)
+        else if(indexPath.row == 5)
         {
             cell.textLabel.text = @"检查更新";
         }
-        else if(indexPath.row == 7)
+        else if(indexPath.row == 6)
         {
             cell.textLabel.text = @"意见反馈";
         }
-        else if (indexPath.row == 8)
+        else if (indexPath.row == 7)
         {
             cell.textLabel.text = @"退出登录";
         }

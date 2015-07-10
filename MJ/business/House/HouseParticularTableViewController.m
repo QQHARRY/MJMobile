@@ -2689,7 +2689,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
                         @"新增跟进",　
                         @"新增委托",
                         @"新增带看",
-                        @"新增签约",
+                        //@"新增签约",
                         @"房源实勘",
                         @"添加钥匙"
                         ];
@@ -2698,7 +2698,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
                        [UIImage imageNamed:@"房源详情_跟进"],
                        [UIImage imageNamed:@"房源详情_委托"],
                        [UIImage imageNamed:@"房源详情_带看"],
-                       [UIImage imageNamed:@"房源详情_签约"],
+                       //[UIImage imageNamed:@"房源详情_签约"],
                        [UIImage imageNamed:@"房源详情_实勘"],
                        [UIImage imageNamed:@"房源详情_钥匙"],
                        ];
@@ -2814,19 +2814,19 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
             [self daiKanAction];
         }
             break;
+//        case 3:
+//        {
+//            [self qianYueAction];
+//            
+//        }
+//            break;
         case 3:
-        {
-            [self qianYueAction];
-            
-        }
-            break;
-        case 4:
         {
             self.survey = [[HouseSurvey alloc] init];
             [self.survey startSurveyWithHouse:self.houseDtl RoleList:self.roleListOfHouse InVc:self];
         }
             break;
-        case 5:
+        case 4:
         {
             HouseAddKeyTalbeViewController*vc = [[HouseAddKeyTalbeViewController alloc] init];
             vc.trade_no = self.houseDtl.trade_no;
