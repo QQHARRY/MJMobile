@@ -8,6 +8,7 @@
 
 #import "testReTableViewBug.h"
 #import "RETableViewManager.h"
+#import "UtilFun.h"
 
 
 
@@ -29,7 +30,7 @@
     [self.manager addSection:self.section];
     for (int i = 1; i < 50; i++) {
         RETableViewItem*item = nil;
-        switch (i%4)
+        switch (i%5)
         {
             case 0:
             {
@@ -55,7 +56,20 @@
                 [self.section addItem:item];
             }
                 break;
+            case 4:
+            {
+                item = [[RETableViewItem alloc]  initWithTitle:[NSString stringWithFormat:@"Item%d",i] accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item)
+                        {
+                            [item deselectRowAnimated:YES];
+                            PRESENTALERT(@"点我做什么?",@"没事别乱点!/r/n点了也没事", @"好吧!", nil, nil);
+                        }];
                 
+                
+               
+                
+                [self.section addItem:item];
+            }
+                break;
             default:
                 break;
         }

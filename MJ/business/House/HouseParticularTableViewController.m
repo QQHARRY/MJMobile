@@ -102,12 +102,15 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    
     self.navigationController.toolbarHidden = NO;
+    [super viewWillAppear:animated];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     self.navigationController.toolbarHidden = YES;
+    [super viewWillDisappear:animated];
 }
 
 #pragma mark ---------------viewDidLoad----------------
