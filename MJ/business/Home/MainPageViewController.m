@@ -507,9 +507,6 @@
 
 -(void)toAnncListView:(UIButton*)sender
 {
-//    testReTableViewBug*tst = [[testReTableViewBug alloc] initWithStyle:UITableViewStylePlain];
-//    [self.navigationController pushViewController:tst animated:YES];
-    
     [self performSegueWithIdentifier:@"toAnncList" sender:self];
 }
 
