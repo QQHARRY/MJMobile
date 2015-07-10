@@ -383,15 +383,26 @@
     SHOWHUD_WINDOW;
     [HouseDataPuller pushAddHouse:dic Success:^(NSString *trade_no, NSString *buildings_picture) {
         
+        HIDEHUD_WINDOW
         SEL sel = @selector(setNeedRefresh);
         if (self.delegate && [self.delegate respondsToSelector:sel])
         {
             [self.delegate performSelector:sel];
         }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            PRESENTALERT(@"成功", @"添加房源成功!",@"OK", ^()
+                         {
+                             NSLog(@"push image all finished ok btn clicked");
+                             [self.navigationController popViewControllerAnimated:YES];
+                             
+                         }, self);
+        });
+        
+        
 
-        HIDEHUD_WINDOW;
-        self.succeedHouseTradeNo = trade_no;
-        self.succeedHouseImageNo = buildings_picture;
+//        HIDEHUD_WINDOW;
+//        self.succeedHouseTradeNo = trade_no;
+//        self.succeedHouseImageNo = buildings_picture;
         //[self getImageArr];
         //self.uploadProgress = 0;
         //[self uploadImage];

@@ -7,6 +7,7 @@
 //
 
 #import "WebViewController.h"
+#import "person.h"
 
 @interface WebViewController ()
 
@@ -31,7 +32,30 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [_webV loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+    NSMutableDictionary*param = [[NSMutableDictionary alloc] init];
+    [param setObject:[person me].job_no forKey:@"job_no"];
+    [param setObject:[person me].password forKey:@"acc_password"];
+    
+    NSString *array = @"";
+    int i=0;
+    for(NSString *key in param)
+    {
+        if(i>0)
+        {
+            array = [array stringByAppendingString:@"&"];
+        }
+        
+        array = [array stringByAppendingString:[NSString stringWithFormat:@"%@=%@", key, [param objectForKey:key]]];
+        i++;
+    }
+    
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL: [NSURL URLWithString:url]];
+    [request setHTTPMethod: @"POST"];
+    
+    [request setHTTPBody: [array dataUsingEncoding: NSUTF8StringEncoding]];
+    
+    [_webV loadRequest:request];
 }
 
 

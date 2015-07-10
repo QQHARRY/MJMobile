@@ -9,6 +9,7 @@
 #import "petitionFollowChartViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "UtilFun.h"
+#import "person.h"
 
 @interface petitionFollowChartViewController ()
 
@@ -19,18 +20,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   
 
-    //self.webView.translatesAutoresizingMaskIntoConstraints = YES;
-    
-    //[self.webView setFrame:CGRectMake(0, 0, self.view.frame.size.height, self.view.frame.size.width)];
-
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
-    //CGAffineTransform at =CGAffineTransformMakeRotation(M_PI*3/2);
-    
-    //[self.webView setTransform:at];
     
     [self.webView setScalesPageToFit:YES];
+    
+    NSMutableDictionary*param = [[NSMutableDictionary alloc] init];
+    [param setObject:[person me].job_no forKey:@"job_no"];
+    [param setObject:[person me].password forKey:@"acc_password"];
+    
+    NSString *array = @"";
+    int i=0;
+    for(NSString *key in param)
+    {
+        if(i>0)
+        {
+            array = [array stringByAppendingString:@"&"];
+        }
+        
+        array = [array stringByAppendingString:[NSString stringWithFormat:@"%@=%@", key, [param objectForKey:key]]];
+        i++;
+    }
+    
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL: [NSURL URLWithString:self.url]];
+    [request setHTTPMethod: @"POST"];
+    
+    [request setHTTPBody: [array dataUsingEncoding: NSUTF8StringEncoding]];
+    
+    [self.webView loadRequest:request];
+    
+    
+    
 }
 
 

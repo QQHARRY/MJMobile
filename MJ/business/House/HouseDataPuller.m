@@ -444,7 +444,13 @@
              HouseParticulars*housePtl = [[HouseParticulars alloc] init];
              if (iStatus == 1 || iStatus == 2 || iStatus == 3)
              {
-                 NSDictionary* houseInfoNode = [[resultDic objectForKey:@"HouseInfoNode"] objectAtIndex:0];
+                 NSDictionary*houseInfoNode = [resultDic objectForKey:@"HouseInfoNode"];
+                 if ([houseInfoNode isKindOfClass:[NSArray class]] || [houseInfoNode isKindOfClass:[NSMutableArray class]])
+                 {
+                     houseInfoNode = [[resultDic objectForKey:@"HouseInfoNode"] objectAtIndex:0];
+                 }
+                 
+                 //NSDictionary* houseInfoNode = [[resultDic objectForKey:@"HouseInfoNode"] objectAtIndex:0];
                  if (houseInfoNode)
                  {
                      [housePtl initWithDictionary:houseInfoNode];
@@ -546,7 +552,7 @@
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
          if ([bizManager checkReturnStatus:resultDic Success:nil failure:failure ShouldReturnWhenSuccess:NO])
          {
-             success([resultDic objectForKey:@"trade_no"],[resultDic objectForKey:@"buildings_picture"]);
+             success(nil,nil);
          }
          
          

@@ -400,8 +400,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
                     weakImgV.image = [UIImage imageNamed:@"banner_fail.jpg"];
                 }
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                weakImgV.image = [UIImage imageNamed:@"banner"];
-                //weakImgV.image = [UIImage imageNamed:@"banner_fail.jpg"];
+                weakImgV.image = [UIImage imageNamed:@"banner_fail.jpg"];
             }];
         }
         
@@ -577,9 +576,23 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     if (self.housePtcl)
     {
         NSMutableArray*arrPhotoTmp = [[NSMutableArray alloc] init];
-        [arrPhotoTmp addObjectsFromArray:[self.housePtcl.xqt componentsSeparatedByString:@", "]];
-        [arrPhotoTmp addObjectsFromArray:[self.housePtcl.hxt componentsSeparatedByString:@", "]];
-        [arrPhotoTmp addObjectsFromArray:[self.housePtcl.snt componentsSeparatedByString:@", "]];
+        if (self.housePtcl.xqt != nil && [self.housePtcl.xqt stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]])
+        {
+            [arrPhotoTmp addObjectsFromArray:[self.housePtcl.xqt componentsSeparatedByString:@", "]];
+        }
+        
+        if (self.housePtcl.hxt != nil && [self.housePtcl.hxt stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]])
+        {
+            [arrPhotoTmp addObjectsFromArray:[self.housePtcl.hxt componentsSeparatedByString:@", "]];
+        }
+        
+        if (self.housePtcl.snt != nil && [self.housePtcl.snt stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]])
+        {
+            [arrPhotoTmp addObjectsFromArray:[self.housePtcl.snt componentsSeparatedByString:@", "]];
+        }
+        
+        
+        
 
         for (NSString*imgName in arrPhotoTmp)
         {
