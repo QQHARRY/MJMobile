@@ -2752,7 +2752,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     if (!_contextMenuTableView)
     {
         _contextMenuTableView = [[YALContextMenuTableView alloc]initWithTableViewDelegateDataSource:self];
-        _contextMenuTableView.animationDuration = 0.03;
+        _contextMenuTableView.animationDuration = 0.02;
         _contextMenuTableView.yalDelegate = self;
         
         

@@ -83,6 +83,7 @@
         
     } failure:^(NSError *error) {
         HIDEHUD(self.view);
+        [self.tableView reloadData];
         [self endRefreshing:isFoot];
     }];
     

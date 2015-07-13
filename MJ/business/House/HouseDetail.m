@@ -38,6 +38,19 @@
 @synthesize ThumbnailUrl; // 缩略图url(也就 是一张主图的 图片路径)
 @synthesize consignment_type; // 委托类型 ID
 @synthesize look_permit;
+@synthesize reg_type; //0：个人私盘；1：门店公盘；2：区域公盘；3：大区域公盘；99：公司公盘
+@synthesize reg_surplus; //剩余天数
+
+-(int)getRegTypeInt
+{
+    if (self.reg_type && self.reg_type.length > 0)
+    {
+        int iRegType = [self.reg_type intValue];
+        return iRegType;
+    }
+    
+    return 0;
+}
 @end
 
 

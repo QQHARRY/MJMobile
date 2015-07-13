@@ -35,6 +35,13 @@
 @property (nonatomic, strong) NSString *ThumbnailUrl; // 缩略图url(也就 是一张主图的 图片路径)
 @property (nonatomic, strong) NSString *consignment_type; // 委托类型 ID
 @property (nonatomic, strong) NSString *look_permit; //看房(预约，有钥匙，借钥匙，直接)
+
+@property (nonatomic, strong) NSString *reg_type; //0：个人私盘；1：门店公盘；2：区域公盘；3：大区域公盘；99：公司公盘
+
+@property (nonatomic, strong) NSString *reg_surplus; //剩余天数
+
+-(int)getRegTypeInt;
+
 @end
 
 

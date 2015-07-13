@@ -20,5 +20,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *lookPermit;
 @property (strong, nonatomic) IBOutlet UILabel *consignmentType;
 @property (strong, nonatomic) IBOutlet UILabel *area;
+@property (strong, nonatomic) IBOutlet UIImageView *publicStatus;
+@property (strong, nonatomic) IBOutlet UILabel *publicDaysLeft;
 
 @end

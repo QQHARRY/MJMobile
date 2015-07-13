@@ -68,6 +68,18 @@
                     
                     
                     NSArray*areaArr = [urban objectForKey:@"sections"];
+                    
+
+                    
+                    
+                    MJMenuItem*areaItem = [[MJMenuItem alloc ]init];
+                    areaItem.title = @"不限";
+                    areaItem.value = [MJMenuItemValue valueWithType:MJMenuItemValueTypeSingle Values:@"",nil];
+                    
+                    
+                    [urbanAreaModel.subMenuItems addObject:areaItem];
+                    
+                    
                     for (id area in areaArr)
                     {
                         NSString*areaName = [area objectForKey:@"area_name"];
