@@ -241,57 +241,12 @@
 
 -(void)setPublicStauts:(HouseDetail*)houseDetails ForCell:(HouseDetailCell*)cell
 {
-    
     if (houseDetails && cell)
     {
-        if ([houseDetails getRegTypeInt] == 0)
-        {
-            cell.publicDaysLeft.hidden = NO;
-        }
-        else
-        {
-            cell.publicDaysLeft.hidden = YES;
-        }
-        
-        //0：个人私盘；1：门店公盘；2：区域公盘；3：大区域公盘；99：公司公盘
-        UIImage*image = nil;
-        switch ([houseDetails getRegTypeInt])
-        {
-            case 0:
-            {
-                image = [UIImage imageNamed:@"私"];
-            }
-                break;
-            case 1:
-            {
-                image = [UIImage imageNamed:@"店"];
-            }
-                break;
-            case 2:
-            {
-                image = [UIImage imageNamed:@"区"];
-            }
-                break;
-            case 3:
-            {
-                image = [UIImage imageNamed:@"城"];
-            }
-                break;
-            case 99:
-            {
-                image = [UIImage imageNamed:@"公"];
-            }
-                break;
-            default:
-            {
-                image = [UIImage imageNamed:@"店"];
-            }
-                break;
-        }
-        
-        cell.publicStatus.image = image;
-        cell.publicDaysLeft.text = houseDetails.reg_surplus;
+        [cell setPublicStatus:[houseDetails getRegTypeInt] AndLeftDays:houseDetails.reg_surplus];
     }
+    
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

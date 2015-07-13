@@ -23,4 +23,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *publicStatus;
 @property (strong, nonatomic) IBOutlet UILabel *publicDaysLeft;
 
+
+-(void)setPublicStatus:(NSInteger)status AndLeftDays:(NSString*)leftDays;
+
+
 @end
