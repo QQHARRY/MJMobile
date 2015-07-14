@@ -816,7 +816,6 @@
     {
         if (tableView == menu.leftTableV)
         {
-            
             return [self getMenuItemDefaultValueForRowAtIndexPath:indexPath FromMenuDataArr:_menu_rentPriceArr];
         }
     }
