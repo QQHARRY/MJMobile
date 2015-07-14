@@ -15,7 +15,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *title;
 @property (strong, nonatomic) IBOutlet UITextField *singleValueField;
 
-@property (weak,nonatomic)id<myTextFieldDelegate>textFieldDelegate;
 
+@property (weak,nonatomic)id<myTextFieldDelegate>textFieldDelegate;
+@property (strong,nonatomic)NSIndexPath*indexPath;
+-(void)setKeyBoardType:(UIKeyboardType)kbType;
 
 @end

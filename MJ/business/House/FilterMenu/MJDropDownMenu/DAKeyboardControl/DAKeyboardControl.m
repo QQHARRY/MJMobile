@@ -155,11 +155,11 @@ static char UIViewKeyboardPanRecognizer;
     [self removeGestureRecognizer:self.keyboardPanRecognizer];
     
     // Release a few properties
-    self.keyboardDidMoveBlock = nil;
-    self.completionBlock = nil;
-    self.keyboardActiveInput = nil;
-    self.keyboardActiveView = nil;
-    self.keyboardPanRecognizer = nil;
+    //self.keyboardDidMoveBlock = nil;
+    //self.completionBlock = nil;
+    //self.keyboardActiveInput = nil;
+    //self.keyboardActiveView = nil;
+    //self.keyboardPanRecognizer = nil;
 }
 
 #pragma mark - Input Notifications
@@ -187,6 +187,7 @@ static char UIViewKeyboardPanRecognizer;
     
     double keyboardTransitionDuration;
     [[notification.userInfo valueForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&keyboardTransitionDuration];
+    keyboardTransitionDuration = keyboardTransitionDuration/4.0;
     
     UIViewAnimationCurve keyboardTransitionAnimationCurve;
     [[notification.userInfo valueForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&keyboardTransitionAnimationCurve];
@@ -201,7 +202,7 @@ static char UIViewKeyboardPanRecognizer;
                      animations:^{
                          if (self.keyboardDidMoveBlock)
                          {
-                             NSLog(@"---------1");
+                             
                              self.keyboardDidMoveBlock(keyboardEndFrameView);
                          }
                      }
@@ -232,6 +233,7 @@ static char UIViewKeyboardPanRecognizer;
     
     double keyboardTransitionDuration;
     [[notification.userInfo valueForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&keyboardTransitionDuration];
+    keyboardTransitionDuration = keyboardTransitionDuration/4.0;
     
     UIViewAnimationCurve keyboardTransitionAnimationCurve;
     [[notification.userInfo valueForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&keyboardTransitionAnimationCurve];
@@ -244,7 +246,7 @@ static char UIViewKeyboardPanRecognizer;
                      animations:^{
                          if (self.keyboardDidMoveBlock)
                          {
-                             NSLog(@"---------2");
+                             
                              self.keyboardDidMoveBlock(keyboardEndFrameView);
                          }
                      }
@@ -264,6 +266,7 @@ static char UIViewKeyboardPanRecognizer;
     
     double keyboardTransitionDuration;
     [[notification.userInfo valueForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&keyboardTransitionDuration];
+    keyboardTransitionDuration = keyboardTransitionDuration/4.0;
     
     UIViewAnimationCurve keyboardTransitionAnimationCurve;
     [[notification.userInfo valueForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&keyboardTransitionAnimationCurve];
@@ -276,7 +279,6 @@ static char UIViewKeyboardPanRecognizer;
                      animations:^{
                          if (self.keyboardDidMoveBlock)
                          {
-                             NSLog(@"---------3");
                              self.keyboardDidMoveBlock(keyboardEndFrameView);
                          }
                      }
@@ -358,7 +360,6 @@ static char UIViewKeyboardPanRecognizer;
                                      [self.keyboardActiveView setFrame:newKeyboardViewFrame];
                                      if (self.keyboardDidMoveBlock)
                                      {
-                                         NSLog(@"---------4");
                                          self.keyboardDidMoveBlock(newKeyboardViewFrameInView);
                                      }
                                  }
@@ -377,14 +378,13 @@ static char UIViewKeyboardPanRecognizer;
             
             CGRect newKeyboardViewFrameInView = [self convertRect:newKeyboardViewFrame fromView:self.keyboardActiveView.window];
             
-            [UIView animateWithDuration:0.25f
+            [UIView animateWithDuration:0.1f
                                   delay:0.0f
                                 options:UIViewAnimationOptionCurveEaseOut
                              animations:^{
                                  [self.keyboardActiveView setFrame:newKeyboardViewFrame];
                                  if (self.keyboardDidMoveBlock)
                                  {
-                                     NSLog(@"---------5");
                                      self.keyboardDidMoveBlock(newKeyboardViewFrameInView);
                                  }
                              }
@@ -410,14 +410,13 @@ static char UIViewKeyboardPanRecognizer;
             
             CGRect newKeyboardViewFrameInView = [self convertRect:newKeyboardViewFrame fromView:self.keyboardActiveView.window];
             
-            [UIView animateWithDuration:0.25f
+            [UIView animateWithDuration:0.1f
                                   delay:0.0f
                                 options:UIViewAnimationOptionCurveEaseOut
                              animations:^{
                                  [self.keyboardActiveView setFrame:newKeyboardViewFrame];
                                  if (self.keyboardDidMoveBlock)
                                  {
-                                     NSLog(@"---------6");
                                      self.keyboardDidMoveBlock(newKeyboardViewFrameInView);
                                  }
                              }
@@ -458,17 +457,20 @@ static char UIViewKeyboardPanRecognizer;
 
 - (DAKeyboardDidMoveBlock)completionBlock
 {
-    return objc_getAssociatedObject(self,
-                                    &UIViewKeyboardCompletionBlock);
+    void * key = &UIViewKeyboardCompletionBlock;
+    id blk = objc_getAssociatedObject(self,
+                                      key);
+    return blk;
 }
 
 - (void)setCompletionBlock:(DAKeyboardDidMoveBlock)completionBlock
 {
     [self willChangeValueForKey:@"completionBlock"];
+    void * key = &UIViewKeyboardCompletionBlock;
     objc_setAssociatedObject(self,
-                             &UIViewKeyboardCompletionBlock,
+                             key,
                              completionBlock,
-                             OBJC_ASSOCIATION_COPY);
+                             OBJC_ASSOCIATION_RETAIN);
     [self didChangeValueForKey:@"completionBlock"];
 }
 

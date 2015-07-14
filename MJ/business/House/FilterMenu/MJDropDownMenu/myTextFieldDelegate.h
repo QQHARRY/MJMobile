@@ -12,8 +12,8 @@
 
 @optional
 
--(void)myTextFieldDidBeginEditing;
-- (void)myTextFieldShouldReturn;
+-(void)singleCell:(UITableViewCell*)cell TextField:(UITextField*)textField oldValue:(NSString*)value;
+-(void)SectionCell:(UITableViewCell*)cell TextField:(UITextField*)textField oldValue:(NSString*)value atIndex:(NSInteger)index;
 
 
 @end

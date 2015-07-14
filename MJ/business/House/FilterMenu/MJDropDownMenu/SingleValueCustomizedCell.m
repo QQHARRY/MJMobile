@@ -9,6 +9,12 @@
 #import "SingleValueCustomizedCell.h"
 #import "UITextField+AddDoneButtonToInputAccessoryView.h"
 
+
+@interface SingleValueCustomizedCell()
+
+@property(nonatomic,strong)NSString*oldValue;
+@end
+
 @implementation SingleValueCustomizedCell
 
 -(void)awakeFromNib
@@ -20,20 +26,24 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (self.textFieldDelegate && [self.textFieldDelegate respondsToSelector:@selector(myTextFieldDidBeginEditing)])
-    {
-        [self.textFieldDelegate myTextFieldDidBeginEditing];
-    }
+    self.oldValue = textField.text;
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField
+-(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if (self.textFieldDelegate && [self.textFieldDelegate respondsToSelector:@selector(myTextFieldShouldReturn)])
+    if (![textField.text isEqualToString:self.oldValue])
     {
-        [self.textFieldDelegate myTextFieldShouldReturn];
+        if (self.textFieldDelegate && [self.textFieldDelegate respondsToSelector:@selector(singleCell:TextField:oldValue:)])
+        {
+            [self.textFieldDelegate singleCell:self TextField:textField oldValue:textField.text];
+        }
     }
     
-    return YES;
+}
+
+-(void)setKeyBoardType:(UIKeyboardType)kbType
+{
+    self.singleValueField.keyboardType = kbType;
 }
 
 

@@ -9,6 +9,12 @@
 #import "SectionValueCustomizedCell.h"
 #import "UITextField+AddDoneButtonToInputAccessoryView.h"
 
+
+@interface SectionValueCustomizedCell()
+@property(nonatomic,strong)NSString*oldMinValue;
+@property(nonatomic,strong)NSString*oldMaxValue;
+@end
+
 @implementation SectionValueCustomizedCell
 
 
@@ -23,20 +29,53 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (self.textFieldDelegate && [self.textFieldDelegate respondsToSelector:@selector(myTextFieldDidBeginEditing)])
+    if (textField == self.minValue)
     {
-        [self.textFieldDelegate myTextFieldDidBeginEditing];
+        self.oldMinValue = textField.text;
+    }
+    else if(textField == self.maxValue)
+    {
+        self.oldMaxValue = textField.text;
     }
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (self.textFieldDelegate && [self.textFieldDelegate respondsToSelector:@selector(myTextFieldShouldReturn)])
-    {
-        [self.textFieldDelegate myTextFieldShouldReturn];
-    }
     
     return YES;
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField == self.minValue)
+    {
+        if (![textField.text isEqualToString:self.oldMinValue])
+        {
+            if (self.textFieldDelegate && [self.textFieldDelegate respondsToSelector:@selector(SectionCell:TextField:oldValue:atIndex:)])
+            {
+                [self.textFieldDelegate SectionCell:self TextField:textField oldValue:self.oldMinValue atIndex:0];
+            }
+        }
+    }
+    else if(textField == self.maxValue)
+    {
+        if (![textField.text isEqualToString:self.oldMaxValue])
+        {
+            if (self.textFieldDelegate && [self.textFieldDelegate respondsToSelector:@selector(SectionCell:TextField:oldValue:atIndex:)])
+            {
+                [self.textFieldDelegate SectionCell:self TextField:textField oldValue:self.oldMaxValue atIndex:1];
+            }
+        }
+    }
+    
+
+}
+
+
+-(void)setKeyBoardType:(UIKeyboardType)kbType
+{
+    self.minValue.keyboardType = kbType;
+    self.maxValue.keyboardType = kbType;
 }
 
 

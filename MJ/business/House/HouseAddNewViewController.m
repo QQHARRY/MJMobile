@@ -1155,7 +1155,7 @@
                         else
                         {
                             float value = [newValue floatValue];
-                            value = value/[self.structure_area.value floatValue];
+                            value = value*10000/[self.structure_area.value floatValue];
                             self.sale_single.value = [[NSString alloc] initWithFormat:@"%.2f",value];
                         }
                     }

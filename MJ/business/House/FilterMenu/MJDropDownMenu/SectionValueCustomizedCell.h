@@ -15,5 +15,5 @@
 @property (strong, nonatomic) IBOutlet UITextField *maxValue;
 @property (weak,nonatomic)id<myTextFieldDelegate>textFieldDelegate;
 
-
+-(void)setKeyBoardType:(UIKeyboardType)kbType;
 @end

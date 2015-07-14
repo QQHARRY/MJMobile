@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -24,18 +24,18 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9fT-Yq-Syr">
-                        <rect key="frame" x="72" y="10" width="233" height="25"/>
+                        <rect key="frame" x="72" y="7" width="233" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="PSU-fA-hus"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="centerY" secondItem="IEJ-UU-NlZ" secondAttribute="centerY" id="6so-wB-OqQ"/>
-                    <constraint firstItem="9fT-Yq-Syr" firstAttribute="leading" secondItem="IEJ-UU-NlZ" secondAttribute="trailing" constant="5" id="F65-fI-pGq"/>
-                    <constraint firstAttribute="trailing" secondItem="9fT-Yq-Syr" secondAttribute="trailing" constant="5" id="KSm-kn-RNX"/>
+                    <constraint firstItem="9fT-Yq-Syr" firstAttribute="leading" secondItem="IEJ-UU-NlZ" secondAttribute="trailing" constant="2" id="F65-fI-pGq"/>
+                    <constraint firstAttribute="trailing" secondItem="9fT-Yq-Syr" secondAttribute="trailing" constant="3" id="KSm-kn-RNX"/>
                     <constraint firstAttribute="centerY" secondItem="9fT-Yq-Syr" secondAttribute="centerY" id="YoA-xE-iKT"/>
                     <constraint firstItem="IEJ-UU-NlZ" firstAttribute="leading" secondItem="Eyp-V4-OCg" secondAttribute="leading" constant="15" id="pdL-2S-x3D"/>
                 </constraints>

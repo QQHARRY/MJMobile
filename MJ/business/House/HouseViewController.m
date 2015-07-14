@@ -373,8 +373,6 @@
 
 - (UIKeyboardType)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView keyboardTyeAtIndexpath:(NSIndexPath *)indexPath;
 {
-   
-    
     return UIKeyboardTypeNumberPad;
 }
 - (NSInteger)menu:(MJDropDownMenu *)menu tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
