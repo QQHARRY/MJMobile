@@ -114,6 +114,7 @@
     self.rentController.filter.FromID = @"0";
     self.rentController.filter.ToID = @"0";
     self.rentController.filter.Count = @"10";
+    self.rentController.filter.search_dept_no = [person me].p_dept_no;
     self.sellController = [[HouseTableViewController alloc] initWithNibName:@"HouseTableViewController" bundle:[NSBundle mainBundle]];
     self.sellController.controllerType = HCT_SELL;
     self.sellController.container = self;
@@ -124,6 +125,7 @@
     self.sellController.filter.FromID = @"0";
     self.sellController.filter.ToID = @"0";
     self.sellController.filter.Count = @"10";
+    self.sellController.filter.search_dept_no = [person me].p_dept_no;
  
 #if 1
     [self.sellController.tableView setContentInset:UIEdgeInsetsMake(MENUBAR_HEIGHT, 0, 0, 0)];
@@ -131,10 +133,12 @@
     
 
     _sellMenuBar = [[MJDropDownMenuBar alloc] initWithOrigin:CGPointMake(0, TABBAR_HEIGHT) andHeight:MENUBAR_HEIGHT];
+    //[_sellMenuBar updateTitle:[person me].p_dept_name ForIndex:2];
     _sellMenuBar.dataSource = self;
     _sellMenuBar.delegate = self;
     
     _rentMenuBar = [[MJDropDownMenuBar alloc] initWithOrigin:CGPointMake(0, TABBAR_HEIGHT) andHeight:MENUBAR_HEIGHT];
+    //[_rentMenuBar updateTitle:[person me].p_dept_name ForIndex:2];
     _rentMenuBar.dataSource = self;
     _rentMenuBar.delegate = self;
     
@@ -154,10 +158,6 @@
     
 
 }
-
-
-
-
 
 -(void)setUpRightNavigationItemWithIsNormalType:(BOOL)normalType
 {
@@ -263,7 +263,7 @@
     {
         case 0:return @"区域";break;
         case 1:return @"价格";break;
-        case 2:return @"部门";break;
+        case 2:return [person me].p_dept_name;break;
         case 3:return @"更多";break;
         default:return @"";break;
     }

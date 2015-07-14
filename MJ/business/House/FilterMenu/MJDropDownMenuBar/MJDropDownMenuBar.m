@@ -179,12 +179,12 @@
     CGSize size = [self calculateTitleSizeWithString:string];
     
     CATextLayer *layer = [CATextLayer new];
-    CGFloat sizeWidth = (size.width < (self.frame.size.width / _numOfColumn) - 15) ? size.width : self.frame.size.width / _numOfColumn - 15;
+    CGFloat sizeWidth = (size.width < (self.frame.size.width / _numOfColumn) - 30) ? size.width : self.frame.size.width / _numOfColumn - 30;
     
     //CGFloat sizeWidth = ((self.frame.size.width / _numOfColumn) - 15);
     layer.bounds = CGRectMake(0, 0, sizeWidth, size.height);
     layer.string = string;
-    layer.fontSize = [UIFont systemFontSize];
+    layer.fontSize = 12;
     layer.alignmentMode = kCAAlignmentCenter;
     layer.foregroundColor = color.CGColor;
     
@@ -197,7 +197,7 @@
 
 - (CGSize)calculateTitleSizeWithString:(NSString *)string
 {
-    CGFloat fontSize = [UIFont systemFontSize];
+    CGFloat fontSize = 12;
     NSDictionary *dic = @{NSFontAttributeName: [UIFont systemFontOfSize:fontSize]};
     CGSize size = [string boundingRectWithSize:CGSizeMake(280, 0) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
     return size;

@@ -39,7 +39,8 @@ typedef enum
 @property(strong,atomic)NSString*role_name;
 @property(strong,atomic)NSString*technical_post_name;
 @property(strong,atomic)NSString*members;
-
+@property(strong,atomic)NSString*p_dept_no;
+@property(strong,atomic)NSString*p_dept_name;
 
 //-(BOOL)initWithDictionary:(NSDictionary*)dic;
 
