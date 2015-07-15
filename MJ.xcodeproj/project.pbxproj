@@ -589,6 +589,7 @@
 		4AF465061B5659C700501739 /* ViewPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF465011B5659C700501739 /* ViewPagerController.m */; };
 		4AF4650E1B5659E000501739 /* testPageViewTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF4650B1B5659E000501739 /* testPageViewTVC.m */; };
 		4AF4650F1B5659E000501739 /* testViewPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF4650D1B5659E000501739 /* testViewPagerController.m */; };
+		4AF465121B565D6000501739 /* UIViewController+DismissKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF465111B565D6000501739 /* UIViewController+DismissKeyboard.m */; };
 		4AFA9F631A775CB7008A852F /* editCustomerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFA9F621A775CB7008A852F /* editCustomerTableViewController.m */; };
 		4AFC39A81A47CA3A000FB6F3 /* bind.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC39A61A47CA3A000FB6F3 /* bind.storyboard */; };
 		B93A1C7F1A910109002D5C58 /* SignDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B93A1C7A1A910109002D5C58 /* SignDetailCell.m */; };
@@ -1732,6 +1733,8 @@
 		4AF4650B1B5659E000501739 /* testPageViewTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testPageViewTVC.m; sourceTree = "<group>"; };
 		4AF4650C1B5659E000501739 /* testViewPagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testViewPagerController.h; sourceTree = "<group>"; };
 		4AF4650D1B5659E000501739 /* testViewPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testViewPagerController.m; sourceTree = "<group>"; };
+		4AF465101B565D6000501739 /* UIViewController+DismissKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DismissKeyboard.h"; sourceTree = "<group>"; };
+		4AF465111B565D6000501739 /* UIViewController+DismissKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DismissKeyboard.m"; sourceTree = "<group>"; };
 		4AFA9F611A775CB7008A852F /* editCustomerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editCustomerTableViewController.h; sourceTree = "<group>"; };
 		4AFA9F621A775CB7008A852F /* editCustomerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editCustomerTableViewController.m; sourceTree = "<group>"; };
 		4AFC39A71A47CA3A000FB6F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/bind.storyboard; sourceTree = "<group>"; };
@@ -2631,6 +2634,8 @@
 		4AA188BF1AEF549800685603 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				4AF465101B565D6000501739 /* UIViewController+DismissKeyboard.h */,
+				4AF465111B565D6000501739 /* UIViewController+DismissKeyboard.m */,
 				4AA188C01AEF549800685603 /* NSDate+Category.h */,
 				4AA188C11AEF549800685603 /* NSDate+Category.m */,
 				4AA188C21AEF549800685603 /* NSDateFormatter+Category.h */,
@@ -5071,6 +5076,7 @@
 				4A98651F1B0EDCD300462388 /* MJMenuItem.m in Sources */,
 				4AA18A871AEF549A00685603 /* EMChatViewBaseCell.m in Sources */,
 				4A40C21B1A41748100944AB2 /* petionListTableViewController.m in Sources */,
+				4AF465121B565D6000501739 /* UIViewController+DismissKeyboard.m in Sources */,
 				4AA18AA71AEF549A00685603 /* EMTextView.m in Sources */,
 				4AE5E3F31AE9F8C400E6A1D3 /* UITableView+AutoMoveCovered.m in Sources */,
 				4A3A2EF51A42DBA200AA8A70 /* petitionHistoryNodeTableViewCell.m in Sources */,
