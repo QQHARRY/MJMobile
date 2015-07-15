@@ -26,7 +26,7 @@ typedef NS_ENUM(NSUInteger, ViewPagerComponent) {
 @protocol ViewPagerDataSource;
 @protocol ViewPagerDelegate;
 
-@interface ViewPagerController : UIViewController
+@interface ViewPagerController : UIViewController<UIGestureRecognizerDelegate>
 
 @property id<ViewPagerDataSource> dataSource;
 @property id<ViewPagerDelegate> delegate;

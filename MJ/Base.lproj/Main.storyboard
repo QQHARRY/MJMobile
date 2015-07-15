@@ -265,6 +265,44 @@
             </objects>
             <point key="canvasLocation" x="-624" y="57"/>
         </scene>
+        <!--Test View Pager Controller-->
+        <scene sceneID="f1h-KT-5KO">
+            <objects>
+                <viewController id="SoB-A3-YpJ" customClass="testViewPagerController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LZ8-UL-grz"/>
+                        <viewControllerLayoutGuide type="bottom" id="SRT-g6-xTq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7qz-UQ-9l3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Cb2-PG-hMJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aND-ba-l1e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-987" y="-698"/>
+        </scene>
+        <!--TEST-->
+        <scene sceneID="yuq-7Y-dQQ">
+            <objects>
+                <navigationController title="TEST" id="gz0-ax-RUN" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="好吧" id="c11-OI-hg3"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jey-Pq-7KO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0039215686274509803" green="0.68627450980392157" blue="0.90980392156862744" alpha="1" colorSpace="deviceRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="SoB-A3-YpJ" kind="relationship" relationship="rootViewController" id="pT0-je-cEe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N23-c2-Ajg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-296" y="-698"/>
+        </scene>
         <!--Tabbar Controller-->
         <scene sceneID="ZAd-3R-8cR">
             <objects>
@@ -3322,9 +3360,9 @@
         <image name="背景图片" width="720" height="444"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kPa-Q7-pPJ"/>
         <segue reference="DLs-As-7Sx"/>
-        <segue reference="tQb-xT-bBS"/>
+        <segue reference="C9H-or-Nhi"/>
+        <segue reference="kPa-Q7-pPJ"/>
         <segue reference="Kp2-sj-FKl"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -163,7 +163,7 @@
     __weak UIPageViewController *weakPageViewController = self.pageViewController;
     __weak ViewPagerController *weakSelf = self;
     
-    NSLog(@"%@",weakPageViewController.view);
+    //NSLog(@"%@",weakPageViewController.view);
     
     if (index < self.activeTabIndex) {
         [self.pageViewController setViewControllers:@[viewController]
@@ -289,9 +289,33 @@
     
     _pageViewController.dataSource = self;
     _pageViewController.delegate = self;
-    
     self.animatingToTab = NO;
+    
+
+
 }
+
+
+-(void)panGestureDidChange:(id)sender
+{
+    
+}
+
+//-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+//{
+//    return NO;
+//}
+//-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+//{
+//    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] &&
+//        [otherGestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+//        return NO;
+//    }
+//    return NO;
+//}
+
+
+
 - (void)reloadData {
     
     // Get settings if provided
@@ -395,6 +419,7 @@
                                   direction:UIPageViewControllerNavigationDirectionForward
                                    animated:NO
                                  completion:nil];
+    
     
     // Set activeTabIndex
     self.activeTabIndex = self.startFromSecondTab;
