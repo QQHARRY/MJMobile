@@ -10,8 +10,9 @@
 
 #import "ContactListTableViewController.h"
 #import "CheckNewVersion.h"
+#import "BaseViewController.h"
 
-@interface MainPageViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,contacSelection,updateDelegate>
+@interface MainPageViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate,contacSelection,updateDelegate>
 
 
 
