@@ -351,7 +351,15 @@
         [WCAlertView showAlertWithTitle:@"更新字典表失败" message:@"请点击重新更新" customizationBlock:^(WCAlertView *alertView) {
             
         } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
-            [self updateDic];
+            if (buttonIndex == 0)
+            {
+                [self reloadData];
+            }
+            else
+            {
+                [self updateDic];
+            }
+            
         } cancelButtonTitle:@"取消" otherButtonTitles:@"重新更新", nil];
         
     }];

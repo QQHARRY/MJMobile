@@ -93,32 +93,32 @@
     {
         [self performSegueWithIdentifier:@"showShopRootView" sender:self];
     }
-    else if(indexPath.row == 3)
-    {
-        SignTableViewController *c = [[SignTableViewController alloc] initWithNibName:@"SignTableViewController" bundle:nil];
-        [self.navigationController pushViewController:c animated:YES];
-    }
-    else if (indexPath.row == 4)
+//    else if(indexPath.row == 3)
+//    {
+//        SignTableViewController *c = [[SignTableViewController alloc] initWithNibName:@"SignTableViewController" bundle:nil];
+//        [self.navigationController pushViewController:c animated:YES];
+//    }
+    else if (indexPath.row == 3)
     {
         PushNotificationViewController *pushController = [[PushNotificationViewController alloc] initWithStyle:UITableViewStylePlain];
         [self.navigationController pushViewController:pushController animated:YES];
 
     }
-    else if(indexPath.row == 5)
+    else if(indexPath.row == 4)
     {
         [self performSegueWithIdentifier:@"showAboutView" sender:self];
     }
-    else if(indexPath.row == 6)
+    else if(indexPath.row == 5)
     {
        [self showHudInView:self.view hint:@"正在检测版本更新"];
         [[[CheckNewVersion alloc] init]  checkNewVersion:self];
     }
-    else if(indexPath.row == 7)
+    else if(indexPath.row == 6)
     {
         [self performSegueWithIdentifier:@"showSuggestionView" sender:self];
         
     }
-    else if(indexPath.row == 8)
+    else if(indexPath.row == 7)
     {
 
         PRESENTALERTWITHHANDER_WITHDEFAULTCANCEL(@"确定退出登录?", @"", @"确定", ^(){
