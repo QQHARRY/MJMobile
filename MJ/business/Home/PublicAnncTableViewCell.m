@@ -27,7 +27,7 @@
 
     self.title.text = title;
 
-    self.isNew.hidden = !isNew;
+    //self.isNew.hidden = !isNew;
 }
 
 @end

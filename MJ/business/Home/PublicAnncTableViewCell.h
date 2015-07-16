@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PublicAnncTableViewCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet UIImageView *isNew;
+
 @property (strong, nonatomic) IBOutlet UILabel *title;
 
 

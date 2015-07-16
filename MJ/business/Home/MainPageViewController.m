@@ -433,7 +433,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 5;
     
 }
 
@@ -638,7 +638,7 @@
     CGRect tbBarframe =  self.tabBarController.tabBar.frame;
     
 
-    self.publicAnncTb = [[UITableView alloc] initWithFrame:CGRectMake(0, Y, SCREEN_WIDTH, CGRectGetMinY(tbBarframe)-Y + 100) style:UITableViewStylePlain];
+    self.publicAnncTb = [[UITableView alloc] initWithFrame:CGRectMake(0, Y, SCREEN_WIDTH, CGRectGetMinY(tbBarframe)-Y+44) style:UITableViewStylePlain];
     self.publicAnncTb.delegate = self;
     self.publicAnncTb.dataSource = self;
     self.publicAnncTb.scrollEnabled = NO;
