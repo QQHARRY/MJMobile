@@ -343,7 +343,7 @@
     SHOWHUD_WINDOW;
     [dictionaryManager updateDicSuccess:^(id responseObject) {
         HIDEHUD_WINDOW
-        [self.scrollView headerBeginRefreshing];
+        //[self.scrollView headerBeginRefreshing];
         [self reloadData];
     } failure:^(NSError *error) {
         HIDEHUD_WINDOW

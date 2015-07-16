@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -24,9 +24,12 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vNg-fh-YSp">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vNg-fh-YSp">
                         <rect key="frame" x="86" y="5" width="215" height="30"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="vD1-Ii-8fH"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
@@ -46,8 +49,6 @@
                     <constraint firstAttribute="trailing" secondItem="vNg-fh-YSp" secondAttribute="trailing" constant="19" id="c1A-jX-BbI"/>
                     <constraint firstAttribute="centerY" secondItem="ck1-J5-FZe" secondAttribute="centerY" id="efY-TC-0hg"/>
                     <constraint firstItem="vNg-fh-YSp" firstAttribute="leading" secondItem="eJ7-I8-n4h" secondAttribute="trailing" constant="4" id="gO5-H2-P4E"/>
-                    <constraint firstAttribute="bottom" secondItem="vNg-fh-YSp" secondAttribute="bottom" constant="8" id="gRX-Xg-GAT"/>
-                    <constraint firstItem="vNg-fh-YSp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="r4M-I2-2NY"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
