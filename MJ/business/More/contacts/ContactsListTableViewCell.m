@@ -44,8 +44,9 @@
     self.action = action;
     
     
-    expandBtn =[[UIButton alloc] initWithFrame:CGRectMake(5+kLevelOffset*_level, 0, 40, 40)];
+    expandBtn =[[UIButton alloc] initWithFrame:CGRectMake(5+kLevelOffset*_level, 0, 44, 44)];
     unitName = [[UILabel alloc] initWithFrame:CGRectMake(50+kLevelOffset*_level,10, 200, 21)];
+    unitName.font = [UIFont systemFontOfSize:17];
     [expandBtn addTarget:self action:@selector(expandBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     selectBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width-20, 10, 20, 20)];
@@ -57,8 +58,6 @@
     [self addSubview:selectBtn];
     
    
-    
-    [unitName setFont:[UIFont systemFontOfSize:12]];
     if ([unt  isKindOfClass:[department class]])
     {
         unitName.text = ((department*)unt).dept_name;

@@ -585,6 +585,9 @@
 -(void)initUI
 {
     CGRect navFrame = self.navigationController.navigationBar.frame;
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    CGRect selfFrame = self.view.frame;
+
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0 , self.view.frame.size.width, self.view.frame.size.height - (navFrame.origin.y+navFrame.size.height))];
     self.scrollView.backgroundColor = [UIColor whiteColor];
     self.scrollView.scrollEnabled = YES;

@@ -19,7 +19,6 @@
     
     for (const Ivar *p = ivars; p < ivars + ivarsCnt; ++p)
     {
-        //Ivar const ivar = ;
         NSString *key = [NSString stringWithUTF8String:ivar_getName(*p)];
         NSString*value = [dic objectForKey:key];
         if (value && [value length] > 0)

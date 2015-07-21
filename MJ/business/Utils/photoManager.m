@@ -14,7 +14,7 @@ __strong static photoManager* _sharedObject = nil;
 
 
 
-
+;
 +(photoManager*)sharedInstance
 {
     static dispatch_once_t pred = 0;

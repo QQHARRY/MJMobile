@@ -378,7 +378,6 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
 #pragma mark - ImagePlayerViewDelegate
 - (void)imagePlayerView:(ImagePlayerView *)imagePlayerView loadImageForImageView:(UIImageView *)imageView index:(NSInteger)index
 {
-    
     if (self.housePhotoArr.count == 0)
     {
         imageView.image = [UIImage imageNamed:@"添加实勘.jpg"];
@@ -390,13 +389,9 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
             __weak typeof(imageView) weakImgV = imageView;
             
             [imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.housePhotoArr[index]]] placeholderImage:[UIImage imageNamed:@"banner_no.jpg"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                if (image)
-                {
+                if (image){
                     weakImgV.image = image;
-                }
-                else
-                {
-                    
+                }else{
                     weakImgV.image = [UIImage imageNamed:@"banner_fail.jpg"];
                 }
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
@@ -576,17 +571,17 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
     if (self.housePtcl)
     {
         NSMutableArray*arrPhotoTmp = [[NSMutableArray alloc] init];
-        if (self.housePtcl.xqt != nil && [self.housePtcl.xqt stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]])
+        if (self.housePtcl.xqt != nil && [self.housePtcl.xqt stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0)
         {
             [arrPhotoTmp addObjectsFromArray:[self.housePtcl.xqt componentsSeparatedByString:@", "]];
         }
         
-        if (self.housePtcl.hxt != nil && [self.housePtcl.hxt stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]])
+        if (self.housePtcl.hxt != nil && [self.housePtcl.hxt stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0)
         {
             [arrPhotoTmp addObjectsFromArray:[self.housePtcl.hxt componentsSeparatedByString:@", "]];
         }
         
-        if (self.housePtcl.snt != nil && [self.housePtcl.snt stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]])
+        if (self.housePtcl.snt != nil && [self.housePtcl.snt stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0)
         {
             [arrPhotoTmp addObjectsFromArray:[self.housePtcl.snt componentsSeparatedByString:@", "]];
         }

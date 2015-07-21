@@ -22,7 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    CGRect selfFrame = self.view.frame;
+
     self.contentWebView.layer.cornerRadius=3;
     self.contentWebView.layer.masksToBounds=YES;
     self.contentWebView.layer.borderColor=[[UIColor lightGrayColor]CGColor];

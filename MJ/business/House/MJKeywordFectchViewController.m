@@ -29,6 +29,7 @@
     [self searchBar];
     [self refreshKeyword];
     
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
 }
 
 -(NSMutableArray*)historyArr
@@ -76,7 +77,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     
-    [self.navigationController.navigationBar addSubview:self.searchBar];
+    self.searchBar.hidden = NO;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -86,10 +87,25 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    
+    [self.searchBar resignFirstResponder];
+    self.searchBar.hidden = YES;
+}
+
+
+-(void)viewDidDisappear:(BOOL)animated
+{
     [self.searchBar removeFromSuperview];
 }
 
+//- (BOOL)disablesAutomaticKeyboardDismissal
+//{
+//    return NO;
+//}
+
+-(void)dealloc
+{
+    //[self.searchBar removeFromSuperview];
+}
 
 - (UISearchBar *)searchBar
 {
@@ -98,11 +114,14 @@
     {
         
         _searchBar = [[UISearchBar alloc] init];
+        [self.navigationController.navigationBar addSubview:self.searchBar];
         [self customizeSearchBar:_searchBar];
         [_searchBar becomeFirstResponder];
         
         
     }
+    
+    
     
     return _searchBar;
 }
