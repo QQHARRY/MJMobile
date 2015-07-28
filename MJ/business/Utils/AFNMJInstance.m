@@ -104,27 +104,27 @@
     
     
     
-    NSData * imagedata = UIImageJPEGRepresentation(image,0.2);
-   
-    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:apiName parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:imagedata name:@"upload_file" fileName:@"upload_file" mimeType:@"image/jpeg"];
-    } error:nil];
-    [request addValue:@"text/html" forHTTPHeaderField:@"Accept"];
-    //[request addValue:@"text/html" forHTTPHeaderField:@"Content-Type"];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    
-    manager.responseSerializer = self;
-    
-    
-    NSProgress *progress = nil;
-    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error);
-        } else {
-            NSLog(@"%@ %@", response, responseObject);
-        }
-    }];
-    [uploadTask resume];
+//    NSData * imagedata = UIImageJPEGRepresentation(image,0.2);
+//   
+//    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:apiName parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        [formData appendPartWithFileData:imagedata name:@"upload_file" fileName:@"upload_file" mimeType:@"image/jpeg"];
+//    } error:nil];
+//    [request addValue:@"text/html" forHTTPHeaderField:@"Accept"];
+//    //[request addValue:@"text/html" forHTTPHeaderField:@"Content-Type"];
+//    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+//    
+//    manager.responseSerializer = self;
+//    
+//    
+//    NSProgress *progress = nil;
+//    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+//        if (error) {
+//            NSLog(@"Error: %@", error);
+//        } else {
+//            NSLog(@"%@ %@", response, responseObject);
+//        }
+//    }];
+//    [uploadTask resume];
     
 
 //    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -139,6 +139,9 @@
 //        }
 //    }];
 //    [dataTask resume];
+    
+    
+    
     
     
     
@@ -216,9 +219,7 @@
 //    }];
 //    [uploadtask resume];
 }
--(void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didSendBodyData:(int64_t)bytesSent totalBytesSent:(int64_t)totalBytesSent totalBytesExpectedToSend:(int64_t)totalBytesExpectedToSend{
-    
-}
+
 -(void)AFPostImage:(UIImage*)image WithApiName:(NSString*)apiName parameters:(NSDictionary *)parameters
          success:(void (^)(id responseObject))success
          failure:(void (^)(NSError *error))failure
@@ -236,6 +237,9 @@
     manager.requestSerializer.timeoutInterval = 10;
     
     
+    
+    
+    NSURLSessionDataTask*task = [manager POST:apiName parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:imageData name:@"upload_file" fileName:@"upload_file" mimeType:@"image/jpeg"];
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         if (success) {
@@ -251,6 +255,9 @@
         }
     }];
     
+//    if ([task isKindOfClass:[NSURLSessionDataTask class]]) {
+//        
+//    }
     
     
     
