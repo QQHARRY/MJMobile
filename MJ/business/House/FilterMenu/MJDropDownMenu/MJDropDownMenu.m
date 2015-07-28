@@ -824,6 +824,7 @@
         }
         else
         {
+            [self markSelectionOnTableView:tableView AtIndexPath:indexPath];
             if (self.delegate && [self.delegate respondsToSelector:@selector(menu:tableView:didSelectRowAtIndexPath:CustomizedValue:)])
             {
                 
@@ -858,8 +859,6 @@
 
                 [self.delegate menu:self tableView:tableView didSelectRowAtIndexPath:indexTmp CustomizedValue:value];
             }
-            
-            [self markSelectionOnTableView:tableView AtIndexPath:indexPath];
             
             if (self.batchSelect == NO)
             {
