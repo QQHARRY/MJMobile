@@ -11,8 +11,15 @@
 #import "person.h"
 #import "UtilFun.h"
 
+//@interface AFNMJInstance()<AFURLResponseSerialization>
+//
+//
+//@end
+
 
 @implementation AFNMJInstance
+
+
 
 +(id<POSTMETHOD>)instance
 {
@@ -82,6 +89,13 @@
      ];
 }
 
+//- (id)responseObjectForResponse:(NSURLResponse *)response
+//                           data:(NSData *)data
+//                          error:(NSError *__autoreleasing *)error
+//{
+//    return [NSSet setWithObjects:@"text/html",@"application/json", nil];
+//}
+
 -(void)PostImage:(UIImage*)image WithApiName:(NSString*)apiName parameters:(NSDictionary *)parameters
          success:(void (^)(id responseObject))success
          failure:(void (^)(NSError *error))failure
@@ -93,12 +107,13 @@
     NSData * imagedata = UIImageJPEGRepresentation(image,0.2);
    
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:apiName parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:imagedata name:@"upload_file" fileName:@"upload_file" mimeType:@"iamge/jpeg"];
+        [formData appendPartWithFileData:imagedata name:@"upload_file" fileName:@"upload_file" mimeType:@"image/jpeg"];
     } error:nil];
     [request addValue:@"text/html" forHTTPHeaderField:@"Accept"];
-   
+    //[request addValue:@"text/html" forHTTPHeaderField:@"Content-Type"];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     
+    manager.responseSerializer = self;
     
     
     NSProgress *progress = nil;
@@ -111,9 +126,7 @@
     }];
     [uploadTask resume];
     
-    
-    
-    
+
 //    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
 //    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
 //    NSURL *URL = [NSURL URLWithString:@"http://example.com/upload"];
@@ -222,7 +235,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     manager.requestSerializer.timeoutInterval = 10;
     
-    [manager POST:apiName parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    
         [formData appendPartWithFileData:imageData name:@"upload_file" fileName:@"upload_file" mimeType:@"image/jpeg"];
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         if (success) {
@@ -238,7 +251,6 @@
         }
     }];
     
-
     
     
     

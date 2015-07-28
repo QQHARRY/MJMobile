@@ -46,7 +46,12 @@
                 failure:(void (^)(NSError *error))failure
 {
     float curVer = [self readDicVersion];
-    [self getDicCurVersion:curVer Success:success failure:failure];
+    NSString*curVerStr = [self readDicVersionStr];
+    if (curVerStr == nil || curVerStr.length == 0) {
+        curVerStr = [NSString stringWithFormat:@"%.1f",curVer];
+        [self setDicVersionStr:curVerStr];
+    }
+    [self getDicCurVersion:curVerStr Success:success failure:failure];
 }
 
 +(void)writeDicToDB:(NSArray*)itemArr
@@ -91,10 +96,10 @@
     return dicArr;
 }
 
-+(void)getDicCurVersion:(float)verion Success:(void (^)(id responseObject))success
++(void)getDicCurVersion:(NSString*)verion Success:(void (^)(id responseObject))success
            failure:(void (^)(NSError *error))failure
 {
-    NSString*strVer = [NSString stringWithFormat:@"V%.2f",verion];
+    NSString*strVer = verion;
     NSDictionary *parameters = @{@"job_no":[person me].job_no,
                                  @"acc_password":[person me].password,
                                  @"version_no":strVer
@@ -110,10 +115,10 @@
          {
              NSString*vNum = [resultDic objectForKey:@"version_no"];
              vNum = [vNum substringFromIndex:1];
-             float fVNum = [vNum floatValue];
-             if (verion < fVNum)
+             //float fVNum = [vNum floatValue];
+             if ([vNum compare:verion options:NSNumericSearch] == NSOrderedDescending)
              {
-                 [self setDicVersion:fVNum];
+                 [self setDicVersionStr:vNum];
                  [self writeDicToDB:[resultDic objectForKey:@"DictionaryNode"]];
                  
              }
@@ -131,18 +136,30 @@
 
 +(void)setDicVersion:(float)version
 {
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setFloat:version forKey:@"DicVersion"];
-    [prefs synchronize];
+    //deprecated since 1.3.0.0
 }
 
 +(float)readDicVersion
 {
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    float version =[prefs floatForKey:@"DicVersion"];
-    return version;
+    //deprecated since 1.3.0.0,always returns 0
+    return 0;
 }
 
++(void)setDicVersionStr:(NSString *)version
+{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSString*key = DIC_VERSION_KEY;
+    [prefs setValue:version forKey:DIC_VERSION_KEY];
+    [prefs synchronize];
+}
+
++(NSString*)readDicVersionStr
+{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSString*key = DIC_VERSION_KEY;
+    NSString* version =[prefs stringForKey:DIC_VERSION_KEY];
+    return version;
+}
 
 +(NSArray*)getItemArrByType:(NSString*)type
 {

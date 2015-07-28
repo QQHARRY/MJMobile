@@ -42,5 +42,10 @@
 
 +(float)readDicVersion;
 
++(void)setDicVersionStr:(NSString*)version;
+
++(NSString*)readDicVersionStr;
+
+
 +(NSArray*)getItemArrByType:(NSString*)type;
 @end
