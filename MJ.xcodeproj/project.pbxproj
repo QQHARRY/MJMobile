@@ -22,6 +22,7 @@
 		4A06BEC21AE6314C00809C52 /* unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06BEB51AE6314C00809C52 /* unit.m */; };
 		4A06BEC61AE631CA00809C52 /* ContactDeptVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A06BEC41AE631CA00809C52 /* ContactDeptVCCell.m */; };
 		4A06BEC71AE631CA00809C52 /* ContactDeptVCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A06BEC51AE631CA00809C52 /* ContactDeptVCCell.xib */; };
+		4A087B131B6821A90050B938 /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A087B121B6821A90050B938 /* PgySDK.framework */; };
 		4A20860C1A63B49A00F3CB5A /* HouseEditParticularsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20860B1A63B49A00F3CB5A /* HouseEditParticularsViewController.m */; };
 		4A20DADD1A6A2B5A002E68EC /* BuildingsSelectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20DADC1A6A2B5A002E68EC /* BuildingsSelectTableViewController.m */; };
 		4A20DAE11A6A2B85002E68EC /* BuildingsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A20DADF1A6A2B85002E68EC /* BuildingsTableCell.m */; };
@@ -144,7 +145,6 @@
 		4A9D025C1A62B13F00600BA0 /* CustomerParticularTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D025B1A62B13F00600BA0 /* CustomerParticularTableViewController.m */; };
 		4A9D3F7A1A8F481200BCDAD8 /* MJTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D3F791A8F481200BCDAD8 /* MJTabbarController.m */; };
 		4A9ED8A71AFC970800227498 /* UIImageView+LoadPortraitOfPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9ED8A61AFC970800227498 /* UIImageView+LoadPortraitOfPerson.m */; };
-		4A9ED8A91AFDC4ED00227498 /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9ED8A81AFDC4ED00227498 /* PgySDK.framework */; };
 		4A9ED8AB1AFDC50B00227498 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9ED8AA1AFDC50A00227498 /* OpenGLES.framework */; };
 		4A9ED8AD1AFDC51A00227498 /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9ED8AC1AFDC51A00227498 /* SceneKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4A9ED8AF1AFDC52000227498 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9ED8AE1AFDC52000227498 /* CoreMotion.framework */; };
@@ -745,6 +745,7 @@
 		4A06BEC31AE631CA00809C52 /* ContactDeptVCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDeptVCCell.h; sourceTree = "<group>"; };
 		4A06BEC41AE631CA00809C52 /* ContactDeptVCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDeptVCCell.m; sourceTree = "<group>"; };
 		4A06BEC51AE631CA00809C52 /* ContactDeptVCCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactDeptVCCell.xib; sourceTree = "<group>"; };
+		4A087B121B6821A90050B938 /* PgySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PgySDK.framework; path = 3rd/PGY/PgySDK.framework; sourceTree = "<group>"; };
 		4A20860A1A63B49A00F3CB5A /* HouseEditParticularsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseEditParticularsViewController.h; sourceTree = "<group>"; };
 		4A20860B1A63B49A00F3CB5A /* HouseEditParticularsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseEditParticularsViewController.m; sourceTree = "<group>"; };
 		4A20DADB1A6A2B5A002E68EC /* BuildingsSelectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingsSelectTableViewController.h; sourceTree = "<group>"; };
@@ -974,7 +975,6 @@
 		4A9D3F791A8F481200BCDAD8 /* MJTabbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJTabbarController.m; sourceTree = "<group>"; };
 		4A9ED8A51AFC970800227498 /* UIImageView+LoadPortraitOfPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+LoadPortraitOfPerson.h"; path = "dictionary/UIImageView+LoadPortraitOfPerson.h"; sourceTree = "<group>"; };
 		4A9ED8A61AFC970800227498 /* UIImageView+LoadPortraitOfPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+LoadPortraitOfPerson.m"; path = "dictionary/UIImageView+LoadPortraitOfPerson.m"; sourceTree = "<group>"; };
-		4A9ED8A81AFDC4ED00227498 /* PgySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgySDK.framework; sourceTree = "<group>"; };
 		4A9ED8AA1AFDC50A00227498 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		4A9ED8AC1AFDC51A00227498 /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
 		4A9ED8AE1AFDC52000227498 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -1962,6 +1962,7 @@
 				4AA18BEB1AEF62DB00685603 /* CoreData.framework in Frameworks */,
 				4AA18BE31AEF5C9700685603 /* Security.framework in Frameworks */,
 				4AA18BE11AEF5C8100685603 /* Social.framework in Frameworks */,
+				4A087B131B6821A90050B938 /* PgySDK.framework in Frameworks */,
 				4AA18BDF1AEF5A2F00685603 /* AddressBook.framework in Frameworks */,
 				4AA188421AEF41FB00685603 /* UIKit.framework in Frameworks */,
 				4AA185071AEF2A3000685603 /* libiconv.dylib in Frameworks */,
@@ -1969,7 +1970,6 @@
 				4AA18A661AEF549A00685603 /* libMobClickLibrary.a in Frameworks */,
 				4AA1850B1AEF2A3E00685603 /* libresolv.dylib in Frameworks */,
 				4AA1883E1AEF41C300685603 /* CoreLocation.framework in Frameworks */,
-				4A9ED8A91AFDC4ED00227498 /* PgySDK.framework in Frameworks */,
 				4AA1883C1AEF41B900685603 /* MapKit.framework in Frameworks */,
 				4A6685991B07225900B0E999 /* libMobClickLibrary.a in Frameworks */,
 				4AA1883A1AEF41B000685603 /* ImageIO.framework in Frameworks */,
@@ -2364,6 +2364,7 @@
 		4A9D02091A60586F00600BA0 /*  Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A087B121B6821A90050B938 /* PgySDK.framework */,
 				4A77FB531B3D686E00313D4E /* CoreGraphics.framework */,
 				4A9ED8B21AFDC53200227498 /* AVFoundation.framework */,
 				4A9ED8B01AFDC52B00227498 /* AudioToolbox.framework */,
@@ -2371,7 +2372,6 @@
 				4A9ED8AC1AFDC51A00227498 /* SceneKit.framework */,
 				4A9ED8AA1AFDC50A00227498 /* OpenGLES.framework */,
 				4AA18BEC1AEF7CC100685603 /* libstdc++.6.dylib */,
-				4A9ED8A81AFDC4ED00227498 /* PgySDK.framework */,
 				4AA18BEA1AEF62DB00685603 /* CoreData.framework */,
 				4AA18BDE1AEF5A2F00685603 /* AddressBook.framework */,
 				4AA18BE21AEF5C9700685603 /* Security.framework */,
@@ -5411,6 +5411,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MJ",
+					"$(PROJECT_DIR)/MJ/3rd/PGY",
 				);
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/MJ/MJPrefixHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
@@ -5442,6 +5443,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MJ",
+					"$(PROJECT_DIR)/MJ/3rd/PGY",
 				);
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/MJ/MJPrefixHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "";
