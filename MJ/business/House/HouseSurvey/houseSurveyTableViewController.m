@@ -14,7 +14,7 @@
 #import "postFileUtils.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "imageStorageInfo.h"
-
+#import "NetWorkManager.h"
 
 @interface houseSurveyTableViewController()<UIAlertViewDelegate>
 
@@ -148,7 +148,6 @@
 
 -(void)adjustCurSectionItemsAfterAddNewImage:(UIImage*)image
 {
-    
     RETableViewItem*item = [[RETableViewItem alloc] init];
     CGFloat scale =  (self.view.frame.size.width-30)/image.size.width;
     UIImage*covertedImg = [UtilFun scaleImage:image toScale:scale];
@@ -254,29 +253,28 @@
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
+    __weak typeof(self) weakSelf = self;
     if (buttonIndex == 0)
     {
         dispatch_async(dispatch_get_main_queue(), ^{
-            SHOWWINDOWHUD(@"正在上传图片");
+            SHOWHUDTIP(self.view,@"正在上传图片");
         });
         
-        NSString*strImageFor = [self keyForSection:self.curSection];
+        NSString*strImageFor = [weakSelf keyForSection:weakSelf.curSection];
         
-        [self uploadImage:_lastImage WithStorageNo:self.parentPictureID Topic:strImageFor Success:^(imageStorageInfo *info) {
+        [weakSelf uploadImage:_lastImage WithStorageNo:weakSelf.parentPictureID Topic:strImageFor Success:^(imageStorageInfo *info) {
             
-            [self adjustCurSectionItemsAfterAddNewImage:_lastImage];
-            [self saveAddedImageInfo:info];
+            [weakSelf adjustCurSectionItemsAfterAddNewImage:_lastImage];
+            [weakSelf saveAddedImageInfo:info];
             _lastImage = nil;
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-                HIDEHUD_WINDOW;
+                [weakSelf.tableView reloadData];
+                HIDEHUD(weakSelf.view);
             });
         } failure:^(NSError *error) {
-            __block NSString*err = [error description
-                                    ];
             dispatch_async(dispatch_get_main_queue(), ^{
-                PRESENTALERT(@"上传失败,请稍候重试.",err, nil,nil, nil);
-                HIDEHUD_WINDOW;
+                PRESENTALERT(@"上传失败,请稍候重试.",error.localizedDescription, nil,nil, nil);
+                HIDEHUD(weakSelf.view);
                 
             });
         }];
@@ -290,31 +288,43 @@
 
 -(void)uploadImage:(UIImage*)image WithStorageNo:(NSString*)storageNo Topic:(NSString*)topic Success:(void(^)(imageStorageInfo* info))success failure:(void (^)(NSError *error))failure
 {
-
     NSMutableDictionary*paramDic = [[NSMutableDictionary alloc] init];
-    NSURL*url = [NSURL URLWithString:IMAGE_SERVER_URL];
-    NSData*data = UIImageJPEGRepresentation(image, 1.0);
+
     NSDate *date = [NSDate date];
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *comps = [[NSDateComponents alloc] init];
-    NSInteger unitFlags = NSYearCalendarUnit |
-    NSMonthCalendarUnit |
-    NSDayCalendarUnit |
-    NSWeekdayCalendarUnit |
-    NSHourCalendarUnit |
-    NSMinuteCalendarUnit |
-    NSSecondCalendarUnit;
+    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |NSDayCalendarUnit | NSWeekdayCalendarUnit | NSHourCalendarUnit |NSMinuteCalendarUnit |NSSecondCalendarUnit;
     comps = [calendar components:unitFlags fromDate:date];
-    int year= (int)[comps year];
-    int month = (int)[comps month];
-    int day = (int)[comps day];
+    int year= (int)[comps year];int month = (int)[comps month];int day = (int)[comps day];
     
     NSString*filePath = [NSString stringWithFormat:@"surveyPhotos/%d/%d/%d/%@/%@/",year,month,day,storageNo,topic];
     [paramDic setValue:filePath forKey:@"filePath"];
     [paramDic setValue:@"600,450" forKey:@"fileSize"];
     [paramDic setValue:@"260,195" forKey:@"thumbSize"];
     
+    [NetWorkManager PostImage:image WithApiName:IMAGE_SERVER_URL parameters:paramDic success:^(id responseObject) {
+        int code = [[responseObject objectForKey:@"Status"] intValue];
+        if (code == 0){
+            imageStorageInfo*info = [[imageStorageInfo alloc] init];
+            info.fileName = [responseObject objectForKey:@"fileName"];
+            info.filePath = [responseObject objectForKey:@"file_path"];
+            info.thumbPath = [responseObject objectForKey:@"thumb_path"];
+            info.topic = topic;
+            info.storageNo = storageNo;
+            success(info);
+        }else{
+            
+            NSString*errStr = [NSString stringWithFormat:@"服务器返回错误,错误码=%d",code];
+            NSError*err = [NSError errorWithDomain:@"" code:code userInfo:@{@"NSLocalizedDescription":errStr}];
+            failure(err);
+        }
+        
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
     
+    
+#if 0
     [postFileUtils postFileWithURL:url data:data  Parameter:paramDic ServerParamName:@"upload_file" FileName:@"upload_file" MimeType:@"image/jpeg" Success:^(id responseObj){
         imageStorageInfo*info = [[imageStorageInfo alloc] init];
         
@@ -331,6 +341,7 @@
     } failure:^(NSError *error) {
         failure(error);
     }];
+#endif
 }
 
 

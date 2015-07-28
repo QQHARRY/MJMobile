@@ -591,7 +591,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
 
         for (NSString*imgName in arrPhotoTmp)
         {
-            NSString *imgStr = [SERVER_ADD stringByAppendingString:imgName];
+            NSString *imgStr = imgName;
             [[self housePhotoArr] addObject:imgStr];
         }
         
@@ -2841,6 +2841,7 @@ static NSString *const menuCellIdentifier = @"ContextMenuCell";
         {
             HouseAddKeyTalbeViewController*vc = [[HouseAddKeyTalbeViewController alloc] init];
             vc.trade_no = self.houseDtl.trade_no;
+            vc.roleList = self.roleListOfHouse;
             [self.navigationController pushViewController:vc
                                                  animated:YES];
         }

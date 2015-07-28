@@ -71,6 +71,14 @@ static NSString*UDIDSTRING=nil;
     [hud show:YES];
 }
 
++(void)showHUD:(NSString *)tip View:(UIView*)view
+{
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:view];
+    hud.labelText = tip;
+    [view addSubview:hud];
+    [hud show:YES];
+}
+
 +(void)hideAllWindowHUD
 {
     [MBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];

@@ -26,7 +26,7 @@
                success:(void (^)(id responseObject))success
                failure:(void (^)(NSError *error))failure
 {
-    [[AFNMJInstance instance]  PostImage:image WithApiName:apiName parameters:parameters success:success failure:false];
+    [[AFNMJInstance instance]  PostImage:image WithApiName:apiName parameters:parameters success:success failure:failure];
 }
 
 @end

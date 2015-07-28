@@ -21,13 +21,16 @@
     {
         NSString *key = [NSString stringWithUTF8String:ivar_getName(*p)];
         NSString*value = [dic objectForKey:key];
-        if (value && [value length] > 0)
-        {
-             object_setIvar(self,*p,value);
+        if ([value isKindOfClass:[NSString class]]) {
+            if (value && [value length] > 0)
+            {
+                object_setIvar(self,*p,value);
+            }
+            else{
+                object_setIvar(self,*p,@"");
+            }
         }
-        else{
-            object_setIvar(self,*p,@"");
-        }
+        
        
     }
     

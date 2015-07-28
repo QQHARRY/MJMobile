@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#define SHOWHUDTIP(v,tip) ([UtilFun showHUD:(tip) View:(v)]);
 #define SHOWWINDOWHUD(tip) ([UtilFun showWindowHUD:(tip)]);
 #define HIDEALLWINDOWHUD ([UtilFun hideAllWindowHUD]);
 
@@ -46,6 +47,7 @@ if(sender == nil) tmpSender = self;\
 +(BOOL)hasFirstBinded;
 
 +(void)showHUD:(UIView*)view;
++(void)showHUD:(NSString *)tip View:(UIView*)view;
 +(void)hideHUD:(UIView*)view;
 +(void)hideAllHUD:(UIView*)view;
 +(void)showWindowHUD:(NSString *)tip;

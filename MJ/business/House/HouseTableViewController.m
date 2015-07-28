@@ -152,9 +152,14 @@
     }
 
     HouseDetail *hd = [self.houseList objectAtIndex:indexPath.row];
-    NSString *thunmbnailStr = [SERVER_ADD stringByAppendingString:hd.ThumbnailUrl];
-//    NSLog(@"%@", thunmbnailStr);
-    [cell.thunmbnail setImageWithURL:[NSURL URLWithString:thunmbnailStr] placeholderImage:[UIImage imageNamed:@"LoadPlaceHolder"]];
+    if(hd.album_thumb_path){
+        NSString *thunmbnailStr = hd.album_thumb_path;
+        [cell.thunmbnail setImageWithURL:[NSURL URLWithString:thunmbnailStr] placeholderImage:[UIImage imageNamed:@"banner_no.jpg"]];
+    }else
+    {
+        [cell.thunmbnail setImage:[UIImage imageNamed:@"banner_no.jpg"]];
+    }
+    
     cell.title.text = hd.domain_name;
     cell.house.text = [NSString stringWithFormat:@"%@室%@厅%@卫", hd.room_num, hd.hall_num,hd.toilet_num];
     

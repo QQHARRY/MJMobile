@@ -21,14 +21,11 @@
     
     [NetWorkManager PostWithApiName:API_GET_PROTECTION_INFO parameters:param success:^(id responseObject)
      {
+         //NSString *jsonString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
          NSDictionary *resultDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-         if ([bizManager checkReturnStatus:resultDic Success:success failure:failure ShouldReturnWhenSuccess:NO])
-         {
              HouseProtectionInfo*info = [[HouseProtectionInfo alloc] init];
-             
              [info initWithDictionary:resultDic];
              success(info);
-         }
      }
                             failure:^(NSError *error)
      {

@@ -76,8 +76,8 @@
             {
                 
                 
-                NSString *imgStr = [SERVER_ADD stringByAppendingString:imgName];
-                NSLog(@"%@",imgStr);
+                NSString *imgStr = imgName;
+                //NSLog(@"%@",imgStr);
                 UIImageView* imageV = [[UIImageView alloc] init];
                 [imageV getImageWithURL:[NSURL URLWithString:imgStr] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
                  {
@@ -114,7 +114,7 @@
             NSArray*arr = [self.housePtcl.hxt componentsSeparatedByString:@", "];
             for (NSString*imgName in arr)
             {
-                NSString *imgStr = [SERVER_ADD stringByAppendingString:imgName];
+                NSString *imgStr = imgName;
                 NSLog(@"%@",imgStr);
                 UIImageView* imageV = [[UIImageView alloc] init];
                 [imageV getImageWithURL:[NSURL URLWithString:imgStr] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
@@ -155,7 +155,7 @@
             {
                 
                 
-                NSString *imgStr = [SERVER_ADD stringByAppendingString:imgName];
+                NSString *imgStr = imgName;
                 NSLog(@"%@",imgStr);
                 UIImageView* imageV = [[UIImageView alloc] init];
 
@@ -197,7 +197,7 @@
             {
                 
                 
-                NSString *imgStr = [SERVER_ADD stringByAppendingString:imgName];
+                NSString *imgStr = imgName;
                 NSLog(@"%@",imgStr);
                 UIImageView* imageV = [[UIImageView alloc] init];
                 [imageV getImageWithURL:[NSURL URLWithString:imgStr] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)

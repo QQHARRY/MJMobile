@@ -95,6 +95,42 @@
     }
     return NO;
 }
+-(BOOL)hasKey:(NSArray*)roleList
+{
+    if (roleList && roleList.count > 0)
+    {
+        for (RoleListNode* roleNode in roleList)
+        {
+            if ([roleNode isKindOfClass:[RoleListNode class]])
+            {
+                if ([roleNode.role_type intValue] == MjHouseRoleTypeKey)
+                {
+                    return YES;
+                }
+            }
+        }
+    }
+    return NO;
+}
+
+-(BOOL)canAddKey:(NSArray*)roleList
+{
+    BOOL canAdd = YES;
+    if (roleList && roleList.count > 0)
+    {
+        for (RoleListNode* roleNode in roleList)
+        {
+            if ([roleNode isKindOfClass:[RoleListNode class]])
+            {
+                if ([roleNode.role_type intValue] == MjHouseRoleTypeKey && ![roleNode.job_no isEqualToString:[person me].job_no])
+                {
+                    canAdd = NO;
+                }
+            }
+        }
+    }
+    return canAdd;
+}
 
 -(void)checkProtection
 {
@@ -107,27 +143,45 @@
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }
     };
-    SHOWHUD_WINDOW
+    SHOWHUD(self.view)
+    
     [self checkHouseProtection:self.trade_no Success:^(HouseProtectionInfo *info) {
-        HIDEHUD_WINDOW
+        HIDEHUD(weakSelf.view)
         
         if (info)
         {
-            if ([info isInProtection] && ![self isMeTheOwner:self.roleList])
+            if ([info isInProtection])
             {
-                NSString*protectionInfo = [info getProtectionInfo];
-                PRESENTALERT(@"对不起,该房源正在保护期内,目前只允许房源的录入人上传业绩.", protectionInfo, @"OK", handle, self);
+                if (![weakSelf isMeTheOwner:weakSelf.roleList]) {
+                    if ([self hasKey:self.roleList])
+                    {
+                        PRESENTALERT(@"对不起,该房源已添加钥匙.", @"您不能再添加钥匙", @"OK", handle, weakSelf);
+                    }
+                    else
+                    {
+                        NSString*protectionInfo = [info getProtectionInfo];
+                        PRESENTALERT(@"对不起,该房源正在保护期内,目前只允许房源的录入人上传业绩.", protectionInfo, @"OK", handle, weakSelf);
+                    }
+                    
+                }
             }
+            else
+            {
+                if(![weakSelf canAddKey:weakSelf.roleList])
+                {
+                    PRESENTALERT(@"对不起,该房源已添加钥匙.", @"您不能再添加钥匙", @"OK", handle, weakSelf);
+                }
+            }
+            
         }
         else
         {
-            PRESENTALERT(@"获取房源保护期信息失败,请重试", nil, @"OK", handle, self);
+            PRESENTALERT(@"获取房源保护期信息失败,请重试", nil, @"OK", handle, weakSelf);
         }
         
-        
     } failure:^(NSError *error) {
-        HIDEHUD_WINDOW
-        PRESENTALERT(@"获取房源保护期信息失败,请重试", nil, @"OK", handle, self);
+        HIDEHUD(weakSelf.view)
+        PRESENTALERT(@"获取房源保护期信息失败,请重试", nil, @"OK", handle, weakSelf);
     }];
 
 }

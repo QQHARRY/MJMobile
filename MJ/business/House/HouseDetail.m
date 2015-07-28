@@ -35,7 +35,7 @@
 @synthesize sale_state; // 状态(出售)
 @synthesize lease_state; // 状态(出租)
 @synthesize fitment_type; // 装修类型
-@synthesize ThumbnailUrl; // 缩略图url(也就 是一张主图的 图片路径)
+@synthesize album_thumb_path; // 缩略图url(也就 是一张主图的 图片路径)
 @synthesize consignment_type; // 委托类型 ID
 @synthesize look_permit;
 @synthesize reg_type; //0：个人私盘；1：门店公盘；2：区域公盘；3：大区域公盘；99：公司公盘
