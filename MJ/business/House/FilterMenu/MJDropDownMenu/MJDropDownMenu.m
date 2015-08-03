@@ -140,68 +140,51 @@
     
     [self addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
         weakSelf.tableViewOrigHeight = keyboardFrameInView.origin.y;
-        return;
-        NSLog(@"KeyboardPanning keyBoardShowing=%d",weakSelf.keyBoardShowing);
-        if (weakSelf.keyBoardShowing)
-        {
-//            CGRect tableViewFrame = weakSelf.leftTableV.frame;
-//            weakSelf.tableViewOrigHeight = tableViewFrame.size.height;
-//            tableViewFrame.size.height = weakSelf.tableViewOrigHeight;
-//            weakSelf.leftTableV.frame = tableViewFrame;
-//            
-//            
-//            tableViewFrame = weakSelf.rightTableV.frame;
-//            tableViewFrame.size.height = weakSelf.tableViewOrigHeight;
-//            weakSelf.rightTableV.frame = tableViewFrame;
-        }
-        else
-        {
-            CGRect tableViewFrame = weakSelf.leftTableV.frame;
-//            if (tableViewFrame.size.height != keyboardFrameInView.origin.y)
-            {
-                //NSLog(@"KeyboardPanning changeTableViewFrame,old=%f,new=%f",tableViewFrame.size.height,keyboardFrameInView.origin.y);
-
-                weakSelf.tableViewOrigHeight = tableViewFrame.size.height;
-                tableViewFrame.size.height = keyboardFrameInView.origin.y;
-                weakSelf.leftTableV.frame = tableViewFrame;
-                
-                
-                tableViewFrame = weakSelf.rightTableV.frame;
-                tableViewFrame.size.height = keyboardFrameInView.origin.y;
-                weakSelf.rightTableV.frame = tableViewFrame;
-            }
-        }
     }];
     
     [self addKeyboardCompletionHandler:^(BOOL finished, BOOL isShowing) {
         NSLog(@"KeyboardCompletion,isShowing=%d",isShowing);
         _keyBoardShowing = isShowing;
-        if (isShowing)
-        {
-            CGRect tableViewFrame = weakSelf.leftTableV.frame;
-            tableViewFrame.size.height = weakSelf.tableViewOrigHeight;
-            weakSelf.leftTableV.frame = tableViewFrame;
-        
-            tableViewFrame = weakSelf.rightTableV.frame;
-            tableViewFrame.size.height = weakSelf.tableViewOrigHeight;
-            weakSelf.rightTableV.frame = tableViewFrame;
-        }
-        else
-        {
-            NSInteger batchBtnH = BATCHSELECT_BTN_HEIGHT;
-            if (!weakSelf.batchSelect)
+        if (weakSelf) {
+            __strong typeof(self)strongSelf = weakSelf;
+            if (isShowing)
             {
-                batchBtnH = 0;
+                if (weakSelf.leftTableV) {
+                    CGRect tableViewFrame = weakSelf.leftTableV.frame;
+                    tableViewFrame.size.height = weakSelf.tableViewOrigHeight;
+                    weakSelf.leftTableV.frame = tableViewFrame;
+                }
+                
+                
+                
+                if (weakSelf.rightTableV) {
+                    CGRect tableViewFrame = weakSelf.rightTableV.frame;
+                    tableViewFrame.size.height = weakSelf.tableViewOrigHeight;
+                    weakSelf.rightTableV.frame = tableViewFrame;
+                }
+                
             }
-            CGRect tableViewFrame = weakSelf.leftTableV.frame;
-            tableViewFrame.size.height = self.frame.size.height-batchBtnH;
-            weakSelf.leftTableV.frame = tableViewFrame;
-            
-            
-            tableViewFrame = weakSelf.rightTableV.frame;
-            tableViewFrame.size.height = self.frame.size.height-batchBtnH;
-            weakSelf.rightTableV.frame = tableViewFrame;
+            else
+            {
+                NSInteger batchBtnH = BATCHSELECT_BTN_HEIGHT;
+                if (!weakSelf.batchSelect)
+                {
+                    batchBtnH = 0;
+                }
+                if (weakSelf.leftTableV) {
+                    CGRect tableViewFrame = weakSelf.leftTableV.frame;
+                    tableViewFrame.size.height = self.frame.size.height-batchBtnH;
+                    weakSelf.leftTableV.frame = tableViewFrame;
+                }
+                
+                if (weakSelf.rightTableV) {
+                    CGRect tableViewFrame = weakSelf.rightTableV.frame;
+                    tableViewFrame.size.height = self.frame.size.height-batchBtnH;
+                    weakSelf.rightTableV.frame = tableViewFrame;
+                }
+            }
         }
+        
     }];
 
 }

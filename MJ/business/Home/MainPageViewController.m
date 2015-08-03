@@ -272,14 +272,23 @@
 -(void)getAnncData
 {
     //SHOWHUD(self.view);
+    __weak typeof(self)weakSelf = self;
     [annoucementManager getListFrom:@"0" To:@"" Count:6 Success:^(id responseObject) {
         //HIDEHUD(self.view);
-        self.mainAnncArr = responseObject;
-        [self.publicAnncTb reloadData];
-        [self tryEndRefreshing:NO];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (weakSelf) {
+                __strong typeof(self)strongSelf = weakSelf;
+                
+                strongSelf.mainAnncArr = responseObject;
+                [strongSelf.publicAnncTb reloadData];
+                [strongSelf tryEndRefreshing:NO];
+            }
+            
+        });
+        
     } failure:^(NSError *error) {
         //HIDEHUD(self.view);
-        [self tryEndRefreshing:NO];
+        [weakSelf tryEndRefreshing:NO];
     }];
 
 }
@@ -344,7 +353,10 @@
     [dictionaryManager updateDicSuccess:^(id responseObject) {
         HIDEHUD_WINDOW
         //[self.scrollView headerBeginRefreshing];
-        [self reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self reloadData];
+        });
+        
     } failure:^(NSError *error) {
         HIDEHUD_WINDOW
         
@@ -585,8 +597,8 @@
 -(void)initUI
 {
     CGRect navFrame = self.navigationController.navigationBar.frame;
-    CGRect frame = [[UIScreen mainScreen] bounds];
-    CGRect selfFrame = self.view.frame;
+    //CGRect frame = [[UIScreen mainScreen] bounds];
+    //CGRect selfFrame = self.view.frame;
 
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0 , self.view.frame.size.width, self.view.frame.size.height - (navFrame.origin.y+navFrame.size.height))];
     self.scrollView.backgroundColor = [UIColor whiteColor];
